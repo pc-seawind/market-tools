@@ -3,19 +3,22 @@
 #
 # 投资 / 财经类 domain(investment 为首批)用的轻量底座工具。
 # 设计原则:
-#   - 零 python 依赖(bash + curl),不用 venv / pip
-#   - 免费数据源(Sina + Stooq),不锁 API key
-#   - 快照型(非历史型):适合日常观察 + 研究场景
+#   - 优先零 python 依赖,能用 bash + curl 就不引 python
+#   - tushare 分支只用 python3 stdlib(urllib),不需 `pip install`
+#   - 快照免 key(Sina / Stooq),历史 / 基本面需 TUSHARE_TOKEN
+#   - 高层脚本(quote / history)做 ticker 自动路由; tushare.py 是
+#     逃生舱,任意 Pro API 都能直调
 # ============================================================
 
 name: market-tools
 domain: code
 
 description: >
-  Zero-dep shell scripts wrapping free public market-data APIs
-  (Sina Finance for A-shares / HK, Stooq for US). Designed as the
-  investment domain's base_imports floor — snapshot quotes always
-  available without API keys or Python deps.
+  Market-data utility scripts for the investment domain. Two tiers: (1)
+  zero-dep snapshot quotes via Sina/Stooq (no auth), (2) historical &
+  fundamental data via tushare Pro (TUSHARE_TOKEN, python3 stdlib only,
+  no pip). Ticker shapes are unified across scripts: sh/sz/hk/bj prefix
+  for CN/HK, bare symbol for US (quote only).
 
 artifacts:
 
@@ -26,20 +29,53 @@ artifacts:
       Snapshot quote for a ticker. Auto-routes: `sh######`/`sz######`/
       `hk######`/`bj######` → Sina Finance; `AAPL`/`TSLA`/`*.us` → Stooq.
       Output: 1 line summary `TICKER | price=... open=... high=... low=...
-      vol=... ts=...` + 1 raw line for parsing. Example invocation:
+      vol=... ts=...` + 1 raw line for parsing. Example:
       `bash /home/emox/work/projects/market-tools/quote.sh sh600519`
     description: >
       Primary cross-exchange quote entry point. A-shares / HK / US.
-      Snapshot only, delayed ~15min during market hours.
+      Snapshot only, delayed ~15min during market hours. No API key.
+
+  - kind: script
+    name: history
+    cmd: bash /home/emox/work/projects/market-tools/history.sh
+    hint: >
+      Daily OHLCV history for a ticker via tushare Pro. Auto-routes by
+      prefix: sh/sz/bj → `daily`, hk → `hk_daily`. Args: `<ticker>
+      [days=60] [adj=none]`. Output: CSV with header
+      `trade_date,open,high,low,close,vol,amount`, newest row first.
+      Requires TUSHARE_TOKEN env var. Example:
+      `bash /home/emox/work/projects/market-tools/history.sh sh600519 days=120`
+    description: >
+      Historical OHLCV fetcher. A-share + HK supported on tushare free
+      tier. adj=qfq|hfq not yet implemented — all prices unadjusted.
+
+  - kind: script
+    name: tushare
+    cmd: python3 /home/emox/work/projects/market-tools/tushare.py
+    hint: >
+      Generic REST wrapper for tushare Pro — any api_name can be called.
+      Args: `<api_name> [key=value ...] [--fields=a,b,c] [--csv]`. Default
+      output is pretty JSON; `--csv` emits header + rows. Requires
+      TUSHARE_TOKEN env var. Use this for anything `history` doesn't cover
+      — fundamentals (daily_basic), index data (index_daily), corporate
+      actions, financial statements, fund holdings, etc. Docs:
+      https://tushare.pro/document/2 . Example:
+      `python3 /home/emox/work/projects/market-tools/tushare.py daily_basic
+       ts_code=600519.SH trade_date=20260430 --fields=pe_ttm,pb,dv_ratio --csv`
+    description: >
+      Low-level escape hatch into tushare Pro. Stdlib-only Python
+      (no pip install). Prefer `history` for common OHLCV cases.
 
   - kind: doc
     name: overview
     path: /home/emox/work/projects/market-tools/README.md
     summary: >
-      market-tools is the investment domain's shell-based market-data
-      floor: zero-dep (bash + curl), free-tier public APIs (Sina for
-      A-shares / HK, Stooq for US), snapshot-only quotes with ~15min
-      delay. Currently ships `quote` (ticker → price+OHLC+volume);
-      future scripts may add FX, historical OHLCV (tushare/akshare),
-      and a typed MCP wrapper. No API keys, no pip deps — safe to
-      import from any finance-adjacent domain without setup cost.
+      market-tools ships a two-tier market-data floor for finance
+      domains. Tier 1 — `quote` (Sina / Stooq, zero deps, no auth,
+      snapshot quotes for A-shares / HK / US). Tier 2 — `history` +
+      `tushare` (tushare Pro, python3 stdlib only, TUSHARE_TOKEN
+      required; historical OHLCV, fundamentals, indices, financial
+      reports). Ticker shapes are unified across scripts: sh/sz/hk/bj
+      prefix for CN/HK markets. No pip installs anywhere; `history`
+      falls back to graceful errors if the token lacks coverage for a
+      given endpoint (e.g. BJ or US on free tier).
