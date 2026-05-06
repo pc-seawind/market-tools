@@ -18,6 +18,52 @@ combine with the homespace domain's `search_baidu` / `search_tavily` /
 
 ## Scripts
 
+### `screen.sh [filters...] [--top=N] [--sort=KEY]` — 🔍 条件筛股 (discovery)
+
+market-tools 其他工具都是"ticker → 分析"反向流程; `screen` 填补
+"条件 → 候选"的 discovery gap。输入 filter 组合, 输出 ranked 候选清单。
+
+**完整工作流** (discovery → deep dive):
+```
+条件 ──→ screen.sh ──→ top N 候选 ──→ diligence.sh <each> ──→ 决策
+```
+
+Stage 1 filters (估值 / 市值 / 流动性 / 动能):
+```
+--pe-max=N / --pe-min=N    PE_TTM 上下限
+--pb-max=N / --ps-max=N    PB, PS_TTM 上限
+--dv-min=N                 股息率下限 (%)
+--mv-min=N / --mv-max=N    总市值上下限 (亿)
+--amt-min=N / --tor-min=N  日成交/换手率下限 (亿, %)
+--r1w-min=N / --r1w-max=N  1 周涨幅上下限 (%)
+--r1m-min=N / --r1m-max=N  1 月涨幅上下限 (%)
+--r3m-min=N / --r3m-max=N  3 月涨幅上下限 (%)
+--exclude-st               排除 ST/退市股
+--market=sh|sz|bj|all      市场过滤 (默认 all)
+--top=N                    返回前 N (默认 20)
+--sort=KEY                 r1w|r1m|r3m|pe|pb|dv|mv|amt (默认 r1m desc,
+                           前缀 - 表升序)
+```
+
+三类经典用法:
+```bash
+# 低估红利 (防御, 稳健仓): PE<15 + 股息>3% + 市值>200亿
+$ ./screen.sh --pe-max=15 --dv-min=3 --mv-min=200 --sort=dv
+
+# 成长爆发 (进攻): 1M涨>+20% + 市值>500亿 + 日成交>10亿
+$ ./screen.sh --r1m-min=20 --mv-min=500 --amt-min=10 --top=30
+
+# 超跌反弹 (逆向): 3M跌>15% + 本周涨>3% + 市值>100亿 + 排除ST
+$ ./screen.sh --r3m-max=-15 --r1w-min=3 --mv-min=100 --exclude-st
+```
+
+Runtime: ~5 API calls, <15s (全市场批量, 不存在 rate-limit 风险)。
+
+Note: Stage 2 (ROE / 营收YoY / 北向持股) 未实现 — 对 top 候选跑
+`diligence.sh` 就能补上这些维度。
+
+---
+
 ### `diligence.sh <ticker> [quarters=6]` — 🎯 ONE-SHOT 六维度综合报告
 
 **最重要的入口命令。** 运行 `quote` + `history-stats` + `fundamentals` +
@@ -191,6 +237,7 @@ just the data rows with a header line.
 | `fundamentals.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
 | `flows.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
 | `policy.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
+| `screen.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
 | `diligence.sh` | all of the above (pure wrapper, adds no new deps) |
 | `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` |
 
@@ -199,7 +246,7 @@ APIs confirmed working on the default free+积分 tier:
 `daily`, `stock_basic`, `daily_basic`, `hk_daily`, `hk_basic`, `index_daily`,
 `index_classify`, `index_member`, `sw_daily`, `cctv_news`, `fina_indicator`,
 `forecast`, `top10_holders`, `top10_floatholders`, `moneyflow_hsgt`,
-`top_list`.
+`top_list`, `trade_cal`.
 
 APIs that require higher tiers (will error with 40203/40202):
 `anns_d` (公司公告), `news` (通用新闻), `us_basic` / `us_daily` (美股).

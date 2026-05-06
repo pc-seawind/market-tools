@@ -23,6 +23,28 @@ description: >
 artifacts:
 
   - kind: script
+    name: screen
+    cmd: bash /home/emox/work/projects/market-tools/screen.sh
+    hint: >
+      条件筛股 discovery 工具。对比 diligence/fundamentals/flows 这些
+      "ticker → 分析" 的反向流程, screen 填补 "条件 → 候选" 的 discovery
+      gap。Stage 1 使用 daily_basic + daily 全市场批量数据做 估值/市值/
+      流动性/动能 的 AND-combined filter (~5 API calls, <15s). Filters:
+      --pe-max --pe-min --pb-max --ps-max --dv-min --mv-min --mv-max
+      --amt-min --tor-min --r1w-min --r1m-min --r1m-max --r3m-min
+      --r3m-max --exclude-st. Sort/display: --top=N --sort=KEY (r1m|r3m|
+      pe|pb|dv|mv|amt, 前缀 - 表升序). Examples:
+      `bash /home/emox/work/projects/market-tools/screen.sh --pe-max=15
+       --dv-min=3 --mv-min=200  # 低估红利`
+      `bash /home/emox/work/projects/market-tools/screen.sh --r1m-min=20
+       --mv-min=500 --amt-min=10  # 成长爆发`
+    description: >
+      Stock screener (discovery). Pairs with diligence.sh — use screen
+      to find candidates, then diligence.sh to analyze each. Stage 1
+      (valuation/mv/liquidity/momentum) only; ROE/北向 etc. via Stage 2
+      (TODO, or call diligence.sh on each candidate).
+
+  - kind: script
     name: diligence
     cmd: bash /home/emox/work/projects/market-tools/diligence.sh
     hint: >
