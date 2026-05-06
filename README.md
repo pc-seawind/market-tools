@@ -18,6 +18,36 @@ combine with the homespace domain's `search_baidu` / `search_tavily` /
 
 ## Scripts
 
+### `compare.sh <ticker1> <ticker2> [... up to 5]` — ⚖️ 多股横向对比
+
+投研里最常见的动作是 "A 和 B 哪个值得买"。compare 输出 4 维度 side-by-side
+对比表, 一眼能看出谁占优:
+
+- **§1 估值对比** — 收盘/PE_TTM/PB/PS/股息率/换手率/总市值
+- **§2 业绩对比** — 最新季度 ROE/ROA/营收YoY/净利YoY/毛利净利率/负债率
+- **§3 量价对比** — 120 天 [位置/回撤/波动率/1W 1M 3M 收益]
+- **§4 机构动作对比** — 北向/公募/外资 QoQ Δpp + 最新持股比例
+
+```bash
+$ ./compare.sh sh688256 sh688041 sh688981    # 寒武纪 / 海光 / 中芯
+$ ./compare.sh sz300308 sz300502             # 中际旭创 vs 新易盛 (光模块双龙)
+$ ./compare.sh sh600519 sz000858 sz000568    # 茅五泸三巨头
+```
+
+A 股专用 (sh/sz/bj prefix); 每只股 ~5 API calls, 2 只 ~10s, 5 只 ~30s.
+
+最佳搭档是 `screen.sh` — 先筛出 top N 候选, 再对其中最有价值的 2-3 只
+做精确对比:
+```bash
+# 1. 筛出低估高股息大盘股
+$ ./screen.sh --pe-max=15 --dv-min=3 --mv-min=500 --top=20
+
+# 2. 对前 3 名做精确对比
+$ ./compare.sh sh601838 sh601665 sz002142   # 3 家银行横向比
+```
+
+---
+
 ### `screen.sh [filters...] [--top=N] [--sort=KEY]` — 🔍 条件筛股 (discovery)
 
 market-tools 其他工具都是"ticker → 分析"反向流程; `screen` 填补
@@ -238,6 +268,7 @@ just the data rows with a header line.
 | `flows.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
 | `policy.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
 | `screen.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
+| `compare.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
 | `diligence.sh` | all of the above (pure wrapper, adds no new deps) |
 | `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` |
 

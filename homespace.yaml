@@ -23,6 +23,23 @@ description: >
 artifacts:
 
   - kind: script
+    name: compare
+    cmd: bash /home/emox/work/projects/market-tools/compare.sh
+    hint: >
+      side-by-side 多股横向对比 (2-5 只). 投研里最常见的动作是 "A 和 B
+      哪个值得买" — 之前要跑两次 diligence 人脑拼, 现在一条命令输出
+      4 维度对比表: §1 估值 (PE/PB/PS/股息/市值), §2 业绩 (ROE/
+      营收净利 YoY/毛利净利率/负债率), §3 量价 (120 天位置/回撤/波动/
+      1W-3M 收益), §4 机构动作 (北向/公募/外资 QoQ Δpp). 仅 A 股
+      (sh/sz/bj prefix); 每只股 ~5 API calls, 共 5N calls. Example:
+      `bash /home/emox/work/projects/market-tools/compare.sh
+       sh688256 sh688041 sh688981  # 寒武纪/海光/中芯`
+    description: >
+      Multi-stock side-by-side comparator. Best paired with screen.sh
+      (筛出 top N, 对比最有价值的几只) or used alone for direct
+      peer-analysis ("同赛道谁更值得买").
+
+  - kind: script
     name: screen
     cmd: bash /home/emox/work/projects/market-tools/screen.sh
     hint: >
