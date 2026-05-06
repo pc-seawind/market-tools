@@ -66,6 +66,21 @@ artifacts:
       fina_indicator + forecast by hand. Use for pre-trade diligence.
 
   - kind: script
+    name: flows
+    cmd: bash /home/emox/work/projects/market-tools/flows.sh
+    hint: >
+      机构资金动作分析(A 股)。组合 top10_floatholders (前十大流通股东
+      按季度归档,QoQ 对比) 和 moneyflow_hsgt (北向资金大盘环境)。对判断
+      "抱团是否瓦解 / 谁在买 / 谁在卖"至关重要 —— 机构季度持股变化
+      往往先于消息面出现。Args: `<ticker> [quarters=4]`. Example:
+      `bash /home/emox/work/projects/market-tools/flows.sh sz300308 quarters=6`
+    description: >
+      Institutional flow scanner. Categorizes top10 股东 into 北向/公募/
+      外资/险资/社保/产业资本/自然人,computes QoQ deltas, and surfaces
+      clear buy/sell signals. Also shows last 20 days of 北向 aggregate
+      flows as market-environment context. A-share only.
+
+  - kind: script
     name: policy
     cmd: bash /home/emox/work/projects/market-tools/policy.sh
     hint: >
@@ -109,8 +124,8 @@ artifacts:
       domains. Tier 1 — `quote` (Sina / Stooq, zero deps, no auth,
       snapshot quotes for A-shares / HK / US). Tier 2 — `history` +
       `tushare` (historical OHLCV, raw API access). Tier 3 — analysis
-      helpers: `fundamentals` (A-share 业绩+估值+预告 三合一) and
-      `policy` (CCTV 新闻联播 政策信号扫描). Ticker shapes unified
+      helpers: `fundamentals` (业绩+估值+预告), `flows` (机构股东+
+      北向资金), `policy` (CCTV 新闻联播 政策信号). Ticker shapes unified
       across scripts: sh/sz/hk/bj prefix for CN/HK markets. No pip
       installs anywhere. For news/research context that tushare
       doesn't cover (公告/研报/实时新闻), combine with domain's

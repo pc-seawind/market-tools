@@ -71,6 +71,34 @@ A-shares only (tushare free tier doesn't cover HK/US for `fina_indicator`).
 For HK fundamentals, fall back to `tushare.py hk_daily_basic …` manually
 or use external sources.
 
+### `flows.sh <ticker> [quarters=4]` — 机构资金动作分析
+
+组合 `top10_floatholders` (前十大流通股东季度归档) + `moneyflow_hsgt`
+(北向资金大盘环境) 两个 tushare API,输出机构资金行为的立体画面:
+
+1. **前十大流通股东 QoQ** — 每季度明细 + 持股比例变化
+2. **类别聚合变化** — 按 北向 / 公募 / 外资 / 险资 / 社保 / 产业资本 /
+   自然人 分组,计算每一类的 QoQ 持股比例变化
+3. **最近 20 日北向资金总览** — 市场环境指标
+
+核心价值: 机构季度持股变化**往往先于消息面出现**。当"抱团瓦解"成为
+热门话题时,数据上往往已经持续了 1-2 个季度。
+
+```bash
+$ ./flows.sh sz300308 quarters=4        # 中际旭创 — 看公募抱团是否松动
+$ ./flows.sh sh600519 quarters=6        # 茅台 — 跟踪险资/社保长期持有者
+```
+
+Example output (中际旭创,最后一段):
+```
+💡 速读信号:
+   · 北向 **加仓** +3.26pp ✅
+   · 公募 **减仓** -2.81pp ⚠️
+   · Top10 合计: 总持股 基本持平 (-0.08pp)
+```
+
+A 股 sh/sz/bj only (top10_floatholders 是 A 股专属 API)。
+
 ### `policy.sh [days=7] [--grep=...] [--all]` — CCTV 新闻联播 政策信号扫描
 
 联播中出现的产业/技术/政策方向几乎 100% 会成为后续资金主线或监管重点，
@@ -138,6 +166,7 @@ just the data rows with a header line.
 | `quote.sh` | bash + curl + (optional) iconv |
 | `history.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
 | `fundamentals.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
+| `flows.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
 | `policy.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
 | `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` |
 
@@ -145,7 +174,8 @@ Nothing to `pip install`. Register at <https://tushare.pro> for a free token.
 APIs confirmed working on the default free+积分 tier:
 `daily`, `stock_basic`, `daily_basic`, `hk_daily`, `hk_basic`, `index_daily`,
 `index_classify`, `index_member`, `sw_daily`, `cctv_news`, `fina_indicator`,
-`forecast`.
+`forecast`, `top10_holders`, `top10_floatholders`, `moneyflow_hsgt`,
+`top_list`.
 
 APIs that require higher tiers (will error with 40203/40202):
 `anns_d` (公司公告), `news` (通用新闻), `us_basic` / `us_daily` (美股).
