@@ -50,32 +50,69 @@ artifacts:
       tier. adj=qfq|hfq not yet implemented — all prices unadjusted.
 
   - kind: script
+    name: fundamentals
+    cmd: bash /home/emox/work/projects/market-tools/fundamentals.sh
+    hint: >
+      One-stop A-share fundamentals snapshot: combines `daily_basic`
+      (PE/PB/股息率/市值), `fina_indicator` (ROE/ROA/营收利润增速/
+      毛利率/净利率/资产负债率, 最近 N 期) and `forecast` (业绩预告)
+      into a human-readable report. A-shares only (sh/sz/bj prefix);
+      HK & US are not covered by `fina_indicator` on tushare free tier.
+      Args: `<ticker> [quarters=8]`. Example:
+      `bash /home/emox/work/projects/market-tools/fundamentals.sh sh688256`
+    description: >
+      Unified fundamentals report for A-shares. Reads 3 tushare APIs,
+      renders a single report — faster than wiring daily_basic +
+      fina_indicator + forecast by hand. Use for pre-trade diligence.
+
+  - kind: script
+    name: policy
+    cmd: bash /home/emox/work/projects/market-tools/policy.sh
+    hint: >
+      CCTV 新闻联播 抓取 + 关键词过滤,提取政策风向信号。联播中出现
+      的产业/技术/政策方向几乎 100% 会成为后续资金主线或监管重点,是
+      成本最低的"官方信号"来源。Args: `[days=7] [--grep=关键词1|关键词2]
+      [--all]`. Default filter strips diplomatic/ceremonial noise. Example:
+      `bash /home/emox/work/projects/market-tools/policy.sh days=14
+       --grep='半导体|AI|算力|芯片|基础研究'`
+    description: >
+      Policy-signal scanner. Pulls CCTV 新闻联播 headlines via tushare
+      `cctv_news` over a date range, filters by regex (default: strips
+      noise; --grep= applies custom include). Complements the search
+      tools for structural/macro context.
+
+  - kind: script
     name: tushare
     cmd: python3 /home/emox/work/projects/market-tools/tushare.py
     hint: >
       Generic REST wrapper for tushare Pro — any api_name can be called.
       Args: `<api_name> [key=value ...] [--fields=a,b,c] [--csv]`. Default
-      output is pretty JSON; `--csv` emits header + rows. Requires
-      TUSHARE_TOKEN env var. Use this for anything `history` doesn't cover
-      — fundamentals (daily_basic), index data (index_daily), corporate
-      actions, financial statements, fund holdings, etc. Docs:
+      output is pretty JSON; `--csv` emits header + rows. Auto-retries on
+      rate-limit (40203) up to 3× with 35-55s backoff. Bypasses env proxy
+      by default (opt-out: TUSHARE_USE_ENV_PROXY=1). Requires TUSHARE_TOKEN.
+      Use this for anything the high-level scripts don't cover — index
+      members (index_member), industry classification (index_classify),
+      SW daily indices (sw_daily), CCTV news (cctv_news), etc. Docs:
       https://tushare.pro/document/2 . Example:
       `python3 /home/emox/work/projects/market-tools/tushare.py daily_basic
        ts_code=600519.SH trade_date=20260430 --fields=pe_ttm,pb,dv_ratio --csv`
     description: >
       Low-level escape hatch into tushare Pro. Stdlib-only Python
-      (no pip install). Prefer `history` for common OHLCV cases.
+      (no pip install). Prefer `history` / `fundamentals` / `policy`
+      for common cases.
 
   - kind: doc
     name: overview
     path: /home/emox/work/projects/market-tools/README.md
     summary: >
-      market-tools ships a two-tier market-data floor for finance
+      market-tools ships a three-tier market-data floor for finance
       domains. Tier 1 — `quote` (Sina / Stooq, zero deps, no auth,
       snapshot quotes for A-shares / HK / US). Tier 2 — `history` +
-      `tushare` (tushare Pro, python3 stdlib only, TUSHARE_TOKEN
-      required; historical OHLCV, fundamentals, indices, financial
-      reports). Ticker shapes are unified across scripts: sh/sz/hk/bj
-      prefix for CN/HK markets. No pip installs anywhere; `history`
-      falls back to graceful errors if the token lacks coverage for a
-      given endpoint (e.g. BJ or US on free tier).
+      `tushare` (historical OHLCV, raw API access). Tier 3 — analysis
+      helpers: `fundamentals` (A-share 业绩+估值+预告 三合一) and
+      `policy` (CCTV 新闻联播 政策信号扫描). Ticker shapes unified
+      across scripts: sh/sz/hk/bj prefix for CN/HK markets. No pip
+      installs anywhere. For news/research context that tushare
+      doesn't cover (公告/研报/实时新闻), combine with domain's
+      search_baidu (Chinese) / search_tavily (English) / fetch_url
+      tools — the investment domain's standard消息面 pipeline.
