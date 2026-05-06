@@ -23,6 +23,29 @@ description: >
 artifacts:
 
   - kind: script
+    name: funnel
+    cmd: bash /home/emox/work/projects/market-tools/funnel.sh
+    hint: >
+      多轮漏斗式选股流程 (5500 → 300 → 80 → 25 → 8). 对比 screen.sh
+      的单轮阈值筛选, funnel 是渐进多轮, 每轮启用不同因子 + **资金
+      动向提前到 Round 2** (替代传统的涨幅排序), 避免漏过"估值低位 +
+      机构悄悄建仓"的 deep value 标的. Rounds: (1) 流动性 + 市值 + 排除
+      ST/新股 → 300 只; (2) 资金动向 smart-money 代理 (成交放量 + 量价
+      配合 + 避免暴涨暴跌) → ~80 只; (3) 基本面 + 估值 → ~25 只; (4) 主题
+      一致性 (concepts 池 + 活跃行业) → ~8 只. Args: `[--deep]`
+      (Round 2 加 per-stock 北向变化, 慢 2-3 min), `[--final=N]`
+      (最终收敛个数, 默认 8), `[--round1=N]` (Round 1 上限, 默认 300),
+      `[--preset=balanced|value|growth]`, `[--group-by=concept|industry]`.
+      Quick mode <30s. Example:
+      `bash /home/emox/work/projects/market-tools/funnel.sh --preset=value
+       --final=10`
+    description: >
+      Multi-round progressive stock-selection funnel. Fixes screen.sh's
+      "single-round threshold" blind spot — resonance with deep value
+      ideas. Feeds directly into compare.sh / diligence.sh via auto-generated
+      command snippets at the end.
+
+  - kind: script
     name: concepts
     cmd: bash /home/emox/work/projects/market-tools/concepts.sh
     hint: >

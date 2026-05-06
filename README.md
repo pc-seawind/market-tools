@@ -18,6 +18,67 @@ combine with the homespace domain's `search_baidu` / `search_tavily` /
 
 ## Scripts
 
+### `funnel.sh [--deep] [--final=N] [--preset=NAME] [--group-by=KEY]` — 🌊 多轮漏斗选股
+
+**比 `screen.sh` 更先进的选股工具**. screen.sh 是单轮阈值筛选,
+funnel.sh 是**渐进多轮收敛**, 每轮启用不同因子 —— 其中**资金动向提前
+到 Round 2**, 替代传统"涨幅排序", 避免漏过 deep value 标的.
+
+**设计哲学**:
+> 资金动向是比价格变化更早的信号. 一只股价还没涨的公司, 如果机构在
+> 悄悄吸筹 (换手率温和上升, 成交量配合, 北向持股增加), 这些才是
+> 真正的 alpha 来源, 比"已涨了 50% 追着买"安全得多.
+
+**4 轮漏斗** (每轮逻辑见下 "解释" 一节):
+```
+Round 0  全市场 ~5500 只
+  ↓ 流动性 ≥ 2 亿 / 市值 ≥ 50 亿 / 排除 ST/新股
+Round 1  基础盘 ~300 只
+  ↓ 资金动向 (量比 ≥ 1.2x + 量价配合 + 避免暴涨暴跌)  ← **smart money 提前**
+Round 2  资金有动 ~80 只
+  ↓ PE/PB/股息率合理 (preset 可调)
+Round 3  基本面 ~25 只
+  ↓ 属于概念池 OR 活跃行业
+Round 4  最终 ~8-10 只
+```
+
+Options:
+```
+--deep              对 Round 2 候选做 per-stock top10_floatholders 调用,
+                    真实检测北向持股 Δpp. 慢 2-3 min, 但能筛出
+                    "外资真实加仓" 的标的.
+--final=N           最终收敛到 N 只 (默认 8)
+--round1=N          Round 1 保留上限 (默认 300)
+--preset=balanced   默认均衡
+       =value       Round 3 严格估值 (PE ≤ 25), Round 2 放宽涨幅
+       =growth      Round 3 放宽估值 (PE ≤ 100)
+--group-by=concept  最终按概念分组显示 (默认) / industry 按申万行业
+```
+
+典型结果对比 (2026-05-06 数据):
+
+| preset | Top 候选代表 | 特征 |
+|--------|------|------|
+| balanced | 五粮液 (1M -12% 但量比 5x), 国泰海通, 格力电器, 伊利股份 | 机构吸筹 + 合理估值 |
+| value | 工商银行, 中国移动, 格力, 山西汾酒 | 顶级大蓝筹 + 红利 |
+| growth | 江西铜业, 海康威视, 中信建投, 伊利 | 周期上行 + 流动性好 |
+
+```bash
+# 默认 balanced, quick mode (<30s)
+$ ./funnel.sh
+
+# value 偏好, 最终 10 只
+$ ./funnel.sh --preset=value --final=10
+
+# 深度模式 (对 Round 2 做北向持股变化分析, 3 min)
+$ ./funnel.sh --deep
+```
+
+Funnel 输出末尾会自动生成 `compare.sh top5` 和 `diligence.sh top1` 的
+调用命令, 形成 funnel → compare → diligence 完整工作流.
+
+---
+
 ### `concepts.sh [--topic=X | --compare-top=N | --list]` — 🧭 主题概念板块热度
 
 **解决的问题**: 申万 L1 (31 行业) 和 L3 (~200 细分) 都是"传统工业分类",
@@ -312,6 +373,7 @@ just the data rows with a header line.
 | `screen.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
 | `compare.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
 | `concepts.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
+| `funnel.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `diligence.sh` | all of the above (pure wrapper, adds no new deps) |
 | `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` |
 
