@@ -23,6 +23,29 @@ description: >
 artifacts:
 
   - kind: script
+    name: momentum
+    cmd: bash /home/emox/work/projects/market-tools/momentum.sh
+    hint: >
+      博弈仓筛选器 (与 funnel.sh 对偶). funnel 是保守派 (过滤末期加速),
+      momentum 主动追"已在趋势中 + 放量 + 接近高位"的强势股. 但保留
+      硬风控底线 (非亏损 PE>0 / 回撤 <30% / --deep 模式检测产业资本
+      减持). 关键输出: 每只股票明确交易纪律 (买入区间 ±3% / 止损 -10%
+      / 减仓信号 1W > +15% / 目标价 +20~+40%). Args: `[--deep]`
+      (加产业资本检测), `[--final=N]` (默认 10), `[--preset=balanced|
+      aggressive|contrarian]`. balanced 右侧追涨 (1M ≥+20% / 1W ≥0),
+      aggressive 放宽, contrarian 左侧博弈 (短期回调 1W ≤ +3% 但中
+      长期强势). Examples:
+      `bash /home/emox/work/projects/market-tools/momentum.sh --final=8`
+      `bash /home/emox/work/projects/market-tools/momentum.sh
+       --preset=contrarian  # 左侧回调博弈`
+    description: >
+      Momentum / speculative stock picker. Pairs with funnel.sh for
+      full portfolio logic: funnel (60-70% 基础仓) + momentum balanced
+      (10-15% 右侧追涨) + momentum contrarian (5-10% 左侧博弈). Each
+      pick ships with explicit trading discipline (stop loss / reduce
+      signal / target).
+
+  - kind: script
     name: funnel
     cmd: bash /home/emox/work/projects/market-tools/funnel.sh
     hint: >

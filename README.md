@@ -18,6 +18,60 @@ combine with the homespace domain's `search_baidu` / `search_tavily` /
 
 ## Scripts
 
+### `momentum.sh [--deep] [--final=N] [--preset=NAME]` — 🚀 博弈仓筛选器
+
+**与 `funnel.sh` 对偶**. funnel 是基础仓哲学 (过滤末期加速, 找 deep
+value), momentum 主动追"已在趋势中 + 放量 + 接近高位"的强势股, 但保
+留硬风控底线避免接盘.
+
+**核心对偶**:
+
+| 维度 | funnel (基础仓) | momentum (博弈仓) |
+|------|----------------|-------------------|
+| 1M 涨幅 | 无要求 | **≥ +20%** 必须在趋势里 |
+| 1W 涨幅 | ≤ +20% 避免末期 | **≥ 0%** 短期未回调 |
+| 量比 | ≥ 1.2x 早期 | **≥ 1.5x** 明确放量 |
+| 位置 | 中位 | **≥ 70%** 接近高位 |
+| 估值 | PE ≤ 60 | **无上限** (题材优先) |
+| 持有期 | 1-2 年 | **1-3 个月** |
+
+**保留的风控底线**:
+- PE > 0 (排除亏损股)
+- 最大回撤 < 30% (已过情绪顶的不要)
+- `--deep` 模式: 产业资本 Δpp > -5pp (大股东没大幅减持)
+
+**三种 preset 覆盖完整时机光谱**:
+
+```bash
+$ ./momentum.sh --preset=balanced     # 右侧追涨 (1M≥+20%, 1W≥0%)
+→ 典型候选: 寒武纪, 中船特气, 金螳螂, 三环集团
+
+$ ./momentum.sh --preset=aggressive   # 放宽要求, 追更猛的
+→ 1M ≥ +15%, 允许位置 ≥ 60%, 回撤 ≤ 40%
+
+$ ./momentum.sh --preset=contrarian   # 左侧博弈 (短期回调, 1M≥+20%, 1W∈[-10,+3])
+→ 典型候选: 中际旭创, 立讯精密, 浪潮信息 — 主升浪中的回调
+```
+
+**每只股票附明确交易纪律** (直接可执行):
+```
+【5】 688256.SH    寒武纪  · AI芯片 (算力核心)
+    当前 ¥1825.00  PE=283.2  市值=7696亿  1M=+82.7%  量比=5.1x  位置≈85%
+    ▸ 交易纪律:
+        买入区间: ¥1770 — ¥1880  (±3%)
+        止损价:   ¥1642.50  (-10% 严格)
+        目标价:   ¥2190 — ¥2555  (+20~+40%)
+        减仓信号: 1W 继续涨幅 > +15% 开始分批减仓
+```
+
+**典型组合配置** (基于 funnel + momentum 双轮):
+- 60-70% funnel balanced (基础仓, 1-2 年持有)
+- 10-15% momentum balanced (右侧追涨, 1-3 个月)
+- 5-10% momentum contrarian (左侧博弈回调, 2-8 周)
+- 余下现金 / 债基
+
+---
+
 ### `funnel.sh [--deep] [--final=N] [--preset=NAME] [--group-by=KEY]` — 🌊 多轮漏斗选股
 
 **比 `screen.sh` 更先进的选股工具**. screen.sh 是单轮阈值筛选,
@@ -374,6 +428,7 @@ just the data rows with a header line.
 | `compare.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
 | `concepts.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `funnel.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
+| `momentum.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `diligence.sh` | all of the above (pure wrapper, adds no new deps) |
 | `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` |
 
