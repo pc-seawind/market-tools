@@ -169,6 +169,15 @@ print(f"━━━━━━━━━━━━━━━━━━━━━━━━
 print("  拉 daily_basic (估值 + 市值 + 换手率)...", file=sys.stderr)
 db = tushare("daily_basic", trade_date=latest,
              fields="ts_code,close,turnover_rate,pe_ttm,pb,ps_ttm,dv_ttm,total_mv,circ_mv")
+# Fallback: 当日数据如果还没更新 (e.g. 收盘后 15 min 内), 退回前一个交易日
+if len(db) < 100 and len(open_days) > 1:
+    sys.stderr.write(f"  [WARN] {latest} 数据不全 ({len(db)} 行), 退回 T-1={open_days[1]}\n")
+    latest = open_days[1]
+    d_5d   = open_days[6]  if len(open_days) > 6  else open_days[-1]
+    d_20d  = open_days[21] if len(open_days) > 21 else open_days[-1]
+    d_60d  = open_days[61] if len(open_days) > 61 else open_days[-1]
+    db = tushare("daily_basic", trade_date=latest,
+                 fields="ts_code,close,turnover_rate,pe_ttm,pb,ps_ttm,dv_ttm,total_mv,circ_mv")
 db_by_code = {r["ts_code"]: r for r in db}
 
 # 拉 daily for latest + 5d + 20d (for returns + amount)
