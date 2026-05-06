@@ -39,11 +39,22 @@ Dependencies: python3 stdlib only (urllib, json). No pip install needed.
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 
 ENDPOINT = "https://api.tushare.pro"
 TIMEOUT = 15
+
+# Some shells have a stale SOCKS/HTTP proxy in HTTPS_PROXY/ALL_PROXY pointing at
+# a dead localhost port — this would trip urllib.urlopen before it ever reaches
+# tushare. tushare's endpoint is a public Aliyun SLB and always directly
+# reachable, so we install an opener that ignores env proxies. Set
+# TUSHARE_USE_ENV_PROXY=1 to override (e.g. if you're actually behind a proxy
+# that's the only path to the public internet).
+if os.environ.get("TUSHARE_USE_ENV_PROXY") != "1":
+    _no_proxy = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    urllib.request.install_opener(_no_proxy)
 
 
 def usage():
@@ -90,20 +101,44 @@ def main(argv):
         headers={"Content-Type": "application/json"},
     )
 
-    try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
-            body = json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        snippet = e.read().decode("utf-8", errors="replace")[:300]
-        sys.stderr.write(f"HTTP {e.code} from tushare: {snippet}\n")
-        return 4
-    except Exception as e:
-        sys.stderr.write(f"request failed: {e}\n")
-        return 4
+    # Tushare rate-limits per-API (e.g. sw_daily: 10/min). On 40203 we
+    # transparently sleep + retry rather than bubbling the error, so batch
+    # scripts don't have to manage windows. Up to 3 retries (~2 min max wait).
+    # Set TUSHARE_NO_RETRY=1 to opt out.
+    no_retry = os.environ.get("TUSHARE_NO_RETRY") == "1"
+    max_retries = 0 if no_retry else 3
 
-    code = body.get("code", 0)
+    body = None
+    for attempt in range(max_retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+                body = json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            snippet = e.read().decode("utf-8", errors="replace")[:300]
+            sys.stderr.write(f"HTTP {e.code} from tushare: {snippet}\n")
+            return 4
+        except Exception as e:
+            sys.stderr.write(f"request failed: {e}\n")
+            return 4
+
+        code = body.get("code", 0)
+        if code != 40203 or attempt == max_retries:
+            break
+
+        # 40203 = frequency limit. tushare's msg usually embeds "N次/分钟".
+        msg = body.get("msg") or ""
+        # Default backoff: 35s (covers 1-min window with slack). If msg parses,
+        # we still use the fixed backoff since tushare doesn't report window start.
+        wait = 35 + attempt * 10
+        sys.stderr.write(
+            f"tushare rate-limited ({api_name}): {msg.strip()}  "
+            f"retry {attempt + 1}/{max_retries} after {wait}s...\n"
+        )
+        time.sleep(wait)
+
+    code = body.get("code", 0) if body else -1
     if code != 0:
-        msg = body.get("msg")
+        msg = body.get("msg") if body else "empty body"
         sys.stderr.write(f"tushare error (code={code}): {msg}\n")
         return 5
 
