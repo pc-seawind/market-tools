@@ -18,6 +18,50 @@ combine with the homespace domain's `search_baidu` / `search_tavily` /
 
 ## Scripts
 
+### `daily.sh [--holdings-only | --alerts | --themes]` — 📅 每日监控简报
+
+**每天开盘前跑一次**. 读取 `watchlist_data.py` (手工维护的持仓 + 观察
+清单) 自动扫描市场 + 输出 actionable 简报.
+
+**6 个维度**:
+
+| § | 内容 | 关键输出 |
+|---|------|---------|
+| §1 | 持仓健康度 | 每只股今日±% / P&L / 触发信号 |
+| §2 | 组合总览 | 各仓位贡献 / 总 P&L |
+| §3 | 主题轮动 | concepts 板块今日 top/bottom 5 |
+| §4 | 美股隔夜 | NVDA / TSM / META / AAPL / MU (AI 链锚点) |
+| §5 | 政策信号 | 过去 3 天新闻联播关键词 |
+| §6 | 观察清单 | 未买但跟踪中的股票动态 |
+
+**自动触发的信号** (持仓每只都检测):
+
+| 信号 | 条件 | 建议 |
+|------|------|------|
+| 🚨 **STOP_LOSS** | 基础仓 P&L ≤ -15% / 博弈仓 ≤ -10% | 清仓, 不扛跌 |
+| ✅ **TAKE_PROFIT** | 基础仓 P&L ≥ +50% / 博弈仓 ≥ +30% | 减仓 1/3 |
+| ⚠️ **REDUCE** | 1W 涨幅 > +15% | 末期加速, 减 30% |
+| 💡 **ADD** | 基础仓回调 -8%~-15% | 基本面未变则加 1/3 |
+
+```bash
+# 每日完整简报 (推荐每天开盘前 1h 跑)
+$ ./daily.sh
+
+# 快速模式: 只看持仓 + 信号 (最快, 无美股/政策)
+$ ./daily.sh --holdings-only
+
+# 只看触发警报的
+$ ./daily.sh --alerts
+
+# 只看主题轮动
+$ ./daily.sh --themes
+```
+
+**维护持仓配置**: 编辑 `watchlist_data.py` 的 HOLDINGS dict, 每次
+加减仓直接改文件. 格式 `(ts_code, 名称, 仓位%, 成本价)`.
+
+---
+
 ### `momentum.sh [--deep] [--final=N] [--preset=NAME]` — 🚀 博弈仓筛选器
 
 **与 `funnel.sh` 对偶**. funnel 是基础仓哲学 (过滤末期加速, 找 deep
@@ -429,6 +473,7 @@ just the data rows with a header line.
 | `concepts.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `funnel.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `momentum.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
+| `daily.sh` | bash + python3 stdlib + `watchlist_data.py` + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `diligence.sh` | all of the above (pure wrapper, adds no new deps) |
 | `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` |
 

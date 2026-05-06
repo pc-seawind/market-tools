@@ -23,6 +23,25 @@ description: >
 artifacts:
 
   - kind: script
+    name: daily
+    cmd: bash /home/emox/work/projects/market-tools/daily.sh
+    hint: >
+      每日监控简报: 持仓健康度 + 信号触发 + 主题轮动 + 美股隔夜 +
+      政策信号 + 观察清单. 读取 watchlist_data.py (手工维护的持仓 +
+      观察清单) 自动扫描并输出 actionable 简报. 信号自动触发:
+      🚨 STOP_LOSS (基础仓 -15% / 博弈仓 -10%), ✅ TAKE_PROFIT
+      (基础仓 +50% / 博弈仓 +30%), ⚠️ REDUCE (1W >+15% 末期加速),
+      💡 ADD (基础仓回调 -8% 可加仓). Modes: default (全简报),
+      --holdings-only (仅持仓+信号, 最快), --alerts (仅触发警报),
+      --themes (仅主题轮动). Example:
+      `bash /home/emox/work/projects/market-tools/daily.sh --holdings-only`
+    description: >
+      Daily portfolio monitor. Automates the "每天盯盘" task: reads
+      your holdings from watchlist_data.py, fetches today's market
+      data, detects signals (stop-loss / take-profit / reduce / add),
+      and renders a concise brief. Run every morning before open.
+
+  - kind: script
     name: momentum
     cmd: bash /home/emox/work/projects/market-tools/momentum.sh
     hint: >
