@@ -18,6 +18,29 @@ combine with the homespace domain's `search_baidu` / `search_tavily` /
 
 ## Scripts
 
+### `diligence.sh <ticker> [quarters=6]` — 🎯 ONE-SHOT 六维度综合报告
+
+**最重要的入口命令。** 运行 `quote` + `history-stats` + `fundamentals` +
+`flows` + `policy` 于一次调用,输出统一报告,末尾给出预填充的搜索查询
+供 agent 接续执行消息面 / 跨市场维度。
+
+```bash
+$ ./diligence.sh sz300308        # 中际旭创 full report (~3-4 min)
+$ ./diligence.sh hk00700         # 腾讯 (无基本面/资金, §1+§4+§5)
+$ ./diligence.sh NVDA            # NVIDIA (snapshot only, §1+§5)
+```
+
+输出结构:
+- **§1 量价技术面** — quote + 120 天 [位置/回撤/波动率/1W/1M/3M/6M 收益]
+- **§2 基本面** — 估值 + 最近 N 期业绩 + 业绩预告 (A 股)
+- **§3 机构资金** — 前十大流通股东 QoQ + 类别聚合 + 北向资金 (A 股)
+- **§4 政策面** — CCTV 联播 7 天关键词过滤
+- **§5 接续步骤** — 预填 search_baidu / search_tavily / fetch_url 查询
+
+替代手工多次调用。推荐作为"XYZ 股能不能买"类问题的起点。
+
+---
+
 ### `quote.sh <ticker>` — snapshot quote
 
 Price, open/high/low, volume, timestamp. **Auto-routes by ticker shape:**
@@ -168,6 +191,7 @@ just the data rows with a header line.
 | `fundamentals.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
 | `flows.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
 | `policy.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
+| `diligence.sh` | all of the above (pure wrapper, adds no new deps) |
 | `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` |
 
 Nothing to `pip install`. Register at <https://tushare.pro> for a free token.

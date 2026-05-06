@@ -23,6 +23,24 @@ description: >
 artifacts:
 
   - kind: script
+    name: diligence
+    cmd: bash /home/emox/work/projects/market-tools/diligence.sh
+    hint: >
+      ONE-SHOT 六维度 diligence report. Runs quote + history-stats +
+      fundamentals + flows + policy in a single unified pass. Output
+      ends with pre-filled search queries for the agent/user to run
+      out-of-band (search_baidu / search_tavily / fetch_url — those live
+      outside this script). Args: `<ticker> [quarters=6]`. A-share gets
+      full §1-§5; HK gets §1+§4+§5; US gets §1+§5 only. Runtime ~3-4 min
+      for A-share (policy.sh is the rate-limited slow leg). Example:
+      `bash /home/emox/work/projects/market-tools/diligence.sh sz300308`
+    description: >
+      Top-level entry point for comprehensive stock diligence. Instead of
+      running quote/history/fundamentals/flows/policy separately, call this
+      once and get everything in one report. Use at start of any "should I
+      look at XYZ stock?" workflow.
+
+  - kind: script
     name: quote
     cmd: bash /home/emox/work/projects/market-tools/quote.sh
     hint: >
@@ -125,7 +143,10 @@ artifacts:
       snapshot quotes for A-shares / HK / US). Tier 2 — `history` +
       `tushare` (historical OHLCV, raw API access). Tier 3 — analysis
       helpers: `fundamentals` (业绩+估值+预告), `flows` (机构股东+
-      北向资金), `policy` (CCTV 新闻联播 政策信号). Ticker shapes unified
+      北向资金), `policy` (CCTV 新闻联播 政策信号). Tier 3 top:
+      `diligence` — 一键运行全部 tier 2/3 工具并输出统一报告,
+      末尾 pre-fill 消息/跨市场维度的 search 查询供 agent 接续。
+      Ticker shapes unified
       across scripts: sh/sz/hk/bj prefix for CN/HK markets. No pip
       installs anywhere. For news/research context that tushare
       doesn't cover (公告/研报/实时新闻), combine with domain's
