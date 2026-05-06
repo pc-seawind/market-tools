@@ -18,6 +18,48 @@ combine with the homespace domain's `search_baidu` / `search_tavily` /
 
 ## Scripts
 
+### `concepts.sh [--topic=X | --compare-top=N | --list]` — 🧭 主题概念板块热度
+
+**解决的问题**: 申万 L1 (31 行业) 和 L3 (~200 细分) 都是"传统工业分类",
+抓不到"存储 / CoWoS / HBM / 算力租赁 / 英伟达链 / 人形机器人"这些真正
+的 **市场主题概念** (一个主题可能跨多个行业). tushare 的概念指数 API
+(ths_index / dc_index / kpl_concept) 都需付费权限.
+
+**解决方案**: 手工维护概念池 (`concepts_data.py`, 14 个热点主题 × 5-10
+只龙头) + 已有免费 `daily trade_date=` 批量 API 做本地聚合. 只需 3 API
+calls (全市场 3 个日期), <15s 出热度排名.
+
+三种 mode:
+
+```bash
+# 1) 默认: 全部 14 概念热度排名, 按 1M 均涨序
+$ ./concepts.sh
+   🔥 1. 光通信 (光模块/CPO)    +52.8%   Top1: 盛科通信 (+89.7%)
+   🔥 2. AI芯片 (算力核心)      +43.0%   Top1: 寒武纪   (+82.7%)
+   🔥 3. 存储芯片 (HBM/DDR)    +40.4%   Top1: 江波龙   (+66.3%)
+   ...
+   🧊14. 白酒 (消费龙头)        -5.6%   Top1: 酒鬼酒  ( -0.7%)
+
+# 2) 看某概念明细 (支持模糊匹配)
+$ ./concepts.sh --topic=存储
+  江波龙 +66.3% | 佰维存储 +47.6% | 东芯股份 +45.3% | ...
+  1M 均涨 +40.4% | 总成交 630 亿
+  💡 自动对比 top 3: bash compare.sh sz301308 sh688525 sh688110
+
+# 3) 自动挑 top N 概念龙头 → compare.sh 横向比较
+$ ./concepts.sh --compare-top=4
+  已选: 盛科通信 / 寒武纪 / 江波龙 / 生益科技
+  🚀 调用 compare.sh ... (输出 4 维度对比表)
+
+# 4) 列出全部可用概念
+$ ./concepts.sh --list
+```
+
+**维护概念池**: 编辑 `concepts_data.py` 的 CONCEPTS dict, 每 1-3 个月 review
+一次. 当市场出现新主题时添加一个 entry (概念名 + 5-8 只龙头股).
+
+---
+
 ### `compare.sh <ticker1> <ticker2> [... up to 5]` — ⚖️ 多股横向对比
 
 投研里最常见的动作是 "A 和 B 哪个值得买"。compare 输出 4 维度 side-by-side
@@ -269,6 +311,7 @@ just the data rows with a header line.
 | `policy.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
 | `screen.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
 | `compare.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
+| `concepts.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `diligence.sh` | all of the above (pure wrapper, adds no new deps) |
 | `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` |
 

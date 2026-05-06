@@ -23,6 +23,27 @@ description: >
 artifacts:
 
   - kind: script
+    name: concepts
+    cmd: bash /home/emox/work/projects/market-tools/concepts.sh
+    hint: >
+      主题概念板块热度排名 + 龙头发现. 解决 "申万行业分类太传统, 抓
+      不到存储/CoWoS/HBM/算力租赁/英伟达链/人形机器人等真正市场主题"
+      的问题. 因 tushare 概念 API (ths_index/dc_index/kpl_concept) 需
+      付费, 采用手工维护概念池 (concepts_data.py, 14 个热点主题 × 5-10
+      只龙头) + 已有 daily 批量 API 本地聚合的 hybrid 方案. 3 种 mode:
+      `concepts.sh` 默认全部概念热度排名;
+      `concepts.sh --topic=AI芯片` 查某概念成分股明细 (支持模糊匹配);
+      `concepts.sh --compare-top=4` 自动挑 top 概念龙头跑 compare.sh;
+      `concepts.sh --list` 列出可用概念. 只需 3 API calls (全市场 daily
+      × 3 日期), <15s.
+    description: >
+      Concept-theme hotness ranker. Fills the blind spot申万 L1-L3 can't
+      cover (存储/HBM/CoWoS/算力租赁/英伟达链 etc.). Concept pool is
+      hand-maintained in concepts_data.py; update it as market themes
+      evolve (~every 1-3 months). Best paired with compare.sh via
+      `--compare-top=N` one-shot call.
+
+  - kind: script
     name: compare
     cmd: bash /home/emox/work/projects/market-tools/compare.sh
     hint: >
