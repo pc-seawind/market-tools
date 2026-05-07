@@ -1,33 +1,37 @@
 #!/usr/bin/env bash
-# daily.sh — 每日监控简报 (持仓健康 + 主题轮动 + 美股隔夜 + 政策信号 + 新候选).
+# daily.sh — 每日市场趋势简报 (纯市场信号, 不依赖个人仓位/成本).
 #
-# 解决的问题:
-#   选股工具 (funnel / momentum) 只是入口, 真正的 alpha 来自持续跟踪.
-#   daily.sh 扫描 watchlist_data.py 里的持仓 + 观察清单, 在一份简报里
-#   呈现 6 个维度的日度变化, 识别需要行动的信号.
+# 重要设计原则:
+#   工具不控盘, 所以不发基于"你的成本价"的 P&L 告警 (那些没意义).
+#   只发**市场层面的趋势信号** — 是否是买点/卖点, 基于技术指标 +
+#   量价关系, 完全和用户的成本无关. 用户拿到市场判断后, 结合自己
+#   的仓位决定操作.
 #
 # Usage:
-#   daily.sh                      # 完整简报 (所有维度)
-#   daily.sh --holdings-only      # 只看持仓动态 + 信号触发
-#   daily.sh --alerts             # 只看触发警报的股
+#   daily.sh                      # 完整简报 (6 个维度)
+#   daily.sh --holdings-only      # 只看关注清单的趋势信号
+#   daily.sh --signals            # 只看触发的买卖点信号
 #   daily.sh --themes             # 只看主题轮动
 #
 # 输出 6 段:
-#   §1 持仓健康度     — 每只股今日 ±% / P&L / 信号触发
-#   §2 组合总览       — 各仓位 P&L / 最大风险股
-#   §3 主题轮动       — concepts 板块今日热度
-#   §4 美股隔夜       — NVDA / TSM / META / AAPL 等
-#   §5 政策信号       — 过去 3 天新闻联播关键词
-#   §6 观察清单动态   — 观察中的股今日表现 + funnel/momentum 有没有上新榜
+#   §1 关注清单趋势信号  — 每只股的市场层面买卖点判断
+#   §2 信号总览         — 所有触发的信号汇总 (按类型分组)
+#   §3 主题轮动         — concepts 板块今日 top/bottom
+#   §4 美股隔夜         — NVDA / TSM / META / MU 等锚点
+#   §5 政策信号         — 过去 3 天新闻联播关键词
+#   §6 待观察扩展       — (暂用 §6 位置) 全市场技术形态异动股
 #
-# 信号触发规则 (对每只持仓):
-#   🚨 STOP_LOSS    - 价格 < 成本 × 0.90 (博弈仓) 或 0.85 (基础仓)
-#   ✅ TAKE_PROFIT  - 价格 > 成本 × 1.30 (博弈仓) 或 1.50 (基础仓)
-#   ⚠️  REDUCE      - 1W 涨幅 > +15% (末期情绪顶, 分批减仓)
-#   💡 ADD          - 基础仓跌到成本 -8% 但基本面未变 (加仓机会)
+# 市场信号规则 (纯技术指标, 无个人 cost):
+#   买点:
+#     📈 BUY_EARLY     量比 ≥ 2x + 1W ∈ [-3, +5] → 放量企稳, 早期吸筹
+#     🎯 BUY_BREAKOUT  位置 ≥ 90 + 量比 ≥ 1.5x + 1W ∈ (0, 10) → 放量突破
+#     💧 BUY_PULLBACK  1M ≥ +20 + 1W ∈ (-10, 0) + 量比 < 1 → 强势股健康回调
+#   卖点:
+#     ⚠️  SELL_EXHAUSTION 1W > +15 + 位置 > 85 → 末期加速, 情绪顶
+#     📉 SELL_BREAKDOWN   1W < -10 + 量比 < 0.8 → 持续下跌 + 缩量破位
+#     🔻 SELL_TOP         1M > +50 + 1W < 0 → 主升浪末端, 动能衰竭
 #
 # Env: TUSHARE_TOKEN required.
-# Deps: bash + python3 stdlib + watchlist_data.py + concepts_data.py
 
 set -uo pipefail
 
@@ -49,14 +53,14 @@ for arg in raw_args:
                                  for l in lines[1:40]))
         sys.exit(0)
     elif arg == "--holdings-only": mode = "holdings"
-    elif arg == "--alerts":        mode = "alerts"
+    elif arg == "--signals":       mode = "signals"
     elif arg == "--themes":        mode = "themes"
     else:
         sys.stderr.write(f"unknown arg: {arg}\n"); sys.exit(2)
 
 sys.path.insert(0, here)
 try:
-    from watchlist_data import HOLDINGS, WATCHLIST, US_ANCHORS, all_holdings, total_weight
+    from watchlist_data import WATCHLIST, US_ANCHORS, all_codes, groups
 except ImportError as e:
     sys.stderr.write(f"ERROR: watchlist_data.py 加载失败: {e}\n"); sys.exit(3)
 
@@ -83,22 +87,22 @@ def ret_pct(cur, old):
     return (c1 - c0) / c0 * 100
 
 # ====================================================================
-# 拉日期 + 全市场数据 (for 持仓 + 观察 + 主题)
+# 日期准备 + 全市场数据
 # ====================================================================
 today   = datetime.date.today().strftime("%Y%m%d")
-past30  = (datetime.date.today() - datetime.timedelta(days=30)).strftime("%Y%m%d")
-cal = tushare("trade_cal", exchange="SSE", start_date=past30, end_date=today,
+# 需 20 日 lookback, 60 天 calendar 稳妥覆盖 (含节假日 buffer)
+past60  = (datetime.date.today() - datetime.timedelta(days=60)).strftime("%Y%m%d")
+cal = tushare("trade_cal", exchange="SSE", start_date=past60, end_date=today,
               fields="cal_date,is_open")
 open_days = sorted([r["cal_date"] for r in cal if r.get("is_open") == "1"], reverse=True)
 if not open_days:
     sys.stderr.write("ERROR: trade_cal 无数据\n"); sys.exit(4)
 
-latest = open_days[0]
+latest   = open_days[0]
 prev_day = open_days[1] if len(open_days) > 1 else None
-d_5d = open_days[5] if len(open_days) > 5 else None
-d_20d = open_days[20] if len(open_days) > 20 else None
+d_5d     = open_days[5] if len(open_days) > 5 else None
+d_20d    = open_days[20] if len(open_days) > 20 else None
 
-# 拉全市场 daily + daily_basic
 print(f"  [data] trade_date={latest} ...", file=sys.stderr)
 db_latest = {r["ts_code"]: r for r in
              tushare("daily_basic", trade_date=latest,
@@ -114,7 +118,7 @@ if len(db_latest) < 100 and prev_day:
                          fields="ts_code,close,turnover_rate,pe_ttm,pb,dv_ttm,total_mv")}
 
 daily_latest = {r["ts_code"]: r for r in
-                tushare("daily", trade_date=latest, fields="ts_code,close,amount,pct_chg")}
+                tushare("daily", trade_date=latest, fields="ts_code,close,amount,pct_chg,high,low")}
 daily_prev = {r["ts_code"]: r for r in
               tushare("daily", trade_date=prev_day, fields="ts_code,close")} if prev_day else {}
 daily_5d = {r["ts_code"]: r for r in
@@ -129,100 +133,180 @@ import datetime as _dt
 now = _dt.datetime.now()
 print()
 print("╔════════════════════════════════════════════════════════════════════════╗")
-print(f"║  📅 DAILY BRIEF  ·  {now.strftime('%Y-%m-%d %H:%M')}  ·  数据日: {latest}".ljust(73) + "║")
+print(f"║  📅 MARKET TREND BRIEF  ·  {now.strftime('%Y-%m-%d %H:%M')}  ·  数据日: {latest}".ljust(73) + "║")
 print("╚════════════════════════════════════════════════════════════════════════╝")
 
 # ====================================================================
-# §1 持仓健康度 + 信号触发
+# 市场信号检测 (核心逻辑, 纯市场数据)
 # ====================================================================
-if mode in ("full", "holdings", "alerts"):
+def compute_metrics(code):
+    """为一只股票计算所有需要的 metric, 返回 dict."""
+    dl = daily_latest.get(code, {})
+    db = db_latest.get(code, {})
+    d5 = daily_5d.get(code, {})
+    d20 = daily_20d.get(code, {})
+
+    cur = to_float(dl.get("close")) or to_float(db.get("close"))
+    if cur is None: return None
+
+    amt_cur = (to_float(dl.get("amount")) or 0) / 1e5   # 千元 → 亿
+    amt_20d = (to_float(d20.get("amount")) or 0) / 1e5
+
+    r1w = ret_pct(cur, d5.get("close"))
+    r1m = ret_pct(cur, d20.get("close"))
+    vol_ratio = amt_cur / amt_20d if amt_20d > 0 else None
+
+    # 位置近似 (用 1M / 3M 代理, 不拉 120 天省时间)
+    # r1m 大 → 位置靠前; r1m 负 → 位置靠后
+    if r1m is None: pos = None
+    elif r1m >= 40: pos = 90
+    elif r1m >= 20: pos = 75 + (r1m - 20) * 0.75
+    elif r1m >= 0:  pos = 50 + r1m * 1.25
+    elif r1m >= -20: pos = 50 + r1m * 1.5
+    else: pos = 20
+
+    return {
+        "close": cur,
+        "pct_chg": to_float(dl.get("pct_chg")),
+        "high": to_float(dl.get("high")),
+        "low": to_float(dl.get("low")),
+        "pe_ttm": to_float(db.get("pe_ttm")),
+        "pb": to_float(db.get("pb")),
+        "turnover_rate": to_float(db.get("turnover_rate")),
+        "amt_cur": amt_cur,
+        "amt_20d": amt_20d,
+        "vol_ratio": vol_ratio,
+        "r1w": r1w,
+        "r1m": r1m,
+        "pos": pos,
+    }
+
+def market_signals(m):
+    """基于纯市场数据检测趋势信号. 不依赖任何个人仓位信息.
+
+    Returns: list of (icon, signal_type, description)
+    """
+    if not m: return []
+    sigs = []
+    r1w = m.get("r1w")
+    r1m = m.get("r1m")
+    vr  = m.get("vol_ratio")
+    pos = m.get("pos")
+    today_chg = m.get("pct_chg")
+
+    # ━━━ 买点 (BUY) ━━━
+
+    # BUY_EARLY: 放量企稳 — 量比 ≥ 2x 且 1W 平稳, 早期机构吸筹
+    if vr is not None and vr >= 2.0 and r1w is not None and -3 <= r1w <= 5:
+        sigs.append(("📈", "BUY_EARLY",
+                     f"放量企稳 (量比 {vr:.1f}x, 1W {r1w:+.1f}%), 机构早期吸筹特征"))
+
+    # BUY_BREAKOUT: 放量突破 — 位置接近高点 + 放量 + 温和上涨
+    if pos is not None and pos >= 85 and vr is not None and vr >= 1.5 \
+       and r1w is not None and 0 < r1w <= 10:
+        sigs.append(("🎯", "BUY_BREAKOUT",
+                     f"放量突破 (位置 ≈{pos:.0f}%, 量比 {vr:.1f}x, 1W +{r1w:.1f}%), 趋势加速确认"))
+
+    # BUY_PULLBACK: 健康回调 — 中长期强势 + 短期回调 + 缩量
+    if r1m is not None and r1m >= 20 and r1w is not None and -10 < r1w < 0 \
+       and vr is not None and vr < 1.0:
+        sigs.append(("💧", "BUY_PULLBACK",
+                     f"健康回调 (1M +{r1m:.1f}% 强势, 1W {r1w:+.1f}% 缩量调整), 左侧买点"))
+
+    # ━━━ 卖点 (SELL) ━━━
+
+    # SELL_EXHAUSTION: 末期加速 — 1W 暴涨 + 位置极高
+    if r1w is not None and r1w > 15 and pos is not None and pos > 85:
+        sigs.append(("⚠️", "SELL_EXHAUSTION",
+                     f"末期加速 (1W {r1w:+.1f}%, 位置 ≈{pos:.0f}%), 情绪顶警示, 减仓时机"))
+
+    # SELL_BREAKDOWN: 趋势破坏 — 持续下跌 + 缩量
+    if r1w is not None and r1w < -10 and vr is not None and vr < 0.8:
+        sigs.append(("📉", "SELL_BREAKDOWN",
+                     f"趋势破坏 (1W {r1w:+.1f}%, 量比 {vr:.1f}x 缩量), 止跌确认前观望"))
+
+    # SELL_TOP: 动能衰竭 — 1M 翻倍级但 1W 转负
+    if r1m is not None and r1m > 50 and r1w is not None and r1w < 0:
+        sigs.append(("🔻", "SELL_TOP",
+                     f"动能衰竭 (1M +{r1m:.1f}% 大涨, 1W {r1w:+.1f}% 转负), 主升浪末端"))
+
+    # 当日大跌/大涨 (独立信号, 供参考)
+    if today_chg is not None and today_chg >= 7:
+        sigs.append(("🚀", "TODAY_SURGE",
+                     f"当日急涨 {today_chg:+.1f}%, 短期需警惕获利回吐"))
+    if today_chg is not None and today_chg <= -7:
+        sigs.append(("💥", "TODAY_DROP",
+                     f"当日急跌 {today_chg:+.1f}%, 关注是否有基本面触发"))
+
+    return sigs
+
+
+# ====================================================================
+# §1 关注清单趋势信号
+# ====================================================================
+if mode in ("full", "holdings", "signals"):
     print(f"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print(f"  §1. 持仓健康度  ·  信号检测")
+    print(f"  §1. 关注清单  ·  市场趋势信号  (基于技术 + 量价, 与个人仓位无关)")
     print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
-    holdings_flat = all_holdings()
-    total_w = total_weight()
-    # 累计贡献
-    portfolio_pnl = 0.0
-    alerts = []  # 收集所有信号
+    all_signals = []  # 汇总所有信号
+    grps = groups()
 
     def fmt_pct(v, w=7):
         if v is None: return "n/a".rjust(w)
         return f"{v:+{w-1}.2f}%"
 
-    def signals_for(ts_code, tier, cost_price, cur_close, r1w):
-        """针对一只持仓产生信号列表."""
-        sigs = []
-        if cur_close is None or cost_price is None: return sigs
-        pnl_pct = (cur_close - cost_price) / cost_price * 100
-        # 止损
-        stop_threshold = -15 if tier.startswith("基础") else -10
-        if pnl_pct <= stop_threshold:
-            sigs.append(("🚨", "STOP_LOSS",
-                         f"跌破止损 {stop_threshold}%, 当前 {pnl_pct:+.1f}%, 建议清仓"))
-        # 止盈
-        take_threshold = 50 if tier.startswith("基础") else 30
-        if pnl_pct >= take_threshold:
-            sigs.append(("✅", "TAKE_PROFIT",
-                         f"达到止盈 +{take_threshold}%, 当前 {pnl_pct:+.1f}%, 建议减仓 1/3"))
-        # 减仓 (末期情绪顶)
-        if r1w is not None and r1w > 15:
-            sigs.append(("⚠️", "REDUCE",
-                         f"1W 涨幅 {r1w:+.1f}% > +15%, 警惕末期加速, 建议减 30%"))
-        # 加仓机会 (仅基础仓)
-        if tier.startswith("基础") and pnl_pct <= -8 and pnl_pct > stop_threshold:
-            sigs.append(("💡", "ADD",
-                         f"回调到 {pnl_pct:+.1f}%, 若基本面未变, 可加 1/3 仓"))
-        return sigs
+    for tier, stocks in grps.items():
+        print(f"\n  ▣ {tier}")
+        print(f"    {'代码':<12}{'名称':<10}{'现价':>9}{'今日':>9}{'1W':>9}{'1M':>9}"
+              f"{'量比':>7}{'位置':>7}  │  信号")
+        for code, name in stocks:
+            m = compute_metrics(code)
+            if not m:
+                print(f"    {code:<12}{name[:8]:<10}  [无数据 (停牌?)]")
+                continue
+            sigs = market_signals(m)
+            sig_str = "  ".join(icon for icon, _t, _d in sigs) if sigs else "  "
+            for s in sigs: all_signals.append((tier, code, name, s))
 
-    for tier, stocks in HOLDINGS.items():
-        tier_pnl_weighted = 0.0
-        tier_w = sum(w for _, _, w, _ in stocks)
-        print(f"\n  ▣ {tier}  (权重 {tier_w:.1f}%)")
-        print(f"    {'代码':<12}{'名称':<10}{'成本':>9}{'当前':>9}{'今日':>9}{'1W':>9}{'P&L':>9}  │  信号")
-        for code, name, w, cost_price in stocks:
-            dl = daily_latest.get(code, {})
-            db = db_latest.get(code, {})
-            cur = to_float(dl.get("close")) or to_float(db.get("close"))
-            pct_chg_today = to_float(dl.get("pct_chg"))
-            r1w = ret_pct(cur, daily_5d.get(code, {}).get("close"))
-            pnl = ((cur - cost_price) / cost_price * 100) if cur else None
-            if pnl is not None:
-                tier_pnl_weighted += pnl * (w / 100)
+            vr_str = f"{m['vol_ratio']:.1f}x" if m['vol_ratio'] else "n/a"
+            pos_str = f"{m['pos']:.0f}%" if m['pos'] is not None else "n/a"
+            print(f"    {code:<12}{name[:8]:<10} ¥{m['close']:>7.2f} "
+                  f"{fmt_pct(m['pct_chg']):>8} {fmt_pct(m['r1w']):>8} "
+                  f"{fmt_pct(m['r1m']):>8} {vr_str:>6} {pos_str:>6}  │  {sig_str}")
 
-            sigs = signals_for(code, tier, cost_price, cur, r1w)
-            sig_str = "  ".join(icon for icon, _sig, _msg in sigs)
-            for s in sigs: alerts.append((tier, code, name, s))
+    # §2 信号汇总
+    if all_signals:
+        print(f"\n  🔔 触发信号汇总 ({len(all_signals)} 条):")
+        # 按类型分组
+        by_type = defaultdict(list)
+        for tier, code, name, sig in all_signals:
+            by_type[sig[1]].append((tier, code, name, sig))
 
-            print(f"    {code:<12}{name[:8]:<10} ¥{cost_price:>7.2f} ¥{cur:>7.2f} "
-                  f"{fmt_pct(pct_chg_today):>8} {fmt_pct(r1w):>8} "
-                  f"{fmt_pct(pnl):>8}  │  {sig_str}")
-
-        # 该仓位贡献
-        tier_contrib_pct = tier_pnl_weighted  # (pnl_pct × weight_pct / 100) aggregated
-        portfolio_pnl += tier_contrib_pct
-        print(f"    ── {tier} 合计 P&L 贡献: {tier_pnl_weighted:+.2f}% (占总资产)")
-
-    print(f"\n  🎯 组合总 P&L: {portfolio_pnl:+.2f}% (总权重 {total_w:.0f}% + 现金 {100-total_w:.0f}%)")
-
-    # Alert summary
-    if alerts and mode != "themes":
-        print(f"\n  🔔 触发信号 ({len(alerts)} 条):")
-        for tier, code, name, sig in alerts:
-            icon, sig_type, msg = sig
-            print(f"    {icon}  [{tier}] {code} {name}  ·  {sig_type}")
-            print(f"        {msg}")
+        # 排序顺序: 买点先, 卖点后
+        type_order = ["BUY_EARLY", "BUY_BREAKOUT", "BUY_PULLBACK",
+                      "SELL_EXHAUSTION", "SELL_BREAKDOWN", "SELL_TOP",
+                      "TODAY_SURGE", "TODAY_DROP"]
+        for sig_type in type_order:
+            if sig_type not in by_type: continue
+            items = by_type[sig_type]
+            print()
+            icon_sample = items[0][3][0]
+            print(f"    {icon_sample}  {sig_type}  ({len(items)} 只)")
+            for tier, code, name, sig in items:
+                print(f"        [{tier}] {code} {name}")
+                print(f"            {sig[2]}")
+    else:
+        print(f"\n  ✅ 所有关注股票当前无明确买/卖点信号, 量价平稳")
 
 # ====================================================================
-# §2 组合总览 (alerts 模式跳过)
+# signals mode 到此结束
 # ====================================================================
-if mode == "alerts":
-    if not alerts:
-        print(f"\n  ✅ 无触发信号, 持仓整体稳定")
+if mode == "signals":
     sys.exit(0)
 
 # ====================================================================
-# §3 主题轮动 (当日 + 变化)
+# §3 主题轮动
 # ====================================================================
 if mode in ("full", "themes"):
     print(f"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
@@ -236,13 +320,12 @@ if mode in ("full", "themes"):
 
     concept_stats = []
     for concept, stocks in CONCEPTS.items():
-        r_today, r_1w = [], []
-        amts = []
-        for code, _name in stocks:
+        r_today, r_1w, amts = [], [], []
+        for code, _n in stocks:
             dl = daily_latest.get(code, {})
             d5 = daily_5d.get(code, {})
-            if to_float(dl.get("pct_chg")) is not None:
-                r_today.append(to_float(dl.get("pct_chg")))
+            v = to_float(dl.get("pct_chg"))
+            if v is not None: r_today.append(v)
             r1w = ret_pct(dl.get("close"), d5.get("close"))
             if r1w is not None: r_1w.append(r1w)
             amts.append((to_float(dl.get("amount")) or 0) / 1e5)
@@ -253,119 +336,88 @@ if mode in ("full", "themes"):
             "total_amt": sum(amts),
         })
 
-    # 按今日涨跌排序
     concept_stats.sort(key=lambda s: -(s["avg_today"] or -1e9))
 
     print(f"\n  {'排名':<4}{'概念':<28}{'今日均涨':>10}{'5日均涨':>10}{'日成交(亿)':>14}")
     print(f"  {'-' * 65}")
-    def mark(v, thr=0):
+    def mark(v):
         if v is None: return "  "
-        if v > abs(thr) + 2: return "🔥"
-        if v < -abs(thr) - 2: return "🧊"
+        if v > 2: return "🔥"
+        if v < -2: return "🧊"
         return "  "
     for i, cs in enumerate(concept_stats[:5], 1):
-        tag = mark(cs["avg_today"])
         today_str = f"{cs['avg_today']:+.2f}%" if cs["avg_today"] is not None else "n/a"
         w1_str = f"{cs['avg_1w']:+.1f}%" if cs["avg_1w"] is not None else "n/a"
-        print(f"  {tag}{i:>2}. {cs['name']:<26} {today_str:>9} {w1_str:>9} {cs['total_amt']:>11.0f}")
+        print(f"  {mark(cs['avg_today'])}{i:>2}. {cs['name']:<26} "
+              f"{today_str:>9} {w1_str:>9} {cs['total_amt']:>11.0f}")
     print(f"  {'-' * 65}")
-    # Bottom 3
     for i, cs in enumerate(concept_stats[-3:], len(concept_stats) - 2):
-        tag = mark(cs["avg_today"])
         today_str = f"{cs['avg_today']:+.2f}%" if cs["avg_today"] is not None else "n/a"
         w1_str = f"{cs['avg_1w']:+.1f}%" if cs["avg_1w"] is not None else "n/a"
-        print(f"  {tag}{i:>2}. {cs['name']:<26} {today_str:>9} {w1_str:>9} {cs['total_amt']:>11.0f}")
+        print(f"  {mark(cs['avg_today'])}{i:>2}. {cs['name']:<26} "
+              f"{today_str:>9} {w1_str:>9} {cs['total_amt']:>11.0f}")
+
+if mode == "themes":
+    sys.exit(0)
 
 # ====================================================================
-# §4 美股隔夜 (只显示, 不分析)
+# §4 美股隔夜
 # ====================================================================
 if mode == "full":
     print(f"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print(f"  §4. 美股隔夜 (AI 链跨市场锚点)")
     print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print(f"  {'ticker':<8}{'名称':<15}{'价格':>9}{'开盘':>9}{'区间':>18}")
+    print(f"  {'ticker':<8}{'名称':<15}{'价格':>9}{'开盘':>9}{'区间':>22}")
     print(f"  {'-' * 60}")
     for ticker, name in US_ANCHORS:
         try:
             res = subprocess.run(["bash", f"{here}/quote.sh", ticker],
                                  capture_output=True, text=True, timeout=10)
-            if res.returncode == 0:
+            if res.returncode == 0 and "|" in res.stdout:
                 first_line = res.stdout.strip().split("\n")[0]
-                # Parse "NVDA.US | price=200.96 open=199.89 high=201.05 low=198.61 vol=... ts=..."
                 fields = dict(f.split("=", 1) for f in first_line.split(" | ")[1].split(" ")
                               if "=" in f)
                 price = fields.get("price", "?")
                 open_p = fields.get("open", "?")
                 hi = fields.get("high", "?")
                 lo = fields.get("low", "?")
-                print(f"  {ticker:<8}{name:<15}${price:>8}  ${open_p:>7}  [${lo} — ${hi}]")
+                # 计算隔夜涨跌 (price vs open)
+                try:
+                    pct = (float(price) - float(open_p)) / float(open_p) * 100
+                    tag = "🔥" if pct > 2 else ("🧊" if pct < -2 else "  ")
+                    pct_str = f"({pct:+.1f}%)"
+                except Exception:
+                    tag, pct_str = "  ", ""
+                print(f"  {tag}{ticker:<6}{name:<15}${price:>8}  ${open_p:>7}  "
+                      f"[${lo} — ${hi}] {pct_str}")
             else:
                 print(f"  {ticker:<8}{name:<15}  [获取失败]")
         except Exception as e:
             print(f"  {ticker:<8}{name:<15}  [错误: {e}]")
 
 # ====================================================================
-# §5 政策信号 (过去 3 天 CCTV 联播 关键词)
+# §5 政策信号
 # ====================================================================
 if mode == "full":
     print(f"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print(f"  §5. 政策信号 (过去 3 日 CCTV 联播 关键词)")
     print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     try:
-        # cctv_news 限速 (5/min), 3 天需要至少 60-120s (含 retry backoff)
         res = subprocess.run(
             ["bash", f"{here}/policy.sh", "days=3",
              "--grep=半导体|芯片|AI|算力|基础研究|科技|制造业|新能源|金融|消费"],
             capture_output=True, text=True, timeout=200,
         )
         if res.returncode == 0:
-            # 提取有日期的部分
-            lines = res.stdout.split("\n")
-            for line in lines:
+            for line in res.stdout.split("\n"):
                 if line.startswith("[20") or line.startswith("  ·"):
                     print(f"  {line}")
         else:
             print(f"  [policy.sh 获取失败]")
     except subprocess.TimeoutExpired:
-        print(f"  [policy.sh 超时, 可能 cctv_news API 限速]")
+        print(f"  [policy.sh 超时]")
     except Exception as e:
         print(f"  [错误: {e}]")
 
-# ====================================================================
-# §6 观察清单动态
-# ====================================================================
-if mode == "full":
-    print(f"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print(f"  §6. 观察清单动态")
-    print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print(f"  {'代码':<12}{'名称':<10}{'当前':>9}{'今日':>9}{'1W':>9}{'PE':>7}")
-    print(f"  {'-' * 60}")
-    for code, name in WATCHLIST:
-        dl = daily_latest.get(code, {})
-        db = db_latest.get(code, {})
-        cur = to_float(dl.get("close")) or to_float(db.get("close"))
-        pct_chg_today = to_float(dl.get("pct_chg"))
-        r1w = ret_pct(cur, daily_5d.get(code, {}).get("close"))
-        pe = to_float(db.get("pe_ttm"))
-
-        # 大涨大跌 flag
-        flag = ""
-        if pct_chg_today is not None:
-            if pct_chg_today > 5: flag = "🔥"
-            elif pct_chg_today < -5: flag = "🧊"
-        if r1w is not None and r1w > 20: flag += "⚡"
-
-        cur_str = f"¥{cur:.2f}" if cur else "n/a"
-        pe_str = f"{pe:.1f}" if pe else "n/a"
-        print(f"  {code:<12}{name[:8]:<10}{cur_str:>8} {fmt_pct(pct_chg_today):>8} "
-              f"{fmt_pct(r1w):>8} {pe_str:>6}  {flag}")
-
-print()
-print("  💡 提示:")
-if mode == "full":
-    print("     - 持仓信号触发请看 §1 末尾")
-    print("     - 主题轮动看 §3 是否有新的 🔥 (今日突破 +2%)")
-    print("     - 美股隔夜异动 → 影响 A 股 AI 链开盘")
-    print("     - 每周五建议额外跑 funnel.sh + momentum.sh 刷新候选池")
 print()
 PY
