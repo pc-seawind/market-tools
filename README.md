@@ -18,6 +18,37 @@ combine with the homespace domain's `search_baidu` / `search_tavily` /
 
 ## Scripts
 
+### `backtest.sh <ticker1> [...] [--days=180]` — 🔬 信号规则回测验证
+
+每次修改 `signals.py` 的规则后跑 `backtest.sh` 验证**规则是否真正预测了
+后续走势**。避免凭感觉改参数, 信号成为 noise.
+
+```bash
+$ ./backtest.sh sh688256 sh688041 sh688008 sz301308 --days=240
+```
+
+对每只 ticker sliding window 跑 signals.detect, 算 forward returns
+(+5d / +10d / +20d), 输出:
+- 每只股的所有触发点 + 后续收益
+- 全局统计: 平均收益 + 正收益占比 + 判断 (✅ 有效 / ⚪ 中性 / ❌ 无效)
+
+**发现的真实信号有效性** (240 天, 4 只 AI 链股 backtest):
+
+| 信号 | 触发次数 | +20d 平均 | +20d 正收益 | 判断 |
+|------|---------|----------|-------------|------|
+| **SELL_EXHAUSTION** | 6 | **-11.6%** | **0%** | ✅ 黄金信号 |
+| SELL_CONFIRMED | 1 | -14.1% | 0% | ✅ |
+| TODAY_SURGE | 18 | -2.0% | 33% | ⚪ 略负 (参考) |
+| TODAY_DROP | 7 | +8.5% | 71% | 反弹预示 |
+| ~~BUY_PULLBACK~~ | - | - | - | ❌ 已移除 (两轮改都无效) |
+| ~~SELL_BREAKDOWN~~ | - | - | - | ❌ 已移除 |
+
+**核心发现**: 纯技术指标无法区分"强势股回调"和"顶部震荡" → BUY_PULLBACK
+在高位假信号太多; "持续下跌缩量" 在 A 股更多是"超跌反弹前夜" →
+SELL_BREAKDOWN 也被移除. **只保留 backtest 验证有效的信号, 不凭感觉加**.
+
+---
+
 ### `daily.sh [--holdings-only | --alerts | --themes]` — 📅 每日监控简报
 
 **每天开盘前跑一次**. 读取 `watchlist_data.py` (手工维护的持仓 + 观察
@@ -473,7 +504,9 @@ just the data rows with a header line.
 | `concepts.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `funnel.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `momentum.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
-| `daily.sh` | bash + python3 stdlib + `watchlist_data.py` + `concepts_data.py` + `TUSHARE_TOKEN` |
+| `daily.sh` | bash + python3 stdlib + `watchlist_data.py` + `concepts_data.py` + `signals.py` + `TUSHARE_TOKEN` |
+| `backtest.sh` | bash + python3 stdlib + `signals.py` + `TUSHARE_TOKEN` |
+| `signals.py` | python3 stdlib only (共享信号规则, 纯函数) |
 | `diligence.sh` | all of the above (pure wrapper, adds no new deps) |
 | `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` |
 

@@ -23,6 +23,22 @@ description: >
 artifacts:
 
   - kind: script
+    name: backtest
+    cmd: bash /home/emox/work/projects/market-tools/backtest.sh
+    hint: >
+      信号历史回测工具. 每次修改 signals.py 的规则后跑 backtest 验证
+      是否真的 predict 了后续走势, 避免"凭感觉写规则". 对每只 ticker 做
+      sliding window, 对每个历史交易日算 signals + forward returns
+      (+5d / +10d / +20d), 最后输出统计: 平均收益 + 正收益占比 + 信号有效性判断.
+      Args: `<ticker1> [ticker2 ...] [--days=180] [--signal=TYPE]`.
+      Example: `bash /home/emox/work/projects/market-tools/backtest.sh
+       sh688256 sh688041 sz301308 --days=240`
+    description: >
+      Signal validator for signals.py. 投研里最重要的工具之一 —— 避免
+      信号规则成为 noise 的最后防线. 发现 BUY_PULLBACK 和 SELL_BREAKDOWN
+      在纯技术层面无效后, 两个信号已在 signals.py 里移除.
+
+  - kind: script
     name: daily
     cmd: bash /home/emox/work/projects/market-tools/daily.sh
     hint: >

@@ -61,8 +61,9 @@ for arg in raw_args:
 sys.path.insert(0, here)
 try:
     from watchlist_data import WATCHLIST, US_ANCHORS, all_codes, groups, has_hk
+    import signals as sig_mod  # 信号检测模块 (也被 backtest.sh 共享)
 except ImportError as e:
-    sys.stderr.write(f"ERROR: watchlist_data.py 加载失败: {e}\n"); sys.exit(3)
+    sys.stderr.write(f"ERROR: 模块加载失败: {e}\n"); sys.exit(3)
 
 def tushare(api, timeout=60, **params):
     args = ["python3", f"{here}/tushare.py", api]
@@ -90,9 +91,9 @@ def ret_pct(cur, old):
 # 日期准备 + 全市场数据
 # ====================================================================
 today   = datetime.date.today().strftime("%Y%m%d")
-# 需 20 日 lookback, 60 天 calendar 稳妥覆盖 (含节假日 buffer)
-past60  = (datetime.date.today() - datetime.timedelta(days=60)).strftime("%Y%m%d")
-cal = tushare("trade_cal", exchange="SSE", start_date=past60, end_date=today,
+# 需 60 交易日 lookback (SELL_TOP 需 r3m), 120 calendar days 稳妥覆盖
+past120  = (datetime.date.today() - datetime.timedelta(days=120)).strftime("%Y%m%d")
+cal = tushare("trade_cal", exchange="SSE", start_date=past120, end_date=today,
               fields="cal_date,is_open")
 open_days = sorted([r["cal_date"] for r in cal if r.get("is_open") == "1"], reverse=True)
 if not open_days:
@@ -102,6 +103,7 @@ latest   = open_days[0]
 prev_day = open_days[1] if len(open_days) > 1 else None
 d_5d     = open_days[5] if len(open_days) > 5 else None
 d_20d    = open_days[20] if len(open_days) > 20 else None
+d_60d    = open_days[60] if len(open_days) > 60 else None
 
 print(f"  [data] trade_date={latest} ...", file=sys.stderr)
 db_latest = {r["ts_code"]: r for r in
@@ -113,6 +115,7 @@ if len(db_latest) < 100 and prev_day:
     prev_day = open_days[2] if len(open_days) > 2 else None
     d_5d = open_days[6] if len(open_days) > 6 else None
     d_20d = open_days[21] if len(open_days) > 21 else None
+    d_60d = open_days[61] if len(open_days) > 61 else None
     db_latest = {r["ts_code"]: r for r in
                  tushare("daily_basic", trade_date=latest,
                          fields="ts_code,close,turnover_rate,pe_ttm,pb,dv_ttm,total_mv")}
@@ -126,6 +129,9 @@ daily_5d = {r["ts_code"]: r for r in
             tushare("daily", trade_date=d_5d, fields="ts_code,close,amount")} if d_5d else {}
 daily_20d = {r["ts_code"]: r for r in
              tushare("daily", trade_date=d_20d, fields="ts_code,close,amount")} if d_20d else {}
+# 补拉 60d (SELL_TOP 需要 r3m)
+daily_60d = {r["ts_code"]: r for r in
+             tushare("daily", trade_date=d_60d, fields="ts_code,close")} if d_60d else {}
 
 # 港股 hk_daily (如果 watchlist 里有 HK 标的)
 # 重要: tushare hk_daily 限速 10 次/天 (硬性配额), 所以不能按 trade_date 批量拉,
@@ -157,7 +163,7 @@ if has_hk():
         # 未命中/失败则调 API
         if not rows:
             rows = tushare("hk_daily", ts_code=code,
-                           start_date=past60, end_date=today,
+                           start_date=past120, end_date=today,
                            fields="trade_date,close,amount,pct_chg,high,low")
             if rows:
                 miss_cnt += 1
@@ -176,6 +182,7 @@ if has_hk():
         daily_latest[code] = rows[0]
         if len(rows) > 5:  daily_5d[code]  = rows[5]
         if len(rows) > 20: daily_20d[code] = rows[20]
+        if len(rows) > 60: daily_60d[code] = rows[60]
     print(f"    HK: cache hit {hit_cnt}, fetched {miss_cnt}, fail {fail_cnt}",
           file=sys.stderr)
 
@@ -198,6 +205,7 @@ def compute_metrics(code):
     db = db_latest.get(code, {})
     d5 = daily_5d.get(code, {})
     d20 = daily_20d.get(code, {})
+    d60 = daily_60d.get(code, {})
 
     cur = to_float(dl.get("close")) or to_float(db.get("close"))
     if cur is None: return None
@@ -207,16 +215,11 @@ def compute_metrics(code):
 
     r1w = ret_pct(cur, d5.get("close"))
     r1m = ret_pct(cur, d20.get("close"))
+    r3m = ret_pct(cur, d60.get("close"))
     vol_ratio = amt_cur / amt_20d if amt_20d > 0 else None
 
-    # 位置近似 (用 1M / 3M 代理, 不拉 120 天省时间)
-    # r1m 大 → 位置靠前; r1m 负 → 位置靠后
-    if r1m is None: pos = None
-    elif r1m >= 40: pos = 90
-    elif r1m >= 20: pos = 75 + (r1m - 20) * 0.75
-    elif r1m >= 0:  pos = 50 + r1m * 1.25
-    elif r1m >= -20: pos = 50 + r1m * 1.5
-    else: pos = 20
+    # 位置近似 (由 signals 模块统一计算)
+    pos = sig_mod.position_proxy(r1m)
 
     return {
         "close": cur,
@@ -231,67 +234,26 @@ def compute_metrics(code):
         "vol_ratio": vol_ratio,
         "r1w": r1w,
         "r1m": r1m,
+        "r3m": r3m,
         "pos": pos,
     }
 
 def market_signals(m):
-    """基于纯市场数据检测趋势信号. 不依赖任何个人仓位信息.
+    """从 metrics dict 推信号. 委托给 signals.py 模块 (规则统一维护).
 
     Returns: list of (icon, signal_type, description)
     """
     if not m: return []
-    sigs = []
-    r1w = m.get("r1w")
-    r1m = m.get("r1m")
-    vr  = m.get("vol_ratio")
-    pos = m.get("pos")
-    today_chg = m.get("pct_chg")
-
-    # ━━━ 买点 (BUY) ━━━
-
-    # BUY_EARLY: 放量企稳 — 量比 ≥ 2x 且 1W 平稳, 早期机构吸筹
-    if vr is not None and vr >= 2.0 and r1w is not None and -3 <= r1w <= 5:
-        sigs.append(("📈", "BUY_EARLY",
-                     f"放量企稳 (量比 {vr:.1f}x, 1W {r1w:+.1f}%), 机构早期吸筹特征"))
-
-    # BUY_BREAKOUT: 放量突破 — 位置接近高点 + 放量 + 温和上涨
-    if pos is not None and pos >= 85 and vr is not None and vr >= 1.5 \
-       and r1w is not None and 0 < r1w <= 10:
-        sigs.append(("🎯", "BUY_BREAKOUT",
-                     f"放量突破 (位置 ≈{pos:.0f}%, 量比 {vr:.1f}x, 1W +{r1w:.1f}%), 趋势加速确认"))
-
-    # BUY_PULLBACK: 健康回调 — 中长期强势 + 短期回调 + 缩量
-    if r1m is not None and r1m >= 20 and r1w is not None and -10 < r1w < 0 \
-       and vr is not None and vr < 1.0:
-        sigs.append(("💧", "BUY_PULLBACK",
-                     f"健康回调 (1M +{r1m:.1f}% 强势, 1W {r1w:+.1f}% 缩量调整), 左侧买点"))
-
-    # ━━━ 卖点 (SELL) ━━━
-
-    # SELL_EXHAUSTION: 末期加速 — 1W 暴涨 + 位置极高
-    if r1w is not None and r1w > 15 and pos is not None and pos > 85:
-        sigs.append(("⚠️", "SELL_EXHAUSTION",
-                     f"末期加速 (1W {r1w:+.1f}%, 位置 ≈{pos:.0f}%), 情绪顶警示, 减仓时机"))
-
-    # SELL_BREAKDOWN: 趋势破坏 — 持续下跌 + 缩量
-    if r1w is not None and r1w < -10 and vr is not None and vr < 0.8:
-        sigs.append(("📉", "SELL_BREAKDOWN",
-                     f"趋势破坏 (1W {r1w:+.1f}%, 量比 {vr:.1f}x 缩量), 止跌确认前观望"))
-
-    # SELL_TOP: 动能衰竭 — 1M 翻倍级但 1W 转负
-    if r1m is not None and r1m > 50 and r1w is not None and r1w < 0:
-        sigs.append(("🔻", "SELL_TOP",
-                     f"动能衰竭 (1M +{r1m:.1f}% 大涨, 1W {r1w:+.1f}% 转负), 主升浪末端"))
-
-    # 当日大跌/大涨 (独立信号, 供参考)
-    if today_chg is not None and today_chg >= 7:
-        sigs.append(("🚀", "TODAY_SURGE",
-                     f"当日急涨 {today_chg:+.1f}%, 短期需警惕获利回吐"))
-    if today_chg is not None and today_chg <= -7:
-        sigs.append(("💥", "TODAY_DROP",
-                     f"当日急跌 {today_chg:+.1f}%, 关注是否有基本面触发"))
-
-    return sigs
+    # 映射 daily.sh 的 metrics 字段名到 signals.py 期望的格式
+    sig_input = {
+        "r1w":           m.get("r1w"),
+        "r1m":           m.get("r1m"),
+        "r3m":           m.get("r3m"),
+        "vol_ratio":     m.get("vol_ratio"),
+        "pos":           m.get("pos"),
+        "pct_chg_today": m.get("pct_chg"),
+    }
+    return sig_mod.detect(sig_input)
 
 
 # ====================================================================
@@ -337,8 +299,9 @@ if mode in ("full", "holdings", "signals"):
             by_type[sig[1]].append((tier, code, name, sig))
 
         # 排序顺序: 买点先, 卖点后
-        type_order = ["BUY_EARLY", "BUY_BREAKOUT", "BUY_PULLBACK",
-                      "SELL_EXHAUSTION", "SELL_BREAKDOWN", "SELL_TOP",
+        type_order = ["BUY_EARLY", "BUY_BREAKOUT",
+                      "SELL_EXHAUSTION", "SELL_CONFIRMED", "SELL_EXTREME",
+                      "SELL_TOP",
                       "TODAY_SURGE", "TODAY_DROP"]
         for sig_type in type_order:
             if sig_type not in by_type: continue
