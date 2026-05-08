@@ -471,16 +471,57 @@ can be called directly. Stdlib-only, no `pip install tushare` needed.
   Opt out with `TUSHARE_NO_RETRY=1`.
 - **Day-quota detection**: 错误信息含 "次/天" 时立刻 bail (不 retry), 避免
   hk_daily 这类 10/day 配额浪费 2+ 分钟.
-- **本地缓存 (positive + negative)**: 避免重复 API 调用:
-  - 历史日期的 daily/hk_daily/sw_daily/cctv_news → **永久缓存** (数据不变)
-  - 财报 / 股东数据 → 1 周 TTL
-  - 静态数据 (stock_basic / trade_cal) → 30 天 TTL
-  - **Negative cache** (避免重复撞墙): 40203 配额错误 → 1h TTL; 40202 无权限
-    → 1d TTL; 空结果 → 1h TTL
-  - 缓存位置: `~/.homespace/cache/market-tools/`
-  - Opt out: `TUSHARE_NO_CACHE=1` 或 `--no-cache` flag
-  - Debug: `TUSHARE_CACHE_DEBUG=1` 看 cache-hit/miss/write 日志
-  - **加速实测**: daily.sh 从 3m → 0.76s (237× 加速) 当缓存热
+
+**双层持久化:**
+
+**Layer 1 — JSON cache** (查询级, 按 (api, params, fields) hash 单文件):
+  - 历史日期的 daily/hk_daily/sw_daily/cctv_news → 永久
+  - 财报 / 股东 → 1 周  /  静态 (stock_basic) → 30 天
+  - Negative cache: 40203 → 1h, 40202 → 1d, 空结果 → 1h
+  - 位置: `~/.homespace/cache/market-tools/`
+  - Opt out: `TUSHARE_NO_CACHE=1` 或 `--no-cache`
+
+**Layer 2 — Parquet + DuckDB** (数据级持久化, 按业务主键去重):
+  - Parquet 列式存储 + ZSTD 压缩: 5500 股日线 0.33 MB (vs CSV ~20 MB)
+  - 业务主键去重: `daily` → (ts_code + trade_date); `fina_indicator` → (ts_code + end_date)
+  - 跨股跨日期 SQL 查询: 5.2 毫秒扫 32,909 行 + JOIN + 过滤 + TOP 10
+  - 自动累积: 每次 API call 往 parquet append, 相同 key 覆盖保留新
+  - 位置: `~/.homespace/data/market-tools/<api>/<api>.parquet`
+  - Opt out: `TUSHARE_NO_PARQUET=1`
+  - Debug: `TUSHARE_PARQUET_DEBUG=1`
+  - 依赖: `pip install duckdb pyarrow` (一次性, 约 100 MB wheel)
+
+**加速实测** (daily.sh --holdings-only):
+  - 清缓存第 1 次: 3m → 1m02s (day-quota 不 retry 省 2 min, 同时双写 JSON+Parquet)
+  - 第 2 次 (热): 3m → **0.76s** (237× 加速, JSON 查询级 hit)
+
+**直接 DuckDB 分析** (绕过 tushare API):
+```python
+import duckdb
+con = duckdb.connect()
+# 全市场 PE<15 + 股息>3% + 市值>200亿, 5491 股扫描 < 3 ms
+rows = con.execute("""
+    SELECT ts_code, close, pe_ttm, total_mv/1e4 AS mv_yi
+    FROM read_parquet('~/.homespace/data/market-tools/daily_basic/daily_basic.parquet')
+    WHERE pe_ttm > 0 AND pe_ttm < 15 AND total_mv > 200 * 1e4
+    ORDER BY pe_ttm
+""").fetchall()
+```
+
+**cache_parquet.py CLI** (inspect + manual query):
+```bash
+# 查看所有 API 的 parquet 积累状态
+python3 cache_parquet.py status
+
+# 从 parquet 查询 (不走 API)
+python3 cache_parquet.py query daily ts_code=600519.SH trade_date=20260508
+```
+
+**首次启用建议** (从 JSON cache 迁移历史数据到 Parquet):
+```bash
+bash migrate_cache.sh --dry-run      # 先看要迁什么
+bash migrate_cache.sh                # 实际迁移
+```
 
 ```bash
 # Index history (CSI 300)
@@ -520,7 +561,9 @@ just the data rows with a header line.
 | `backtest.sh` | bash + python3 stdlib + `signals.py` + `TUSHARE_TOKEN` |
 | `signals.py` | python3 stdlib only (共享信号规则, 纯函数) |
 | `diligence.sh` | all of the above (pure wrapper, adds no new deps) |
-| `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` |
+| `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` + (optional) `duckdb` + `pyarrow` for Parquet |
+| `cache_parquet.py` | `duckdb` + `pyarrow` (pip install once) |
+| `migrate_cache.sh` | bash + cache_parquet.py |
 
 Nothing to `pip install`. Register at <https://tushare.pro> for a free token.
 APIs confirmed working on the default free+积分 tier:

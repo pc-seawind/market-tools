@@ -46,6 +46,14 @@ import time
 import urllib.error
 import urllib.request
 
+# 尝试加载 Parquet 层 (可选, 依赖 duckdb + pyarrow)
+# 若失败 (未安装或其他) fallback 到纯 JSON cache.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:
+    import cache_parquet as _parquet
+except Exception as _e:
+    _parquet = None
+
 ENDPOINT = "https://api.tushare.pro"
 TIMEOUT = 15
 
@@ -335,6 +343,29 @@ def main(argv):
     # 避免下次重复撞墙 (e.g. hk_daily 10/day 配额超限应 1h 内不再 retry)
     if not no_cache_flag and not from_cache:
         _cache_write(api_name, params, fields, body)
+
+    # 同时写入 Parquet 持久化层 (仅成功响应, 仅配置了 schema 的 API)
+    # 独立于 JSON cache: JSON 是"查询级"缓存, Parquet 是"数据级"持久化.
+    # 失败静默, 不影响主流程.
+    if (not no_cache_flag and not from_cache
+            and _parquet is not None
+            and isinstance(body, dict) and body.get("code", 0) == 0):
+        try:
+            if _parquet.enabled_for(api_name):
+                # 注入 params 里有但 response 可能缺的 key 字段
+                # (tushare 按 ts_code 查询时可能不返回 ts_code 列; 按
+                # trade_date 查询 + fields 限定时可能不返回 trade_date 列)
+                inject = {}
+                for k in ("ts_code", "trade_date", "date",
+                          "end_date", "index_code"):
+                    if k in params:
+                        inject[k] = params[k]
+                rows = _parquet.body_to_rows(body, inject=inject)
+                if rows:
+                    _parquet.append(api_name, rows)
+        except Exception as e:
+            if _CACHE_DEBUG:
+                sys.stderr.write(f"[parquet-err] {api_name}: {e}\n")
 
     code = body.get("code", 0) if body else -1
     if code != 0:
