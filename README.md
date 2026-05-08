@@ -523,6 +523,28 @@ bash migrate_cache.sh --dry-run      # 先看要迁什么
 bash migrate_cache.sh                # 实际迁移
 ```
 
+**akshare Fallback 层** (tushare 配额超限时的备用数据源):
+
+tushare 各 API 有配额限制 (hk_daily 10/day 最痛), 即使有 negative cache 等配额
+重置有时需要几小时/一天. akshare 完全免费不需 token, 可作 fallback.
+
+当 tushare 返回 40203 时, 自动调用 akshare 拿数据, 结果标准化为 tushare body
+shape 透明传给上层, 再同步写入 JSON + Parquet 缓存. 下次查询直接 cache hit.
+
+覆盖 API:
+  - `hk_daily`  → `ak.stock_hk_daily` (新浪, 港股日线, 全历史 + 本地过滤)
+  - `daily`     → `ak.stock_zh_a_daily` (新浪, A 股日线, 支持日期范围)
+  - `cctv_news` → `ak.news_cctv` (新闻联播)
+
+实测场景: tushare hk_daily 当日 10/day 配额耗尽后, akshare 新浪立刻接管,
+无感拿到 4 只港股 (腾讯/小米/美团/小米) 的最新收盘.
+
+依赖: `pip install --break-system-packages akshare` (一次性)
+
+控制:
+  - `AKSHARE_USE_ENV_PROXY=1` — 若真要走代理 (默认 bypass, 因为 akshare
+    上游都是公网 API, 代理反而会触发 SSL MITM 失败)
+
 ```bash
 # Index history (CSI 300)
 $ ./tushare.py index_daily ts_code=000300.SH start_date=20260101 \
@@ -563,6 +585,7 @@ just the data rows with a header line.
 | `diligence.sh` | all of the above (pure wrapper, adds no new deps) |
 | `tushare.py` | python3 stdlib + `TUSHARE_TOKEN` + (optional) `duckdb` + `pyarrow` for Parquet |
 | `cache_parquet.py` | `duckdb` + `pyarrow` (pip install once) |
+| `akshare_fallback.py` | `akshare` (pip install once, ~50 MB) — 配额超限时接管 |
 | `migrate_cache.sh` | bash + cache_parquet.py |
 
 Nothing to `pip install`. Register at <https://tushare.pro> for a free token.

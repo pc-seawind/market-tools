@@ -46,13 +46,21 @@ import time
 import urllib.error
 import urllib.request
 
-# 尝试加载 Parquet 层 (可选, 依赖 duckdb + pyarrow)
-# 若失败 (未安装或其他) fallback 到纯 JSON cache.
+# 加载可选扩展模块 (都是软依赖, 失败不影响 tushare.py 核心)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+# Parquet 持久化层 (需 duckdb + pyarrow)
 try:
     import cache_parquet as _parquet
-except Exception as _e:
+except Exception:
     _parquet = None
+
+# akshare fallback (当 tushare 40203 配额超限时尝试用 akshare 拿数据).
+# 目前覆盖: hk_daily, daily, cctv_news. 其他 API fallback=None.
+try:
+    import akshare_fallback as _akshare_fb
+except Exception:
+    _akshare_fb = None
 
 ENDPOINT = "https://api.tushare.pro"
 TIMEOUT = 15
@@ -338,6 +346,23 @@ def main(argv):
             f"retry {attempt + 1}/{max_retries} after {wait}s...\n"
         )
         time.sleep(wait)
+
+    # akshare fallback: tushare 配额超限 (40203) 时尝试从 akshare 拿.
+    # 成功的话 body 被替换为 akshare 结果 (code=0), 后续缓存写入 positive.
+    # 失败 (akshare 没对应 API 或也失败) 则保留 tushare 的 40203 走 negative cache.
+    if (not from_cache and _akshare_fb is not None
+            and isinstance(body, dict) and body.get("code") == 40203):
+        if _akshare_fb.available_for(api_name):
+            try:
+                fb_body = _akshare_fb.fallback(api_name, params, fields)
+                if fb_body is not None:
+                    sys.stderr.write(f"[akshare fallback] {api_name} OK, "
+                                     f"{len(fb_body.get('data', {}).get('items', []))} rows\n")
+                    body = fb_body
+                else:
+                    sys.stderr.write(f"[akshare fallback] {api_name} returned None\n")
+            except Exception as e:
+                sys.stderr.write(f"[akshare fallback] {api_name} error: {e}\n")
 
     # 写缓存要在 "return 5 错误" 之前 — 错误响应也需要 negative cache
     # 避免下次重复撞墙 (e.g. hk_daily 10/day 配额超限应 1h 内不再 retry)
