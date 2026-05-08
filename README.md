@@ -469,6 +469,18 @@ can be called directly. Stdlib-only, no `pip install tushare` needed.
   calls). Opt out with `TUSHARE_USE_ENV_PROXY=1`.
 - Auto-retries on rate-limit (code 40203) up to 3× with 35/45/55s backoff.
   Opt out with `TUSHARE_NO_RETRY=1`.
+- **Day-quota detection**: 错误信息含 "次/天" 时立刻 bail (不 retry), 避免
+  hk_daily 这类 10/day 配额浪费 2+ 分钟.
+- **本地缓存 (positive + negative)**: 避免重复 API 调用:
+  - 历史日期的 daily/hk_daily/sw_daily/cctv_news → **永久缓存** (数据不变)
+  - 财报 / 股东数据 → 1 周 TTL
+  - 静态数据 (stock_basic / trade_cal) → 30 天 TTL
+  - **Negative cache** (避免重复撞墙): 40203 配额错误 → 1h TTL; 40202 无权限
+    → 1d TTL; 空结果 → 1h TTL
+  - 缓存位置: `~/.homespace/cache/market-tools/`
+  - Opt out: `TUSHARE_NO_CACHE=1` 或 `--no-cache` flag
+  - Debug: `TUSHARE_CACHE_DEBUG=1` 看 cache-hit/miss/write 日志
+  - **加速实测**: daily.sh 从 3m → 0.76s (237× 加速) 当缓存热
 
 ```bash
 # Index history (CSI 300)

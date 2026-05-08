@@ -36,15 +36,188 @@ Exit codes:
 Dependencies: python3 stdlib only (urllib, json). No pip install needed.
 """
 
+import datetime
+import hashlib
 import json
 import os
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.request
 
 ENDPOINT = "https://api.tushare.pro"
 TIMEOUT = 15
+
+# 本地 JSON 缓存, 应对 tushare 各 API 的配额限制 (e.g. hk_daily 10/day,
+# sw_daily 10/min, cctv_news 5/min). 缓存 key = hash(api_name + params + fields).
+# TTL 按 API 类别区分 (见 _cache_ttl).
+#
+# 环境变量:
+#   TUSHARE_CACHE_DIR     缓存目录 (默认 ~/.homespace/cache/market-tools)
+#   TUSHARE_NO_CACHE=1    禁用缓存 (每次都调 API)
+#   TUSHARE_CACHE_DEBUG=1 打印 cache hit/miss/write 日志到 stderr
+CACHE_DIR = os.environ.get(
+    "TUSHARE_CACHE_DIR",
+    os.path.expanduser("~/.homespace/cache/market-tools"),
+)
+_CACHE_DEBUG = os.environ.get("TUSHARE_CACHE_DEBUG") == "1"
+_CACHE_DISABLED = os.environ.get("TUSHARE_NO_CACHE") == "1"
+
+# API 类别 (决定 TTL 策略)
+# permanent-by-date: 如果 params 含历史日期, 永久缓存 (已收盘数据不会变)
+_PERMANENT_BY_DATE_APIS = {
+    "daily", "hk_daily", "sw_daily", "cctv_news", "daily_basic",
+    "index_daily", "bak_daily", "moneyflow_ind_ths", "moneyflow_ind_dc",
+    "adj_factor",
+}
+# 长期静态 (月度刷新)
+_STATIC_APIS = {
+    "stock_basic", "trade_cal", "hk_tradecal", "hk_basic",
+    "index_classify", "index_basic",
+    "ths_index",   # 板块列表
+}
+# 成员/持仓数据 (半月-月刷新)
+_SEMI_STATIC_APIS = {
+    "index_member", "ths_member", "dc_member",
+}
+# 财报 (季度性刷新)
+_QUARTERLY_APIS = {
+    "fina_indicator", "forecast", "express", "income", "balancesheet",
+    "cashflow", "fina_audit", "fina_mainbz",
+}
+# 持股/资金流 (周-日刷新)
+_WEEKLY_APIS = {
+    "top10_holders", "top10_floatholders",
+}
+_DAILY_APIS = {
+    "moneyflow_hsgt", "hsgt_top10", "top_list", "top_inst",
+}
+
+
+def _cache_key(api_name, params, fields):
+    payload = {"api": api_name, "params": params or {}, "fields": fields or ""}
+    return hashlib.md5(
+        json.dumps(payload, sort_keys=True, ensure_ascii=False).encode("utf-8")
+    ).hexdigest()
+
+
+def _cache_ttl(api_name, params):
+    """返回 TTL (秒), None = 永不过期."""
+    today_str = datetime.date.today().strftime("%Y%m%d")
+
+    if api_name in _PERMANENT_BY_DATE_APIS:
+        # 历史日期永久; 当日 30 min (盘中数据可能未齐)
+        td = params.get("trade_date") or params.get("date")
+        if td:
+            return None if td < today_str else 1800
+        # 日期范围: end_date < today → 历史永久
+        end = params.get("end_date")
+        if end:
+            return None if end < today_str else 1800
+        # 无日期参数 (e.g. ts_code + 某只股) — 多半是拉历史, 1 周 (保守)
+        return 86400 * 7
+
+    if api_name in _STATIC_APIS:
+        return 86400 * 30
+    if api_name in _SEMI_STATIC_APIS:
+        return 86400 * 14
+    if api_name in _QUARTERLY_APIS:
+        return 86400 * 7    # 季度性变化, 1 周粒度够
+    if api_name in _WEEKLY_APIS:
+        return 86400 * 7
+    if api_name in _DAILY_APIS:
+        return 86400
+
+    return 86400  # 默认 1 天
+
+
+def _cache_read(api_name, params, fields):
+    if _CACHE_DISABLED:
+        return None
+    key = _cache_key(api_name, params, fields)
+    cache_file = os.path.join(CACHE_DIR, api_name, f"{key}.json")
+    if not os.path.exists(cache_file):
+        if _CACHE_DEBUG: sys.stderr.write(f"[cache-miss] {api_name} {params}\n")
+        return None
+    age = time.time() - os.path.getmtime(cache_file)
+    try:
+        with open(cache_file, "r", encoding="utf-8") as f:
+            body = json.load(f)
+    except Exception as e:
+        if _CACHE_DEBUG: sys.stderr.write(f"[cache-err]  read {cache_file}: {e}\n")
+        return None
+
+    # 判断 TTL: negative cache 用自己的 _neg_ttl, positive 用 _cache_ttl(api, params)
+    neg_ttl = body.pop("_neg_ttl", None) if isinstance(body, dict) else None
+    if neg_ttl is not None:
+        ttl = neg_ttl
+        tag = "NEG"
+    else:
+        ttl = _cache_ttl(api_name, params)
+        tag = "POS"
+
+    if ttl is not None and age >= ttl:
+        if _CACHE_DEBUG:
+            sys.stderr.write(f"[cache-stale] {api_name} ({tag}) age={age:.0f}s ttl={ttl}s\n")
+        return None
+
+    if _CACHE_DEBUG:
+        ttl_str = "∞" if ttl is None else f"{ttl}s"
+        sys.stderr.write(f"[cache-hit]  {api_name} ({tag}) age={age:.0f}s ttl={ttl_str}\n")
+    return body
+
+
+def _cache_write(api_name, params, fields, body):
+    """写缓存. 成功响应按正常 TTL; 错误响应按 negative TTL (避免重复撞墙)."""
+    if _CACHE_DISABLED:
+        return
+    if not isinstance(body, dict):
+        return
+
+    code = body.get("code", 0)
+    data = body.get("data") or {}
+
+    # 负缓存策略 (避免已知错误的 retry 浪费):
+    # - code 40203 (配额/限速)  → 1h  (等窗口重置)
+    # - code 40202 (无权限)    → 1d  (权限稳定)
+    # - code == 0 且 items 空  → 1h  (日期非交易日/无数据)
+    # - 其他 error             → 不缓存
+    neg_ttl = None
+    if code == 40203:
+        neg_ttl = 3600           # 1h
+    elif code == 40202:
+        neg_ttl = 86400          # 1d
+    elif code == 0 and not data.get("items"):
+        neg_ttl = 3600           # 1h (空结果)
+    elif code != 0:
+        return                   # 其他错误不缓存
+
+    key = _cache_key(api_name, params, fields)
+    cache_subdir = os.path.join(CACHE_DIR, api_name)
+    try:
+        os.makedirs(cache_subdir, exist_ok=True)
+        cache_file = os.path.join(cache_subdir, f"{key}.json")
+        # 包装: 如果是 negative cache, 追加 _neg_ttl 标记, _cache_read 会按此判断过期
+        to_write = dict(body)
+        if neg_ttl is not None:
+            to_write["_neg_ttl"] = neg_ttl
+        # atomic write (temp + rename), 防止并发写损坏
+        fd, tmp_path = tempfile.mkstemp(dir=cache_subdir, prefix=".tmp-", suffix=".json")
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                json.dump(to_write, f, ensure_ascii=False)
+            os.replace(tmp_path, cache_file)
+            if _CACHE_DEBUG:
+                rows = len(data.get("items") or [])
+                tag = f"NEG ttl={neg_ttl}s" if neg_ttl else f"{rows} rows"
+                sys.stderr.write(f"[cache-write] {api_name} {tag}\n")
+        except Exception:
+            try: os.unlink(tmp_path)
+            except Exception: pass
+            raise
+    except Exception as e:
+        if _CACHE_DEBUG: sys.stderr.write(f"[cache-err]  write {api_name}: {e}\n")
 
 # Some shells have a stale SOCKS/HTTP proxy in HTTPS_PROXY/ALL_PROXY pointing at
 # a dead localhost port — this would trip urllib.urlopen before it ever reaches
@@ -79,6 +252,8 @@ def main(argv):
     for arg in argv[1:]:
         if arg == "--csv":
             out_csv = True
+        elif arg == "--no-cache":
+            pass   # 已在外层检测 --no-cache in argv
         elif arg.startswith("--fields="):
             fields = arg[len("--fields="):]
         elif "=" in arg:
@@ -87,6 +262,15 @@ def main(argv):
         else:
             sys.stderr.write(f"bad arg: {arg!r} (expected key=value or --flag)\n")
             return 2
+
+    # 先查缓存 (除非 --no-cache 或 TUSHARE_NO_CACHE=1)
+    no_cache_flag = "--no-cache" in argv
+    body = None
+    from_cache = False
+    if not no_cache_flag:
+        body = _cache_read(api_name, params, fields)
+        if body is not None:
+            from_cache = True
 
     payload = {
         "api_name": api_name,
@@ -108,7 +292,10 @@ def main(argv):
     no_retry = os.environ.get("TUSHARE_NO_RETRY") == "1"
     max_retries = 0 if no_retry else 3
 
-    body = None
+    # 如果缓存命中, 跳过 HTTP 调用, 直接 render
+    if body is not None:
+        max_retries = -1  # skip loop
+
     for attempt in range(max_retries + 1):
         try:
             with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
@@ -125,16 +312,29 @@ def main(argv):
         if code != 40203 or attempt == max_retries:
             break
 
-        # 40203 = frequency limit. tushare's msg usually embeds "N次/分钟".
+        # 40203 = frequency limit. Tushare 的错误信息区分"次/分钟"(分钟级)
+        # 和"次/天"(天级, e.g. hk_daily 10/day). 分钟级 retry 有效 (等窗口重置),
+        # 天级 retry 无用 (等到明天), 直接 bail 并让上层写 negative cache.
         msg = body.get("msg") or ""
-        # Default backoff: 35s (covers 1-min window with slack). If msg parses,
-        # we still use the fixed backoff since tushare doesn't report window start.
+        if "次/天" in msg or "/day" in msg.lower() or "per day" in msg.lower():
+            sys.stderr.write(
+                f"tushare day-quota exceeded ({api_name}): {msg.strip()}  "
+                f"skip retry (day-level quota, 等配额重置)\n"
+            )
+            break
+
+        # 分钟级限速: backoff 35-55s retry
         wait = 35 + attempt * 10
         sys.stderr.write(
             f"tushare rate-limited ({api_name}): {msg.strip()}  "
             f"retry {attempt + 1}/{max_retries} after {wait}s...\n"
         )
         time.sleep(wait)
+
+    # 写缓存要在 "return 5 错误" 之前 — 错误响应也需要 negative cache
+    # 避免下次重复撞墙 (e.g. hk_daily 10/day 配额超限应 1h 内不再 retry)
+    if not no_cache_flag and not from_cache:
+        _cache_write(api_name, params, fields, body)
 
     code = body.get("code", 0) if body else -1
     if code != 0:

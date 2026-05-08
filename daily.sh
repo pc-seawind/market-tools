@@ -134,48 +134,22 @@ daily_60d = {r["ts_code"]: r for r in
              tushare("daily", trade_date=d_60d, fields="ts_code,close")} if d_60d else {}
 
 # 港股 hk_daily (如果 watchlist 里有 HK 标的)
-# 重要: tushare hk_daily 限速 10 次/天 (硬性配额), 所以不能按 trade_date 批量拉,
-# 否则一次跑 3-4 次调用会在测试几次后耗尽全天配额.
-# 方案: 对每只 HK 股**单独**拉近 60 天历史, 1 次调用就能拿到 latest/5d/20d 三个
-# 时点的数据. N 只 HK 股 = N 次调用, 通常 <10, 在配额内.
+# 注: tushare hk_daily 限速 10 次/天 (硬性配额). 缓存由 tushare.py 底层负责
+# (positive + negative cache), 这里只需关心业务逻辑.
+# 方案: 对每只 HK 股单独拉近 120 天历史, 1 次调用拿 latest/5d/20d/60d.
 if has_hk():
     hk_tickers = [c for c, _n, _t in all_codes() if c.endswith(".HK")]
-    # 当日缓存: 同一天重复跑 daily.sh 不重复消耗 hk_daily 配额 (10 次/天).
-    # 缓存 key 包含今天日期, 第二天自动失效重新拉.
-    cache_dir = "/tmp/market-tools-cache"
-    os.makedirs(cache_dir, exist_ok=True)
-    cache_tag = datetime.date.today().strftime("%Y%m%d")
-
-    hit_cnt = miss_cnt = fail_cnt = 0
-    print(f"  [data] fetching hk_daily per-ticker (N={len(hk_tickers)}, cache_tag={cache_tag}) ...",
+    print(f"  [data] fetching hk_daily per-ticker (N={len(hk_tickers)}) ...",
           file=sys.stderr)
+    fail_cnt = 0
     for code in hk_tickers:
-        cache_file = f"{cache_dir}/hk_daily_{code}_{cache_tag}.json"
-        rows = None
-        # 先尝试缓存
-        if os.path.exists(cache_file):
-            try:
-                with open(cache_file) as f:
-                    rows = json.load(f)
-                if rows: hit_cnt += 1
-            except Exception:
-                rows = None
-        # 未命中/失败则调 API
+        rows = tushare("hk_daily", ts_code=code,
+                       start_date=past120, end_date=today,
+                       fields="trade_date,close,amount,pct_chg,high,low")
         if not rows:
-            rows = tushare("hk_daily", ts_code=code,
-                           start_date=past120, end_date=today,
-                           fields="trade_date,close,amount,pct_chg,high,low")
-            if rows:
-                miss_cnt += 1
-                try:
-                    with open(cache_file, "w") as f:
-                        json.dump(rows, f)
-                except Exception:
-                    pass  # cache 写失败不影响主流程
-            else:
-                fail_cnt += 1
-                sys.stderr.write(f"    [WARN] {code} 无数据 (可能超 10/天 hk_daily 配额)\n")
-                continue
+            fail_cnt += 1
+            sys.stderr.write(f"    [WARN] {code} 无数据 (可能超 10/天 hk_daily 配额)\n")
+            continue
         # 归一化 + 映射
         rows.sort(key=lambda r: r.get("trade_date", ""), reverse=True)
         for r in rows: r["ts_code"] = code
@@ -183,8 +157,8 @@ if has_hk():
         if len(rows) > 5:  daily_5d[code]  = rows[5]
         if len(rows) > 20: daily_20d[code] = rows[20]
         if len(rows) > 60: daily_60d[code] = rows[60]
-    print(f"    HK: cache hit {hit_cnt}, fetched {miss_cnt}, fail {fail_cnt}",
-          file=sys.stderr)
+    print(f"    HK: {len(hk_tickers) - fail_cnt}/{len(hk_tickers)} OK "
+          f"({fail_cnt} 失败)", file=sys.stderr)
 
 # ====================================================================
 # Header
