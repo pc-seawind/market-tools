@@ -388,43 +388,134 @@ def momentum_score(r):
 r3.sort(key=lambda r: -momentum_score(r))
 final = r3[:final_n]
 
-# ====================================================================
-# FINAL 输出 + 每只股票的交易纪律
-# ====================================================================
+# ═══ 综合推荐度分级 (共享 grading.py, 与 funnel.sh 一致逻辑) ═══
+try:
+    import sector_health as _sh_mod
+    import grading as _grading
+    try:
+        from concepts_data import CONCEPTS
+    except ImportError:
+        CONCEPTS = {}
+
+    # 从 records 反推 concept ranking
+    # 注: momentum.sh 的 records 是 list (非 dict), key 是 ts_code 字段
+    code_to_r1m = {r["ts_code"]: r["r1m"] for r in records.values()
+                   if r.get("r1m") is not None}
+    _concept_ranking = []
+    for _cn, _stks in CONCEPTS.items():
+        _rs = [code_to_r1m[c] for c, _ in _stks if c in code_to_r1m]
+        _avg = sum(_rs)/len(_rs) if _rs else None
+        _concept_ranking.append((_cn, _avg, _stks))
+    _concept_ranking.sort(key=lambda x: -(x[1] if x[1] is not None else -999))
+
+    # 构 stock_basic_map (从 records)
+    _basic_map = {r["ts_code"]: {"name": r["name"], "industry": r.get("industry", "?")}
+                  for r in records.values()}
+    # daily_latest/20d 简化重建 (close 字段足以算 sector 均涨)
+    _dl_map = {r["ts_code"]: {"close": r["close"]} for r in records.values()}
+    _d20_map = {}
+    for r in records.values():
+        if r.get("r1m") is not None and r["close"]:
+            c20 = r["close"] / (1 + r["r1m"]/100)
+            _d20_map[r["ts_code"]] = {"close": c20}
+
+    _sh_index = _sh_mod.build_index(
+        daily_latest_map=_dl_map, daily_20d_map=_d20_map,
+        stock_basic_map=_basic_map, concept_ranking=_concept_ranking,
+    )
+    _fund_map = {}
+    try:
+        _fund_map = _grading.load_fundamentals_map([r["ts_code"] for r in final])
+    except Exception as _fe:
+        sys.stderr.write(f"  [WARN] 加载基本面失败: {_fe}\n")
+
+    for _r in final:
+        sh_info = _sh_index.get(_r["ts_code"], {})
+        fund_info = _fund_map.get(_r["ts_code"])
+        _grading.compute_grade(_r, sh_info, style="momentum", fund_info=fund_info)
+    _grading_ok = True
+except Exception as _e:
+    sys.stderr.write(f"  [WARN] 推荐度评级失败: {_e}\n")
+    import traceback; traceback.print_exc(file=sys.stderr)
+    _grading_ok = False
+
+# ════════════════════════════════════════
+# FINAL 输出: 按推荐度分组 + 每只股的交易纪律
+# ════════════════════════════════════════
 print(f"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-print(f"  FINAL: {len(final)} 只博弈仓候选 (附交易纪律)")
+print(f"  FINAL: {len(final)} 只博弈仓候选 (按推荐度分级 + 交易纪律)")
 print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
 def fmt_pct(v, w=7):
     if v is None: return "n/a".rjust(w)
     return f"{v:+{w-1}.1f}%"
 
-for i, r in enumerate(final, 1):
-    cur = r["close"]
-    # 交易纪律计算
-    buy_low  = cur * 0.97
-    buy_high = cur * 1.03
-    stop_loss = cur * 0.90   # -10% 硬止损
-    target_low = cur * 1.20   # +20% 目标
-    target_high = cur * 1.40
-    reduce_signal_pct = 15   # 1W 继续 > +15% 开始减仓
+GRADE_ORDER = ["A", "B", "C", "D"]
+GRADE_TITLE = {
+    "A": "🌟 A 级 · 推荐追涨 · 板块热 + 跑赢板块 + (可选) 买信号",
+    "B": "✅ B 级 · 有机会 · 板块温和或弱卖信号, 谨慎追",
+    "C": "👀 C 级 · 矛盾观察 · 板块热但已 SELL 信号, 或个股跑输",
+    "D": "⚠️ D 级 · 不建议追 · 严重卖信号 或 板块衰退",
+}
 
-    concepts = [c for kind, c in r.get("tags", []) if kind == "concept"]
-    concept_str = ", ".join(concepts[:2]) if concepts else r["industry"] + " [行业]"
+if _grading_ok:
+    # 按 grade 分组
+    from collections import defaultdict as _dd
+    by_grade = _dd(list)
+    for r in final: by_grade[r.get("_grade", "C")].append(r)
 
-    cap_str = ""
-    if r.get("cap_delta") is not None:
-        cap_str = f" | 产业资本Δ{r['cap_delta']:+.1f}pp"
+    i = 0
+    for grade in GRADE_ORDER:
+        if grade not in by_grade: continue
+        stocks = by_grade[grade]
+        print(f"\n━━━ {GRADE_TITLE[grade]}  ({len(stocks)} 只) ━━━")
+        for r in stocks:
+            i += 1
+            cur = r["close"]
+            buy_low = cur * 0.97; buy_high = cur * 1.03
+            stop_loss = cur * 0.90; target_low = cur * 1.20; target_high = cur * 1.40
 
-    print(f"\n  【{i}】 {r['ts_code']:<12} {r['name']}  · {concept_str}")
-    print(f"      当前 ¥{cur:.2f}  PE={r['pe_ttm']:.1f}  市值={r['mv_yi']:.0f}亿  "
-          f"1W={fmt_pct(r['r1w'])} 1M={fmt_pct(r['r1m'])} 3M={fmt_pct(r['r3m'])}  "
-          f"量比={r['vol_ratio']:.1f}x  位置≈{r['pos_proxy']:.0f}%{cap_str}")
-    print(f"      ▸ 交易纪律:")
-    print(f"          买入区间: ¥{buy_low:.2f} — ¥{buy_high:.2f}  (当前价 ±3%)")
-    print(f"          止损价:   ¥{stop_loss:.2f}  (-10% 严格)")
-    print(f"          目标价:   ¥{target_low:.2f} — ¥{target_high:.2f}  (+20%~+40%)")
-    print(f"          减仓信号: 1W 继续涨幅 > +{reduce_signal_pct}% 开始分批减仓")
+            concepts = [c for kind, c in r.get("tags", []) if kind == "concept"]
+            concept_str = ", ".join(concepts[:2]) if concepts else r["industry"] + " [行业]"
+            extras = []
+            if r.get("_sell_label"): extras.append(r["_sell_label"])
+            if r.get("_buy_label"):  extras.append(r["_buy_label"])
+            if r.get("_rel_delta") is not None:
+                sign = "↑" if r["_rel_delta"] >= 0 else "↓"
+                extras.append(f"相对板块{sign}{abs(r['_rel_delta']):.1f}pp")
+            extra_str = "  " + " · ".join(extras) if extras else ""
+
+            cap_str = ""
+            if r.get("cap_delta") is not None:
+                cap_str = f" · 产业资本Δ{r['cap_delta']:+.1f}pp"
+
+            print(f"\n  【{i}】 {r.get('_heat_label','?')} {r['ts_code']:<12} {r['name']}  · {concept_str}{cap_str}")
+            print(f"      当前 ¥{cur:.2f}  PE={r['pe_ttm']:.1f}  市值={r['mv_yi']:.0f}亿  "
+                  f"1W={fmt_pct(r['r1w'])} 1M={fmt_pct(r['r1m'])} 3M={fmt_pct(r['r3m'])}  "
+                  f"量比={r['vol_ratio']:.1f}x  位置≈{r['pos_proxy']:.0f}%")
+            if extra_str: print(f"     {extra_str}")
+
+            # A/B 级给完整纪律, C 级警告 + 纪律, D 级只警告不给买入建议
+            if grade in ("A", "B"):
+                print(f"      ▸ 交易纪律:")
+                print(f"          买入区间: ¥{buy_low:.2f} — ¥{buy_high:.2f}")
+                print(f"          止损价:   ¥{stop_loss:.2f} (-10%)")
+                print(f"          目标价:   ¥{target_low:.2f} — ¥{target_high:.2f} (+20~+40%)")
+                print(f"          减仓信号: 1W 继续 > +15% 开始分批减仓")
+            elif grade == "C":
+                print(f"      ⚠️ 谨慎追涨: 信号矛盾, 建议观察 2-3 日等信号明朗再定")
+            elif grade == "D":
+                print(f"      ⛔ 不建议追涨: 严重卖信号 / 板块衰退 / 跑输严重, 应观望")
+else:
+    # fallback
+    for i, r in enumerate(final, 1):
+        cur = r["close"]
+        concepts = [c for kind, c in r.get("tags", []) if kind == "concept"]
+        concept_str = ", ".join(concepts[:2]) if concepts else r["industry"] + " [行业]"
+        print(f"\n  【{i}】 {r['ts_code']:<12} {r['name']}  · {concept_str}")
+        print(f"      当前 ¥{cur:.2f}  PE={r['pe_ttm']:.1f}  市值={r['mv_yi']:.0f}亿  "
+              f"1W={fmt_pct(r['r1w'])} 1M={fmt_pct(r['r1m'])}  "
+              f"量比={r['vol_ratio']:.1f}x  位置≈{r['pos_proxy']:.0f}%")
 
 # Footer
 print(f"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")

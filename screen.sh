@@ -57,10 +57,11 @@ here="$(dirname "$(readlink -f "$0")")"
 
 # Parse all args to Python — easier than bash case blocks
 exec python3 - "$here" "$@" <<'PY'
-import csv, datetime, subprocess, sys
+import csv, datetime, os, subprocess, sys
 from collections import OrderedDict
 
 here = sys.argv[1]
+sys.path.insert(0, here)   # 让 sector_health / grading / signals 能被 import
 raw_args = sys.argv[2:]
 
 if any(a in ("-h", "--help") for a in raw_args):
@@ -252,6 +253,60 @@ def sort_value(r, k):
 filtered.sort(key=lambda r: sort_value(r, sort_key), reverse=not sort_asc)
 top_rows = filtered[:top]
 
+# ═══ 综合推荐度分级 (使用 grading.py, 与 funnel/momentum 一致) ═══
+try:
+    import sector_health as _sh_mod
+    import grading as _grading
+    try:
+        from concepts_data import CONCEPTS
+    except ImportError:
+        CONCEPTS = {}
+
+    # 从已有 records 反推 concept ranking
+    code_to_r1m = {r["ts_code"]: r["r1m"] for r in records if r.get("r1m") is not None}
+    _concept_ranking = []
+    for _cn, _stks in CONCEPTS.items():
+        _rs = [code_to_r1m[c] for c, _ in _stks if c in code_to_r1m]
+        _avg = sum(_rs)/len(_rs) if _rs else None
+        _concept_ranking.append((_cn, _avg, _stks))
+    _concept_ranking.sort(key=lambda x: -(x[1] if x[1] is not None else -999))
+
+    # Rebuild maps for sector_health.build_index
+    _dl_map = {r["ts_code"]: {"close": r["close"]} for r in records}
+    _d20_map = {}
+    for r in records:
+        if r.get("r1m") is not None and r["close"]:
+            c20 = r["close"] / (1 + r["r1m"]/100)
+            _d20_map[r["ts_code"]] = {"close": c20}
+    _basic_map = {r["ts_code"]: {"name": r["name"], "industry": r.get("industry", "?")}
+                  for r in records}
+
+    _sh_index = _sh_mod.build_index(
+        daily_latest_map=_dl_map, daily_20d_map=_d20_map,
+        stock_basic_map=_basic_map, concept_ranking=_concept_ranking,
+    )
+    # screen.sh 的 records 用的字段名不同: r1m vs r1m, 但 compute_grade 要 amt_cur/amt_20d
+    # 在 screen.sh 里量比用 amt 字段需转换. 直接建 vol_ratio 字段吧
+    _fund_map = {}
+    try:
+        _fund_map = _grading.load_fundamentals_map([r["ts_code"] for r in top_rows])
+    except Exception:
+        pass
+
+    for _r in top_rows:
+        sh_info = _sh_index.get(_r["ts_code"], {})
+        # 字段映射: screen 用 pe/mv (不是 pe_ttm/mv_yi)
+        _r["pe_ttm"] = _r.get("pe")
+        _r["mv_yi"] = _r.get("mv")
+        if _r.get("tor") is not None: _r["vol_ratio"] = _r["tor"]
+        fund_info = _fund_map.get(_r["ts_code"])
+        _grading.compute_grade(_r, sh_info, style="balanced", fund_info=fund_info)
+    _grading_ok = True
+except Exception as _e:
+    sys.stderr.write(f"  [WARN] screen grading 失败: {_e}\n")
+    import traceback; traceback.print_exc(file=sys.stderr)
+    _grading_ok = False
+
 # --- render ---
 def fmt_ret(v):
     if v is None: return "   n/a "
@@ -268,26 +323,54 @@ print(f" 📊 股票筛选结果  trade_date={latest}  "
       f"排序={sort_key}{'↑' if sort_asc else '↓'}")
 print(f" 匹配: {len(filtered)} 只  |  显示 top {len(top_rows)}")
 print("=" * 120)
-hdr = (f"  {'排名':<3}{'代码':<11}{'名称':<10}{'行业':<8}"
-       f"{'收盘':>7}{'PE_TTM':>8}{'PB':>6}{'股息%':>7}"
-       f"{'市值(亿)':>10}{'日成交':>10}{'换手%':>7}"
-       f"{'1W':>8}{'1M':>8}{'3M':>8}")
-print(hdr)
-print("  " + "-" * (len(hdr) - 2))
-for i, r in enumerate(top_rows, 1):
-    name = (r["name"] or "?")[:8]
-    ind  = (r["industry"] or "?")[:6]
-    print(f"  {i:>2}. {r['ts_code']:<10} {name:<8}  {ind:<6}  "
-          f"{fmt_num(r['close']):>7} "
-          f"{fmt_num(r['pe']):>7} "
-          f"{fmt_num(r['pb'],w=5):>5} "
-          f"{fmt_num(r['dv']):>6} "
-          f"{fmt_num(r['mv'], w=9, p=0):>9} "
-          f"{fmt_num(r['amt'], w=8, p=1):>8}亿 "
-          f"{fmt_num(r['tor']):>6} "
-          f"{fmt_ret(r['r1w']):>7} "
-          f"{fmt_ret(r['r1m']):>7} "
-          f"{fmt_ret(r['r3m']):>7}")
+
+if _grading_ok:
+    # 按 grade 分组展示
+    from collections import defaultdict as _dd
+    by_grade = _dd(list)
+    for r in top_rows: by_grade[r.get("_grade", "C")].append(r)
+    GRADE_DESC = {
+        "A": "🌟 A 级 · 板块热 + 跑赢 + (可选) 买信号",
+        "B": "✅ B 级 · 板块温和或弱信号",
+        "C": "👀 C 级 · 信号矛盾或跑输板块",
+        "D": "⚠️ D 级 · 板块衰退或严重卖信号",
+    }
+    for grade in ["A", "B", "C", "D"]:
+        if grade not in by_grade: continue
+        rs = by_grade[grade]
+        print(f"\n━━━ {GRADE_DESC[grade]}  ({len(rs)} 只) ━━━")
+        for r in rs:
+            name = (r["name"] or "?")[:8]
+            ind  = (r["industry"] or "?")[:6]
+            heat = r.get("_heat_label", "  ")
+            extras = []
+            if r.get("_sell_label"): extras.append(r["_sell_label"])
+            if r.get("_buy_label"): extras.append(r["_buy_label"])
+            extra_str = ("  " + " ".join(extras)) if extras else ""
+            print(f"  {heat} {r['ts_code']:<10} {name:<8}  "
+                  f"PE={fmt_num(r['pe']):>7} PB={fmt_num(r['pb'],w=5):>5} "
+                  f"股息{fmt_num(r['dv']):>6}  市值{fmt_num(r['mv'], w=6, p=0):>6}亿  "
+                  f"1M={fmt_ret(r['r1m']):>7}  {ind}{extra_str}")
+            if r.get("_fund_label"):
+                print(f"         └ 基本面: {r['_fund_label']}")
+else:
+    # fallback 旧版
+    hdr = (f"  {'排名':<3}{'代码':<11}{'名称':<10}{'行业':<8}"
+           f"{'收盘':>7}{'PE_TTM':>8}{'PB':>6}{'股息%':>7}"
+           f"{'市值(亿)':>10}{'日成交':>10}{'换手%':>7}"
+           f"{'1W':>8}{'1M':>8}{'3M':>8}")
+    print(hdr)
+    print("  " + "-" * (len(hdr) - 2))
+    for i, r in enumerate(top_rows, 1):
+        name = (r["name"] or "?")[:8]
+        ind  = (r["industry"] or "?")[:6]
+        print(f"  {i:>2}. {r['ts_code']:<10} {name:<8}  {ind:<6}  "
+              f"{fmt_num(r['close']):>7} {fmt_num(r['pe']):>7} "
+              f"{fmt_num(r['pb'],w=5):>5} {fmt_num(r['dv']):>6} "
+              f"{fmt_num(r['mv'], w=9, p=0):>9} "
+              f"{fmt_num(r['amt'], w=8, p=1):>8}亿 "
+              f"{fmt_num(r['tor']):>6} "
+              f"{fmt_ret(r['r1w']):>7} {fmt_ret(r['r1m']):>7} {fmt_ret(r['r3m']):>7}")
 print()
 if top_rows:
     # ts_code 格式: "600519.SH" → diligence.sh 接受 "sh600519"
