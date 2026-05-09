@@ -76,26 +76,35 @@ for arg in raw_args:
         sys.stderr.write(f"unknown arg: {arg}\n"); sys.exit(2)
 
 # Preset 配置
+#
+# r1w 上下限刻度基准: 科创板/创业板/北交所单日涨跌停 ±20%, 主板 ±10%.
+# 1 个涨停 = +20% (创业板/科创板) 或 +10% (主板), 1W 只要卡在 "1 个板"
+# 附近就不该过滤 — 那往往是启动信号. 真正的末期加速靠 grading.py
+# 的 SELL_EXHAUSTION (1W>+15 from signals.py) / SELL_CONFIRMED (+25) /
+# SELL_EXTREME (+35) 在 grade 层降级, 而不是在 Round 2 硬过滤.
+#
+# 所以 r1w_max 应该放在"允许 1 个涨停 + 轻微惯性延续"的位置 (~+30%),
+# 让 grading 做真正的分级. r1w_min 类似, 允许 1 个创业板跌停 (-20%).
 if preset == "value":
     # 价值偏好: Round 2 放宽量价要求, Round 3 严格估值
     cfg_r2_turn_boost = 1.0    # 换手率提升门槛放宽
-    cfg_r2_r1w_min   = -15    # 允许更多下跌票入围 (deep value 常在跌势中)
-    cfg_r2_r1w_max   = 15
+    cfg_r2_r1w_min   = -22    # deep value 常在跌势中, 允许 1 个创业板跌停
+    cfg_r2_r1w_max   = 22     # 允许 1 个创业板涨停启动
     cfg_r3_pe_max    = 25      # PE 严格 (value 偏好便宜)
     cfg_r3_pb_max    = 5
     cfg_r3_dv_min    = 0       # 股息不强求
 elif preset == "growth":
     # 成长偏好: Round 3 放宽估值, 看增长率
     cfg_r2_turn_boost = 1.3
-    cfg_r2_r1w_min   = -5
-    cfg_r2_r1w_max   = 25
+    cfg_r2_r1w_min   = -15     # growth 不捡深跌票, 只允许单日创业板跌停以内
+    cfg_r2_r1w_max   = 35      # 放到 SELL_EXTREME 阈值, 再往上靠 grading 降级
     cfg_r3_pe_max    = 100     # PE 宽松
     cfg_r3_pb_max    = 20
     cfg_r3_dv_min    = -1      # 股息无要求
 else:  # balanced (默认)
     cfg_r2_turn_boost = 1.2
-    cfg_r2_r1w_min   = -10
-    cfg_r2_r1w_max   = 20
+    cfg_r2_r1w_min   = -22     # 允许 1 个创业板/科创板跌停
+    cfg_r2_r1w_max   = 30      # 允许 1 个创业板涨停 + 小幅惯性 (>+30 靠 grading 降级)
     cfg_r3_pe_max    = 60
     cfg_r3_pb_max    = 12
     cfg_r3_dv_min    = 0
