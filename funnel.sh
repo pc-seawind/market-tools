@@ -448,32 +448,133 @@ for k, rs in sorted(groups.items(), key=lambda kv: -sum(final_score(r) for r in 
 final_pool.sort(key=lambda r: -final_score(r))
 final_pool = final_pool[:final_n]
 
-# 渲染最终输出
+# ═══ 新增: 板块健康度 + SELL 信号综合评级 ═══
+# 回应用户反馈: 纯数字选股不够, 需要结合板块 + 信号综合评级,
+# 避免在衰退板块里推 value trap, 避免给已触发 SELL 的股推买入.
+try:
+    import sector_health as _sh_mod
+    import signals as _sig_mod
+    # 构建 concept ranking (用已有 records 的 r1m, 免二次 API 调用)
+    try:
+        from concepts_data import CONCEPTS
+    except ImportError:
+        CONCEPTS = {}
+
+    code_to_r1m = {code: r["r1m"] for code, r in records.items()
+                   if r.get("r1m") is not None}
+    _concept_ranking = []
+    for _cn, _stks in CONCEPTS.items():
+        _rs = [code_to_r1m[c] for c, _ in _stks if c in code_to_r1m]
+        _avg = sum(_rs)/len(_rs) if _rs else None
+        _concept_ranking.append((_cn, _avg, _stks))
+    _concept_ranking.sort(key=lambda x: -(x[1] if x[1] is not None else -999))
+
+    _sh_index = _sh_mod.build_index(
+        daily_latest_map=daily_latest,
+        daily_20d_map=daily_20d,
+        stock_basic_map=basic_by_code,
+        concept_ranking=_concept_ranking,
+    )
+
+    def _grade_stock(r):
+        sh_info = _sh_index.get(r["ts_code"], {})
+        heat_score = sh_info.get("heat_score", 2)
+        heat_label = sh_info.get("heat_label", "🟡")
+        heat_reason = sh_info.get("reason", "")
+
+        vol_ratio = r["amt_cur"] / max(r["amt_20d"], 0.01) if r.get("amt_20d") else None
+        sig_input = {
+            "r1w": r.get("r1w"), "r1m": r.get("r1m"), "r3m": r.get("r3m"),
+            "vol_ratio": vol_ratio, "pos": _sig_mod.position_proxy(r.get("r1m")),
+            "pct_chg_today": None,
+        }
+        sigs = _sig_mod.detect(sig_input)
+        sell_types = {s[1] for s in sigs if s[1].startswith("SELL_")}
+        buy_types = {s[1] for s in sigs if s[1].startswith("BUY_")}
+
+        # SELL 越强越降级 (不是剔除, 是警示)
+        if "SELL_EXTREME" in sell_types:   sell_penalty, sell_label = 3, "⛔ SELL_EXTREME"
+        elif "SELL_CONFIRMED" in sell_types: sell_penalty, sell_label = 2, "🔴 SELL_CONFIRMED"
+        elif "SELL_TOP" in sell_types:       sell_penalty, sell_label = 2, "🔻 SELL_TOP"
+        elif "SELL_EXHAUSTION" in sell_types: sell_penalty, sell_label = 1, "⚠️ SELL_EXHAUSTION"
+        else: sell_penalty, sell_label = 0, ""
+
+        # BUY 信号小幅加分
+        buy_bonus = 1 if buy_types else 0
+        buy_label = " + ".join(sorted(buy_types)) if buy_types else ""
+
+        adjusted = heat_score - sell_penalty + buy_bonus
+        if   adjusted >= 4: grade = "A"   # 高推荐
+        elif adjusted >= 3: grade = "B"   # 中推荐
+        elif adjusted >= 2: grade = "C"   # 观察
+        else:               grade = "D"   # 警示
+
+        r["_heat_label"] = heat_label
+        r["_heat_reason"] = heat_reason
+        r["_sell_label"] = sell_label
+        r["_buy_label"] = buy_label
+        r["_grade"] = grade
+        r["_vol_ratio"] = vol_ratio
+
+    for _r in final_pool:
+        _grade_stock(_r)
+    _grading_ok = True
+except Exception as _e:
+    sys.stderr.write(f"  [WARN] 推荐度评级失败: {_e}\n")
+    _grading_ok = False
+
+# 渲染: 按推荐度分组
 def fmt_pct(v, w=7):
     if v is None: return "n/a".rjust(w)
     return f"{v:+{w-1}.1f}%"
 
-final_groups = defaultdict(list)
-for r in final_pool:
-    final_groups[key_of(r)].append(r)
+if _grading_ok:
+    from collections import defaultdict as _dd
+    by_grade = _dd(list)
+    for r in final_pool: by_grade[r.get("_grade", "C")].append(r)
+    GRADE_DESC = {
+        "A": "🌟 A 级 · 高推荐 · 板块热 + 无卖信号 + (可选) 有买信号",
+        "B": "✅ B 级 · 推荐 · 板块温和, 或弱卖信号 (SELL_EXHAUSTION)",
+        "C": "👀 C 级 · 观察 · 板块/信号中性, 谨慎跟踪",
+        "D": "⚠️ D 级 · 警示 · 板块衰退 或 触发强卖信号 (SELL_CONFIRMED/EXTREME)",
+    }
 
-print()
-for group, stocks in sorted(final_groups.items(), key=lambda kv: -sum(final_score(r) for r in kv[1])):
-    print(f"  ▣ {group}  ({len(stocks)} 只)")
-    for r in stocks:
-        concepts_str = ", ".join(c for kind, c in r["tags"][:2] if kind == "concept")
-        beixiang_str = ""
-        if r.get("beixiang_delta") is not None:
-            sign = "↑" if r["beixiang_delta"] > 0 else "↓" if r["beixiang_delta"] < 0 else "→"
-            beixiang_str = f"  北向{sign}{r['beixiang_delta']:+.2f}pp"
-        print(f"      {r['ts_code']:<12} {r['name']:<8}  "
-              f"PE={r['pe_ttm']:>5.1f}  "
-              f"PB={r['pb']:>5.1f}  "
-              f"市值={r['mv_yi']:>5.0f}亿  "
-              f"1M={fmt_pct(r['r1m']):>7}  "
-              f"量比={r['amt_cur']/max(r['amt_20d'],0.01):.1f}x"
-              f"{beixiang_str}")
     print()
+    for grade in ["A", "B", "C", "D"]:
+        if grade not in by_grade: continue
+        stocks = by_grade[grade]
+        print(f"\n━━━ {GRADE_DESC[grade]}  ({len(stocks)} 只) ━━━")
+        for r in stocks:
+            concepts_str = ", ".join(c for kind, c in r.get("tags", [])[:2] if kind == "concept")
+            tags_str = concepts_str or r.get("industry", "?") + " [行业]"
+            extra = []
+            if r.get("_sell_label"): extra.append(r["_sell_label"])
+            if r.get("_buy_label"):  extra.append(r["_buy_label"])
+            extra_str = "  " + " ".join(extra) if extra else ""
+            vr = r.get("_vol_ratio") or r.get("amt_cur",0)/max(r.get("amt_20d",0.01),0.01)
+            print(f"  {r.get('_heat_label','?')} {r['ts_code']:<12} {r['name']:<8}  "
+                  f"PE={r.get('pe_ttm') or 0:>5.1f}  "
+                  f"市值={r.get('mv_yi') or 0:>5.0f}亿  "
+                  f"1M={fmt_pct(r.get('r1m')):>7}  "
+                  f"量比={vr:.1f}x  "
+                  f"│ {tags_str}{extra_str}")
+            if r.get("_heat_reason"):
+                print(f"         └ 板块: {r['_heat_reason']}")
+else:
+    # fallback: 旧版分组渲染
+    final_groups = defaultdict(list)
+    for r in final_pool: final_groups[key_of(r)].append(r)
+    print()
+    for group, stocks in sorted(final_groups.items(), key=lambda kv: -sum(final_score(r) for r in kv[1])):
+        print(f"  ▣ {group}  ({len(stocks)} 只)")
+        for r in stocks:
+            print(f"      {r['ts_code']:<12} {r['name']:<8}  "
+                  f"PE={r['pe_ttm'] or 0:>5.1f}  "
+                  f"PB={r['pb'] or 0:>5.1f}  "
+                  f"市值={r['mv_yi']:>5.0f}亿  "
+                  f"1M={fmt_pct(r['r1m']):>7}  "
+                  f"量比={r['amt_cur']/max(r['amt_20d'],0.01):.1f}x")
+        print()
 
 # ====================================================================
 # Footer: 下一步
