@@ -1,0 +1,137 @@
+schema_version: 1
+entries:
+- code: 002594.SZ
+  name: 比亚迪
+  tier: 基础仓
+  themes:
+  - 新能源车
+  - 整车龙头
+  added_at: 2026-05-08
+  reason: 新能源车龙头 (用户真实持仓 5/8 确认)
+- code: 00700.HK
+  name: 腾讯控股
+  tier: 基础仓
+  themes:
+  - 港股互联网
+  - 游戏
+  - 广告
+  added_at: 2026-05-08
+  reason: 港股互联网核心
+- code: 01810.HK
+  name: 小米集团
+  tier: 基础仓
+  themes:
+  - 消费电子
+  - AI手机
+  added_at: 2026-05-08
+  reason: 消费电子 + AI
+- code: 03690.HK
+  name: 美团
+  tier: 基础仓
+  themes:
+  - 港股互联网
+  - 本地生活
+  added_at: 2026-05-08
+  reason: 本地生活
+- code: 300394.SZ
+  name: 天孚通信
+  tier: 博弈仓-追涨
+  themes:
+  - 光通信
+  - NVIDIA产业链
+  added_at: 2026-05-08
+  reason: 光通信 / 英伟达链
+- code: 300442.SZ
+  name: 润泽科技
+  tier: 博弈仓-追涨
+  themes:
+  - AIDC
+  - 算力租赁
+  added_at: 2026-05-08
+  reason: AIDC / 算力租赁
+- code: 688041.SH
+  name: 海光信息
+  tier: 观察池
+  themes:
+  - AI芯片
+  - 国产算力
+  added_at: 2026-05-08
+  reason: AI 芯片, 寒武纪备选
+- code: 688008.SH
+  name: 澜起科技
+  tier: 观察池
+  themes:
+  - AI芯片
+  - HBM中间件
+  added_at: 2026-05-08
+  reason: HBM 中间件龙头
+- code: 688256.SH
+  name: 寒武纪
+  tier: 观察池
+  themes:
+  - AI芯片
+  added_at: 2026-05-08
+  reason: AI 芯片总龙头
+- code: 300308.SZ
+  name: 中际旭创
+  tier: 观察池
+  themes:
+  - 光通信
+  - 光模块
+  added_at: 2026-05-08
+  reason: 光模块龙头
+- code: 300502.SZ
+  name: 新易盛
+  tier: 观察池
+  themes:
+  - 光通信
+  - 光模块
+  added_at: 2026-05-08
+  reason: 光模块 peer
+- code: 301308.SZ
+  name: 江波龙
+  tier: 观察池-末期
+  themes:
+  - 存储芯片
+  - 存储周期
+  added_at: 2026-05-08
+  reason: 存储周期龙头; SMOKE TEST - SELL_CONFIRMED 1W+25.8% @ 2026-05-11
+  updated_at: '2026-05-11'
+- code: 600519.SH
+  name: 贵州茅台
+  tier: 观察池
+  themes:
+  - 白酒
+  - 蓝筹防御
+  added_at: 2026-05-08
+  reason: 白酒标杆
+- code: 600036.SH
+  name: 招商银行
+  tier: 观察池
+  themes:
+  - 银行
+  - 蓝筹防御
+  added_at: 2026-05-08
+  reason: 价值蓝筹
+- code: 002475.SZ
+  name: 立讯精密
+  tier: 博弈仓-追涨
+  themes:
+  - 消费电子
+  - 果链
+  - 光模块
+  reason: SMOKE TEST - funnel+contrarian 双 A 认证 (fake proposal)
+  added_at: '2026-05-11'
+us_anchors:
+- code: NVDA
+  name: NVIDIA
+- code: TSM
+  name: 台积电
+- code: MSFT
+  name: Microsoft
+- code: META
+  name: Meta
+- code: GOOGL
+  name: Google
+- code: MU
+  name: Micron
