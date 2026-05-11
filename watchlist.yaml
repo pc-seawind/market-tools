@@ -110,6 +110,13 @@ entries:
     added_at: 2026-05-08
     reason: 存储周期龙头
 
+  - code: 002475.SZ
+    name: 立讯精密
+    tier: 观察池
+    themes: [消费电子, 果链, 汽车电子, 光模块]
+    added_at: 2026-05-11
+    reason: 果链龙头 + 汽车电子第二曲线, Q1 2026 营收 YoY +35.77% 提速, 等 Q2 验证汽车分部增速 (见 ~/work/investment/thesis/002475.SZ.yaml, conviction MEDIUM-LOW)
+
   - code: 600519.SH
     name: 贵州茅台
     tier: 观察池
