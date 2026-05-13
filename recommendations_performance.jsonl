@@ -1,0 +1,3 @@
+{"rec_id": "rec_20260513_0001", "code": "601688.SH", "action": "BUY", "verify_ts": "2026-05-13T21:21:52+08:00", "verify_date": "2026-05-13", "days_since_rec": 0, "price_at_rec": 19.48, "current_price": 19.48, "pct_change": 0.0}
+{"rec_id": "rec_20260513_0002", "code": "300502.SZ", "action": "BUY", "verify_ts": "2026-05-13T21:21:54+08:00", "verify_date": "2026-05-13", "days_since_rec": 0, "price_at_rec": 628.99, "current_price": 628.99, "pct_change": 0.0}
+{"rec_id": "rec_20260513_0003", "code": "300308.SZ", "action": "BUY", "verify_ts": "2026-05-13T21:21:55+08:00", "verify_date": "2026-05-13", "days_since_rec": 0, "price_at_rec": 1049.2, "current_price": 1049.2, "pct_change": 0.0}
