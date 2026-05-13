@@ -1,141 +1,186 @@
-# watchlist.yaml — 关注清单 (人工 + agent 协同维护)
-#
-# 维护约定:
-#   - 日常 edit: 直接改本文件 + git commit (加减关注股)
-#   - Agent 提议: 周末 cron 把建议写到 watchlist/proposed/YYYY-MM-DD.yaml, 不直接改本文件
-#   - 审批应用: 用户在飞书 chat 发"同意 1,2 拒绝 3", agent 解析后调 watchlist_ops.apply_proposal
-#   - 每次变更: watchlist_changes.jsonl append 一行 {ts, op, code, ...}
-#   - 观察池 size 软约束 ≤ 10 只 (超过时 sunday-preview 优先建议降级/移除)
-#
-# 注意: 当 agent 调 apply_proposal 修改本文件时, PyYAML safe_dump 会 reformat (保留数据
-#       正确, 但丢失本注释和空行). 要保留风格 review 后可切 ruamel.yaml.
-#
-# ts_code 格式:
-#   A 股: "000858.SZ" / "600519.SH" / "831168.BJ"
-#   港股: "00700.HK" (5 位数字前补 0)
-#
-# tier 枚举 (仅标签, 不影响信号逻辑; 信号对所有 tier 用同一套规则):
-#   - 基础仓        大市值 + 长期持有
-#   - 博弈仓-追涨   主升浪中的强势龙头
-#   - 博弈仓-左侧   左侧回调蓄势
-#   - 观察池        未买但持续跟踪
-
 schema_version: 1
-
 entries:
-  # ═══════════ 基础仓 ═══════════
-  - code: 002594.SZ
-    name: 比亚迪
-    tier: 基础仓
-    themes: [新能源车, 整车龙头]
-    added_at: 2026-05-08
-    reason: 新能源车龙头 (用户真实持仓 5/8 确认)
-
-  - code: 00700.HK
-    name: 腾讯控股
-    tier: 基础仓
-    themes: [港股互联网, 游戏, 广告]
-    added_at: 2026-05-08
-    reason: 港股互联网核心
-
-  - code: 01810.HK
-    name: 小米集团
-    tier: 基础仓
-    themes: [消费电子, AI手机]
-    added_at: 2026-05-08
-    reason: 消费电子 + AI
-
-  - code: 03690.HK
-    name: 美团
-    tier: 基础仓
-    themes: [港股互联网, 本地生活]
-    added_at: 2026-05-08
-    reason: 本地生活
-
-  # ═══════════ 博弈仓-追涨 ═══════════
-  - code: 300394.SZ
-    name: 天孚通信
-    tier: 博弈仓-追涨
-    themes: [光通信, NVIDIA产业链]
-    added_at: 2026-05-08
-    reason: 光通信 / 英伟达链
-
-  - code: 300442.SZ
-    name: 润泽科技
-    tier: 博弈仓-追涨
-    themes: [AIDC, 算力租赁]
-    added_at: 2026-05-08
-    reason: AIDC / 算力租赁
-
-  # ═══════════ 观察池 ═══════════
-  - code: 688041.SH
-    name: 海光信息
-    tier: 观察池
-    themes: [AI芯片, 国产算力]
-    added_at: 2026-05-08
-    reason: AI 芯片, 寒武纪备选
-
-  - code: 688008.SH
-    name: 澜起科技
-    tier: 观察池
-    themes: [AI芯片, HBM中间件]
-    added_at: 2026-05-08
-    reason: HBM 中间件龙头
-
-  - code: 688256.SH
-    name: 寒武纪
-    tier: 观察池
-    themes: [AI芯片]
-    added_at: 2026-05-08
-    reason: AI 芯片总龙头
-
-  - code: 300308.SZ
-    name: 中际旭创
-    tier: 观察池
-    themes: [光通信, 光模块]
-    added_at: 2026-05-08
-    reason: 光模块龙头
-
-  - code: 300502.SZ
-    name: 新易盛
-    tier: 观察池
-    themes: [光通信, 光模块]
-    added_at: 2026-05-08
-    reason: 光模块 peer
-
-  - code: 301308.SZ
-    name: 江波龙
-    tier: 观察池
-    themes: [存储芯片, 存储周期]
-    added_at: 2026-05-08
-    reason: 存储周期龙头
-
-  - code: 002475.SZ
-    name: 立讯精密
-    tier: 观察池
-    themes: [消费电子, 果链, 汽车电子, 光模块]
-    added_at: 2026-05-11
-    reason: 果链龙头 + 汽车电子第二曲线, Q1 2026 营收 YoY +35.77% 提速, 等 Q2 验证汽车分部增速 (见 ~/work/investment/thesis/002475.SZ.yaml, conviction MEDIUM-LOW)
-
-  - code: 600519.SH
-    name: 贵州茅台
-    tier: 观察池
-    themes: [白酒, 蓝筹防御]
-    added_at: 2026-05-08
-    reason: 白酒标杆
-
-  - code: 600036.SH
-    name: 招商银行
-    tier: 观察池
-    themes: [银行, 蓝筹防御]
-    added_at: 2026-05-08
-    reason: 价值蓝筹
-
-# 跨市场锚点 — 美股 AI 链 (daily.sh §4 用, 不参与 signals/grading)
+- code: 002594.SZ
+  name: 比亚迪
+  tier: 基础仓
+  themes:
+  - 新能源车
+  - 整车龙头
+  added_at: 2026-05-08
+  reason: 新能源车龙头 (用户真实持仓 5/8 确认)
+- code: 00700.HK
+  name: 腾讯控股
+  tier: 基础仓
+  themes:
+  - 港股互联网
+  - 游戏
+  - 广告
+  added_at: 2026-05-08
+  reason: 港股互联网核心
+- code: 01810.HK
+  name: 小米集团
+  tier: 基础仓
+  themes:
+  - 消费电子
+  - AI手机
+  added_at: 2026-05-08
+  reason: 消费电子 + AI
+- code: 03690.HK
+  name: 美团
+  tier: 基础仓
+  themes:
+  - 港股互联网
+  - 本地生活
+  added_at: 2026-05-08
+  reason: 本地生活
+- code: 300394.SZ
+  name: 天孚通信
+  tier: 博弈仓-追涨
+  themes:
+  - 光通信
+  - NVIDIA产业链
+  added_at: 2026-05-08
+  reason: 光通信 / 英伟达链
+- code: 300442.SZ
+  name: 润泽科技
+  tier: 博弈仓-追涨
+  themes:
+  - AIDC
+  - 算力租赁
+  added_at: 2026-05-08
+  reason: AIDC / 算力租赁
+- code: 688041.SH
+  name: 海光信息
+  tier: 观察池
+  themes:
+  - AI芯片
+  - 国产算力
+  added_at: 2026-05-08
+  reason: AI 芯片, 寒武纪备选
+- code: 688008.SH
+  name: 澜起科技
+  tier: 观察池
+  themes:
+  - AI芯片
+  - HBM中间件
+  added_at: 2026-05-08
+  reason: HBM 中间件龙头
+- code: 688256.SH
+  name: 寒武纪
+  tier: 观察池
+  themes:
+  - AI芯片
+  added_at: 2026-05-08
+  reason: AI 芯片总龙头
+- code: 300308.SZ
+  name: 中际旭创
+  tier: 观察池
+  themes:
+  - 光通信
+  - 光模块
+  added_at: 2026-05-08
+  reason: 光模块龙头
+- code: 300502.SZ
+  name: 新易盛
+  tier: 观察池
+  themes:
+  - 光通信
+  - 光模块
+  added_at: 2026-05-08
+  reason: 光模块 peer
+- code: 301308.SZ
+  name: 江波龙
+  tier: 观察池
+  themes:
+  - 存储芯片
+  - 存储周期
+  added_at: 2026-05-08
+  reason: 存储周期龙头
+- code: 002475.SZ
+  name: 立讯精密
+  tier: 观察池
+  themes:
+  - 消费电子
+  - 果链
+  - 汽车电子
+  - 光模块
+  added_at: 2026-05-11
+  reason: 果链龙头 + 汽车电子第二曲线, Q1 2026 营收 YoY +35.77% 提速, 等 Q2 验证汽车分部增速 (见 ~/work/investment/thesis/002475.SZ.yaml, conviction
+    MEDIUM-LOW)
+- code: 600519.SH
+  name: 贵州茅台
+  tier: 观察池
+  themes:
+  - 白酒
+  - 蓝筹防御
+  added_at: 2026-05-08
+  reason: 白酒标杆
+- code: 600036.SH
+  name: 招商银行
+  tier: 观察池
+  themes:
+  - 银行
+  - 蓝筹防御
+  added_at: 2026-05-08
+  reason: 价值蓝筹
+- code: 601688.SH
+  name: 华泰证券
+  tier: 观察池
+  themes:
+  - 金融-证券
+  - 券商龙头
+  added_at: 2026-05-13
+  reason: framework v2.3 首条'中枢位置标准 BUY'. Tier 1 金融-证券 76 HOT (资金 flow_20d +13 亿, 位置 pos60=54% 低位). 乖离 +34.1% (PE 10 vs 同业
+    15). ROE 2.3% + 净利 YoY +31.8%. 仓位 ≤ 8%. rec_20260513_0001
+- code: 603444.SH
+  name: 吉比特
+  tier: 观察池
+  themes:
+  - 游戏传媒
+  - 手游龙头
+  added_at: 2026-05-13
+  reason: framework v2.3 BUY. Tier 1 游戏传媒 63.3 HOT (flow_20d +6.4 亿). 乖离 +24.5% (PE 13.8 vs 同业 16.3). 位置 pos120=30% 低位. ROE
+    9.0% (板块最高) + 净利 YoY +82.7%. 仓位 ≤ 8%. FOLLOWER.
+- code: 300750.SZ
+  name: 宁德时代
+  tier: 观察池
+  themes:
+  - 锂电产业链
+  - 储能龙头
+  - 全球电池龙头
+  added_at: 2026-05-13
+  reason: framework v2.3 BUY (末期小仓). Tier 1 锂电产业链 65.5 HOT (flow_20d +14.7 亿). 乖离 +33.7% (PE 25.4 vs 同业 37.5). ROE 6.0% +
+    净利 YoY +48.5%. 位置 pos120=89% 偏高 → 仓位 ≤ 3%.
+- code: 002371.SZ
+  name: 北方华创
+  tier: 观察池
+  themes:
+  - 半导体设备
+  - AI芯片辅助
+  - 国产替代
+  added_at: 2026-05-13
+  reason: framework v2.3 WATCH. Tier 1 AI 芯片板块 35.9 COLD (flow 负 -28 亿) 但 nav 正 Gate 通过. 乖离 +29.1% (差 +30% 阈值 0.9pt). ROE
+    4.2% + 净利 YoY +3.4% 温和增长. 位置 pos120=100% 末期. 等板块 flow 转正或基本面提速再评估.
+- code: 300014.SZ
+  name: 亿纬锂能
+  tier: 观察池
+  themes:
+  - 锂电产业链
+  - 电池
+  - 动力储能
+  added_at: 2026-05-13
+  reason: framework v2.3 WATCH. Tier 1 锂电 65.5 HOT. 乖离 +19.9% (差 +20% 阈值 0.1pt). ROE 3.4% + 净利 YoY +31.3%. 位置 pos120=42% 中低位.
+    如果 1-2 周内乖离继续扩大或跌破 +20% 可升级 BUY.
 us_anchors:
-  - {code: NVDA,  name: NVIDIA}
-  - {code: TSM,   name: 台积电}
-  - {code: MSFT,  name: Microsoft}
-  - {code: META,  name: Meta}
-  - {code: GOOGL, name: Google}
-  - {code: MU,    name: Micron}
+- code: NVDA
+  name: NVIDIA
+- code: TSM
+  name: 台积电
+- code: MSFT
+  name: Microsoft
+- code: META
+  name: Meta
+- code: GOOGL
+  name: Google
+- code: MU
+  name: Micron
