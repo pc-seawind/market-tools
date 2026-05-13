@@ -1,4 +1,4 @@
-# concept_etf_map.yaml — 概念板块 ETF 映射表
+# concept_etf_map.yaml — 概念板块 ETF 映射表 (v2: 扩展到 31 主题)
 #
 # 目的: 用 ETF 数据 (份额 + 净值) 算板块级资金面/技术面, 比 concepts_data.py
 #       的成分股均值更 canonical (ETF 份额变动 = 机构+散户共识资金流向).
@@ -20,22 +20,23 @@
 #
 # 维护:
 #   - 新 concept 加入时, 先搜 tushare fund_basic 看是否有对应主题 ETF
-#   - 规模 < 10 亿的 ETF 不做主映射 (流动性不足)
+#   - 规模 < 3000 万日成交的 ETF 不做主映射 (流动性不足)
+#   - share_date 长期未更新的 ETF (如某些 LOF) 要降级或剔除
 #   - 每 3-6 个月 review 映射是否仍代表主题 (如主题演化 / 新 ETF 发行)
 
-schema_version: 1
+schema_version: 2
 last_updated: 2026-05-13
 
 concepts:
 
-  # ═══════════ AI 算力链 (5 个核心主题) ═══════════
+  # ═══════════ AI 算力链 (9 个核心主题) ═══════════
 
   "AI芯片 (算力核心)":
     data_quality: direct
     primary_etfs:
-      - {code: "159995.SZ", name: "芯片ETF华夏", weight: 0.5}      # 跟踪中证芯片产业指数, 规模 ~250 亿
-      - {code: "512480.SH", name: "半导体ETF国联安", weight: 0.5}  # 跟踪中证全指半导体, 规模 ~300 亿
-    note: "两只组合覆盖 AI 芯片主流. 寒武纪/海光/澜起/中芯/北方华创等核心股都在持仓里"
+      - {code: "159995.SZ", name: "芯片ETF华夏", weight: 0.5}
+      - {code: "512480.SH", name: "半导体ETF国联安", weight: 0.5}
+    note: "两只组合覆盖 AI 芯片主流. 寒武纪/海光/澜起/中芯/北方华创等核心股都在持仓里. 注意: 中韩半导体 ETF 513310 流动性更高但含韩股, 不纯 A 股 signal"
 
   "存储芯片 (HBM/DDR/NAND)":
     data_quality: proxy
@@ -54,27 +55,27 @@ concepts:
   "光通信 (光模块/CPO)":
     data_quality: direct
     primary_etfs:
-      - {code: "159583.SZ", name: "通信ETF富国", weight: 0.5}     # 跟踪中证全指通信设备
-      - {code: "159994.SZ", name: "通信ETF银华", weight: 0.5}
-    note: "中际旭创/新易盛/天孚通信/光迅科技在通信 ETF 合计 ~25% 权重. CPO 主题主要由这些龙头驱动"
+      - {code: "515880.SH", name: "通信ETF国泰", weight: 0.4}
+      - {code: "159583.SZ", name: "通信ETF富国", weight: 0.3}
+      - {code: "515050.SH", name: "通信ETF华夏", weight: 0.3}
+    note: "3 只通信 ETF 组合, 515880 成交最大. 中际旭创/新易盛/天孚通信/光迅科技在通信 ETF 合计 ~25% 权重"
 
   "英伟达产业链":
     data_quality: proxy
-    parent_concept: "AI芯片 (算力核心) + 光通信"
+    parent_concept: "AI芯片 + 光通信"
     primary_etfs:
       - {code: "159995.SZ", name: "芯片ETF华夏", weight: 0.4}
       - {code: "159583.SZ", name: "通信ETF富国", weight: 0.4}
-      - {code: "159819.SZ", name: "人工智能ETF", weight: 0.2}     # 跨赛道
+      - {code: "159819.SZ", name: "人工智能ETF", weight: 0.2}
     note: "工业富联/沪电股份/胜宏科技等 PCB + 光模块链, 无独立 NV 链 ETF"
-
-  # ═══════════ AI 应用 + 算力基建 ═══════════
 
   "AI 应用 (软件侧)":
     data_quality: direct
     primary_etfs:
-      - {code: "159819.SZ", name: "人工智能ETF", weight: 0.5}     # 易方达, 规模 ~40 亿
-      - {code: "515070.SH", name: "人工智能ETF华夏", weight: 0.5}
-    note: "科大讯飞/金山办公/拓尔思在 AI ETF 持仓里. 软件侧弹性大"
+      - {code: "159363.SZ", name: "创业板人工智能ETF华宝", weight: 0.4}  # 日成交 14 亿, top
+      - {code: "159819.SZ", name: "人工智能ETF易方达", weight: 0.4}
+      - {code: "588790.SH", name: "科创AIETF博时", weight: 0.2}
+    note: "159363 (创业板 AI, 偏软件应用) + 159819 (沪深 AI, 综合) 组合"
 
   "AIDC/算力租赁":
     data_quality: proxy
@@ -82,7 +83,7 @@ concepts:
     primary_etfs:
       - {code: "159819.SZ", name: "人工智能ETF", weight: 0.5}
       - {code: "159583.SZ", name: "通信ETF富国", weight: 0.5}
-    note: "润泽科技/浪潮信息主要在 AI ETF. 没有独立 IDC ETF"
+    note: "润泽科技/浪潮信息主要在 AI ETF. 无独立 IDC ETF"
 
   "PCB (算力基建)":
     data_quality: proxy
@@ -92,19 +93,229 @@ concepts:
       - {code: "159995.SZ", name: "芯片ETF华夏", weight: 0.5}
     note: "沪电股份/胜宏科技/生益科技/深南电路在通信+芯片 ETF 合计 ~15%"
 
-  # ═══════════ 其他科技主题 ═══════════
-
   "华为产业链":
     data_quality: fallback
     primary_etfs: []
     note: "无独立华为 ETF. 用 concepts_data.py 成分股均值. 主要 proxy: 软通动力/紫光国微/长电科技"
+
+  # ═══════════ 金融 (新增 2026-05-13) ═══════════
+
+  "金融-银行":
+    data_quality: direct
+    primary_etfs:
+      - {code: "512800.SH", name: "银行ETF华宝", weight: 1.0}
+    note: "日成交 7.1 亿, A 股银行板块 canonical. 工行/招行/平安/兴业/交行等前 10"
+
+  "金融-证券":
+    data_quality: direct
+    primary_etfs:
+      - {code: "512880.SH", name: "证券ETF国泰", weight: 0.6}   # 日成交 20 亿
+      - {code: "512000.SH", name: "券商ETF华宝", weight: 0.4}   # 日成交 10 亿
+    note: "纯 A 股券商 (不含港股中信券商). 中信/中金/海通/招商证券/东方财富 top"
+
+  "金融-保险":
+    data_quality: fallback
+    primary_etfs:
+      - {code: "167301.SZ", name: "保险主题LOF", weight: 1.0}
+    note: "⚠️ 仅 LOF, 日成交 2200 万, 数据可能稀疏. 主要 proxy: 中国平安/中国人寿/新华保险/中国太保"
+
+  # ═══════════ 军工 / 国防 ═══════════
+
+  "军工":
+    data_quality: direct
+    primary_etfs:
+      - {code: "512660.SH", name: "军工ETF国泰", weight: 0.5}    # 日成交 5.7 亿
+      - {code: "512710.SH", name: "军工龙头ETF富国", weight: 0.5}  # 日成交 3.8 亿
+    note: "中航沈飞/中航光电/航发动力/中国重工/中船防务 等"
+
+  # ═══════════ 周期 / 能源 ═══════════
+
+  "有色金属":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159980.SZ", name: "有色ETF大成", weight: 0.5}     # 日成交 9.8 亿
+      - {code: "516150.SH", name: "稀土ETF嘉实", weight: 0.3}     # 日成交 4.9 亿
+      - {code: "560860.SH", name: "工业有色ETF万家", weight: 0.2}
+    note: "紫金矿业/江西铜业/洛阳钼业/北方稀土/盛和资源/赣锋锂业 等"
+
+  "锂电产业链":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159755.SZ", name: "电池ETF广发", weight: 0.5}     # 日成交 9.7 亿
+      - {code: "159566.SZ", name: "储能电池ETF易方达", weight: 0.5}
+    note: "宁德时代/比亚迪/亿纬锂能/恩捷股份/天齐锂业/赣锋锂业 等"
+
+  "煤炭":
+    data_quality: direct
+    primary_etfs:
+      - {code: "515220.SH", name: "煤炭ETF国泰", weight: 1.0}     # 日成交 7.8 亿
+    note: "中国神华/陕西煤业/兖矿能源/中煤能源/潞安环能 等"
+
+  "电力":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159611.SZ", name: "电力ETF广发", weight: 0.5}     # 日成交 7.8 亿
+      - {code: "561560.SH", name: "电力ETF华泰柏瑞", weight: 0.3}
+      - {code: "562960.SH", name: "绿色电力ETF易方达", weight: 0.2}
+    note: "长江电力/华能水电/国投电力/中国核电/三峡能源 等"
+
+  "钢铁":
+    data_quality: direct
+    primary_etfs:
+      - {code: "515210.SH", name: "钢铁ETF国泰", weight: 1.0}     # 日成交 6200 万 (偏小)
+    note: "⚠️ 流动性偏弱. 宝钢股份/华菱钢铁/三钢闽光/南钢股份 等"
+
+  "化工":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159870.SZ", name: "化工ETF", weight: 0.5}          # 日成交 8.2 亿
+      - {code: "516020.SH", name: "化工ETF华宝", weight: 0.3}
+      - {code: "516120.SH", name: "化工ETF富国", weight: 0.2}
+    note: "万华化学/荣盛石化/恒力石化/东方盛虹/华鲁恒升 等"
+
+  # ═══════════ 制造 / 工业 ═══════════
+
+  "工业机械":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159667.SZ", name: "工业母机ETF国泰", weight: 0.5}    # 日成交 3.6 亿
+      - {code: "560280.SH", name: "工程机械ETF广发", weight: 0.5}    # 日成交 2.1 亿
+    note: "三一重工/中联重科/徐工机械/创世纪/科德数控 等"
+
+  "新能源车":
+    data_quality: direct
+    primary_etfs:
+      - {code: "515030.SH", name: "新能源车ETF华夏", weight: 0.7}    # 日成交 3.8 亿
+      - {code: "515700.SH", name: "新能源车ETF平安", weight: 0.3}
+    note: "比亚迪/宁德时代/长城/理想/赛力斯 等"
+
+  "新能源 (光伏/风电)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "516160.SH", name: "新能源ETF南方", weight: 0.4}
+      - {code: "159368.SZ", name: "创业板新能源ETF华夏", weight: 0.3}
+      - {code: "515790.SH", name: "光伏ETF华泰柏瑞", weight: 0.3}     # 光伏单独表现强时重要
+    note: "隆基/通威/阳光电源/金风科技/国电南瑞 等"
+
+  "光伏":
+    data_quality: direct
+    primary_etfs:
+      - {code: "515790.SH", name: "光伏ETF华泰柏瑞", weight: 1.0}     # 日成交 7.2 亿
+    note: "独立主题, 隆基/通威/晶澳/TCL 中环/阿特斯 等"
+
+  "建材建筑":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159745.SZ", name: "建材ETF国泰", weight: 1.0}         # 日成交 9100 万
+    note: "⚠️ 流动性偏弱. 海螺水泥/华新水泥/东方雨虹/北新建材 等"
+
+  # ═══════════ 科技 / TMT ═══════════
+
+  "游戏传媒":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159869.SZ", name: "游戏ETF华夏", weight: 0.5}         # 日成交 4.2 亿
+      - {code: "512980.SH", name: "传媒ETF广发", weight: 0.3}
+      - {code: "516010.SH", name: "游戏ETF国泰", weight: 0.2}
+    note: "三七互娱/完美世界/吉比特/巨人网络/世纪华通 等"
+
+  "港股互联网":
+    data_quality: direct
+    primary_etfs:
+      - {code: "160644.SZ", name: "港美互联网LOF", weight: 1.0}       # 日成交 6.9 亿
+    note: "⚠️ LOF, share 数据可能有限. 腾讯/阿里/美团/京东/快手 等"
 
   "人形机器人":
     data_quality: fallback
     primary_etfs: []
     note: "无独立机器人 ETF (有几只智能制造 ETF 但成分不聚焦). 用 concepts_data 成分股均值"
 
-  # ═══════════ 能源 / 新能源 ═══════════
+  # ═══════════ 消费 / 医药 ═══════════
+
+  "白酒 (消费龙头)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "512690.SH", name: "酒ETF鹏华", weight: 1.0}            # 日成交 7.9 亿, **替换旧 LOF 161725**
+    note: "2026-05-13 替换: 161725 白酒 LOF share 数据停更于 2025-06-30, 改用 512690 酒 ETF (鹏华). 茅台/五粮液/汾酒/泸州老窖 覆盖完整"
+
+  "食品饮料":
+    data_quality: direct
+    primary_etfs:
+      - {code: "515170.SH", name: "食品饮料ETF华夏", weight: 0.6}      # 日成交 1.2 亿
+      - {code: "515710.SH", name: "食品饮料ETF华宝", weight: 0.4}
+    note: "伊利/海天/双汇/农夫山泉/桃李 等 (含白酒但权重更分散)"
+
+  "消费 (非白酒+非食品饮料)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159928.SZ", name: "消费ETF", weight: 0.7}              # 日成交 2.7 亿
+      - {code: "510630.SH", name: "消费ETF华夏", weight: 0.3}
+    note: "大消费综合, 含家电/零售/旅游/服装. 美的/格力/苏宁易购/海尔/百联 等"
+
+  "家电":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159996.SZ", name: "家电ETF国泰", weight: 1.0}          # 日成交 6400 万
+    note: "美的/格力/海尔/海信/老板/九阳 等"
+
+  "创新药 (医药龙头)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159992.SZ", name: "创新药ETF", weight: 0.4}             # 日成交 6.9 亿
+      - {code: "512010.SH", name: "医药ETF易方达", weight: 0.3}
+      - {code: "512170.SH", name: "医疗ETF华宝", weight: 0.3}
+    note: "恒瑞/药明康德/迈瑞/泰格/片仔癀 等"
+
+  "中药":
+    data_quality: direct
+    primary_etfs:
+      - {code: "560080.SH", name: "中药ETF", weight: 0.7}              # 日成交 3700 万
+      - {code: "159647.SZ", name: "中药ETF (另一只)", weight: 0.3}
+    note: "⚠️ 流动性偏弱. 片仔癀/云南白药/同仁堂/华润三九/东阿阿胶 等"
+
+  # ═══════════ 农业 ═══════════
+
+  "农业畜牧":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159865.SZ", name: "养殖ETF国泰", weight: 0.5}          # 日成交 2.4 亿
+      - {code: "516810.SH", name: "农业ETF华夏", weight: 0.25}
+      - {code: "159825.SZ", name: "农业ETF富国", weight: 0.25}
+    note: "牧原/温氏/新希望/圣农/海大 等"
+
+  # ═══════════ 地产 / 服务 ═══════════
+
+  "地产":
+    data_quality: direct
+    primary_etfs:
+      - {code: "512200.SH", name: "房地产ETF南方", weight: 0.6}        # 日成交 1.9 亿
+      - {code: "159707.SZ", name: "地产ETF华宝", weight: 0.4}
+    note: "保利/招商蛇口/万科 A/金地/华发股份 等"
+
+  "旅游酒店":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159766.SZ", name: "旅游ETF富国", weight: 1.0}          # 日成交 1.8 亿
+    note: "中国中免/锦江酒店/首旅酒店/宋城演艺/众信旅游 等"
+
+  # ═══════════ 防御 / 价值 ═══════════
+
+  "高股息 (红利防御)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "515180.SH", name: "红利ETF易方达", weight: 0.35}       # 日成交 7 亿
+      - {code: "512890.SH", name: "红利低波ETF华泰柏瑞", weight: 0.35}  # 日成交 6 亿
+      - {code: "510880.SH", name: "红利ETF华泰柏瑞", weight: 0.3}
+    note: "3 只红利 ETF 组合. 工行/中石油/中石化/长江电力/神华/格力 等"
+
+  "央企国企":
+    data_quality: direct
+    primary_etfs:
+      - {code: "512960.SH", name: "央企结构调整ETF博时", weight: 0.5}   # 日成交 8600 万
+      - {code: "515900.SH", name: "央企创新ETF博时", weight: 0.5}
+    note: "央企主题, 中国移动/中国石油/中国中车/中国建筑/中国铁建 等"
+
+  # ═══════════ 固态电池 (从 v1 保留) ═══════════
 
   "固态电池":
     data_quality: proxy
@@ -114,43 +325,77 @@ concepts:
       - {code: "516090.SH", name: "新能源ETF易方达", weight: 0.5}
     note: "天齐锂业/当升科技/容百科技/恩捷股份在新能源 ETF 合计 ~15%"
 
-  # ═══════════ 防御 / 价值 ═══════════
-
-  "高股息 (红利防御)":
-    data_quality: direct
-    primary_etfs:
-      - {code: "510880.SH", name: "红利ETF华泰柏瑞", weight: 0.5}  # 经典红利 ETF, 规模 ~250 亿
-      - {code: "515100.SH", name: "红利ETF博时", weight: 0.5}
-    note: "工行/中石油/中石化/长江电力/神华等高股息龙头在红利 ETF 里"
-
-  "白酒 (消费龙头)":
-    data_quality: direct
-    primary_etfs:
-      - {code: "161725.SZ", name: "白酒基金LOF招商", weight: 1.0}  # 跟踪中证白酒, 市场唯一主流
-    note: "LOF 不是 ETF 但机制类似 (有开放申赎 + 二级市场流动). 茅台/五粮液/汾酒/泸州老窖 覆盖完整"
-
-  "创新药 (医药龙头)":
-    data_quality: direct
-    primary_etfs:
-      - {code: "512010.SH", name: "医药ETF易方达", weight: 0.4}
-      - {code: "159938.SZ", name: "医药ETF广发", weight: 0.3}
-      - {code: "159858.SZ", name: "生物医药ETF天弘", weight: 0.3}
-    note: "恒瑞/药明康德/迈瑞/泰格 在医药 ETF 合计 ~30% 权重"
-
 
 # ETF 元数据速查 (便于快速查询 canonical ETF 列表)
 all_etfs_referenced:
+  # AI 链
   - "159995.SZ"  # 芯片ETF华夏
   - "512480.SH"  # 半导体ETF国联安
+  - "515880.SH"  # 通信ETF国泰
   - "159583.SZ"  # 通信ETF富国
-  - "159994.SZ"  # 通信ETF银华
+  - "515050.SH"  # 通信ETF华夏
+  - "159363.SZ"  # 创业板人工智能ETF华宝
   - "159819.SZ"  # 人工智能ETF (易方达)
-  - "515070.SH"  # 人工智能ETF华夏
+  - "588790.SH"  # 科创AIETF博时
+  # 金融
+  - "512800.SH"  # 银行ETF华宝
+  - "512880.SH"  # 证券ETF国泰
+  - "512000.SH"  # 券商ETF华宝
+  - "167301.SZ"  # 保险主题LOF
+  # 军工 / 周期
+  - "512660.SH"  # 军工ETF国泰
+  - "512710.SH"  # 军工龙头ETF富国
+  - "159980.SZ"  # 有色ETF大成
+  - "516150.SH"  # 稀土ETF嘉实
+  - "560860.SH"  # 工业有色ETF万家
+  - "159755.SZ"  # 电池ETF广发
+  - "159566.SZ"  # 储能电池ETF易方达
+  - "515220.SH"  # 煤炭ETF国泰
+  - "159611.SZ"  # 电力ETF广发
+  - "561560.SH"  # 电力ETF华泰柏瑞
+  - "562960.SH"  # 绿色电力ETF易方达
+  - "515210.SH"  # 钢铁ETF国泰
+  - "159870.SZ"  # 化工ETF
+  - "516020.SH"  # 化工ETF华宝
+  - "516120.SH"  # 化工ETF富国
+  # 制造 / 新能源
+  - "159667.SZ"  # 工业母机ETF国泰
+  - "560280.SH"  # 工程机械ETF广发
+  - "515030.SH"  # 新能源车ETF华夏
+  - "515700.SH"  # 新能源车ETF平安
+  - "516160.SH"  # 新能源ETF南方
+  - "159368.SZ"  # 创业板新能源ETF华夏
+  - "515790.SH"  # 光伏ETF华泰柏瑞
+  - "159745.SZ"  # 建材ETF国泰
   - "159875.SZ"  # 新能源ETF嘉实
   - "516090.SH"  # 新能源ETF易方达
-  - "510880.SH"  # 红利ETF华泰柏瑞
-  - "515100.SH"  # 红利ETF博时
-  - "161725.SZ"  # 白酒基金LOF招商
+  # TMT
+  - "159869.SZ"  # 游戏ETF华夏
+  - "512980.SH"  # 传媒ETF广发
+  - "516010.SH"  # 游戏ETF国泰
+  - "160644.SZ"  # 港美互联网LOF
+  # 消费 / 医药
+  - "512690.SH"  # 酒ETF鹏华 (替换 161725)
+  - "515170.SH"  # 食品饮料ETF华夏
+  - "515710.SH"  # 食品饮料ETF华宝
+  - "159928.SZ"  # 消费ETF
+  - "510630.SH"  # 消费ETF华夏
+  - "159996.SZ"  # 家电ETF国泰
+  - "159992.SZ"  # 创新药ETF
   - "512010.SH"  # 医药ETF易方达
-  - "159938.SZ"  # 医药ETF广发
-  - "159858.SZ"  # 生物医药ETF天弘
+  - "512170.SH"  # 医疗ETF华宝
+  - "560080.SH"  # 中药ETF
+  - "159647.SZ"  # 中药ETF (另一只)
+  # 农业 / 地产 / 旅游
+  - "159865.SZ"  # 养殖ETF国泰
+  - "516810.SH"  # 农业ETF华夏
+  - "159825.SZ"  # 农业ETF富国
+  - "512200.SH"  # 房地产ETF南方
+  - "159707.SZ"  # 地产ETF华宝
+  - "159766.SZ"  # 旅游ETF富国
+  # 防御
+  - "515180.SH"  # 红利ETF易方达
+  - "512890.SH"  # 红利低波ETF华泰柏瑞
+  - "510880.SH"  # 红利ETF华泰柏瑞 (兼容保留)
+  - "512960.SH"  # 央企结构调整ETF博时
+  - "515900.SH"  # 央企创新ETF博时
