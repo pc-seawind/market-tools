@@ -140,41 +140,66 @@ class EtfMetrics:
     ts_code: str
     name: str
     weight: float
-    latest_date: str
+    latest_date: str           # fund_daily 最新 trade_date
+    share_date: str            # fund_share 最新 trade_date (可能比 latest_date 晚 1 天)
     latest_close: float
-    nav_pct_1d: float       # 今日净值涨跌 %
+    nav_pct_1d: float          # 今日净值涨跌 %
     nav_pct_5d: float
-    nav_pct_1m: float       # 20 交易日
-    position_pct: int       # 120 日内相对位置 0-100
-    vol_ratio: float        # 近 5 日均量 vs 20 日均量
-    flow_1d_cny: float      # 今日资金净流入 (元, = fd_share 变动 × 今日 close × 10000)
-    flow_5d_cny: float      # 5 日累计净流入
-    flow_20d_cny: float     # 20 日累计净流入
-    data_ok: bool           # True if all fields valid
+    nav_pct_1m: float          # 20 交易日
+    # 位置 v1 (min-max, 保留向后兼容)
+    position_pct: int          # 120 日 min-max 位置 0-100
+    # 位置 v2 (percentile rank × 3 窗口, 2026-05-13 升级, framework v2.3.1)
+    pct_rank_60d: int          # 当前 close 在过去 60 日 closes 分布里的百分位
+    pct_rank_120d: int
+    pct_rank_250d: int
+    vol_ratio: float           # 近 5 日均量 vs 20 日均量
+    flow_1d_cny: float         # 今日资金净流入 (元)
+    flow_5d_cny: float         # 5 日累计净流入
+    flow_20d_cny: float        # 20 日累计净流入
+    flow_data_days: int        # flow 实际基于几天 share 数据算的 (诊断用)
+    data_ok: bool
+
+
+def _percentile_of(window: list, val: float) -> int:
+    """Percentile rank of val within window (0-100).
+    定义: (count(x < val) + 0.5 × count(x == val)) / len(window)
+    比 min-max 缩放鲁棒 — 不受单个异常峰值影响, 反映真实密度.
+    """
+    if not window:
+        return 50
+    lower = sum(1 for x in window if x < val)
+    equal = sum(1 for x in window if x == val)
+    return int(round((lower + 0.5 * equal) / len(window) * 100))
 
 
 def compute_etf_metrics(ts_code: str, name: str = "", weight: float = 1.0) -> EtfMetrics:
     """Compute all per-ETF metrics used by sector scoring."""
-    daily = fetch_daily(ts_code, days_back=130)  # 120 日位置 + buffer
+    daily = fetch_daily(ts_code, days_back=260)  # 250 日位置 + buffer
     shares = fetch_share(ts_code, days_back=30)
 
-    if not daily or not shares or len(daily) < 20:
-        return EtfMetrics(ts_code, name, weight, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, data_ok=False)
+    if not daily or len(daily) < 20:
+        return EtfMetrics(ts_code, name, weight, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, data_ok=False)
 
     last = daily[-1]
     closes = [d["close"] for d in daily]
+    last_close = closes[-1]
 
-    # 位置% (120 日内)
-    window = closes[-120:] if len(closes) >= 120 else closes
-    hi, lo = max(window), min(window)
-    position_pct = int(round((last["close"] - lo) / (hi - lo) * 100)) if hi > lo else 50
+    # 位置 v1 (min-max 120d, 向后兼容)
+    window_120 = closes[-120:] if len(closes) >= 120 else closes
+    hi, lo = max(window_120), min(window_120)
+    position_pct = int(round((last_close - lo) / (hi - lo) * 100)) if hi > lo else 50
+
+    # 位置 v2 (percentile rank × 3 窗口)
+    pct_60 = _percentile_of(closes[-60:] if len(closes) >= 60 else closes, last_close)
+    pct_120 = _percentile_of(window_120, last_close)
+    pct_250 = _percentile_of(closes[-250:] if len(closes) >= 250 else closes, last_close)
 
     # 净值涨跌
     def pct(n: int) -> float:
         if len(closes) <= n:
             return 0.0
         base = closes[-n - 1]
-        return (last["close"] / base - 1.0) * 100 if base > 0 else 0.0
+        return (last_close / base - 1.0) * 100 if base > 0 else 0.0
 
     nav_1d = pct(1)
     nav_5d = pct(5)
@@ -186,43 +211,62 @@ def compute_etf_metrics(ts_code: str, name: str = "", weight: float = 1.0) -> Et
     vol_20d = sum(vols[-20:]) / 20 if len(vols) >= 20 else 0
     vol_ratio = vol_5d / vol_20d if vol_20d > 0 else 0
 
-    # 资金流入 (CNY)
-    # fd_share 单位: 万份. close 单位: 元.
-    # 流入 CNY = (share_change_shares) × close
-    #          = (share_today - share_yesterday) × 10000 × close
-    share_by_date = {s["trade_date"]: s["fd_share"] for s in shares}
+    # 资金流入 (CNY) — FIXED 2026-05-13: fund_share 比 fund_daily 常晚 1 天, 不强求日期匹配
+    # 改为: 按 share 的可用日期循环, daily close 找得到就算, 找不到跳过
+    flow_1d = 0.0
+    flow_5d = 0.0
+    flow_20d = 0.0
+    share_date = ""
+    flow_data_days = 0
 
-    def flow_cumulative(n: int) -> float:
-        """Cumulative CNY net inflow over last n trading days (by share delta × last close)."""
-        # Match share dates to daily close dates
-        recent_dates = [d["trade_date"] for d in daily[-n - 1:]]  # n+1 days (n diffs)
-        share_series = [share_by_date.get(d) for d in recent_dates]
-        if any(s is None for s in share_series):
-            return 0.0
-        total = 0.0
-        for i in range(1, len(share_series)):
-            # share_delta (万份) × close at that day × 10000 = CNY net inflow
-            close_on_day = next((d["close"] for d in daily if d["trade_date"] == recent_dates[i]), 0)
-            delta_shares = (share_series[i] - share_series[i - 1]) * 10000
-            total += delta_shares * close_on_day
-        return total
+    if shares and len(shares) >= 2:
+        share_date = shares[-1]["trade_date"]
+        daily_close_by_date = {d["trade_date"]: d["close"] for d in daily}
 
-    flow_1d = flow_cumulative(1)
-    flow_5d = flow_cumulative(5)
-    flow_20d = flow_cumulative(20)
+        def flow_window(n: int) -> tuple[float, int]:
+            """累计 n 个交易日份额变化的 CNY 净流入. Return (cny, effective_days)."""
+            if len(shares) < n + 1:
+                # 用可用数据尽量算
+                effective = len(shares) - 1
+            else:
+                effective = n
+            if effective < 1:
+                return 0.0, 0
+            total = 0.0
+            real_days = 0
+            for i in range(len(shares) - effective, len(shares)):
+                date_i = shares[i]["trade_date"]
+                # 用该日的 close; 若该日无 daily, 用最近一天的 close 作近似
+                close_i = daily_close_by_date.get(date_i)
+                if close_i is None:
+                    # fallback: 用 last close
+                    close_i = last_close
+                delta_shares = (shares[i]["fd_share"] - shares[i - 1]["fd_share"]) * 10000
+                total += delta_shares * close_i
+                real_days += 1
+            return total, real_days
+
+        flow_1d, _ = flow_window(1)
+        flow_5d, _ = flow_window(5)
+        flow_20d, flow_data_days = flow_window(20)
 
     return EtfMetrics(
         ts_code=ts_code, name=name, weight=weight,
         latest_date=last["trade_date"],
-        latest_close=last["close"],
+        share_date=share_date,
+        latest_close=last_close,
         nav_pct_1d=round(nav_1d, 2),
         nav_pct_5d=round(nav_5d, 2),
         nav_pct_1m=round(nav_1m, 2),
         position_pct=position_pct,
+        pct_rank_60d=pct_60,
+        pct_rank_120d=pct_120,
+        pct_rank_250d=pct_250,
         vol_ratio=round(vol_ratio, 2),
         flow_1d_cny=round(flow_1d, 0),
         flow_5d_cny=round(flow_5d, 0),
         flow_20d_cny=round(flow_20d, 0),
+        flow_data_days=flow_data_days,
         data_ok=True,
     )
 
@@ -236,7 +280,10 @@ class SectorSignals:
     nav_pct_1d: float
     nav_pct_5d: float
     nav_pct_1m: float
-    position_pct: int
+    position_pct: int                         # v1 兼容 (120d min-max)
+    pct_rank_60d: int                         # v2 (percentile rank 短期)
+    pct_rank_120d: int
+    pct_rank_250d: int
     vol_ratio: float
     flow_1d_cny: float
     flow_5d_cny: float
@@ -283,6 +330,9 @@ def sector_signals(concept: str) -> SectorSignals | None:
         nav_pct_5d=round(wavg("nav_pct_5d"), 2),
         nav_pct_1m=round(wavg("nav_pct_1m"), 2),
         position_pct=int(round(wavg("position_pct"))),
+        pct_rank_60d=int(round(wavg("pct_rank_60d"))),
+        pct_rank_120d=int(round(wavg("pct_rank_120d"))),
+        pct_rank_250d=int(round(wavg("pct_rank_250d"))),
         vol_ratio=round(wavg("vol_ratio"), 2),
         flow_1d_cny=round(wsum("flow_1d_cny"), 0),
         flow_5d_cny=round(wsum("flow_5d_cny"), 0),
@@ -328,10 +378,12 @@ def _cli():
             print(f"  data_quality={q}, no ETF data (fallback)")
             continue
         print(f"  quality={sig.data_quality}  ETFs={len(sig.etfs)}")
-        print(f"  nav: 1d={sig.nav_pct_1d:+.2f}%  5d={sig.nav_pct_5d:+.2f}%  1m={sig.nav_pct_1m:+.2f}%  位置={sig.position_pct}%  量比={sig.vol_ratio:.2f}x")
+        print(f"  nav: 1d={sig.nav_pct_1d:+.2f}%  5d={sig.nav_pct_5d:+.2f}%  1m={sig.nav_pct_1m:+.2f}%  量比={sig.vol_ratio:.2f}x")
+        print(f"  位置: v1(min-max 120d)={sig.position_pct}%   v2 pct_rank: 60d={sig.pct_rank_60d}%  120d={sig.pct_rank_120d}%  250d={sig.pct_rank_250d}%")
         print(f"  flow: 1d={_fmt_cny(sig.flow_1d_cny)}  5d={_fmt_cny(sig.flow_5d_cny)}  20d={_fmt_cny(sig.flow_20d_cny)}")
         for m in sig.etfs:
-            print(f"    · {m['ts_code']} {m['name']} (w={m['weight']:.2f})  nav5d={m['nav_pct_5d']:+.2f}%  flow5d={_fmt_cny(m['flow_5d_cny'])}")
+            share_note = f" [share_d={m.get('share_date','?')}, flow_days={m.get('flow_data_days',0)}]" if m.get('share_date') != m.get('latest_date') else ""
+            print(f"    · {m['ts_code']} {m['name']} (w={m['weight']:.2f})  nav5d={m['nav_pct_5d']:+.2f}%  flow5d={_fmt_cny(m['flow_5d_cny'])}{share_note}")
 
 
 if __name__ == "__main__":
