@@ -1,0 +1,62 @@
+# watchlist/proposed/2026-05-13.yaml
+# 来源: framework v2.3 首日全量扫描 (sector_score 39 concepts → sector_picks 8 HOT sectors Tier 2-4)
+# 审批: 用户在飞书 chat 或手工调 `python3 watchlist_ops.py watchlist/proposed/2026-05-13.yaml --approve 1,2,3`
+
+schema_version: 1
+generated_at: 2026-05-13T19:30:00+08:00
+generated_by: framework-v2.3-batch-sector-scan
+review_doc: https://tcnv6xag1i9w.feishu.cn/docx/Utq7dhc66oCA9qx5f4sclffbngd  # v2.3 initialization doc
+
+# 5 个 proposal (3 BUY 新加 + 2 WATCH 新加 + 0 update/remove)
+# 已在观察池的新易盛/中际旭创虽然也是 BUY, 不需要 add 重复 (用户自行决定是否建仓)
+
+proposals:
+  - id: 1
+    op: add
+    entry:
+      code: "601688.SH"
+      name: "华泰证券"
+      tier: "博弈仓-追涨"
+      themes: [金融-证券, 券商龙头]
+      added_at: 2026-05-13
+      reason: "framework v2.3 首条'中枢位置标准 BUY'. Tier 1 金融-证券 76 HOT (资金 flow_20d +13 亿, 位置 pos60=54% 低位). 乖离 +34.1% (PE 10 vs 同业 15). ROE 2.3% + 净利 YoY +31.8%. 仓位 ≤ 8%. rec_20260513_0001"
+
+  - id: 2
+    op: add
+    entry:
+      code: "603444.SH"
+      name: "吉比特"
+      tier: "博弈仓-追涨"
+      themes: [游戏传媒, 手游龙头]
+      added_at: 2026-05-13
+      reason: "framework v2.3 BUY. Tier 1 游戏传媒 63.3 HOT (flow_20d +6.4 亿). 乖离 +24.5% (PE 13.8 vs 同业 16.3). 位置 pos120=30% 低位. ROE 9.0% (板块最高) + 净利 YoY +82.7%. 仓位 ≤ 8%. FOLLOWER."
+
+  - id: 3
+    op: add
+    entry:
+      code: "300750.SZ"
+      name: "宁德时代"
+      tier: "博弈仓-追涨"
+      themes: [锂电产业链, 储能龙头, 全球电池龙头]
+      added_at: 2026-05-13
+      reason: "framework v2.3 BUY (末期小仓). Tier 1 锂电产业链 65.5 HOT (flow_20d +14.7 亿). 乖离 +33.7% (PE 25.4 vs 同业 37.5). ROE 6.0% + 净利 YoY +48.5%. 位置 pos120=89% 偏高 → 仓位 ≤ 3%."
+
+  - id: 4
+    op: add
+    entry:
+      code: "002371.SZ"
+      name: "北方华创"
+      tier: "观察池"
+      themes: [半导体设备, AI芯片辅助, 国产替代]
+      added_at: 2026-05-13
+      reason: "framework v2.3 WATCH. Tier 1 AI 芯片板块 35.9 COLD (flow 负 -28 亿) 但 nav 正 Gate 通过. 乖离 +29.1% (差 +30% 阈值 0.9pt). ROE 4.2% + 净利 YoY +3.4% 温和增长. 位置 pos120=100% 末期. 等板块 flow 转正或基本面提速再评估."
+
+  - id: 5
+    op: add
+    entry:
+      code: "300014.SZ"
+      name: "亿纬锂能"
+      tier: "观察池"
+      themes: [锂电产业链, 电池, 动力储能]
+      added_at: 2026-05-13
+      reason: "framework v2.3 WATCH. Tier 1 锂电 65.5 HOT. 乖离 +19.9% (差 +20% 阈值 0.1pt). ROE 3.4% + 净利 YoY +31.3%. 位置 pos120=42% 中低位. 如果 1-2 周内乖离继续扩大或跌破 +20% 可升级 BUY."
