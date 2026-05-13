@@ -1,0 +1,156 @@
+# concept_etf_map.yaml — 概念板块 ETF 映射表
+#
+# 目的: 用 ETF 数据 (份额 + 净值) 算板块级资金面/技术面, 比 concepts_data.py
+#       的成分股均值更 canonical (ETF 份额变动 = 机构+散户共识资金流向).
+#
+# 数据来源:
+#   - tushare fund_share  (每日 ETF 份额, 单位: 万份)
+#   - tushare fund_daily  (每日 ETF OHLCV 净值)
+#   - tushare fund_basic  (ETF 元数据)
+#
+# 板块资金净流入 (CNY) = (fd_share[today] - fd_share[yesterday]) × nav[today] × 10000
+#
+# 数据质量标签 (data_quality):
+#   direct   — 有独立主题 ETF, 数据最准
+#   proxy    — 用父级 ETF 代理 (精度打折, 仍优于 concept 成分股均值)
+#   fallback — 无合适 ETF, 退回到 concepts_data.py 成分股平均
+#
+# 多 ETF 混合: 若一个 concept 映射到多只 ETF, 按 weight 加权混合
+#              (weight 之和应接近 1.0, 可用来降噪 + 扩大覆盖)
+#
+# 维护:
+#   - 新 concept 加入时, 先搜 tushare fund_basic 看是否有对应主题 ETF
+#   - 规模 < 10 亿的 ETF 不做主映射 (流动性不足)
+#   - 每 3-6 个月 review 映射是否仍代表主题 (如主题演化 / 新 ETF 发行)
+
+schema_version: 1
+last_updated: 2026-05-13
+
+concepts:
+
+  # ═══════════ AI 算力链 (5 个核心主题) ═══════════
+
+  "AI芯片 (算力核心)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159995.SZ", name: "芯片ETF华夏", weight: 0.5}      # 跟踪中证芯片产业指数, 规模 ~250 亿
+      - {code: "512480.SH", name: "半导体ETF国联安", weight: 0.5}  # 跟踪中证全指半导体, 规模 ~300 亿
+    note: "两只组合覆盖 AI 芯片主流. 寒武纪/海光/澜起/中芯/北方华创等核心股都在持仓里"
+
+  "存储芯片 (HBM/DDR/NAND)":
+    data_quality: proxy
+    parent_concept: "AI芯片 (算力核心)"
+    primary_etfs:
+      - {code: "159995.SZ", name: "芯片ETF华夏", weight: 1.0}
+    note: "无独立存储 ETF. 江波龙/兆易创新在芯片 ETF 约 5-8% 权重"
+
+  "先进封装 (CoWoS/Chiplet)":
+    data_quality: proxy
+    parent_concept: "AI芯片 (算力核心)"
+    primary_etfs:
+      - {code: "159995.SZ", name: "芯片ETF华夏", weight: 1.0}
+    note: "无独立先进封装 ETF. 长电/通富/华天在芯片 ETF 合计约 8-10% 权重"
+
+  "光通信 (光模块/CPO)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159583.SZ", name: "通信ETF富国", weight: 0.5}     # 跟踪中证全指通信设备
+      - {code: "159994.SZ", name: "通信ETF银华", weight: 0.5}
+    note: "中际旭创/新易盛/天孚通信/光迅科技在通信 ETF 合计 ~25% 权重. CPO 主题主要由这些龙头驱动"
+
+  "英伟达产业链":
+    data_quality: proxy
+    parent_concept: "AI芯片 (算力核心) + 光通信"
+    primary_etfs:
+      - {code: "159995.SZ", name: "芯片ETF华夏", weight: 0.4}
+      - {code: "159583.SZ", name: "通信ETF富国", weight: 0.4}
+      - {code: "159819.SZ", name: "人工智能ETF", weight: 0.2}     # 跨赛道
+    note: "工业富联/沪电股份/胜宏科技等 PCB + 光模块链, 无独立 NV 链 ETF"
+
+  # ═══════════ AI 应用 + 算力基建 ═══════════
+
+  "AI 应用 (软件侧)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "159819.SZ", name: "人工智能ETF", weight: 0.5}     # 易方达, 规模 ~40 亿
+      - {code: "515070.SH", name: "人工智能ETF华夏", weight: 0.5}
+    note: "科大讯飞/金山办公/拓尔思在 AI ETF 持仓里. 软件侧弹性大"
+
+  "AIDC/算力租赁":
+    data_quality: proxy
+    parent_concept: "人工智能 + 电信运营"
+    primary_etfs:
+      - {code: "159819.SZ", name: "人工智能ETF", weight: 0.5}
+      - {code: "159583.SZ", name: "通信ETF富国", weight: 0.5}
+    note: "润泽科技/浪潮信息主要在 AI ETF. 没有独立 IDC ETF"
+
+  "PCB (算力基建)":
+    data_quality: proxy
+    parent_concept: "通信设备 + 半导体"
+    primary_etfs:
+      - {code: "159583.SZ", name: "通信ETF富国", weight: 0.5}
+      - {code: "159995.SZ", name: "芯片ETF华夏", weight: 0.5}
+    note: "沪电股份/胜宏科技/生益科技/深南电路在通信+芯片 ETF 合计 ~15%"
+
+  # ═══════════ 其他科技主题 ═══════════
+
+  "华为产业链":
+    data_quality: fallback
+    primary_etfs: []
+    note: "无独立华为 ETF. 用 concepts_data.py 成分股均值. 主要 proxy: 软通动力/紫光国微/长电科技"
+
+  "人形机器人":
+    data_quality: fallback
+    primary_etfs: []
+    note: "无独立机器人 ETF (有几只智能制造 ETF 但成分不聚焦). 用 concepts_data 成分股均值"
+
+  # ═══════════ 能源 / 新能源 ═══════════
+
+  "固态电池":
+    data_quality: proxy
+    parent_concept: "新能源"
+    primary_etfs:
+      - {code: "159875.SZ", name: "新能源ETF嘉实", weight: 0.5}
+      - {code: "516090.SH", name: "新能源ETF易方达", weight: 0.5}
+    note: "天齐锂业/当升科技/容百科技/恩捷股份在新能源 ETF 合计 ~15%"
+
+  # ═══════════ 防御 / 价值 ═══════════
+
+  "高股息 (红利防御)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "510880.SH", name: "红利ETF华泰柏瑞", weight: 0.5}  # 经典红利 ETF, 规模 ~250 亿
+      - {code: "515100.SH", name: "红利ETF博时", weight: 0.5}
+    note: "工行/中石油/中石化/长江电力/神华等高股息龙头在红利 ETF 里"
+
+  "白酒 (消费龙头)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "161725.SZ", name: "白酒基金LOF招商", weight: 1.0}  # 跟踪中证白酒, 市场唯一主流
+    note: "LOF 不是 ETF 但机制类似 (有开放申赎 + 二级市场流动). 茅台/五粮液/汾酒/泸州老窖 覆盖完整"
+
+  "创新药 (医药龙头)":
+    data_quality: direct
+    primary_etfs:
+      - {code: "512010.SH", name: "医药ETF易方达", weight: 0.4}
+      - {code: "159938.SZ", name: "医药ETF广发", weight: 0.3}
+      - {code: "159858.SZ", name: "生物医药ETF天弘", weight: 0.3}
+    note: "恒瑞/药明康德/迈瑞/泰格 在医药 ETF 合计 ~30% 权重"
+
+
+# ETF 元数据速查 (便于快速查询 canonical ETF 列表)
+all_etfs_referenced:
+  - "159995.SZ"  # 芯片ETF华夏
+  - "512480.SH"  # 半导体ETF国联安
+  - "159583.SZ"  # 通信ETF富国
+  - "159994.SZ"  # 通信ETF银华
+  - "159819.SZ"  # 人工智能ETF (易方达)
+  - "515070.SH"  # 人工智能ETF华夏
+  - "159875.SZ"  # 新能源ETF嘉实
+  - "516090.SH"  # 新能源ETF易方达
+  - "510880.SH"  # 红利ETF华泰柏瑞
+  - "515100.SH"  # 红利ETF博时
+  - "161725.SZ"  # 白酒基金LOF招商
+  - "512010.SH"  # 医药ETF易方达
+  - "159938.SZ"  # 医药ETF广发
+  - "159858.SZ"  # 生物医药ETF天弘
