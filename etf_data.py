@@ -43,8 +43,8 @@ def load_map() -> dict[str, Any]:
     """Load concept_etf_map.yaml; return full dict."""
     with _MAP_PATH.open("r", encoding="utf-8") as f:
         data = yaml.safe_load(f) or {}
-    if data.get("schema_version") != 1:
-        raise ValueError(f"concept_etf_map.yaml schema_version != 1")
+    if data.get("schema_version") not in (1, 2):
+        raise ValueError(f"concept_etf_map.yaml schema_version {data.get('schema_version')} unsupported")
     return data
 
 
@@ -108,22 +108,45 @@ def fetch_share(ts_code: str, *, days_back: int = 30) -> list[dict[str, Any]]:
 
 
 def fetch_daily(ts_code: str, *, days_back: int = 30) -> list[dict[str, Any]]:
-    """Fetch daily OHLCV for an ETF.
+    """Fetch daily OHLCV for an ETF, **post-adjusted** close via fund_adj.
 
-    Returns list sorted ASC by date: [{trade_date, close, vol, amount}, ...]
-    close: CNY (net asset value proxy)
-    vol: 手 (100-share lots)
-    amount: 千元
+    Returns list sorted ASC by date: [{trade_date, close, raw_close, vol, amount}, ...]
+    close:     后复权净值 (连续, 适合算 nav_pct / 位置)
+    raw_close: 原始交易价 (不连续, 分红除息会跳)
+    vol:       手 (100-share lots)
+    amount:    千元
+
+    2026-05-13 FIX: 旧版用 raw close 算 nav_pct, 遇到分红/拆分会得到 -60% 这种
+    虚假跌幅 (案例: 515050 通信 ETF 5/13 除息 adj=3.0). 改用 fund_adj 后复权.
     """
     rows = _tushare_csv("fund_daily", ts_code=ts_code, fields="ts_code,trade_date,close,vol,amount")
     if not rows:
         return []
+
+    adj_rows = _tushare_csv("fund_adj", ts_code=ts_code, fields="ts_code,trade_date,adj_factor")
+    adj_by_date: dict[str, float] = {}
+    for ar in adj_rows:
+        try:
+            adj_by_date[ar["trade_date"]] = float(ar["adj_factor"])
+        except (KeyError, ValueError):
+            continue
+
+    # 取最新 adj_factor 作为 normalizing base (后复权)
+    if adj_by_date:
+        latest_adj = adj_by_date[max(adj_by_date.keys())]
+    else:
+        latest_adj = 1.0
+
     parsed = []
     for r in rows:
         try:
+            raw_close = float(r["close"])
+            adj_factor = adj_by_date.get(r["trade_date"], latest_adj)
+            adj_close = raw_close * adj_factor / latest_adj
             parsed.append({
                 "trade_date": r["trade_date"],
-                "close": float(r["close"]),
+                "close": adj_close,           # 后复权
+                "raw_close": raw_close,       # 原始
                 "vol": float(r.get("vol") or 0),
                 "amount": float(r.get("amount") or 0),
             })
