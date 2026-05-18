@@ -140,18 +140,36 @@ def _parse_ts_date(ts: str) -> date:
 
 
 def _fetch_close(ts_code: str, trade_date: str | None = None) -> float | None:
-    """Get latest close (or specific trade_date close)."""
+    """Get latest close (or specific trade_date close).
+
+    Routes .HK codes to hk_daily API; A-share codes to daily.
+    Falls back to quote_sources (Tencent kline) if tushare returns nothing.
+    """
+    is_hk = ts_code.upper().endswith(".HK")
+    api = "hk_daily" if is_hk else "daily"
+
     if trade_date:
-        rows = _ts_csv("daily", ts_code=ts_code, trade_date=trade_date)
+        rows = _ts_csv(api, ts_code=ts_code, trade_date=trade_date)
     else:
-        rows = _ts_csv("daily", ts_code=ts_code)
-    if not rows:
-        return None
-    rows.sort(key=lambda x: x.get("trade_date", ""), reverse=True)
+        rows = _ts_csv(api, ts_code=ts_code)
+
+    if rows:
+        rows.sort(key=lambda x: x.get("trade_date", ""), reverse=True)
+        try:
+            return float(rows[0]["close"])
+        except (KeyError, ValueError):
+            pass
+
+    # Fallback: quote_sources daily_bars (tencent kline for HK, mootdx for A)
     try:
-        return float(rows[0]["close"])
-    except (KeyError, ValueError):
-        return None
+        from quote_sources import daily_bars
+        bars = daily_bars(ts_code, days=5)
+        if bars:
+            return float(bars[-1]["close"])
+    except Exception:
+        pass
+
+    return None
 
 
 def verify_rec(rec: dict[str, Any], current_close: float | None = None,

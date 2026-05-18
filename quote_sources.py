@@ -6,14 +6,16 @@
   2. tencent    — 估值快照 (PE/PB/市值/换手/涨跌停价). HTTP 公开, 无需 token.
   3. ths_concept — 同花顺概念板块指数 (K线/成分股). 通过 akshare 间接调用.
 
-对外暴露 3 个高层函数 + 1 个 CLI:
+对外暴露 4 个高层函数 + 1 个 CLI:
   realtime_quotes(codes)       → 实时价格 + 盘口 (mootdx primary, tencent fallback)
   valuation_snapshot(codes)    → PE/PB/市值/换手/涨跌停 (tencent)
+  daily_bars(code, days=20)    → 日K线 (A股: mootdx→tencent; 港股: tencent)
   concept_index(name, days=5)  → 概念板块近 N 日 K线 (ths via akshare)
 
 CLI:
   python quote_sources.py quote 600519 002475 301308   # 实时行情
   python quote_sources.py val   600519 002475          # 估值快照
+  python quote_sources.py daily 00700.HK --days 10     # 日K线 (A/HK通用)
   python quote_sources.py concept AI手机               # 概念K线
   python quote_sources.py bars 600519 --freq 5min --count 20  # 分钟K线
 
@@ -321,6 +323,86 @@ def valuation_snapshot(codes: List[str]) -> List[Dict[str, Any]]:
 
 
 # ═══════════════════════════════════════════════════════
+# 2b. 腾讯财经 — 港股/A股日K线 (kline API)
+# ═══════════════════════════════════════════════════════
+
+def _tencent_daily_kline(code: str, days: int = 20) -> List[Dict]:
+    """从腾讯 kline API 获取日K线 (复权).
+
+    支持 A 股和港股. 返回 [{date, open, close, high, low, volume}, ...]
+    """
+    tc_code = _tencent_code(code)
+    url = f"http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param={tc_code},day,,,{days},qfq"
+    try:
+        req = urllib.request.Request(url)
+        resp = urllib.request.urlopen(req, timeout=15)
+        import json as _json
+        data = _json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        print(f"[quote_sources] tencent kline failed for {tc_code}: {e}", file=sys.stderr)
+        return []
+
+    inner = data.get("data", {}).get(tc_code, {})
+    day_data = inner.get("qfqday") or inner.get("day")
+    if not day_data:
+        return []
+
+    results = []
+    for bar in day_data:
+        # bar = ["2026-05-12", "462.000", "457.200", "469.000", "457.200", "32469707.000"]
+        # fields: date, open, close, high, low, volume
+        if len(bar) < 6:
+            continue
+        results.append({
+            "date": bar[0],
+            "open": float(bar[1]) if bar[1] else 0,
+            "close": float(bar[2]) if bar[2] else 0,
+            "high": float(bar[3]) if bar[3] else 0,
+            "low": float(bar[4]) if bar[4] else 0,
+            "volume": int(float(bar[5])) if bar[5] else 0,
+        })
+    return results
+
+
+def daily_bars(code: str, days: int = 20) -> List[Dict]:
+    """统一日K线接口 — 自动选源, 盘中/盘后都能用.
+
+    路由策略:
+      A 股: mootdx (daily bars) primary → tencent kline fallback
+      港股: tencent kline (唯一实时源)
+
+    返回 [{date, open, high, low, close, volume}, ...] 按日期升序.
+    """
+    is_hk = _is_hk_code(code)
+
+    if not is_hk:
+        # A 股: try mootdx first
+        try:
+            raw = bars(code, frequency='daily', count=days)
+            if raw:
+                # Normalize datetime field → date
+                results = []
+                for r in raw:
+                    dt_str = r["datetime"]
+                    # mootdx datetime format: "2026-05-15 00:00:00" or "2026-05-15"
+                    date_str = dt_str[:10] if len(dt_str) >= 10 else dt_str
+                    results.append({
+                        "date": date_str,
+                        "open": r["open"],
+                        "high": r["high"],
+                        "low": r["low"],
+                        "close": r["close"],
+                        "volume": r["volume"],
+                    })
+                return results
+        except Exception as e:
+            print(f"[quote_sources] mootdx daily_bars failed for {code}: {e}", file=sys.stderr)
+
+    # Fallback (A股) / Primary (港股): tencent kline
+    return _tencent_daily_kline(code, days)
+
+
+# ═══════════════════════════════════════════════════════
 # 3. 同花顺概念板块 (via akshare)
 # ═══════════════════════════════════════════════════════
 
@@ -453,6 +535,22 @@ def _cli():
                   f"市值={r['total_mkt_cap'] or 'N/A'}亿 "
                   f"换手={r['turnover_rate'] or 'N/A'}% "
                   f"涨跌={r['change_pct'] or 'N/A'}%")
+
+    elif cmd == 'daily':
+        code = sys.argv[2] if len(sys.argv) > 2 else None
+        if not code:
+            print("usage: quote_sources.py daily <code> [--days 20]", file=sys.stderr)
+            sys.exit(2)
+        days = 20
+        args = sys.argv[3:]
+        for i, a in enumerate(args):
+            if a == '--days' and i + 1 < len(args):
+                days = int(args[i + 1])
+        results = daily_bars(code, days)
+        print(f"  === {code} daily x{days} ===")
+        for r in results:
+            print(f"  {r['date']} O={r['open']:.2f} H={r['high']:.2f} "
+                  f"L={r['low']:.2f} C={r['close']:.2f} Vol={r['volume']}")
 
     elif cmd == 'concept':
         name = sys.argv[2] if len(sys.argv) > 2 else None

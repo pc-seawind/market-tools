@@ -74,8 +74,74 @@ def _to_none(v):
     return v
 
 
+def _hk_daily_tencent(ts_code, start, end, fields):
+    """Tertiary fallback: tencent kline for HK daily (web.ifzq.gtimg.cn).
+
+    Free, no quota, returns 20-day kline by default.
+    Used when both tushare (10/day) and akshare/新浪 fail.
+    """
+    import urllib.request
+    symbol = ts_code.split(".")[0]  # "00700.HK" → "00700"
+    tc_code = f"hk{symbol}"
+
+    # Tencent kline API: returns up to ~1000 bars
+    url = f"http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param={tc_code},day,,,320,qfq"
+    try:
+        req = urllib.request.Request(url)
+        resp = urllib.request.urlopen(req, timeout=15)
+        import json as _json
+        data = _json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        sys.stderr.write(f"[tencent kline] fetch failed for {tc_code}: {e}\n")
+        return None
+
+    # Navigate response: data → data → hkXXXXX → day (or qfqday)
+    inner = data.get("data", {}).get(tc_code, {})
+    day_data = inner.get("qfqday") or inner.get("day")
+    if not day_data:
+        sys.stderr.write(f"[tencent kline] no day data for {tc_code}\n")
+        return None
+
+    def _fmt_date(d):
+        # "2026-05-08" → "20260508"
+        return d.replace("-", "") if d else ""
+
+    start_cmp = start or ""
+    end_cmp = end or ""
+
+    rows = []
+    for bar in day_data:
+        # bar = ["2026-05-12", "462.000", "457.200", "469.000", "457.200", "32469707.000"]
+        # fields: date, open, close, high, low, volume
+        if len(bar) < 6:
+            continue
+        trade_date = _fmt_date(bar[0])
+        if start_cmp and trade_date < start_cmp:
+            continue
+        if end_cmp and trade_date > end_cmp:
+            continue
+        rows.append({
+            "ts_code":    ts_code,
+            "trade_date": trade_date,
+            "open":       _to_none(float(bar[1])) if bar[1] else None,
+            "close":      _to_none(float(bar[2])) if bar[2] else None,
+            "high":       _to_none(float(bar[3])) if bar[3] else None,
+            "low":        _to_none(float(bar[4])) if bar[4] else None,
+            "vol":        _to_none(float(bar[5])) if bar[5] else None,
+            "amount":     None,   # tencent kline 不提供成交额
+            "pct_chg":    None,
+            "change":     None,
+        })
+
+    return _normalize_df_to_body(rows, fields) if rows else None
+
+
 def _hk_daily(params, fields):
-    """tushare hk_daily → akshare stock_hk_daily (新浪数据源).
+    """tushare hk_daily → akshare stock_hk_daily (新浪) → tencent kline (tertiary).
+
+    Fallback chain:
+      1. akshare stock_hk_daily (新浪数据源, 全部历史)
+      2. tencent kline API (free, ~320 bars, no auth)
 
     注: 首选新浪 (stock_hk_daily) 而非东财 (stock_hk_hist) — 因为东财
     push2his.eastmoney.com 对我们 IP 存在 SSL MITM / 连接封锁 (实测
@@ -98,9 +164,11 @@ def _hk_daily(params, fields):
         df = ak.stock_hk_daily(symbol=symbol)
     except Exception as e:
         sys.stderr.write(f"[akshare] stock_hk_daily failed for {symbol}: {e}\n")
-        return None
+        # Tertiary fallback: tencent kline
+        return _hk_daily_tencent(ts_code, start, end, fields)
     if df is None or df.empty:
-        return None
+        # Tertiary fallback: tencent kline
+        return _hk_daily_tencent(ts_code, start, end, fields)
 
     # 本地 filter start/end (date 格式 YYYY-MM-DD)
     def _fmt(d):
