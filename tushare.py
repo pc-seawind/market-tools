@@ -109,6 +109,11 @@ _WEEKLY_APIS = {
 _DAILY_APIS = {
     "moneyflow_hsgt", "hsgt_top10", "top_list", "top_inst",
 }
+# 基金日级 (14h TTL — 避免 cron 间隔 ≈ TTL 的竞态条件:
+#   每日 08:00 写入的缓存在 22:00 过期, 次日 08:00 必 miss → 拿新数据)
+_FUND_DAILY_APIS = {
+    "fund_daily", "fund_share", "fund_adj",
+}
 
 
 def _cache_key(api_name, params, fields):
@@ -144,6 +149,8 @@ def _cache_ttl(api_name, params):
         return 86400 * 7
     if api_name in _DAILY_APIS:
         return 86400
+    if api_name in _FUND_DAILY_APIS:
+        return 50400  # 14h — 防 cron 间隔 ≈ TTL 竞态
 
     return 86400  # 默认 1 天
 
