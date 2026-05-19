@@ -68,13 +68,19 @@ class StockMetrics:
     trade_date: str
     close: float
     pct_1d: float
+    pct_5d: float               # 新增 2026-05-20: 5d 累计涨幅, 配 vol_ratio_5d
     pct_1w: float
     pct_1m: float
     position_pct: int           # v1 min-max 120d
     pct_rank_60d: int           # v2
     pct_rank_120d: int
     pct_rank_250d: int
-    vol_ratio: float
+    # 量价 (修 2026-05-20: 涨跌窗口必须 ↔ 量比窗口对齐)
+    vol_ratio_1d: float         # 今日量 / 过去5日均量 (排除今日) — 配 pct_1d
+    vol_ratio_5d: float         # 5日均量 / 20日均量 — 配 pct_5d, 看趋势
+    volume_signal: str          # DRY_UP / NORMAL / EXPANDING / BLOWOFF
+    pv_alignment: str           # 价量同窗口对照: 涨而不补量(真) / 放量上涨(真) / 放量下跌 / 中性 / ...
+    vol_ratio: float            # 兼容字段 = vol_ratio_5d (别处可能引用)
     # daily_basic
     pe_ttm: float | None
     pb: float | None
@@ -98,6 +104,55 @@ def _percentile_of(window: list, val: float) -> int:
     return int(round((lower + 0.5 * equal) / len(window) * 100))
 
 
+def _classify_volume(vol_1d_ratio: float, vol_5d_ratio: float) -> str:
+    """量能分级.
+
+    vol_1d_ratio = 今日量 / 过去5日均量 (排除今日) — 短期 burst
+    vol_5d_ratio = 5日均量 / 20日均量             — 中期趋势
+    """
+    if vol_1d_ratio < 0.7 and vol_5d_ratio < 0.9:
+        return "DRY_UP"        # 持续萎缩
+    if vol_1d_ratio > 1.8 and vol_5d_ratio > 1.2:
+        return "BLOWOFF"       # 爆量, 短期高潮
+    if vol_1d_ratio > 1.3 or vol_5d_ratio > 1.15:
+        return "EXPANDING"     # 持续放量
+    return "NORMAL"
+
+
+def _classify_pv(pct_1d: float, pct_5d: float, vol_1d_ratio: float, vol_5d_ratio: float) -> str:
+    """价量同窗口对照.
+
+    1d 涨跌幅 vs 1d 量比, 5d 涨跌幅 vs 5d 量比. 把两层信号合成一句结论.
+    """
+    # 1d 维度
+    if pct_1d > 0.5 and vol_1d_ratio < 0.85:
+        d1 = "1d涨而不补量"
+    elif pct_1d > 2 and vol_1d_ratio < 0.7:
+        d1 = "1d强涨萎量(警)"
+    elif pct_1d > 0.5 and vol_1d_ratio > 1.3:
+        d1 = "1d放量上涨"
+    elif pct_1d < -0.5 and vol_1d_ratio > 1.3:
+        d1 = "1d放量下跌"
+    elif pct_1d < -0.5 and vol_1d_ratio < 0.85:
+        d1 = "1d缩量回调"
+    else:
+        d1 = ""
+
+    # 5d 维度
+    if pct_5d > 3 and vol_5d_ratio > 1.15:
+        d5 = "5d放量推升"
+    elif pct_5d > 3 and vol_5d_ratio < 0.95:
+        d5 = "5d缩量上涨"
+    elif pct_5d < -3 and vol_5d_ratio > 1.15:
+        d5 = "5d放量调整"
+    else:
+        d5 = ""
+
+    if d1 and d5:
+        return f"{d1} | {d5}"
+    return d1 or d5 or "中性"
+
+
 def compute_stock(code: str, name: str) -> StockMetrics | None:
     """Pull and compute all per-stock metrics."""
     daily = _ts("daily", ts_code=code, fields="trade_date,close,vol,amount")
@@ -112,7 +167,8 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
     close = closes[-1]
     trade_date = daily[-1]["trade_date"]
     pct_1d = (close / closes[-2] - 1) * 100 if len(closes) >= 2 else 0
-    pct_1w = (close / closes[-6] - 1) * 100 if len(closes) >= 6 else 0
+    pct_5d = (close / closes[-6] - 1) * 100 if len(closes) >= 6 else 0
+    pct_1w = pct_5d  # 1W ≈ 5个交易日, 兼容旧字段
     pct_1m = (close / closes[-21] - 1) * 100 if len(closes) >= 21 else 0
 
     w120 = closes[-120:] if len(closes) >= 120 else closes
@@ -123,9 +179,17 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
     pct120 = _percentile_of(w120, close)
     pct250 = _percentile_of(closes[-250:] if len(closes) >= 250 else closes, close)
 
+    # ── 量能 (修 2026-05-20: 涨跌幅 ↔ 量比 必须同窗口对齐) ──
+    # 1d: 今日量 vs 过去 5 天均量 (排除今天) → 配 pct_1d
+    # 5d: 5d MA vs 20d MA                  → 配 pct_5d
+    vol_today = vols[-1] if vols else 0
+    vol_5d_excl = sum(vols[-6:-1]) / 5 if len(vols) >= 6 else 0
+    vol_ratio_1d = vol_today / vol_5d_excl if vol_5d_excl > 0 else 0
     vol5 = sum(vols[-5:]) / 5 if len(vols) >= 5 else 0
     vol20 = sum(vols[-20:]) / 20 if len(vols) >= 20 else 0
-    vol_ratio = vol5 / vol20 if vol20 > 0 else 0
+    vol_ratio_5d = vol5 / vol20 if vol20 > 0 else 0
+    volume_signal = _classify_volume(vol_ratio_1d, vol_ratio_5d)
+    pv_alignment = _classify_pv(pct_1d, pct_5d, vol_ratio_1d, vol_ratio_5d)
 
     # daily_basic
     basic = _ts("daily_basic", ts_code=code, trade_date=trade_date,
@@ -166,10 +230,15 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
 
     return StockMetrics(
         code=code, name=name, trade_date=trade_date, close=close,
-        pct_1d=round(pct_1d, 2), pct_1w=round(pct_1w, 2), pct_1m=round(pct_1m, 2),
+        pct_1d=round(pct_1d, 2), pct_5d=round(pct_5d, 2),
+        pct_1w=round(pct_1w, 2), pct_1m=round(pct_1m, 2),
         position_pct=position_pct,
         pct_rank_60d=pct60, pct_rank_120d=pct120, pct_rank_250d=pct250,
-        vol_ratio=round(vol_ratio, 2),
+        vol_ratio_1d=round(vol_ratio_1d, 2),
+        vol_ratio_5d=round(vol_ratio_5d, 2),
+        volume_signal=volume_signal,
+        pv_alignment=pv_alignment,
+        vol_ratio=round(vol_ratio_5d, 2),  # 兼容
         pe_ttm=bf("pe_ttm"),
         pb=bf("pb"),
         mkt_cap_yi=round(float(b["total_mv"])/10000, 1) if b.get("total_mv") else None,
@@ -188,6 +257,9 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
 @dataclass
 class PickEvaluation:
     stock: dict[str, Any]                 # StockMetrics as dict
+    # Tier 0 (旁路, 新增 2026-05-20)
+    tier0_pass: bool                      # 趋势龙头通道是否触发
+    tier0_reasons: list[str]              # 满足/未满足项
     # Tier 2
     tier2_pass: bool
     tier2_reasons: list[str]
@@ -201,8 +273,56 @@ class PickEvaluation:
     position_band: str                    # < 70 / 70-85 / > 85
     tier4_position_size_max: float        # ≤ 8 / 5 / 3
     # 最终
-    verdict: str                          # BUY / WATCH / AVOID
+    verdict: str                          # BUY / WATCH / AVOID / TREND_BUY / TREND_WATCH
     reason: str                           # 一句话解释
+
+
+def tier0_trend_leader(s: StockMetrics, sector_sig: SectorSignals,
+                       sector_score_total: float) -> tuple[bool, list[str]]:
+    """Tier 0 趋势龙头旁路 (新增 2026-05-20).
+
+    动机: 高估值景气龙头 (寒武纪 PE 270 / 中际旭创 PE 50+) 在 Tier 3 估值乖离过滤
+          下必然被砍, 但板块 HOT + 主力疯狂流入 + 北向重仓 + 业绩同比 +100% 时,
+          系统应该承认"在 HOT 板块跟龙头"是合法策略, 不能用"防垃圾股"的滤网套上来.
+
+    触发 (全部 AND, 任一不满足都不进 Tier 0):
+      [板块层]
+        - sector_score >= 60   (HOT 或顶部 NEUTRAL)
+        - sector_sig.flow_5d >= +3 亿 (强资金正流入, 不是单点反弹)
+      [个股层]
+        - pct_rank_120d >= 75  (120日位置高位, 趋势已确认)
+        - pct_1m >= 8          (1月动量正)
+        - net_yoy >= 50        (业绩硬底, 防纯炒作壳股)
+        - vol_ratio_5d >= 0.95 (5日量能不萎缩)
+        - volume_signal != "DRY_UP"  (短期不持续干涸)
+
+    Return:
+      (True, [全部满足项])  → 走 Tier 0 通道, 跳过 Tier 3 估值否决
+      (False, [缺哪些])     → 回归常规 Tier 2-4 流程
+    """
+    checks: list[tuple[bool, str]] = []
+
+    checks.append((sector_score_total >= 60,
+                   f"板块 Tier 1 = {sector_score_total:.1f} {'✓' if sector_score_total >= 60 else f'< 60 ✗'}"))
+    flow_yi = sector_sig.flow_5d_cny / 1e8
+    checks.append((flow_yi >= 3,
+                   f"板块 flow_5d {flow_yi:+.1f}亿 {'✓' if flow_yi >= 3 else '< +3亿 ✗'}"))
+    checks.append((s.pct_rank_120d >= 75,
+                   f"位置 pos120 = {s.pct_rank_120d}% {'✓' if s.pct_rank_120d >= 75 else '< 75 ✗'}"))
+    checks.append((s.pct_1m >= 8,
+                   f"1M 动量 = {s.pct_1m:+.1f}% {'✓' if s.pct_1m >= 8 else '< +8% ✗'}"))
+    if s.net_yoy is None:
+        checks.append((False, "净利 YoY 数据缺 ✗"))
+    else:
+        checks.append((s.net_yoy >= 50,
+                       f"净利 YoY = {s.net_yoy:+.1f}% {'✓' if s.net_yoy >= 50 else '< +50% ✗'}"))
+    checks.append((s.vol_ratio_5d >= 0.95,
+                   f"vol_5d/20d = {s.vol_ratio_5d:.2f} {'✓' if s.vol_ratio_5d >= 0.95 else '< 0.95 ✗'}"))
+    checks.append((s.volume_signal != "DRY_UP",
+                   f"vol_signal = {s.volume_signal} {'✓' if s.volume_signal != 'DRY_UP' else '✗ DRY_UP'}"))
+
+    ok = all(c[0] for c in checks)
+    return ok, [c[1] for c in checks]
 
 
 def tier2_quality(s: StockMetrics, sector_roe_median: float, sector_margin_median: float) -> tuple[bool, list[str]]:
@@ -289,8 +409,11 @@ def tier4_timing(s: StockMetrics, sector_nav_5d: float) -> dict[str, Any]:
 
 
 def evaluate(s: StockMetrics, sector_sig: SectorSignals,
+             sector_score_total: float,
              sector_roe_median: float, sector_margin_median: float, peer_pe_median: float,
              min_deviation: float) -> PickEvaluation:
+    # Tier 0 (旁路检查) — 即使触发也仍计算 Tier 2-4 用于报告
+    t0_ok, t0_reasons = tier0_trend_leader(s, sector_sig, sector_score_total)
     # Tier 2
     t2_ok, t2_reasons = tier2_quality(s, sector_roe_median, sector_margin_median)
     # Tier 3
@@ -302,10 +425,47 @@ def evaluate(s: StockMetrics, sector_sig: SectorSignals,
     verdict = "AVOID"
     reason = ""
 
-    if not t2_ok and "ROE 负" in " ".join(t2_reasons):
+    # 硬否决: ROE 负 (业绩破产) — Tier 0 也救不回来
+    if s.roe is not None and s.roe < 0:
         verdict = "AVOID"
-        reason = f"基本面破产 ({'; '.join(t2_reasons[:2])})"
-    elif not t2_ok:
+        reason = f"ROE 负 ({s.roe}%) 基本面破产"
+        return PickEvaluation(
+            stock=asdict(s),
+            tier0_pass=t0_ok, tier0_reasons=t0_reasons,
+            tier2_pass=t2_ok, tier2_reasons=t2_reasons,
+            fair_value=fv, fv_method=method, deviation_pct=deviation,
+            rs_5d=t4["rs_5d"], rs_tier=t4["rs_tier"],
+            position_band=t4["position_band"], tier4_position_size_max=t4["max_size"],
+            verdict=verdict, reason=reason,
+        )
+
+    # ── Tier 0 旁路: 趋势龙头通道 ──
+    if t0_ok:
+        # 末期超买 (位置 > 90 + 5d > 25% 极速拉升) 才降级到 TREND_WATCH
+        # 这比常规 > 85 更宽容, 因为 Tier 0 标的本来就是位置高位的趋势股
+        if s.pct_rank_120d >= 90 and s.pct_5d > 25:
+            verdict = "TREND_WATCH"
+            reason = (f"Tier 0 趋势龙头 + 5d{s.pct_5d:+.1f}% 极速拉升 + 位置 {s.pct_rank_120d}% 顶部, "
+                      f"等回调或量能验证再加仓 (仓位 ≤ {min(t4['max_size'], 3.0)}%)")
+        else:
+            # 仓位上限按 t4 算的位置 band 限制
+            verdict = "TREND_BUY"
+            flow_yi = sector_sig.flow_5d_cny / 1e8
+            yoy_str = f"+{s.net_yoy:.0f}%" if s.net_yoy is not None else "?"
+            reason = (f"Tier 0 趋势龙头 (估值乖离不适用): 板块 {sector_score_total:.0f} HOT + flow_5d {flow_yi:+.1f}亿"
+                      f", 业绩 YoY {yoy_str}, pos120={s.pct_rank_120d}%, 仓位 ≤ {t4['max_size']}%")
+        return PickEvaluation(
+            stock=asdict(s),
+            tier0_pass=t0_ok, tier0_reasons=t0_reasons,
+            tier2_pass=t2_ok, tier2_reasons=t2_reasons,
+            fair_value=fv, fv_method=method, deviation_pct=deviation,
+            rs_5d=t4["rs_5d"], rs_tier=t4["rs_tier"],
+            position_band=t4["position_band"], tier4_position_size_max=t4["max_size"],
+            verdict=verdict, reason=reason,
+        )
+
+    # ── 常规路径: Tier 2 → Tier 3 → Tier 4 ──
+    if not t2_ok:
         verdict = "AVOID"
         reason = f"基本面不过关 ({'; '.join(t2_reasons[:2])})"
     elif deviation is None:
@@ -333,6 +493,7 @@ def evaluate(s: StockMetrics, sector_sig: SectorSignals,
 
     return PickEvaluation(
         stock=asdict(s),
+        tier0_pass=t0_ok, tier0_reasons=t0_reasons,
         tier2_pass=t2_ok, tier2_reasons=t2_reasons,
         fair_value=fv, fv_method=method, deviation_pct=deviation,
         rs_5d=t4["rs_5d"], rs_tier=t4["rs_tier"],
@@ -385,8 +546,9 @@ def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
     sector_margin_median = round(statistics.median(gms), 1) if gms else 0
     peer_pe_median = round(statistics.median(pes), 1) if pes else 0
 
-    # 6. Evaluate each
-    evals = [evaluate(s, sig, sector_roe_median, sector_margin_median, peer_pe_median, min_dev_effective)
+    # 6. Evaluate each (Tier 0 趋势龙头通道需要 sector total score, 这里传)
+    evals = [evaluate(s, sig, score.total_score,
+                      sector_roe_median, sector_margin_median, peer_pe_median, min_dev_effective)
              for s in stocks_m]
 
     # 7. Rank by deviation (desc)
@@ -434,7 +596,10 @@ def _print_report(result: dict[str, Any]):
 
     def fmt_row(e):
         s = e["stock"]
-        verdict_icon = {"BUY": "🥇", "WATCH": "👀", "AVOID": "❌"}.get(e["verdict"], "?")
+        verdict_icon = {
+            "BUY": "🥇", "WATCH": "👀", "AVOID": "❌",
+            "TREND_BUY": "🚀", "TREND_WATCH": "🔭",
+        }.get(e["verdict"], "?")
         dev = e["deviation_pct"]
         dev_s = f"{dev:+.1f}%" if dev is not None else "  -"
         roe = s.get("roe")
@@ -442,7 +607,9 @@ def _print_report(result: dict[str, Any]):
         return (
             f"{verdict_icon} {s['code']:<10} {s['name'][:8]:<8} "
             f"close={s['close']:>7.2f}  PE={str(s.get('pe_ttm','--'))[:6]:>6}  "
-            f"1W={s['pct_1w']:>6.1f}%  位置={s.get('pct_rank_120d',0):>3}%  "
+            f"1d={s['pct_1d']:>6.1f}% 5d={s.get('pct_5d',0):>6.1f}%  "
+            f"位置={s.get('pct_rank_120d',0):>3}%  "
+            f"v1d={s.get('vol_ratio_1d',0):>4.2f} v5d={s.get('vol_ratio_5d',0):>4.2f}  "
             f"FV={str(e.get('fair_value','-'))[:7]:>7}  乖离={dev_s:>7}  "
             f"ROE={str(roe)[:5] if roe is not None else '-':>5}%  "
             f"净利YoY={str(yoy)[:6] if yoy is not None else '-':>6}%  "
@@ -451,17 +618,36 @@ def _print_report(result: dict[str, Any]):
 
     print("  === 成分股评估 (按乖离降序) ===")
     for e in result["evaluations"]:
+        s = e["stock"]
         print(f"  {fmt_row(e)}")
+        # 量价信号 (新增 2026-05-20)
+        if s.get("pv_alignment") and s["pv_alignment"] != "中性":
+            print(f"     量价: {s['pv_alignment']}  vol_signal={s.get('volume_signal','?')}")
+        # Tier 0 trace (仅打印通过的 + AVOID/WATCH 中差临门一脚的)
+        if e.get("tier0_pass"):
+            print(f"     Tier 0 ✅ 趋势龙头通道触发: {' / '.join(e['tier0_reasons'])}")
+        elif e["verdict"] in ("WATCH", "AVOID") and e.get("tier0_reasons"):
+            failed = [r for r in e["tier0_reasons"] if "✗" in r]
+            if failed and len(failed) <= 2:
+                print(f"     Tier 0 差: {' / '.join(failed)}")
         print(f"     → {e['verdict']}: {e['reason']}")
     print()
 
-    # BUY 候选总结
+    # 候选总结
     buys = [e for e in result["evaluations"] if e["verdict"] == "BUY"]
+    trend_buys = [e for e in result["evaluations"] if e["verdict"] == "TREND_BUY"]
     watches = [e for e in result["evaluations"] if e["verdict"] == "WATCH"]
+    trend_watches = [e for e in result["evaluations"] if e["verdict"] == "TREND_WATCH"]
+    if trend_buys:
+        print(f"  🚀 TREND_BUY ({len(trend_buys)}) [Tier 0 趋势龙头通道]:")
+        for e in trend_buys:
+            print(f"     {e['stock']['code']} {e['stock']['name']}  仓位 ≤ {e['tier4_position_size_max']}%  pos120={e['stock']['pct_rank_120d']}%  YoY+{e['stock']['net_yoy']:.0f}%")
     if buys:
-        print(f"  🥇 BUY 候选 ({len(buys)}):")
+        print(f"  🥇 BUY ({len(buys)}) [估值乖离通道]:")
         for e in buys:
             print(f"     {e['stock']['code']} {e['stock']['name']}  仓位 ≤ {e['tier4_position_size_max']}%  乖离 {e['deviation_pct']:+.1f}%")
+    if trend_watches:
+        print(f"  🔭 TREND_WATCH ({len(trend_watches)}):  " + ", ".join(f"{e['stock']['code']} {e['stock']['name']}" for e in trend_watches[:5]))
     if watches:
         print(f"  👀 WATCH ({len(watches)}):  " + ", ".join(f"{e['stock']['code']} {e['stock']['name']}" for e in watches[:5]))
 

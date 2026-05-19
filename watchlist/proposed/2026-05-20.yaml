@@ -1,0 +1,42 @@
+# watchlist/proposed/2026-05-20.yaml
+# 来源: 5/19 科创板 V 字反弹复盘 (sci-tech 50 +3.81%) — watchlist 漏网龙头补录
+# 触发: 用户问"科创为啥逆势大涨/漏了谁" → AI芯片/光模块/硅片/半导体设备 四条主线缺失
+# 已在 watchlist 不重复:
+#   ✅ 688256 寒武纪    ✅ 688041 海光信息    ✅ 300308 中际旭创    ✅ 300502 新易盛    ✅ 002371 北方华创
+# 缺口:
+
+schema_version: 1
+generated_at: 2026-05-20T01:30:00+08:00
+generated_by: claude-debrief-2026-05-19-scitech-rally
+review_doc: ""
+
+proposals:
+  - id: 1
+    op: add
+    entry:
+      code: "688012.SH"
+      name: "中微公司"
+      tier: "观察池"
+      themes: [半导体设备, 刻蚀机, 国产替代, AI芯片配套]
+      added_at: 2026-05-20
+      reason: "5/19 科创 V 字反弹核心标的之一. 当日 +9.29%, 主力净流入 14.2 亿, 北向成交 28.2 亿 (深股通前列). 半导体设备国产化三巨头 (北方华创/中微/拓荆), 北方华创已在 watchlist 缺中微. 估值高 (PE 70+), 走 Tier 0 趋势龙头通道; thesis 待 bootstrap."
+
+  - id: 2
+    op: add
+    entry:
+      code: "688126.SH"
+      name: "沪硅产业"
+      tier: "观察池"
+      themes: [硅片, 半导体材料, 国产替代, 12英寸晶圆]
+      added_at: 2026-05-20
+      reason: "5/19 涨停 (科创 20cm 涨停). 12 英寸大硅片国产替代龙头 (沪硅/立昂微/TCL中环), watchlist 在硅片细分裸奔. 长鑫存储 IPO 受理 + 半导体国产化双驱动. ROE 弱 + 净利同比转正, 估值偏 PB-driven (PB 2.x); 业绩硬标准未达 → Tier 0 暂不上, 走 thesis 监控等业绩拐点."
+
+  - id: 3
+    op: add
+    entry:
+      code: "688521.SH"
+      name: "芯原股份"
+      tier: "观察池"
+      themes: [半导体IP, 芯片设计服务, 国产替代, ASIC定制]
+      added_at: 2026-05-20
+      reason: "5/19 涨 4%+ 主力净流入 11.4 亿. 国产半导体 IP 龙头 (类似 Arm 模式), AI ASIC 时代的'卖铲人'. 寒武纪/海光在 watchlist 但 IP 端缺一只. ROE 历年波动大, 业绩需看 Q1/Q2 (尚未披露), 走 thesis 监控."

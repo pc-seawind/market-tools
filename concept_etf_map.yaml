@@ -25,7 +25,7 @@
 #   - 每 3-6 个月 review 映射是否仍代表主题 (如主题演化 / 新 ETF 发行)
 
 schema_version: 2
-last_updated: 2026-05-13
+last_updated: 2026-05-20
 
 concepts:
 
@@ -97,6 +97,22 @@ concepts:
     data_quality: fallback
     primary_etfs: []
     note: "无独立华为 ETF. 用 concepts_data.py 成分股均值. 主要 proxy: 软通动力/紫光国微/长电科技"
+
+  "硅片 (半导体材料)":
+    data_quality: proxy
+    parent_concept: "AI芯片 (算力核心)"
+    primary_etfs:
+      - {code: "159995.SZ", name: "芯片ETF华夏", weight: 0.5}
+      - {code: "512480.SH", name: "半导体ETF国联安", weight: 0.5}
+    note: "新增 2026-05-20. 无独立硅片 ETF, 用半导体大池代理. 沪硅产业/立昂微/TCL中环 在芯片 ETF 合计 ~6-8% 权重. 主要触发: 5/19 沪硅产业涨停 + 长鑫存储 IPO 受理"
+
+  "半导体设备 (国产替代)":
+    data_quality: proxy
+    parent_concept: "AI芯片 (算力核心)"
+    primary_etfs:
+      - {code: "159995.SZ", name: "芯片ETF华夏", weight: 0.5}
+      - {code: "512480.SH", name: "半导体ETF国联安", weight: 0.5}
+    note: "新增 2026-05-20. 北方华创/中微/拓荆/华海清科/盛美 等设备国产化龙头, 在芯片 ETF 合计 ~12-15% 权重. 与'AI芯片(算力核心)'有重叠但成分股池更窄, 便于 sector_picks 单跑设备主题"
 
   # ═══════════ 金融 (新增 2026-05-13) ═══════════
 
