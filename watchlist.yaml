@@ -171,6 +171,39 @@ entries:
   added_at: 2026-05-13
   reason: framework v2.3 WATCH. Tier 1 锂电 65.5 HOT. 乖离 +19.9% (差 +20% 阈值 0.1pt). ROE 3.4% + 净利 YoY +31.3%. 位置 pos120=42% 中低位.
     如果 1-2 周内乖离继续扩大或跌破 +20% 可升级 BUY.
+- code: 688012.SH
+  name: 中微公司
+  tier: 观察池
+  themes:
+  - 半导体设备
+  - 刻蚀机
+  - 国产替代
+  - AI芯片配套
+  added_at: 2026-05-20
+  reason: 5/19 科创 V 字反弹核心标的之一. 当日 +9.29%, 主力净流入 14.2 亿, 北向成交 28.2 亿 (深股通前列). 半导体设备国产化三巨头 (北方华创/中微/拓荆), 北方华创已在 watchlist 缺中微.
+    估值高 (PE 70+), 走 Tier 0 趋势龙头通道; thesis 待 bootstrap.
+- code: 688126.SH
+  name: 沪硅产业
+  tier: 观察池
+  themes:
+  - 硅片
+  - 半导体材料
+  - 国产替代
+  - 12英寸晶圆
+  added_at: 2026-05-20
+  reason: 5/19 涨停 (科创 20cm 涨停). 12 英寸大硅片国产替代龙头 (沪硅/立昂微/TCL中环), watchlist 在硅片细分裸奔. 长鑫存储 IPO 受理 + 半导体国产化双驱动. ROE 弱 + 净利同比转正,
+    估值偏 PB-driven (PB 2.x); 业绩硬标准未达 → Tier 0 暂不上, 走 thesis 监控等业绩拐点.
+- code: 688521.SH
+  name: 芯原股份
+  tier: 观察池
+  themes:
+  - 半导体IP
+  - 芯片设计服务
+  - 国产替代
+  - ASIC定制
+  added_at: 2026-05-20
+  reason: 5/19 涨 4%+ 主力净流入 11.4 亿. 国产半导体 IP 龙头 (类似 Arm 模式), AI ASIC 时代的'卖铲人'. 寒武纪/海光在 watchlist 但 IP 端缺一只. ROE 历年波动大, 业绩需看
+    Q1/Q2 (尚未披露), 走 thesis 监控.
 us_anchors:
 - code: NVDA
   name: NVIDIA
