@@ -136,8 +136,9 @@ def _cache_ttl(api_name, params):
         end = params.get("end_date")
         if end:
             return None if end < today_str else 1800
-        # 无日期参数 (e.g. ts_code + 某只股) — 多半是拉历史, 1 周 (保守)
-        return 86400 * 7
+        # 无日期参数 (e.g. ts_code + 某只股拉全量 K 线)
+        # 14h TTL: 每天都有新K线追加, 同 fund_daily 防竞态逻辑
+        return 50400  # 14h
 
     if api_name in _STATIC_APIS:
         return 86400 * 30
