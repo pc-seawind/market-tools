@@ -9,8 +9,10 @@
 
 每条 perf record schema:
   {
-    "event_ts":          "2026-05-23T19:38:51+08:00",   # 锚定原 event
-    "event_trade_date":  "20260523",                     # event 的决策日
+    "event_ts":          "2026-05-23T19:38:51+08:00",   # 锚定原 event (radar 写入时刻)
+    "event_trade_date":  "20260523",                     # radar 收集日 (我加进 events 那天)
+    "event_pub_date":    "20260424",                     # 新闻原始发布日 (baseline 锚)
+    "baseline_date":     "20260424",                     # 实际用作 baseline 的日期 (=pub_date or trade_date)
     "event_score":       3,
     "event_track":       "AI",
     "event_subdomain":   "ai__compute_chip",
@@ -20,8 +22,8 @@
     "side":              "+" / "-",
     "verify_ts":         "2026-05-24T18:45:00+08:00",
     "verify_date":       "20260524",
-    "days_since_event":  1,                              # 自然日, 不是交易日
-    "baseline_price":    510.20,                         # event 当日收盘 (T+0 close)
+    "days_since_event":  30,                             # 自然日, 从 baseline_date 起算 (不是 trade_date)
+    "baseline_price":    510.20,                         # baseline_date 当日收盘 (T+0)
     "current_price":     525.30,
     "absolute_pct":      +2.96,                          # vs baseline
     "benchmark":         "000300.SH" / "HSI",
@@ -32,7 +34,12 @@
     "hit":               True,                           # side=+ → excess>0; side=- → excess<0
   }
 
-T+N 里程碑: 5/10/20/40 自然日. 超过 40 自然日的 event 不再 verify (close).
+baseline 锚定原则:
+  baseline_date = event.pub_date (如果 backfill 过) 否则 event.trade_date
+  这样真实新闻发布日做 anchor, 不被"我什么时候 cron 抓到"扰动.
+
+T+N 里程碑: 5/10/20/40 自然日. 超过 60 自然日的 event 不再 verify (close).
+注: 阈值放宽至 60 (原 45) — backfill 后部分 event pub_date 较老 (如 4/22 / 4/24).
 
 CLI:
   narrative_track.py verify [--all | --event-ts X] [--date YYYYMMDD]
@@ -59,8 +66,20 @@ _TUSHARE = _HERE / "tushare.py"
 
 CN_TZ = dt.timezone(dt.timedelta(hours=8))
 
-MAX_HORIZON_DAYS = 45  # 到 T+45 自然日 (~T+30 交易日) 停止验证
+MAX_HORIZON_DAYS = 60  # 到 T+60 自然日 (~T+40 交易日) 停止验证 (放宽以容纳 backfill 的老 event)
 MILESTONE_DAYS = [5, 10, 20, 40]  # 报告固定窗口
+
+
+def _baseline_date_of(event: dict) -> str:
+    """统一从 event 取 baseline 锚定日期: pub_date > trade_date.
+
+    backfill 过的 event 有 pub_date (新闻原始发布日), 是更准的市场反应起点;
+    没 backfill 的回退到 trade_date (radar 收集日, 旧逻辑).
+    """
+    pd = event.get("pub_date")
+    if pd and isinstance(pd, str) and len(pd) == 8 and pd.isdigit():
+        return pd
+    return event.get("trade_date", "")
 
 BENCHMARK_A = "000300.SH"  # CSI300
 BENCHMARK_HK = "HSI"       # 恒指 (走 index_global)
@@ -232,17 +251,19 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
     """
     event_ts = event.get("ts", "")
     event_trade_date = event.get("trade_date", "")
+    baseline_date = _baseline_date_of(event)
+    event_pub_date = event.get("pub_date", "")  # 可能为空 (未 backfill)
     code = ticker.get("code", "")
-    if not event_ts or not event_trade_date or not code:
+    if not event_ts or not baseline_date or not code:
         return None
 
-    # 计算 days_since_event (自然日)
+    # 计算 days_since_event (自然日, 从 baseline_date 起算)
     try:
-        event_d = dt.datetime.strptime(event_trade_date, "%Y%m%d").date()
+        baseline_d = dt.datetime.strptime(baseline_date, "%Y%m%d").date()
     except ValueError:
         return None
     today = dt.date.today() if not verify_date else dt.datetime.strptime(verify_date, "%Y%m%d").date()
-    days_since = (today - event_d).days
+    days_since = (today - baseline_d).days
     if days_since < 0 or days_since > MAX_HORIZON_DAYS:
         return None  # 未来 / 已过期
 
@@ -253,7 +274,7 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
 
     market = _market_of(code)
 
-    # baseline = event 当日 close (从缓存 / perf 历史 / 拉取)
+    # baseline = baseline_date 当日 close (从缓存 / perf 历史 / 拉取)
     cache_key = (event_ts, code)
     baseline = None
     if cached_baseline and cache_key in cached_baseline:
@@ -261,7 +282,7 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
     if baseline is None:
         baseline = _baseline_for(event_ts, code)
     if baseline is None:
-        baseline = _fetch_stock_close(code, trade_date=event_trade_date)
+        baseline = _fetch_stock_close(code, trade_date=baseline_date)
         if baseline is None:
             return None
         if cached_baseline is not None:
@@ -275,7 +296,7 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
     # benchmark
     bench_baseline = _benchmark_baseline_for(event_ts, code)
     if bench_baseline is None:
-        _, bench_baseline = _fetch_benchmark_close(market, trade_date=event_trade_date)
+        _, bench_baseline = _fetch_benchmark_close(market, trade_date=baseline_date)
     bench_name, bench_current = _fetch_benchmark_close(market, trade_date=verify_date)
 
     abs_pct = (current / baseline - 1) * 100 if baseline else 0.0
@@ -292,6 +313,8 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
     perf = {
         "event_ts":          event_ts,
         "event_trade_date":  event_trade_date,
+        "event_pub_date":    event_pub_date,
+        "baseline_date":     baseline_date,
         "event_score":       event.get("score"),
         "event_track":       event.get("track"),
         "event_subdomain":   event.get("subdomain"),
@@ -336,11 +359,12 @@ def verify_all(verify_date: Optional[str] = None) -> dict[str, int]:
     today = dt.date.today() if not verify_date else dt.datetime.strptime(verify_date, "%Y%m%d").date()
 
     for event in events:
+        baseline_date = _baseline_date_of(event)
         try:
-            event_d = dt.datetime.strptime(event.get("trade_date", ""), "%Y%m%d").date()
+            baseline_d = dt.datetime.strptime(baseline_date, "%Y%m%d").date()
         except ValueError:
             continue
-        days = (today - event_d).days
+        days = (today - baseline_d).days
         if days > MAX_HORIZON_DAYS:
             stats["events_expired"] += 1
             continue
@@ -385,11 +409,23 @@ def _milestone_perfs_by_ticker(perfs: list[dict]) -> dict:
 
 
 def report(weeks: int = 4) -> dict[str, Any]:
-    """聚合 hit rate / 中位 excess / 失败案例."""
+    """聚合 hit rate / 中位 excess / 失败案例.
+
+    since 过滤用 baseline_date (pub_date 优先), 这样 backfill 后真新闻发布日老
+    但 cron 收集日近的 event 也会被正确归类.
+    """
     perfs = _read_jsonl(_PERF_PATH)
     since = dt.date.today() - dt.timedelta(weeks=weeks)
-    perfs = [p for p in perfs
-             if dt.datetime.strptime(p["event_trade_date"], "%Y%m%d").date() >= since]
+
+    def _filter_date(p):
+        # baseline_date 优先, fallback event_trade_date (兼容老数据)
+        d = p.get("baseline_date") or p.get("event_trade_date")
+        try:
+            return dt.datetime.strptime(d, "%Y%m%d").date() >= since
+        except (ValueError, TypeError):
+            return False
+
+    perfs = [p for p in perfs if _filter_date(p)]
 
     by_pair = _milestone_perfs_by_ticker(perfs)
 
@@ -481,6 +517,9 @@ def doc_markdown(weeks: int = 4) -> str:
     md.append("")
     md.append("> hit 判定: side=+ → excess_pct > 0; side=- → excess_pct < 0. "
               "excess_pct = ticker 涨跌% - benchmark 涨跌% (CSI300 / HSI).")
+    md.append(">")
+    md.append("> baseline 锚定: 新闻**原始发布日 (pub_date)** 收盘价, 不是 radar 收集日 — "
+              "确保 T+N 测的是真实市场反应窗口而不是 cron 抓取延迟.")
     md.append("")
 
     # by_milestone 表
