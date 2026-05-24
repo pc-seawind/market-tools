@@ -1,219 +1,372 @@
 schema_version: 1
 entries:
-- code: 002594.SZ
-  name: 比亚迪
-  tier: 基础仓
-  themes:
-  - 新能源车
-  - 整车龙头
-  added_at: 2026-05-08
-  reason: 新能源车龙头 (用户真实持仓 5/8 确认)
-- code: 00700.HK
-  name: 腾讯控股
-  tier: 基础仓
-  themes:
-  - 港股互联网
-  - 游戏
-  - 广告
-  added_at: 2026-05-08
-  reason: 港股互联网核心
-- code: 01810.HK
-  name: 小米集团
-  tier: 基础仓
-  themes:
-  - 消费电子
-  - AI手机
-  added_at: 2026-05-08
-  reason: 消费电子 + AI
-- code: 03690.HK
-  name: 美团
-  tier: 基础仓
-  themes:
-  - 港股互联网
-  - 本地生活
-  added_at: 2026-05-08
-  reason: 本地生活
-- code: 300394.SZ
-  name: 天孚通信
-  tier: 博弈仓-追涨
-  themes:
-  - 光通信
-  - NVIDIA产业链
-  added_at: 2026-05-08
-  reason: 光通信 / 英伟达链
-- code: 300442.SZ
-  name: 润泽科技
-  tier: 博弈仓-追涨
-  themes:
-  - AIDC
-  - 算力租赁
-  added_at: 2026-05-08
-  reason: AIDC / 算力租赁
-- code: 688041.SH
-  name: 海光信息
-  tier: 观察池
-  themes:
-  - AI芯片
-  - 国产算力
-  added_at: 2026-05-08
-  reason: AI 芯片, 寒武纪备选
-- code: 688008.SH
-  name: 澜起科技
-  tier: 观察池
-  themes:
-  - AI芯片
-  - HBM中间件
-  added_at: 2026-05-08
-  reason: HBM 中间件龙头
-- code: 688256.SH
-  name: 寒武纪
-  tier: 观察池
-  themes:
-  - AI芯片
-  added_at: 2026-05-08
-  reason: AI 芯片总龙头
-- code: 300308.SZ
-  name: 中际旭创
-  tier: 观察池
-  themes:
-  - 光通信
-  - 光模块
-  added_at: 2026-05-08
-  reason: 光模块龙头
-- code: 300502.SZ
-  name: 新易盛
-  tier: 观察池
-  themes:
-  - 光通信
-  - 光模块
-  added_at: 2026-05-08
-  reason: 光模块 peer
-- code: 301308.SZ
-  name: 江波龙
-  tier: 观察池
-  themes:
-  - 存储芯片
-  - 存储周期
-  added_at: 2026-05-08
-  reason: 存储周期龙头
-- code: 002475.SZ
-  name: 立讯精密
-  tier: 观察池
-  themes:
-  - 消费电子
-  - 果链
-  - 汽车电子
-  - 光模块
-  added_at: 2026-05-11
-  reason: 果链龙头 + 汽车电子第二曲线, Q1 2026 营收 YoY +35.77% 提速, 等 Q2 验证汽车分部增速 (见 ~/work/investment/thesis/002475.SZ.yaml, conviction
-    MEDIUM-LOW)
-- code: 600519.SH
-  name: 贵州茅台
-  tier: 观察池
-  themes:
-  - 白酒
-  - 蓝筹防御
-  added_at: 2026-05-08
-  reason: 白酒标杆
-- code: 600036.SH
-  name: 招商银行
-  tier: 观察池
-  themes:
-  - 银行
-  - 蓝筹防御
-  added_at: 2026-05-08
-  reason: 价值蓝筹
-- code: 601688.SH
-  name: 华泰证券
-  tier: 观察池
-  themes:
-  - 金融-证券
-  - 券商龙头
-  added_at: 2026-05-13
-  reason: framework v2.3 首条'中枢位置标准 BUY'. Tier 1 金融-证券 76 HOT (资金 flow_20d +13 亿, 位置 pos60=54% 低位). 乖离 +34.1% (PE 10 vs 同业
-    15). ROE 2.3% + 净利 YoY +31.8%. 仓位 ≤ 8%. rec_20260513_0001
-- code: 603444.SH
-  name: 吉比特
-  tier: 观察池
-  themes:
-  - 游戏传媒
-  - 手游龙头
-  added_at: 2026-05-13
-  reason: framework v2.3 BUY. Tier 1 游戏传媒 63.3 HOT (flow_20d +6.4 亿). 乖离 +24.5% (PE 13.8 vs 同业 16.3). 位置 pos120=30% 低位. ROE
-    9.0% (板块最高) + 净利 YoY +82.7%. 仓位 ≤ 8%. FOLLOWER.
-- code: 300750.SZ
-  name: 宁德时代
-  tier: 观察池
-  themes:
-  - 锂电产业链
-  - 储能龙头
-  - 全球电池龙头
-  added_at: 2026-05-13
-  reason: framework v2.3 BUY (末期小仓). Tier 1 锂电产业链 65.5 HOT (flow_20d +14.7 亿). 乖离 +33.7% (PE 25.4 vs 同业 37.5). ROE 6.0% +
-    净利 YoY +48.5%. 位置 pos120=89% 偏高 → 仓位 ≤ 3%.
-- code: 002371.SZ
-  name: 北方华创
-  tier: 观察池
-  themes:
-  - 半导体设备
-  - AI芯片辅助
-  - 国产替代
-  added_at: 2026-05-13
-  reason: framework v2.3 WATCH. Tier 1 AI 芯片板块 35.9 COLD (flow 负 -28 亿) 但 nav 正 Gate 通过. 乖离 +29.1% (差 +30% 阈值 0.9pt). ROE
-    4.2% + 净利 YoY +3.4% 温和增长. 位置 pos120=100% 末期. 等板块 flow 转正或基本面提速再评估.
-- code: 300014.SZ
-  name: 亿纬锂能
-  tier: 观察池
-  themes:
-  - 锂电产业链
-  - 电池
-  - 动力储能
-  added_at: 2026-05-13
-  reason: framework v2.3 WATCH. Tier 1 锂电 65.5 HOT. 乖离 +19.9% (差 +20% 阈值 0.1pt). ROE 3.4% + 净利 YoY +31.3%. 位置 pos120=42% 中低位.
-    如果 1-2 周内乖离继续扩大或跌破 +20% 可升级 BUY.
-- code: 688012.SH
-  name: 中微公司
-  tier: 观察池
-  themes:
-  - 半导体设备
-  - 刻蚀机
-  - 国产替代
-  - AI芯片配套
-  added_at: 2026-05-20
-  reason: 5/19 科创 V 字反弹核心标的之一. 当日 +9.29%, 主力净流入 14.2 亿, 北向成交 28.2 亿 (深股通前列). 半导体设备国产化三巨头 (北方华创/中微/拓荆), 北方华创已在 watchlist 缺中微.
-    估值高 (PE 70+), 走 Tier 0 趋势龙头通道; thesis 待 bootstrap.
-- code: 688126.SH
-  name: 沪硅产业
-  tier: 观察池
-  themes:
-  - 硅片
-  - 半导体材料
-  - 国产替代
-  - 12英寸晶圆
-  added_at: 2026-05-20
-  reason: 5/19 涨停 (科创 20cm 涨停). 12 英寸大硅片国产替代龙头 (沪硅/立昂微/TCL中环), watchlist 在硅片细分裸奔. 长鑫存储 IPO 受理 + 半导体国产化双驱动. ROE 弱 + 净利同比转正,
-    估值偏 PB-driven (PB 2.x); 业绩硬标准未达 → Tier 0 暂不上, 走 thesis 监控等业绩拐点.
-- code: 688521.SH
-  name: 芯原股份
-  tier: 观察池
-  themes:
-  - 半导体IP
-  - 芯片设计服务
-  - 国产替代
-  - ASIC定制
-  added_at: 2026-05-20
-  reason: 5/19 涨 4%+ 主力净流入 11.4 亿. 国产半导体 IP 龙头 (类似 Arm 模式), AI ASIC 时代的'卖铲人'. 寒武纪/海光在 watchlist 但 IP 端缺一只. ROE 历年波动大, 业绩需看
-    Q1/Q2 (尚未披露), 走 thesis 监控.
+  - code: 002594.SZ
+    name: 比亚迪
+    tier: 基础仓
+    themes:
+      - 新能源车
+      - 整车龙头
+    added_at: 2026-05-08
+    reason: 新能源车龙头 (用户真实持仓 5/8 确认)
+  - code: 00700.HK
+    name: 腾讯控股
+    tier: 基础仓
+    themes:
+      - 港股互联网
+      - 游戏
+      - 广告
+    added_at: 2026-05-08
+    reason: 港股互联网核心
+  - code: 01810.HK
+    name: 小米集团
+    tier: 基础仓
+    themes:
+      - 消费电子
+      - AI手机
+    added_at: 2026-05-08
+    reason: 消费电子 + AI
+  - code: 03690.HK
+    name: 美团
+    tier: 基础仓
+    themes:
+      - 港股互联网
+      - 本地生活
+    added_at: 2026-05-08
+    reason: 本地生活
+  - code: 300394.SZ
+    name: 天孚通信
+    tier: 博弈仓-追涨
+    themes:
+      - 光通信
+      - NVIDIA产业链
+    added_at: 2026-05-08
+    reason: 光通信 / 英伟达链
+  - code: 300442.SZ
+    name: 润泽科技
+    tier: 博弈仓-追涨
+    themes:
+      - AIDC
+      - 算力租赁
+    added_at: 2026-05-08
+    reason: AIDC / 算力租赁
+  - code: 688041.SH
+    name: 海光信息
+    tier: 观察池
+    themes:
+      - AI芯片
+      - 国产算力
+    added_at: 2026-05-08
+    reason: AI 芯片, 寒武纪备选
+  - code: 688008.SH
+    name: 澜起科技
+    tier: 观察池
+    themes:
+      - AI芯片
+      - HBM中间件
+    added_at: 2026-05-08
+    reason: HBM 中间件龙头
+  - code: 688256.SH
+    name: 寒武纪
+    tier: 观察池
+    themes:
+      - AI芯片
+    added_at: 2026-05-08
+    reason: AI 芯片总龙头
+  - code: 300308.SZ
+    name: 中际旭创
+    tier: 观察池
+    themes:
+      - 光通信
+      - 光模块
+    added_at: 2026-05-08
+    reason: 光模块龙头
+  - code: 300502.SZ
+    name: 新易盛
+    tier: 观察池
+    themes:
+      - 光通信
+      - 光模块
+    added_at: 2026-05-08
+    reason: 光模块 peer
+  - code: 301308.SZ
+    name: 江波龙
+    tier: 观察池
+    themes:
+      - 存储芯片
+      - 存储周期
+    added_at: 2026-05-08
+    reason: 存储周期龙头
+  - code: 002475.SZ
+    name: 立讯精密
+    tier: 观察池
+    themes:
+      - 消费电子
+      - 果链
+      - 汽车电子
+      - 光模块
+    added_at: 2026-05-11
+    reason: 果链龙头 + 汽车电子第二曲线, Q1 2026 营收 YoY +35.77% 提速, 等 Q2 验证汽车分部增速 (见 ~/work/investment/thesis/002475.SZ.yaml,
+      conviction MEDIUM-LOW)
+  - code: 600519.SH
+    name: 贵州茅台
+    tier: 观察池
+    themes:
+      - 白酒
+      - 蓝筹防御
+    added_at: 2026-05-08
+    reason: 白酒标杆
+  - code: 600036.SH
+    name: 招商银行
+    tier: 观察池
+    themes:
+      - 银行
+      - 蓝筹防御
+    added_at: 2026-05-08
+    reason: 价值蓝筹
+  - code: 601688.SH
+    name: 华泰证券
+    tier: 观察池
+    themes:
+      - 金融-证券
+      - 券商龙头
+    added_at: 2026-05-13
+    reason: framework v2.3 首条'中枢位置标准 BUY'. Tier 1 金融-证券 76 HOT (资金 flow_20d +13 亿, 位置 pos60=54% 低位). 乖离
+      +34.1% (PE 10 vs 同业 15). ROE 2.3% + 净利 YoY +31.8%. 仓位 ≤ 8%. rec_20260513_0001
+  - code: 603444.SH
+    name: 吉比特
+    tier: 观察池
+    themes:
+      - 游戏传媒
+      - 手游龙头
+    added_at: 2026-05-13
+    reason: framework v2.3 BUY. Tier 1 游戏传媒 63.3 HOT (flow_20d +6.4 亿). 乖离 +24.5% (PE 13.8 vs 同业 16.3).
+      位置 pos120=30% 低位. ROE 9.0% (板块最高) + 净利 YoY +82.7%. 仓位 ≤ 8%. FOLLOWER.
+  - code: 300750.SZ
+    name: 宁德时代
+    tier: 观察池
+    themes:
+      - 锂电产业链
+      - 储能龙头
+      - 全球电池龙头
+    added_at: 2026-05-13
+    reason: framework v2.3 BUY (末期小仓). Tier 1 锂电产业链 65.5 HOT (flow_20d +14.7 亿). 乖离 +33.7% (PE 25.4 vs
+      同业 37.5). ROE 6.0% + 净利 YoY +48.5%. 位置 pos120=89% 偏高 → 仓位 ≤ 3%.
+  - code: 002371.SZ
+    name: 北方华创
+    tier: 观察池
+    themes:
+      - 半导体设备
+      - AI芯片辅助
+      - 国产替代
+    added_at: 2026-05-13
+    reason: framework v2.3 WATCH. Tier 1 AI 芯片板块 35.9 COLD (flow 负 -28 亿) 但 nav 正 Gate 通过. 乖离 +29.1% (差
+      +30% 阈值 0.9pt). ROE 4.2% + 净利 YoY +3.4% 温和增长. 位置 pos120=100% 末期. 等板块 flow 转正或基本面提速再评估.
+  - code: 300014.SZ
+    name: 亿纬锂能
+    tier: 观察池
+    themes:
+      - 锂电产业链
+      - 电池
+      - 动力储能
+    added_at: 2026-05-13
+    reason: framework v2.3 WATCH. Tier 1 锂电 65.5 HOT. 乖离 +19.9% (差 +20% 阈值 0.1pt). ROE 3.4% + 净利 YoY +31.3%.
+      位置 pos120=42% 中低位. 如果 1-2 周内乖离继续扩大或跌破 +20% 可升级 BUY.
+  - code: 688012.SH
+    name: 中微公司
+    tier: 观察池
+    themes:
+      - 半导体设备
+      - 刻蚀机
+      - 国产替代
+      - AI芯片配套
+    added_at: 2026-05-20
+    reason: 5/19 科创 V 字反弹核心标的之一. 当日 +9.29%, 主力净流入 14.2 亿, 北向成交 28.2 亿 (深股通前列). 半导体设备国产化三巨头 (北方华创/中微/拓荆),
+      北方华创已在 watchlist 缺中微. 估值高 (PE 70+), 走 Tier 0 趋势龙头通道; thesis 待 bootstrap.
+  - code: 688126.SH
+    name: 沪硅产业
+    tier: 观察池
+    themes:
+      - 硅片
+      - 半导体材料
+      - 国产替代
+      - 12英寸晶圆
+    added_at: 2026-05-20
+    reason: 5/19 涨停 (科创 20cm 涨停). 12 英寸大硅片国产替代龙头 (沪硅/立昂微/TCL中环), watchlist 在硅片细分裸奔. 长鑫存储 IPO 受理 + 半导体国产化双驱动.
+      ROE 弱 + 净利同比转正, 估值偏 PB-driven (PB 2.x); 业绩硬标准未达 → Tier 0 暂不上, 走 thesis 监控等业绩拐点.
+  - code: 688521.SH
+    name: 芯原股份
+    tier: 观察池
+    themes:
+      - 半导体IP
+      - 芯片设计服务
+      - 国产替代
+      - ASIC定制
+    added_at: 2026-05-20
+    reason: 5/19 涨 4%+ 主力净流入 11.4 亿. 国产半导体 IP 龙头 (类似 Arm 模式), AI ASIC 时代的'卖铲人'. 寒武纪/海光在 watchlist 但 IP
+      端缺一只. ROE 历年波动大, 业绩需看 Q1/Q2 (尚未披露), 走 thesis 监控.
+  - code: 688195.SH
+    name: 腾景科技
+    tier: 观察池
+    themes:
+      - 光交换
+      - OCS
+      - 光通信
+      - TPU pod
+      - Google OCS
+    added_at: 2026-05-25
+    reason: '[光交换 (OCS)] Google TPU pod 验证 OCS 大规模商用, 国内大厂跟进 — 替代 InfiniBand 的下一代 narrative. 弹性大但 capex
+      落地慢, 监控 capex_lock 类型事件 (中标/扩产/签约)'
+  - code: 688498.SH
+    name: 源杰科技
+    tier: 观察池
+    themes:
+      - 光芯片
+      - DFB
+      - EML
+      - 硅光
+      - 国产替代
+    added_at: 2026-05-25
+    reason: '[光芯片] 光模块上游核心. 1.6T/CPO 升级把光芯片国产化弹性放大 — Q1 已开始放量, capex_lock 信号最强 (W21 v4 类型 70% hit)'
+  - code: 300476.SZ
+    name: 胜宏科技
+    tier: 观察池
+    themes:
+      - PCB
+      - 高速PCB
+      - AI算力
+      - NVDA供应链
+    added_at: 2026-05-25
+    reason: '[PCB] 海报 PCB top1, 已切入 NV/AMD AI 服务器供应链, 高速 PCB ASP 比通用版高 30%+. 与 watchlist 已有 沪电股份 互补 —
+      沪电偏交换机, 胜宏偏 GPU 服务器'
+  - code: 601138.SH
+    name: 工业富联
+    tier: 观察池
+    themes:
+      - AI服务器
+      - NVDA供应链
+      - 富士康
+      - 光模块组装
+    added_at: 2026-05-25
+    reason: '[AI 服务器] NV GB200/GB300 AI 服务器 ODM 主力 — 季度财报与 NV 同步爆发. watchlist 在服务器整机层裸奔, 这是核心补位'
+  - code: 601869.SH
+    name: 长飞光纤
+    tier: 观察池
+    themes:
+      - 光纤光缆
+      - AIDC互联
+      - 海缆
+      - 骨干网
+    added_at: 2026-05-25
+    reason: '[光纤光缆] AIDC 集群间互联 + 海缆国产化双线驱动. 弹性弱于光模块但稳定性强, 走中长期慢牛 — 适合做防御性配置'
+  - code: 001309.SZ
+    name: 德明利
+    tier: 观察池
+    themes:
+      - 存储
+      - 主控芯片
+      - 模组
+      - NAND
+    added_at: 2026-05-25
+    reason: '[存储芯片] 海报存储 top1. 国产 SSD 主控 + 模组双轮驱动, 存储涨价周期 + 国产替代双重 narrative. 与 watchlist 已有 江波龙 形成对照'
+  - code: 300757.SZ
+    name: 罗博特科
+    tier: 观察池
+    themes:
+      - 光模块设备
+      - 半导体设备
+      - AOI
+      - 激光封装
+    added_at: 2026-05-25
+    reason: '[光模块设备] 光模块产能扩张直接驱动设备订单 — capex_lock 类型信号最易出 (W21 v4 capex_lock=70% hit). 中际旭创/新易盛扩产 = 罗博特科订单'
+  - code: 600110.SH
+    name: 诺德股份
+    tier: 观察池
+    themes:
+      - 铜箔
+      - HVLP
+      - PCB材料
+      - AI铜箔
+    added_at: 2026-05-25
+    reason: '[铜箔] AI 高速 PCB 拉动 HVLP 铜箔需求 — 单价比锂电铜箔高 30%, 国产替代窗口期. 但锂电铜箔在去库存, 业绩存波动'
+  - code: 601208.SH
+    name: 东材科技
+    tier: 观察池
+    themes:
+      - 碳氢树脂
+      - 低介电
+      - PPO
+      - 高频CCL
+    added_at: 2026-05-25
+    reason: '[树脂] 高频 CCL 用低介电树脂, 国产替代壁垒最高. 已切入 NV/Meta 供应链 — 是本批 capex_lock 信号最易爆发的细分'
+  - code: 603256.SH
+    name: 宏和科技
+    tier: 观察池
+    themes:
+      - 电子布
+      - 低介电玻纤
+      - CCL上游
+    added_at: 2026-05-25
+    reason: '[电子布] 高频 CCL 上游, 低介电电子布国产替代加速. 与 中材科技 / 中国巨石 形成梯队, 弹性最大但市值小'
+  - code: 002837.SZ
+    name: 英维克
+    tier: 观察池
+    themes:
+      - 液冷
+      - 冷板
+      - 精密空调
+      - DC散热
+    added_at: 2026-05-25
+    reason: '[液冷] 单机柜功率 100kW+ 必须液冷 — 渗透率从 5%→30% 三年内. 已是 NV/华为通吃供应商, AIDC 弹性核心标的'
+  - code: 002364.SZ
+    name: 中恒电气
+    tier: 观察池
+    themes:
+      - HVDC
+      - 数据中心电源
+      - PSU
+      - 通信电源
+    added_at: 2026-05-25
+    reason: '[电源] GB200 单机柜功耗 120kW → 配电是新瓶颈. 模块化 PSU + HVDC 替代标准 UPS, 中恒是国产 HVDC 龙头'
+  - code: 002353.SZ
+    name: 杰瑞股份
+    tier: 观察池
+    themes:
+      - 燃气轮机
+      - 油服
+      - 航改型
+      - AIDC电力
+    added_at: 2026-05-25
+    reason: '[燃气轮机] 美国 AIDC 用气电就近发电规避电网瓶颈 — 国产航改型燃机跟随订单. 主业是油服, 燃机是新增长曲线'
+  - code: 601126.SH
+    name: 四方股份
+    tier: 观察池
+    themes:
+      - 固态变压器
+      - SST
+      - 中压配电
+      - 电网
+    added_at: 2026-05-25
+    reason: '[固态变压器] AIDC 中压直送 → SST 替代传统变压器, 体积小 30% / 效率高 1-2 pct. 早期赛道, 主业电网产品提供基本盘'
+  - code: 001896.SZ
+    name: 豫能控股
+    tier: 观察池
+    themes:
+      - 算电协同
+      - 绿电算力
+      - 河南国资
+      - 风光储算
+    added_at: 2026-05-25
+    reason: '[算电协同] 电力公司跨界 AIDC 拿低价绿电 + 高利用率算力. 政策驱动 (东数西算) + capex_lock — 优于纯炒作的算力租赁链'
 us_anchors:
-- code: NVDA
-  name: NVIDIA
-- code: TSM
-  name: 台积电
-- code: MSFT
-  name: Microsoft
-- code: META
-  name: Meta
-- code: GOOGL
-  name: Google
-- code: MU
-  name: Micron
+  - code: NVDA
+    name: NVIDIA
+  - code: TSM
+    name: 台积电
+  - code: MSFT
+    name: Microsoft
+  - code: META
+    name: Meta
+  - code: GOOGL
+    name: Google
+  - code: MU
+    name: Micron
