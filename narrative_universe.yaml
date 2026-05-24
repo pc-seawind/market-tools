@@ -18,7 +18,7 @@
 
 schema_version: 2
 last_updated: 2026-05-25
-total_tracks: 14
+total_tracks: 28
 
 # ═══════════════════════════════════════════════════════════════════════════
 # 末期抱团 sub_domain — narrative_radar 收事件时给这里列出的 subdomain 自动打
@@ -150,6 +150,8 @@ ai__compute_chip:
     - {code: "002371.SZ", name: "北方华创", weight: high}
     - {code: "688012.SH", name: "中微公司", weight: high}
     - {code: "688126.SH", name: "沪硅产业", weight: med}
+    - {code: "688802.SH", name: "沐曦股份", weight: med}
+    - {code: "688795.SH", name: "摩尔线程", weight: med}
   source_concepts: ["AI芯片 (算力核心)", "半导体设备 (国产替代)", "硅片 (半导体材料)"]
   rationale: "国产替代是中长期 narrative 主线, 任何 NV/CUDA 受限 / 国产 EDA 突破都会驱动这板块"
 
@@ -165,6 +167,7 @@ ai__memory_storage:
     - {code: "300223.SZ", name: "北京君正", weight: med}
     - {code: "688525.SH", name: "佰维存储", weight: med}
     - {code: "688110.SH", name: "东芯股份", weight: low}
+    - {code: "001309.SZ", name: "德明利", weight: high}
   source_concepts: ["存储芯片 (HBM/DDR/NAND)"]
   rationale: "HBM 是 AI 训练瓶颈, 国产 12-Hi 突破 / 美光 SK 涨价都会传导到江波龙/兆易"
 
@@ -194,6 +197,7 @@ ai__optical_module:
     - {code: "300394.SZ", name: "天孚通信", weight: high}
     - {code: "002281.SZ", name: "光迅科技", weight: med}
     - {code: "688191.SH", name: "智明达",   weight: low}
+    - {code: "000988.SZ", name: "华工科技", weight: med}
   source_concepts: ["光通信 (光模块/CPO)"]
   rationale: "AI 数据中心带宽弹性, NV 财报后通常爆发. 5/13 那批就栽在这上面 — 缺叙事支撑就别再追"
 
@@ -209,6 +213,9 @@ ai__nvda_supplychain:
     - {code: "300476.SZ", name: "胜宏科技", weight: med}
     - {code: "600183.SH", name: "生益科技", weight: med}
     - {code: "300308.SZ", name: "中际旭创", weight: high}
+    - {code: "000977.SZ", name: "浪潮信息", weight: high}
+    - {code: "000938.SZ", name: "紫光股份", weight: med}
+    - {code: "603019.SH", name: "中科曙光", weight: med}
   source_concepts: ["英伟达产业链", "PCB (算力基建)"]
   rationale: "NV 季报是季节性催化, 美股 NV/AVGO 隔夜涨跌直接映射 A 股 PCB/光模块"
 
@@ -238,6 +245,9 @@ ai__datacenter_idc:
     - {code: "300442.SZ", name: "润泽科技", weight: high}
     - {code: "000977.SZ", name: "浪潮信息", weight: high}
     - {code: "002415.SZ", name: "海康威视", weight: med}
+    - {code: "300017.SZ", name: "网宿科技", weight: med}
+    - {code: "300383.SZ", name: "光环新网", weight: med}
+    - {code: "603881.SH", name: "数据港", weight: med}
   source_concepts: ["AIDC/算力租赁"]
   rationale: "电力 + 液冷 + 算力集群是 AI 实体基建. 单 AIDC 项目落地新闻可触发短线"
 
@@ -253,6 +263,7 @@ ai__pcb_substrate:
     - {code: "600183.SH", name: "生益科技", weight: med}
     - {code: "002138.SZ", name: "顺络电子", weight: low}
     - {code: "002916.SZ", name: "深南电路", weight: med}
+    - {code: "002384.SZ", name: "东山精密", weight: med}
   source_concepts: ["PCB (算力基建)"]
   rationale: "AI 服务器单价含 PCB 占 8-12%, 是受 NV 算力需求最直接弹性的中游"
 
@@ -270,6 +281,207 @@ ai__edge_device:
     - {code: "300433.SZ", name: "蓝思科技", weight: med}    # AI 终端结构件
   source_concepts: []   # 没有现成 ETF 映射, 跨多 concept
   rationale: "Apple AI / Copilot+ PC / Meta 眼镜 都在 2026 节奏窗口, 是端侧 AI 大行情题材"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# AI 算力扩展 — 14 个新 sub-domain (2026-05-25 海报 driven, top1-4 from "AI算力 2026 年核心赛道")
+# ═══════════════════════════════════════════════════════════════════════════
+
+ai__optical_chip:
+  track: AI
+  display: "光芯片 (DFB/EML/VCSEL)"
+  keywords:
+    zh: ["光芯片", "DFB", "EML", "VCSEL", "硅光", "激光器芯片", "源杰科技", "仕佳光子", "国产光芯片"]
+    en: ["DFB laser", "EML laser", "VCSEL", "silicon photonics chip", "optical chip China"]
+  tickers:
+    - {code: "688498.SH", name: "源杰科技", weight: high}
+    - {code: "688313.SH", name: "仕佳光子", weight: med}
+    - {code: "002281.SZ", name: "光迅科技", weight: med}
+    - {code: "688048.SH", name: "长光华芯", weight: low}
+  source_concepts: ["光通信 (光模块/CPO)"]
+  rationale: "光模块上游核心 — 1.6T/CPO 升级把光芯片国产化弹性放大, 且 capex_lock 信号强 (扩产/中标)"
+
+ai__optical_switching:
+  track: AI
+  display: "光交换 (OCS — TPU 数据中心)"
+  keywords:
+    zh: ["光交换", "OCS", "Optical Circuit Switch", "腾景科技", "福晶科技", "光库", "TPU pod", "Google OCS"]
+    en: ["Optical Circuit Switch", "OCS data center", "Google TPU pod", "all-optical switch"]
+  tickers:
+    - {code: "688195.SH", name: "腾景科技", weight: high}
+    - {code: "002222.SZ", name: "福晶科技", weight: med}
+    - {code: "300620.SZ", name: "光库科技", weight: med}
+    - {code: "688205.SH", name: "德科立", weight: low}
+  source_concepts: ["光通信 (光模块/CPO)"]
+  rationale: "Google TPU pod 验证 OCS 可大规模商用, 国内大厂跟进 → 替代 InfiniBand 的下一代 narrative"
+
+ai__optical_equipment:
+  track: AI
+  display: "光模块设备 (测试/封装/激光)"
+  keywords:
+    zh: ["光模块设备", "光模块测试", "罗博特科", "科瑞技术", "博杰股份", "激光封装", "光器件设备"]
+    en: ["optical module test equipment", "photonic packaging", "laser bonding equipment"]
+  tickers:
+    - {code: "300757.SZ", name: "罗博特科", weight: high}
+    - {code: "002957.SZ", name: "科瑞技术", weight: med}
+    - {code: "002975.SZ", name: "博杰股份", weight: med}
+    - {code: "688170.SH", name: "德龙激光", weight: low}
+  source_concepts: ["光通信 (光模块/CPO)"]
+  rationale: "光模块产能扩张直接驱动设备订单 — capex_lock 类型信号最易出 (W21 v4 capex_lock=70% hit)"
+
+ai__fiber_cable:
+  track: AI
+  display: "光纤光缆 (DC 互联 / 长距传输)"
+  keywords:
+    zh: ["光纤光缆", "长飞光纤", "亨通光电", "中天科技", "烽火通信", "海缆", "骨干网"]
+    en: ["optical fiber cable", "submarine cable", "YOFC", "Hengtong"]
+  tickers:
+    - {code: "601869.SH", name: "长飞光纤", weight: high}
+    - {code: "600487.SH", name: "亨通光电", weight: med}
+    - {code: "600522.SH", name: "中天科技", weight: med}
+    - {code: "600498.SH", name: "烽火通信", weight: low}
+  source_concepts: ["光通信 (光模块/CPO)"]
+  rationale: "AIDC 集群间互联 + 海缆国产化 双线驱动, 但弹性弱于光模块 — 中长期慢牛"
+
+ai__high_speed_connector:
+  track: AI
+  display: "高速连接 (DAC/AOC/连接器)"
+  keywords:
+    zh: ["高速连接器", "高速铜缆", "DAC", "AOC", "立讯精密", "兆龙互连", "沃尔核材", "鼎通"]
+    en: ["high-speed connector", "DAC cable", "AOC active optical", "224G connector", "Amphenol"]
+  tickers:
+    - {code: "002475.SZ", name: "立讯精密", weight: high}
+    - {code: "300913.SZ", name: "兆龙互连", weight: med}
+    - {code: "002130.SZ", name: "沃尔核材", weight: med}
+    - {code: "688668.SH", name: "鼎通科技", weight: low}
+  source_concepts: ["英伟达产业链", "PCB (算力基建)"]
+  rationale: "GB200/GB300 内部 NVLink 用 224G 高速连接 — 立讯/Amphenol 角力, 单机柜价值量 $5k+"
+
+ai__copper_foil:
+  track: AI
+  display: "铜箔 (PCB 上游材料)"
+  keywords:
+    zh: ["铜箔", "高频铜箔", "HVLP", "RTF", "诺德股份", "铜冠铜箔", "嘉元科技", "AI铜箔"]
+    en: ["HVLP copper foil", "RTF copper foil", "high-speed PCB material"]
+  tickers:
+    - {code: "600110.SH", name: "诺德股份", weight: high}
+    - {code: "301217.SZ", name: "铜冠铜箔", weight: med}
+    - {code: "688388.SH", name: "嘉元科技", weight: med}
+    - {code: "301511.SZ", name: "德福科技", weight: low}
+  source_concepts: ["PCB (算力基建)"]
+  rationale: "AI 高速 PCB 把 HVLP 铜箔需求拉起来 — 单价比锂电铜箔高 30%, 国产替代窗口期"
+
+ai__resin_material:
+  track: AI
+  display: "树脂 (高频 CCL 上游)"
+  keywords:
+    zh: ["碳氢树脂", "PPO", "PPE", "低介电树脂", "东材科技", "圣泉集团", "AI树脂", "Megtron"]
+    en: ["low-Dk resin", "PPO PPE", "hydrocarbon resin", "Megtron 7", "high-frequency CCL"]
+  tickers:
+    - {code: "601208.SH", name: "东材科技", weight: high}
+    - {code: "605589.SH", name: "圣泉集团", weight: med}
+    - {code: "300586.SZ", name: "美联新材", weight: med}
+    - {code: "605366.SH", name: "宏柏新材", weight: low}
+  source_concepts: ["PCB (算力基建)"]
+  rationale: "高频 CCL 用低介电树脂, 国产替代壁垒最高 — 圣泉/东材已切入 NV/Meta 供应链"
+
+ai__glass_fiber_cloth:
+  track: AI
+  display: "电子布 (低介电玻纤布)"
+  keywords:
+    zh: ["电子布", "Low-Dk", "低介电玻纤布", "宏和科技", "中国巨石", "中材科技", "AI 玻纤"]
+    en: ["low-Dk glass cloth", "electronic glass fiber", "high-end CCL substrate"]
+  tickers:
+    - {code: "603256.SH", name: "宏和科技", weight: high}
+    - {code: "600176.SH", name: "中国巨石", weight: med}
+    - {code: "002080.SZ", name: "中材科技", weight: med}
+    - {code: "301526.SZ", name: "国际复材", weight: low}
+  source_concepts: ["PCB (算力基建)"]
+  rationale: "高频 CCL 上游, 低介电电子布国产替代加速 — 宏和扩产 + 中材技术突破都是 capex_lock"
+
+ai__liquid_cooling:
+  track: AI
+  display: "液冷 (DC 散热)"
+  keywords:
+    zh: ["液冷", "冷板", "浸没式", "英维克", "高澜股份", "申菱环境", "精密空调", "机柜散热"]
+    en: ["liquid cooling", "cold plate", "immersion cooling", "data center cooling"]
+  tickers:
+    - {code: "002837.SZ", name: "英维克", weight: high}
+    - {code: "300499.SZ", name: "高澜股份", weight: med}
+    - {code: "603019.SH", name: "中科曙光", weight: med}
+    - {code: "301018.SZ", name: "申菱环境", weight: low}
+  source_concepts: ["AIDC/算力租赁"]
+  rationale: "单机柜功率 100kW+ 必须液冷 — 英维克 NV/华为通吃, 渗透率从 5% → 30% 三年内"
+
+ai__power_supply:
+  track: AI
+  display: "电源 (DC 配电/高压)"
+  keywords:
+    zh: ["数据中心电源", "PSU", "高压直流", "HVDC", "中恒电气", "欧陆通", "麦格米特", "UPS"]
+    en: ["data center PSU", "HVDC power", "rack power", "Schneider", "Vertiv"]
+  tickers:
+    - {code: "002364.SZ", name: "中恒电气", weight: high}
+    - {code: "002580.SZ", name: "圣阳股份", weight: med}
+    - {code: "300870.SZ", name: "欧陆通", weight: med}
+    - {code: "002851.SZ", name: "麦格米特", weight: low}
+  source_concepts: ["电力", "AIDC/算力租赁"]
+  rationale: "GB200 单机柜功耗 120kW → 配电是新瓶颈 — 模块化 PSU + HVDC 替代标准 UPS"
+
+ai__gas_turbine:
+  track: AI
+  display: "燃气轮机 (DC 备电/分布式)"
+  keywords:
+    zh: ["燃气轮机", "分布式能源", "杰瑞股份", "应流股份", "东方电气", "航改型", "AI数据中心电力"]
+    en: ["gas turbine", "data center power", "distributed generation", "GE Vernova"]
+  tickers:
+    - {code: "002353.SZ", name: "杰瑞股份", weight: high}
+    - {code: "605060.SH", name: "联德股份", weight: med}
+    - {code: "603308.SH", name: "应流股份", weight: med}
+    - {code: "600875.SH", name: "东方电气", weight: low}
+  source_concepts: ["电力", "工业机械"]
+  rationale: "美国 AIDC 用气电就近发电规避电网瓶颈 — 国产航改型燃机 (杰瑞/应流) 跟随订单"
+
+ai__solid_state_transformer:
+  track: AI
+  display: "固态变压器 (SST/中压配电)"
+  keywords:
+    zh: ["固态变压器", "SST", "中压配电", "四方股份", "金盘科技", "中国西电", "伊戈尔", "电网升级"]
+    en: ["solid-state transformer", "SST", "medium voltage power", "data center electrical"]
+  tickers:
+    - {code: "601126.SH", name: "四方股份", weight: high}
+    - {code: "601179.SH", name: "中国西电", weight: med}
+    - {code: "002922.SZ", name: "伊戈尔", weight: med}
+    - {code: "688676.SH", name: "金盘科技", weight: low}
+  source_concepts: ["电力"]
+  rationale: "AIDC 中压直送 → SST 替代传统变压器, 体积小 30% / 效率高 1-2 pct — 早期赛道"
+
+ai__power_compute_coord:
+  track: AI
+  display: "算电协同 (绿电 + 算力)"
+  keywords:
+    zh: ["算电协同", "绿电算力", "豫能控股", "协鑫能科", "南网数字", "韶能股份", "风光储算", "虚拟电厂"]
+    en: ["green compute", "renewable AI data center", "power-compute coordination"]
+  tickers:
+    - {code: "001896.SZ", name: "豫能控股", weight: high}
+    - {code: "002015.SZ", name: "协鑫能科", weight: med}
+    - {code: "301638.SZ", name: "南网数字", weight: med}
+    - {code: "000601.SZ", name: "韶能股份", weight: low}
+  source_concepts: ["电力", "AIDC/算力租赁"]
+  rationale: "电力公司跨界 AIDC 拿低价绿电 + 高利用率算力 — 政策驱动 (东数西算) + capex_lock"
+
+ai__compute_leasing:
+  track: AI
+  display: "算力租赁 (端侧/转售)"
+  keywords:
+    zh: ["算力租赁", "智算中心", "利通电子", "协创数据", "宏景科技", "算力外采", "GPU出租"]
+    en: ["compute leasing", "GPU rental", "AI compute reseller"]
+  tickers:
+    - {code: "603629.SH", name: "利通电子", weight: high}
+    - {code: "300857.SZ", name: "协创数据", weight: med}
+    - {code: "301396.SZ", name: "宏景科技", weight: med}
+    - {code: "300531.SZ", name: "优博讯", weight: low}
+  source_concepts: ["AIDC/算力租赁"]
+  rationale: "小公司转型卖算力 — narrative 弹性大但 capex 锁定弱, 监控 late_stage 风险 (类似 ai__compute_chip 路径)"
 
 # ═══════════════════════════════════════════════════════════════════════════
 # 家居产业链 — 3 个 sub-domain

@@ -1,0 +1,187 @@
+# watchlist/proposed/2026-05-25.yaml
+# 来源: 用户图片 — "AI算力 2026 年核心赛道 20 大细分领域 × top1-4"
+# 决策: 全量进 narrative_universe.yaml (14→28 sub_domain), 仅 top1 走 watchlist propose
+#       已在 watchlist 不重复: 中际旭创/海光信息/立讯精密/润泽科技 (4 only)
+# 入选 16 / 20 个赛道 top1 (4 个已在 wl)
+
+schema_version: 1
+generated_at: 2026-05-25T18:30:00+08:00
+generated_by: claude-2026-05-25-ai-compute-poster
+review_doc: ""
+
+# ───────────────────────────────────────────────
+# 配套同步: narrative_universe.yaml 14 → 28 sub_domain
+# 已建 sub_domain: ai__optical_chip / ai__optical_switching / ai__optical_equipment
+#                  / ai__fiber_cable / ai__high_speed_connector / ai__copper_foil
+#                  / ai__resin_material / ai__glass_fiber_cloth / ai__liquid_cooling
+#                  / ai__power_supply / ai__gas_turbine / ai__solid_state_transformer
+#                  / ai__power_compute_coord / ai__compute_leasing
+# 6 个现有 sub_domain 补 ticker:
+#   ai__compute_chip + 沐曦股份/摩尔线程
+#   ai__memory_storage + 德明利
+#   ai__optical_module + 华工科技
+#   ai__nvda_supplychain + 浪潮信息/紫光股份/中科曙光
+#   ai__pcb_substrate + 东山精密
+#   ai__datacenter_idc + 网宿科技/光环新网/数据港
+# ───────────────────────────────────────────────
+
+proposals:
+  - id: 1
+    op: add
+    entry:
+      code: "688195.SH"
+      name: "腾景科技"
+      tier: "观察池"
+      themes: [光交换, OCS, 光通信, TPU pod, Google OCS]
+      added_at: 2026-05-25
+      reason: "[光交换 (OCS)] Google TPU pod 验证 OCS 大规模商用, 国内大厂跟进 — 替代 InfiniBand 的下一代 narrative. 弹性大但 capex 落地慢, 监控 capex_lock 类型事件 (中标/扩产/签约)"
+
+  - id: 2
+    op: add
+    entry:
+      code: "688498.SH"
+      name: "源杰科技"
+      tier: "观察池"
+      themes: [光芯片, DFB, EML, 硅光, 国产替代]
+      added_at: 2026-05-25
+      reason: "[光芯片] 光模块上游核心. 1.6T/CPO 升级把光芯片国产化弹性放大 — Q1 已开始放量, capex_lock 信号最强 (W21 v4 类型 70% hit)"
+
+  - id: 3
+    op: add
+    entry:
+      code: "300476.SZ"
+      name: "胜宏科技"
+      tier: "观察池"
+      themes: [PCB, 高速PCB, AI算力, NVDA供应链]
+      added_at: 2026-05-25
+      reason: "[PCB] 海报 PCB top1, 已切入 NV/AMD AI 服务器供应链, 高速 PCB ASP 比通用版高 30%+. 与 watchlist 已有 沪电股份 互补 — 沪电偏交换机, 胜宏偏 GPU 服务器"
+
+  - id: 4
+    op: add
+    entry:
+      code: "601138.SH"
+      name: "工业富联"
+      tier: "观察池"
+      themes: [AI服务器, NVDA供应链, 富士康, 光模块组装]
+      added_at: 2026-05-25
+      reason: "[AI 服务器] NV GB200/GB300 AI 服务器 ODM 主力 — 季度财报与 NV 同步爆发. watchlist 在服务器整机层裸奔, 这是核心补位"
+
+  - id: 5
+    op: add
+    entry:
+      code: "601869.SH"
+      name: "长飞光纤"
+      tier: "观察池"
+      themes: [光纤光缆, AIDC互联, 海缆, 骨干网]
+      added_at: 2026-05-25
+      reason: "[光纤光缆] AIDC 集群间互联 + 海缆国产化双线驱动. 弹性弱于光模块但稳定性强, 走中长期慢牛 — 适合做防御性配置"
+
+  - id: 6
+    op: add
+    entry:
+      code: "001309.SZ"
+      name: "德明利"
+      tier: "观察池"
+      themes: [存储, 主控芯片, 模组, NAND]
+      added_at: 2026-05-25
+      reason: "[存储芯片] 海报存储 top1. 国产 SSD 主控 + 模组双轮驱动, 存储涨价周期 + 国产替代双重 narrative. 与 watchlist 已有 江波龙 形成对照"
+
+  - id: 7
+    op: add
+    entry:
+      code: "300757.SZ"
+      name: "罗博特科"
+      tier: "观察池"
+      themes: [光模块设备, 半导体设备, AOI, 激光封装]
+      added_at: 2026-05-25
+      reason: "[光模块设备] 光模块产能扩张直接驱动设备订单 — capex_lock 类型信号最易出 (W21 v4 capex_lock=70% hit). 中际旭创/新易盛扩产 = 罗博特科订单"
+
+  - id: 8
+    op: add
+    entry:
+      code: "600110.SH"
+      name: "诺德股份"
+      tier: "观察池"
+      themes: [铜箔, HVLP, PCB材料, AI铜箔]
+      added_at: 2026-05-25
+      reason: "[铜箔] AI 高速 PCB 拉动 HVLP 铜箔需求 — 单价比锂电铜箔高 30%, 国产替代窗口期. 但锂电铜箔在去库存, 业绩存波动"
+
+  - id: 9
+    op: add
+    entry:
+      code: "601208.SH"
+      name: "东材科技"
+      tier: "观察池"
+      themes: [碳氢树脂, 低介电, PPO, 高频CCL]
+      added_at: 2026-05-25
+      reason: "[树脂] 高频 CCL 用低介电树脂, 国产替代壁垒最高. 已切入 NV/Meta 供应链 — 是本批 capex_lock 信号最易爆发的细分"
+
+  - id: 10
+    op: add
+    entry:
+      code: "603256.SH"
+      name: "宏和科技"
+      tier: "观察池"
+      themes: [电子布, 低介电玻纤, CCL上游]
+      added_at: 2026-05-25
+      reason: "[电子布] 高频 CCL 上游, 低介电电子布国产替代加速. 与 中材科技 / 中国巨石 形成梯队, 弹性最大但市值小"
+
+  - id: 11
+    op: add
+    entry:
+      code: "002837.SZ"
+      name: "英维克"
+      tier: "观察池"
+      themes: [液冷, 冷板, 精密空调, DC散热]
+      added_at: 2026-05-25
+      reason: "[液冷] 单机柜功率 100kW+ 必须液冷 — 渗透率从 5%→30% 三年内. 已是 NV/华为通吃供应商, AIDC 弹性核心标的"
+
+  - id: 12
+    op: add
+    entry:
+      code: "002364.SZ"
+      name: "中恒电气"
+      tier: "观察池"
+      themes: [HVDC, 数据中心电源, PSU, 通信电源]
+      added_at: 2026-05-25
+      reason: "[电源] GB200 单机柜功耗 120kW → 配电是新瓶颈. 模块化 PSU + HVDC 替代标准 UPS, 中恒是国产 HVDC 龙头"
+
+  - id: 13
+    op: add
+    entry:
+      code: "002353.SZ"
+      name: "杰瑞股份"
+      tier: "观察池"
+      themes: [燃气轮机, 油服, 航改型, AIDC电力]
+      added_at: 2026-05-25
+      reason: "[燃气轮机] 美国 AIDC 用气电就近发电规避电网瓶颈 — 国产航改型燃机跟随订单. 主业是油服, 燃机是新增长曲线"
+
+  - id: 14
+    op: add
+    entry:
+      code: "601126.SH"
+      name: "四方股份"
+      tier: "观察池"
+      themes: [固态变压器, SST, 中压配电, 电网]
+      added_at: 2026-05-25
+      reason: "[固态变压器] AIDC 中压直送 → SST 替代传统变压器, 体积小 30% / 效率高 1-2 pct. 早期赛道, 主业电网产品提供基本盘"
+
+  - id: 15
+    op: add
+    entry:
+      code: "001896.SZ"
+      name: "豫能控股"
+      tier: "观察池"
+      themes: [算电协同, 绿电算力, 河南国资, 风光储算]
+      added_at: 2026-05-25
+      reason: "[算电协同] 电力公司跨界 AIDC 拿低价绿电 + 高利用率算力. 政策驱动 (东数西算) + capex_lock — 优于纯炒作的算力租赁链"
+
+  - id: 16
+    op: add
+    entry:
+      code: "603629.SH"
+      name: "利通电子"
+      tier: "观察池"
+      themes: [算力租赁, GPU出租, 智算中心]
+      added_at: 2026-05-25
+      reason: "[算力租赁] ⚠️ 监控 late_stage 风险标的. 主业 LED 屏框转型卖算力 — narrative 弹性大但 capex 锁定弱, 类似 ai__compute_chip 路径风险. 列观察池但事件层面贴 late_stage 嫌疑"
