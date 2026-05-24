@@ -1,0 +1,379 @@
+# narrative_universe.yaml — 叙事层覆盖范围 (AI / 家居 / 交叉)
+#
+# 设计目的:
+#   叙事雷达 (narrative_radar.py) 每日扫多源, LLM 二级筛"叙事级别"事件后,
+#   要快速回答"这条新闻能影响哪些 A 股标的".
+#   本文件就是事件 → 板块 → 个股 的查找表.
+#
+# 字段:
+#   - track:           AI / 家居 / AI×家居 (跨界, 优先级最高)
+#   - keywords:        radar 搜索关键词 (中英文都加, 中文用 search_baidu, 英文用 search_tavily)
+#   - tickers:         代表性 A 股标的 (5-10 只, 优先权重高的)
+#   - source_concepts: 在 concept_etf_map.yaml 里对应的 concept name (用于 backref)
+#   - rationale:       为啥纳入这个轨道, 1 行
+#
+# 维护: 当出现新故事 (如 DeepSeek 流派 / Apple AI 链) 时, 在对应 track 下加新 sub-domain.
+#
+# 数据 owner: emox / homespace / market-tools
+
+schema_version: 2
+last_updated: 2026-05-25
+total_tracks: 14
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 末期抱团 sub_domain — narrative_radar 收事件时给这里列出的 subdomain 自动打
+# late_stage=true, 下游 narrative_track / picker 据此降权 (score_penalty +1).
+#
+# 加入条件 (任一满足):
+#   1) 该 sub_domain 的 sector_score Tier 已沦落到 "末期抱团" (sector_picks 标记)
+#   2) narrative_track 周报里该 sub_domain 的 hit_rate < 40% 且事件数 ≥ 5 条
+#   3) 板块 ETF 资金净流出连续 5 个交易日 (concept_etf_map 数据)
+#
+# 移除条件: 板块出现 -15% 调整后再放回 — 别在抱团末期反复出入
+#
+# 决策证据: W21 v3 doc - ai__compute_chip 23 events / 30.4% hit / 0% median excess
+# (2026-05-25 emox)
+# ═══════════════════════════════════════════════════════════════════════════
+late_stage_subdomains:
+  - ai__compute_chip   # 国产算力 — 寒武纪/华海清科/海光在 D30 都 -5%~-7%, 5/24 W21 验证
+
+# ═══════════════════════════════════════════════════════════════════════════
+# event_type 分类器关键词 — narrative_radar.cmd_add 会把 title+rationale+thesis_seed
+# 拼起来匹配下面的关键词, 第一匹配命中就贴 event_type 标签.
+#
+# trailing_data / recap_news 类的 event 会被 score_penalty +1 (因为是 lagging
+# 数据, 市场已经 price-in 在前期股价里), 下游 picker 降权.
+#
+# 顺序非常重要 — 越靠前优先级越高 (capex_lock 比 govt_policy 优先, 因为前者更具体).
+# ═══════════════════════════════════════════════════════════════════════════
+event_type_patterns:
+  # 实业增量类 (最强信号 — 不扣分)
+  capex_lock:
+    keywords:
+      - capex
+      - 新厂
+      - 新工厂
+      - 扩产
+      - 上调
+      - 中标
+      - 量产
+      - 投产
+      - 签约
+      - 收购
+      - 入股
+      - 供货合同
+      - 战略合作
+    rationale: "实业增量锁定 — 未来 N 个季度营收必然增加, 最高质量信号 (W21 v3 §5)"
+    score_penalty: 0
+
+  quant_increment:
+    keywords:
+      - 涨价
+      - 价值量
+      - 单价
+      - ASP
+      - 毛利率
+      - 单机柜
+      - 价格上涨
+      - 缺货
+      - 短缺
+      - 提价
+    rationale: "量化增量 — 数字明确驱动估值, 仅次于 capex_lock"
+    score_penalty: 0
+
+  # 政策类 (中性)
+  govt_policy:
+    keywords:
+      - 国标
+      - 补贴
+      - 以旧换新
+      - 政策
+      - 国务院
+      - 工信部
+      - 发改委
+      - 财政部
+      - 央行
+      - 推进
+      - 试点
+    rationale: "政策驱动 — 落地节奏不确定, 标的弹性差异大, 不扣分但也不加分"
+    score_penalty: 0
+
+  # 滞后信息类 (扣分)
+  recap_news:
+    keywords:
+      - 研报
+      - 评级
+      - 目标价
+      - 分析师
+      - 卖方
+      - 增持
+      - 买入评级
+      - 首予
+      - 给予
+      - 上调评级
+    rationale: "卖方研报 — lagging indicator, 机构内部已看完才发外部, 等你看到时已 price in"
+    score_penalty: 1
+
+  trailing_data:
+    keywords:
+      - 销量第一
+      - 市占率第一
+      - 排名第一
+      - 销量同比
+      - 出货量同比
+      - 市占率达
+      - 业绩超预期
+      - 历史新高
+      - 创历史
+      - 半年报
+      - 年报披露
+    rationale: "回顾型数据 — 已发生事实, 已 price in 在过去半年股价里"
+    score_penalty: 1
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# AI 产业链 — 9 个 sub-domain
+# ═══════════════════════════════════════════════════════════════════════════
+
+ai__compute_chip:
+  track: AI
+  display: "AI 芯片 (国产 GPU/ASIC)"
+  keywords:
+    zh: ["AI芯片", "国产GPU", "寒武纪", "海光", "ASIC", "DPU", "国产算力", "国产替代"]
+    en: ["AI chip China", "domestic GPU", "Cambricon", "Hygon", "Ascend"]
+  tickers:
+    - {code: "688256.SH", name: "寒武纪",   weight: high}
+    - {code: "688041.SH", name: "海光信息", weight: high}
+    - {code: "688981.SH", name: "中芯国际", weight: high}
+    - {code: "688047.SH", name: "龙芯中科", weight: med}
+    - {code: "688008.SH", name: "澜起科技", weight: med}
+    - {code: "002371.SZ", name: "北方华创", weight: high}
+    - {code: "688012.SH", name: "中微公司", weight: high}
+    - {code: "688126.SH", name: "沪硅产业", weight: med}
+  source_concepts: ["AI芯片 (算力核心)", "半导体设备 (国产替代)", "硅片 (半导体材料)"]
+  rationale: "国产替代是中长期 narrative 主线, 任何 NV/CUDA 受限 / 国产 EDA 突破都会驱动这板块"
+
+ai__memory_storage:
+  track: AI
+  display: "存储芯片 (HBM/DDR/NAND)"
+  keywords:
+    zh: ["HBM", "存储芯片", "兆易创新", "江波龙", "存储涨价", "NAND", "DDR5", "国产存储"]
+    en: ["HBM3e", "Hynix", "Samsung memory", "DRAM cycle", "NAND price"]
+  tickers:
+    - {code: "603986.SH", name: "兆易创新", weight: high}
+    - {code: "301308.SZ", name: "江波龙",   weight: high}
+    - {code: "300223.SZ", name: "北京君正", weight: med}
+    - {code: "688525.SH", name: "佰维存储", weight: med}
+    - {code: "688110.SH", name: "东芯股份", weight: low}
+  source_concepts: ["存储芯片 (HBM/DDR/NAND)"]
+  rationale: "HBM 是 AI 训练瓶颈, 国产 12-Hi 突破 / 美光 SK 涨价都会传导到江波龙/兆易"
+
+ai__advanced_packaging:
+  track: AI
+  display: "先进封装 (CoWoS/Chiplet)"
+  keywords:
+    zh: ["先进封装", "CoWoS", "Chiplet", "玻璃基板", "通富微电", "长电科技"]
+    en: ["CoWoS capacity", "advanced packaging", "TSMC packaging", "glass substrate"]
+  tickers:
+    - {code: "600584.SH", name: "长电科技", weight: high}
+    - {code: "002156.SZ", name: "通富微电", weight: high}
+    - {code: "002185.SZ", name: "华天科技", weight: med}
+    - {code: "688362.SH", name: "甬矽电子", weight: low}
+  source_concepts: ["先进封装 (CoWoS/Chiplet)"]
+  rationale: "CoWoS/Chiplet 决定 AI 算力扩展路径, 玻璃基板新方向也是这条线"
+
+ai__optical_module:
+  track: AI
+  display: "光通信 (光模块/CPO)"
+  keywords:
+    zh: ["光模块", "CPO", "硅光", "1.6T", "中际旭创", "新易盛", "天孚通信", "光通信"]
+    en: ["1.6T optical", "CPO", "silicon photonics", "InnoLight", "Eoptolink"]
+  tickers:
+    - {code: "300308.SZ", name: "中际旭创", weight: high}
+    - {code: "300502.SZ", name: "新易盛",   weight: high}
+    - {code: "300394.SZ", name: "天孚通信", weight: high}
+    - {code: "002281.SZ", name: "光迅科技", weight: med}
+    - {code: "688191.SH", name: "智明达",   weight: low}
+  source_concepts: ["光通信 (光模块/CPO)"]
+  rationale: "AI 数据中心带宽弹性, NV 财报后通常爆发. 5/13 那批就栽在这上面 — 缺叙事支撑就别再追"
+
+ai__nvda_supplychain:
+  track: AI
+  display: "英伟达产业链"
+  keywords:
+    zh: ["英伟达", "NVDA", "Blackwell", "H200", "GB200", "工业富联", "沪电股份"]
+    en: ["NVIDIA earnings", "Blackwell ramp", "GB200", "H200 demand", "Hopper"]
+  tickers:
+    - {code: "601138.SH", name: "工业富联", weight: high}
+    - {code: "002463.SZ", name: "沪电股份", weight: high}
+    - {code: "300476.SZ", name: "胜宏科技", weight: med}
+    - {code: "600183.SH", name: "生益科技", weight: med}
+    - {code: "300308.SZ", name: "中际旭创", weight: high}
+  source_concepts: ["英伟达产业链", "PCB (算力基建)"]
+  rationale: "NV 季报是季节性催化, 美股 NV/AVGO 隔夜涨跌直接映射 A 股 PCB/光模块"
+
+ai__app_software:
+  track: AI
+  display: "AI 应用 (软件侧)"
+  keywords:
+    zh: ["大模型", "Agent", "DeepSeek", "Manus", "金山办公", "科大讯飞", "AI应用", "AIGC"]
+    en: ["LLM agent", "GPT-5", "Claude", "AI SaaS", "Manus", "DeepSeek-V4"]
+  tickers:
+    - {code: "002230.SZ", name: "科大讯飞", weight: high}
+    - {code: "688110.SH", name: "东芯股份", weight: low}
+    - {code: "300229.SZ", name: "拓尔思",   weight: med}
+    - {code: "688111.SH", name: "金山办公", weight: high}
+    - {code: "300418.SZ", name: "昆仑万维", weight: med}
+    - {code: "300002.SZ", name: "神州泰岳", weight: low}
+  source_concepts: ["AI 应用 (软件侧)"]
+  rationale: "应用层叙事变化最快 — 大模型迭代 / API 价格战 / Agent 爆发都会撬动估值"
+
+ai__datacenter_idc:
+  track: AI
+  display: "AIDC/算力租赁"
+  keywords:
+    zh: ["智算中心", "算力租赁", "IDC", "润泽科技", "浪潮信息", "服务器", "液冷"]
+    en: ["AI data center", "compute rental", "liquid cooling", "AI server"]
+  tickers:
+    - {code: "300442.SZ", name: "润泽科技", weight: high}
+    - {code: "000977.SZ", name: "浪潮信息", weight: high}
+    - {code: "002415.SZ", name: "海康威视", weight: med}
+  source_concepts: ["AIDC/算力租赁"]
+  rationale: "电力 + 液冷 + 算力集群是 AI 实体基建. 单 AIDC 项目落地新闻可触发短线"
+
+ai__pcb_substrate:
+  track: AI
+  display: "PCB / 算力基建材料"
+  keywords:
+    zh: ["PCB", "高速PCB", "ABF载板", "覆铜板", "沪电股份", "胜宏科技", "生益"]
+    en: ["high-speed PCB", "ABF substrate", "CCL", "PCB China"]
+  tickers:
+    - {code: "002463.SZ", name: "沪电股份", weight: high}
+    - {code: "300476.SZ", name: "胜宏科技", weight: high}
+    - {code: "600183.SH", name: "生益科技", weight: med}
+    - {code: "002138.SZ", name: "顺络电子", weight: low}
+    - {code: "002916.SZ", name: "深南电路", weight: med}
+  source_concepts: ["PCB (算力基建)"]
+  rationale: "AI 服务器单价含 PCB 占 8-12%, 是受 NV 算力需求最直接弹性的中游"
+
+ai__edge_device:
+  track: AI
+  display: "端侧 AI (AIPC/AI手机/AI眼镜)"
+  keywords:
+    zh: ["AIPC", "AI手机", "AI眼镜", "端侧大模型", "边缘AI", "联想", "中科创达", "Meta眼镜"]
+    en: ["AI PC", "Copilot+ PC", "Apple Intelligence", "smart glasses", "edge AI"]
+  tickers:
+    - {code: "300496.SZ", name: "中科创达", weight: high}   # AIPC + 智能座舱
+    - {code: "688256.SH", name: "寒武纪",   weight: med}    # 端侧推理芯片
+    - {code: "002475.SZ", name: "立讯精密", weight: high}   # Apple/AR
+    - {code: "002241.SZ", name: "歌尔股份", weight: high}   # AR/VR/眼镜
+    - {code: "300433.SZ", name: "蓝思科技", weight: med}    # AI 终端结构件
+  source_concepts: []   # 没有现成 ETF 映射, 跨多 concept
+  rationale: "Apple AI / Copilot+ PC / Meta 眼镜 都在 2026 节奏窗口, 是端侧 AI 大行情题材"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 家居产业链 — 3 个 sub-domain
+# ═══════════════════════════════════════════════════════════════════════════
+
+home__appliance_white:
+  track: 家居
+  display: "白电/黑电 (大家电龙头)"
+  keywords:
+    zh: ["美的", "海尔", "格力", "海信", "TCL", "家电", "家电出海", "家电下乡"]
+    en: ["Midea", "Haier", "Gree", "Hisense", "appliance export"]
+  tickers:
+    - {code: "000333.SZ", name: "美的集团", weight: high}
+    - {code: "000651.SZ", name: "格力电器", weight: high}
+    - {code: "600690.SH", name: "海尔智家", weight: high}
+    - {code: "600060.SH", name: "海信视像", weight: med}
+    - {code: "000100.SZ", name: "TCL科技",  weight: med}
+    - {code: "002508.SZ", name: "老板电器", weight: low}
+  source_concepts: ["家电"]
+  rationale: "出海 + 以旧换新 + AI 改造 三重 narrative, 偏防御也有题材"
+
+home__smart_home:
+  track: 家居
+  display: "智能家居 (Matter/全屋智能)"
+  keywords:
+    zh: ["全屋智能", "Matter协议", "智能家居", "智能门锁", "智能门铃", "萤石", "海尔智家"]
+    en: ["Matter protocol", "smart home", "Apple HomeKit", "smart lock"]
+  tickers:
+    - {code: "688475.SH", name: "萤石网络", weight: high}
+    - {code: "002271.SZ", name: "凯迪仕",   weight: med}    # 注: 实际未上市, 占位
+    - {code: "002032.SZ", name: "苏泊尔",   weight: low}
+    - {code: "600690.SH", name: "海尔智家", weight: high}
+  source_concepts: []
+  rationale: "Matter 协议催熟 + AI 加持智能家居, 中长期叙事但成分公司少"
+
+home__building_material:
+  track: 家居
+  display: "家居建材 (软装定制)"
+  keywords:
+    zh: ["欧派家居", "索菲亚", "顾家家居", "整装", "定制家居", "家居建材"]
+    en: ["custom home", "China home decor", "OPPEIN"]
+  tickers:
+    - {code: "603833.SH", name: "欧派家居", weight: high}
+    - {code: "002572.SZ", name: "索菲亚",   weight: high}
+    - {code: "603816.SH", name: "顾家家居", weight: med}
+  source_concepts: []
+  rationale: "地产周期相关, 弹性大. 二手房交易回暖 / 装修补贴政策都是事件"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# AI × 家居 交叉 — 2 个 sub-domain (你重点关注的)
+# ═══════════════════════════════════════════════════════════════════════════
+
+cross__robot_appliance:
+  track: AI×家居
+  display: "机器人家电 (扫地/服务机器人)"
+  keywords:
+    zh: ["扫地机器人", "石头科技", "科沃斯", "洗地机", "割草机器人", "家用机器人", "服务机器人"]
+    en: ["robot vacuum", "Roborock", "Ecovacs", "iRobot", "home robot"]
+  tickers:
+    - {code: "688169.SH", name: "石头科技", weight: high}
+    - {code: "603486.SH", name: "科沃斯",   weight: high}
+    - {code: "002032.SZ", name: "苏泊尔",   weight: low}
+    - {code: "300736.SZ", name: "百邦科技", weight: low}
+  source_concepts: ["家电", "人形机器人"]
+  rationale: "AI 算法升级 (LLM 控制 + SLAM) 让扫地机进入新一轮升级期, 出海弹性大"
+
+cross__ai_appliance:
+  track: AI×家居
+  display: "AI 家电 (AI电视/AI冰箱/智能音箱)"
+  keywords:
+    zh: ["AI电视", "AI冰箱", "智能音箱", "海信AI", "美的AIHome", "TCL AI", "鸿蒙智家"]
+    en: ["AI TV", "smart fridge", "AI appliance", "Haier AI"]
+  tickers:
+    - {code: "600060.SH", name: "海信视像", weight: high}
+    - {code: "000333.SZ", name: "美的集团", weight: high}
+    - {code: "600690.SH", name: "海尔智家", weight: high}
+    - {code: "000810.SZ", name: "创维数字", weight: med}
+  source_concepts: ["家电"]
+  rationale: "大模型嵌入家电是 2026 新故事, 美的/海尔/海信都在推自有大模型"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 信息源 (radar 每日扫的源)
+# ═══════════════════════════════════════════════════════════════════════════
+news_sources:
+  - {url: "https://www.semiinsights.com/", track: AI, lang: zh, name: "半导体行业观察"}
+  - {url: "https://www.trendforce.cn/", track: AI, lang: zh, name: "TrendForce 集邦"}
+  - {url: "https://www.zhidx.com/", track: AI, lang: zh, name: "智东西"}
+  - {url: "https://www.36kr.com/information/AI/", track: AI, lang: zh, name: "36氪 AI"}
+  - {url: "https://www.leiphone.com/", track: AI, lang: zh, name: "雷锋网"}
+  - {url: "https://www.cls.cn/", track: AI, lang: zh, name: "财联社"}
+  - {url: "https://www.cheaa.com/", track: 家居, lang: zh, name: "家电网"}
+  - {url: "https://www.zol.com.cn/news/list_3_1.html", track: AI×家居, lang: zh, name: "中关村在线"}
+
+# 通用 search query (Baidu/Tavily 二级扫)
+search_queries:
+  - {q: "AI芯片 突破 量产", track: AI, source: baidu}
+  - {q: "国产GPU 替代 NVDA", track: AI, source: baidu}
+  - {q: "HBM 涨价 国产", track: AI, source: baidu}
+  - {q: "光模块 1.6T 量产", track: AI, source: baidu}
+  - {q: "AIPC AI手机 渗透率", track: AI, source: baidu}
+  - {q: "扫地机器人 出海 业绩", track: AI×家居, source: baidu}
+  - {q: "AI电视 美的 海尔 海信 大模型", track: AI×家居, source: baidu}
+  - {q: "家电 以旧换新 销量", track: 家居, source: baidu}
+  - {q: "Apple AI iPhone 17 demand", track: AI, source: tavily}
+  - {q: "Nvidia Blackwell ramp 2026", track: AI, source: tavily}
+  - {q: "TSMC CoWoS capacity expansion", track: AI, source: tavily}
+  - {q: "robot vacuum market share 2026", track: AI×家居, source: tavily}
