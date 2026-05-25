@@ -27,6 +27,14 @@ from typing import Any
 from etf_data import sector_signals, etfs_for, SectorSignals
 from sector_score import score_sector
 
+# 短线层 z_block 信号 (2026-05-25 P0-2: news_score 拒收后转 sector_picks 短线层)
+# 见 sector_picks_block_trade.py docstring + docs/news_score_phase2_design.md
+try:
+    import sector_picks_block_trade as _spbt
+    _SPBT_AVAILABLE = True
+except Exception:
+    _SPBT_AVAILABLE = False
+
 _HERE = Path(__file__).resolve().parent
 _TUSHARE = _HERE / "tushare.py"
 _HISTORY_LOG = _HERE / "sector_picks_history.jsonl"
@@ -133,6 +141,11 @@ class StockMetrics:
     rev_yoy: float | None
     # 估值历史
     pe_median_3y: float | None
+    # 复权 (rule 2 P0, 新增 2026-05-21): Tushare daily 默认未复权, 行权除权造成虚假"高点"
+    # qfq_applied: 是否已对历史 closes/vols 应用前复权
+    # adj_events_60d: 60 个交易日内除权事件次数 (>0 说明近期有除权, 数据需特别注意)
+    qfq_applied: bool = False
+    adj_events_60d: int = 0
 
 
 def _percentile_of(window: list, val: float) -> int:
@@ -193,18 +206,67 @@ def _classify_pv(pct_1d: float, pct_5d: float, vol_1d_ratio: float, vol_5d_ratio
 
 
 def compute_stock(code: str, name: str) -> StockMetrics | None:
-    """Pull and compute all per-stock metrics."""
+    """Pull and compute all per-stock metrics.
+
+    Rule 2 (P0, 新增 2026-05-21): Tushare daily 默认返回未复权价. 当个股发生送转/配股/
+    限售解禁等机械除权时, 历史 close 会保留事件前的虚高 (例: 寒武纪 2026-05-08 行权,
+    adj_factor 1.0 → 1.4912, 真实 1966 → qfq 1318), 直接用未复权数据算 pos250 / 距高点
+    回撤会得出"还有 30% 安全垫"的假象, 但实际已创历史新高. 这里强制拉 adj_factor 应用
+    前复权, 让所有 closes 在今日口径下可比.
+    """
     daily = _ts("daily", ts_code=code, fields="trade_date,close,vol,amount")
     if not daily:
         return None
     daily.sort(key=lambda x: x["trade_date"])
-    closes = [float(r["close"]) for r in daily if r.get("close")]
-    vols = [float(r["vol"]) for r in daily if r.get("vol")]
-    if len(closes) < 20:
+
+    # 构造对齐的 (date, close, vol) 三元组, 过滤无效行 — 避免 closes 和 vols 长度不一致
+    rows: list[tuple[str, float, float]] = []
+    for r in daily:
+        try:
+            d = r["trade_date"]
+            c = float(r["close"])
+            v = float(r.get("vol") or 0)
+            if c > 0:
+                rows.append((d, c, v))
+        except (ValueError, KeyError, TypeError):
+            continue
+    if len(rows) < 20:
         return None
 
+    # ── 前复权处理 (rule 2 P0) ──
+    qfq_applied = False
+    adj_events_60d = 0
+    adj_rows = _ts("adj_factor", ts_code=code, fields="trade_date,adj_factor")
+    if adj_rows:
+        adj_map: dict[str, float] = {}
+        for r in adj_rows:
+            try:
+                a = float(r["adj_factor"])
+                if a > 0:
+                    adj_map[r["trade_date"]] = a
+            except (ValueError, KeyError, TypeError):
+                continue
+        latest_date = rows[-1][0]
+        latest_adj = adj_map.get(latest_date)
+        if latest_adj and latest_adj > 0:
+            # 全窗口 adj_factor 是否变化 → 决定是否需要前复权
+            window_adjs = [adj_map.get(d) for d, _, _ in rows]
+            window_adjs_clean = [a for a in window_adjs if a is not None]
+            if window_adjs_clean and len({round(a, 4) for a in window_adjs_clean}) > 1:
+                qfq_applied = True
+                # 60 日内除权事件计数 (近期数据警告用)
+                last_60 = rows[-60:] if len(rows) >= 60 else rows
+                seen_adjs_60 = {round(adj_map.get(d, latest_adj), 4) for d, _, _ in last_60}
+                adj_events_60d = max(0, len(seen_adjs_60) - 1)
+                # 应用前复权: close_qfq = close × adj_factor / latest_adj
+                rows = [(d, c * (adj_map.get(d, latest_adj) / latest_adj), v)
+                        for d, c, v in rows]
+
+    closes = [c for _, c, _ in rows]
+    vols = [v for _, _, v in rows]
+
     close = closes[-1]
-    trade_date = daily[-1]["trade_date"]
+    trade_date = rows[-1][0]
     pct_1d = (close / closes[-2] - 1) * 100 if len(closes) >= 2 else 0
     pct_5d = (close / closes[-6] - 1) * 100 if len(closes) >= 6 else 0
     pct_1w = pct_5d  # 1W ≈ 5个交易日, 兼容旧字段
@@ -288,6 +350,8 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
         net_yoy=ff("netprofit_yoy"),
         rev_yoy=ff("or_yoy"),
         pe_median_3y=pe_median,
+        qfq_applied=qfq_applied,
+        adj_events_60d=adj_events_60d,
     )
 
 
@@ -447,6 +511,65 @@ def tier4_timing(s: StockMetrics, sector_nav_5d: float) -> dict[str, Any]:
     return {"rs_5d": rs, "rs_tier": rs_tier, "position_band": band, "max_size": max_size}
 
 
+def _position_guard(s: StockMetrics, sector_score_total: float, sector_sig: SectorSignals,
+                    verdict: str, reason: str) -> tuple[str, str]:
+    """末端抱团 guard (rule 1, 新增 2026-05-21).
+
+    板块退潮 + 个股逼近 / 创历史新高 + 持续推升 = 教科书"板块退潮龙头末段抱团"形态.
+    A 股最经典的顶部信号: 资金集中往最后一只龙头里塞, 拉抬掩护出货 (last call rally).
+    在这种条件下即使 Tier 0 趋势通道触发 / 个股资金面强 / 业绩硬, 也强制降级 AVOID.
+
+    来源: 2026-05-21 W21 寒武纪 case study.
+      - 复权后实际创历史新高 (pos250 ≈ 100%)
+      - 板块 ETF -57亿 / 20d 派发 (sector_score 27.8 < 30 COLD)
+      - 5/19-20 急涨 +12.7% 持续推升
+      → 最初判 WATCH+ 错; 加这条 guard 后自动否决.
+
+    触发 (前 2 条 AND, momentum 是 OR):
+      - sector_score_total < 30           (板块 COLD)
+      - s.pct_rank_250d >= 95             (250 日位置高位 ≈ 接近历史新高;
+                                           前提是 rule 2 已应用 qfq, 否则 pos250 不可信)
+      - momentum 信号 (任一即触发):
+          (a) s.pct_5d >= 5               (5 日持续推升)
+          (b) s.pct_1m >= 25              (1 月暴涨进高点 — 抓"先杀后拉的洗盘"形态;
+                                           今日寒武纪 5/14-15 急跌后 5/19-20 暴拉, 5d
+                                           只 +3.5% 但 1m +52%, 真正末段抱团信号在 1m)
+
+    动作: 任何非 AVOID 判定 → AVOID + 顶部警告
+    保留 Tier 0 的 reasons 不动 (报告里仍能看到 Tier 0 通过, 只是被 guard 否决).
+
+    NOTE: 不再 require adj_events_60d == 0 — 早期版本加这条试图避免"复权口径变化误报",
+    但 rule 2 的 qfq 已经把历史价校准到今日口径, pos250 本来就反映真实位置. 加这条
+    会把"60 日内有除权 + 创新高"的真 case (例: 寒武纪) 错误放过, 已删除.
+
+    TODO 未来扩展: 引入个股 20d 主力净流入数据, 当 inflow > +20亿 时 reason 描述更精确
+    (当前版本只用价格位置 + 板块 flow, 已经够堵今日 case 漏洞).
+    """
+    if verdict == "AVOID":
+        return verdict, reason
+    flow_yi_20d = sector_sig.flow_20d_cny / 1e8
+    momentum_5d = s.pct_5d >= 5
+    momentum_1m = s.pct_1m >= 25
+    if (sector_score_total < 30
+            and s.pct_rank_250d >= 95
+            and (momentum_5d or momentum_1m)):
+        # 描述选最强的那个 momentum 信号
+        if momentum_1m and not momentum_5d:
+            mom_desc = f"1m {s.pct_1m:+.1f}% 暴涨进新高"
+        elif momentum_5d and momentum_1m:
+            mom_desc = f"5d {s.pct_5d:+.1f}% / 1m {s.pct_1m:+.1f}% 持续推升"
+        else:
+            mom_desc = f"5d {s.pct_5d:+.1f}% 持续推升"
+        new_reason = (
+            f"⚠️ 末端抱团警告 (rule 1): 板块 Tier1={sector_score_total:.0f}<30 退潮 "
+            f"(flow_20d {flow_yi_20d:+.1f}亿) + 个股 pos250={s.pct_rank_250d}% 历史新高区 "
+            f"+ {mom_desc} = 板块退潮龙头末段抱团形态, 强制 AVOID 即使 [{verdict}] 通道通过."
+            f" (原: {reason[:50]})"
+        )
+        return "AVOID", new_reason
+    return verdict, reason
+
+
 def evaluate(s: StockMetrics, sector_sig: SectorSignals,
              sector_score_total: float,
              sector_roe_median: float, sector_margin_median: float, peer_pe_median: float,
@@ -493,6 +616,8 @@ def evaluate(s: StockMetrics, sector_sig: SectorSignals,
             yoy_str = f"+{s.net_yoy:.0f}%" if s.net_yoy is not None else "?"
             reason = (f"Tier 0 趋势龙头 (估值乖离不适用): 板块 {sector_score_total:.0f} HOT + flow_5d {flow_yi:+.1f}亿"
                       f", 业绩 YoY {yoy_str}, pos120={s.pct_rank_120d}%, 仓位 ≤ {t4['max_size']}%")
+        # rule 1 末端抱团 guard 也要对 Tier 0 通道应用 (Tier 0 触发但板块同时退潮 → 顶部抱团)
+        verdict, reason = _position_guard(s, sector_score_total, sector_sig, verdict, reason)
         return PickEvaluation(
             stock=asdict(s),
             tier0_pass=t0_ok, tier0_reasons=t0_reasons,
@@ -529,6 +654,9 @@ def evaluate(s: StockMetrics, sector_sig: SectorSignals,
     else:
         verdict = "AVOID"
         reason = f"乖离 {deviation:+.1f}% 不够"
+
+    # rule 1 末端抱团 guard (新增 2026-05-21) — 应用于常规路径
+    verdict, reason = _position_guard(s, sector_score_total, sector_sig, verdict, reason)
 
     return PickEvaluation(
         stock=asdict(s),
@@ -593,9 +721,18 @@ def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
     # 7. Rank by deviation (desc)
     evals.sort(key=lambda e: -(e.deviation_pct or -999))
 
+    # 8. Concept-level 短线 z_block signal (P0-2 2026-05-25, informational only)
+    block_signal: dict[str, Any] | None = None
+    if _SPBT_AVAILABLE:
+        try:
+            sig_block = _spbt.concept_block_signal(concept)
+            block_signal = _spbt.to_dict(sig_block)
+        except Exception as e:
+            block_signal = {"error": f"block_signal compute failed: {e}"}
+
     evaluations_dict = [asdict(e) for e in evals]
 
-    # 8. 落盘 history (每次跑都 append, 用于 watchlist_decay 的 "从未触发 BUY" 信号)
+    # 9. 落盘 history (每次跑都 append, 用于 watchlist_decay 的 "从未触发 BUY" 信号)
     _append_history(concept, score.total_score, score.tier, evaluations_dict)
 
     return {
@@ -612,6 +749,7 @@ def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
             "peer_pe_median": peer_pe_median,
             "min_deviation_effective": min_dev_effective,
         },
+        "block_signal": block_signal,  # 短线 5d horizon, 不影响 verdict, 仅渲染
         "evaluations": evaluations_dict,
     }
 
@@ -636,6 +774,23 @@ def _print_report(result: dict[str, Any]):
     print(f"        flow_5d={ss['flow_5d_cny']/1e8:+.2f}亿  flow_20d={ss['flow_20d_cny']/1e8:+.2f}亿")
     print(f"  板块 benchmark: ROE_med={sb['roe_median']}%  毛利_med={sb['gross_margin_median']}%  同业 PE_med={sb['peer_pe_median']}")
     print(f"  乖离阈值: {sb['min_deviation_effective']}% (flow 负板块自动抬高)")
+
+    # 短线 z_block (P0-2 2026-05-25): concept 维度 5d horizon 大宗交易折溢价信号
+    bsig = result.get("block_signal")
+    if bsig and not bsig.get("error"):
+        z = bsig.get("z_block_60d")
+        if z is not None:
+            if z >= 1.0:
+                tone = "📈 短线偏多"
+            elif z <= -1.0:
+                tone = "📉 短线偏空"
+            else:
+                tone = "🟡 短线中性"
+            print(f"  {tone} (5d): block_premium z={z:+.2f}σ  "
+                  f"cur={bsig['cur_premium_pct']:+.2f}%  hist={bsig['hist_mean_pct']:+.2f}±{bsig['hist_std_pct']:.2f}  "
+                  f"({bsig['n_trades']}笔/{bsig['n_stocks']}股/{bsig['total_amt_wan']:,.0f}万元)")
+        else:
+            print(f"  ⚪ 短线 z_block: 信号不足 (n_trades={bsig.get('n_trades',0)}, hist={bsig.get('n_hist_nonzero',0)}/60)")
     print()
 
     def fmt_row(e):
@@ -667,6 +822,11 @@ def _print_report(result: dict[str, Any]):
         # 量价信号 (新增 2026-05-20)
         if s.get("pv_alignment") and s["pv_alignment"] != "中性":
             print(f"     量价: {s['pv_alignment']}  vol_signal={s.get('volume_signal','?')}")
+        # 复权警告 (rule 2 P0, 新增 2026-05-21) — 60 日内有除权事件需提醒人工核对
+        if s.get("adj_events_60d", 0) > 0:
+            print(f"     ⚠️ 60日内有 {s['adj_events_60d']} 次除权事件 (qfq_applied={s.get('qfq_applied')}); 数据已前复权但请人工确认时间线")
+        elif s.get("qfq_applied"):
+            print(f"     (qfq: 历史价已前复权, 60日内无新事件)")
         # Tier 0 trace (仅打印通过的 + AVOID/WATCH 中差临门一脚的)
         if e.get("tier0_pass"):
             print(f"     Tier 0 ✅ 趋势龙头通道触发: {' / '.join(e['tier0_reasons'])}")

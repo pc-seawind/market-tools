@@ -1,0 +1,161 @@
+# concept_bk_map.yaml — 概念板块 → 东财 BK (行业/概念) 映射
+#
+# 用途: sector_score v3.fund_flow_score 用 BK moneyflow_ind_dc 大单/超大单数据
+#       替代失效的 ETF share-flow 信号 (回测确认 r=-0.07 反向).
+#
+# 数据源: tushare moneyflow_ind_dc — 包含 buy_elg_amount (超大单) +
+#         buy_lg_amount (大单) + buy_sm_amount (散户) + net_amount_rate (净流入率%).
+#
+# 设计:
+#   - 每个 concept 映射到 1-3 个 BK 码 (优先行业 + 1 个最对口的概念)
+#   - 多 BK 时 main_minus_sm_20d / rate_20d 取均值 (粗糙但稳定)
+#   - 数据深度: 行业 BK 通常 ≥ 1.5y; 概念 BK 大多 9 个月起
+#   - 板块跨多个 BK 时, 选 sub_domain 最匹配的, 不要叠太多 (噪音放大)
+#
+# 验证: backtest_elastic_net.py 在 7 个 AI BK 上跑 n=2603 多元回归,
+#       main_minus_sm_20d r=+0.22, rate_20d r=+0.10, ETF share r=-0.07.
+#
+# 维护:
+#   - 新 concept 加入时, 用 `python3 tushare.py moneyflow_ind_dc trade_date=YYYYMMDD`
+#     列出全部 BK + name, 找最匹配的
+#   - 若 concept 过窄无对应 BK, status: pending → fund_flow_score 走 NEUTRAL fallback
+#   - kind: industry (BK10xx-12xx) 数据最深; concept (BK0xxx-09xx) 9 个月起
+#     industry+concept 混用比纯 concept 稳, 但单 industry 也行
+
+schema_version: 1
+last_updated: 2026-05-25
+
+# ═══════════ Dup Groups (2026-05-25 audit) ═══════════
+# 这些 group 内的 concept 共用同一组 BK 数据源, 因此 sector_score 的
+# fund_flow_pts 在组内 100% 相同. 区分只在 fundamentals_pts (各自成分股
+# 中位数 ROE/YoY) 和 technical_pts (各自 ETF 组合的 nav). sector_score
+# 排名时应该感知 dup_group, 同组多 concept 上榜要打 "(同组)" 标识.
+#
+# parent_of: 父子关系, 父 concept 的 ETF 包含子 concept (如新能源 ⊃ 光伏)
+# 子 concept 在 sector_score top-N 时应让位给父 (避免双计).
+dup_groups:
+  semi_subindex:  # 半导体 5 细分: BK 全等于 [BK1036], 股池差异化
+    members:
+      - "AI芯片 (算力核心)"        # AI芯片 = [BK1036 + BK0917], 多一个概念 BK
+      - "存储芯片 (HBM/DDR/NAND)"
+      - "先进封装 (CoWoS/Chiplet)"
+      - "硅片 (半导体材料)"
+      - "半导体设备 (国产替代)"
+    note: "fund_flow 共用 BK1036 (AI芯片额外加 BK0917), 区分主要靠基本面 + 各自股池. sector_picks 子领域龙头股不重叠 (Jaccard 0-23%), 选股层面有意义."
+  nv_hw_link:     # 英伟达 vs 华为: BK 完全相同, 股池 0% 重叠
+    members:
+      - "英伟达产业链"
+      - "华为产业链"
+    note: "BK 都是 [BK1036+BK0448]. 卖点 (下游客户) 不同, 股池 0% 重叠. fund_flow 无法区分, sector_picks 可以."
+
+parent_concepts:  # 父 concept ⊃ 子 concept (子被父的 ETF/BK 包含)
+  "新能源 (光伏/风电)":
+    children: ["光伏"]
+    note: "新能源(光伏/风电) primary_etfs 含 515790 光伏 ETF (weight 0.3). 子父同时排名 = 双计."
+
+concepts:
+
+  # ═══════════ AI 算力链 ═══════════
+  "AI芯片 (算力核心)":
+    bks:
+      - {code: "BK1036.DC", name: "半导体",     kind: industry}
+      - {code: "BK0917.DC", name: "半导体概念", kind: concept}
+    note: "覆盖寒武纪/海光/澜起/中芯/北方华创等核心. 行业 + 概念双取均值"
+
+  "存储芯片 (HBM/DDR/NAND)":
+    bks:
+      - {code: "BK1036.DC", name: "半导体", kind: industry}
+    note: "无独立存储 BK; 江波龙/兆易创新在半导体行业里"
+
+  "先进封装 (CoWoS/Chiplet)":
+    bks:
+      - {code: "BK1036.DC", name: "半导体", kind: industry}
+    note: "无独立先进封装 BK; 长电/通富在半导体行业里"
+
+  "光通信 (光模块/CPO)":
+    bks:
+      - {code: "BK0448.DC", name: "通信设备",   kind: industry}
+      - {code: "BK1136.DC", name: "光通信模块", kind: concept}
+      - {code: "BK1128.DC", name: "CPO概念",   kind: concept}
+    note: "中际旭创/新易盛/天孚等在通信设备 + CPO 概念里"
+
+  "英伟达产业链":
+    bks:
+      - {code: "BK1036.DC", name: "半导体",   kind: industry}
+      - {code: "BK0448.DC", name: "通信设备", kind: industry}
+    note: "PCB/服务器/散热/光模块多元化, 取半导体+通信均值"
+
+  "AI 应用 (软件侧)":
+    bks:
+      - {code: "BK1037.DC", name: "消费电子", kind: industry}
+      - {code: "BK0800.DC", name: "人工智能", kind: concept}
+      - {code: "BK1629.DC", name: "AI应用",   kind: concept}
+    note: "金山办公/科大讯飞/万兴/中文在线"
+
+  "AIDC/算力租赁":
+    bks:
+      - {code: "BK1134.DC", name: "算力概念", kind: concept}
+      - {code: "BK0800.DC", name: "人工智能", kind: concept}
+    note: "光环新网/数据港/润泽科技; 算力概念是最直接代理"
+
+  "PCB (算力基建)":
+    bks:
+      - {code: "BK0877.DC", name: "PCB",        kind: concept}
+      - {code: "BK1340.DC", name: "印制电路板", kind: industry}
+    note: "胜宏/沪电/生益; W21 单日 +8% 验证"
+
+  "华为产业链":
+    bks:
+      - {code: "BK1036.DC", name: "半导体",   kind: industry}
+      - {code: "BK0448.DC", name: "通信设备", kind: industry}
+    note: "海光/中微/拓荆; 取半导体+通信"
+
+  "硅片 (半导体材料)":
+    bks:
+      - {code: "BK1036.DC", name: "半导体", kind: industry}
+    note: "沪硅产业/立昂微在半导体里"
+
+  "半导体设备 (国产替代)":
+    bks:
+      - {code: "BK1036.DC", name: "半导体", kind: industry}
+    note: "中微/北方华创/拓荆在半导体行业里"
+
+  # ═══════════ 其他板块 - PENDING (待补 BK 映射, 暂走 NEUTRAL fallback) ═══════════
+  # 列在这里是为了让 fund_flow_score 知道这些是显式 pending, 不是 missing.
+  # 加 BK 映射时把 status 改成正常的 bks: 列表.
+
+  "金融-银行":            {status: pending, hint: "BK0475 银行 行业"}
+  "金融-证券":            {status: pending, hint: "BK0473 证券 行业"}
+  "金融-保险":            {status: pending, hint: "BK0474 保险 行业"}
+  "军工":                 {status: pending, hint: "BK0490 军工 行业"}
+  "有色金属":             {status: pending, hint: "BK0478 有色金属 行业"}
+  "锂电产业链":           {status: pending, hint: "BK0911 锂电池 概念"}
+  "煤炭":                 {status: pending, hint: "BK0437 煤炭采选 行业"}
+  "电力":                 {status: pending, hint: "BK0428 电力行业 行业"}
+  "钢铁":                 {status: pending, hint: "BK0479 钢铁 行业"}
+  "化工":                 {status: pending, hint: "BK0476 化工 行业"}
+  "工业机械":             {status: pending, hint: "BK0729 通用设备 行业"}
+  "新能源车":             {status: pending, hint: "BK0913 新能源车 概念"}
+  "新能源 (光伏/风电)":   {status: pending, hint: "BK0915 新能源 概念"}
+  "光伏":                 {status: pending, hint: "BK0476 光伏概念"}
+  "建材建筑":             {status: pending, hint: "BK0424 水泥建材 行业"}
+  "游戏传媒":             {status: pending, hint: "BK0481 传媒 行业"}
+  "港股互联网":           {status: pending, hint: "无 A 股 BK 直接对应; 跳过"}
+  "人形机器人":           {status: pending, hint: "BK1124 人形机器人 概念"}
+  "白酒 (消费龙头)":      {status: pending, hint: "BK0738 白酒 概念"}
+  "食品饮料":             {status: pending, hint: "BK0438 食品饮料 行业"}
+  "消费 (非白酒+非食品饮料)": {status: pending, hint: "BK1031 商业百货 行业"}
+  "家电":                 {status: pending, hint: "BK0426 家用电器 行业"}
+  "创新药 (医药龙头)":    {status: pending, hint: "BK0727 化学制药 行业"}
+  "中药":                 {status: pending, hint: "BK0481 中药Ⅱ"}
+  "农业畜牧":             {status: pending, hint: "BK0428 农牧饲渔 行业"}
+  "地产":                 {status: pending, hint: "BK0451 房地产开发 行业"}
+  "旅游酒店":             {status: pending, hint: "BK0479 旅游酒店 行业"}
+  "高股息 (红利防御)":    {status: pending, hint: "无单一 BK; 跨多行业"}
+  "央企国企":             {status: pending, hint: "BK1027 央企改革 概念"}
+  "固态电池":             {status: pending, hint: "BK1167 固态电池 概念"}
+
+# ═══════════ 备注 ═══════════
+# pending 列表里的 hint 是查全 BK 列表时的近似码, 实际加入前要用
+#   `python3 tushare.py moneyflow_ind_dc trade_date=YYYYMMDD --csv | grep <name>`
+# 验证 BK 码 + 数据起始日 (kind=concept 通常 9 个月起, kind=industry 1.5y+)

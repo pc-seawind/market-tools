@@ -27,6 +27,7 @@ from pathlib import Path
 from typing import Any
 
 from etf_data import load_map, list_concepts, sector_signals, etfs_for, SectorSignals
+from bk_moneyflow import fund_flow_score_v3, bks_for_concept
 
 _HERE = Path(__file__).resolve().parent
 _TUSHARE = _HERE / "tushare.py"
@@ -52,26 +53,23 @@ def tier1_gate(sig: SectorSignals) -> tuple[bool, str]:
 
 # ─── 子分数: 资金面 (40) ──────────────────────────────────────────────────
 
-def fund_flow_score(sig: SectorSignals) -> tuple[float, str]:
-    """0-40 分.
-    flow_5d 和 flow_20d 各 20 分, 阶梯映射.
-    """
-    def step_20(cny: float) -> float:
-        # 每 20 分为一档, 单位 CNY 元
-        if cny >= 5e8: return 20
-        if cny >= 1e8: return 16
-        if cny >= 3e7: return 13
-        if cny >= 0:   return 10
-        if cny >= -3e7: return 7
-        if cny >= -1e8: return 4
-        if cny >= -5e8: return 2
-        return 0  # < -5亿
+def fund_flow_score(concept: str, sig: SectorSignals) -> tuple[float, str]:
+    """0-40 分 — v3 走 BK 大单/散户 (回归驱动连续映射).
 
-    s5 = step_20(sig.flow_5d_cny)
-    s20 = step_20(sig.flow_20d_cny)
-    total = s5 + s20
-    note = f"5d={_fmt_cny(sig.flow_5d_cny)} ({s5:.0f}/20) + 20d={_fmt_cny(sig.flow_20d_cny)} ({s20:.0f}/20)"
-    return total, note
+    v2 (deprecated): 用 ETF 份额 × NAV 算 flow_5d_cny / flow_20d_cny + step_20 阶梯.
+        回测显示 r=-0.07 反向 + step_20 把信号桶化丢失.
+    v3 (current):   走 bk_moneyflow.fund_flow_score_v3
+        - 数据源: tushare moneyflow_ind_dc 板块大单+散户
+        - 信号:   main_minus_sm_20d_z (15分) + rate_20d_z (5分) + base 20
+        - z-score vs 60d 历史, 线性映射 ±2σ → ±15/±5
+
+    无 BK 映射的 concept (yaml status: pending) → NEUTRAL 20.0/40 fallback,
+    并标注 "no BK mapping" 让上层知道这个分不可信.
+
+    sig 参数仅作 v2 fallback / 调试; v3 不依赖它. 保留是为了兼容签名.
+    """
+    score, note, _diag = fund_flow_score_v3(concept)
+    return score, note
 
 
 # ─── 子分数: 基本面 (25) ──────────────────────────────────────────────────
@@ -175,12 +173,66 @@ def fundamentals_score(concept: str) -> tuple[float, str]:
 
 
 # ─── 子分数: 消息面 (15) ──────────────────────────────────────────────────
-# Phase 2 暂用 neutral=9 (不做 search_baidu, 避免 rate limit + 保持 fast scoring)
-# 未来 Phase 2d 可加 news integration
+# phase1_v1 (2026-05-25): 接入 news_score_phase1 (纯 z_repur 信号).
+# 回测验证 (n=448, 6个月): 单变量 IC_20d=+0.334, 加入总分 IC 提升 +24.6%
+# z_north / z_inst 在回测中证为反指/无信号, 已弃用.
+# Fallback: 数据缺失或不在 11 mapped concept → stub-9 neutral.
+
+_NEWS_PHASE1_PRELOAD: dict | None = None  # 进程级 cache, 避免重复拉
+
+def _get_news_preload() -> dict:
+    """进程级 cache: 一次拉 90d, 给 news_score_phase1 复用."""
+    global _NEWS_PHASE1_PRELOAD
+    if _NEWS_PHASE1_PRELOAD is None:
+        try:
+            import news_score_phase1 as ns
+            from datetime import datetime, timedelta
+            now = datetime.now()
+            hist_start_dt = now - timedelta(days=90)
+            hist_start = hist_start_dt.strftime("%Y%m%d")
+            today = now.strftime("%Y%m%d")
+            _NEWS_PHASE1_PRELOAD = {
+                "hsgt": ns.fetch_hsgt_top10_history(hist_start, today),
+                "top_inst": ns.fetch_top_inst_history(hist_start, today),
+                "repurchase": ns.fetch_repurchase_history(hist_start, today),
+            }
+        except Exception as e:
+            print(f"⚠️  news preload failed: {e}", flush=True)
+            _NEWS_PHASE1_PRELOAD = {"hsgt": [], "top_inst": [], "repurchase": []}
+    return _NEWS_PHASE1_PRELOAD
+
 
 def news_score(concept: str) -> tuple[float, str]:
-    """0-15 分. Phase 2 stub — 未集成新闻, neutral 9 分."""
-    return 9.0, "(stub: 未集成新闻扫描, 默认 neutral)"
+    """0-15 分. phase1_v1: 纯 z_repur signal (回测 IC_20d=+0.334).
+
+    门槛验证: backtest_news_phase1.py n=448 6mo (仅在 11 mapped concept 上)
+      单变量 IC_20d=+0.334 (>+0.10 门槛 ✓)
+      增量 IC: +24.6% (>+5% 门槛 ✓)
+    边界: 普涨行情下信号被市场 beta 淹没 (e.g. 202604 IC_20d=-0.291)
+          已用 ±1.5 swing 限制单月反转损害.
+
+    ⚠ 守约: 只对回测过的 11 mapped concept 启用. 30 unmapped concept fallback 到
+       stub-9, 等扩展回测验证后再放开 (避免在未验证 concept 上引入未知风险).
+    """
+    # 检查是否在已验证的 11 mapped concept 中
+    try:
+        import bk_moneyflow as bf
+        cmap = bf.load_concept_bk_map()
+        validated = (concept in cmap and cmap[concept].get("bks"))
+    except Exception:
+        validated = False
+    if not validated:
+        return 9.0, f"(unmapped concept, phase1 未验证; stub-9 fallback)"
+
+    try:
+        import news_score_phase1 as ns
+        preload = _get_news_preload()
+        if not preload.get("repurchase"):
+            return 9.0, "(news data 缺失; stub-9 fallback)"
+        score, note, _diag = ns.news_score_phase1(concept, preloaded=preload)
+        return score, note
+    except Exception as e:
+        return 9.0, f"(phase1_v1 失败 {e!r}; stub-9 fallback)"
 
 
 # ─── 子分数: 技术面 (20) ──────────────────────────────────────────────────
@@ -274,7 +326,7 @@ def score_sector(concept: str) -> SectorScore | None:
             raw_signals={},
         )
 
-    flow_pts, flow_note = fund_flow_score(sig)
+    flow_pts, flow_note = fund_flow_score(concept, sig)
     fund_pts, fund_note = fundamentals_score(concept)
     news_pts, news_note = news_score(concept)
     tech_pts, tech_note = technical_score(sig)
