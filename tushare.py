@@ -40,11 +40,18 @@ import datetime
 import hashlib
 import json
 import os
+import ssl
 import sys
 import tempfile
 import time
 import urllib.error
 import urllib.request
+
+# 2026-05-20: tushare.pro 服务端 SSL cert 当天过期 (notAfter=May 19 23:59:59 GMT).
+# 提供环境变量 TUSHARE_INSECURE_SSL=1 临时绕过验证, 让早盘 cron 不至于挂.
+# 一旦 tushare 续期, 应当 unset 此环境变量恢复严格验证.
+if os.environ.get("TUSHARE_INSECURE_SSL") == "1":
+    ssl._create_default_https_context = ssl._create_unverified_context
 
 # 加载可选扩展模块 (都是软依赖, 失败不影响 tushare.py 核心)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

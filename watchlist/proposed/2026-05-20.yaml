@@ -40,3 +40,50 @@ proposals:
       themes: [半导体IP, 芯片设计服务, 国产替代, ASIC定制]
       added_at: 2026-05-20
       reason: "5/19 涨 4%+ 主力净流入 11.4 亿. 国产半导体 IP 龙头 (类似 Arm 模式), AI ASIC 时代的'卖铲人'. 寒武纪/海光在 watchlist 但 IP 端缺一只. ROE 历年波动大, 业绩需看 Q1/Q2 (尚未披露), 走 thesis 监控."
+
+# ── 2026-05-20 后追加：玻璃基板 (TGV/CoPoS) 主题研究产出 ──
+# 来源: W21 周报 (https://tcnv6xag1i9w.feishu.cn/docx/BU6PdenYhoBuObxoiN8cyaFknOf) — 板块层 ETF flow 走不动 (PCB ETF 159870 反向, 半导体设备 ETF 自身亢奋), 主题降级为 Tier 2/3 个股筛选, 必须保留 ROE 硬底
+# 已 framework 否决 (ROE 负): 沃格光电 603773 (Q1 亏损扩大 112%) / 美迪凯 688079 (净利负 + 大股东减持) — 这两只虽热但不进 proposed
+# 已被 W21 修正 case 否决: 寒武纪 688256 (本次因复权数据假象 + 板块退潮 + 个股创历史新高, 维持 watchlist 但改 AVOID, 不在本次 proposed 范围)
+
+  - id: 4
+    op: add
+    entry:
+      code: "002008.SZ"
+      name: "大族激光"
+      tier: "观察池"
+      themes: [玻璃基板, TGV设备, PCB钻孔, 激光设备, 国产替代]
+      added_at: 2026-05-20
+      reason: "玻璃基板主题 framework Tier A 双硬标的 (业绩硬 + 题材硬). 2026 Q1 营收 +74% / 扣非 +467% / 归母 +116%, PE 107.8 / PB 7.2, 20d 涨幅 +65%. PCB 钻孔 + 玻璃基板设备双轮驱动. 触发条件: PCB ETF (159870) flow_5d 转正 OR 自身 5d 回撤至 -10% 区间."
+      trigger:
+        primary: "PCB ETF 159870 flow_5d 由负转正"
+        alt: "自身回撤至 5d 跌幅 ≤ -10% 且 20d 主力净流入仍为正"
+        invalidate: "Q2 业绩同比 < +30% 或 PCB+玻璃基板订单环比掉头"
+
+  - id: 5
+    op: add
+    entry:
+      code: "688603.SH"
+      name: "天承科技"
+      tier: "观察池"
+      themes: [玻璃基板, TGV电镀, 半导体材料, 添加剂]
+      added_at: 2026-05-20
+      reason: "玻璃基板主题 framework Tier A. 2026 Q1 营收 +42% / 净利 +57%, PE 190 / PB 15.2 估值高但业绩兑现, 20d 涨幅 +53%. TGV 电镀添加剂已批量出货下游封测厂. 题材延续性最强但估值压力最大. 触发条件: 量价不破 5d 均线 + 业绩持续兑现."
+      trigger:
+        primary: "5d 均线不破 + 周线收阳"
+        alt: "Q2 中报营收 YoY ≥ +40%"
+        invalidate: "PE_ttm > 250 (估值进一步透支) 或 净利同比掉头"
+
+  - id: 6
+    op: add
+    entry:
+      code: "600584.SH"
+      name: "长电科技"
+      tier: "观察池"
+      themes: [先进封装, 玻璃基板, TGV验证, 半导体封测, IPD]
+      added_at: 2026-05-20
+      reason: "framework 中估值最低的玻璃基板 + 先进封装交集股. 2026 Q1 营收 +20.4% / 净利 +37.18% / ROE 1.0%, PE 71.7 / PB 4.1 (本批次最低). 4 月完成基于 TGV + PSPI RDL 的晶圆级射频滤波器封装验证, IPD 性能 +50%. 双板块叠加 — 资金面任一转正即可启动. 触发条件: 半导体 ETF 159995 flow_5d 由负转正."
+      trigger:
+        primary: "半导体 ETF (159995) flow_5d 由负转正"
+        alt: "PCB ETF 159870 flow_5d 转正 (玻璃基板边)"
+        invalidate: "Q2 净利同比 < +20% 或 TGV 量产推进延后公告"
