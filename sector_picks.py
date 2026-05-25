@@ -29,6 +29,45 @@ from sector_score import score_sector
 
 _HERE = Path(__file__).resolve().parent
 _TUSHARE = _HERE / "tushare.py"
+_HISTORY_LOG = _HERE / "sector_picks_history.jsonl"
+
+
+def _append_history(concept: str, score_total: float, score_tier: str,
+                    evaluations: list[dict[str, Any]]) -> None:
+    """每次 sector_picks() 跑完, append 一行 / 股 到 sector_picks_history.jsonl.
+
+    用途: watchlist_decay.py 的 "从未触发 BUY" 信号需要历史 verdict 数据.
+    schema 跟 rec_log.jsonl 区分 — 这里是 sector 评估的 PER-STOCK verdict 流,
+    不是用户操作记录, 也不带成本 / 持仓信息.
+    """
+    from datetime import datetime, timezone
+    ts = datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
+    try:
+        with _HISTORY_LOG.open("a", encoding="utf-8") as f:
+            for e in evaluations:
+                s = e.get("stock", {})
+                rec = {
+                    "ts": ts,
+                    "concept": concept,
+                    "code": s.get("code"),
+                    "name": s.get("name"),
+                    "verdict": e.get("verdict"),
+                    "reason": e.get("reason"),
+                    "deviation_pct": e.get("deviation_pct"),
+                    "rs_tier": e.get("rs_tier"),
+                    "tier0_pass": e.get("tier0_pass", False),
+                    "sector_score_total": score_total,
+                    "sector_score_tier": score_tier,
+                    "pct_rank_120d": s.get("pct_rank_120d"),
+                    "pct_rank_250d": s.get("pct_rank_250d"),
+                    "roe": s.get("roe"),
+                    "net_yoy": s.get("net_yoy"),
+                }
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    except Exception as ex:
+        # 落盘失败不阻断主流程
+        import sys as _sys
+        print(f"[warn] sector_picks_history.jsonl append failed: {ex}", file=_sys.stderr)
 
 
 def _ts(api: str, **params) -> list[dict[str, str]]:
@@ -554,6 +593,11 @@ def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
     # 7. Rank by deviation (desc)
     evals.sort(key=lambda e: -(e.deviation_pct or -999))
 
+    evaluations_dict = [asdict(e) for e in evals]
+
+    # 8. 落盘 history (每次跑都 append, 用于 watchlist_decay 的 "从未触发 BUY" 信号)
+    _append_history(concept, score.total_score, score.tier, evaluations_dict)
+
     return {
         "concept": concept,
         "sector_score": asdict(score),
@@ -568,7 +612,7 @@ def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
             "peer_pe_median": peer_pe_median,
             "min_deviation_effective": min_dev_effective,
         },
-        "evaluations": [asdict(e) for e in evals],
+        "evaluations": evaluations_dict,
     }
 
 
