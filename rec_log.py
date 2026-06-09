@@ -121,12 +121,46 @@ def append_rec(
     return rec_id
 
 
+
+
+def _rec_id(rec: dict[str, Any]) -> str:
+    """Stable display id for both current and legacy recommendation rows."""
+    if rec.get("id"):
+        return str(rec["id"])
+    code = rec.get("code") or rec.get("ts_code") or "UNKNOWN"
+    d = _parse_ts_date(rec.get("ts") or rec.get("date") or "").strftime("%Y%m%d")
+    return f"legacy_{d}_{code}"
+
+
+def _rec_ts(rec: dict[str, Any]) -> str:
+    return str(rec.get("ts") or rec.get("date") or "")
+
+
+def _rec_code(rec: dict[str, Any]) -> str:
+    return str(rec.get("code") or rec.get("ts_code") or "")
+
+
+def _rec_action(rec: dict[str, Any]) -> str:
+    return str(rec.get("action") or rec.get("type") or "?").upper()
+
+
+def _rec_price(rec: dict[str, Any]) -> float | None:
+    return rec.get("price_at_rec") if rec.get("price_at_rec") is not None else rec.get("entry_price")
+
+
+def _rec_score(rec: dict[str, Any]) -> float | None:
+    return rec.get("sector_tier1_score") if rec.get("sector_tier1_score") is not None else rec.get("sector_score")
+
+
+def _rec_framework(rec: dict[str, Any]) -> str:
+    return str(rec.get("framework_version") or rec.get("framework") or "")
+
 def list_recs(since: date | None = None, action: str | None = None) -> list[dict[str, Any]]:
     recs = _read_jsonl(_REC_FILE)
     if since:
-        recs = [r for r in recs if _parse_ts_date(r.get("ts", "")) >= since]
+        recs = [r for r in recs if _parse_ts_date(_rec_ts(r)) >= since]
     if action:
-        recs = [r for r in recs if r.get("action", "").upper() == action.upper()]
+        recs = [r for r in recs if _rec_action(r) == action.upper()]
     return recs
 
 
@@ -175,12 +209,12 @@ def _fetch_close(ts_code: str, trade_date: str | None = None) -> float | None:
 def verify_rec(rec: dict[str, Any], current_close: float | None = None,
                verify_date: str | None = None) -> dict[str, Any] | None:
     """Compute T+N performance for one rec, append to perf file. Return perf record."""
-    code = rec.get("code")
-    price_at_rec = rec.get("price_at_rec")
+    code = _rec_code(rec)
+    price_at_rec = _rec_price(rec)
     if not code or not price_at_rec:
         return None
 
-    rec_date = _parse_ts_date(rec.get("ts", ""))
+    rec_date = _parse_ts_date(_rec_ts(rec))
     today = date.today()
     days_since = (today - rec_date).days
     if days_since > MAX_VERIFY_HORIZON_DAYS:
@@ -195,9 +229,9 @@ def verify_rec(rec: dict[str, Any], current_close: float | None = None,
     pct_change = (current_close / price_at_rec - 1) * 100
 
     perf = {
-        "rec_id": rec.get("id"),
+        "rec_id": _rec_id(rec),
         "code": code,
-        "action": rec.get("action"),
+        "action": _rec_action(rec),
         "verify_ts": datetime.now().astimezone().isoformat(timespec="seconds"),
         "verify_date": today.isoformat(),
         "days_since_rec": days_since,
@@ -218,7 +252,7 @@ def verify_all(verify_date: str | None = None) -> dict[str, int]:
     today = date.today()
     for rec in recs:
         stats["total"] += 1
-        rec_date = _parse_ts_date(rec.get("ts", ""))
+        rec_date = _parse_ts_date(_rec_ts(rec))
         if (today - rec_date).days > MAX_VERIFY_HORIZON_DAYS:
             stats["expired"] += 1
             continue
@@ -252,16 +286,16 @@ def report(weeks: int = 4) -> dict[str, Any]:
     }
 
     for rec in recs:
-        if _parse_ts_date(rec.get("ts", "")) < since:
+        if _parse_ts_date(_rec_ts(rec)) < since:
             continue
         report_data["total_recs"] += 1
-        act = rec.get("action", "?").upper()
+        act = _rec_action(rec)
         report_data["by_action"].setdefault(act, {"count": 0, "codes": []})
         report_data["by_action"][act]["count"] += 1
-        report_data["by_action"][act]["codes"].append(rec.get("code"))
+        report_data["by_action"][act]["codes"].append(_rec_code(rec))
 
         # 对每个 horizon 看命中
-        rec_perfs = perf_by_rec.get(rec.get("id", ""), [])
+        rec_perfs = perf_by_rec.get(_rec_id(rec), [])
         for horizon in [5, 10, 20]:
             key = f"T+{horizon}"
             matching = [p for p in rec_perfs if p.get("days_since_rec", 0) >= horizon]
@@ -308,15 +342,19 @@ def _cmd_list(args):
     for r in recs:
         dev = r.get("deviation_pct")
         dev_s = f"{dev:+.1f}%" if dev is not None else "-"
-        score = r.get("sector_tier1_score")
-        print(f"  {r['id']}  {r['ts'][:10]}  [{r['action']:<6}] {r['code']} {r.get('name','?')[:8]:<8}  "
+        score = _rec_score(r)
+        ts = _rec_ts(r)[:10] or "----------"
+        action = _rec_action(r)
+        code = _rec_code(r)
+        reason = r.get("reason") or r.get("note") or ""
+        print(f"  {_rec_id(r)}  {ts}  [{action:<6}] {code} {r.get('name','?')[:8]:<8}  "
               f"sector={r.get('sector','?')[:18]:<18}  tier1={score if score else '-':>4}  "
-              f"price={r.get('price_at_rec','-')}  dev={dev_s}  {r.get('reason','')[:60]}")
+              f"price={_rec_price(r) or '-'}  dev={dev_s}  {reason[:60]}")
 
 
 def _cmd_verify(args):
     if args.rec_id:
-        recs = [r for r in _read_jsonl(_REC_FILE) if r.get("id") == args.rec_id]
+        recs = [r for r in _read_jsonl(_REC_FILE) if _rec_id(r) == args.rec_id]
         if not recs:
             print(f"rec {args.rec_id} not found")
             sys.exit(1)

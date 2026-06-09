@@ -141,9 +141,62 @@ def check_rec(rec: dict[str, Any]) -> RecAlert | None:
     )
 
 
+def _rec_date(rec: dict[str, Any]) -> date:
+    """Best-effort date for both v2 append_rec records and older legacy rows."""
+    return _parse_ts_date(rec.get("ts") or rec.get("date") or "")
+
+
+def _rec_code(rec: dict[str, Any]) -> str:
+    return rec.get("code") or rec.get("ts_code") or ""
+
+
+def _rec_action(rec: dict[str, Any]) -> str:
+    return (rec.get("action") or rec.get("type") or "").upper()
+
+
+def _active_latest_recs(recs: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Return the latest non-terminal monitoring state per code.
+
+    The recommendation log is append-only: a later WATCH / EXIT / SELL row is
+    the state transition for the same code, not a second independent open item.
+    Without this compaction, the watchdog keeps alerting on an old BUY even after
+    a later EXIT has already been recorded — exactly the weekly repeated
+    "需EXIT" noise this tool is meant to avoid.
+
+    Terminal latest states (EXIT / SELL) are kept in recommendations.jsonl for
+    post-validation, but are no longer considered open watchdog items.
+    """
+    latest: dict[str, dict[str, Any]] = {}
+    for rec in recs:
+        code = _rec_code(rec)
+        if not code:
+            continue
+        action = _rec_action(rec)
+        if action not in {"BUY", "WATCH", "HOLD", "EXIT", "SELL"}:
+            continue
+        cur = latest.get(code)
+        if cur is None or _rec_date(rec) >= _rec_date(cur):
+            latest[code] = rec
+
+    active = []
+    for rec in latest.values():
+        action = _rec_action(rec)
+        if action in {"EXIT", "SELL"}:
+            continue
+        # Normalize old rows enough for check_rec().
+        if "code" not in rec and rec.get("ts_code"):
+            rec = {**rec, "code": rec.get("ts_code")}
+        if "action" not in rec and rec.get("type"):
+            rec = {**rec, "action": rec.get("type")}
+        if "sector_tier1_score" not in rec and rec.get("sector_score") is not None:
+            rec = {**rec, "sector_tier1_score": rec.get("sector_score")}
+        active.append(rec)
+    return active
+
+
 def check_all() -> list[RecAlert]:
-    """Check all open recs. Return list of alerts (including OK ones)."""
-    recs = _read_jsonl(_REC_FILE)
+    """Check active latest rec state per code. Return alerts (including OK)."""
+    recs = _active_latest_recs(_read_jsonl(_REC_FILE))
     alerts = []
     for rec in recs:
         alert = check_rec(rec)
