@@ -459,15 +459,16 @@ ai__power_compute_coord:
   track: AI
   display: "算电协同 (绿电 + 算力)"
   keywords:
-    zh: ["算电协同", "绿电算力", "豫能控股", "协鑫能科", "南网数字", "韶能股份", "风光储算", "虚拟电厂"]
+    zh: ["算电协同", "绿电算力", "豫能控股", "协鑫能科", "南网数字", "韶能股份", "风光储算", "虚拟电厂", "算电岛", "特锐德", "算力供电", "智算供电", "Token用电成本"]
     en: ["green compute", "renewable AI data center", "power-compute coordination"]
   tickers:
     - {code: "001896.SZ", name: "豫能控股", weight: high}
     - {code: "002015.SZ", name: "协鑫能科", weight: med}
     - {code: "301638.SZ", name: "南网数字", weight: med}
     - {code: "000601.SZ", name: "韶能股份", weight: low}
+    - {code: "300001.SZ", name: "特锐德", weight: med}
   source_concepts: ["电力", "AIDC/算力租赁"]
-  rationale: "电力公司跨界 AIDC 拿低价绿电 + 高利用率算力 — 政策驱动 (东数西算) + capex_lock"
+  rationale: "电力公司跨界 AIDC 拿低价绿电 + 高利用率算力 — 政策驱动 (东数西算) + capex_lock; 特锐德'算电岛'2026-06 推出, 供电架构创新降 Token 成本 30%"
 
 ai__compute_leasing:
   track: AI
@@ -561,6 +562,32 @@ cross__ai_appliance:
     - {code: "000810.SZ", name: "创维数字", weight: med}
   source_concepts: ["家电"]
   rationale: "大模型嵌入家电是 2026 新故事, 美的/海尔/海信都在推自有大模型"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 实时快讯流 (分钟级一手源, radar 用 fetch_url_rendered 拿原文 → cls_telegraph_filter 过滤)
+#   workflow: agent fetch_url_rendered(url) → echo 原文 | python3 cls_telegraph_filter.py
+#             --source <source> → 候选 JSON → 对 relevance≥阈值 且 dedup_status=='new'
+#             的逐条评分 → narrative_radar.py add 入库
+#   filter:   cls_telegraph_filter.py (多源: cls/eastmoney/sina, 共享 universe 过滤 + 30天指纹去重)
+# ═══════════════════════════════════════════════════════════════════════════
+realtime_feeds:
+  filter_script: "cls_telegraph_filter.py"
+  feeds:
+    - source: cls
+      url: "https://www.cls.cn/telegraph"
+      name: "财联社电报"
+      fetch: rendered      # SPA, 需 fetch_url_rendered
+      note: "A股一手快讯主源, 自带 stock 标签 → 强 ticker 命中"
+    - source: eastmoney
+      url: "https://kuaixun.eastmoney.com/"
+      name: "东财快讯"
+      fetch: rendered
+      note: "东方财富快讯, 与 cls 互补; markdown 解析"
+    - source: sina
+      url: "https://zhibo.sina.com.cn/api/zhibo/feed?page=1&page_size=30&zhibo_id=152&tag_id=0&type=0"
+      name: "新浪7x24"
+      fetch: direct        # JSON API, fetch_url 即可
+      note: "JSON feed, stocks 字段自带 ticker. zhibo_id=152 是宏观/国际版面噪音多; A股公司快讯应换 zhibo_id (tuning item: 找证券/A股财经直播 id)"
 
 # ═══════════════════════════════════════════════════════════════════════════
 # 信息源 (radar 每日扫的源)

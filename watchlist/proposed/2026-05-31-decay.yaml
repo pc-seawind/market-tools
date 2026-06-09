@@ -1,0 +1,11 @@
+schema_version: 1
+generated_at: '2026-05-31T09:00:16+08:00'
+generated_by: watchlist_decay.py
+decay_meta:
+  threshold: 5
+  age_floor_days: 30
+  total_evaluated: 0
+  n_stale: 0
+  n_near_stale: 0
+proposals: []
+near_stale_monitor: []

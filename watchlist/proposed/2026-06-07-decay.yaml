@@ -1,0 +1,46 @@
+schema_version: 1
+generated_at: '2026-06-07T09:01:28+08:00'
+generated_by: watchlist_decay.py
+decay_meta:
+  threshold: 5
+  age_floor_days: 30
+  total_evaluated: 8
+  n_stale: 0
+  n_near_stale: 4
+proposals: []
+near_stale_monitor:
+- code: 688041.SH
+  name: 海光信息
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - AI芯片
+  - 国产算力
+  days_held: 30
+- code: 688008.SH
+  name: 澜起科技
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - AI芯片
+  - HBM中间件
+  days_held: 30
+- code: 688256.SH
+  name: 寒武纪
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - AI芯片
+  days_held: 30
+- code: 600519.SH
+  name: 贵州茅台
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - 白酒
+  - 蓝筹防御
+  days_held: 30

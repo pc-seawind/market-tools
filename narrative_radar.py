@@ -36,11 +36,13 @@ import argparse
 import datetime as dt
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 EVENTS_PATH = os.path.join(HERE, "narrative_events.jsonl")
 UNIVERSE_PATH = os.path.join(HERE, "narrative_universe.yaml")
+TICKER_LAYER_PATH = os.path.join(HERE, "ticker_layer.yaml")
 
 CN_TZ = dt.timezone(dt.timedelta(hours=8))
 
@@ -55,6 +57,98 @@ def load_events():
     if not os.path.exists(EVENTS_PATH):
         return []
     return [json.loads(l) for l in open(EVENTS_PATH)]
+
+
+# ============================================================================
+# 去重指纹 — 防止 cron 把同一条产业叙事每天重复入库 (2026-06 加固)
+# 经 _dedup_events.py 验证: 数字指纹比字符 ngram 抗"同义改写"
+# ============================================================================
+_DEDUP_WINDOW_DAYS = 30
+_DEDUP_SIM_THRESHOLD = 0.55
+
+def _norm_title(t: str) -> str:
+    t = t.lower()
+    t = re.sub(r"[0-9]+(\.[0-9]+)?", "#", t)
+    t = re.sub(r"[^一-鿿a-z#]", "", t)
+    return t
+
+def _num_fingerprint(t: str) -> frozenset:
+    """抽取标题里的关键数字 token (范围/百分比/倍数), 同义改写下保持稳定。"""
+    t = t.replace("~", "-").replace("％", "%")
+    nums = set()
+    for m in re.findall(r"(\d+(?:\.\d+)?)\s*[-—]\s*(\d+(?:\.\d+)?)", t):
+        nums.add(f"{m[0]}-{m[1]}")
+    for m in re.findall(r"(?<![\d.-])(\d{2,4}(?:\.\d+)?)(?![\d.-])", t):
+        nums.add(m)
+    return frozenset(nums)
+
+def _ngrams(s: str, n=3) -> frozenset:
+    if len(s) < n:
+        return frozenset({s}) if s else frozenset()
+    return frozenset(s[i:i+n] for i in range(len(s)-n+1))
+
+def _jaccard(a, b) -> float:
+    if not a or not b:
+        return 0.0
+    return len(a & b) / len(a | b)
+
+def find_duplicate(new_event: dict, events: list, window_days=_DEDUP_WINDOW_DAYS):
+    """在已有 events 里找与 new_event 高度相似的事件 (同 subdomain + 时间窗口内 +
+    数字指纹强重叠 或 字符相似度高 + ticker 重叠)。返回首个命中事件或 None。"""
+    sub = new_event.get("subdomain")
+    new_ng = _ngrams(_norm_title(new_event.get("title", "")))
+    new_nums = _num_fingerprint(new_event.get("title", ""))
+    new_tk = frozenset(t.get("code", "") for t in new_event.get("tickers", []))
+    try:
+        new_dt = dt.datetime.fromisoformat(new_event["ts"].split("#")[0])
+    except Exception:
+        new_dt = dt.datetime.now(CN_TZ)
+    for e in events:
+        if e.get("subdomain") != sub:
+            continue
+        # 时间窗口
+        try:
+            e_dt = dt.datetime.fromisoformat(e["ts"].split("#")[0])
+            if abs((new_dt - e_dt).days) > window_days:
+                continue
+        except Exception:
+            pass
+        e_tk = frozenset(t.get("code", "") for t in e.get("tickers", []))
+        if not (new_tk & e_tk):
+            continue
+        e_ng = _ngrams(_norm_title(e.get("title", "")))
+        e_nums = _num_fingerprint(e.get("title", ""))
+        char_sim = _jaccard(new_ng, e_ng)
+        num_sim = _jaccard(new_nums, e_nums)
+        shared = new_nums & e_nums
+        num_match = (num_sim >= 0.5 and len(shared) >= 2)
+        if max(char_sim, num_sim) >= _DEDUP_SIM_THRESHOLD or num_match:
+            return e
+    return None
+
+
+def load_ticker_layer() -> dict:
+    """读 ticker_layer.yaml — {subdomain: {ticker_code: layer}}.
+    文件不存在返回空字典 (允许新装/迁移时不爆)."""
+    if not os.path.exists(TICKER_LAYER_PATH):
+        return {}
+    import yaml
+    with open(TICKER_LAYER_PATH) as f:
+        return yaml.safe_load(f) or {}
+
+
+def check_ticker_layer_coverage(subdomain: str, tickers: list[dict]) -> list[dict]:
+    """对 tickers 数组里每个 ticker 检查是否在 ticker_layer.yaml 里有标签.
+    返回缺失列表 (没标签的 tickers), 调用方决定是 warning 还是 block.
+    """
+    layer_map = load_ticker_layer()
+    sd_map = layer_map.get(subdomain, {}) or {}
+    missing = []
+    for t in tickers:
+        code = t.get("code", "")
+        if code and code not in sd_map:
+            missing.append(t)
+    return missing
 
 
 # ============================================================================
@@ -159,6 +253,16 @@ def cmd_add(args):
         "tickers":     tickers,
     }
 
+    # 2026-06 加固: 入库前去重检查 (防 cron 把同一叙事每天重复 append)
+    if not getattr(args, "force", False):
+        dup = find_duplicate(event, load_events())
+        if dup is not None:
+            print(f"⚠️ 疑似重复事件, 已拒绝入库 (同一叙事 {_DEDUP_WINDOW_DAYS} 天内已存在):", file=sys.stderr)
+            print(f"   新: {event['title'][:60]}", file=sys.stderr)
+            print(f"   旧: {dup['title'][:60]}  (ts={dup['ts'][:19]}, score={dup.get('score')})", file=sys.stderr)
+            print(f"   → 若确为新进展(如数据更新/新签单), 加 --force 强制入库; 否则这条不必重复录。", file=sys.stderr)
+            sys.exit(2)
+
     # W21 v3 §6 改进: 自动分类 event_type + late_stage 标记
     quality = compute_event_quality(event, universe=universe)
     event.update(quality)
@@ -177,6 +281,19 @@ def cmd_add(args):
     print(f"   tickers: {len(tickers)}")
     if quality["score_penalty"] > 0:
         print(f"   ⚠️  score_penalty={quality['score_penalty']} → effective_score={quality['effective_score']}")
+    # v3 attribution: 提醒人工打 8 维特征标签 (heuristic 准确率仅 74%, 不能用于预测)
+    print(f"   ⚠️  待人工打标 8 维特征 → 跑: python3 narrative_label_event.py")
+
+    # v4 ticker_layer: 检查 tickers 是否都已在 ticker_layer.yaml 里有 layer 标签
+    # satellite -40pp / core_pure +11pp 是强信号, 缺标签的 ticker 跑 review 会被丢弃
+    missing = check_ticker_layer_coverage(args.subdomain, tickers)
+    if missing:
+        print(f"   ⚠️  {len(missing)} 个 ticker 缺 ticker_layer 标签 (review 会丢弃这些行):")
+        for t in missing:
+            print(f"        {t.get('code', ''):<12} {t.get('name', '')}")
+        print(f"        → 编辑 ticker_layer.yaml, 在 `{args.subdomain}:` 下加:")
+        for t in missing:
+            print(f"          {t.get('code', '')}: core_pure       # {t.get('name', '')} — TODO 业务纯度判断 (core_pure / core_partial / satellite / concept_only)")
 
 
 # ============================================================================
@@ -412,6 +529,8 @@ def main():
     p_add.add_argument("--rationale", default="")
     p_add.add_argument("--thesis-seed", dest="thesis_seed", default="")
     p_add.add_argument("--tickers", default="", help='"code:name:+,code:name:-" 形式')
+    p_add.add_argument("--force", action="store_true",
+                       help="跳过去重检查强制入库 (确为新进展时用)")
     p_add.set_defaults(func=cmd_add)
 
     p_since = sub.add_parser("since")

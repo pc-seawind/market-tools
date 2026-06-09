@@ -1,0 +1,137 @@
+# ticker_layer.yaml — 同 narrative 内 ticker 的业务纯度分层
+#
+# 设计目的:
+#   v3 报告发现"蓝思 +34pp 误判": narrative 是 broad/cross_domain/concept (反向信号),
+#   但蓝思仍胜出, 因为蓝思在该 narrative 池里业务纯度比同行高.
+#   ticker_layer 就是给同一 (subdomain, ticker) 关系打"业务受益纯度"标签,
+#   作为 v3 8 维特征之外的第 9 维 (ticker-level, 而非 event-level).
+#
+# layer 定义:
+#   core_pure        — 业务 80%+ 直接受益于该 narrative; 该 narrative 几乎是 ticker 的 100% 估值锚
+#   core_partial     — 主营业务相关但 30-80% 受益; 该 narrative 是公司多个驱动之一
+#   satellite        — 副业/产业链外围; 该 narrative 是次要业务驱动 (<30%) 但有真实曝险
+#   concept_only     — 仅概念关联; 该 narrative 在公司业务里无实质曝险, 涨幅靠情绪
+#
+# 用法:
+#   narrative_track.py 给 perf 行加 ticker_layer 字段
+#   narrative_radar_review.py 加 ticker_layer 维度的 cross-tab
+#   预期: core_pure 远胜 satellite, satellite 远胜 concept_only — 验证假设 4
+#
+# 维护:
+#   新增 (subdomain, ticker) 时手工添加; 业务边界变化时重审 (e.g. 蓝思 AI 业务占比上升, 从 satellite → core_partial)
+#
+# Last updated: 2026-05-31
+
+# 格式: subdomain → {ticker_code: layer}
+# layer ∈ {core_pure, core_partial, satellite, concept_only}
+
+ai__advanced_packaging:
+  600584.SH: core_pure       # 长电科技 — 国内先进封装龙头, AI HBM/CoWoS 直接受益
+  002156.SZ: core_partial    # 通富微电 — AMD 主力封装伙伴, AI GPU 增量明确但占比 30-40%
+  002185.SZ: core_partial    # 华天科技 — 中端封装+先进封装并重, AI 弹性中等
+
+ai__xinchuang_software:
+  600536.SH: core_pure       # 中国软件 — 信创国家队核心平台, 银河麒麟OS+达梦数据库, 国产替代是其100%估值锚
+  002368.SZ: core_pure       # 太极股份 — 信创国家队, 党政信创总集成, 国产替代直接驱动
+  000066.SZ: core_partial    # 中国长城 — 信创整机+飞腾CPU生态, 但有AI PC/网络安全多驱动, 非纯信创
+
+ai__compute_chip:
+  688256.SH: core_pure       # 寒武纪 — AI 芯片纯标的, 几乎 100% AI ASIC 业务
+  688041.SH: core_pure       # 海光信息 — DCU/CPU 国产替代直接受益
+  688981.SH: core_partial    # 中芯国际 — AI 芯片代工是其中一部分, 14nm 以上其他业务占大头
+  688012.SH: core_partial    # 中微公司 — 刻蚀设备+MOCVD, AI 芯片产能扩张直接拉订单 但有非 AI 部分
+  688072.SH: core_partial    # 拓荆科技 — 薄膜沉积设备, AI 芯片 capex 拉动占比上升中
+  688120.SH: core_partial    # 华海清科 — CMP 设备龙头, AI 芯片产能扩张受益
+  688008.SH: satellite       # 澜起科技 — 内存接口芯片, AI 服务器是次要驱动 (PC/服务器内存为主)
+  002371.SZ: core_partial    # 北方华创 — 半导体设备综合, AI 芯片 capex 是多个驱动之一
+  688126.SH: satellite       # 沪硅产业 — 大硅片, AI 是间接需求
+  605358.SH: satellite       # 立昂微 — 大硅片+功率, AI 间接受益
+  002129.SZ: satellite       # TCL 中环 — 光伏硅片+半导体硅片, 半导体业务占比小
+  300308.SZ: satellite       # 中际旭创 — 光模块主业, 在 compute_chip 篮子里仅算力情绪共振(主业属 optical_module)
+  300502.SZ: satellite       # 新易盛 — 同上, 光模块龙头, compute_chip 池里属情绪共振非纯芯片
+  002230.SZ: satellite       # 科大讯飞 — AI 应用/大模型, 算力芯片非其主业, compute_chip 池里属下游情绪共振
+
+ai__edge_device:
+  300496.SZ: core_pure       # 中科创达 — 边缘 AI 软件 + Qualcomm 生态, 纯 AI 终端公司
+  002475.SZ: core_partial    # 立讯精密 — 苹果产业链龙头, AI 终端是其中一部分
+  300433.SZ: satellite       # 蓝思科技 — 玻璃盖板/结构件, AI 终端是新业务但占比小 (主业仍是消费电子结构件)
+  002241.SZ: satellite       # 歌尔股份 — VR/智能音箱/声学, AI 终端弹性次要
+
+ai__memory_storage:
+  688525.SH: core_pure       # 佰维存储 — 存储模组龙头, AI 服务器存储直接受益
+  603986.SH: core_pure       # 兆易创新 — NOR Flash + DRAM, AI 服务器+边缘 AI 双驱
+  300223.SZ: core_partial    # 北京君正 — 存储+CPU, AI 是部分驱动
+  301308.SZ: core_partial    # 江波龙 — 存储模组, AI 服务器是其中一部分
+  001309.SZ: satellite       # 德明利 — 存储模组 (规模较小), AI 弹性次要
+
+ai__storage:                 # 存储行业周期复苏叙事 (DRAM/NAND 价格 + 业绩驱动, 区别于 AI 服务器存储)
+  688008.SH: core_pure       # 澜起科技 — 内存接口芯片, 存储周期 (DDR5/服务器内存) 纯受益
+  603986.SH: core_pure       # 兆易创新 — NOR Flash + DRAM, 存储价格周期纯受益
+  688525.SH: core_pure       # 佰维存储 — 存储模组龙头, 存储涨价直接传导
+  301308.SZ: core_partial    # 江波龙 — 存储模组, 价格周期受益但有产品结构差异
+
+ai__nvda_supplychain:
+  601138.SH: core_partial    # 工业富联 — AI 服务器组装龙头, 但消费电子代工占比仍大
+  300476.SZ: core_pure       # 胜宏科技 — AI PCB 直供 NV, AI 已成主业
+  002463.SZ: core_pure       # 沪电股份 — AI PCB 龙头, 单台 GB300 BOM 价值量翻 3x
+  300308.SZ: core_pure       # 中际旭创 — 800G/1.6T 光模块, AI 数据中心唯一驱动
+
+ai__optical_module:
+  300308.SZ: core_pure       # 中际旭创 — 同上
+  300502.SZ: core_pure       # 新易盛 — 光模块二把手
+  300394.SZ: core_partial    # 天孚通信 — 光模块上游器件, AI 部分受益但有非 AI 业务
+
+ai__pcb_substrate:
+  002463.SZ: core_pure       # 沪电股份 — 同上
+  300476.SZ: core_pure       # 胜宏科技 — 同上
+  002916.SZ: core_partial    # 深南电路 — IC 载板/PCB 综合, AI 是其中一部分
+  600183.SH: satellite       # 生益科技 — 覆铜板上游, AI 间接拉动 (主业是消费电子+服务器)
+
+cross__ai_appliance:
+  000333.SZ: satellite       # 美的集团 — 白电龙头, AI 家电是新增量但占比小
+  600690.SH: satellite       # 海尔智家 — 白电龙头, 同上
+  600060.SH: core_partial    # 海信视像 — AI 电视(MiniLED+AI 芯片) 主业相关
+  000100.SZ: satellite       # TCL 科技 — 面板为主, AI 家电是下游需求
+
+cross__robot_appliance:
+  688169.SH: core_pure       # 石头科技 — 扫地机器人龙头, 业务 100% 受益
+  603486.SH: core_pure       # 科沃斯 — 扫地机第二, 业务 100% 受益
+
+home__appliance_white:
+  000333.SZ: core_pure       # 美的集团 — 白电龙头, 业务核心
+  000651.SZ: core_pure       # 格力电器 — 空调龙头, 业务核心
+  600690.SH: core_pure       # 海尔智家 — 白电龙头, 业务核心
+  600060.SH: core_partial    # 海信视像 — 黑电+白电, 白电是其中一部分
+
+# ─── 2025-Q4 + 2026-Q1 backtest anchor 新增 subdomain ───
+ai__power_grid:
+  # AI 算力供电主线 — 数据中心用电激增 → 特高压/电网设备需求
+  002028.SZ: core_partial    # 思源电气 — 输配电设备, 特高压/数据中心供电受益但非纯 AI 驱动
+  600406.SH: core_partial    # 国电南瑞 — 电网二次设备龙头, 特高压超前建设直接受益, 但有非 AI 电网业务
+  600312.SH: core_partial    # 平高电气 — 高压开关龙头, 特高压建设直接受益
+  600089.SH: satellite       # 特变电工 — 变压器+多晶硅+煤炭综合, 电网仅其中一块, AI 供电是间接需求
+
+finance__brokerage:
+  # 跨赛道纯 policy 反例 — 公募费率改革, 非 AI 主线
+  300059.SZ: satellite       # 东方财富 — 互联网券商+基金代销, 费率改革直接冲击代销但整体多元
+  600030.SH: satellite       # 中信证券 — 券商龙头, 公募费率仅影响资管/代销条线
+  601688.SH: satellite       # 华泰证券 — 券商龙头, 同上
+
+cross__ma_theme:
+  # 2026-01-23 并购重组主题潮 (broad/跨行业) — 全部 satellite: 并购是个股事件驱动, 非赛道驱动,
+  # 这些标的与 AI/科技主线关系弱, 涨幅靠并购公告本身的事件冲击, 非业务受益纯度.
+  601615.SH: satellite       # 明阳智能 — 风电整机, 收德华芯片切半导体(跨界), 主业与并购标的无协同
+  601702.SH: satellite       # 华峰铝业 — 铝加工, 并购为产业链横向扩张
+  000603.SZ: satellite       # 盛达资源 — 白银/有色矿业, 并购重组事件驱动
+  600293.SH: satellite       # 三峡新材 — 玻璃建材, 重组预期驱动
+  600076.SH: satellite       # 康欣新材 — 木业/收宇邦半导体51%(跨界半导体), 主业与标的无协同
+  000670.SZ: satellite       # 盈方微 — 芯片设计, 并购后连板情绪标的(已 price-in)
+  300476.SZ: satellite       # 胜宏科技 — PCB, 并购进展披露但当天跌
+  688478.SH: satellite       # 晶升股份 — 半导体设备(晶体生长), 并购进展披露但基本未动
+  688458.SH: satellite       # 美芯晟 — 模拟芯片, 并购进展披露但基本未动
+  300811.SZ: satellite       # 铂科新材 — 软磁材料, 并购进展披露但当天跌
+  002968.SZ: satellite       # 新大正 — 物业管理, 并购进展披露但基本未动
+
+bio__innovative_drug:        # 创新药出海BD叙事 — 非半导体 narrow 单股去偏样本 (检验 narrow 信号跨行业泛化性)
+  002653.SZ: core_pure       # 海思科 — 化学创新药+出海授权, 单股具体催化纯受益
+  600276.SH: core_pure       # 恒瑞医药 — 创新药龙头, 出海BD叙事单股代表
