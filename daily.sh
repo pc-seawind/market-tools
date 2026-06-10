@@ -133,6 +133,64 @@ daily_20d = {r["ts_code"]: r for r in
 daily_60d = {r["ts_code"]: r for r in
              tushare("daily", trade_date=d_60d, fields="ts_code,close")} if d_60d else {}
 
+# A 股个股 fallback (2026-06-11)
+# 全市场 daily/daily_basic 截面只走 tushare, 无兜底。一旦 tushare 超时/限速,
+# 整个截面为空 → 关注清单全表 "[无数据]"。这里给 watchlist 里的 A 股个股
+# 补一层 quote_sources.daily_bars (mootdx primary → tencent fallback),
+# 与港股同模式。只对 *截面里缺失* 的个股触发 (tushare 正常时零代价)。
+# 腾讯/mootdx kline 无 amount(成交额), 用 close×volume(手)×0.1 ≈ 千元 近似,
+# 让量比信号在降级时仍可用 (港股是直接留空, A 股这里更进一步)。
+def _ashare_rows_from_quote(code):
+    try:
+        from quote_sources import daily_bars
+        bars = daily_bars(code, days=70)  # 需 60 交易日 lookback
+    except Exception as e:
+        sys.stderr.write(f"    [WARN] {code} daily_bars fallback error: {e}\n")
+        return []
+    out = []
+    prev_close = None
+    # daily_bars 返回升序, daily.sh 下游期望降序 (rows[0]=latest)
+    for b in bars:
+        close = to_float(b.get("close")) or 0
+        vol = to_float(b.get("volume")) or 0  # 手
+        pct = ((close / prev_close - 1) * 100) if prev_close else None
+        out.append({
+            "ts_code": code,
+            "trade_date": str(b.get("date", "")).replace("-", ""),
+            "close": close,
+            "high": to_float(b.get("high")) or 0,
+            "low": to_float(b.get("low")) or 0,
+            "amount": round(close * vol * 0.1, 3) if (close and vol) else "",  # ≈ 千元
+            "pct_chg": round(pct, 2) if pct is not None else "",
+        })
+        if close:
+            prev_close = close
+    out.sort(key=lambda r: r.get("trade_date", ""), reverse=True)
+    return out
+
+a_tickers = [c for c, _n, _t in all_codes() if not c.endswith(".HK")]
+a_missing = [c for c in a_tickers if c not in daily_latest]
+if a_missing:
+    sys.stderr.write(
+        f"  [data] A股截面缺 {len(a_missing)}/{len(a_tickers)} 只 (tushare 降级?), "
+        f"逐个 daily_bars 兜底 ...\n")
+    a_recovered = 0
+    for code in a_missing:
+        rows = _ashare_rows_from_quote(code)
+        if not rows:
+            sys.stderr.write(f"    [WARN] {code} 无数据 (tushare + daily_bars 都失败)\n")
+            continue
+        daily_latest[code] = rows[0]
+        if len(rows) > 5:  daily_5d[code]  = rows[5]
+        if len(rows) > 20: daily_20d[code] = rows[20]
+        if len(rows) > 60: daily_60d[code] = rows[60]
+        # daily_basic 缺失 (pe/pb/turnover) → 用 daily_latest 的 close 补最小集,
+        # 让 compute_metrics 的 cur 有值; 估值类字段降级为 None (信号不依赖)。
+        if code not in db_latest:
+            db_latest[code] = {"ts_code": code, "close": rows[0].get("close")}
+        a_recovered += 1
+    sys.stderr.write(f"    A股兜底: {a_recovered}/{len(a_missing)} 恢复\n")
+
 # 港股数据 (如果 watchlist 里有 HK 标的)
 # 重要: 港股默认走 quote_sources 的腾讯财经日K。tushare hk_daily 限速 10 次/天，且在
 # cron 中可能慢/卡/超配额；如果先走 tushare，fallback 往往来不及执行，表现为"港股取不到"。
