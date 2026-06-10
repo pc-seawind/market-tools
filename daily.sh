@@ -133,22 +133,58 @@ daily_20d = {r["ts_code"]: r for r in
 daily_60d = {r["ts_code"]: r for r in
              tushare("daily", trade_date=d_60d, fields="ts_code,close")} if d_60d else {}
 
-# 港股 hk_daily (如果 watchlist 里有 HK 标的)
-# 注: tushare hk_daily 限速 10 次/天 (硬性配额). 缓存由 tushare.py 底层负责
-# (positive + negative cache), 这里只需关心业务逻辑.
-# 方案: 对每只 HK 股单独拉近 120 天历史, 1 次调用拿 latest/5d/20d/60d.
+# 港股数据 (如果 watchlist 里有 HK 标的)
+# 重要: 港股默认走 quote_sources 的腾讯财经日K。tushare hk_daily 限速 10 次/天，且在
+# cron 中可能慢/卡/超配额；如果先走 tushare，fallback 往往来不及执行，表现为"港股取不到"。
+# 因此路由改为: Tencent primary → tushare hk_daily secondary。
+# 腾讯源字段不含 amount/pct_chg，pct_chg 在这里用 close 计算补上。
 if has_hk():
     hk_tickers = [c for c, _n, _t in all_codes() if c.endswith(".HK")]
-    print(f"  [data] fetching hk_daily per-ticker (N={len(hk_tickers)}) ...",
+    print(f"  [data] fetching HK per-ticker (N={len(hk_tickers)}) tencent→hk_daily fallback ...",
           file=sys.stderr)
     fail_cnt = 0
+    fallback_cnt = 0
+
+    def _hk_rows_from_tencent(code):
+        try:
+            from quote_sources import daily_bars
+            bars = daily_bars(code, days=120)
+        except Exception as e:
+            sys.stderr.write(f"    [WARN] {code} tencent fallback error: {e}\n")
+            return []
+        out = []
+        prev_close = None
+        for b in bars:
+            close = float(b.get("close") or 0)
+            pct = ((close / prev_close - 1) * 100) if prev_close else None
+            trade_date = str(b.get("date", "")).replace("-", "")
+            out.append({
+                "ts_code": code,
+                "trade_date": trade_date,
+                "close": close,
+                "high": float(b.get("high") or 0),
+                "low": float(b.get("low") or 0),
+                "amount": "",  # 腾讯 kline 未提供成交额；下游需容忍空值
+                "pct_chg": round(pct, 2) if pct is not None else "",
+            })
+            if close:
+                prev_close = close
+        return out
+
     for code in hk_tickers:
-        rows = tushare("hk_daily", ts_code=code,
-                       start_date=past120, end_date=today,
-                       fields="trade_date,close,amount,pct_chg,high,low")
+        # 港股 primary: 腾讯财经。避免 tushare hk_daily 配额/慢请求阻塞 cron。
+        rows = _hk_rows_from_tencent(code)
+        source = "tencent"
+        if rows:
+            fallback_cnt += 1
+        else:
+            rows = tushare("hk_daily", ts_code=code,
+                           start_date=past120, end_date=today,
+                           fields="trade_date,close,amount,pct_chg,high,low")
+            source = "hk_daily"
         if not rows:
             fail_cnt += 1
-            sys.stderr.write(f"    [WARN] {code} 无数据 (可能超 10/天 hk_daily 配额)\n")
+            sys.stderr.write(f"    [WARN] {code} 无数据 (tencent + hk_daily fallback 都失败)\n")
             continue
         # 归一化 + 映射
         rows.sort(key=lambda r: r.get("trade_date", ""), reverse=True)
@@ -157,8 +193,10 @@ if has_hk():
         if len(rows) > 5:  daily_5d[code]  = rows[5]
         if len(rows) > 20: daily_20d[code] = rows[20]
         if len(rows) > 60: daily_60d[code] = rows[60]
+        if source == "tencent":
+            sys.stderr.write(f"    [fallback] {code} HK bars from tencent ({len(rows)} rows)\n")
     print(f"    HK: {len(hk_tickers) - fail_cnt}/{len(hk_tickers)} OK "
-          f"({fail_cnt} 失败)", file=sys.stderr)
+          f"({fail_cnt} 失败, {fallback_cnt} tencent primary)", file=sys.stderr)
 
 # ====================================================================
 # Header
