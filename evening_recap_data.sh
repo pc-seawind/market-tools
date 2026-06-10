@@ -39,7 +39,10 @@
 #   - 全程不依赖 cwd, 用脚本自身目录定位 sibling 脚本.
 #   - 重 (score --all ~? + picks×N×19s ≈ 几分钟), 调用方必须 RunDetached.
 #
-# Env: TUSHARE_TOKEN required (sector_score / sector_picks 内部用).
+# Env:
+#   TUSHARE_TOKEN                  required (sector_score / sector_picks 内部用).
+#   EVENING_RECAP_SCORE_TIMEOUT    score --all 超时秒数 (默认 900). 卡死则
+#                                  exit 4 而非无限挂起整个采集.
 
 set -uo pipefail
 
@@ -74,10 +77,22 @@ if [[ -n "$SCORE_JSON" && -s "$SCORE_JSON" ]]; then
   echo "[evening_recap_data] reuse score json: $SCORE_JSON (skip recompute)" >&2
   cp "$SCORE_JSON" "$SCORE_FILE"
 else
-  echo "[evening_recap_data] stage 1: sector_score.py --all --json" >&2
-  if ! python3 sector_score.py --all --json > "$SCORE_FILE" 2> "$SCORE_ERR"; then
-    echo "[evening_recap_data] FATAL: sector_score.py failed:" >&2
+  # score --all 逐板块调 tushare, 正常 ~3-6min, 但偶发卡死 (限速/网络).
+  # 用 timeout 兜底, 卡死则报错退出而非无限挂起整个采集 turn.
+  SCORE_TIMEOUT="${EVENING_RECAP_SCORE_TIMEOUT:-900}"
+  echo "[evening_recap_data] stage 1: sector_score.py --all --json (timeout ${SCORE_TIMEOUT}s)" >&2
+  timeout "$SCORE_TIMEOUT" python3 sector_score.py --all --json > "$SCORE_FILE" 2> "$SCORE_ERR"
+  rc=$?
+  if [[ $rc -eq 124 ]]; then
+    echo "[evening_recap_data] FATAL: sector_score.py TIMED OUT after ${SCORE_TIMEOUT}s" >&2
+    exit 4
+  elif [[ $rc -ne 0 ]]; then
+    echo "[evening_recap_data] FATAL: sector_score.py failed (exit $rc):" >&2
     cat "$SCORE_ERR" >&2
+    exit 3
+  fi
+  if [[ ! -s "$SCORE_FILE" ]]; then
+    echo "[evening_recap_data] FATAL: sector_score.py produced empty output" >&2
     exit 3
   fi
 fi
