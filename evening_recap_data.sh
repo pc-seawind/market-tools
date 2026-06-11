@@ -41,7 +41,7 @@
 #
 # Env:
 #   TUSHARE_TOKEN                  required (sector_score / sector_picks 内部用).
-#   EVENING_RECAP_SCORE_TIMEOUT    score --all 超时秒数 (默认 900). 卡死则
+#   EVENING_RECAP_SCORE_TIMEOUT    score --all 超时秒数 (默认 3600). 卡死则
 #                                  exit 4 而非无限挂起整个采集.
 
 set -uo pipefail
@@ -79,7 +79,7 @@ if [[ -n "$SCORE_JSON" && -s "$SCORE_JSON" ]]; then
 else
   # score --all 逐板块调 tushare, 正常 ~3-6min, 但偶发卡死 (限速/网络).
   # 用 timeout 兜底, 卡死则报错退出而非无限挂起整个采集 turn.
-  SCORE_TIMEOUT="${EVENING_RECAP_SCORE_TIMEOUT:-900}"
+  SCORE_TIMEOUT="${EVENING_RECAP_SCORE_TIMEOUT:-3600}"
   echo "[evening_recap_data] stage 1: sector_score.py --all --json (timeout ${SCORE_TIMEOUT}s)" >&2
   timeout "$SCORE_TIMEOUT" python3 sector_score.py --all --json > "$SCORE_FILE" 2> "$SCORE_ERR"
   rc=$?
