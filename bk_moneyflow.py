@@ -48,6 +48,17 @@ _HERE = Path(__file__).resolve().parent
 _TUSHARE = _HERE / "tushare.py"
 _BK_MAP_YAML = _HERE / "concept_bk_map.yaml"
 
+_MONEYFLOW_IND_DC_UNAVAILABLE_REASON: str | None = None
+
+
+def _looks_like_no_permission(text: str) -> bool:
+    m = (text or "").lower()
+    return any(x in m for x in (
+        "没有接口", "没有权限", "无权限", "访问权限",
+        "no permission", "permission denied", "not authorized", "unauthorized",
+    ))
+
+
 # ─── concept→BK 映射加载 (lazy + cached) ──────────────────────────────────
 
 _concept_bk_map_cache: dict[str, dict] | None = None
@@ -82,6 +93,10 @@ def bks_for_concept(concept: str) -> list[dict[str, str]]:
 # ─── tushare fetch ──────────────────────────────────────────────────────────
 
 def _ts_csv(api: str, **params) -> list[dict[str, str]]:
+    global _MONEYFLOW_IND_DC_UNAVAILABLE_REASON
+    if api == "moneyflow_ind_dc" and _MONEYFLOW_IND_DC_UNAVAILABLE_REASON:
+        return []
+
     args = ["python3", str(_TUSHARE), api]
     for k, v in params.items():
         if k == "fields":
@@ -94,6 +109,10 @@ def _ts_csv(api: str, **params) -> list[dict[str, str]]:
     except subprocess.TimeoutExpired:
         return []
     if r.returncode != 0 or not r.stdout.strip():
+        if api == "moneyflow_ind_dc" and _looks_like_no_permission(r.stderr):
+            _MONEYFLOW_IND_DC_UNAVAILABLE_REASON = (
+                "moneyflow_ind_dc unavailable/no permission; neutral fallback"
+            )
         return []
     return list(csv.DictReader(r.stdout.splitlines()))
 
@@ -272,6 +291,11 @@ def fund_flow_score_v3(concept: str) -> tuple[float, str, dict[str, Any]]:
         return 20.0, "(no BK mapping; NEUTRAL fallback — 不要据此判断板块)", {
             "bks": [], "fallback": True}
 
+    if _MONEYFLOW_IND_DC_UNAVAILABLE_REASON:
+        return 20.0, f"({_MONEYFLOW_IND_DC_UNAVAILABLE_REASON})", {
+            "bks": bks, "fetch_failed": True, "fallback": True,
+            "reason": _MONEYFLOW_IND_DC_UNAVAILABLE_REASON}
+
     sigs: list[BkFlowSignal] = []
     for entry in bks:
         rows = fetch_bk_recent(entry["code"])
@@ -285,7 +309,9 @@ def fund_flow_score_v3(concept: str) -> tuple[float, str, dict[str, Any]]:
         sigs.append(sig)
 
     if not sigs:
-        return 20.0, "(BK fetch all failed; NEUTRAL)", {"bks": [], "fetch_failed": True}
+        reason = _MONEYFLOW_IND_DC_UNAVAILABLE_REASON or "BK fetch all failed; NEUTRAL"
+        return 20.0, f"({reason})", {
+            "bks": bks, "fetch_failed": True, "fallback": True, "reason": reason}
 
     z_main_diff = [s.main_minus_sm_z for s in sigs if s.main_minus_sm_z is not None]
     z_rate = [s.rate_z for s in sigs if s.rate_z is not None]

@@ -87,6 +87,28 @@ CACHE_DIR = os.environ.get(
 _CACHE_DEBUG = os.environ.get("TUSHARE_CACHE_DEBUG") == "1"
 _CACHE_DISABLED = os.environ.get("TUSHARE_NO_CACHE") == "1"
 
+
+def _is_no_permission_msg(msg: str) -> bool:
+    """Return True for Tushare permission/subscription errors.
+
+    Tushare sometimes reports API-level no-permission as code=40203
+    (the same code used for frequency limits).  Retrying those wastes
+    35+45+55s per unique query, which can make cron jobs time out.
+    """
+    m = (msg or "").lower()
+    needles = (
+        "没有接口",
+        "没有权限",
+        "无权限",
+        "访问权限",
+        "no permission",
+        "permission denied",
+        "not authorized",
+        "unauthorized",
+    )
+    return any(x in m for x in needles)
+
+
 # API 类别 (决定 TTL 策略)
 # permanent-by-date: 如果 params 含历史日期, 永久缓存 (已收盘数据不会变)
 _PERMANENT_BY_DATE_APIS = {
@@ -215,7 +237,10 @@ def _cache_write(api_name, params, fields, body):
     # - code == 0 且 items 空  → 1h  (日期非交易日/无数据)
     # - 其他 error             → 不缓存
     neg_ttl = None
-    if code == 40203:
+    msg = body.get("msg") or ""
+    if code == 40203 and _is_no_permission_msg(msg):
+        neg_ttl = 86400          # 1d (API permission is stable; do not retry hourly)
+    elif code == 40203:
         neg_ttl = 3600           # 1h
     elif code == 40202:
         neg_ttl = 86400          # 1d
@@ -347,6 +372,13 @@ def main(argv):
         # 和"次/天"(天级, e.g. hk_daily 10/day). 分钟级 retry 有效 (等窗口重置),
         # 天级 retry 无用 (等到明天), 直接 bail 并让上层写 negative cache.
         msg = body.get("msg") or ""
+        if _is_no_permission_msg(msg):
+            sys.stderr.write(
+                f"tushare no-permission ({api_name}): {msg.strip()}  "
+                f"skip retry (API permission/subscription error)\n"
+            )
+            break
+
         if "次/天" in msg or "/day" in msg.lower() or "per day" in msg.lower():
             sys.stderr.write(
                 f"tushare day-quota exceeded ({api_name}): {msg.strip()}  "
