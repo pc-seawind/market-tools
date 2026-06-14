@@ -683,8 +683,19 @@ def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
     if not sig:
         return {"error": f"sector {concept} 无 ETF 数据, 无法计算 RS"}
 
+    # sector_score 现在会把 active fund-flow source 写入 raw_signals:
+    #   - primary: Tushare moneyflow_ind_dc (BK z-score)
+    #   - fallback: THS/AkShare 5d/20d 板块资金流
+    # ETF share-flow 已被回测判定反向, 不应继续驱动 sector_picks 的阈值/报告。
+    raw = score.raw_signals or {}
+    active_flow_5d = raw.get("flow_5d_cny", sig.flow_5d_cny)
+    active_flow_20d = raw.get("flow_20d_cny", sig.flow_20d_cny)
+    active_flow_source = raw.get("flow_source", "etf_share_deprecated")
+    sig.flow_5d_cny = active_flow_5d
+    sig.flow_20d_cny = active_flow_20d
+
     # flow 正板块用 +20%, flow 负板块用 +30% (framework v2.3)
-    if sig.flow_20d_cny < 0:
+    if active_flow_20d < 0:
         min_dev_effective = max(min_deviation, 30.0)
     else:
         min_dev_effective = min_deviation
@@ -740,7 +751,8 @@ def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
         "sector_score": asdict(score),
         "sector_signals": {
             "nav_5d": sig.nav_pct_5d, "nav_1m": sig.nav_pct_1m,
-            "flow_5d_cny": sig.flow_5d_cny, "flow_20d_cny": sig.flow_20d_cny,
+            "flow_5d_cny": active_flow_5d, "flow_20d_cny": active_flow_20d,
+            "flow_source": active_flow_source,
             "pct_rank_60d": sig.pct_rank_60d, "pct_rank_250d": sig.pct_rank_250d,
         },
         "sector_benchmarks": {
@@ -771,7 +783,9 @@ def _print_report(result: dict[str, Any]):
     print(f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print(f"  Tier 1 总分: {score['total_score']} / 100  ({score['tier']})")
     print(f"  板块: nav_5d={ss['nav_5d']:+.2f}%  nav_1m={ss['nav_1m']:+.2f}%  pos60={ss['pct_rank_60d']}  pos250={ss['pct_rank_250d']}")
-    print(f"        flow_5d={ss['flow_5d_cny']/1e8:+.2f}亿  flow_20d={ss['flow_20d_cny']/1e8:+.2f}亿")
+    src = ss.get("flow_source", "")
+    src_note = f" [{src}]" if src else ""
+    print(f"        flow_5d={ss['flow_5d_cny']/1e8:+.2f}亿  flow_20d={ss['flow_20d_cny']/1e8:+.2f}亿{src_note}")
     print(f"  板块 benchmark: ROE_med={sb['roe_median']}%  毛利_med={sb['gross_margin_median']}%  同业 PE_med={sb['peer_pe_median']}")
     print(f"  乖离阈值: {sb['min_deviation_effective']}% (flow 负板块自动抬高)")
 

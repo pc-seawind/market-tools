@@ -39,6 +39,8 @@ import json
 import statistics
 import subprocess
 import sys
+import contextlib
+import io
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -49,6 +51,13 @@ _TUSHARE = _HERE / "tushare.py"
 _BK_MAP_YAML = _HERE / "concept_bk_map.yaml"
 
 _MONEYFLOW_IND_DC_UNAVAILABLE_REASON: str | None = None
+
+# AkShare/同花顺 fallback cache. 2026-06-14: Tushare moneyflow_ind_dc
+# 权限不可用时, 用同花顺行业/概念资金流排行做 5d/20d 方向性替代。
+# 该源不是逐日历史明细, 不能复刻 v3.2 z-score, 但能稳定提供
+# cron 需要的 flow_5d / flow_20d 净额方向。
+_THS_FLOW_CACHE: dict[tuple[str, str], Any] = {}
+_THS_FLOW_UNAVAILABLE_REASON: str | None = None
 
 
 def _looks_like_no_permission(text: str) -> bool:
@@ -253,6 +262,210 @@ def _z_to_score(z: float | None, max_pts: float, default_mid: float | None = Non
     return max_pts * (z + 2) / 4
 
 
+
+# ─── 同花顺 AkShare fallback ────────────────────────────────────────────────
+
+_THS_DIRECT_ALIASES: dict[str, list[tuple[str, str]]] = {
+    # concept -> [(source_type, THS板块名)] where source_type in {industry, concept}
+    "AI芯片 (算力核心)": [("industry", "半导体"), ("concept", "芯片概念")],
+    "存储芯片 (HBM/DDR/NAND)": [("concept", "存储芯片"), ("industry", "半导体")],
+    "先进封装 (CoWoS/Chiplet)": [("concept", "先进封装"), ("industry", "半导体")],
+    "光通信 (光模块/CPO)": [("concept", "共封装光学(CPO)"), ("industry", "通信设备")],
+    "英伟达产业链": [("industry", "半导体"), ("industry", "通信设备")],
+    "AI 应用 (软件侧)": [("concept", "AI应用"), ("concept", "人工智能")],
+    "AIDC/算力租赁": [("concept", "数据中心(AIDC)"), ("concept", "算力租赁"), ("concept", "东数西算(算力)")],
+    "PCB (算力基建)": [("concept", "PCB概念")],
+    "华为产业链": [("industry", "半导体"), ("industry", "通信设备")],
+    "硅片 (半导体材料)": [("industry", "半导体")],
+    "半导体设备 (国产替代)": [("industry", "半导体")],
+    "金融-银行": [("industry", "银行")],
+    "金融-证券": [("industry", "证券")],
+    "金融-保险": [("industry", "保险")],
+    "军工": [("concept", "军工"), ("industry", "军工装备"), ("industry", "军工电子")],
+    "有色金属": [("industry", "工业金属"), ("industry", "小金属"), ("industry", "贵金属")],
+    "锂电产业链": [("concept", "锂电池概念"), ("industry", "电池")],
+    "煤炭": [("industry", "煤炭开采加工"), ("concept", "煤炭概念")],
+    "电力": [("industry", "电力"), ("concept", "绿色电力")],
+    "钢铁": [("industry", "钢铁")],
+    "化工": [("industry", "化学原料"), ("industry", "化学制品"), ("concept", "氟化工概念")],
+    "工业机械": [("industry", "通用设备"), ("industry", "专用设备")],
+    "新能源车": [("concept", "新能源汽车")],
+    "新能源 (光伏/风电)": [("industry", "光伏设备"), ("concept", "绿色电力")],
+    "光伏": [("industry", "光伏设备"), ("concept", "光伏概念")],
+    "游戏传媒": [("industry", "游戏"), ("industry", "文化传媒"), ("concept", "网络游戏")],
+    "人形机器人": [("concept", "人形机器人"), ("concept", "机器人概念")],
+    "白酒 (消费龙头)": [("industry", "白酒"), ("concept", "白酒概念")],
+    "食品饮料": [("industry", "食品加工制造"), ("industry", "饮料乳品")],
+    "消费 (非白酒+非食品饮料)": [("industry", "零售"), ("industry", "商业百货")],
+    "家电": [("industry", "白色家电"), ("industry", "小家电"), ("industry", "黑色家电")],
+    "创新药 (医药龙头)": [("concept", "创新药"), ("industry", "化学制药")],
+    "中药": [("industry", "中药")],
+    "农业畜牧": [("industry", "养殖业"), ("industry", "农产品加工")],
+    "地产": [("industry", "房地产开发")],
+    "旅游酒店": [("industry", "旅游及酒店"), ("concept", "旅游概念")],
+    "高股息 (红利防御)": [("industry", "银行"), ("industry", "煤炭开采加工"), ("industry", "电力")],
+    "央企国企": [("concept", "央企国企改革")],
+    "固态电池": [("concept", "固态电池")],
+}
+
+
+def _ths_load(kind: str, window: str):
+    """Load THS fund-flow rank via akshare with process cache.
+
+    kind: industry|concept; window: 5日排行|20日排行|即时|...
+    Returns pandas.DataFrame or None. Suppresses tqdm/progress noise.
+    """
+    global _THS_FLOW_UNAVAILABLE_REASON
+    key = (kind, window)
+    if key in _THS_FLOW_CACHE:
+        return _THS_FLOW_CACHE[key]
+    try:
+        import akshare as ak
+        fn = ak.stock_fund_flow_industry if kind == "industry" else ak.stock_fund_flow_concept
+        # akshare uses tqdm; keep sector_score output clean.
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            df = fn(symbol=window)
+        _THS_FLOW_CACHE[key] = df
+        return df
+    except Exception as e:
+        _THS_FLOW_UNAVAILABLE_REASON = f"THS akshare fallback unavailable: {type(e).__name__}: {e}"
+        _THS_FLOW_CACHE[key] = None
+        return None
+
+
+def _num_yi_to_cny(x: Any) -> float | None:
+    """THS fund-flow tables report amounts in 亿元-like numeric columns."""
+    if x is None:
+        return None
+    try:
+        s = str(x).strip().replace("%", "").replace(",", "")
+        if s in ("", "None", "nan"):
+            return None
+        return float(s) * 1e8
+    except Exception:
+        return None
+
+
+def _pct_to_float(x: Any) -> float | None:
+    if x is None:
+        return None
+    try:
+        return float(str(x).strip().replace("%", "").replace(",", ""))
+    except Exception:
+        return None
+
+
+def _ths_lookup(kind: str, name: str, window: str) -> dict[str, Any] | None:
+    df = _ths_load(kind, window)
+    if df is None or getattr(df, "empty", True):
+        return None
+    if "行业" not in df.columns:
+        return None
+    rows = df[df["行业"].astype(str) == name]
+    if rows.empty:
+        return None
+    r = rows.iloc[0].to_dict()
+    net = _num_yi_to_cny(r.get("净额"))
+    inflow = _num_yi_to_cny(r.get("流入资金"))
+    outflow = _num_yi_to_cny(r.get("流出资金"))
+    pct = _pct_to_float(r.get("阶段涨跌幅") if "阶段涨跌幅" in r else r.get("行业-涨跌幅"))
+    return {
+        "kind": kind,
+        "name": name,
+        "window": window,
+        "net_cny": net,
+        "inflow_cny": inflow,
+        "outflow_cny": outflow,
+        "pct": pct,
+        "rank": int(r.get("序号")) if str(r.get("序号", "")).isdigit() else r.get("序号"),
+        "raw": r,
+    }
+
+
+def _ths_entries_for_concept(concept: str) -> list[tuple[str, str]]:
+    # Explicit mapping first. This intentionally covers both mapped and pending concepts.
+    if concept in _THS_DIRECT_ALIASES:
+        return _THS_DIRECT_ALIASES[concept]
+
+    # Reuse BK names where possible for mapped concepts (e.g. 半导体 / 通信设备).
+    out: list[tuple[str, str]] = []
+    for bk in bks_for_concept(concept):
+        kind = "industry" if bk.get("kind") == "industry" else "concept"
+        name = (bk.get("name") or "").replace("概念", "概念")
+        out.append((kind, name))
+    return out
+
+
+def fund_flow_score_ths(concept: str) -> tuple[float, str, dict[str, Any]]:
+    """0-40 fallback based on THS 5d/20d sector net-flow direction.
+
+    This is a **directional fallback**, not a replacement for v3.2 z-score:
+    - Uses 同花顺 industry/concept 5日排行 + 20日排行 via akshare.
+    - Scores around base=20 with bounded swings from 5d/20d net flow and return.
+    - Primary purpose: keep weekend preview's flow_5d/flow_20d direction usable
+      when Tushare moneyflow_ind_dc is unavailable.
+    """
+    entries = _ths_entries_for_concept(concept)
+    if not entries:
+        return 20.0, "(no THS mapping; NEUTRAL fallback)", {"fallback": True, "source": "neutral_no_ths_mapping", "entries": []}
+
+    hits = []
+    for kind, name in entries:
+        h5 = _ths_lookup(kind, name, "5日排行")
+        h20 = _ths_lookup(kind, name, "20日排行")
+        if h5 or h20:
+            hits.append({"kind": kind, "name": name, "flow_5d": h5, "flow_20d": h20})
+
+    if not hits:
+        reason = _THS_FLOW_UNAVAILABLE_REASON or "THS mapped sectors not found"
+        return 20.0, f"({reason}; NEUTRAL fallback)", {
+            "fallback": True, "source": "neutral_ths_unavailable", "entries": entries, "reason": reason}
+
+    f5_vals = [h["flow_5d"]["net_cny"] for h in hits if h.get("flow_5d") and h["flow_5d"].get("net_cny") is not None]
+    f20_vals = [h["flow_20d"]["net_cny"] for h in hits if h.get("flow_20d") and h["flow_20d"].get("net_cny") is not None]
+    pct5_vals = [h["flow_5d"]["pct"] for h in hits if h.get("flow_5d") and h["flow_5d"].get("pct") is not None]
+    pct20_vals = [h["flow_20d"]["pct"] for h in hits if h.get("flow_20d") and h["flow_20d"].get("pct") is not None]
+
+    avg5 = statistics.mean(f5_vals) if f5_vals else 0.0
+    avg20 = statistics.mean(f20_vals) if f20_vals else 0.0
+    pct5 = statistics.mean(pct5_vals) if pct5_vals else None
+    pct20 = statistics.mean(pct20_vals) if pct20_vals else None
+
+    # Robust bounded score. THS净额为板块总额, 不同板块公司数差异大；因此只给有限 swing。
+    # 5d 更重视拐点, 20d 看趋势背景。阈值用 10/50 亿作软饱和。
+    def _clip(x, lo, hi): return max(lo, min(hi, x))
+    score = 20.0
+    score += _clip(avg5 / 1e9, -1, 1) * 6.0     # ±6 for ±10亿 5d
+    score += _clip(avg20 / 5e9, -1, 1) * 7.0    # ±7 for ±50亿 20d
+    if avg5 > 0 and avg20 < 0:
+        score += 3.0  # flow 拐点
+    if avg5 < 0 and avg20 > 0:
+        score -= 2.0  # 短期转弱
+    if pct5 is not None:
+        score += _clip(pct5 / 5.0, -1, 1) * 2.0
+    if pct20 is not None:
+        score += _clip(pct20 / 10.0, -1, 1) * 2.0
+
+    score = round(_clip(score, 0.0, 40.0), 1)
+    note = (f"THS fallback: flow5d={_fmt_cny(avg5)} flow20d={_fmt_cny(avg20)}"
+            f" pct5={pct5:+.1f}%" if pct5 is not None else f"THS fallback: flow5d={_fmt_cny(avg5)} flow20d={_fmt_cny(avg20)}")
+    if pct20 is not None:
+        note += f" pct20={pct20:+.1f}%"
+    note += f"; score={score:.1f}/40 (directional, not z-score)"
+    diag = {
+        "source": "ths_akshare",
+        "fallback": True,
+        "entries": entries,
+        "hits": hits,
+        "flow_5d_cny": avg5,
+        "flow_20d_cny": avg20,
+        "pct_5d": pct5,
+        "pct_20d": pct20,
+        "version": "ths_fallback_v1",
+    }
+    return score, note, diag
+
+
 def fund_flow_score_v3(concept: str) -> tuple[float, str, dict[str, Any]]:
     """0-40 板块资金面分 (v3.2, soft + revert + 末期反转 penalty).
 
@@ -288,13 +501,18 @@ def fund_flow_score_v3(concept: str) -> tuple[float, str, dict[str, Any]]:
     """
     bks = bks_for_concept(concept)
     if not bks:
-        return 20.0, "(no BK mapping; NEUTRAL fallback — 不要据此判断板块)", {
-            "bks": [], "fallback": True}
+        # Pending/missing BK mapping: try THS industry/concept fallback before neutral.
+        score, note, diag = fund_flow_score_ths(concept)
+        diag.setdefault("bks", [])
+        return score, note, diag
 
     if _MONEYFLOW_IND_DC_UNAVAILABLE_REASON:
-        return 20.0, f"({_MONEYFLOW_IND_DC_UNAVAILABLE_REASON})", {
-            "bks": bks, "fetch_failed": True, "fallback": True,
-            "reason": _MONEYFLOW_IND_DC_UNAVAILABLE_REASON}
+        score, note, diag = fund_flow_score_ths(concept)
+        diag.update({
+            "bks": bks, "tushare_fetch_failed": True,
+            "tushare_reason": _MONEYFLOW_IND_DC_UNAVAILABLE_REASON,
+        })
+        return score, note, diag
 
     sigs: list[BkFlowSignal] = []
     for entry in bks:
@@ -309,9 +527,10 @@ def fund_flow_score_v3(concept: str) -> tuple[float, str, dict[str, Any]]:
         sigs.append(sig)
 
     if not sigs:
-        reason = _MONEYFLOW_IND_DC_UNAVAILABLE_REASON or "BK fetch all failed; NEUTRAL"
-        return 20.0, f"({reason})", {
-            "bks": bks, "fetch_failed": True, "fallback": True, "reason": reason}
+        reason = _MONEYFLOW_IND_DC_UNAVAILABLE_REASON or "BK fetch all failed"
+        score, note, diag = fund_flow_score_ths(concept)
+        diag.update({"bks": bks, "tushare_fetch_failed": True, "tushare_reason": reason})
+        return score, note, diag
 
     z_main_diff = [s.main_minus_sm_z for s in sigs if s.main_minus_sm_z is not None]
     z_rate = [s.rate_z for s in sigs if s.rate_z is not None]
@@ -446,10 +665,19 @@ def main():
             print(f"\n━━━ {c} ━━━")
             print(f"  score: {score}/40")
             print(f"  note:  {note}")
-            for bk in diag.get("bks", []):
-                zm = f"{bk['main_minus_sm_z']:+.2f}" if bk['main_minus_sm_z'] is not None else "n/a"
-                zr = f"{bk['rate_z']:+.2f}" if bk['rate_z'] is not None else "n/a"
-                print(f"    {bk['code']:<14} {bk['name']:<14} z(main-sm)={zm}  z(rate)={zr}  n={bk['n_history']}")
+            if diag.get("source") == "ths_akshare":
+                for h in diag.get("hits", []):
+                    f5 = h.get("flow_5d") or {}
+                    f20 = h.get("flow_20d") or {}
+                    print(f"    THS {h.get('kind',''):<8} {h.get('name',''):<16} "
+                          f"5d={_fmt_cny(f5.get('net_cny') or 0)} 20d={_fmt_cny(f20.get('net_cny') or 0)}")
+            else:
+                for bk in diag.get("bks", []):
+                    if not isinstance(bk, dict) or "main_minus_sm_z" not in bk:
+                        continue
+                    zm = f"{bk['main_minus_sm_z']:+.2f}" if bk['main_minus_sm_z'] is not None else "n/a"
+                    zr = f"{bk['rate_z']:+.2f}" if bk['rate_z'] is not None else "n/a"
+                    print(f"    {bk['code']:<14} {bk['name']:<14} z(main-sm)={zm}  z(rate)={zr}  n={bk['n_history']}")
 
     if args.json:
         print(json.dumps(out, ensure_ascii=False, indent=2))

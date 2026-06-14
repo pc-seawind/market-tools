@@ -53,22 +53,20 @@ def tier1_gate(sig: SectorSignals) -> tuple[bool, str]:
 
 # ─── 子分数: 资金面 (40) ──────────────────────────────────────────────────
 
-def fund_flow_score(concept: str, sig: SectorSignals) -> tuple[float, str]:
-    """0-40 分 — v3 走 BK 大单/散户 (回归驱动连续映射).
+def fund_flow_score_detail(concept: str, sig: SectorSignals) -> tuple[float, str, dict[str, Any]]:
+    """0-40 分 — BK moneyflow v3.2, with THS fallback diagnostics.
 
-    v2 (deprecated): 用 ETF 份额 × NAV 算 flow_5d_cny / flow_20d_cny + step_20 阶梯.
-        回测显示 r=-0.07 反向 + step_20 把信号桶化丢失.
-    v3 (current):   走 bk_moneyflow.fund_flow_score_v3
-        - 数据源: tushare moneyflow_ind_dc 板块大单+散户
-        - 信号:   main_minus_sm_20d_z (15分) + rate_20d_z (5分) + base 20
-        - z-score vs 60d 历史, 线性映射 ±2σ → ±15/±5
-
-    无 BK 映射的 concept (yaml status: pending) → NEUTRAL 20.0/40 fallback,
-    并标注 "no BK mapping" 让上层知道这个分不可信.
-
-    sig 参数仅作 v2 fallback / 调试; v3 不依赖它. 保留是为了兼容签名.
+    Primary: bk_moneyflow.fund_flow_score_v3 (Tushare moneyflow_ind_dc).
+    Fallback: 同花顺/AkShare industry+concept 5d/20d fund-flow rank.
+    sig 参数仅作兼容/调试; v3 不依赖它.
     """
-    score, note, _diag = fund_flow_score_v3(concept)
+    score, note, diag = fund_flow_score_v3(concept)
+    return score, note, diag
+
+
+def fund_flow_score(concept: str, sig: SectorSignals) -> tuple[float, str]:
+    """Backward-compatible wrapper returning only score + note."""
+    score, note, _diag = fund_flow_score_detail(concept, sig)
     return score, note
 
 
@@ -326,13 +324,29 @@ def score_sector(concept: str) -> SectorScore | None:
             raw_signals={},
         )
 
-    flow_pts, flow_note = fund_flow_score(concept, sig)
+    flow_pts, flow_note, flow_diag = fund_flow_score_detail(concept, sig)
     fund_pts, fund_note = fundamentals_score(concept)
     news_pts, news_note = news_score(concept)
     tech_pts, tech_note = technical_score(sig)
 
+    # For framework v2.3 gate/table, use the active fund-flow source.
+    # ETF share-flow is deprecated (backtest r=-0.07) and should not drive
+    # weekend preview when THS/BK moneyflow is available.
+    flow_5d_active = flow_diag.get("flow_5d_cny", sig.flow_5d_cny)
+    flow_20d_active = flow_diag.get("flow_20d_cny", sig.flow_20d_cny)
+    flow_source = flow_diag.get("source", "bk_moneyflow_ind_dc")
+
     total = flow_pts + fund_pts + news_pts + tech_pts
     gate_pass, gate_reason = tier1_gate(sig)
+    if flow_diag.get("source") == "ths_akshare":
+        if sig.nav_pct_5d > 0:
+            gate_pass, gate_reason = True, "a: nav_5d 正"
+        elif flow_5d_active > 0 and flow_20d_active < 0:
+            gate_pass, gate_reason = True, "c: THS flow 拐点 (20d负5d正)"
+        elif flow_5d_active > 0:
+            gate_pass, gate_reason = True, "c': THS flow_5d 正"
+        else:
+            gate_pass, gate_reason = False, "fail: nav负 + THS flow全负"
 
     return SectorScore(
         concept=concept, data_quality=sig.data_quality,
@@ -348,8 +362,10 @@ def score_sector(concept: str) -> SectorScore | None:
             "pct_rank_120d": sig.pct_rank_120d,
             "pct_rank_250d": sig.pct_rank_250d,
             "vol_ratio": sig.vol_ratio,
-            "flow_5d_cny": sig.flow_5d_cny,
-            "flow_20d_cny": sig.flow_20d_cny,
+            "flow_5d_cny": flow_5d_active,
+            "flow_20d_cny": flow_20d_active,
+            "flow_source": flow_source,
+            "flow_fallback": bool(flow_diag.get("fallback")),
         },
     )
 
@@ -380,7 +396,8 @@ def print_scores_table(scores: list[SectorScore], show_hot_only: bool = False):
     print(f"{'='*140}")
     for s in scores:
         gate = "✅" if s.tier1_pass else "❌"
-        signal = f"nav5d={s.raw_signals.get('nav_5d',0):+.1f}% pos60={s.raw_signals.get('pct_rank_60d',0)}% flow20d={_fmt_cny(s.raw_signals.get('flow_20d_cny',0))}"
+        src = " THS" if s.raw_signals.get("flow_source") == "ths_akshare" else ""
+        signal = f"nav5d={s.raw_signals.get('nav_5d',0):+.1f}% pos60={s.raw_signals.get('pct_rank_60d',0)}% flow20d={_fmt_cny(s.raw_signals.get('flow_20d_cny',0))}{src}"
         print(f"{s.concept:<30} {s.total_score:>5.1f}  {s.tier:<16} {s.fund_flow_pts:>8.1f} {s.fundamentals_pts:>8.1f} {s.news_pts:>8.1f} {s.technical_pts:>8.1f} {gate:<5} {signal}")
 
 
@@ -399,7 +416,9 @@ def print_sector_detail(s: SectorScore):
         print(f"  原始数据:")
         print(f"    nav: 5d={rs.get('nav_5d',0):+.2f}% 1m={rs.get('nav_1m',0):+.2f}%")
         print(f"    位置: 60d={rs.get('pct_rank_60d',0)} 120d={rs.get('pct_rank_120d',0)} 250d={rs.get('pct_rank_250d',0)}")
-        print(f"    flow: 5d={_fmt_cny(rs.get('flow_5d_cny',0))} 20d={_fmt_cny(rs.get('flow_20d_cny',0))}")
+        src = rs.get("flow_source", "")
+        src_note = f" ({src})" if src else ""
+        print(f"    flow: 5d={_fmt_cny(rs.get('flow_5d_cny',0))} 20d={_fmt_cny(rs.get('flow_20d_cny',0))}{src_note}")
         print(f"    量比: {rs.get('vol_ratio',0):.2f}x")
 
 
