@@ -332,7 +332,8 @@ def score_sector(concept: str) -> SectorScore | None:
     # For framework v2.3 gate/table, use the active fund-flow source.
     # ETF share-flow is deprecated (backtest r=-0.07) and should not drive
     # weekend preview when THS/BK moneyflow is available.
-    flow_5d_active = flow_diag.get("flow_5d_cny", sig.flow_5d_cny)
+    flow_5d_raw = flow_diag.get("flow_5d_cny", sig.flow_5d_cny)
+    flow_5d_active = flow_diag.get("flow_5d_cny_for_scoring", flow_5d_raw)
     flow_20d_active = flow_diag.get("flow_20d_cny", sig.flow_20d_cny)
     flow_source = flow_diag.get("source", "bk_moneyflow_ind_dc")
 
@@ -363,9 +364,12 @@ def score_sector(concept: str) -> SectorScore | None:
             "pct_rank_250d": sig.pct_rank_250d,
             "vol_ratio": sig.vol_ratio,
             "flow_5d_cny": flow_5d_active,
+            "flow_5d_raw_cny": flow_5d_raw,
             "flow_20d_cny": flow_20d_active,
             "flow_source": flow_source,
             "flow_fallback": bool(flow_diag.get("fallback")),
+            "flow_confidence": flow_diag.get("flow_confidence"),
+            "cross_source_conflict_likely": bool(flow_diag.get("cross_source_conflict_likely")),
         },
     )
 
@@ -397,7 +401,8 @@ def print_scores_table(scores: list[SectorScore], show_hot_only: bool = False):
     for s in scores:
         gate = "✅" if s.tier1_pass else "❌"
         src = " THS" if s.raw_signals.get("flow_source") == "ths_akshare" else ""
-        signal = f"nav5d={s.raw_signals.get('nav_5d',0):+.1f}% pos60={s.raw_signals.get('pct_rank_60d',0)}% flow20d={_fmt_cny(s.raw_signals.get('flow_20d_cny',0))}{src}"
+        conf = " LOWCONF" if s.raw_signals.get("flow_confidence") == "low" else ""
+        signal = f"nav5d={s.raw_signals.get('nav_5d',0):+.1f}% pos60={s.raw_signals.get('pct_rank_60d',0)}% flow20d={_fmt_cny(s.raw_signals.get('flow_20d_cny',0))}{src}{conf}"
         print(f"{s.concept:<30} {s.total_score:>5.1f}  {s.tier:<16} {s.fund_flow_pts:>8.1f} {s.fundamentals_pts:>8.1f} {s.news_pts:>8.1f} {s.technical_pts:>8.1f} {gate:<5} {signal}")
 
 
@@ -418,7 +423,12 @@ def print_sector_detail(s: SectorScore):
         print(f"    位置: 60d={rs.get('pct_rank_60d',0)} 120d={rs.get('pct_rank_120d',0)} 250d={rs.get('pct_rank_250d',0)}")
         src = rs.get("flow_source", "")
         src_note = f" ({src})" if src else ""
-        print(f"    flow: 5d={_fmt_cny(rs.get('flow_5d_cny',0))} 20d={_fmt_cny(rs.get('flow_20d_cny',0))}{src_note}")
+        raw5 = rs.get("flow_5d_raw_cny")
+        raw_note = ""
+        if raw5 is not None and abs(raw5 - rs.get("flow_5d_cny", 0)) > 1:
+            raw_note = f" (raw THS 5d={_fmt_cny(raw5)}, low-conf)"
+        conf_note = " LOW_CONF" if rs.get("flow_confidence") == "low" else ""
+        print(f"    flow: 5d={_fmt_cny(rs.get('flow_5d_cny',0))} 20d={_fmt_cny(rs.get('flow_20d_cny',0))}{src_note}{conf_note}{raw_note}")
         print(f"    量比: {rs.get('vol_ratio',0):.2f}x")
 
 

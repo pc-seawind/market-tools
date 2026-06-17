@@ -431,15 +431,25 @@ def fund_flow_score_ths(concept: str) -> tuple[float, str, dict[str, Any]]:
     pct5 = statistics.mean(pct5_vals) if pct5_vals else None
     pct20 = statistics.mean(pct20_vals) if pct20_vals else None
 
+    # 2026-06-17 audit: AkShare/THS `stock_fund_flow_*` 5日排行的 `净额`
+    # can strongly disagree with HTSC/OpenClaw "主力净流入" for the same hot
+    # semiconductor/CPO/PCB themes. Example: THS 5日净额 negative while HTSC
+    # reports large positive 5d main inflow and THS itself shows strong positive
+    # price momentum + positive 20d net. Treat that state as LOW CONFIDENCE:
+    # preserve raw THS value for audit, but do not let it hard-downgrade a sector.
+    conflict_likely = bool(avg5 < 0 and avg20 > 0 and (pct5 or 0.0) > 2.0)
+    scoring_avg5 = 0.0 if conflict_likely else avg5
+    flow_confidence = "low" if conflict_likely else "medium"
+
     # Robust bounded score. THS净额为板块总额, 不同板块公司数差异大；因此只给有限 swing。
     # 5d 更重视拐点, 20d 看趋势背景。阈值用 10/50 亿作软饱和。
     def _clip(x, lo, hi): return max(lo, min(hi, x))
     score = 20.0
-    score += _clip(avg5 / 1e9, -1, 1) * 6.0     # ±6 for ±10亿 5d
-    score += _clip(avg20 / 5e9, -1, 1) * 7.0    # ±7 for ±50亿 20d
-    if avg5 > 0 and avg20 < 0:
+    score += _clip(scoring_avg5 / 1e9, -1, 1) * 6.0     # ±6 for ±10亿 5d
+    score += _clip(avg20 / 5e9, -1, 1) * 7.0            # ±7 for ±50亿 20d
+    if scoring_avg5 > 0 and avg20 < 0:
         score += 3.0  # flow 拐点
-    if avg5 < 0 and avg20 > 0:
+    if scoring_avg5 < 0 and avg20 > 0:
         score -= 2.0  # 短期转弱
     if pct5 is not None:
         score += _clip(pct5 / 5.0, -1, 1) * 2.0
@@ -451,6 +461,8 @@ def fund_flow_score_ths(concept: str) -> tuple[float, str, dict[str, Any]]:
             f" pct5={pct5:+.1f}%" if pct5 is not None else f"THS fallback: flow5d={_fmt_cny(avg5)} flow20d={_fmt_cny(avg20)}")
     if pct20 is not None:
         note += f" pct20={pct20:+.1f}%"
+    if conflict_likely:
+        note += "; LOW_CONF: THS 5d total-net conflicts with HTSC/main-flow style signals; 5d not used for hard downgrade"
     note += f"; score={score:.1f}/40 (directional, not z-score)"
     diag = {
         "source": "ths_akshare",
@@ -458,10 +470,13 @@ def fund_flow_score_ths(concept: str) -> tuple[float, str, dict[str, Any]]:
         "entries": entries,
         "hits": hits,
         "flow_5d_cny": avg5,
+        "flow_5d_cny_for_scoring": scoring_avg5,
         "flow_20d_cny": avg20,
         "pct_5d": pct5,
         "pct_20d": pct20,
-        "version": "ths_fallback_v1",
+        "flow_confidence": flow_confidence,
+        "cross_source_conflict_likely": conflict_likely,
+        "version": "ths_fallback_v2_low_conflict_guard",
     }
     return score, note, diag
 
