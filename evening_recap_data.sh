@@ -72,6 +72,16 @@ SCORE_ERR="$WORKDIR/score.err"
 
 echo "[evening_recap_data] start date=$DATE out=$OUT max_picks=$MAX_PICKS" >&2
 
+# ── Stage 0: HTSC sector main-flow cache ─────────────────────────
+# Tushare moneyflow_ind_dc may be unavailable/no-permission. In that case
+# bk_moneyflow.py now prefers pre-refreshed HTSC/OpenClaw 主力净流入 cache.
+# This refresh is bounded by TTL: if fresh, htsc_sector_flow.py skips network.
+HTSC_FLOW_REFRESH_TIMEOUT="${HTSC_FLOW_REFRESH_TIMEOUT:-900}"
+if [[ -x "$HERE/htsc_sector_flow.py" ]]; then
+  echo "[evening_recap_data] refresh HTSC sector-flow cache (TTL guarded)" >&2
+  timeout "$HTSC_FLOW_REFRESH_TIMEOUT" python3 "$HERE/htsc_sector_flow.py" refresh-default --max-concepts 13 --ttl-hours 12     > "$WORKDIR/htsc_sector_flow_refresh.json" 2> "$WORKDIR/htsc_sector_flow_refresh.err" ||     echo "[evening_recap_data] WARN: HTSC sector-flow refresh failed/timeout; scoring will use existing cache or neutral fallback" >&2
+fi
+
 # ── Stage 1: 板块评分 ────────────────────────────────────────────
 if [[ -n "$SCORE_JSON" && -s "$SCORE_JSON" ]]; then
   echo "[evening_recap_data] reuse score json: $SCORE_JSON (skip recompute)" >&2

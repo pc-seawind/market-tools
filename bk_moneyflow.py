@@ -36,6 +36,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import statistics
 import subprocess
 import sys
@@ -262,6 +263,107 @@ def _z_to_score(z: float | None, max_pts: float, default_mid: float | None = Non
     return max_pts * (z + 2) / 4
 
 
+
+
+# ─── 华泰 OpenClaw sector-flow fallback cache ────────────────────────────────
+
+_HTSC_FLOW_CACHE_FILE = _HERE / ".cron_state" / "htsc_sector_flow.json"
+
+
+def _load_htsc_sector_flow(concept: str, *, max_age_hours: float = 24.0) -> dict[str, Any] | None:
+    """Read pre-refreshed HTSC sector main-flow cache.
+
+    Network calls are intentionally NOT done here: `sector_score --all` must stay
+    deterministic and bounded. Refresh the cache with:
+      python3 htsc_sector_flow.py refresh-default
+
+    Returns None when missing/stale/unusable.
+    """
+    try:
+        if not _HTSC_FLOW_CACHE_FILE.exists():
+            return None
+        payload = json.loads(_HTSC_FLOW_CACHE_FILE.read_text(encoding="utf-8"))
+        rec = (payload.get("concepts") or {}).get(concept)
+        if not rec or not rec.get("ok"):
+            return None
+        ts = rec.get("updated_at")
+        if ts:
+            from datetime import datetime, timezone
+            t = datetime.fromisoformat(str(ts))
+            now = datetime.now(t.tzinfo or timezone.utc)
+            if (now - t).total_seconds() > max_age_hours * 3600:
+                return None
+        if rec.get("flow_5d_cny") is None and rec.get("flow_20d_cny") is None:
+            return None
+        return rec
+    except Exception:
+        return None
+
+
+def fund_flow_score_htsc_cached(concept: str) -> tuple[float, str, dict[str, Any]] | None:
+    """0-40 fallback based on HTSC/OpenClaw 主力净流入 cache.
+
+    This is preferred over THS/AkShare because the original model's intent is
+    main-money direction (Tushare moneyflow_ind_dc large/super-large style), not
+    THS total-flow `净额`, which was audited to conflict on hot tech themes.
+    """
+    rec = _load_htsc_sector_flow(concept)
+    if not rec:
+        return None
+    f5 = rec.get("flow_5d_cny") or 0.0
+    f20 = rec.get("flow_20d_cny") or 0.0
+    pct5 = rec.get("pct_5d")
+    pct20 = rec.get("pct_20d")
+
+    def _clip(x, lo, hi): return max(lo, min(hi, x))
+    score = 20.0
+    score += _clip(f5 / 1e9, -1, 1) * 8.0       # 主力5d更重要; ±10亿 soft cap
+    score += _clip(f20 / 5e9, -1, 1) * 5.0      # 20d背景; ±50亿 soft cap
+    if f5 > 0 and f20 < 0:
+        score += 3.0  # short-term turn positive
+    if f5 < 0 and f20 > 0:
+        score -= 3.0
+    if pct5 is not None:
+        score += _clip(float(pct5) / 5.0, -1, 1) * 2.0
+    if pct20 is not None:
+        score += _clip(float(pct20) / 10.0, -1, 1) * 1.0
+    score = round(_clip(score, 0.0, 40.0), 1)
+    note = f"HTSC fallback: main_flow5d={_fmt_cny(f5)} main_flow20d={_fmt_cny(f20)}"
+    if pct5 is not None:
+        note += f" pct5={float(pct5):+.1f}%"
+    if pct20 is not None:
+        note += f" pct20={float(pct20):+.1f}%"
+    note += f"; score={score:.1f}/40 (cached HTSC main-flow fallback)"
+    diag = {
+        "source": "htsc_openclaw",
+        "fallback": True,
+        "flow_5d_cny": f5,
+        "flow_20d_cny": f20,
+        "pct_5d": pct5,
+        "pct_20d": pct20,
+        "flow_confidence": "medium",
+        "htsc_cache_updated_at": rec.get("updated_at"),
+        "htsc_labels": rec.get("labels"),
+        "htsc_entries": rec.get("entries"),
+        "version": "htsc_cached_main_flow_v1",
+    }
+    return score, note, diag
+
+
+def neutral_no_htsc_flow(concept: str, reason: str, *, entries: list | None = None) -> tuple[float, str, dict[str, Any]]:
+    return 20.0, f"({reason}; HTSC main-flow unavailable; NEUTRAL fallback)", {
+        "fallback": True,
+        "source": "neutral_htsc_unavailable",
+        "reason": reason,
+        "entries": entries or [],
+        # Explicit zeroes prevent sector_score from falling back to deprecated ETF
+        # share-flow display when HTSC cache is missing.
+        "flow_5d_cny": 0.0,
+        "flow_20d_cny": 0.0,
+        "pct_5d": None,
+        "pct_20d": None,
+        "flow_confidence": "none",
+    }
 
 # ─── 同花顺 AkShare fallback ────────────────────────────────────────────────
 
@@ -516,18 +618,35 @@ def fund_flow_score_v3(concept: str) -> tuple[float, str, dict[str, Any]]:
     """
     bks = bks_for_concept(concept)
     if not bks:
-        # Pending/missing BK mapping: try THS industry/concept fallback before neutral.
-        score, note, diag = fund_flow_score_ths(concept)
-        diag.setdefault("bks", [])
-        return score, note, diag
+        # Pending/missing BK mapping: prefer pre-refreshed HTSC main-flow cache.
+        htsc = fund_flow_score_htsc_cached(concept)
+        if htsc:
+            score, note, diag = htsc
+            diag.setdefault("bks", [])
+            return score, note, diag
+        if os.environ.get("MARKET_TOOLS_ENABLE_THS_FLOW_FALLBACK") == "1":
+            score, note, diag = fund_flow_score_ths(concept)
+            diag.setdefault("bks", [])
+            return score, note, diag
+        return neutral_no_htsc_flow(concept, "no BK mapping and no fresh HTSC sector-flow cache")
 
     if _MONEYFLOW_IND_DC_UNAVAILABLE_REASON:
-        score, note, diag = fund_flow_score_ths(concept)
-        diag.update({
-            "bks": bks, "tushare_fetch_failed": True,
-            "tushare_reason": _MONEYFLOW_IND_DC_UNAVAILABLE_REASON,
-        })
-        return score, note, diag
+        htsc = fund_flow_score_htsc_cached(concept)
+        if htsc:
+            score, note, diag = htsc
+            diag.update({
+                "bks": bks, "tushare_fetch_failed": True,
+                "tushare_reason": _MONEYFLOW_IND_DC_UNAVAILABLE_REASON,
+            })
+            return score, note, diag
+        if os.environ.get("MARKET_TOOLS_ENABLE_THS_FLOW_FALLBACK") == "1":
+            score, note, diag = fund_flow_score_ths(concept)
+            diag.update({
+                "bks": bks, "tushare_fetch_failed": True,
+                "tushare_reason": _MONEYFLOW_IND_DC_UNAVAILABLE_REASON,
+            })
+            return score, note, diag
+        return neutral_no_htsc_flow(concept, _MONEYFLOW_IND_DC_UNAVAILABLE_REASON, entries=bks)
 
     sigs: list[BkFlowSignal] = []
     for entry in bks:
@@ -543,9 +662,16 @@ def fund_flow_score_v3(concept: str) -> tuple[float, str, dict[str, Any]]:
 
     if not sigs:
         reason = _MONEYFLOW_IND_DC_UNAVAILABLE_REASON or "BK fetch all failed"
-        score, note, diag = fund_flow_score_ths(concept)
-        diag.update({"bks": bks, "tushare_fetch_failed": True, "tushare_reason": reason})
-        return score, note, diag
+        htsc = fund_flow_score_htsc_cached(concept)
+        if htsc:
+            score, note, diag = htsc
+            diag.update({"bks": bks, "tushare_fetch_failed": True, "tushare_reason": reason})
+            return score, note, diag
+        if os.environ.get("MARKET_TOOLS_ENABLE_THS_FLOW_FALLBACK") == "1":
+            score, note, diag = fund_flow_score_ths(concept)
+            diag.update({"bks": bks, "tushare_fetch_failed": True, "tushare_reason": reason})
+            return score, note, diag
+        return neutral_no_htsc_flow(concept, reason, entries=bks)
 
     z_main_diff = [s.main_minus_sm_z for s in sigs if s.main_minus_sm_z is not None]
     z_rate = [s.rate_z for s in sigs if s.rate_z is not None]
