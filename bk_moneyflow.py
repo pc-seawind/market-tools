@@ -277,8 +277,19 @@ def _load_htsc_sector_flow(concept: str, *, max_age_hours: float = 24.0) -> dict
     deterministic and bounded. Refresh the cache with:
       python3 htsc_sector_flow.py refresh-default
 
+    `max_age_hours` defaults to 24h for daily reports, but can be overridden via
+    HTSC_FLOW_CACHE_MAX_AGE_HOURS (e.g. 72 for weekend weekly reports). This
+    prevents a Saturday weekly report from silently dropping a Friday morning
+    HTSC cache to neutral fallback when refresh is temporarily unavailable.
+
     Returns None when missing/stale/unusable.
     """
+    env_max_age = os.environ.get("HTSC_FLOW_CACHE_MAX_AGE_HOURS")
+    if env_max_age:
+        try:
+            max_age_hours = float(env_max_age)
+        except ValueError:
+            pass
     try:
         if not _HTSC_FLOW_CACHE_FILE.exists():
             return None
