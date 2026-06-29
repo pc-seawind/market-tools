@@ -5,8 +5,10 @@ homespace domains import as artifacts.
 
 Three tiers:
 
-- **Zero-dep tier** (`quote.sh`) — bash + curl only, free public APIs, no auth.
-  Safe to import anywhere without setup cost.
+- **Zero-dep tier** (`quote.sh`) — bash + curl public fallbacks. When
+  `XUEQIU_COOKIE` is present (Agent Reach / 雪球 read-only backend),
+  HK/US quotes prefer Xueqiu for broader cross-market fields; otherwise
+  fall back to Sina/Yahoo/Stooq.
 - **Data tier** (`tushare.py`, `history.sh`) — historical OHLCV + raw tushare
   Pro API access. Requires `TUSHARE_TOKEN`. python3 stdlib only.
 - **Analysis tier** (`fundamentals.sh`, `policy.sh`) — higher-level composites
@@ -420,9 +422,9 @@ Price, open/high/low, volume, timestamp. **Auto-routes by ticker shape:**
 | Shape | Source | Example |
 |-------|--------|---------|
 | `sh######` / `sz######` | Sina Finance (A-shares) | `sh600519` (贵州茅台) |
-| `hk######` | Sina Finance (Hong Kong) | `hk00700` (腾讯) |
+| `hk######` | Xueqiu when `XUEQIU_COOKIE` is present; Sina fallback | `hk00700` (腾讯) |
 | `bj######` | Sina Finance (Beijing STAR) | `bj831168` |
-| `AAPL` / `TSLA` | Stooq.com (US) | `AAPL`, `tsla.us` |
+| `AAPL` / `TSLA` | Xueqiu when `XUEQIU_COOKIE` is present; Yahoo fallback; Stooq last resort | `AAPL`, `tsla.us` |
 
 Output: one human-readable summary line + one raw upstream line for parsing.
 
@@ -633,7 +635,7 @@ just the data rows with a header line.
 
 | Script | Needs |
 |--------|-------|
-| `quote.sh` | bash + curl + (optional) iconv |
+| `quote.sh` | bash + curl + python3 for Xueqiu/Yahoo fallback + (optional) iconv |
 | `history.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |
 | `fundamentals.sh` | bash + python3 stdlib + `TUSHARE_TOKEN` |
 | `flows.sh` | bash + python3 stdlib + coreutils `date` + `TUSHARE_TOKEN` |

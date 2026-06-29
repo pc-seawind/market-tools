@@ -186,13 +186,16 @@ artifacts:
     cmd: bash /home/emox/work/projects/market-tools/quote.sh
     hint: >
       Snapshot quote for a ticker. Auto-routes: `sh######`/`sz######`/
-      `hk######`/`bj######` → Sina Finance; `AAPL`/`TSLA`/`*.us` → Stooq.
+      `bj######` → Sina Finance; `hk######` → Xueqiu when `XUEQIU_COOKIE`
+      is present, otherwise Sina; `AAPL`/`TSLA`/`*.us` → Xueqiu when
+      `XUEQIU_COOKIE` is present, otherwise Yahoo/Stooq fallback.
       Output: 1 line summary `TICKER | price=... open=... high=... low=...
       vol=... ts=...` + 1 raw line for parsing. Example:
       `bash /home/emox/work/projects/market-tools/quote.sh sh600519`
     description: >
       Primary cross-exchange quote entry point. A-shares / HK / US.
-      Snapshot only, delayed ~15min during market hours. No API key.
+      Snapshot only, delayed depending on source. Xueqiu is read-only and
+      optional; public fallbacks still work without it.
 
   - kind: script
     name: history
