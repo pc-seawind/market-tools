@@ -217,10 +217,13 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
     qfq_applied = False
     adj_events_60d = 0
 
-    # 港股不走 Tushare daily（A 股接口），否则所有 .HK 成分股都会空。
-    # 早报里的“港股互联网成分股全部 fetch 失败”就是这里漏了港股路由。
-    # 用 quote_sources.daily_bars：港股 primary = 腾讯 qfq kline；盘中/盘后都可用。
-    if code.upper().endswith(".HK"):
+    code_u = code.upper()
+    is_hk = code_u.endswith(".HK")
+    is_a_share = code_u.endswith((".SH", ".SZ", ".BJ"))
+
+    # 非 A 股不走 Tushare daily（A 股接口），否则 .HK / US 成分股都会空。
+    # 用 quote_sources.daily_bars：港股 = 腾讯 qfq kline；美股 = Yahoo chart。
+    if not is_a_share:
         try:
             from quote_sources import daily_bars
             bars = daily_bars(code, days=260)
@@ -237,7 +240,8 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
             except (ValueError, KeyError, TypeError):
                 continue
         rows.sort(key=lambda x: x[0])
-        # quote_sources 对腾讯 kline 请求的是 qfq；标记已复权，避免误读。
+        # quote_sources 对腾讯 HK kline 请求的是 qfq；US Yahoo 为 adjusted-ish
+        # chart 口径。统一标记为已走外部复权/归一口径，避免误读为 Tushare 未复权。
         qfq_applied = True
     else:
         daily = _ts("daily", ts_code=code, fields="trade_date,close,vol,amount")
@@ -317,11 +321,10 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
     volume_signal = _classify_volume(vol_ratio_1d, vol_ratio_5d)
     pv_alignment = _classify_pv(pct_1d, pct_5d, vol_ratio_1d, vol_ratio_5d)
 
-    # daily_basic / fina_indicator 目前只覆盖 A 股；港股先保留技术面指标，
+    # daily_basic / fina_indicator 目前只覆盖 A 股；港股/美股先保留技术面指标，
     # 基本面字段降级为空，避免把“无 A 股 Tushare 基本面”误判为个股 fetch 失败。
-    is_hk = code.upper().endswith(".HK")
-    basic = [] if is_hk else _ts("daily_basic", ts_code=code, trade_date=trade_date,
-                                 fields="pe_ttm,pb,total_mv,turnover_rate")
+    basic = [] if not is_a_share else _ts("daily_basic", ts_code=code, trade_date=trade_date,
+                                          fields="pe_ttm,pb,total_mv,turnover_rate")
     b = basic[0] if basic else {}
 
     def bf(k: str) -> float | None:
@@ -334,14 +337,14 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
             return None
 
     # PE history
-    pe_hist_rows = [] if is_hk else _ts("daily_basic", ts_code=code, fields="trade_date,pe_ttm")
+    pe_hist_rows = [] if not is_a_share else _ts("daily_basic", ts_code=code, fields="trade_date,pe_ttm")
     pes = [float(r["pe_ttm"]) for r in pe_hist_rows if r.get("pe_ttm") and r["pe_ttm"] not in ("", "None")]
     valid_pes = [p for p in pes if 5 < p < 500]
     pe_median = round(statistics.median(valid_pes), 1) if len(valid_pes) >= 30 else None
 
     # fina_indicator
-    fina = [] if is_hk else _ts("fina_indicator", ts_code=code,
-                                fields="end_date,roe,grossprofit_margin,netprofit_yoy,or_yoy")
+    fina = [] if not is_a_share else _ts("fina_indicator", ts_code=code,
+                                         fields="end_date,roe,grossprofit_margin,netprofit_yoy,or_yoy")
     fina_latest = {}
     if fina:
         fina.sort(key=lambda x: x.get("end_date", ""), reverse=True)

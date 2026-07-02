@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 """quote_sources.py — 统一行情数据源层 (mootdx / 腾讯财经 / 同花顺热点).
 
-三大数据源, 各有侧重:
+多数据源, 各有侧重:
   1. mootdx     — 实时盘口 (买卖5档) + 分钟/日K线 + 分时线. TCP 直连通达信.
   2. tencent    — 估值快照 (PE/PB/市值/换手/涨跌停价). HTTP 公开, 无需 token.
-  3. ths_concept — 同花顺概念板块指数 (K线/成分股). 通过 akshare 间接调用.
+  3. xueqiu     — 港/美股 quote + 美股日 K 线 (需 XUEQIU_COOKIE).
+  4. yahoo      — 美股日 K 线 fallback / US anchors.
+  5. ths_concept — 同花顺概念板块指数 (K线/成分股). 通过 akshare 间接调用.
 
 对外暴露 4 个高层函数 + 1 个 CLI:
   realtime_quotes(codes)       → 实时价格 + 盘口 (mootdx primary, tencent fallback)
   valuation_snapshot(codes)    → PE/PB/市值/换手/涨跌停 (tencent)
-  daily_bars(code, days=20)    → 日K线 (A股: mootdx→tencent; 港股: tencent)
+  daily_bars(code, days=20)    → 日K线 (A股: mootdx→tencent; 港股: tencent; 美股: xueqiu→yahoo)
   concept_index(name, days=5)  → 概念板块近 N 日 K线 (ths via akshare)
 
 CLI:
   python quote_sources.py quote 600519 002475 301308   # 实时行情
   python quote_sources.py val   600519 002475          # 估值快照
-  python quote_sources.py daily 00700.HK --days 10     # 日K线 (A/HK通用)
+  python quote_sources.py daily 00700.HK --days 10     # 日K线 (A/HK/US通用)
   python quote_sources.py concept AI手机               # 概念K线
   python quote_sources.py bars 600519 --freq 5min --count 20  # 分钟K线
 
@@ -30,7 +32,7 @@ import sys
 import json
 import time
 import urllib.request
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Any
 
 # 清掉环境代理 — 避免 stale SOCKS 截断 akshare/mootdx 连接.
@@ -78,6 +80,25 @@ def _is_hk_code(code: str) -> bool:
     """判断是否港股代码."""
     code = code.strip().upper()
     return code.endswith('.HK') or code.startswith('HK')
+
+
+def _is_us_code(code: str) -> bool:
+    """判断是否美股代码.
+
+    market-tools 约定: 美股使用裸 symbol (NVDA/AAPL/TSM) 或可选
+    `.US` suffix；A/HK 使用交易所 suffix/prefix。这里只做 shape 判断，
+    不校验 symbol 是否真实存在。
+    """
+    c = code.strip().upper()
+    if c.endswith(".US"):
+        return True
+    if c.endswith((".SH", ".SZ", ".BJ", ".HK")):
+        return False
+    if c.startswith(("SH", "SZ", "BJ", "HK")) and c[2:].isdigit():
+        return False
+    if c.isdigit():
+        return False
+    return c.replace("-", "").replace(".", "").isalpha()
 
 
 def realtime_quotes(codes: List[str]) -> List[Dict[str, Any]]:
@@ -342,6 +363,9 @@ def _tencent_daily_kline(code: str, days: int = 20) -> List[Dict]:
         print(f"[quote_sources] tencent kline failed for {tc_code}: {e}", file=sys.stderr)
         return []
 
+    if not isinstance(data, dict):
+        print(f"[quote_sources] tencent kline unsupported response for {tc_code}", file=sys.stderr)
+        return []
     inner = data.get("data", {}).get(tc_code, {})
     day_data = inner.get("qfqday") or inner.get("day")
     if not day_data:
@@ -364,16 +388,169 @@ def _tencent_daily_kline(code: str, days: int = 20) -> List[Dict]:
     return results
 
 
+def _yahoo_daily_bars(code: str, days: int = 20) -> List[Dict]:
+    """Yahoo chart API 日 K 线, 用于美股裸 symbol.
+
+    返回字段归一到 daily_bars shape:
+      [{date, open, high, low, close, volume}, ...] 按日期升序.
+    """
+    import urllib.parse
+
+    symbol = code.strip().upper()
+    if symbol.endswith(".US"):
+        symbol = symbol[:-3]
+    if not symbol:
+        return []
+
+    # 多取一点, 防止节假日/停牌导致不足 days 条。
+    range_s = "1y" if days > 90 else "6mo"
+    url = (
+        "https://query1.finance.yahoo.com/v8/finance/chart/"
+        + urllib.parse.quote(symbol)
+        + f"?range={range_s}&interval=1d&includePrePost=false&events=history"
+    )
+    try:
+        req = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0",
+                "Accept": "application/json",
+            },
+        )
+        resp = urllib.request.urlopen(req, timeout=12)
+        import json as _json
+        data = _json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        print(f"[quote_sources] yahoo daily failed for {symbol}: {e}", file=sys.stderr)
+        return []
+
+    try:
+        result = (data.get("chart", {}).get("result") or [])[0]
+        timestamps = result.get("timestamp") or []
+        quote = ((result.get("indicators") or {}).get("quote") or [{}])[0]
+        opens = quote.get("open") or []
+        highs = quote.get("high") or []
+        lows = quote.get("low") or []
+        closes = quote.get("close") or []
+        volumes = quote.get("volume") or []
+    except (IndexError, AttributeError):
+        return []
+
+    out: List[Dict] = []
+    for i, ts in enumerate(timestamps):
+        try:
+            close = closes[i]
+            if close is None:
+                continue
+            dt = datetime.fromtimestamp(int(ts), timezone.utc).strftime("%Y-%m-%d")
+            out.append({
+                "date": dt,
+                "open": float(opens[i]) if i < len(opens) and opens[i] is not None else 0,
+                "high": float(highs[i]) if i < len(highs) and highs[i] is not None else 0,
+                "low": float(lows[i]) if i < len(lows) and lows[i] is not None else 0,
+                "close": float(close),
+                "volume": int(volumes[i]) if i < len(volumes) and volumes[i] is not None else 0,
+            })
+        except (ValueError, TypeError, IndexError):
+            continue
+    return out[-days:] if days > 0 else out
+
+
+def _xueqiu_daily_bars(code: str, days: int = 20) -> List[Dict]:
+    """Xueqiu K 线 API, 用于 US/HK 这类 Tushare 不稳定/不覆盖的市场.
+
+    需要环境变量 XUEQIU_COOKIE；无 cookie 时静默返回 []，由调用方 fallback。
+    """
+    import urllib.parse
+
+    cookie = os.environ.get("XUEQIU_COOKIE")
+    if not cookie:
+        return []
+
+    symbol = code.strip().upper()
+    if symbol.endswith(".US"):
+        symbol = symbol[:-3]
+    if symbol.startswith("HK") and symbol[2:].isdigit():
+        symbol = symbol[2:]
+    if symbol.endswith(".HK"):
+        symbol = symbol[:-3]
+
+    url = "https://stock.xueqiu.com/v5/stock/chart/kline.json?" + urllib.parse.urlencode({
+        "symbol": symbol,
+        "begin": int(time.time() * 1000),
+        "period": "day",
+        "type": "before",
+        "count": f"-{max(days, 1)}",
+        "indicator": "kline",
+    })
+    try:
+        req = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0",
+                "Accept": "application/json",
+                "Referer": f"https://xueqiu.com/S/{urllib.parse.quote(symbol)}",
+                "Cookie": cookie,
+            },
+        )
+        resp = urllib.request.urlopen(req, timeout=12)
+        import json as _json
+        data = _json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        print(f"[quote_sources] xueqiu daily failed for {symbol}: {e}", file=sys.stderr)
+        return []
+
+    if data.get("error_code") not in (0, None):
+        print(f"[quote_sources] xueqiu daily error for {symbol}: {data.get('error_description')}", file=sys.stderr)
+        return []
+
+    payload = data.get("data") or {}
+    columns = payload.get("column") or []
+    items = payload.get("item") or []
+    idx = {name: i for i, name in enumerate(columns)}
+    needed = {"timestamp", "open", "high", "low", "close", "volume"}
+    if not needed.issubset(idx):
+        return []
+
+    out: List[Dict] = []
+    for row in items:
+        try:
+            # Xueqiu timestamp 对美股通常是 UTC 04:00，对应美股交易日；
+            # 用 UTC date 可避免本地 Asia/Shanghai 日期滚到下一天。
+            date_s = datetime.fromtimestamp(
+                int(row[idx["timestamp"]]) / 1000, timezone.utc
+            ).strftime("%Y-%m-%d")
+            close = row[idx["close"]]
+            if close is None:
+                continue
+            out.append({
+                "date": date_s,
+                "open": float(row[idx["open"]]) if row[idx["open"]] is not None else 0,
+                "high": float(row[idx["high"]]) if row[idx["high"]] is not None else 0,
+                "low": float(row[idx["low"]]) if row[idx["low"]] is not None else 0,
+                "close": float(close),
+                "volume": int(float(row[idx["volume"]])) if row[idx["volume"]] is not None else 0,
+            })
+        except (ValueError, TypeError, IndexError):
+            continue
+    return out[-days:] if days > 0 else out
+
+
 def daily_bars(code: str, days: int = 20) -> List[Dict]:
     """统一日K线接口 — 自动选源, 盘中/盘后都能用.
 
     路由策略:
       A 股: mootdx (daily bars) primary → tencent kline fallback
       港股: tencent kline (唯一实时源)
+      美股: yahoo chart API
 
     返回 [{date, open, high, low, close, volume}, ...] 按日期升序.
     """
     is_hk = _is_hk_code(code)
+    is_us = _is_us_code(code)
+
+    if is_us:
+        return _xueqiu_daily_bars(code, days) or _yahoo_daily_bars(code, days)
 
     if not is_hk:
         # A 股: try mootdx first

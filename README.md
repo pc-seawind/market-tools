@@ -434,6 +434,13 @@ sh600519 (贵州茅台) | price=1384.79 open=1400 prev_close=1401.17 ... ts=2026
 var hq_str_sh600519="贵州茅台,1400.000,1401.170,1384.790,...
 ```
 
+### `quote_sources.py daily <code> --days N` — normalized daily bars for cron internals
+
+Used by `daily.sh`, `sector_picks.py`, and fallback paths when Tushare is
+missing/slow. Routes A-share → mootdx/Tencent, HK → Tencent qfq kline, US →
+Xueqiu kline when `XUEQIU_COOKIE` is present (Yahoo fallback may be blocked by
+anti-bot).
+
 ### `history.sh <ticker> [days=60] [adj=none]` — daily OHLCV history
 
 Tushare-backed. Returns CSV, newest row first.
@@ -645,7 +652,7 @@ just the data rows with a header line.
 | `concepts.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `funnel.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
 | `momentum.sh` | bash + python3 stdlib + `concepts_data.py` + `TUSHARE_TOKEN` |
-| `daily.sh` | bash + python3 stdlib + `watchlist_data.py` + `concepts_data.py` + `signals.py` + `TUSHARE_TOKEN` |
+| `daily.sh` | bash + python3 stdlib + `watchlist_data.py` + `concepts_data.py` + `signals.py` + `TUSHARE_TOKEN` + optional `XUEQIU_COOKIE` for US/HK fallbacks |
 | `backtest.sh` | bash + python3 stdlib + `signals.py` + `TUSHARE_TOKEN` |
 | `signals.py` | python3 stdlib only (共享信号规则, 纯函数) |
 | `diligence.sh` | all of the above (pure wrapper, adds no new deps) |

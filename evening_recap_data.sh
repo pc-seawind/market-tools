@@ -126,7 +126,14 @@ if not isinstance(scores, list):
 # ── 数据新鲜度校验 (轻量, 单次 tushare 拉沪深300最新一行) ──────────
 # score 行里通常没有 trade_date 字段, 所以这里显式探测一次, 写进 meta,
 # 这样收割 agent 直接看 meta.fresh, 不用自己再校验.
+#
+# 注意本脚本同时服务:
+#   - morning_brief_YYYY-MM-DD.json: 早盘 08:00, 合理数据日是“上一个 A 股交易日”
+#   - evening_recap_YYYY-MM-DD.json: 晚盘 18:30, 合理数据日是“当天 A 股交易日”
+# 旧逻辑一律 trade_date == date，导致早盘 meta.fresh 每天恒为 false。
 trade_date = None
+expected_trade_date = None
+fresh_mode = "morning_prev_trading_day" if "morning" in os.path.basename(out_file) else "evening_current_trading_day"
 try:
     _today = date.replace("-", "")
     _past = (datetime.date.today() - datetime.timedelta(days=10)).strftime("%Y%m%d")
@@ -142,6 +149,36 @@ try:
         dates = re.findall(r"\b(\d{8})\b", cp.stdout)
         if dates:
             trade_date = max(dates)
+
+    # 计算当前 cron 模式下的 expected trade_date。优先用 SSE trade_cal；
+    # fallback 到 index_daily 返回的 dates。
+    cal = subprocess.run(
+        ["python3", "tushare.py", "trade_cal", "exchange=SSE",
+         f"start_date={_past}", f"end_date={_today}",
+         "--fields=cal_date,is_open", "--csv"],
+        cwd=here, capture_output=True, text=True, timeout=60,
+    )
+    open_days = []
+    if cal.returncode == 0 and cal.stdout.strip():
+        import csv as _csv
+        open_days = sorted(
+            r.get("cal_date", "") for r in _csv.DictReader(cal.stdout.splitlines())
+            if r.get("is_open") == "1" and r.get("cal_date", "").isdigit()
+        )
+    if open_days:
+        if fresh_mode.startswith("morning"):
+            cands = [d for d in open_days if d < _today]
+        else:
+            cands = [d for d in open_days if d <= _today]
+        if cands:
+            expected_trade_date = cands[-1]
+    elif 'dates' in locals() and dates:
+        if fresh_mode.startswith("morning"):
+            cands = [d for d in dates if d < _today]
+        else:
+            cands = [d for d in dates if d <= _today]
+        if cands:
+            expected_trade_date = max(cands)
 except Exception as e:
     errors.append(f"freshness probe failed: {e}")
     sys.stderr.write(f"[evening_recap_data] freshness probe failed: {e}\n")
@@ -181,7 +218,9 @@ result = {
     "meta": {
         "date": date,
         "trade_date": trade_date,
-        "fresh": (trade_date == date.replace("-", "")) if trade_date else None,
+        "expected_trade_date": expected_trade_date,
+        "fresh_mode": fresh_mode,
+        "fresh": (trade_date == expected_trade_date) if (trade_date and expected_trade_date) else None,
         "n_sectors": len(scores),
         "n_tier1_pass": len(passed),
         "n_picks_run": len(selected),
