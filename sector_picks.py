@@ -214,53 +214,78 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
     回撤会得出"还有 30% 安全垫"的假象, 但实际已创历史新高. 这里强制拉 adj_factor 应用
     前复权, 让所有 closes 在今日口径下可比.
     """
-    daily = _ts("daily", ts_code=code, fields="trade_date,close,vol,amount")
-    if not daily:
-        return None
-    daily.sort(key=lambda x: x["trade_date"])
-
-    # 构造对齐的 (date, close, vol) 三元组, 过滤无效行 — 避免 closes 和 vols 长度不一致
-    rows: list[tuple[str, float, float]] = []
-    for r in daily:
-        try:
-            d = r["trade_date"]
-            c = float(r["close"])
-            v = float(r.get("vol") or 0)
-            if c > 0:
-                rows.append((d, c, v))
-        except (ValueError, KeyError, TypeError):
-            continue
-    if len(rows) < 20:
-        return None
-
-    # ── 前复权处理 (rule 2 P0) ──
     qfq_applied = False
     adj_events_60d = 0
-    adj_rows = _ts("adj_factor", ts_code=code, fields="trade_date,adj_factor")
-    if adj_rows:
-        adj_map: dict[str, float] = {}
-        for r in adj_rows:
+
+    # 港股不走 Tushare daily（A 股接口），否则所有 .HK 成分股都会空。
+    # 早报里的“港股互联网成分股全部 fetch 失败”就是这里漏了港股路由。
+    # 用 quote_sources.daily_bars：港股 primary = 腾讯 qfq kline；盘中/盘后都可用。
+    if code.upper().endswith(".HK"):
+        try:
+            from quote_sources import daily_bars
+            bars = daily_bars(code, days=260)
+        except Exception:
+            bars = []
+        rows = []
+        for b in bars:
             try:
-                a = float(r["adj_factor"])
-                if a > 0:
-                    adj_map[r["trade_date"]] = a
+                d = str(b.get("date", "")).replace("-", "")
+                c = float(b.get("close") or 0)
+                v = float(b.get("volume") or 0)
+                if d and c > 0:
+                    rows.append((d, c, v))
             except (ValueError, KeyError, TypeError):
                 continue
-        latest_date = rows[-1][0]
-        latest_adj = adj_map.get(latest_date)
-        if latest_adj and latest_adj > 0:
-            # 全窗口 adj_factor 是否变化 → 决定是否需要前复权
-            window_adjs = [adj_map.get(d) for d, _, _ in rows]
-            window_adjs_clean = [a for a in window_adjs if a is not None]
-            if window_adjs_clean and len({round(a, 4) for a in window_adjs_clean}) > 1:
-                qfq_applied = True
-                # 60 日内除权事件计数 (近期数据警告用)
-                last_60 = rows[-60:] if len(rows) >= 60 else rows
-                seen_adjs_60 = {round(adj_map.get(d, latest_adj), 4) for d, _, _ in last_60}
-                adj_events_60d = max(0, len(seen_adjs_60) - 1)
-                # 应用前复权: close_qfq = close × adj_factor / latest_adj
-                rows = [(d, c * (adj_map.get(d, latest_adj) / latest_adj), v)
-                        for d, c, v in rows]
+        rows.sort(key=lambda x: x[0])
+        # quote_sources 对腾讯 kline 请求的是 qfq；标记已复权，避免误读。
+        qfq_applied = True
+    else:
+        daily = _ts("daily", ts_code=code, fields="trade_date,close,vol,amount")
+        if not daily:
+            return None
+        daily.sort(key=lambda x: x["trade_date"])
+
+        # 构造对齐的 (date, close, vol) 三元组, 过滤无效行 — 避免 closes 和 vols 长度不一致
+        rows: list[tuple[str, float, float]] = []
+        for r in daily:
+            try:
+                d = r["trade_date"]
+                c = float(r["close"])
+                v = float(r.get("vol") or 0)
+                if c > 0:
+                    rows.append((d, c, v))
+            except (ValueError, KeyError, TypeError):
+                continue
+
+        # ── 前复权处理 (rule 2 P0) ──
+        adj_rows = _ts("adj_factor", ts_code=code, fields="trade_date,adj_factor")
+        if adj_rows and rows:
+            adj_map: dict[str, float] = {}
+            for r in adj_rows:
+                try:
+                    a = float(r["adj_factor"])
+                    if a > 0:
+                        adj_map[r["trade_date"]] = a
+                except (ValueError, KeyError, TypeError):
+                    continue
+            latest_date = rows[-1][0]
+            latest_adj = adj_map.get(latest_date)
+            if latest_adj and latest_adj > 0:
+                # 全窗口 adj_factor 是否变化 → 决定是否需要前复权
+                window_adjs = [adj_map.get(d) for d, _, _ in rows]
+                window_adjs_clean = [a for a in window_adjs if a is not None]
+                if window_adjs_clean and len({round(a, 4) for a in window_adjs_clean}) > 1:
+                    qfq_applied = True
+                    # 60 日内除权事件计数 (近期数据警告用)
+                    last_60 = rows[-60:] if len(rows) >= 60 else rows
+                    seen_adjs_60 = {round(adj_map.get(d, latest_adj), 4) for d, _, _ in last_60}
+                    adj_events_60d = max(0, len(seen_adjs_60) - 1)
+                    # 应用前复权: close_qfq = close × adj_factor / latest_adj
+                    rows = [(d, c * (adj_map.get(d, latest_adj) / latest_adj), v)
+                            for d, c, v in rows]
+
+    if len(rows) < 20:
+        return None
 
     closes = [c for _, c, _ in rows]
     vols = [v for _, _, v in rows]
@@ -292,9 +317,11 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
     volume_signal = _classify_volume(vol_ratio_1d, vol_ratio_5d)
     pv_alignment = _classify_pv(pct_1d, pct_5d, vol_ratio_1d, vol_ratio_5d)
 
-    # daily_basic
-    basic = _ts("daily_basic", ts_code=code, trade_date=trade_date,
-                fields="pe_ttm,pb,total_mv,turnover_rate")
+    # daily_basic / fina_indicator 目前只覆盖 A 股；港股先保留技术面指标，
+    # 基本面字段降级为空，避免把“无 A 股 Tushare 基本面”误判为个股 fetch 失败。
+    is_hk = code.upper().endswith(".HK")
+    basic = [] if is_hk else _ts("daily_basic", ts_code=code, trade_date=trade_date,
+                                 fields="pe_ttm,pb,total_mv,turnover_rate")
     b = basic[0] if basic else {}
 
     def bf(k: str) -> float | None:
@@ -307,14 +334,14 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
             return None
 
     # PE history
-    pe_hist_rows = _ts("daily_basic", ts_code=code, fields="trade_date,pe_ttm")
+    pe_hist_rows = [] if is_hk else _ts("daily_basic", ts_code=code, fields="trade_date,pe_ttm")
     pes = [float(r["pe_ttm"]) for r in pe_hist_rows if r.get("pe_ttm") and r["pe_ttm"] not in ("", "None")]
     valid_pes = [p for p in pes if 5 < p < 500]
     pe_median = round(statistics.median(valid_pes), 1) if len(valid_pes) >= 30 else None
 
     # fina_indicator
-    fina = _ts("fina_indicator", ts_code=code,
-               fields="end_date,roe,grossprofit_margin,netprofit_yoy,or_yoy")
+    fina = [] if is_hk else _ts("fina_indicator", ts_code=code,
+                                fields="end_date,roe,grossprofit_margin,netprofit_yoy,or_yoy")
     fina_latest = {}
     if fina:
         fina.sort(key=lambda x: x.get("end_date", ""), reverse=True)
