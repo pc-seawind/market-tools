@@ -21,6 +21,7 @@ thesis_enrich_daily.py — Thesis 每日数据富集（脚本化确定性部分�
     "total": 43,
     "active": 41,
     "updated": 41,
+    "skipped_existing": 0,  // 同日重跑时跳过已有 entry，避免重复写入
     "failed": [{"ticker": "...", "error": "..."}],
     "alerts": [          // 需要 agent 关注的异动
       {
@@ -90,6 +91,33 @@ def load_yaml_safe(path):
             return yaml.safe_load(f)
     except ImportError:
         return _yaml_basic_read(path)
+
+
+def has_update_for_date(thesis, date_str):
+    """Return True when update_log already contains date_str.
+
+    A cron retry must be safe: completed tickers are skipped while missing/failed
+    tickers can still be filled by the retry.
+    """
+    for entry in (thesis.get("update_log", []) or []):
+        if isinstance(entry, dict) and str(entry.get("date", "")) == date_str:
+            return True
+    return False
+
+
+def _validate_yaml_text(text):
+    """Validate generated YAML before replacing the original file."""
+    try:
+        import yaml
+        yaml.safe_load(text)
+        return True, None
+    except ImportError:
+        # Production has PyYAML. Keep a minimal fallback for standalone use.
+        if text.count("  pillar_impact:") != text.count("  technical_status:"):
+            return False, "pillar_impact / technical_status 数量不匹配"
+        return True, None
+    except Exception as exc:
+        return False, str(exc)
 
 
 def _yaml_basic_read(path):
@@ -496,26 +524,47 @@ def append_update_to_yaml(path, entry):
     # 构造 YAML 字符串
     yaml_str = entry_to_yaml(entry)
 
-    # 找 update_log section 的最后一条条目
-    # 用模式：找到 "update_log:"，然后找到下一个顶层级 key 或文件尾
-    m = re.search(r"(^update_log:.*?$)(.*?)(?=\n[a-z_]+:|\n[a-z_]+_.*:|\Z)", text, re.MULTILINE | re.DOTALL)
-    if not m:
-        # 找不到 update_log，需要新建
-        # 追加到文件末尾
-        new_text = text.rstrip() + "\n\nupdate_log:\n" + yaml_str + "\n"
+    # 找 update_log section 的最后一条条目。
+    # 空列表常被 safe_dump 写成 `update_log: []`，需要先展开为 block list。
+    empty_inline = re.search(r"^update_log:\s*\[\s*\]\s*$", text, re.MULTILINE)
+    if empty_inline:
+        new_text = text[:empty_inline.start()] + "update_log:\n" + yaml_str + text[empty_inline.end():]
     else:
-        before = text[:m.start(2)]
-        section_content = m.group(2)
-        after = text[m.end(2):]
-        # 确保 section_content 以换行结尾
-        if not section_content.endswith("\n"):
-            section_content += "\n"
-        # 在 section_content 末尾追加
-        new_section = section_content + yaml_str + "\n"
-        new_text = before + new_section + after
+        # 用模式：找到 "update_log:"，然后找到下一个顶层级 key 或文件尾
+        m = re.search(r"(^update_log:.*?$)(.*?)(?=\n[a-z_]+:|\n[a-z_]+_.*:|\Z)", text, re.MULTILINE | re.DOTALL)
+        if not m:
+            # 找不到 update_log，需要新建
+            new_text = text.rstrip() + "\n\nupdate_log:\n" + yaml_str + "\n"
+        else:
+            before = text[:m.start(2)]
+            section_content = m.group(2)
+            after = text[m.end(2):]
+            if not section_content.endswith("\n"):
+                section_content += "\n"
+            new_section = section_content + yaml_str + "\n"
+            new_text = before + new_section + after
 
-    with open(path, "w") as f:
-        f.write(new_text)
+    ok, err = _validate_yaml_text(new_text)
+    if not ok:
+        raise ValueError(f"生成的 YAML 校验失败，原文件未改动: {err}")
+
+    path = Path(path)
+    original_mode = path.stat().st_mode
+    tmp_name = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            "w", encoding="utf-8", dir=path.parent,
+            prefix=f".{path.name}.", suffix=".tmp", delete=False
+        ) as tmp:
+            tmp.write(new_text)
+            tmp.flush()
+            os.fsync(tmp.fileno())
+            tmp_name = tmp.name
+        os.chmod(tmp_name, original_mode)
+        os.replace(tmp_name, path)
+    finally:
+        if tmp_name and os.path.exists(tmp_name):
+            os.unlink(tmp_name)
 
 
 def entry_to_yaml(entry, indent="  "):
@@ -714,6 +763,7 @@ def main():
         "total": total,
         "active": active,
         "updated": 0,
+        "skipped_existing": 0,
         "failed": [],
         "alerts": [],
         "sector_map": {},  # ticker -> sector_name
@@ -727,10 +777,17 @@ def main():
         name = thesis.get("name", "")
         market = thesis.get("market", "CN")
 
+        # Idempotency: retries only fill tickers that did not complete earlier.
+        if has_update_for_date(thesis, date_str):
+            result["skipped_existing"] += 1
+            continue
+
         try:
             # 获取行情 + 计算指标
             bars = fetch_daily_bars(ticker)
             metrics = calc_technical_metrics(bars)
+            if metrics is None:
+                raise RuntimeError(f"日线不足 20 条（实际 {len(bars)} 条），不写入空数据 entry")
             sig_list = detect_signal(metrics)
 
             # 板块信息
@@ -795,6 +852,7 @@ def main():
     print(f"Total thesis files: {total}")
     print(f"ACTIVE: {active}")
     print(f"Updated: {result['updated']}")
+    print(f"Skipped existing date: {result['skipped_existing']}")
     print(f"Failed: {len(result['failed'])}")
     if result["failed"]:
         for f_item in result["failed"]:
