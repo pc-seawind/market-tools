@@ -516,39 +516,38 @@ def build_update_entry(date_str, thesis, metrics, sig_list, sector_name, sector_
 
 def append_update_to_yaml(path, entry):
     """向 YAML 文件 append 一条 update_log 条目。
-    策略：找到 update_log 段末尾，以 YAML 格式插入新条目。
-    不整体 reformat，保留原文件格式。"""
-    with open(path) as f:
-        text = f.read()
+    用 PyYAML safe_load 读取、追加、safe_dump 写回，保证格式正确。
+    原手动字符串拼接的方式在某些 YAML 结构下会产生解析错误（参见 2026-08-26 22 只失败 incident）。
+    """
+    import yaml
 
-    # 构造 YAML 字符串
-    yaml_str = entry_to_yaml(entry)
+    path = Path(path)
 
-    # 找 update_log section 的最后一条条目。
-    # 空列表常被 safe_dump 写成 `update_log: []`，需要先展开为 block list。
-    empty_inline = re.search(r"^update_log:\s*\[\s*\]\s*$", text, re.MULTILINE)
-    if empty_inline:
-        new_text = text[:empty_inline.start()] + "update_log:\n" + yaml_str + text[empty_inline.end():]
-    else:
-        # 用模式：找到 "update_log:"，然后找到下一个顶层级 key 或文件尾
-        m = re.search(r"(^update_log:.*?$)(.*?)(?=\n[a-z_]+:|\n[a-z_]+_.*:|\Z)", text, re.MULTILINE | re.DOTALL)
-        if not m:
-            # 找不到 update_log，需要新建
-            new_text = text.rstrip() + "\n\nupdate_log:\n" + yaml_str + "\n"
-        else:
-            before = text[:m.start(2)]
-            section_content = m.group(2)
-            after = text[m.end(2):]
-            if not section_content.endswith("\n"):
-                section_content += "\n"
-            new_section = section_content + yaml_str + "\n"
-            new_text = before + new_section + after
+    # 1. 读取原文件
+    with open(path, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
 
+    # 2. 追加 entry
+    if "update_log" not in data or data["update_log"] is None:
+        data["update_log"] = []
+    data["update_log"].append(entry)
+
+    # 3. 写回（allow_unicode 保留中文，sort_keys=False 保留字段顺序）
+    #    default_flow_style=False 保证 block 风格
+    new_text = yaml.safe_dump(
+        data,
+        allow_unicode=True,
+        default_flow_style=False,
+        sort_keys=False,
+        width=4096,  # 不自动折行，避免把长字符串折成 folded
+    )
+
+    # 4. 校验
     ok, err = _validate_yaml_text(new_text)
     if not ok:
         raise ValueError(f"生成的 YAML 校验失败，原文件未改动: {err}")
 
-    path = Path(path)
+    # 5. 原子写回
     original_mode = path.stat().st_mode
     tmp_name = None
     try:
