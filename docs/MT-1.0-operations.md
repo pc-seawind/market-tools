@@ -32,7 +32,7 @@ systemd-run --user --unit=mt1-full-20260910 --property=RuntimeMaxSec=7200 \
 
 **日常自动路径**：`mt1_job.py run evening --collect` 在日历验证后调用 `sweep.launch()`。
 每日期一个 deterministic unit；已有活任务或 complete 结果不会重复启动。独立unit设置
-Restart=on-failure、RestartSec=60、StartLimitBurst=3 / 21600秒：失败/软超时自动从断点续跑，
+Restart=on-failure、RestartSec=60、StartLimitBurst=3 / StartLimitIntervalSec=infinity（unit生命周期最多3次启动）：失败/软超时自动从断点续跑，
 不会无限重启；超过预算保持pending并报具体缺口。入口每次收割重读全量snapshot，不把首批快照缓存成永久结果。
 `manifest` 的 universe_sweep_launch 只是发起记录，不是全量完成证明；以 sweep summary 为准。
 `--max-stocks` 为旧CLI兼容参数，生产新路径不再用它限制全市场覆盖。

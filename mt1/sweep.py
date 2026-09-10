@@ -146,7 +146,7 @@ def launch(state_dir,asof):
             return {'status':'already_running','unit':unit,'summary_path':str(summary_path)}
         cmd=['systemd-run','--user','--unit='+unit,'--property=RuntimeMaxSec=7200',
             '--property=Restart=on-failure','--property=RestartSec=60',
-            '--property=StartLimitBurst=3','--property=StartLimitIntervalSec=21600',
+            '--property=StartLimitBurst=3','--property=StartLimitIntervalSec=infinity',
             '--working-directory='+str(HERE),sys.executable,str(HERE/'mt1_job.py'),
             '--state-dir',str(Path(state_dir).resolve()),'sweep','--asof',asof]
         cp=subprocess.run(cmd,capture_output=True,text=True,timeout=15)
