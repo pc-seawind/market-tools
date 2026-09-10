@@ -190,7 +190,15 @@ def sync_buys(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry
 
 
 def parse_recap_buys(path: Path) -> list[dict[str, Any]]:
-    """Pull 常规 BUY items out of an evening_recap_*.json (the data file)."""
+    """Pull BUY items out of an evening_recap_*.json / market_scan_*.json.
+
+    入自选规则 (2026-09-10 起按 action × channel 判定, 不再只认 HOT):
+      - channel=VALUE  → 要求板块 HOT (估值通道的老纪律不变)
+      - channel=TREND  → 要求板块 HOT
+      - channel=REVERSAL → **允许 COLD 板块** (左侧反转通道本来就靠弱势板块
+        + 深跌取 alpha; 旧的 "只有 HOT 才入自选" 会让这条通道永远进不了自选)。
+        仍只同步 action=BUY (REVERSAL_WATCH 即 action=WATCH 不入)。
+    """
     d = json.loads(path.read_text(encoding="utf-8"))
     out = []
     for concept, pk in (d.get("picks") or {}).items():
@@ -200,17 +208,25 @@ def parse_recap_buys(path: Path) -> list[dict[str, Any]]:
         tier = ss.get("tier", "")
         score = ss.get("total_score") or 0
         is_hot = ("HOT" in tier) or (score >= 60)
-        if not is_hot:
-            continue  # framework v2: only HOT 板块的 BUY 才入自选
         for e in pk.get("evaluations") or []:
-            if e.get("verdict") != "BUY":
+            # action 优先; 旧 JSON 只有 verdict 时做一次映射
+            action = e.get("action") or e.get("verdict", "")
+            channel = e.get("channel") or ""
+            if not channel:
+                v = e.get("verdict", "")
+                action = {"TREND_BUY": "BUY", "TREND_WATCH": "WATCH",
+                          "REVERSAL_BUY": "BUY", "REVERSAL_WATCH": "WATCH"}.get(v, v)
+                channel = {"TREND": "TREND", "REVERSAL": "REVERSAL"}.get(v.split("_")[0], "VALUE")
+            if action != "BUY":
                 continue
+            if channel != "REVERSAL" and not is_hot:
+                continue   # 估值/趋势通道仍需 HOT 板块
             st = e.get("stock") or {}
             code = st.get("code") or st.get("ts_code") or ""
             name = st.get("name") or ""
             if not code or not name:
                 continue
-            reason = f"{concept} {tier}({score:.1f}) | {e.get('reason','')}"
+            reason = f"{concept} {tier}({score:.1f}) [{channel}] | {e.get('reason','')}"
             out.append({"code": code, "name": name, "reason": reason})
     # de-dup within a single recap (some stocks could appear in 2 sectors)
     seen, dedup = set(), []

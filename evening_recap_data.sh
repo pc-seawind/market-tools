@@ -20,6 +20,10 @@
 # Options:
 #   --out FILE          结果 JSON 写到 FILE (默认 /tmp/evening_recap_<date>.json)
 #                       同时也打到 stdout 末尾的 RESULT_JSON= 行.
+#   EVENING_RECAP_REVERSAL_QUOTA (env, 默认 6)
+#                       在总分前 max_picks 之外, 额外补最多 N 个 "Gate c/c' 且总分 < 46"
+#                       的左侧反转候选板块一起扫 (2026-09-10 新增: 这些板块总分天然低,
+#                       旧逻辑下永远被 top-N 配额砍掉, 导致 REVERSAL 左向通道无从触发)
 #   --max-picks N       最多对前 N 个 Tier1 板块跑 picks (按 total_score 降序,
 #                       默认 16 = 全跑). 防止极端日板块过多时超时.
 #   --score-json FILE   跳过 score 重算, 直接用现成的 score --all --json 文件
@@ -186,7 +190,33 @@ except Exception as e:
 # Tier1 通过的板块, 按 total_score 降序
 passed = [r for r in scores if r.get("tier1_pass")]
 passed.sort(key=lambda r: (r.get("total_score") or 0), reverse=True)
-selected = passed[:max_picks]
+selected = list(passed[:max_picks])
+
+# ── 左侧反转候选配额 (2026-09-10) ──
+# 动机: Tier 1 Gate (c)/(c') 专门放行 "flow 拐点 / 可能筑底" 的板块, 但这些板块
+# 总分天然偏低 (COLD), 在 "按总分取前 N" 的选取逻辑下**永远**进不了个股扫描.
+# 2026-09-10 实证: 41 板块中 32 个通过 Tier1, 其中 16 个走 c/c' 的板块 (创新药/固态电池/
+# 光伏/AI芯片/半导体设备/硅片/先进封装/家电/军工/AI应用...) 全部得分 < 46, 被 top-16
+# 配额砍掉, 一只个股都没扫 → sector_picks 里新增的 REVERSAL 左向通道根本无从触发.
+# 回测 (backtest_leftside_reversal.py, n=198) 显示 "低位+深跌+板块弱" 的 20d 超额
+# +4.13% / 胜率 60.1% 只在弱势板块里成立 → 这些板块必须被扫到.
+#
+# 规则: 在总分前 max_picks 之外, 再补最多 REVERSAL_QUOTA 个 "Gate c/c' 且总分 < 46" 的
+# 板块 (按总分降序). 只补, 不挤占原有 HOT / 高分板块名额.
+REVERSAL_QUOTA = int(os.environ.get("EVENING_RECAP_REVERSAL_QUOTA", "6"))
+REVERSAL_MAX_SCORE = 46.0
+selected_names = {r.get("concept") for r in selected}
+rev_cands = [r for r in passed
+             if r.get("concept") not in selected_names
+             and str(r.get("tier1_reason") or "").strip().startswith("c")
+             and (r.get("total_score") or 0) < REVERSAL_MAX_SCORE]
+rev_cands.sort(key=lambda r: (r.get("total_score") or 0), reverse=True)
+rev_selected = rev_cands[:REVERSAL_QUOTA]
+selected = selected + rev_selected
+if rev_selected:
+    sys.stderr.write(
+        "[evening_recap_data] reversal quota: +%d sectors (%s)\n"
+        % (len(rev_selected), ", ".join(r.get("concept", "?") for r in rev_selected)))
 
 picks = {}
 for r in selected:
@@ -224,6 +254,8 @@ result = {
         "n_sectors": len(scores),
         "n_tier1_pass": len(passed),
         "n_picks_run": len(selected),
+        "n_reversal_quota": len(rev_selected),
+        "reversal_sectors": [r.get("concept") for r in rev_selected],
         "generated_at": datetime.datetime.now().isoformat(timespec="seconds"),
         "errors": errors,
     },

@@ -20,7 +20,7 @@ import csv
 import json
 import statistics
 import subprocess
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -146,6 +146,8 @@ class StockMetrics:
     # adj_events_60d: 60 个交易日内除权事件次数 (>0 说明近期有除权, 数据需特别注意)
     qfq_applied: bool = False
     adj_events_60d: int = 0
+    # 距 120 日最高收盘的回撤 % (负值), 2026-09-10 新增 — 左侧反转通道用
+    dd_from_hi120: float = 0.0
 
 
 def _percentile_of(window: list, val: float) -> int:
@@ -305,6 +307,9 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
     hi, lo = max(w120), min(w120)
     position_pct = int(round((close - lo) / (hi - lo) * 100)) if hi > lo else 50
 
+    # 距 120 日高点回撤 (左侧反转通道的核心维度, 2026-09-10)
+    dd_from_hi120 = round((close / hi - 1) * 100, 1) if hi > 0 else 0.0
+
     pct60 = _percentile_of(closes[-60:] if len(closes) >= 60 else closes, close)
     pct120 = _percentile_of(w120, close)
     pct250 = _percentile_of(closes[-250:] if len(closes) >= 250 else closes, close)
@@ -382,6 +387,7 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
         pe_median_3y=pe_median,
         qfq_applied=qfq_applied,
         adj_events_60d=adj_events_60d,
+        dd_from_hi120=dd_from_hi120,
     )
 
 
@@ -405,9 +411,21 @@ class PickEvaluation:
     rs_tier: str                          # LEADER / FOLLOWER / LAGGARD / STUCK
     position_band: str                    # < 70 / 70-85 / > 85
     tier4_position_size_max: float        # ≤ 8 / 5 / 3
-    # 最终
-    verdict: str                          # BUY / WATCH / AVOID / TREND_BUY / TREND_WATCH
-    reason: str                           # 一句话解释
+    # 最终 (2026-09-10 命名统一: 一个词只有一个含义)
+    #   action  = 该做什么     BUY / WATCH / AVOID          (只有 3 个值, 全系统唯一含义)
+    #   channel = 谁给的信号   VALUE / TREND / REVERSAL / NONE
+    #   veto    = 被什么否决   "" / ROE_NEG / FUNDAMENTAL_FAIL / VALUATION_FAIL /
+    #                          POSITION_GUARD_TOP / OTHER
+    # verdict 是 action+channel 的**派生兼容字段** (旧消费方: rec_log / watchlist_sync /
+    # 报告渲染), 不要在新代码里读它. 见 CONTEXT.md "命名规范".
+    action: str = ""
+    channel: str = ""
+    veto: str = ""
+    verdict: str = ""                     # 派生于 action+channel (兼容保留)
+    reason: str = ""                      # 一句话解释
+    # Reversal 左向通道 (2026-09-10 新增)
+    reversal_pass: bool = False
+    reversal_reasons: list[str] = field(default_factory=list)
 
 
 def tier0_trend_leader(s: StockMetrics, sector_sig: SectorSignals,
@@ -600,12 +618,137 @@ def _position_guard(s: StockMetrics, sector_score_total: float, sector_sig: Sect
     return verdict, reason
 
 
+# ─── 左侧触底通道 (Reversal, 2026-09-10 新增) ──────────────────────────────
+
+REVERSAL_SECTOR_SCORE_MAX = 46.0   # 板块须处 COLD 区 (< 46), 排除 HOT / 顶部 NEUTRAL
+REVERSAL_POS120_MAX = 30           # 个股 120 日位置低位
+REVERSAL_DD_HI120_MAX = -40.0      # 距 120 日高点回撤 (%) — "跌透"
+REVERSAL_POSITION_SIZE_MAX = 3.0   # 试探仓 (左侧无趋势保护)
+
+
+def reversal_leftside(s: StockMetrics, sector_score_total: float,
+                      sector_tier1_reason: str) -> tuple[bool, list[str]]:
+    """左侧触底 (Reversal) 通道 — 基于 15,788 样本回测 (2026-09-10).
+
+    动机 (用户 2026-09-10 质疑 "现在的 BUY 都是追高"):
+      - Tier 0 要求 pos120 >= 75 + 1M >= +8% + vol_5d >= 0.95 + volume_signal != DRY_UP
+        → 纯右侧通道, 底部干涸 (DRY_UP) 被明令排除;
+      - Tier 2 要求 ROE > 板块中位 + 净利 YoY > +10%
+        → 周期 / 深跌股底部恰恰是盈利最差的时候, 这套滤网系统性排除左侧;
+      - Tier 1 Gate (c)/(c') 专门放行 "flow 拐点 / 可能筑底" 的板块, 但总分排序
+        + "必须 HOT 才主推" 的纪律把它挡在门外 (2026-09-10: 16 个 Gate c/c' 板块
+        全部 < 46 分, 被 evening_recap_data.sh 的 top-16 配额砍在个股扫描之前).
+
+    回测证据 (backtest_leftside_reversal.py; 214 只 concept 成分股 × 80 评估日
+    × 2025-01~2026-08, 同日横截面去均值后的超额收益 ex):
+      | 信号                                   | n    | 20d ex  | 20d 胜率 | 40d ex |
+      | 低位本身 pos120<=30                     | 4828 | -0.76%  |  40.8%   | -1.24% |
+      | 缩量止跌 (缩量收阳)                      |  566 | -0.32%  |  42.5%   | -0.97% |
+      | 地量后放量收阳                           |  204 | -0.70%  |  38.7%   | +0.20% |
+      | **低位+深跌+板块弱 (本通道)**            |  198 | **+4.13%** | **60.1%** | **+7.15%** |
+      | 同上但板块中性 / 强势                    | 69/12| -0.53% / -1.16% | — | -2.30% / -2.62% |
+      | 对照: 右侧 R_momentum20                 | 1246 | +2.79%  |  47.5%   | +3.40% |
+    要点1: "低位" 本身无 alpha, 甚至负; 真正贡献 alpha 的是**深跌 (距高点 <= -40%)**.
+    要点2: **必须发生在弱势板块** — 板块中性 / 强势时同一信号为负, 即
+           "底部板块才做左侧" 成立, "必须 HOT" 的门禁在左侧场景下是反向的.
+    要点3: "缩量企稳 / 地量放量" 形态在扩大样本后**没有** alpha (早期 107 只冒烟
+           样本曾给出 +3.59% 的假信号) → 本通道不引入任何量能形态条件.
+
+    触发 (全部 AND):
+      [板块层] tier1_reason 以 "c" 开头 (Gate c/c') 且 sector_score_total < 46 (COLD)
+      [个股层] pct_rank_120d <= 30 且 dd_from_hi120 <= -40
+
+    豁免:
+      - 跳过 Tier 2 的 ROE > 板块中位 / 净利 YoY > +10% 盈利门槛 (周期底部豁免);
+        保留 ROE 非负硬底线 (evaluate 前置否决, 不破产即可)
+      - **不要求估值乖离为正**: 深跌 + 盈利下滑的个股 TTM 口径通常显得"更贵",
+        要求乖离正会精准剔掉周期反转标的; 且该维度回测未覆盖, 不引入未验证滤网
+
+    仓位: <= 3% 试探仓 — 左侧无趋势保护, 20d 胜率 60.1% 对应 40% 失败率.
+    """
+    checks: list[tuple[bool, str]] = []
+
+    gate_c = sector_tier1_reason.strip().startswith("c")
+    checks.append((gate_c,
+                   f"板块 Gate = {sector_tier1_reason or '?'} "
+                   f"{'✓' if gate_c else '✗ 需 c/c′ 资金拐点'}"))
+    checks.append((sector_score_total < REVERSAL_SECTOR_SCORE_MAX,
+                   f"板块评分 {sector_score_total:.1f} "
+                   f"{'✓ COLD 区' if sector_score_total < REVERSAL_SECTOR_SCORE_MAX else '✗ 需 < 46'}"))
+    checks.append((s.pct_rank_120d <= REVERSAL_POS120_MAX,
+                   f"pos120 = {s.pct_rank_120d}% "
+                   f"{'✓' if s.pct_rank_120d <= REVERSAL_POS120_MAX else '✗ 需 <= 30'}"))
+    checks.append((s.dd_from_hi120 <= REVERSAL_DD_HI120_MAX,
+                   f"距 120 日高点 {s.dd_from_hi120:+.1f}% "
+                   f"{'✓ 深跌' if s.dd_from_hi120 <= REVERSAL_DD_HI120_MAX else '✗ 需 <= -40%'}"))
+
+    ok = all(c[0] for c in checks)
+    return ok, [c[1] for c in checks]
+
+
 def evaluate(s: StockMetrics, sector_sig: SectorSignals,
              sector_score_total: float,
              sector_roe_median: float, sector_margin_median: float, peer_pe_median: float,
-             min_deviation: float) -> PickEvaluation:
+             min_deviation: float,
+             sector_tier1_reason: str = "") -> PickEvaluation:
+    """唯一对外入口: 调 _evaluate_legacy, 再把结果拆成 action × channel + veto.
+
+    通道判定优先级 (legacy 内部顺序): REVERSAL → TREND(Tier 0) → VALUE(常规 Tier2-4).
+    """
+    ev = _evaluate_legacy(s, sector_sig, sector_score_total,
+                          sector_roe_median, sector_margin_median, peer_pe_median,
+                          min_deviation, sector_tier1_reason)
+    return _split_verdict(ev)
+
+
+# legacy verdict → (action, channel). 一个词只有一个含义:
+#   BUY/WATCH/AVOID  = 动作 (3 值, 唯一)
+#   VALUE/TREND/REVERSAL = 通道 (互斥, 判定顺序 REVERSAL → TREND → VALUE)
+_ACTION_CHANNEL: dict[str, tuple[str, str]] = {
+    "BUY":            ("BUY",   "VALUE"),
+    "WATCH":          ("WATCH", "VALUE"),
+    "AVOID":          ("AVOID", "NONE"),
+    "TREND_BUY":      ("BUY",   "TREND"),
+    "TREND_WATCH":    ("WATCH", "TREND"),
+    "REVERSAL_BUY":   ("BUY",   "REVERSAL"),
+    "REVERSAL_WATCH": ("WATCH", "REVERSAL"),
+}
+
+
+def _split_verdict(ev: PickEvaluation) -> PickEvaluation:
+    """把 legacy verdict 拆成 action / channel / veto (派生字段 verdict 保留)."""
+    action, channel = _ACTION_CHANNEL.get(ev.verdict, ("AVOID", "NONE"))
+    veto = ""
+    if ev.verdict == "REVERSAL_WATCH":
+        veto = "ROE_NEG"          # 左侧形态成立但 ROE<0 → 只观察
+    elif action == "AVOID":
+        r = ev.reason
+        if "末端抱团警告" in r:
+            veto = "POSITION_GUARD_TOP"
+        elif r.startswith("ROE 负"):
+            veto = "ROE_NEG"
+        elif "基本面不过关" in r:
+            veto = "FUNDAMENTAL_FAIL"
+        elif "乖离" in r and "不够" in r:
+            veto = "VALUATION_FAIL"
+        else:
+            veto = "OTHER"
+    ev.action = action
+    ev.channel = channel
+    ev.veto = veto
+    return ev
+
+
+def _evaluate_legacy(s: StockMetrics, sector_sig: SectorSignals,
+                     sector_score_total: float,
+                     sector_roe_median: float, sector_margin_median: float,
+                     peer_pe_median: float,
+                     min_deviation: float,
+                     sector_tier1_reason: str = "") -> PickEvaluation:
     # Tier 0 (旁路检查) — 即使触发也仍计算 Tier 2-4 用于报告
     t0_ok, t0_reasons = tier0_trend_leader(s, sector_sig, sector_score_total)
+    # Reversal 左向通道 (2026-09-10)
+    rev_ok, rev_reasons = reversal_leftside(s, sector_score_total, sector_tier1_reason)
     # Tier 2
     t2_ok, t2_reasons = tier2_quality(s, sector_roe_median, sector_margin_median)
     # Tier 3
@@ -617,17 +760,59 @@ def evaluate(s: StockMetrics, sector_sig: SectorSignals,
     verdict = "AVOID"
     reason = ""
 
-    # 硬否决: ROE 负 (业绩破产) — Tier 0 也救不回来
+    # 硬否决: ROE 负 (业绩破产) — Tier 0 也救不回来.
+    # 例外 (2026-09-10): 左侧通道的深跌股可能是**周期底部亏损** (如 2026-09 光伏
+    # 全行业亏损但 pos120≈0 / 距高点 -40%+). 这类标的既不该被当成普通"业绩破产"
+    # 一刀 AVOID (会系统性丢掉周期底), 也不该直接给 REVERSAL_BUY — 回测 (n=198)
+    # 未按 ROE 分层验证, 退市 / 持续亏损尾部风险不在 20-40 日窗口内暴露.
+    # 折中: 标 REVERSAL_WATCH (只观察, 不进主推 / 不入自选), 待 ROE<0 子集单独回测
+    # (需叠加经营现金流 + 退市风险过滤) 后再决定是否升格为 BUY.
     if s.roe is not None and s.roe < 0:
+        if rev_ok:
+            verdict = "REVERSAL_WATCH"
+            reason = (f"周期底部深跌 (pos120={s.pct_rank_120d}%, 距 120 日高点 {s.dd_from_hi120:+.1f}%, "
+                      f"板块 {sector_score_total:.0f} COLD + {sector_tier1_reason}) 但 ROE {s.roe:.1f}% 亏损 → "
+                      f"仅观察, 不给 BUY (亏损股深跌反弹的 ROE<0 子集未单独回测)")
+            return PickEvaluation(
+                stock=asdict(s),
+                tier0_pass=t0_ok, tier0_reasons=t0_reasons,
+                reversal_pass=rev_ok, reversal_reasons=rev_reasons,
+                tier2_pass=t2_ok, tier2_reasons=t2_reasons,
+                fair_value=fv, fv_method=method, deviation_pct=deviation,
+                rs_5d=t4["rs_5d"], rs_tier=t4["rs_tier"],
+                position_band=t4["position_band"], tier4_position_size_max=REVERSAL_POSITION_SIZE_MAX,
+                verdict=verdict, reason=reason,
+            )
         verdict = "AVOID"
         reason = f"ROE 负 ({s.roe}%) 基本面破产"
         return PickEvaluation(
             stock=asdict(s),
             tier0_pass=t0_ok, tier0_reasons=t0_reasons,
+            reversal_pass=rev_ok, reversal_reasons=rev_reasons,
             tier2_pass=t2_ok, tier2_reasons=t2_reasons,
             fair_value=fv, fv_method=method, deviation_pct=deviation,
             rs_5d=t4["rs_5d"], rs_tier=t4["rs_tier"],
             position_band=t4["position_band"], tier4_position_size_max=t4["max_size"],
+            verdict=verdict, reason=reason,
+        )
+
+    # ── Reversal 左向通道 (2026-09-10): 低位 + 深跌 + 板块 COLD 拐点 ──
+    # 与 Tier 0 天然互斥 (pos120 <= 30 vs >= 75), 独立通道, 不走 Tier 2/3 滤网.
+    if rev_ok:
+        verdict = "REVERSAL_BUY"
+        reason = (f"左侧触底 (回测 n=198: 20d 超额 +4.13%/胜率 60.1%, 40d +7.15%/56.1%): "
+                  f"板块 {sector_score_total:.0f} COLD + {sector_tier1_reason}; "
+                  f"pos120={s.pct_rank_120d}% + 距 120 日高点 {s.dd_from_hi120:+.1f}%; "
+                  f"左侧试探仓 ≤ {REVERSAL_POSITION_SIZE_MAX}% (无趋势保护, 需紧止损)")
+        verdict, reason = _position_guard(s, sector_score_total, sector_sig, verdict, reason)
+        return PickEvaluation(
+            stock=asdict(s),
+            tier0_pass=t0_ok, tier0_reasons=t0_reasons,
+            reversal_pass=rev_ok, reversal_reasons=rev_reasons,
+            tier2_pass=t2_ok, tier2_reasons=t2_reasons,
+            fair_value=fv, fv_method=method, deviation_pct=deviation,
+            rs_5d=t4["rs_5d"], rs_tier=t4["rs_tier"],
+            position_band=t4["position_band"], tier4_position_size_max=REVERSAL_POSITION_SIZE_MAX,
             verdict=verdict, reason=reason,
         )
 
@@ -651,6 +836,7 @@ def evaluate(s: StockMetrics, sector_sig: SectorSignals,
         return PickEvaluation(
             stock=asdict(s),
             tier0_pass=t0_ok, tier0_reasons=t0_reasons,
+            reversal_pass=rev_ok, reversal_reasons=rev_reasons,
             tier2_pass=t2_ok, tier2_reasons=t2_reasons,
             fair_value=fv, fv_method=method, deviation_pct=deviation,
             rs_5d=t4["rs_5d"], rs_tier=t4["rs_tier"],
@@ -691,6 +877,7 @@ def evaluate(s: StockMetrics, sector_sig: SectorSignals,
     return PickEvaluation(
         stock=asdict(s),
         tier0_pass=t0_ok, tier0_reasons=t0_reasons,
+            reversal_pass=rev_ok, reversal_reasons=rev_reasons,
         tier2_pass=t2_ok, tier2_reasons=t2_reasons,
         fair_value=fv, fv_method=method, deviation_pct=deviation,
         rs_5d=t4["rs_5d"], rs_tier=t4["rs_tier"],
@@ -756,7 +943,8 @@ def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
 
     # 6. Evaluate each (Tier 0 趋势龙头通道需要 sector total score, 这里传)
     evals = [evaluate(s, sig, score.total_score,
-                      sector_roe_median, sector_margin_median, peer_pe_median, min_dev_effective)
+                      sector_roe_median, sector_margin_median, peer_pe_median, min_dev_effective,
+                      sector_tier1_reason=score.tier1_reason or "")
              for s in stocks_m]
 
     # 7. Rank by deviation (desc)
@@ -840,9 +1028,11 @@ def _print_report(result: dict[str, Any]):
     def fmt_row(e):
         s = e["stock"]
         verdict_icon = {
-            "BUY": "🥇", "WATCH": "👀", "AVOID": "❌",
-            "TREND_BUY": "🚀", "TREND_WATCH": "🔭",
-        }.get(e["verdict"], "?")
+            ("BUY", "VALUE"): "🥇", ("WATCH", "VALUE"): "👀",
+            ("BUY", "TREND"): "🚀", ("WATCH", "TREND"): "🔭",
+            ("BUY", "REVERSAL"): "🪃", ("WATCH", "REVERSAL"): "🔬",
+            ("AVOID", "NONE"): "❌",
+        }.get((e.get("action"), e.get("channel")), "?")
         dev = e["deviation_pct"]
         dev_s = f"{dev:+.1f}%" if dev is not None else "  -"
         roe = s.get("roe")
@@ -878,26 +1068,53 @@ def _print_report(result: dict[str, Any]):
             failed = [r for r in e["tier0_reasons"] if "✗" in r]
             if failed and len(failed) <= 2:
                 print(f"     Tier 0 差: {' / '.join(failed)}")
-        print(f"     → {e['verdict']}: {e['reason']}")
+        veto_s = f" veto={e['veto']}" if e.get("veto") else ""
+        print(f"     → action={e.get('action')} channel={e.get('channel')}{veto_s}: {e['reason']}")
     print()
 
-    # 候选总结
-    buys = [e for e in result["evaluations"] if e["verdict"] == "BUY"]
-    trend_buys = [e for e in result["evaluations"] if e["verdict"] == "TREND_BUY"]
-    watches = [e for e in result["evaluations"] if e["verdict"] == "WATCH"]
-    trend_watches = [e for e in result["evaluations"] if e["verdict"] == "TREND_WATCH"]
-    if trend_buys:
-        print(f"  🚀 TREND_BUY ({len(trend_buys)}) [Tier 0 趋势龙头通道]:")
-        for e in trend_buys:
-            print(f"     {e['stock']['code']} {e['stock']['name']}  仓位 ≤ {e['tier4_position_size_max']}%  pos120={e['stock']['pct_rank_120d']}%  YoY+{e['stock']['net_yoy']:.0f}%")
-    if buys:
-        print(f"  🥇 BUY ({len(buys)}) [估值乖离通道]:")
-        for e in buys:
-            print(f"     {e['stock']['code']} {e['stock']['name']}  仓位 ≤ {e['tier4_position_size_max']}%  乖离 {e['deviation_pct']:+.1f}%")
-    if trend_watches:
-        print(f"  🔭 TREND_WATCH ({len(trend_watches)}):  " + ", ".join(f"{e['stock']['code']} {e['stock']['name']}" for e in trend_watches[:5]))
-    if watches:
-        print(f"  👀 WATCH ({len(watches)}):  " + ", ".join(f"{e['stock']['code']} {e['stock']['name']}" for e in watches[:5]))
+    # 候选总结 — 按 channel 分组 (2026-09-10 命名统一: 报告按通道分节,
+    # 一眼看出"这票是估值通道 / 趋势通道 / 左侧通道"给的)
+    def _grp(act, ch):
+        return [e for e in result["evaluations"]
+                if e.get("action") == act and e.get("channel") == ch]
+
+    sections = [
+        ("🚀", "BUY", "TREND",
+         "[Tier 0 趋势龙头通道] 回测: R_momentum20 20d 超额 +2.79% / 40d +3.40%"),
+        ("🥇", "BUY", "VALUE",
+         "[估值乖离通道] 框架原始通道"),
+        ("🪃", "BUY", "REVERSAL",
+         "[左侧反转通道] 回测 n=198: 20d 超额 +4.13%(胜率 60.1%) / 40d +7.15% — 试探仓 ≤ 3%"),
+    ]
+    for icon, act, ch, note in sections:
+        rows = _grp(act, ch)
+        if not rows:
+            continue
+        print(f"  {icon} {act}·{ch} ({len(rows)}) {note}")
+        for e in rows:
+            st = e["stock"]
+            dev = e["deviation_pct"]
+            if ch == "TREND":
+                extra = f" YoY+{st['net_yoy']:.0f}%" if st.get("net_yoy") is not None else ""
+            elif ch == "REVERSAL":
+                extra = f" 距高点 {st.get('dd_from_hi120', 0):+.1f}%"
+            else:
+                extra = f" 乖离 {dev:+.1f}%" if dev is not None else ""
+            print(f"     {st['code']} {st['name']}  仓位 ≤ {e['tier4_position_size_max']}%  "
+                  f"pos120={st.get('pct_rank_120d')}%{extra}")
+
+    for act, ch, icon in (("WATCH", "TREND", "🔭"), ("WATCH", "VALUE", "👀"),
+                          ("WATCH", "REVERSAL", "🔬")):
+        rows = _grp(act, ch)
+        if rows:
+            print(f"  {icon} {act}·{ch} ({len(rows)}):  " +
+                  ", ".join(f"{e['stock']['code']} {e['stock']['name']}" for e in rows[:5]))
+    bad = _grp("AVOID", "NONE")
+    if bad:
+        from collections import Counter
+        c = Counter(e.get("veto") or "OTHER" for e in bad)
+        print(f"  ❌ AVOID ({len(bad)}):  " +
+              ", ".join(f"{k}×{v}" for k, v in c.most_common()))
 
 
 def main():
