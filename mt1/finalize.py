@@ -19,6 +19,11 @@ def finalize(bundle, state_dir, investment_dir):
     now=datetime.now(timezone.utc)
     store=Store(Path(state_dir)/'plans.db'); errors=[]; changes=[]; methods=[]; gates={}
     try:
+        for event in bundle.get('method_events',[]):
+            try:
+                if event['payload'].get('method_id',event['id'])!=event['id']: raise ValueError('method id mismatch')
+                methods.append(store.apply('method:'+event['id'],event['expected_version'],event['request_id'],event['payload'],event['reason'],reduce_method))
+            except Exception as e: errors.append({'event':event.get('request_id'),'error':str(e)})
         for event in bundle.get('plan_events',[]):
             try:
                 old=store.latest('plan:'+event['id'])
@@ -31,13 +36,8 @@ def finalize(bundle, state_dir, investment_dir):
                         cal=cn_calendar(now) if market=='CN' else foreign_calendar(now,market)
                         gates[market]=gate(cal,market,'morning',now)
                     if not gates[market]['allowed']: raise ValueError('market gate closed')
-                result=store.apply('plan:'+event['id'],event['expected_version'],event['request_id'],payload,event['reason'],reduce_plan)
+                result=store.apply('plan:'+event['id'],event['expected_version'],event['request_id'],payload,event['reason'],lambda old, patch: reduce_plan(old, patch, store.latest))
                 changes.append({'before':old,'after':result,'reason':event['reason'],'request_id':event['request_id']})
-            except Exception as e: errors.append({'event':event.get('request_id'),'error':str(e)})
-        for event in bundle.get('method_events',[]):
-            try:
-                if event['payload'].get('method_id',event['id'])!=event['id']: raise ValueError('method id mismatch')
-                methods.append(store.apply('method:'+event['id'],event['expected_version'],event['request_id'],event['payload'],event['reason'],reduce_method))
             except Exception as e: errors.append({'event':event.get('request_id'),'error':str(e)})
         reviewed=set(bundle.get('reviewed_plan_ids',[]))
         actual={p['plan_id'] for p in store.all()}
@@ -57,7 +57,7 @@ def finalize(bundle, state_dir, investment_dir):
                  'research_status':'fetched' if research_ok else 'not_verified',
                  'research':research,'errors':errors,'watchlist':{'mode':'dry_run','pending':[
                    {'code':p['code'],'plan_id':p['plan_id'],'version':p['version']}
-                   for p in store.all() if eligible(p,date.today())]},
+                   for p in store.all() if eligible(p,date.today(),store.latest)]},
                  'legacy_rec_projection':'not_written; structured ledger is authoritative for MT-1.0'}
         identity=digest(bundle)
         # Immutable result per attempt, including retries after isolated errors.

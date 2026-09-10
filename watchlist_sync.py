@@ -105,7 +105,7 @@ def call_addwatchlist(query: str, group: str, *, timeout: int = 90) -> dict[str,
         return {"ok": False, "error": {"category": "decode", "message": str(e), "stdout_tail": cp.stdout[-500:]}}
 
 
-def _sync_buys_locked(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry_run: bool, source: str) -> dict[str, Any]:
+def _sync_buys_locked(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry_run: bool, source: str, method_lookup=None) -> dict[str, Any]:
     """buys: [{'code':'601688.SH','name':'华泰证券','reason':'...'}]"""
     if not buys:
         return {"ok": True, "added": [], "skipped": [], "errors": [], "source": source, "note": "empty BUY list"}
@@ -115,7 +115,7 @@ def _sync_buys_locked(buys: list[dict[str, Any]], *, group: str, cooldown_days: 
     for b in buys:
         from mt1.plans import eligible
         plan = b.get('_mt1_final_plan') or {}
-        if not eligible(plan, dt.datetime.now(CN_TZ).date()) or plan.get('code') != b.get('code'):
+        if not eligible(plan, dt.datetime.now(CN_TZ).date(), method_lookup) or plan.get('code') != b.get('code'):
             skipped.append({"code": b.get("code"), "skip_reason": "MT-1.0 requires final qualified research plan"})
             continue
         code = normalise_code(b.get("code") or "")
@@ -169,7 +169,7 @@ def _sync_buys_locked(buys: list[dict[str, Any]], *, group: str, cooldown_days: 
     return {"ok": True, "added": added_now, "skipped": skipped, "errors": [], "source": source, "htsc_response_data": res.get("data")}
 
 
-def sync_buys(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry_run: bool, source: str) -> dict[str, Any]:
+def sync_buys(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry_run: bool, source: str, method_lookup=None) -> dict[str, Any]:
     """Serialize cooldown check + provider acknowledgement + ledger append."""
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     with (STATE_DIR / "htsc_watchlist.lock").open("a") as lock:
@@ -183,7 +183,7 @@ def sync_buys(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry
                 continue
             seen.add(code)
             results.append(_sync_buys_locked([item], group=group, cooldown_days=cooldown_days,
-                                            dry_run=dry_run, source=source))
+                                            dry_run=dry_run, source=source, method_lookup=method_lookup))
         return {"ok": all(r.get("ok") for r in results), "source": source,
                 "added": [x for r in results for x in r.get("added", [])],
                 "skipped": [x for r in results for x in r.get("skipped", [])],

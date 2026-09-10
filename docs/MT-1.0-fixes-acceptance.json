@@ -1,0 +1,1053 @@
+{
+  "date": "2026-09-11",
+  "status": "restricted_trial_full_delivery_incomplete",
+  "tests": {
+    "passed": 69,
+    "original": 48,
+    "added": 21
+  },
+  "blockers_fixed": [
+    "action_specific_qualification",
+    "all_new_exit_evidence",
+    "registered_method_binding",
+    "immutable_horizon_extension_and_due"
+  ],
+  "method_baselines": [
+    {
+      "change_reason": "显式登记原生产规则，不引入新因子，不声明回测通过",
+      "horizon": [
+        20,
+        40,
+        60
+      ],
+      "method_id": "existing-production-f5fe14f462ce806b",
+      "parameters": {
+        "unchanged": true
+      },
+      "registered_at": "2026-09-10T15:56:23.794456+00:00",
+      "registration_kind": "existing_production_baseline",
+      "reviewer": "engineering-migration-2026-09-10",
+      "rollback": "shadow",
+      "rule_version": "f5fe14f462ce806b1866094affac696488785e09089dbe4c3b1b0447111c3cd7",
+      "rules": {
+        "source_files": [
+          "/home/emox/work/projects/market-tools/sector_picks.py",
+          "/home/emox/work/projects/market-tools/sector_score.py",
+          "/home/emox/work/projects/market-tools/grading.py"
+        ]
+      },
+      "sources": [
+        {
+          "content_hash": "3d852b3da27579180d6ba35fba1d1adb5fa34bb4144265723003ca6b00a7c888",
+          "path": "/home/emox/work/projects/market-tools/sector_picks.py"
+        },
+        {
+          "content_hash": "b7ed6c4f34179cd75eeb7db362a4cd8ac4c9a6e1399ea4db1ceb84c3e669823a",
+          "path": "/home/emox/work/projects/market-tools/sector_score.py"
+        },
+        {
+          "content_hash": "03c578e601c41d922c2f02f81e1b8187b6369ad056041f7eca5f1a8067a89e6a",
+          "path": "/home/emox/work/projects/market-tools/grading.py"
+        }
+      ],
+      "status": "active",
+      "validation_status": "not_revalidated",
+      "version": 1
+    }
+  ],
+  "production_plan_structure_audit": {
+    "total": 64,
+    "final": 0,
+    "scope": "structure_only_not_investment_evidence_review",
+    "plans": [
+      {
+        "plan_id": "legacy-2dc9d2dc5630748dbff3126e",
+        "code": "601688.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-372b1e52ad6b6976a72a7436",
+        "code": "300502.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-c86308ebdb490da616ca7ef1",
+        "code": "300308.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-ddf1c2861d4f507a940fd1a2",
+        "code": "603444.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-547c0a1c7deeb99c8c258ca8",
+        "code": "300750.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-f36f52657c0b1a368fac472b",
+        "code": "002371.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-174d5c248475f9917ffa07e3",
+        "code": "300014.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-9a50b9f9955e7ed50b7aff98",
+        "code": "603993.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-2f08ad85488053a259c1ae97",
+        "code": "601899.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-48423849ba0395ec51370f70",
+        "code": "002281.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-7c3d5176f32bfc0631349515",
+        "code": "300394.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-55512ef2297dcd1fa5503261",
+        "code": "688126.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-926b45cd15fc98e1fde7a9ea",
+        "code": "301308.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-c2fc28eb0b411cd02822eac6",
+        "code": "688525.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-6ffc435f58770477b69d5e0a",
+        "code": "600887.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-57a483d79b47403cee0ae9bf",
+        "code": "600110.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-12ccda43a17c53f61dec4201",
+        "code": "603256.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-9fbf88b013a55976edfd4b96",
+        "code": "600183.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-eebedb5544bcde75f4c6ca66",
+        "code": "300037.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-a15468d7df4d521140c380d2",
+        "code": "601138.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-d1e89b3376ecaee9e2c04e76",
+        "code": "688110.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-cd7b1c61e17cb9e7925e6f9a",
+        "code": "688498.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-4876da62b65fbaaf4fb27a0e",
+        "code": "601208.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-9201eb94543c6cdf661c0a44",
+        "code": "002648.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-0776df654a268bc35a1d21e8",
+        "code": "002463.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-6694e4569d9bd90fe022260b",
+        "code": "600030.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-3ea96dbfb07b318896dc02da",
+        "code": "688521.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-5b6cf1eba9fd876221a8d746",
+        "code": "001309.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-afd292d51dffa51333c07135",
+        "code": "002156.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-1d3eacbcf45daa9a47d37252",
+        "code": "603986.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-f3f52648ca5c4fb828f2eb87",
+        "code": "688012.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-daed211f5873919b7096b0bc",
+        "code": "000166.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-5da039fa1013ff92218db926",
+        "code": "300223.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-ec1489f499702531df6a9ad7",
+        "code": "002867.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-b6d816b5c74f6162d65b091b",
+        "code": "000895.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-072ea033668e78be6c6874bf",
+        "code": "600346.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-9d331d22cdfdc149ffbfa33b",
+        "code": "300073.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-9beb871077e9ab72960f7f07",
+        "code": "688008.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-5cffb363549213560fd50363",
+        "code": "688082.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "exit_basis_invalid"
+        ]
+      },
+      {
+        "plan_id": "legacy-81f3f33e51041da44c1350e4",
+        "code": "688195.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-7a1e63eec266d49a1a6a840d",
+        "code": "000301.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-8f8c71f11d07e4d817dfae97",
+        "code": "601869.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-222bf4a478fc7faca4e262c6",
+        "code": "002837.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-fefcd589b56ff8867012062d",
+        "code": "600362.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-41250a78016c2bbc049475d0",
+        "code": "603083.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-263fd61e9ab0a4c21a203b97",
+        "code": "000988.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-4c03a06105f5e82cbd33dfe2",
+        "code": "001896.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-709ba304fed7ac0b1bb72bf8",
+        "code": "002353.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-1736c4e3a3021d4362ab719e",
+        "code": "002364.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-0e5120c39eef7f21da3eff7c",
+        "code": "002475.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-6f927ab8022a952ada1f0b49",
+        "code": "002594.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-b83835907228e83ed6346c0c",
+        "code": "00700.HK",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-4584f9f69c254e4703e830f9",
+        "code": "01810.HK",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-0bc7cb4dd7936616c8fad09b",
+        "code": "03690.HK",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-333505c91527f53b1de963f7",
+        "code": "300442.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-f79571bed17c829358f0759d",
+        "code": "300476.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-a4f0d36ec584e23739c103ec",
+        "code": "300757.SZ",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-59a2367ff205c47c3df00ef2",
+        "code": "600036.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-6e5864483d619f1f92bed4f1",
+        "code": "600519.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-b44c65fe6beebb97a654c9d0",
+        "code": "601126.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-720a80cb4e054828b1b37231",
+        "code": "688041.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-751911a7d8130309d7333064",
+        "code": "688048.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-29aaf47845f023705ec0939a",
+        "code": "688256.SH",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      },
+      {
+        "plan_id": "legacy-2c1c54fd59f5b187f5457aae",
+        "code": "_bootstrap_state",
+        "missing_or_invalid": [
+          "evidence_missing",
+          "reviewer_missing",
+          "channel_unknown",
+          "horizon_unknown_reconstruct",
+          "risk_boundary_missing",
+          "invalidation_missing",
+          "milestones_missing",
+          "review_due_missing",
+          "dates_invalid",
+          "risk_boundary_unsubstantiated"
+        ]
+      }
+    ]
+  },
+  "batch_runs": [
+    {
+      "path": ".cron_state/mt1/runs/acceptance-fixes-batch-a/report.json",
+      "errors": [],
+      "batch_codes": [
+        "000518.SZ",
+        "000519.SZ"
+      ],
+      "observed": 102,
+      "complete_data_count": 63,
+      "coverage": 0.011328897680273332,
+      "coverage_progress": {
+        "attempted_unique": 102,
+        "total": 5561,
+        "current_date_observed": 102,
+        "cross_date_attempts_are_not_fresh_coverage": true
+      }
+    },
+    {
+      "path": ".cron_state/mt1/runs/acceptance-fixes-batch-b/report.json",
+      "errors": [],
+      "batch_codes": [
+        "000520.SZ",
+        "000521.SZ"
+      ],
+      "observed": 104,
+      "complete_data_count": 64,
+      "coverage": 0.011508721452976083,
+      "coverage_progress": {
+        "attempted_unique": 104,
+        "total": 5561,
+        "current_date_observed": 104,
+        "cross_date_attempts_are_not_fresh_coverage": true
+      }
+    }
+  ],
+  "new_ledger_verification": {
+    "entrypoint": "rec_log.py verify -> mt1.verify.verify; separate from legacy stats",
+    "production_verified": 0,
+    "unknown_baselines": 64,
+    "test_exit_episode_preserved": true,
+    "not_strategy_or_personal_return": true
+  },
+  "four_phases": {
+    "offline_finalize_sqlite_report_dry_run": "passed 4/4",
+    "real_scheduled_evidence_finalize_feishu_delivery": "not_verified"
+  },
+  "remaining": [
+    "64-plan cold-start investment evidence review",
+    "full current-date universe coverage",
+    "exact historical 20/40/60 three-channel PIT and rolling OOS backtests",
+    "four real scheduled user-visible end-to-end reports",
+    "third-party watchlist write acknowledgement",
+    "other worker deployment/acceptance"
+  ]
+}

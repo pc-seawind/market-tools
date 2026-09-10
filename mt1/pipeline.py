@@ -7,7 +7,7 @@ from pathlib import Path
 from .calendar import gate, check_fresh
 from .data import HERE, atomic_json, cn_calendar, collect_universe, foreign_calendar
 from .candidates import screen
-from .plans import legacy_plan, reduce_plan, eligible
+from .plans import legacy_plan, reduce_plan, eligible, deadline_errors
 from .store import Store, digest
 from .backtest import audit
 
@@ -40,7 +40,7 @@ def migrate(store, rec_path, thesis_dir):
         if r.get('action')=='EXIT': p.update(state='EXIT',held_direction='EXIT')
         entity='plan:'+p['plan_id']
         if store.latest(entity): continue
-        store.apply(entity,0,entity,p,'冷启动待复核；原始日期/成本未知',reduce_plan); imported+=1
+        store.apply(entity,0,entity,p,'冷启动待复核；原始日期/成本未知',lambda old, patch: reduce_plan(old, patch, legacy_import=True)); imported+=1
     return {'imported':imported,'source_symbols':len(latest),'errors':invalid}
 
 
@@ -110,7 +110,7 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
             if gates['CN']['reason'] == 'calendar_missing_invalid_or_stale':
                 errors.append({'stage':'calendar_gate','error':'CN calendar unavailable; fail-closed'})
             plans=store.all()
-            due=[p['plan_id'] for p in plans if p['state']!='EXIT' and (not p.get('review_due') or p['review_due']<=today)]
+            due=[p['plan_id'] for p in plans if p['state']!='EXIT' and (not p.get('review_due') or p['review_due']<=today or deadline_errors(p, date.fromisoformat(today)))]
             # Initial report has no new final conclusions. Agent's evidence-reviewed
             # event file is applied by a distinct validated CLI command.
             previous=[]

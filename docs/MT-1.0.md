@@ -12,7 +12,7 @@
 |结构化计划|SQLite append-only事件、版本CAS、请求幂等、独立持有方向|研究状态不是成交；迁移不是历史建仓重建|
 |旧数据迁移|原rec逐行保留，thesis保存原文快照，缺失项未知|历史理由里的“浮盈”不成为已确认个人盈亏|
 |自选过滤|原始from-recap关闭；最终计划筛选、dry-run已验|本次没有实际HTSC写入，未验真写入回执|
-|全市场质量价值|全市场股票列表采集，无HOT过滤；逐股财报可续跑|先8只、部署后100只小批量验收，非全量覆盖；新参数不替换生产评分|
+|全市场质量价值|全市场股票列表采集，无HOT过滤；跨批/跨日游标与逐股断点|先8只、部署后100只小批量验收，非全量覆盖；新参数不替换生产评分|
 |20/40/60回测|信号带复放、配对退出/持有、组合指标、PIT资料门禁|不从历史原始数据重算真实三通道，不能称精确策略收益|
 |方法注册表|candidate→shadow→validated→active、回退降级、证据门禁|没有自动证明来源真实性/策略有效；不自动改代码|
 |周日研究|支持原文hash校验与方法注册；联网由现有agent工具完成|没抓取原文不能标已完成研究|
@@ -29,7 +29,7 @@
 5. 分开写未持有者 BUY/WATCH、已有持仓者 WATCH/HOLD/SELL/EXIT。
    holding_status 只认 unknown/not_held/confirmed；actual_cost 可空，不能从推荐价推断成本。
 6. 原始日期、理由、参考价、原始期限不可改。HOLD延续原episode。
-   延期须 extension_evidence；EXIT后重新入选必须另建plan_id/episode。
+   复核日延期须 extension_evidence；投资期限延期须 deadline_extension（日期、审查人、理由、结构化证据和前版本）；EXIT后重新入选必须另建plan_id/episode。
 7. 退出要基于逻辑证伪、明确风险边界、估值/催化兑现或到期复核，不因板块冷、一天破线自动退出。
 8. 早盘使用前一完成交易日数据；晚盘检查当日期待交易日。市场各用自己的日历。
    周末研究不受休市限制。周六复盘全部计划/退出记录，周日承接周六、联网、排下周验证节点。
@@ -60,8 +60,7 @@ python3 mt1.py watchlist                 # 默认dry-run
 各事件失败隔离；重跑用同一request_id和完全相同payload，幂等返回原结果。
 未发生变化不要重新写HOLD事件，只在reviewed_plan_ids里记录覆盖。
 
-旧rec保留历史，不双写：MT-1.0的新计划以plans.db为权威；旧rec绩效报表**不会自动包含新事件**。
-这项兼容投影尚未实现，不能混报两套样本。thesis enrich继续更新原thesis，不自动覆盖计划证据。
+旧rec保留历史，不双写：MT-1.0的新计划以plans.db为权威；旧rec绩效报表不混入新事件。`rec_log.py verify` 已先调用新账本后验证，分别输出 MT1_VERIFY_JSON 与旧统计；`mt1.py verify` 可独立复跑。新路径只记未复权参考价到收盘的观测，缺基线保留 unknown，不是策略回测或个人盈亏。thesis enrich继续更新原thesis，不自动覆盖计划证据。
 
 ## 输入契约
 
@@ -81,7 +80,7 @@ python3 mt1.py watchlist                 # 默认dry-run
 }
 ```
 
-最终结论还要：`qualification=final`，`reviewer`，`method_status=active`，
+最终 BUY 还要：`qualification=final`，`reviewer`，`method_id` + `method_version`（注册表中对应 active 版本），
 `checks={financial,liquidity,major_event,technical,valuation: "pass"}`，
 `evidence=[{url,date,claim}]`，`milestones=[{date,condition}]`，
 `price_condition={below或above:正数,basis,source_url}`，
@@ -161,3 +160,29 @@ review-bundle结构：
 - 四个核心cron已备份、改prompt并回读确认其他字段完全未变；未新增报告任务。
 - 最终自选dry-run为空，没有实际第三方写入，没有执行交易。
 - 逐项数字、备份目录和未验范围见MT-1.0-acceptance.json。
+
+## 2026-09-10 独立验收修复（覆盖上文旧交付数字）
+
+- BUY / HOLD / SELL / EXIT 按动作分离：BUY 保留五项正向门禁；HOLD 要 holding_thesis
+  与 holding_thesis_status=valid；退出要求有效 exit_basis、reviewer、来源URL/日期/claim，
+  不要求恶化的财务或估值仍通过。任何新退出事件（含待复核和已退出对象更新）都校验。
+- 旧关闭记录仅 migrate 的显式 legacy_import 可豁免；普通 plan-event/finalize 无该开关。
+- BUY 资格与自选 dry-run/execute 均实时读取方法注册表，method_status 自报无效。
+  方法降 shadow 或版本不符后，旧计划不能继续新增自选资格，旧事件不改写。
+- 原生产脚本已用 register-existing-method 显式登记 hash 版本；registration_kind 为
+  existing_production_baseline，validation_status=not_revalidated。不伪造新因子回测。
+  基线只允许撤回降级；新规则继续 candidate→shadow→validated→active。
+- original_date/original_deadline 不可覆盖。原期限或有效延长期限到日则进入复核，不新增 BUY，
+  不自动 SELL。null 原期限为 horizon_unknown_reconstruct。有效期限延期结构：
+  deadline_extension={deadline,reviewed_at,reviewer,reason,plan_version,evidence:[{url,date,claim}]}。
+  plan_version 绑定延期事件前的账本版本；每次延期最多约三个月，原始期限始终保留。
+- 全市场 coverage.json 采用最久未尝试优先，失败标的不会阻塞后续股票；同 run-id 不重复推进，
+  新 run-id/次日继续下一批。升级时吸收已有 fina 缓存。跨日累计尝试数不冒充当日完整覆盖率。
+- 新账本 verify 包含已退出 episode 的首次最终 BUY 基线，按 episode+观测日幂等，不重置 HOLD
+  参考价，不写旧 rec；20/40/60 是有效报价观测数，缺行情/停牌不等同精确交易日计数。
+- 四时段已覆盖本地 finalize→真实 SQLite 方法资格→报告文件→dry-run 以及方法撤回回归。
+  **不等于真实 gateway 定时调度→联网证据审查→飞书送达验收**。
+- 当前 64 个迁移计划仍待投资证据复核，缺失原日期/价格/期限不补造。工程结构审计不是
+  64 只公司的冷启动投资研究；真实历史回测、实盘自选回执、其他 worker 仍未验收。
+
+详细本轮证据：`MT-1.0-fixes-acceptance.json`。生产运行受限试运行，完整目标仍未完成。

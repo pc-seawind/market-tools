@@ -9,7 +9,7 @@ from mt1.calendar import gate
 from mt1.pipeline import run, migrate
 from mt1.store import Store
 from mt1.plans import reduce_plan, eligible
-from mt1.methods import reduce_method
+from mt1.methods import reduce_method, register_existing
 from mt1.backtest import replay
 from mt1.finalize import finalize
 
@@ -28,8 +28,13 @@ def main():
     p=sub.add_parser('backtest'); p.add_argument('--input',required=True); p.add_argument('--out',required=True)
     p=sub.add_parser('watchlist'); p.add_argument('--execute',action='store_true')
     p=sub.add_parser('finalize'); p.add_argument('--input',required=True); p.add_argument('--investment-dir',default='/home/emox/work/investment')
+    p=sub.add_parser('register-existing-method'); p.add_argument('--reviewer',required=True)
+    p=sub.add_parser('verify'); p.add_argument('--asof')
     p=sub.add_parser('plans')
     args=parser.parse_args()
+    if args.cmd=='verify':
+        from mt1.verify import verify
+        print(json.dumps(verify(args.state_dir,date.fromisoformat(args.asof) if args.asof else None),ensure_ascii=False,indent=2)); return
     if args.cmd=='run':
         result=run(args.phase,args.state_dir,args.investment_dir,
                    datetime.fromisoformat(args.now) if args.now else None,
@@ -46,9 +51,11 @@ def main():
         print(json.dumps(r,ensure_ascii=False,indent=2)); return
     store=Store(Path(args.state_dir)/'plans.db')
     try:
-        if args.cmd in ('plan-event','method-event'):
+        if args.cmd=='register-existing-method':
+            r=register_existing(store,HERE,args.reviewer)
+        elif args.cmd in ('plan-event','method-event'):
             d=json.loads(Path(args.input).read_text()); kind='plan' if args.cmd=='plan-event' else 'method'
-            reducer=reduce_plan if kind=='plan' else reduce_method
+            reducer=(lambda old, patch: reduce_plan(old, patch, store.latest)) if kind=='plan' else reduce_method
             if d['payload'].get(kind+'_id', d['id']) != d['id']:
                 raise ValueError('entity id mismatch')
             current=store.latest('plan:'+d['id']) or {} if kind=='plan' else {}
@@ -68,8 +75,8 @@ def main():
                 if not gate(cn_calendar(now),'CN','morning',now)['allowed']:
                     raise ValueError('watchlist execution blocked by CN calendar')
             buys=[{'code':p['code'],'name':p.get('name',''),'reason':f"MT-1.0 {p['plan_id']} v{p['version']}",
-                   '_mt1_final_plan':p} for p in store.all() if p['market']=='CN' and eligible(p,date.today())]
-            r=sync_buys(buys,group='默认组',cooldown_days=30,dry_run=not args.execute,source='MT-1.0-final')
+                   '_mt1_final_plan':p} for p in store.all() if p['market']=='CN' and eligible(p,date.today(),store.latest)]
+            r=sync_buys(buys,group='默认组',cooldown_days=30,dry_run=not args.execute,source='MT-1.0-final', method_lookup=store.latest)
         else: r=store.all()
         print(json.dumps(r,ensure_ascii=False,indent=2))
     finally: store.close()

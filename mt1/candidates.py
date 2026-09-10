@@ -53,6 +53,7 @@ def screen(snapshot):
                 'asof':snapshot['asof'],'metrics':vals,'data_version':snapshot['data_version']})
     n=snapshot.get('universe_size',0)
     return {'status':'shadow','method_version':'qv-shadow-1','asof':snapshot['asof'],
+            'batch_codes':snapshot.get('batch_codes',[]),'coverage_progress':snapshot.get('coverage_progress',{}),
             'universe_size':n,'observed':len(snapshot.get('observations',[])),
             'complete_data_count':covered,'coverage':covered/n if n else 0,
             'candidates':candidates,'excluded':excluded,'collection_errors':snapshot.get('errors',[]),

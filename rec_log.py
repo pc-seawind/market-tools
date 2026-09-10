@@ -362,6 +362,10 @@ def _cmd_verify(args):
             perf = verify_rec(rec, verify_date=args.date)
             print(json.dumps(perf, ensure_ascii=False, indent=2) if perf else "failed")
     else:
+        # Separate ledger and output: never project synthetic legacy recommendations.
+        from mt1.verify import verify as verify_mt1
+        mt1_result = verify_mt1(asof=date.fromisoformat(args.date) if args.date else None)
+        print('MT1_VERIFY_JSON='+json.dumps(mt1_result, ensure_ascii=False))
         stats = verify_all(verify_date=args.date)
         print(f"verify_all: total={stats['total']} verified={stats['verified']} "
               f"expired={stats['expired']} fetch_failed={stats['fetch_failed']}")

@@ -64,8 +64,13 @@ def final_plan():
         price_condition={'below':10,'basis':'synthetic','source_url':'https://example.com'},
         risk_boundary={'condition':'synthetic','source_url':'https://example.com'},invalidation='synthetic invalidation',
         checks={k:'pass' for k in ('financial','liquidity','major_event','technical','valuation')},
-        reviewer='test',method_status='active')
+        reviewer='test',method_status='active',method_id='fixture',method_version='1',
+        original_date=str(today),original_deadline=str(today+timedelta(days=90)))
     return p
+
+
+def method_lookup(entity):
+    return {'method_id':'fixture','rule_version':'1','status':'active'} if entity=='method:fixture' else None
 
 
 def test_hold_preserves_original_baseline_and_cost():
@@ -81,21 +86,21 @@ def test_hold_preserves_original_baseline_and_cost():
 def test_exit_requires_new_episode_and_substantive_evidence():
     p=plan()
     with pytest.raises(ValueError): reduce_plan(p,{'state':'EXIT','exit_basis':'sector_cold'})
-    p=reduce_plan(p,{'state':'EXIT','exit_basis':'thesis_invalidated','evidence':[{'date':'2026-09-10','claim':'test'}]})
+    p=reduce_plan(p,{'state':'EXIT','exit_basis':'thesis_invalidated','reviewer':'test','evidence':[{'url':'https://example.com','date':str(date.today()),'claim':'test'}]})
     with pytest.raises(ValueError): reduce_plan(p,{'state':'WATCH'})
     new=plan(); new.update(plan_id='p2',episode='episode-2')
     assert reduce_plan(None,new)['plan_id']=='p2'
 
 
 def test_final_gate_future_data_shadow_and_hard_fail():
-    p=final_plan(); assert eligible(p,date.today())
-    assert reduce_plan(None,p)['state']=='BUY'
+    p=final_plan(); assert eligible(p,date.today(),method_lookup)
+    assert reduce_plan(None,p,method_lookup)['state']=='BUY'
     for patch in ({'candidate_origin':'quality_value_shadow'}, {'checks':{'financial':'pass'}},
                   {'evidence':[{'url':'https://example.com','date':'2099-01-01','claim':'future'}]},
                   {'price_condition':'unknown'}):
         q={**p,**patch}
-        assert not eligible(q,date.today())
-        with pytest.raises(ValueError): reduce_plan(None,q)
+        assert not eligible(q,date.today(),method_lookup)
+        with pytest.raises(ValueError): reduce_plan(None,q,method_lookup)
 
 
 def test_event_idempotence_conflict_append_only_and_concurrency(tmp_path):
@@ -165,10 +170,10 @@ def test_raw_candidate_watchlist_block_and_final_dry_run(tmp_path,monkeypatch):
     monkeypatch.setattr(w,'LEDGER_FILE',tmp_path/'ledger.jsonl')
     monkeypatch.setattr(w,'call_addwatchlist',lambda *a,**k:pytest.fail('no external write'))
     assert w.parse_recap_buys(tmp_path/'does-not-need-to-exist')==[]
-    r=w.sync_buys([{'code':'600000.SH','name':'fixture'}],group='test',cooldown_days=30,dry_run=False,source='test')
+    r=w.sync_buys([{'code':'600000.SH','name':'fixture'}],group='test',cooldown_days=30,dry_run=False,source='test',method_lookup=method_lookup)
     assert r['skipped'] and not r['added']
     p=final_plan()
-    r=w.sync_buys([{'code':p['code'],'name':'fixture','_mt1_final_plan':p}],group='test',cooldown_days=30,dry_run=True,source='test')
+    r=w.sync_buys([{'code':p['code'],'name':'fixture','_mt1_final_plan':p}],group='test',cooldown_days=30,dry_run=True,source='test',method_lookup=method_lookup)
     assert len(r['pending'])==1 and not (tmp_path/'ledger.jsonl').exists()
 
 
@@ -229,7 +234,7 @@ def test_watchlist_missing_ack_not_marked_success(tmp_path,monkeypatch):
     monkeypatch.setattr(w,'call_addwatchlist',lambda *a,**k:{'ok':True,'data':{}})
     p=final_plan()
     item={'code':p['code'],'name':'fixture','_mt1_final_plan':p}
-    result=w.sync_buys([item,item],group='test',cooldown_days=30,dry_run=False,source='test')
+    result=w.sync_buys([item,item],group='test',cooldown_days=30,dry_run=False,source='test',method_lookup=method_lookup)
     assert not result['added'] and not w.LEDGER_FILE.exists()
 
 
@@ -283,4 +288,4 @@ def test_legacy_record_cannot_bypass_exit_or_direction_gate():
     with pytest.raises(ValueError):reduce_plan(p,{'state':'EXIT','held_direction':'EXIT'})
     with pytest.raises(ValueError):reduce_plan(p,{'unheld_direction':'BUY'})
     q=final_plan();q['review_due']=str(date.today()+timedelta(days=200))
-    assert not eligible(q,date.today())
+    assert not eligible(q,date.today(),method_lookup)
