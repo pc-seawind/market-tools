@@ -48,7 +48,12 @@ def financial(rows, asof):
     annual=latest([r for r in eligible if r['end_date'].endswith('1231')])
     if current and (day(asof)-day(current['end_date'])).days>240:current=None
     if annual and (day(asof)-day(annual['end_date'])).days>550:annual=None
-    return {'current':current,'annual':annual,'roe_basis':'annual_report_only_no_interim_annualization',
+    previous_period=str(int(current['end_date'][:4])-1)+current['end_date'][4:] if current else None
+    comparable=latest([r for r in eligible if r['end_date']==previous_period])
+    positive_base=bool(current and comparable and (number(current.get('eps')) or 0)>0 and (number(comparable.get('eps')) or 0)>0)
+    return {'current':current,'annual':annual,'comparable_prior_year':comparable,
+            'positive_eps_base':positive_base,'current_period_type':'annual' if current and current['end_date'].endswith('1231') else 'cumulative_interim_not_TTM',
+            'roe_basis':'annual_report_only_no_interim_annualization',
             'growth_basis':'latest_cumulative_period_yoy_not_TTM; negative_base_requires_research',
             'pit':'current_vendor_vintage; publication-filtered, NOT historic_revision_certified'}
 
@@ -228,7 +233,7 @@ def run_parallel(state_dir,panel,out,reviews=None):
             'plan':plan,
             'downstream_mode':'diagnostic_even_if_risk_unknown_or_reject; not gate_pass'})
     ranked=sorted([r for r in records if r['channels']],key=lambda r:(r['risk']['status']=='reject',r['technical'] is None,
-        not (r['financial']['current'] and (number(r['financial']['current'].get('netprofit_yoy')) or 0)>0),
+        not (r['financial']['positive_eps_base'] and (number(r['financial']['current'].get('netprofit_yoy')) or 0)>0),
         r['timing']['status']!='trigger',-(r['technical'] or {}).get('rs60',-999),r['code']))
     for i,r in enumerate(ranked,1):r['research_rank']=i
     old=screen({'asof':str(day(asof)),'universe_size':len(universe),'observations':obs,'data_version':'archived-input'})
@@ -257,7 +262,7 @@ def run_parallel(state_dir,panel,out,reviews=None):
     summary={'stage_distribution':stage_distribution,'comparison':{'added':sorted(new_codes-old_codes),'removed':sorted(old_codes-new_codes)},'asof':asof,'method':METHOD,'generated_at':now.isoformat(),'universe':len(universe),'channels':totals,
         'deduplicated':len(ranked),'multi_channel':sum(len(r['channels'])>1 for r in ranked),
         'old_value_shadow':{'count':len(old['candidates']),'codes':[r['code'] for r in old['candidates']],'complete_data':old['complete_data_count']},
-        'ranking_basis':'research priority only: risk rejection last, technical coverage, positive cumulative profit YoY, timing trigger, RS60, code; NOT expected returns',
+        'ranking_basis':'research priority only: risk rejection last, technical coverage, positive cumulative profit YoY with positive same-period EPS base, timing trigger, RS60, code; NOT expected returns',
         'final_buy':0,'zero_buy_reason':'research_unfinished_and_method_shadow; NOT fully_reviewed_zero',
         'forward_validation':{'entry':'not yet admitted; archive diagnostic cohort only','20_40_60':'pending_observation'},
         'incomplete':['全部公司事件/可交易性核验、逻辑与价格论证、研究签审未完成','新参数有效性未经回测/前瞻验证','旧2024主题档案恢复独立incomplete，不影响本次运行']}

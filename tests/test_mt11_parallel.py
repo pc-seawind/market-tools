@@ -162,3 +162,11 @@ def test_full_funnel_conservation_and_frozen_hashes(tmp_path):
     assert all(r['plan']['final_buy'] is False for r in records)
     for path,h in summary['frozen_hashes'].items():assert hashlib.sha256((out/path).read_bytes()).hexdigest()==h
     with pytest.raises(FileExistsError):run_parallel(state,root,out)
+
+
+def test_growth_negative_base_not_quality_bonus():
+    rows=[dict(end_date='20260630',ann_date='20260801',eps=1,netprofit_yoy=100),dict(end_date='20250630',ann_date='20250801',eps=-1)]
+    assert not financial(rows,'20260910')['positive_eps_base']
+    rows[1]['eps']=.5
+    f=financial(rows,'20260910')
+    assert f['positive_eps_base'] and f['current_period_type']=='cumulative_interim_not_TTM'
