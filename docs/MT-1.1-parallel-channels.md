@@ -84,3 +84,28 @@ systemd-run --user --unit=mt11-<unique-run> \
 - `bound-ledger-snapshot.json`冻结真实账本（包括未进发现池的证券）；`review-sources/<sha256>`冻结研究源字节；报告从产物中取全部通道，禁止手抄漏掉多通道。
 - 生产接入仅通过`scripts/deploy_mt11_sidecar.py --apply`给**现有四条**cron追加标记块；先备份、CAS、回读验证其余字段完全不变。不新增cron。自然下一次触发、飞书投递必须另取真实回执，CLI成功不能冒称自然调度已验收。
 - 20/40/60日只建立冻结队列，**自动收割功能未实现**与“窗口尚未成熟”是两个不同缺口，均保留。
+
+## Revision 3：自动前瞻收割（优先于上文“未实现”状态）
+
+`parallel-cycle` 现在自动调用 `mt1.forward.run`：注册稳定cohort→核验日历→20/40/60成熟判定→归档收割。可单独运行：
+
+```bash
+python3 mt1_job.py forward-harvest --source <真实parallel-run目录> \
+  --panel <本轮panel目录> --out <全新回执路径>
+```
+
+长调用仍须独立cgroup+硬超时。源目录不能是合成fixture，生产输入与tests/tmp完全隔离。
+
+- 稳定身份：`price_asof + method完整对象 + forward contract`；同日同方法重跑不产生新cohort，不重置初始decision；多通道同股只出现一次。成员变化在相同身份下拒绝，不偷偷覆盖。
+- 冻结起点：复制原始funnel.gz并验hash，冻结初次decision、方法、源代码hash、成员及风险/诊断状态。观察对象是**宽泛诊断发现池（含风险否决）**，不是推荐或持仓。
+- 价格口径：初次decision之后下一交易所开盘作为观察起点；第20/40/60个后续交易日收盘作为终点，明确用entry index+h。日历必须有逐自然日开闭状态，不按周一至周五推算；预计成熟日冻结，后续交易所修订不同则blocked等待核验，不默默移期限。
+- 成熟前不计算任何收益：每股每窗口 `not_matured`，收益字段null。没有未来日历则unknown/block，不猜日期。
+- 成熟时需要完整窗口日线/复权因子/CSI300基准以及**逐公司、覆盖窗口、有来源hash的上市/停牌/公司行动clearance**。缺日、零量、退市、行动未知、复权变化、未来/重复/错误代码、基准缺口全部blocked。不会以空事件列表代替“无事件已核实”。
+- `forward/issuer-clearances.json` 为代码→clearance的输入；schema见`source_clearance()`及隔离测试。证据适配/取得不完整时可自动产出blocked，但不称成熟收益已齐。当前不自动下载并认定全部公司行动/退市证明；此数据依赖显式保留。
+- 净收益情景：`exit_close*(1-10bps)/(entry_open*(1+10bps))-1`；每边10bps为固定演示的全成本情景，不是已校准税费或成交假设。基准为CSI300同起点开盘→终点收盘的价格指数，非含息/ETF可交易回报。
+- 资金口径：每股独立一单位，退出后无息现金、不再投资、不轮换；只有冻结全体股票都可观察时才输出描述性等权净均值，不删除停牌/缺失股票提高均值。个股诊断回报和实际账户/策略有效性严格分开。
+- 幂等：同cohort、同评估日开闭边界、同日历内容/行情/证据/代码生成同artifact；重跑回读不覆盖。修订输入生成新artifact，旧记录保留。成熟输入gzip、证据字节、原始日历及各hash持久归档。
+- 产物：`forward/cohorts/`、`forward/harvests/<id>/`、`forward/calendars/`、成熟时`forward/inputs/`与`evidence-blobs/`；本轮`forward-harvest.json`是入口回执。
+- 状态分开：**注册/日历/成熟判定/幂等/安全收割功能已实现**；真实窗口未成熟；行动/停牌/退市clearance未齐时未来成熟会blocked；有效性尚未验证。
+
+首次注册必须发生在冻结的观察起点开盘之前；错过起点后不能事后登记为“向前cohort”。已存在的cohort可按原身份正常收割。收益仅是报价路径诊断，不证明涨跌停时可成交；停牌/公司行动清单的来源还须有决策前的发表时间。

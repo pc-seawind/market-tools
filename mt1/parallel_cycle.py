@@ -27,6 +27,9 @@ def cycle(state_dir,phase,panel=None,reviews=None):
         inbox=Path(reviews) if reviews else state/'parallel-review-inbox.json'
         result=run_parallel(state,panel,out,inbox if inbox.exists() else None)
         result['binding']=close_review(out,state/'plans.db')
+        from .forward import run as forward_run
+        result['forward']=forward_run(state/'forward',out,panel)
+        (out/'forward-harvest.json').write_text(json.dumps(result['forward'],ensure_ascii=False,indent=2))
         result['phase']=phase
         result['execution']={'mode':'live_current_shadow','ledger_write':False,'trade':False,
                              'source':'parallel-cycle CLI','report':str(out/'report.md')}

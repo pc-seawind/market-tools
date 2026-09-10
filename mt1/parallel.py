@@ -154,7 +154,7 @@ def actions(t,tm,asof,exit_basis=None):
 
 def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
     root=Path(panel);out=Path(out);out.mkdir(parents=True,exist_ok=False)
-    source_paths=[Path(__file__).with_name(n) for n in ('parallel.py','parallel_collect.py','parallel_bridge.py','parallel_cycle.py','review_time.py')]
+    source_paths=[Path(__file__).with_name(n) for n in ('parallel.py','parallel_collect.py','parallel_bridge.py','parallel_cycle.py','review_time.py','forward.py')]
     source_hashes={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source_paths}
     start_head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     sessions=json.loads((root/'sessions.json').read_text());asof=sessions[-1]
