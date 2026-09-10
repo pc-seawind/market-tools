@@ -140,6 +140,11 @@ market-tools/
 3. **concepts 14 个主题 是固定的** —— 不要擅自改 `concepts_data.py` 的主题列表
 4. **A/B/C/D 分级是纯规则** —— 不使用 LLM 判断，grading.py 是可回放的
 5. **backtest 有 rate-limit** —— Tushare 免费版每天 500 次请求上限
+6. **narrative verify 必须复用历史 baseline** —— `narrative_perf.jsonl` 已保存 `(event_ts, code)` 的 `baseline_date/baseline_price`；`verify_all` 应通过 `_prewarm_verify_state()` 一次性构造幂等键和 baseline cache。禁止每个工作日为所有 open pair 重跑 `resolve_base()`，单次行情回溯约 17 秒，会撞 detached-job 30 分钟上限。
+7. **narrative verify 的日收盘价走 snapshot** —— A 股同一 `verify_date` 应通过 `narrative_sector_bench._fetch_daily_snapshot()` 一次拉全市场并复用；不要逐 ticker 调 `daily`。当前 tracker 只支持 A/HK，`.US` 必须计入 `skipped_unsupported`，不能伪装成 A 股后累计 `fetch_failed`。
+8. **narrative trade pool 必须通过 P1 价量门槛** —— 事件基准日前的 `position_120d <= 80`、`pre_ret_20 <= 25%`、`volume_ratio_5_20 <= 1.8`，任一缺失也只能进 research pool。历史 exact-D14 回测仅 48 pairs/34 events，hit 54.2%、median +1.08%，但 mean -0.65%、strict 35.4%、95% CI 很宽，属于探索性证据，不得宣称稳定 alpha。
+9. **systemd-run 不继承当前 shell token** —— 用 user systemd 跑行情任务时，必须显式 `--setenv=TUSHARE_TOKEN="$TUSHARE_TOKEN"`，或用 RunDetached（继承 worker 环境）。缺 token 时历史特征缓存可能被空结果污染；`narrative_backtest.py` 现已 fail-fast + 原子写缓存。
+10. **Narrative P2 仍是 shadow，不是生产门槛** —— exact-D14 的 P1+rank1 仅 23 events；`pre_volatility_20<=4%` 全样本改善，但时间切分、单 ticker 敏感性和 14 日冷却后样本均未通过稳健性要求。板块位置/广度过滤和首日确认策略回测变差。生产继续用 P1；P2 风险特征只记录、周报观察，至少累计 50 个独立 trade events 后再评估。
 
 ---
 

@@ -16,8 +16,8 @@
 #
 # 数据 owner: emox / homespace / market-tools
 
-schema_version: 2
-last_updated: 2026-05-25
+schema_version: 3
+last_updated: 2026-08-01
 total_tracks: 28
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -47,87 +47,55 @@ late_stage_subdomains:
 # 顺序非常重要 — 越靠前优先级越高 (capex_lock 比 govt_policy 优先, 因为前者更具体).
 # ═══════════════════════════════════════════════════════════════════════════
 event_type_patterns:
-  # 实业增量类 (最强信号 — 不扣分)
-  capex_lock:
-    keywords:
-      - capex
-      - 新厂
-      - 新工厂
-      - 扩产
-      - 上调
-      - 中标
-      - 量产
-      - 投产
-      - 签约
-      - 收购
-      - 入股
-      - 供货合同
-      - 战略合作
-    rationale: "实业增量锁定 — 未来 N 个季度营收必然增加, 最高质量信号 (W21 v3 §5)"
+  # 顺序即优先级。分类器只匹配原始 title，不再读取 agent 生成的解释文本。
+  confirmed_order:
+    keywords: ["中标", "中标通知", "正式合同", "采购订单", "供货合同", "订单已锁定", "签订采购合同"]
+    rationale: "已确认订单/采购，需继续核验金额、客户和交付期"
     score_penalty: 0
+
+  customer_capex:
+    keywords: ["客户资本开支", "客户capex", "上调资本开支", "采购预算"]
+    rationale: "客户侧 capex，只有直接供应关系成立时才进入 trade pool"
+    score_penalty: 0
+
+  company_capex_committed:
+    keywords: ["正式开工", "设备采购", "设备进场", "竣工投产", "已投产", "产线投产"]
+    rationale: "已执行的公司 capex；仍需区分自身增长与行业供给扩张"
+    score_penalty: 0
+
+  financing_capex:
+    keywords: ["定增", "募集资金", "拟募资", "配股", "可转债募资"]
+    rationale: "融资扩产可能带来摊薄和供给压力，默认研究池"
+    score_penalty: 1
+
+  industry_supply_expansion:
+    keywords: ["新增产能", "产能翻倍", "年产能", "扩建产能", "产能规划"]
+    rationale: "行业供给扩张不等于现有映射公司受益，可能反向压价"
+    score_penalty: 1
+
+  capacity_plan:
+    keywords: ["拟投资", "计划投资", "规划建设", "签约落地", "战略合作", "意向协议", "框架采购", "计划开工", "项目规划"]
+    rationale: "仅规划/意向，未锁定收入，默认研究池"
+    score_penalty: 1
 
   quant_increment:
-    keywords:
-      - 涨价
-      - 价值量
-      - 单价
-      - ASP
-      - 毛利率
-      - 单机柜
-      - 价格上涨
-      - 缺货
-      - 短缺
-      - 提价
-    rationale: "量化增量 — 数字明确驱动估值, 仅次于 capex_lock"
+    keywords: ["涨价", "价格上涨", "提价", "毛利率提升", "单价提升", "ASP提升", "供需缺口", "短缺"]
+    rationale: "量化增量，但必须判断是否超预期及是否已 price-in"
     score_penalty: 0
 
-  # 政策类 (中性)
   govt_policy:
-    keywords:
-      - 国标
-      - 补贴
-      - 以旧换新
-      - 政策
-      - 国务院
-      - 工信部
-      - 发改委
-      - 财政部
-      - 央行
-      - 推进
-      - 试点
-    rationale: "政策驱动 — 落地节奏不确定, 标的弹性差异大, 不扣分但也不加分"
+    keywords: ["国标", "补贴", "以旧换新", "国务院", "工信部", "发改委", "财政部", "央行", "试点"]
+    rationale: "政策类传导慢，需明确预算、项目清单和受益主体"
     score_penalty: 0
 
-  # 滞后信息类 (扣分)
   recap_news:
-    keywords:
-      - 研报
-      - 评级
-      - 目标价
-      - 分析师
-      - 卖方
-      - 增持
-      - 买入评级
-      - 首予
-      - 给予
-      - 上调评级
-    rationale: "卖方研报 — lagging indicator, 机构内部已看完才发外部, 等你看到时已 price in"
+    keywords: ["研报", "目标价", "买入评级", "首予", "分析师"]
+    rationale: "卖方回顾信息，默认已 price-in"
     score_penalty: 1
 
   trailing_data:
-    keywords:
-      - 销量第一
-      - 市占率第一
-      - 排名第一
-      - 销量同比
-      - 出货量同比
-      - 市占率达
-      - 业绩超预期
-      - 历史新高
-      - 创历史
-      - 半年报
-      - 年报披露
-    rationale: "回顾型数据 — 已发生事实, 已 price in 在过去半年股价里"
+    keywords: ["半年报", "年报披露", "业绩预告", "历史新高", "销量同比", "出货量同比", "市占率"]
+    rationale: "已发生数据；只有明确超一致预期时才可能升级"
     score_penalty: 1
 
 

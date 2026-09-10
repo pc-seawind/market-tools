@@ -12,7 +12,11 @@
 事件 schema:
   {
     "ts":          "2026-05-23T18:30:00+08:00",  # ISO 时间
-    "trade_date":  "20260523",                    # 决策日 (用作过滤 / 回测对齐)
+    "trade_date":  "20260523",                    # radar 决策日
+    "published_at":"2026-05-23T17:30:00+08:00",   # 原文发布时间 (新事件必填)
+    "pub_date":    "20260523",                    # 从 published_at 派生
+    "session":     "pre" / "intraday" / "post", # 基准价口径
+    "pool":        "research" / "trade",          # 研究库与 alpha 验证池隔离
     "track":       "AI" / "家居" / "AI×家居",
     "subdomain":   "ai__compute_chip" / ...,
     "score":       0..3,    # 0=噪音 1=常规 2=叙事级 3=罕见重磅
@@ -21,7 +25,9 @@
     "source":      "baidu" / "tavily" / 网址名,
     "rationale":   agent 给的 1 行打分理由,
     "thesis_seed": agent 写的初步推演 (单位经济变化 / 受益方草图),
-    "tickers":     [{"code", "name", "side": "+"/"-"}, ...]   # 受益/受损
+    "tickers":     [{"code", "name", "side": "+"/"-"}, ...],  # 研究映射
+    "alpha_tickers":[...],                           # 最多 2 个直接受益/受损标的
+    "eligibility_reasons": [...]                    # 未进 trade pool 的原因
   }
 
 CLI:
@@ -38,6 +44,7 @@ import json
 import os
 import re
 import sys
+from typing import Optional
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 EVENTS_PATH = os.path.join(HERE, "narrative_events.jsonl")
@@ -163,56 +170,152 @@ def is_late_stage(subdomain: str, universe: dict) -> bool:
 
 def classify_event_type(title: str, rationale: str = "", thesis_seed: str = "",
                         universe: dict | None = None) -> tuple[str, int]:
-    """根据关键词把 event 分到 capex_lock / quant_increment / govt_policy /
-    recap_news / trailing_data / other 之一. 返回 (event_type, score_penalty).
+    """按原始标题分类事件，避免 agent 生成的 rationale/thesis_seed 污染标签。
 
-    匹配顺序: yaml 里 event_type_patterns 的字典插入顺序 (capex_lock 优先).
-    第一次命中即返回 — 这样 "capex 上调研报" 会归 capex_lock 不是 recap_news.
+    P0 规则把旧 ``capex_lock`` 拆成已确认订单、客户资本开支、公司已执行
+    capex、融资扩产、供给扩张和仅规划六类。配置顺序决定优先级。
+    ``rationale`` / ``thesis_seed`` 参数仅为兼容旧调用，不参与匹配。
     """
     if universe is None:
         universe = load_universe()
-
-    text = " ".join([title or "", rationale or "", thesis_seed or ""]).lower()
+    text = (title or "").lower()
     patterns = universe.get("event_type_patterns") or {}
-
     for et, spec in patterns.items():
-        kws = spec.get("keywords") or []
-        for kw in kws:
+        for kw in spec.get("keywords") or []:
             if kw and kw.lower() in text:
                 return et, int(spec.get("score_penalty", 0))
-
     return "other", 0
 
 
 def compute_event_quality(event: dict, universe: dict | None = None) -> dict:
-    """对一条 event 计算 event_type + late_stage + 综合 score_penalty + effective_score.
-
-    用法:
-      cmd_add 写新 event 时调用一次, 把结果合并进 event dict.
-      也供老 event backfill 用 (script 遍历 jsonl 调它).
-    """
+    """计算类型、末期状态、penalty 与 effective_score。"""
     if universe is None:
         universe = load_universe()
-
-    et, et_penalty = classify_event_type(
-        event.get("title", ""),
-        event.get("rationale", ""),
-        event.get("thesis_seed", ""),
-        universe=universe,
-    )
+    et, et_penalty = classify_event_type(event.get("title", ""), universe=universe)
     late = is_late_stage(event.get("subdomain", ""), universe)
     late_penalty = 1 if late else 0
     total_penalty = et_penalty + late_penalty
-
     raw_score = int(event.get("score", 0))
-    effective = max(0, raw_score - total_penalty)
-
     return {
-        "event_type":      et,
-        "late_stage":      late,
-        "score_penalty":   total_penalty,
-        "effective_score": effective,
+        "event_type": et,
+        "late_stage": late,
+        "score_penalty": total_penalty,
+        "effective_score": max(0, raw_score - total_penalty),
     }
+
+
+_WEAK_TRADE_EVENT_TYPES = {
+    "capacity_plan", "financing_capex", "industry_supply_expansion",
+    "recap_news", "trailing_data",
+}
+_ALPHA_LAYERS = {"core_pure", "core_partial"}
+
+
+def _parse_tickers(raw: str) -> list[dict]:
+    """Parse ``code:name[:side]`` CSV and validate side."""
+    out = []
+    for chunk in (raw or "").split(","):
+        if not chunk.strip():
+            continue
+        parts = [x.strip() for x in chunk.split(":")]
+        if len(parts) not in (2, 3):
+            raise ValueError(f"ticker 格式错误: {chunk!r}")
+        side = parts[2] if len(parts) == 3 else "+"
+        if side not in {"+", "-"}:
+            raise ValueError(f"ticker side 必须为 +/-: {chunk!r}")
+        out.append({"code": parts[0], "name": parts[1], "side": side})
+    return out
+
+
+def _parse_published_at(value: str) -> tuple[Optional[dt.datetime], str]:
+    """Return timezone-aware published datetime and YYYYMMDD pub_date."""
+    if not value:
+        return None, ""
+    raw = value.strip().replace("Z", "+00:00")
+    try:
+        parsed = dt.datetime.fromisoformat(raw)
+    except ValueError as exc:
+        raise ValueError("--published-at 必须是 ISO-8601，例如 2026-08-01T15:30:00+08:00") from exc
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=CN_TZ)
+    parsed = parsed.astimezone(CN_TZ)
+    return parsed, parsed.strftime("%Y%m%d")
+
+
+def _attach_layers(subdomain: str, tickers: list[dict]) -> list[dict]:
+    sd_layers = load_ticker_layer().get(subdomain, {}) or {}
+    return [{**t, "ticker_layer": sd_layers.get(t.get("code"))} for t in tickers]
+
+
+def _parse_optional_float(value: str, flag: str) -> Optional[float]:
+    if value in (None, ""):
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{flag} 必须是数字") from exc
+
+
+def _cooldown_hits(event: dict, events: list[dict], days: int = 14) -> list[str]:
+    """Trade-pool-only cooldown; legacy/research rows do not block new P0 events."""
+    codes = {t.get("code") for t in event.get("alpha_tickers", [])}
+    if not codes:
+        return []
+    now = dt.datetime.fromisoformat(event["ts"])
+    hit = set()
+    for old in events:
+        if old.get("pool") != "trade" or old.get("subdomain") != event.get("subdomain"):
+            continue
+        try:
+            old_dt = dt.datetime.fromisoformat(old.get("ts", ""))
+        except ValueError:
+            continue
+        if 0 <= (now - old_dt).days < days:
+            hit |= codes & {t.get("code") for t in old.get("alpha_tickers", [])}
+    return sorted(x for x in hit if x)
+
+
+def assess_trade_eligibility(event: dict, existing_events: list[dict]) -> list[str]:
+    """Return blocking reasons. Empty means eligible for forward alpha tracking."""
+    reasons = []
+    if not event.get("published_at") or not event.get("pub_date"):
+        reasons.append("missing_published_at")
+    if event.get("session") not in {"pre", "intraday", "post"}:
+        reasons.append("missing_session")
+    if event.get("effective_score", 0) < 2:
+        reasons.append("effective_score_below_2")
+    if event.get("late_stage"):
+        reasons.append("late_stage_blocked")
+    if event.get("event_type") in _WEAK_TRADE_EVENT_TYPES:
+        reasons.append(f"weak_event_type:{event.get('event_type')}")
+    if event.get("surprise") not in {"medium", "high"}:
+        reasons.append("surprise_not_verified")
+    if event.get("source_tier") not in {"primary", "industry"}:
+        reasons.append("source_not_primary_or_industry")
+    alpha = event.get("alpha_tickers") or []
+    if not alpha:
+        reasons.append("no_direct_alpha_ticker")
+    if len(alpha) > 2:
+        reasons.append("too_many_alpha_tickers")
+    if not event.get("mapping_evidence"):
+        reasons.append("missing_mapping_evidence")
+    tf = event.get("tradeability_features") or {}
+    if any(tf.get(k) is None for k in ("position_120d", "pre_ret_20", "volume_ratio_5_20")):
+        reasons.append("missing_price_crowding_features")
+    else:
+        if tf["position_120d"] > 80:
+            reasons.append("position_120d_above_80")
+        if tf["pre_ret_20"] > 25:
+            reasons.append("pre_ret_20_above_25")
+        if tf["volume_ratio_5_20"] > 1.8:
+            reasons.append("volume_ratio_5_20_above_1.8")
+    for t in alpha:
+        if t.get("ticker_layer") not in _ALPHA_LAYERS:
+            reasons.append(f"ineligible_ticker_layer:{t.get('code')}:{t.get('ticker_layer') or 'missing'}")
+    cooling = _cooldown_hits(event, existing_events)
+    if cooling:
+        reasons.append("cooldown_14d:" + ",".join(cooling))
+    return reasons
 
 
 # ============================================================================
@@ -222,78 +325,83 @@ def cmd_add(args):
     universe = load_universe()
     if args.subdomain not in universe:
         print(f"❌ subdomain '{args.subdomain}' 不在 narrative_universe.yaml", file=sys.stderr)
-        print(f"   合法 subdomain: {[k for k in universe if k.startswith(('ai__','home__','cross__'))]}", file=sys.stderr)
+        sys.exit(1)
+    track = universe[args.subdomain].get("track", "?")
+    try:
+        tickers = _parse_tickers(args.tickers)
+        alpha_raw = _parse_tickers(args.trade_tickers)
+        published_dt, pub_date = _parse_published_at(args.published_at)
+        position_120d = _parse_optional_float(args.position_120d, "--position-120d")
+        pre_ret_20 = _parse_optional_float(args.pre_ret_20, "--pre-ret-20")
+        volume_ratio_5_20 = _parse_optional_float(args.volume_ratio_5_20, "--volume-ratio-5-20")
+    except ValueError as exc:
+        print(f"❌ {exc}", file=sys.stderr)
         sys.exit(1)
 
-    sd = universe[args.subdomain]
-    track = sd.get("track", "?")
-
-    # 解析 tickers 参数: "688256.SH:寒武纪:+,300308.SZ:中际旭创:-"
-    tickers = []
-    if args.tickers:
-        for chunk in args.tickers.split(","):
-            parts = chunk.split(":")
-            if len(parts) == 2:
-                tickers.append({"code": parts[0].strip(), "name": parts[1].strip(), "side": "+"})
-            elif len(parts) == 3:
-                tickers.append({"code": parts[0].strip(), "name": parts[1].strip(), "side": parts[2].strip()})
+    mapped_codes = {t["code"] for t in tickers}
+    if any(t["code"] not in mapped_codes for t in alpha_raw):
+        print("❌ --trade-tickers 必须是 --tickers 的子集", file=sys.stderr)
+        sys.exit(1)
 
     now = dt.datetime.now(CN_TZ)
     event = {
-        "ts":          now.isoformat(),
-        "trade_date":  now.strftime("%Y%m%d"),
-        "track":       track,
-        "subdomain":   args.subdomain,
-        "score":       int(args.score),
-        "title":       args.title,
-        "url":         args.url or "",
-        "source":      args.source or "",
-        "rationale":   args.rationale or "",
+        "ts": now.isoformat(),
+        "discovered_at": now.isoformat(),
+        "trade_date": now.strftime("%Y%m%d"),
+        "published_at": published_dt.isoformat() if published_dt else "",
+        "pub_date": pub_date,
+        "session": args.session or "",
+        "track": track,
+        "subdomain": args.subdomain,
+        "score": int(args.score),             # narrative importance, not tradeability
+        "title": args.title,
+        "url": args.url or "",
+        "source": args.source or "",
+        "source_tier": args.source_tier,
+        "surprise": args.surprise,
+        "rationale": args.rationale or "",
         "thesis_seed": args.thesis_seed or "",
-        "tickers":     tickers,
+        "mapping_evidence": args.mapping_evidence or "",
+        "tradeability_features": {
+            "position_120d": position_120d,
+            "pre_ret_20": pre_ret_20,
+            "volume_ratio_5_20": volume_ratio_5_20,
+        },
+        "tickers": _attach_layers(args.subdomain, tickers),
+        "alpha_tickers": _attach_layers(args.subdomain, alpha_raw),
+        "policy_version": "p0-2026-08-01",
     }
-
-    # 2026-06 加固: 入库前去重检查 (防 cron 把同一叙事每天重复 append)
-    if not getattr(args, "force", False):
-        dup = find_duplicate(event, load_events())
+    existing = load_events()
+    if not args.force:
+        dup = find_duplicate(event, existing)
         if dup is not None:
             print(f"⚠️ 疑似重复事件, 已拒绝入库 (同一叙事 {_DEDUP_WINDOW_DAYS} 天内已存在):", file=sys.stderr)
             print(f"   新: {event['title'][:60]}", file=sys.stderr)
             print(f"   旧: {dup['title'][:60]}  (ts={dup['ts'][:19]}, score={dup.get('score')})", file=sys.stderr)
-            print(f"   → 若确为新进展(如数据更新/新签单), 加 --force 强制入库; 否则这条不必重复录。", file=sys.stderr)
             sys.exit(2)
 
-    # W21 v3 §6 改进: 自动分类 event_type + late_stage 标记
-    quality = compute_event_quality(event, universe=universe)
-    event.update(quality)
+    event.update(compute_event_quality(event, universe=universe))
+    reasons = assess_trade_eligibility(event, existing)
+    requested = args.pool
+    if requested == "research":
+        event["pool"] = "research"
+        reasons = reasons or ["explicit_research_pool"]
+    elif requested == "trade" and reasons:
+        print("❌ 请求 trade pool 但未通过准入: " + "; ".join(reasons), file=sys.stderr)
+        sys.exit(3)
+    else:
+        event["pool"] = "trade" if not reasons else "research"
+    event["eligibility_reasons"] = reasons
 
     with open(EVENTS_PATH, "a") as f:
         f.write(json.dumps(event, ensure_ascii=False) + "\n")
-    badge = []
-    if quality["late_stage"]:
-        badge.append("⚠️末期抱团")
-    if quality["score_penalty"] > 0:
-        badge.append(f"score{args.score}→{quality['effective_score']}")
-    badge_str = f" [{' / '.join(badge)}]" if badge else ""
-    print(f"✅ event appended ({event['trade_date']} {track}/{args.subdomain} "
-          f"score={args.score} type={quality['event_type']}){badge_str}")
+    badge = f"pool={event['pool']} / effective={event['effective_score']}"
+    print(f"✅ event appended ({event['trade_date']} {track}/{args.subdomain} score={args.score} "
+          f"type={event['event_type']} / {badge})")
     print(f"   {args.title[:80]}")
-    print(f"   tickers: {len(tickers)}")
-    if quality["score_penalty"] > 0:
-        print(f"   ⚠️  score_penalty={quality['score_penalty']} → effective_score={quality['effective_score']}")
-    # v3 attribution: 提醒人工打 8 维特征标签 (heuristic 准确率仅 74%, 不能用于预测)
-    print(f"   ⚠️  待人工打标 8 维特征 → 跑: python3 narrative_label_event.py")
-
-    # v4 ticker_layer: 检查 tickers 是否都已在 ticker_layer.yaml 里有 layer 标签
-    # satellite -40pp / core_pure +11pp 是强信号, 缺标签的 ticker 跑 review 会被丢弃
-    missing = check_ticker_layer_coverage(args.subdomain, tickers)
-    if missing:
-        print(f"   ⚠️  {len(missing)} 个 ticker 缺 ticker_layer 标签 (review 会丢弃这些行):")
-        for t in missing:
-            print(f"        {t.get('code', ''):<12} {t.get('name', '')}")
-        print(f"        → 编辑 ticker_layer.yaml, 在 `{args.subdomain}:` 下加:")
-        for t in missing:
-            print(f"          {t.get('code', '')}: core_pure       # {t.get('name', '')} — TODO 业务纯度判断 (core_pure / core_partial / satellite / concept_only)")
+    print(f"   mapped={len(tickers)} / alpha={len(event['alpha_tickers'])}")
+    if reasons:
+        print("   research-only: " + "; ".join(reasons))
 
 
 # ============================================================================
@@ -356,6 +464,7 @@ def cmd_today_doc(args):
                     tags.append(f"`type={et}`")
                 if e.get("late_stage"):
                     tags.append("`⚠️末期抱团`")
+                tags.append(f"`pool={e.get('pool', 'legacy')}`")
                 eff = e.get("effective_score")
                 if eff is not None and eff < e["score"]:
                     tags.append(f"`score:{e['score']}→{eff}`")
@@ -368,11 +477,15 @@ def cmd_today_doc(args):
                     md.append(f"- **打分理由**: {e['rationale']}")
                 if e["thesis_seed"]:
                     md.append(f"- **初步推演**: {e['thesis_seed']}")
-                if e["tickers"]:
-                    md.append(f"- **可能受影响标的**:")
-                    for t in e["tickers"]:
+                display_tickers = e.get("alpha_tickers") if e.get("pool") == "trade" else e.get("tickers")
+                if display_tickers:
+                    label = "Alpha 跟踪标的" if e.get("pool") == "trade" else "研究映射标的"
+                    md.append(f"- **{label}**:")
+                    for t in display_tickers:
                         marker = "📈" if t.get("side", "+") == "+" else "📉"
                         md.append(f"  - {marker} {t['code']} {t['name']}")
+                if e.get("eligibility_reasons"):
+                    md.append(f"- **未进交易池**: {'; '.join(e['eligibility_reasons'])}")
                 md.append("")
 
     md.append("---")
@@ -392,7 +505,8 @@ def cmd_picker_doc(args):
 
     # 用 effective_score 筛 (≥2) — 末期抱团赛道里的 score=2 会被降到 1, 不进 picker
     events = [e for e in load_events()
-              if e["trade_date"] >= cutoff_str and _eff(e) >= 2]
+              if e["trade_date"] >= cutoff_str and _eff(e) >= 2
+              and (e.get("policy_version") != "p0-2026-08-01" or e.get("pool") == "trade")]
     # 按 effective_score 倒序, 同分按时间倒序
     events.sort(key=lambda e: (-_eff(e), -int(e["trade_date"])))
     top3 = events[:3]
@@ -430,8 +544,9 @@ def cmd_picker_doc(args):
             md.append(f"- **打分理由**: {e['rationale']}")
         if e["thesis_seed"]:
             md.append(f"- **种子推演**: {e['thesis_seed']}")
-        if e["tickers"]:
-            tk_str = ", ".join(f"{t['code']}({t['name']})" for t in e["tickers"][:8])
+        pick_tickers = e.get("alpha_tickers") or e.get("tickers") or []
+        if pick_tickers:
+            tk_str = ", ".join(f"{t['code']}({t['name']})" for t in pick_tickers[:8])
             md.append(f"- **候选标的**: {tk_str}")
         md.append("")
         md.append(f"**勾选执行**: 回复 `推演 #{i}` 触发深度推演 + 飞书云文档归档")
@@ -528,7 +643,17 @@ def main():
     p_add.add_argument("--source", default="")
     p_add.add_argument("--rationale", default="")
     p_add.add_argument("--thesis-seed", dest="thesis_seed", default="")
-    p_add.add_argument("--tickers", default="", help='"code:name:+,code:name:-" 形式')
+    p_add.add_argument("--tickers", default="", help='研究映射: "code:name:+,code:name:-"')
+    p_add.add_argument("--trade-tickers", default="", help="直接受益/受损 alpha 标的, 必须是 --tickers 子集, 最多2只")
+    p_add.add_argument("--published-at", default="", help="原文 ISO-8601 发布时间")
+    p_add.add_argument("--session", choices=["pre", "intraday", "post"], default=None)
+    p_add.add_argument("--source-tier", choices=["primary", "industry", "major_media", "aggregator", "unknown"], default="unknown")
+    p_add.add_argument("--surprise", choices=["high", "medium", "low", "unknown"], default="unknown")
+    p_add.add_argument("--mapping-evidence", default="", help="ticker 收益传导证据")
+    p_add.add_argument("--position-120d", default="", help="事件基准日前一交易日的120日价格百分位")
+    p_add.add_argument("--pre-ret-20", default="", help="事件基准日前20交易日收益率(%)")
+    p_add.add_argument("--volume-ratio-5-20", default="", help="事件前5日/20日平均成交量比")
+    p_add.add_argument("--pool", choices=["auto", "research", "trade"], default="auto")
     p_add.add_argument("--force", action="store_true",
                        help="跳过去重检查强制入库 (确为新进展时用)")
     p_add.set_defaults(func=cmd_add)

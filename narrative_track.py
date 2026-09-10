@@ -44,19 +44,21 @@ baseline 锚定原则:
   baseline_date = event.pub_date (如果 backfill 过) 否则 event.trade_date
   这样真实新闻发布日做 anchor, 不被"我什么时候 cron 抓到"扰动.
 
-T+N 里程碑: 5/10/20/40 自然日. 超过 60 自然日的 event 不再 verify (close).
+T+N 里程碑: 5/10/14/21/28/40/60 自然日. 超过 60 自然日的 event 不再 verify (close).
 注: 阈值放宽至 60 (原 45) — backfill 后部分 event pub_date 较老 (如 4/22 / 4/24).
 
 CLI:
-  narrative_track.py verify [--all | --event-ts X] [--date YYYYMMDD]
+  narrative_track.py verify [--mode light|full | --all | --event-ts X] [--date YYYYMMDD]
   narrative_track.py report [--weeks N]
   narrative_track.py doc [--weeks N]
   narrative_track.py event_report --event-ts X
 """
 from __future__ import annotations
 import argparse
+import contextlib
 import csv
 import datetime as dt
+import fcntl
 import hashlib
 import json
 import subprocess
@@ -69,6 +71,7 @@ _HERE = Path(__file__).resolve().parent
 _EVENTS_PATH = _HERE / "narrative_events.jsonl"
 _PERF_PATH = _HERE / "narrative_perf.jsonl"
 _TUSHARE = _HERE / "tushare.py"
+_VERIFY_LOCK_PATH = _HERE / ".cron_state" / "narrative_track_verify.lock"
 
 CN_TZ = dt.timezone(dt.timedelta(hours=8))
 
@@ -77,6 +80,8 @@ MAX_HORIZON_DAYS = 60  # 到 T+60 自然日 (~T+40 交易日) 停止验证 (放�
 # W21 v3 §4 横截面证据: alpha 在 T+15-T+30 才真正 unlock. T+5/T+10 是噪音区.
 # MILESTONE_DAYS 加上 14/21/28 三个 main-signal 窗口, 旧 5/10 保留兼容性但 doc 标 noise.
 MILESTONE_DAYS = [5, 10, 14, 21, 28, 40]
+LIGHT_VERIFY_MILESTONE_DAYS = [5, 10, 14, 21, 28, 40, 60]
+LIGHT_VERIFY_MILESTONE_TOLERANCE_DAYS = 1
 
 # W21 v3 §6 #3: 把窗口分成 noise / early / main / extended 四段, 主信号窗口 = main.
 WINDOW_BUCKETS = [
@@ -144,9 +149,25 @@ def _append_jsonl(path: Path, record: dict[str, Any]) -> None:
 # ─── price fetchers ─────────────────────────────────────────────────────
 
 def _fetch_stock_close(ts_code: str, trade_date: Optional[str] = None) -> Optional[float]:
-    """单只股票的指定日期 close. trade_date=None 取最新."""
-    is_hk = ts_code.upper().endswith(".HK")
+    """单只股票的指定日期 close. trade_date=None 取最新.
+
+    A 股优先复用全市场日线 snapshot：daily verify 通常同一天验证上百只票，
+    逐 ticker 拉 ``daily(ts_code=...)`` 会把一次 cron 放大成上百个网络请求。
+    snapshot 只需一次请求，且与 sector benchmark 共用进程内缓存。
+    """
+    code = ts_code.upper()
+    is_hk = code.endswith(".HK")
     api = "hk_daily" if is_hk else "daily"
+
+    if code.endswith((".SH", ".SZ", ".BJ")):
+        target = trade_date or dt.datetime.now(CN_TZ).strftime("%Y%m%d")
+        try:
+            from narrative_sector_bench import _fetch_daily_snapshot
+            snap = _fetch_daily_snapshot(target)
+            if code in snap:
+                return float(snap[code])
+        except Exception:
+            pass
 
     rows = _ts_csv(api, ts_code=ts_code, trade_date=trade_date) if trade_date \
         else _ts_csv(api, ts_code=ts_code)
@@ -221,7 +242,18 @@ def _fetch_benchmark_close(market: str, trade_date: Optional[str] = None) -> tup
 
 
 def _market_of(ts_code: str) -> str:
-    return "HK" if ts_code.upper().endswith(".HK") else "A"
+    code = ts_code.upper()
+    if code.endswith(".HK"):
+        return "HK"
+    if code.endswith(".US") or "." not in code:
+        return "US"
+    return "A"
+
+
+def _verify_market_supported(ts_code: str) -> bool:
+    """Current tracker has authoritative price + benchmark routes for A/HK only."""
+    code = (ts_code or "").upper()
+    return code.endswith((".SH", ".SZ", ".BJ", ".HK"))
 
 
 # ─── session-aware base price resolution (authoritative, shared) ──────────
@@ -384,6 +416,59 @@ def _benchmark_baseline_for(event_ts: str, code: str) -> Optional[float]:
     return None
 
 
+def _prewarm_verify_state(events: list[dict]) -> tuple[set, dict]:
+    """Single pass over narrative_perf.jsonl to build verify state.
+
+    Historically ``verify_all`` read the (multi-MB) perf JSONL once for the
+    idempotency ``seen`` set and then started with an empty ``cached_baseline``.
+    That forced a fresh ``resolve_base`` (≈17s each, hitting tushare) for every
+    open event × ticker on every run — even pairs whose baseline was already
+    stored in perf — which timed out the cron job.
+
+    This reuses stored baselines so previously-verified pairs never re-fetch:
+
+    Returns ``(seen, cached_baseline)`` where
+      * ``seen``            = set of (event_ts, code, days_since_event) keys
+      * ``cached_baseline`` entries match the live key shapes used by
+        ``verify_event_ticker`` / ``_resolve_baseline_and_days``:
+          (event_ts, code) -> (baseline_date, baseline_price)     # stock base
+          ("bench", benchmark, baseline_date, session) -> value   # bench base
+
+    The benchmark cache key includes ``session``, which is not stored on the
+    perf row, so it is recovered from the matching event (session is fixed per
+    event_ts). Rows lacking the required fields are skipped safely.
+    """
+    session_by_ts: dict[str, str] = {}
+    for ev in events:
+        ts = ev.get("ts")
+        if ts:
+            session_by_ts[ts] = _session_of(ev)
+
+    seen: set[tuple[str, str, int]] = set()
+    cached: dict = {}
+    for p in _read_jsonl(_PERF_PATH):
+        event_ts = p.get("event_ts", "")
+        code = p.get("code", "")
+        seen.add((event_ts, code, p.get("days_since_event", -1)))
+
+        baseline_date = p.get("baseline_date")
+        baseline_price = p.get("baseline_price")
+        if event_ts and code and baseline_date and baseline_price is not None:
+            # first stored baseline wins; it is the authoritative anchor and is
+            # stable for a fixed (event_ts, code, session).
+            cached.setdefault((event_ts, code), (baseline_date, float(baseline_price)))
+
+        # benchmark baseline reuse — only safe when we can reproduce the exact
+        # live key shape ("bench", bench_name, baseline_date, session).
+        bench_name = p.get("benchmark")
+        bench_baseline = p.get("benchmark_baseline")
+        session = session_by_ts.get(event_ts)
+        if bench_name and baseline_date and bench_baseline is not None and session:
+            cached.setdefault(("bench", bench_name, baseline_date, session),
+                              float(bench_baseline))
+    return seen, cached
+
+
 def _truncate(s: str, n: int = 80) -> str:
     if not s:
         return ""
@@ -405,6 +490,8 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
     session = _session_of(event)  # 'post'(默认)/'intraday'/'pre'
     code = ticker.get("code", "")
     if not event_ts or not pub_date or not code:
+        return None
+    if not _verify_market_supported(code):
         return None
 
     market = _market_of(code)
@@ -457,7 +544,13 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
         bench_baseline = resolve_bench_base(bench_name, bapi, baseline_date, session)
         if cached_baseline is not None and bench_baseline is not None:
             cached_baseline[bbk] = bench_baseline
-    _, bench_current = _fetch_benchmark_close(market, trade_date=verify_date)
+    current_date_key = verify_date or today.strftime("%Y%m%d")
+    bck = ("bench_current", bench_name, current_date_key)
+    bench_current = cached_baseline.get(bck) if cached_baseline is not None else None
+    if bench_current is None:
+        _, bench_current = _fetch_benchmark_close(market, trade_date=verify_date)
+        if cached_baseline is not None and bench_current is not None:
+            cached_baseline[bck] = bench_current
 
     abs_pct = (current / baseline - 1) * 100 if baseline else 0.0
     bench_pct = ((bench_current / bench_baseline - 1) * 100) if (bench_baseline and bench_current) else None
@@ -506,6 +599,8 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
         "event_pub_date":    event_pub_date,
         "baseline_date":     baseline_date,
         "event_score":       event.get("score"),
+        "event_effective_score": event.get("effective_score", event.get("score")),
+        "event_pool":        event.get("pool", "legacy"),
         "event_track":       event.get("track"),
         "event_subdomain":   event.get("subdomain"),
         "event_title":       _truncate(event.get("title", ""), 80),
@@ -537,17 +632,112 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
     return perf
 
 
-def verify_all(verify_date: Optional[str] = None) -> dict[str, int]:
+def _approx_days_since_event(event: dict, today: dt.date) -> Optional[int]:
+    """No-API approximate days since event anchor, used only for cheap light-mode prefilter."""
+    pub_date = _baseline_date_of(event)
+    try:
+        pub_d = dt.datetime.strptime(pub_date, "%Y%m%d").date()
+    except ValueError:
+        return None
+    return (today - pub_d).days
+
+
+def _near_light_milestone(days: int) -> bool:
+    """Loose no-API prefilter before exact baseline resolution.
+
+    Exact days_since is based on actual_base_date (can shift 1-3 calendar days
+    after pub_date for post-market/weekend events).  Keep a tolerance here so
+    milestone candidates are not dropped before the authoritative base is
+    resolved.
+    """
+    return any(abs(days - ms) <= LIGHT_VERIFY_MILESTONE_TOLERANCE_DAYS
+               for ms in LIGHT_VERIFY_MILESTONE_DAYS)
+
+
+def _select_tickers_for_verify(event: dict, mode: str, approx_days: int,
+                               score3_max_tickers: int = 3,
+                               score2_max_tickers: int = 2) -> tuple[list[dict], Optional[set[int]]]:
+    """Return candidate tickers plus optional exact-day allowlist.
+
+    light mode policy:
+      - score >= 3: keep at most 3 tickers, verify every day through T+60.
+      - score == 2: keep at most 2 tickers, verify only milestone days.
+      - score < 2: skip.
+
+    full mode preserves the legacy behavior: all open events × all tickers.
+    """
+    # P0 events separate research mappings from alpha candidates. Legacy events
+    # retain their original tickers so historical reports remain reproducible.
+    if event.get("policy_version") == "p0-2026-08-01":
+        if event.get("pool") != "trade":
+            return [], set()
+        tickers = list(event.get("alpha_tickers", []) or [])
+    else:
+        tickers = list(event.get("tickers", []) or [])
+    if mode == "full":
+        return tickers, None
+
+    try:
+        score = int(event.get("effective_score", event.get("score")) or 0)
+    except (TypeError, ValueError):
+        score = 0
+
+    if score >= 3:
+        return tickers[:score3_max_tickers], None
+    if score == 2:
+        if not _near_light_milestone(approx_days):
+            return [], set(LIGHT_VERIFY_MILESTONE_DAYS)
+        return tickers[:score2_max_tickers], set(LIGHT_VERIFY_MILESTONE_DAYS)
+    return [], set()
+
+
+def _resolve_baseline_and_days(event: dict, ticker: dict, today: dt.date,
+                               cached_baseline: dict) -> Optional[tuple[str, float, int]]:
+    """Resolve session-aware baseline and exact days_since with shared cache."""
+    event_ts = event.get("ts", "")
+    pub_date = _baseline_date_of(event)
+    code = ticker.get("code", "")
+    if not event_ts or not pub_date or not code:
+        return None
+    cache_key = (event_ts, code)
+    base_resolved = cached_baseline.get(cache_key)
+    if base_resolved is None:
+        base_resolved = resolve_base(code, pub_date, _session_of(event))
+        if base_resolved is None:
+            return None
+        cached_baseline[cache_key] = base_resolved
+    baseline_date, baseline = base_resolved
+    try:
+        baseline_d = dt.datetime.strptime(baseline_date, "%Y%m%d").date()
+    except ValueError:
+        return None
+    return baseline_date, float(baseline), (today - baseline_d).days
+
+
+def verify_all(verify_date: Optional[str] = None, mode: str = "light",
+               dry_run: bool = False,
+               score3_max_tickers: int = 3,
+               score2_max_tickers: int = 2) -> dict[str, Any]:
     """跑所有 open event × ticker. 返回统计."""
+    if mode not in {"light", "full"}:
+        raise ValueError(f"unsupported verify mode: {mode}")
+
     events = _read_jsonl(_EVENTS_PATH)
-    seen = _existing_perf_keys()
-    cached_baseline: dict = {}  # stock key→(date,price) tuple; bench key→float
+    # Single pass over perf JSONL: idempotency keys + prewarmed baselines so
+    # already-verified pairs skip the ~17s resolve_base/tushare fetch.
+    seen, cached_baseline = _prewarm_verify_state(events)  # stock→(date,price); bench→float
     stats = {
+        "mode": mode,
+        "dry_run": int(bool(dry_run)),
         "events_total": len(events),
         "events_open": 0,
         "events_expired": 0,
         "ticker_pairs_total": 0,
+        "ticker_pairs_candidate": 0,
+        "would_verify": 0,
         "verified": 0,
+        "skipped_policy": 0,
+        "skipped_unsupported": 0,
         "skipped_dup": 0,
         "fetch_failed": 0,
     }
@@ -571,20 +761,51 @@ def verify_all(verify_date: Optional[str] = None) -> dict[str, int]:
             continue
         stats["events_open"] += 1
 
-        for ticker in event.get("tickers", []):
-            stats["ticker_pairs_total"] += 1
-            # 幂等交给 verify_event_ticker (它基于 actual_base_date 算 key);
-            # 返回 None 既可能是 dup 也可能是 fetch_failed, 分别计数。
-            before = len(seen)
+        all_tickers = list(event.get("tickers", []) or [])
+        stats["ticker_pairs_total"] += len(all_tickers)
+        selected_tickers, allowed_days = _select_tickers_for_verify(
+            event, mode, days_from_pub,
+            score3_max_tickers=score3_max_tickers,
+            score2_max_tickers=score2_max_tickers,
+        )
+        stats["skipped_policy"] += max(0, len(all_tickers) - len(selected_tickers))
+        stats["ticker_pairs_candidate"] += len(selected_tickers)
+        supported_tickers = [
+            ticker for ticker in selected_tickers
+            if _verify_market_supported(ticker.get("code", ""))
+        ]
+        stats["skipped_unsupported"] += len(selected_tickers) - len(supported_tickers)
+        if dry_run:
+            # Cheap plan-only mode: no baseline/current/benchmark/sector fetches, no writes.
+            # Counts are intentionally approximate for score=2 because exact days_since
+            # depends on session-aware actual_base_date (requires market-data fetch).
+            stats["would_verify"] += len(supported_tickers)
+            continue
+
+        for ticker in supported_tickers:
+            resolved = _resolve_baseline_and_days(event, ticker, today, cached_baseline)
+            if resolved is None:
+                stats["fetch_failed"] += 1
+                continue
+            _, _, exact_days = resolved
+            if exact_days < 0 or exact_days > MAX_HORIZON_DAYS:
+                stats["skipped_policy"] += 1
+                continue
+            if allowed_days is not None and exact_days not in allowed_days:
+                stats["skipped_policy"] += 1
+                continue
+
+            key = (event.get("ts", ""), ticker.get("code", ""), exact_days)
+            if key in seen:
+                stats["skipped_dup"] += 1
+                continue
             perf = verify_event_ticker(event, ticker, verify_date=verify_date,
                                        cached_baseline=cached_baseline, seen_keys=seen)
             if perf:
                 stats["verified"] += 1
-            elif len(seen) == before:
-                # seen 没增长 → 要么 dup (key 已在 seen) 要么 fetch_failed。
-                code = ticker.get("code", "")
-                # 用 actual base 重新推 days 太重, 这里只能合并计 (近似)。
-                stats["skipped_dup"] += 1
+            else:
+                # 已经过 policy / duplicate 预检, 这里大概率是行情或 benchmark fetch 失败。
+                stats["fetch_failed"] += 1
     return stats
 
 
@@ -623,6 +844,8 @@ def _enrich_perf_with_event_meta(perfs: list[dict]) -> list[dict]:
         p["event_type"] = ev.get("event_type", "other")
         p["late_stage"] = bool(ev.get("late_stage"))
         p["effective_score"] = ev.get("effective_score", ev.get("score"))
+        p["event_pool"] = ev.get("pool", "legacy")
+        p["policy_version"] = ev.get("policy_version", "legacy")
     return perfs
 
 
@@ -631,6 +854,30 @@ def _bucket_for_days(days: int) -> str:
         if lo <= days <= hi:
             return name
     return "out_of_range"
+
+
+def _fixed_horizon_breakdown(by_pair: dict, field: str, milestone: int = 14) -> dict:
+    """Compare groups at exactly the same milestone; never mix latest horizons."""
+    key = f"T+{milestone}"
+    groups: dict[str, list[dict]] = defaultdict(list)
+    for agg in by_pair.values():
+        # Exact natural-day horizon only. The general milestone table uses the
+        # first observation >=N for continuity; score calibration must not.
+        exact = [r for r in agg.get("all", []) if r.get("days_since_event") == milestone]
+        if exact:
+            row = exact[-1]
+            groups[str(row.get(field, "?"))].append(row)
+    out = {}
+    for name, rows in groups.items():
+        ex = [r["excess_pct"] for r in rows if r.get("excess_pct") is not None]
+        strict = [r for r in rows if r.get("hit_strict") is not None]
+        out[name] = {
+            "samples": len(rows),
+            "hit_rate": round(sum(bool(r.get("hit")) for r in rows) / len(rows) * 100, 1),
+            "median_excess_pct": round(sorted(ex)[len(ex)//2], 2) if ex else None,
+            "strict_rate": round(sum(bool(r.get("hit_strict")) for r in strict) / len(strict) * 100, 1) if strict else None,
+        }
+    return out
 
 
 def report(weeks: int = 4) -> dict[str, Any]:
@@ -668,6 +915,10 @@ def report(weeks: int = 4) -> dict[str, Any]:
         "by_milestone": {},
         "by_window_bucket": {},   # W21 v3 §6 #3: noise/early/main/extended
         "by_score": {},
+        "by_effective_score": {},
+        "by_pool": {},
+        "by_score_fixed_t14": {},
+        "by_effective_score_fixed_t14": {},
         "by_track": {},
         "by_subdomain": {},
         "by_event_type": {},      # W21 v3 §6 #2
@@ -770,6 +1021,8 @@ def report(weeks: int = 4) -> dict[str, Any]:
     for pair, agg in by_pair.items():
         latest = agg["latest"]
         _bump(out["by_score"], f"score={latest.get('event_score')}", latest)
+        _bump(out["by_effective_score"], f"effective={latest.get('effective_score', latest.get('event_score'))}", latest)
+        _bump(out["by_pool"], latest.get("event_pool", "legacy"), latest)
         _bump(out["by_track"], latest.get("event_track", "?"), latest)
         _bump(out["by_subdomain"], latest.get("event_subdomain", "?"), latest)
         # W21 v3 §6 #2: event_type 拆解
@@ -777,7 +1030,7 @@ def report(weeks: int = 4) -> dict[str, Any]:
         # W21 v3 §6 #1: late_stage 拆解
         _bump(out["by_late_stage"], "late_stage" if latest.get("late_stage") else "normal", latest)
 
-    for bucket in ["by_score", "by_track", "by_subdomain", "by_event_type", "by_late_stage"]:
+    for bucket in ["by_score", "by_effective_score", "by_pool", "by_track", "by_subdomain", "by_event_type", "by_late_stage"]:
         for k, d in out[bucket].items():
             d["hit_rate"] = round(d["hits"] / d["samples"] * 100, 1) if d["samples"] else 0
             ex = d.pop("excesses")
@@ -785,6 +1038,11 @@ def report(weeks: int = 4) -> dict[str, Any]:
             evs = d.pop("excess_vs_sector_list")
             d["median_excess_vs_sector"] = round(sorted(evs)[len(evs) // 2], 2) if evs else None
             d["strict_rate"] = round(d["strict_hits"] / d["strict_samples"] * 100, 1) if d["strict_samples"] else None
+
+    # Fixed-horizon score calibration: unlike the legacy latest table, every
+    # group below uses the same T+14 horizon and is safe for monotonicity checks.
+    out["by_score_fixed_t14"] = _fixed_horizon_breakdown(by_pair, "event_score", 14)
+    out["by_effective_score_fixed_t14"] = _fixed_horizon_breakdown(by_pair, "effective_score", 14)
 
     # top winners / losers (latest excess)
     latest_rows = [agg["latest"] for agg in by_pair.values()
@@ -818,8 +1076,8 @@ def doc_markdown(weeks: int = 4) -> str:
               "剔除 beta + 行业轮动 = narrative 真有 alpha. **这是周报最该看的数字** — "
               "板块涨时再多 hit 也可能只是搭便车. 仅 A 股有 sector 数据, HK/US 不计入 strict.")
     md.append(">")
-    md.append("> baseline 锚定: 新闻**原始发布日 (pub_date)** 收盘价, 不是 radar 收集日 — "
-              "确保 T+N 测的是真实市场反应窗口而不是 cron 抓取延迟.")
+    md.append("> baseline 锚定: 使用原始发布时间 + session；盘前/盘后取下一可交易开盘，盘中取当日收盘。"
+              "旧事件缺发布时间时才回退 trade_date，不能视为严格可交易样本.")
     md.append(">")
     md.append("> **主判定窗口 = D14-D28** (W21 v3 §4 横截面证据). T+5/T+10 列为 noise 区, 仅供参考, 不当决策依据.")
     md.append("")
@@ -903,6 +1161,28 @@ def doc_markdown(weeks: int = 4) -> str:
     md.append(_SEP)
     for k in sorted(rep["by_score"].keys()):
         md.append(_row(k, rep["by_score"][k]))
+    md.append("")
+
+    md.append("## Score 校准（固定 T+14，同持有期）")
+    md.append("")
+    md.append("| score | n | hit_rate | 中位 excess% | strict_rate |")
+    md.append("|------|---|----------|--------------|-------------|")
+    for k, d in sorted(rep.get("by_score_fixed_t14", {}).items()):
+        med = _fmt_excess(d.get("median_excess_pct"))
+        sr = f"{d['strict_rate']}%" if d.get("strict_rate") is not None else "—"
+        md.append(f"| score={k} | {d['samples']} | {d['hit_rate']}% | {med} | {sr} |")
+    md.append("")
+    md.append("> 仅使用 `days_since_event == 14` 的精确同期限样本判断 score 单调性；上方 latest 表只看当前状态。")
+    md.append("")
+
+    md.append("## 样本池拆解（legacy vs P0 trade）")
+    md.append("")
+    md.append(_COLS.format(label="pool"))
+    md.append(_SEP)
+    for k, d in sorted(rep.get("by_pool", {}).items()):
+        md.append(_row(k, d))
+    md.append("")
+    md.append("> P0 research 事件不进入 alpha 跟踪；P0 trade 是新规则的样本外组合，legacy 仅保留历史复盘。")
     md.append("")
 
     # by_track
@@ -1048,8 +1328,8 @@ def doc_markdown(weeks: int = 4) -> str:
               "比『散点 TOP5 涨幅榜』对决策更有用.")
     md.append("- **末期抱团 vs 正常拆解** — 如果 normal hit_rate >> late_stage, 验证 late_stage_subdomains "
               "降权策略有效; 否则需要 review universe.yaml.late_stage_subdomains 列表.")
-    md.append("- **event_type 拆解** — capex_lock / quant_increment 应该 hit_rate 显著高于 trailing_data / "
-              "recap_news; 否则关键词分类器需要调.")
+    md.append("- **event_type 拆解** — confirmed_order / customer_capex 应优于 capacity_plan / financing_capex / "
+              "industry_supply_expansion / trailing_data；否则分类或传导映射仍需重做.")
     md.append("- score=3 (重磅) 应该 hit_rate 显著高于 score=2 — 否则雷达打分校准有问题")
     md.append("- 整体 hit_rate < 50% (excess) → 雷达无 alpha, 跟大盘 / 板块 beta 同步, 需要重做筛选")
     md.append("")
@@ -1090,26 +1370,79 @@ def event_report(event_ts: str) -> str:
 
 # ─── CLI ────────────────────────────────────────────────────────────────
 
-def _cmd_verify(args):
-    if args.event_ts:
-        events = [e for e in _read_jsonl(_EVENTS_PATH) if e.get("ts") == args.event_ts]
-        if not events:
-            print(f"event_ts {args.event_ts} not found")
-            sys.exit(1)
-        seen = _existing_perf_keys()
-        cached: dict = {}
-        for e in events:
-            for t in e.get("tickers", []):
-                perf = verify_event_ticker(e, t, verify_date=args.date,
-                                            cached_baseline=cached, seen_keys=seen)
-                print(json.dumps(perf, ensure_ascii=False) if perf else
-                      f"skip {e.get('subdomain')} / {t.get('code')}")
+@contextlib.contextmanager
+def _verify_lock(enabled: bool = True):
+    """Non-blocking process lock for cron safety.
+
+    Managed cron may time out while the underlying Python job is still running.
+    This lock prevents a second verify process from appending duplicate work in
+    parallel.  It is intentionally local-file based and advisory.
+    """
+    if not enabled:
+        yield True
         return
-    stats = verify_all(verify_date=args.date)
-    print(f"verify_all: events_total={stats['events_total']} "
-          f"open={stats['events_open']} expired={stats['events_expired']} "
-          f"ticker_pairs={stats['ticker_pairs_total']} verified={stats['verified']} "
-          f"skipped={stats['skipped_dup']} fetch_failed={stats['fetch_failed']}")
+    _VERIFY_LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with _VERIFY_LOCK_PATH.open("w") as f:
+        try:
+            fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            yield False
+            return
+        try:
+            f.write(f"{dt.datetime.now(CN_TZ).isoformat(timespec='seconds')}\n")
+            f.flush()
+            yield True
+        finally:
+            fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+
+
+def _cmd_verify(args):
+    mode = "full" if args.all else args.mode
+    with _verify_lock(enabled=not args.no_lock) as acquired:
+        if not acquired:
+            print("verify skipped: another narrative_track.py verify is already running")
+            return
+
+        if args.event_ts:
+            events = [e for e in _read_jsonl(_EVENTS_PATH) if e.get("ts") == args.event_ts]
+            if not events:
+                print(f"event_ts {args.event_ts} not found")
+                sys.exit(1)
+            seen, cached = _prewarm_verify_state(events)
+            for e in events:
+                tickers = list(e.get("tickers", []) or [])
+                if mode == "light":
+                    today = dt.date.today() if not args.date else dt.datetime.strptime(args.date, "%Y%m%d").date()
+                    approx_days = _approx_days_since_event(e, today)
+                    tickers, _ = _select_tickers_for_verify(
+                        e, mode, approx_days if approx_days is not None else 0,
+                        score3_max_tickers=args.score3_max_tickers,
+                        score2_max_tickers=args.score2_max_tickers,
+                    )
+                for t in tickers:
+                    perf = None if args.dry_run else verify_event_ticker(
+                        e, t, verify_date=args.date,
+                        cached_baseline=cached, seen_keys=seen)
+                    print(json.dumps(perf, ensure_ascii=False) if perf else
+                          f"skip {e.get('subdomain')} / {t.get('code')}")
+            return
+
+        stats = verify_all(
+            verify_date=args.date,
+            mode=mode,
+            dry_run=args.dry_run,
+            score3_max_tickers=args.score3_max_tickers,
+            score2_max_tickers=args.score2_max_tickers,
+        )
+        print(f"verify_all: mode={stats['mode']} dry_run={stats['dry_run']} "
+              f"events_total={stats['events_total']} "
+              f"open={stats['events_open']} expired={stats['events_expired']} "
+              f"ticker_pairs={stats['ticker_pairs_total']} "
+              f"candidates={stats['ticker_pairs_candidate']} "
+              f"would_verify={stats['would_verify']} verified={stats['verified']} "
+              f"skipped_policy={stats['skipped_policy']} "
+              f"skipped_unsupported={stats['skipped_unsupported']} "
+              f"skipped_dup={stats['skipped_dup']} fetch_failed={stats['fetch_failed']}")
 
 
 def _cmd_report(args):
@@ -1132,7 +1465,13 @@ def main():
     v = sp.add_parser("verify")
     v.add_argument("--event-ts", help="单 event 验证 (默认全部)")
     v.add_argument("--date", help="verify against YYYYMMDD close (默认最新)")
-    v.add_argument("--all", action="store_true", help="(default behavior)")
+    v.add_argument("--mode", choices=["light", "full"], default="light",
+                   help="默认 light: score>=3 最多3票每日跟踪; score=2 最多2票只跑里程碑")
+    v.add_argument("--all", action="store_true", help="legacy alias for --mode full")
+    v.add_argument("--dry-run", action="store_true", help="只统计将要验证的 pairs, 不写 perf")
+    v.add_argument("--no-lock", action="store_true", help="禁用 verify 进程锁 (仅手动调试用)")
+    v.add_argument("--score3-max-tickers", type=int, default=3)
+    v.add_argument("--score2-max-tickers", type=int, default=2)
     v.set_defaults(func=_cmd_verify)
 
     r = sp.add_parser("report")

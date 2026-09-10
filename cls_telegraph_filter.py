@@ -193,7 +193,142 @@ def parse_sina(raw):
     return items
 
 
-PARSERS = {"cls": parse_cls, "eastmoney": parse_eastmoney, "sina": parse_sina}
+
+def parse_cls_api(raw):
+    """财联社 JSON API (/api/cache?name=telegraph). 返回 [{time,title,body,sectors,stocks}]."""
+    items = []
+    try:
+        data = json.loads(raw)
+        roll = data.get("data", {}).get("roll_data", [])
+    except Exception:
+        return items
+    for it in roll:
+        ctime = it.get("ctime", 0)
+        try:
+            tm = dt.datetime.fromtimestamp(ctime, CN_TZ).strftime("%H:%M:%S")
+        except Exception:
+            tm = ""
+        # 标题优先用 brief 里的【】提取，否则用 title 字段（type=20026 电报解读类 title 有内容）
+        brief = (it.get("brief") or "").strip()
+        content_text = (it.get("content") or "").strip()
+        title_field = (it.get("title") or "").strip()
+        # title 字段可能包含 【】前缀，尝试清理
+        title_field_clean = title_field
+        mt_title = re.match(r"【[^】]+】(.*)", title_field, re.S)
+        if mt_title and not brief and not content_text:
+            title_field_clean = mt_title.group(1).strip()
+
+        mt = re.match(r"【([^】]+)】(.*)", brief, re.S)
+        if mt:
+            title, body = mt.group(1).strip(), mt.group(2).strip()
+        elif brief:
+            title = brief[:60]
+            body = content_text or brief
+        elif title_field:
+            # type=20026 电报解读: title 有完整标题，brief/content 空
+            title = title_field_clean or title_field
+            body = title_field  # 正文就用标题，因为没有正文
+        elif content_text:
+            title = content_text[:60]
+            body = content_text
+        else:
+            title = ""
+            body = ""
+        # subjects → sectors
+        sectors = []
+        for s in it.get("subjects", []) or []:
+            name = s.get("subject_name", "")
+            if name:
+                sectors.append(name)
+        # stock_list → stocks
+        stocks = []
+        for s in it.get("stock_list", []) or []:
+            name = s.get("name", "")
+            code = s.get("StockID", "")
+            if name and code and re.match(r"^(sz|sh|bj)\d{6}$", code):
+                stocks.append((name, code))
+        items.append({
+            "time": tm, "title": title, "body": _clean_body(body),
+            "sectors": [s for s in sectors if s not in ("加红", "公司", "看盘")],
+            "stocks": stocks, "source": "cls",
+        })
+    return items
+
+
+def parse_em_api(raw):
+    """东方财富 JSONP API (newsapi/kuaixun/v1/getlist_*). 返回 [{time,title,body,sectors,stocks}]."""
+    items = []
+    try:
+        # 去掉 JSONP 前缀：var ajaxResult=...
+        m = re.search(r'var\s+\w+\s*=\s*(\{.*\})', raw, re.S)
+        if not m:
+            data = json.loads(raw)
+        else:
+            data = json.loads(m.group(1))
+        lives = data.get("LivesList", [])
+    except Exception:
+        return items
+    for it in lives:
+        showtime = (it.get("showtime") or "").strip()
+        # "2026-09-03 00:19:28" → "00:19:28"
+        tm = showtime.split(" ")[1] if " " in showtime else showtime
+        title = (it.get("title") or "").strip()
+        digest = (it.get("digest") or "").strip()
+        # digest 常以【标题】开头，去掉重复
+        if digest.startswith(f"【{title}】"):
+            body = digest[len(title) + 2:].strip()
+        elif digest and title and digest.startswith(title):
+            body = digest[len(title):].strip()
+        else:
+            body = digest or title
+        items.append({
+            "time": tm, "title": title, "body": _clean_body(body),
+            "sectors": [], "stocks": [], "source": "eastmoney",
+        })
+    return items
+
+
+def _fetch_url(url, timeout=15):
+    """简单 HTTP GET，返回文本。失败返回空字符串。"""
+    import urllib.request
+    import urllib.error
+    try:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                          "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        })
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            raw = resp.read()
+            # 尝试 utf-8，失败用 gbk
+            for enc in ("utf-8", "gbk", "latin-1"):
+                try:
+                    return raw.decode(enc)
+                except UnicodeDecodeError:
+                    continue
+            return raw.decode("utf-8", errors="replace")
+    except Exception:
+        return ""
+
+
+# 各 source 的直连 API fallback
+FETCH_URLS = {
+    "cls": "https://www.cls.cn/api/cache?name=telegraph",
+    "eastmoney": "https://newsapi.eastmoney.com/kuaixun/v1/getlist_102_ajaxResult_50_1_.html",
+    "sina": "https://zhibo.sina.com.cn/api/zhibo/feed?page=1&page_size=30&zhibo_id=152&tag_id=0&type=0",
+}
+
+# 各 source 用 API 时对应的 parser
+API_PARSERS = {
+    "cls": parse_cls_api,
+    "eastmoney": parse_em_api,
+    "sina": parse_sina,  # sina 本身就是 JSON API
+}
+
+PARSERS = {
+    "cls": parse_cls, "eastmoney": parse_eastmoney, "sina": parse_sina,
+    "cls_api": parse_cls_api, "eastmoney_api": parse_em_api,
+}
+
 
 
 # 过于宽泛的 universe 关键词 — 它们是 event_type 分类器用的, 不能单独作为'话题锚点'.
@@ -339,15 +474,43 @@ def main():
     ap.add_argument("--dedup-days", type=int, default=30)
     ap.add_argument("--source", choices=list(PARSERS.keys()), default="cls",
                     help="信源类型: cls(财联社) / eastmoney(东财) / sina(新浪7x24 JSON)")
+    ap.add_argument("--fetch", action="store_true",
+                    help="自动从直连 API 抓取原文 (不读 stdin)。优先直连 API, 不依赖 Jina Reader。")
+    ap.add_argument("--fetch-url", default="",
+                    help="自定义抓取 URL (覆盖 --source 默认的 API URL)")
     args = ap.parse_args()
 
-    raw = sys.stdin.read()
-    if not raw.strip():
-        print("[]" if args.format == "json" else "(stdin 为空, 没有快讯原文)")
-        return
+    if args.fetch:
+        # 自动抓取模式: 从直连 API 拿数据, 用对应的 API parser 解析
+        src_key = args.source
+        # 如果传的是 cls/eastmoney/sina (旧名), 映射到 API parser
+        api_parser_map = {
+            "cls": "cls_api",
+            "eastmoney": "eastmoney_api",
+            "sina": "sina",  # sina 本身就是 JSON API 格式
+        }
+        parser_key = api_parser_map.get(src_key, src_key)
+        url = args.fetch_url or FETCH_URLS.get(src_key, FETCH_URLS.get(parser_key, ""))
+        if not url:
+            print("[]" if args.format == "json" else f"(不支持 --fetch 的 source: {src_key})")
+            return
+        raw = _fetch_url(url)
+        if not raw.strip():
+            print("[]" if args.format == "json" else f"(抓取失败: {url})")
+            return
+        parser = PARSERS.get(parser_key)
+        if parser is None:
+            print("[]" if args.format == "json" else f"(无对应 parser: {parser_key})")
+            return
+    else:
+        raw = sys.stdin.read()
+        if not raw.strip():
+            print("[]" if args.format == "json" else "(stdin 为空, 没有快讯原文)")
+            return
+        parser = PARSERS[args.source]
 
     kw, tnames, tbyname, sector_hints = load_universe_index()
-    items = PARSERS[args.source](raw)
+    items = parser(raw)
     items = [score_item(it, kw, tnames, sector_hints) for it in items]
     # 过滤: 非噪音 + 达到相关性阈值
     cand = [it for it in items if not it["is_noise"] and it["relevance"] >= args.min_relevance]
@@ -363,7 +526,7 @@ def main():
     cand.sort(key=lambda x: (x["is_breaking"], x["relevance"]), reverse=True)
     cand = cand[: args.top]
 
-    src_label = {"cls": "财联社电报", "eastmoney": "东财快讯", "sina": "新浪7x24"}[args.source]
+    src_label = {"cls": "财联社电报", "eastmoney": "东财快讯", "sina": "新浪7x24", "cls_api": "财联社电报", "eastmoney_api": "东财快讯"}[args.source]
     if args.format == "json":
         print(json.dumps(cand, ensure_ascii=False, indent=1))
     else:
