@@ -42,8 +42,20 @@ def main():
     p=sub.add_parser('evidence'); p.add_argument('--kind',choices=['dispatch','delivery','inventory','collect-dispatch'],default='inventory'); p.add_argument('--run-id'); p.add_argument('--input')
     p=sub.add_parser('data-backfill');p.add_argument('--input',required=True);p.add_argument('--max-requests',type=int,default=100)
     p=sub.add_parser('data-audit')
+    p=sub.add_parser('parallel-collect'); p.add_argument('--out',required=True)
+    p=sub.add_parser('parallel-current'); p.add_argument('--panel',required=True); p.add_argument('--out',required=True); p.add_argument('--reviews')
+    p=sub.add_parser('parallel'); p.add_argument('--panel',required=True); p.add_argument('--out',required=True); p.add_argument('--reviews')
     p=sub.add_parser('plans')
     args=parser.parse_args()
+    if args.cmd=='parallel-collect':
+        from mt1.parallel_collect import collect
+        collect(args.out); return
+    if args.cmd in ('parallel','parallel-current'):
+        if args.cmd=='parallel-current':
+            from mt1.parallel_collect import collect
+            collect(args.panel)
+        from mt1.parallel import run_parallel
+        print(json.dumps(run_parallel(args.state_dir,args.panel,args.out,args.reviews),ensure_ascii=False)); return
     if args.cmd=='data-backfill':
         from mt1.data_readiness import backfill
         r=backfill(args.state_dir,json.loads(Path(args.input).read_text()),args.max_requests)

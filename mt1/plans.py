@@ -119,6 +119,8 @@ def qualification_errors(p, asof, method_lookup=None):
     if buying and exiting: return ['conflicting_buy_exit']
     if exiting: return exit_errors(p, asof)
     errors = evidence_errors(p.get('evidence'), asof)
+    if p.get('method_status') == 'shadow' or p.get('candidate_origin') == 'mt11_parallel_shadow':
+        errors.append('parallel_method_shadow_only')
     if not p.get('reviewer'): errors.append('reviewer_missing')
     if p.get('channel') not in CHANNELS - {'UNKNOWN'}: errors.append('channel_unknown')
     errors.extend(deadline_errors(p, asof))
