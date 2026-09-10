@@ -1,0 +1,164 @@
+{
+  "work_id": "work_2584297bb8bd6304e99f",
+  "date": "2026-09-11",
+  "initial_head": "a3442373a4f574738570e772268056a87d63d14d",
+  "status": "engineering_delivery_not_independent_acceptance",
+  "historical_reproduction": {
+    "commit": "f93d3fd",
+    "results": {
+      "financial_exit": "REJECTED: not qualified: financial_not_passed",
+      "unverified_pending_exit": "ACCEPTED",
+      "unbound_method_buy": true,
+      "expired_buy": true
+    },
+    "original_suite": "48 passed in 0.49s; isolated git archive"
+  },
+  "tests": {
+    "initial_head": "69 passed in 0.54s",
+    "new_regressions_before_fix": "4 failed, 4 passed: review evidence x3; evening gate x1",
+    "final_suite": "91 passed in 0.55s",
+    "command": "/home/emox/work/homespace/.venv/bin/python -m pytest tests -q"
+  },
+  "live_config_readonly": [
+    {
+      "name": "morning-market-brief",
+      "domain": "investment",
+      "cwd": "/home/emox/work/investment",
+      "delivery": "feishu:oc_cb4beff850c29f8c89b19ee87003bb18",
+      "silent": null,
+      "model": "",
+      "cron": "15 7 * * 1-5",
+      "enabled": true,
+      "prompt_sha256": "48157540042c9d75261e6577a3ba48f09aa8b6995165167d876a1e2ef13b5f5d",
+      "uses_mt1_job": true,
+      "uses_finalize": true,
+      "uses_rec_verify": false
+    },
+    {
+      "name": "evening-market-recap",
+      "domain": "investment",
+      "cwd": "/home/emox/work/investment",
+      "delivery": "feishu:oc_cb4beff850c29f8c89b19ee87003bb18",
+      "silent": null,
+      "model": "",
+      "cron": "30 18 * * 1-5",
+      "enabled": true,
+      "prompt_sha256": "b220e5deccaeb085cc20a9a2b7b9456d8a323f00e9964455884985be4c12592b",
+      "uses_mt1_job": true,
+      "uses_finalize": true,
+      "uses_rec_verify": false
+    },
+    {
+      "name": "weekend-saturday-recap",
+      "domain": "investment",
+      "cwd": "/home/emox/work/investment",
+      "delivery": "feishu:oc_cb4beff850c29f8c89b19ee87003bb18",
+      "silent": null,
+      "model": "",
+      "cron": "15 7 * * 6",
+      "enabled": true,
+      "prompt_sha256": "0224d9fc26b5eda967e3257e001b6c8d0d7a4bc43af766432c0ad2cdf2f07db3",
+      "uses_mt1_job": true,
+      "uses_finalize": true,
+      "uses_rec_verify": false
+    },
+    {
+      "name": "weekend-sunday-preview",
+      "domain": "investment",
+      "cwd": "/home/emox/work/investment",
+      "delivery": "feishu:oc_cb4beff850c29f8c89b19ee87003bb18",
+      "silent": null,
+      "model": "",
+      "cron": "0 5 * * 0",
+      "enabled": true,
+      "prompt_sha256": "cacd27288d4d5e0def4639879a6c6baf76fd32281fb72f58f1f51ebeb1e0ffe7",
+      "uses_mt1_job": true,
+      "uses_finalize": true,
+      "uses_rec_verify": false
+    },
+    {
+      "name": "daily-rec-verify",
+      "domain": "investment",
+      "cwd": "/home/emox/work/investment",
+      "delivery": "feishu:oc_cb4beff850c29f8c89b19ee87003bb18",
+      "silent": true,
+      "model": "",
+      "cron": "0 19 * * 1-5",
+      "enabled": true,
+      "prompt_sha256": "0ebd4b282f9d1c83204a367c85daeec7cf5229fa32c328184653c6fdba5347cf",
+      "uses_mt1_job": false,
+      "uses_finalize": false,
+      "uses_rec_verify": true
+    }
+  ],
+  "live_batch_test": {
+    "isolation": "/tmp/mt1-work-258429-live; production coverage copied, not modified",
+    "asof": "2026-09-10",
+    "unit": "mt1-work-258429-live.service",
+    "hard_timeout_seconds": 300,
+    "exit_status": 0,
+    "results": [
+      {
+        "asof": "2026-09-10",
+        "batch_codes": [
+          "000523.SZ"
+        ],
+        "coverage_progress": {
+          "attempted_unique": 105,
+          "total": 5561,
+          "current_date_observed": 1,
+          "cross_date_attempts_are_not_fresh_coverage": true
+        },
+        "errors": [],
+        "data_version": "ef6ed4b9cee976fd7d8d0a0dc246355baad084d56024a354364037b3338c695b"
+      },
+      {
+        "asof": "2026-09-10",
+        "batch_codes": [
+          "000524.SZ"
+        ],
+        "coverage_progress": {
+          "attempted_unique": 106,
+          "total": 5561,
+          "current_date_observed": 2,
+          "cross_date_attempts_are_not_fresh_coverage": true
+        },
+        "errors": [],
+        "data_version": "903a4d745214ee8873c13f992132b7a6b3374cd03baa0f2002fece8021edad6d"
+      }
+    ],
+    "note": "Current-date observed=1/2 refers only to isolated test cache. Cross-date attempts 105/106 are not full fresh coverage."
+  },
+  "new_ledger_verify": {
+    "input": "consistent readonly SQLite backup of production plans.db",
+    "result": {
+      "status": "partial",
+      "verified": 0,
+      "unknown": 64,
+      "errors": []
+    }
+  },
+  "production_readonly": {
+    "plans": 64,
+    "final": 0,
+    "methods": 1,
+    "method_status": "active",
+    "registration_kind": "existing_production_baseline",
+    "validation_status": "not_revalidated"
+  },
+  "incomplete": [
+    "64-plan investment evidence cold-start review",
+    "Full-universe fresh financial coverage",
+    "Real scheduled collection -> source review -> finalize -> Feishu delivery for all four phases",
+    "Exact VALUE/TREND/REVERSAL 20/40/60 PIT historical and rolling OOS backtests",
+    "Other worker deployment and execution",
+    "Real third-party watchlist write acknowledgement"
+  ],
+  "safety": {
+    "production_plans_modified": false,
+    "cron_modified": false,
+    "third_party_watchlist_write": false,
+    "trades": false,
+    "synthetic_report_sent": false
+  }
+}

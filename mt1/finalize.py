@@ -34,7 +34,11 @@ def finalize(bundle, state_dir, investment_dir):
                     market=new['market']
                     if market not in gates:
                         cal=cn_calendar(now) if market=='CN' else foreign_calendar(now,market)
-                        gates[market]=gate(cal,market,'morning',now)
+                        # Weekend research is allowed, but must not bypass the
+                        # market-open gate for a new BUY. Evening additionally
+                        # requires the CN session to have completed.
+                        buy_phase='evening' if bundle['phase']=='evening' else 'morning'
+                        gates[market]=gate(cal,market,buy_phase,now)
                     if not gates[market]['allowed']: raise ValueError('market gate closed')
                 result=store.apply('plan:'+event['id'],event['expected_version'],event['request_id'],payload,event['reason'],lambda old, patch: reduce_plan(old, patch, store.latest))
                 changes.append({'before':old,'after':result,'reason':event['reason'],'request_id':event['request_id']})

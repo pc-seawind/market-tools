@@ -18,8 +18,10 @@ def reduce_plan(old, patch, method_lookup=None, *, legacy_import=False):
                 raise ValueError(f'immutable episode field: {k}')
         if old['state'] == 'EXIT' and new['state'] != 'EXIT':
             raise ValueError('EXIT re-entry requires a new episode')
-        if new.get('review_due') != old.get('review_due') and not patch.get('extension_evidence'):
-            raise ValueError('deadline changes require new evidence')
+        if new.get('review_due') != old.get('review_due'):
+            reasons = evidence_errors(patch.get('extension_evidence'), date.today())
+            if reasons:
+                raise ValueError('review changes require valid evidence: '+','.join(reasons))
     for field in ('plan_id', 'code', 'market', 'episode', 'original_reason', 'original_date',
                   'original_deadline', 'reference_price', 'channel', 'state', 'holding_status',
                   'unheld_direction', 'held_direction', 'evidence', 'milestones', 'price_condition',
