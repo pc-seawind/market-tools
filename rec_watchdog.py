@@ -4,9 +4,9 @@
 如果推荐时板块是 HOT (≥60), 当前变成 NEUTRAL/COLD, 触发告警.
 
 告警级别:
-  🚨 CRITICAL  — 板块从 HOT 跌至 COLD (<45), BUY rec 建议 EXIT
-  ⚠️  WARNING   — 板块从 HOT 跌至 NEUTRAL (45-59), BUY rec 建议降级 WATCH
-  ℹ️  INFO      — 板块仍 HOT 但 flow 反转 (20d 正→负), 注意仓位
+  🚨 CRITICAL  — 板块从 HOT 跌至 COLD (<45), 仅复核中期逻辑，不自动 EXIT
+  ⚠️  WARNING   — 板块从 HOT 跌至 NEUTRAL (45-59), 仅复核入场条件，不改变持有状态
+  ℹ️  INFO      — 板块仍 HOT 但 flow 反转 (20d 正→负), 复核证据，不给仓位指令
 
 CLI:
   python3 rec_watchdog.py              # 全量检查, 输出告警表
@@ -98,16 +98,16 @@ def check_rec(rec: dict[str, Any]) -> RecAlert | None:
         alert_level = "CRITICAL"
         alert_reason = f"板块从 {tier_at_rec}({score_at_rec:.0f}) 暴跌至 {tier_now}({score_now:.0f})"
         if action == "BUY":
-            suggestion = "EXIT"
+            suggestion = "REVIEW_THESIS"
         else:
-            suggestion = "REMOVE_FROM_WATCH"
+            suggestion = "REVIEW_THESIS"
 
     # Case 2: Sector dropped from HOT to NEUTRAL
     elif score_at_rec >= 60 and score_now < 60:
         alert_level = "WARNING"
         alert_reason = f"板块从 {tier_at_rec}({score_at_rec:.0f}) 降至 {tier_now}({score_now:.0f})"
         if action == "BUY":
-            suggestion = "DOWNGRADE_TO_WATCH"
+            suggestion = "REVIEW_THESIS"
         else:
             suggestion = "MONITOR"
 
@@ -115,7 +115,7 @@ def check_rec(rec: dict[str, Any]) -> RecAlert | None:
     elif score_at_rec >= 60 and score_now >= 60 and flow_20d_now is not None and flow_20d_now < 0:
         alert_level = "INFO"
         alert_reason = f"板块仍{tier_now}({score_now:.0f}) 但 20 日资金转为净流出({_fmt_cny(flow_20d_now)})"
-        suggestion = "REDUCE_POSITION" if action == "BUY" else "MONITOR"
+        suggestion = "REVIEW_THESIS"
 
     # Case 4: Score dropped significantly (>15 points) but still HOT
     elif score_at_rec - score_now >= 15 and score_now >= 60:
@@ -181,7 +181,7 @@ def _active_latest_recs(recs: list[dict[str, Any]]) -> list[dict[str, Any]]:
     active = []
     for rec in latest.values():
         action = _rec_action(rec)
-        if action in {"EXIT", "SELL"}:
+        if action == "EXIT":
             continue
         # Normalize old rows enough for check_rec().
         if "code" not in rec and rec.get("ts_code"):
@@ -215,7 +215,7 @@ _LEVEL_ICON = {
 }
 
 _SUGGESTION_CN = {
-    "EXIT": "建议清仓退出",
+    "REVIEW_THESIS": "复核中期逻辑，不自动退出",
     "DOWNGRADE_TO_WATCH": "建议降级为 WATCH (不再加仓)",
     "REMOVE_FROM_WATCH": "建议移出观察池",
     "REDUCE_POSITION": "建议缩减仓位至下限",
@@ -269,9 +269,9 @@ def print_summary(alerts: list[RecAlert]) -> str:
 
     parts = []
     if critical:
-        parts.append(f"🚨{len(critical)}条严重降级(需EXIT)")
+        parts.append(f"🚨{len(critical)}条严重降级(需中期逻辑复核)")
     if warning:
-        parts.append(f"⚠️{len(warning)}条板块降档(建议WATCH)")
+        parts.append(f"⚠️{len(warning)}条板块降档(需入场条件复核)")
     if info:
         parts.append(f"ℹ️{len(info)}条需关注")
     if ok:
@@ -290,6 +290,18 @@ def main():
     ap.add_argument("--summary", action="store_true", help="One-line summary")
     args = ap.parse_args()
 
+    # Standalone calls must not bypass the MT-1.0 calendar gate.
+    from datetime import timezone
+    from mt1.calendar import gate
+    from mt1.data import cn_calendar
+    now = datetime.now(timezone.utc)
+    try:
+        decision = gate(cn_calendar(now), "CN", "morning", now)
+    except Exception as exc:
+        decision = {"allowed": False, "reason": "calendar_unavailable", "error": str(exc)}
+    if not decision["allowed"]:
+        print(json.dumps({"status": "paused", "calendar": decision}, ensure_ascii=False))
+        return
     alerts = check_all()
 
     if args.json:

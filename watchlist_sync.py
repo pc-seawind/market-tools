@@ -1,43 +1,15 @@
 #!/usr/bin/env python3
-"""watchlist_sync.py — push BUY-tagged stocks to HTSC 自选 (default group).
+"""watchlist_sync.py — MT-1.0 final-plan-only HTSC 自选同步。
 
-Why
----
-After each evening recap / morning brief, the framework decides a small set of
-"常规 BUY" candidates (Tier1 板块 HOT + 个股通过). Manually copying these
-into HTSC 自选 is fragile (forget / typo). This helper:
-
-  1. Reads a list of (code, name, source_meta) tuples,
-  2. De-dupes against a local idempotency ledger (.cron_state/htsc_watchlist_added.jsonl)
-     so we never spam the same stock to HTSC twice,
-  3. Calls the HTSC `addWatchlist` skill with one batched natural-language query,
-  4. Appends the successfully-added items back to the ledger with timestamp +
-     reason (which report decided BUY).
-
-Why a local ledger and not just trust HTSC?
-  HTSC `getWatchlist` only returns the first 20 items, so once the watchlist
-  grows past 20 we cannot reliably check membership remotely. The ledger is a
-  cheap, append-only safety net: if a code appears in the ledger within the
-  last `--cooldown-days` (default 30), we skip re-adding (HTSC is supposedly
-  idempotent, but no need to spam network calls or risk a quota hit).
-
-Usage
------
-  # one-shot from BUY list on stdin (JSON: [{"code":"601688.SH","name":"华泰证券","reason":"..."}])
-  python3 watchlist_sync.py from-stdin --group "默认组"
-
-  # one-shot CLI:
-  python3 watchlist_sync.py add --code 601688.SH --name 华泰证券 --reason "evening 2026-06-17"
-
-  # auto-pull from an evening recap json (the orchestration shell output):
-  python3 watchlist_sync.py from-recap --recap-json /tmp/evening_recap_2026-06-17.json
-
-Exit code: 0 always (failure of one symbol must NOT break a cron pipeline).
-JSON to stdout summarising what we did.
+Raw from-recap / from-stdin / add payloads without a qualified plan are rejected.
+Use mt1.py watchlist (dry-run default). Execution uses per-symbol failure isolation,
+serialized cooldown check/write, and an append-only acknowledgement ledger.
+No brokerage orders, no position sizing, no watchlist deletions.
 """
 from __future__ import annotations
 
 import argparse
+import fcntl
 import datetime as dt
 import json
 import os
@@ -133,7 +105,7 @@ def call_addwatchlist(query: str, group: str, *, timeout: int = 90) -> dict[str,
         return {"ok": False, "error": {"category": "decode", "message": str(e), "stdout_tail": cp.stdout[-500:]}}
 
 
-def sync_buys(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry_run: bool, source: str) -> dict[str, Any]:
+def _sync_buys_locked(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry_run: bool, source: str) -> dict[str, Any]:
     """buys: [{'code':'601688.SH','name':'华泰证券','reason':'...'}]"""
     if not buys:
         return {"ok": True, "added": [], "skipped": [], "errors": [], "source": source, "note": "empty BUY list"}
@@ -141,6 +113,11 @@ def sync_buys(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry
     skipped = []
     pending = []
     for b in buys:
+        from mt1.plans import eligible
+        plan = b.get('_mt1_final_plan') or {}
+        if not eligible(plan, dt.datetime.now(CN_TZ).date()) or plan.get('code') != b.get('code'):
+            skipped.append({"code": b.get("code"), "skip_reason": "MT-1.0 requires final qualified research plan"})
+            continue
         code = normalise_code(b.get("code") or "")
         name = (b.get("name") or "").strip()
         reason = (b.get("reason") or "").strip() or source
@@ -183,61 +160,40 @@ def sync_buys(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry
             "added_at": now_iso(),
             "htsc_ack_in_response": ok_back,
         }
-        append_ledger(entry)
-        added_now.append(entry)
+        if ok_back and confirmed_list:
+            append_ledger(entry)
+            added_now.append(entry)
+        else:
+            skipped.append({"code": p["code"], "skip_reason": "provider did not explicitly confirm symbol; no ledger write"})
 
     return {"ok": True, "added": added_now, "skipped": skipped, "errors": [], "source": source, "htsc_response_data": res.get("data")}
 
 
-def parse_recap_buys(path: Path) -> list[dict[str, Any]]:
-    """Pull BUY items out of an evening_recap_*.json / market_scan_*.json.
+def sync_buys(buys: list[dict[str, Any]], *, group: str, cooldown_days: int, dry_run: bool, source: str) -> dict[str, Any]:
+    """Serialize cooldown check + provider acknowledgement + ledger append."""
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    with (STATE_DIR / "htsc_watchlist.lock").open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        results = []
+        # Per-symbol isolation, including same-invocation duplicate suppression.
+        seen = set()
+        for item in buys:
+            code = normalise_code(item.get("code", ""))
+            if code in seen:
+                continue
+            seen.add(code)
+            results.append(_sync_buys_locked([item], group=group, cooldown_days=cooldown_days,
+                                            dry_run=dry_run, source=source))
+        return {"ok": all(r.get("ok") for r in results), "source": source,
+                "added": [x for r in results for x in r.get("added", [])],
+                "skipped": [x for r in results for x in r.get("skipped", [])],
+                "errors": [x for r in results for x in r.get("errors", [])],
+                "pending": [x for r in results for x in r.get("pending", [])]}
 
-    入自选规则 (2026-09-10 起按 action × channel 判定, 不再只认 HOT):
-      - channel=VALUE  → 要求板块 HOT (估值通道的老纪律不变)
-      - channel=TREND  → 要求板块 HOT
-      - channel=REVERSAL → **允许 COLD 板块** (左侧反转通道本来就靠弱势板块
-        + 深跌取 alpha; 旧的 "只有 HOT 才入自选" 会让这条通道永远进不了自选)。
-        仍只同步 action=BUY (REVERSAL_WATCH 即 action=WATCH 不入)。
-    """
-    d = json.loads(path.read_text(encoding="utf-8"))
-    out = []
-    for concept, pk in (d.get("picks") or {}).items():
-        if not isinstance(pk, dict) or pk.get("error"):
-            continue
-        ss = pk.get("sector_score") or {}
-        tier = ss.get("tier", "")
-        score = ss.get("total_score") or 0
-        is_hot = ("HOT" in tier) or (score >= 60)
-        for e in pk.get("evaluations") or []:
-            # action 优先; 旧 JSON 只有 verdict 时做一次映射
-            action = e.get("action") or e.get("verdict", "")
-            channel = e.get("channel") or ""
-            if not channel:
-                v = e.get("verdict", "")
-                action = {"TREND_BUY": "BUY", "TREND_WATCH": "WATCH",
-                          "REVERSAL_BUY": "BUY", "REVERSAL_WATCH": "WATCH"}.get(v, v)
-                channel = {"TREND": "TREND", "REVERSAL": "REVERSAL"}.get(v.split("_")[0], "VALUE")
-            if action != "BUY":
-                continue
-            if channel != "REVERSAL" and not is_hot:
-                continue   # 估值/趋势通道仍需 HOT 板块
-            st = e.get("stock") or {}
-            code = st.get("code") or st.get("ts_code") or ""
-            name = st.get("name") or ""
-            if not code or not name:
-                continue
-            reason = f"{concept} {tier}({score:.1f}) [{channel}] | {e.get('reason','')}"
-            out.append({"code": code, "name": name, "reason": reason})
-    # de-dup within a single recap (some stocks could appear in 2 sectors)
-    seen, dedup = set(), []
-    for b in out:
-        c = normalise_code(b["code"])
-        if c in seen:
-            continue
-        seen.add(c)
-        b["code"] = c
-        dedup.append(b)
-    return dedup
+
+def parse_recap_buys(path: Path) -> list[dict[str, Any]]:
+    """Raw machine candidates never qualify as final medium-term conclusions."""
+    return []
 
 
 def main() -> None:
@@ -286,6 +242,7 @@ def main() -> None:
         src = args.source if args.source != "manual" else f"evening recap {Path(args.recap_json).stem}"
         res = sync_buys(buys, group=args.group, cooldown_days=args.cooldown_days, dry_run=args.dry_run, source=src)
         res["picked_buys"] = buys
+        res["note"] = "MT-1.0: 原始候选自动同步已禁用；使用 mt1.py watchlist 消费最终计划"
         print(json.dumps(res, ensure_ascii=False, indent=2))
         return
 
