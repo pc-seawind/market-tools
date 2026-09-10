@@ -15,11 +15,11 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from .candidates import day, number, screen
 
-METHOD = {'id':'mt11-parallel-shadow-1','status':'shadow','horizon_sessions':[20,40,60],
+METHOD = {'id':'mt11-parallel-shadow-2','status':'shadow','horizon_sessions':[20,40,60],
           'warmup':120,'value':{'annual_roe':10,'pe_max':25,'pb_max':3},
           'trend':{'return60_min':0.05,'rs60_min':0},
           'reversal':{'drawdown120_max':-0.20},
-          'timing':{'extension20_max':0.10,'breakout_volume_min':1.2,'pullback_volume_max':1.1},
+          'timing':{'extension20_max':0.10,'breakout_volume_min':1.2,'near_ma20_volume_max':1.1},
           'risk_profiles':{'nonfinancial':{'debt_max':70},'financial':{'debt_max':None,'cashflow_filter':False,'requires':'capital_quality_review'}},
           'provenance':'2026-09-11 architecture approval; numerical thresholds exploratory, NOT efficacy-approved'}
 
@@ -131,7 +131,7 @@ def timing(t,asof,expected):
     breakout=t['close']>t['previous_high20'] and t['volume_ratio']>=1.2
     pullback=t['today_low']<=t['ma20']*1.02 and t['close']>=t['ma20'] and t['volume_ratio']<=1.1
     return stage('trigger' if up and (breakout or pullback) else 'wait',
-                 'breakout_confirmed' if up and breakout else 'pullback_supported' if up and pullback else 'structure_volume_or_relative_strength_not_confirmed')
+                 'breakout_confirmed' if up and breakout else 'near_MA20_low_volume' if up and pullback else 'structure_volume_or_relative_strength_not_confirmed')
 
 
 def actions(t,tm,asof,exit_basis=None):
@@ -139,11 +139,11 @@ def actions(t,tm,asof,exit_basis=None):
     held='持有复核'
     if exit_basis in ('thesis_invalidated','major_risk'):held='退出复核'
     elif exit_basis in ('valuation_realized','deadline_due') or (t and t['below_ma60_5sessions']):held='减仓或退出复核'
-    return {'qualification':'pending_review','method_status':'shadow','unheld':'等待签审' if tm['status']=='trigger' else '等待',
+    return {'qualification':'pending_review','method_status':'shadow','unheld':'研究未完成',
         'held_hypothetical':held,'holding_status':'unknown','final_buy':False,
         'current_timing':tm,'valid_for_close':asof,'expires':'next_completed_session; recompute, do not carry trigger',
         'trigger':({'breakout_close_above':t['previous_high20'],'volume_ratio_at_least':1.2,
-                    'or_pullback_MA20':t['ma20'],'pullback_volume_at_most':1.1,
+                    'near_MA20_diagnostic':t['ma20'],'near_MA20_volume_at_most':1.1,
                     'common':'close>rising MA60, RS60>0, extension20<=10%; risk/evidence/valuation/signoff all pass'} if t else None),
         'cancel': '任一价格/日历/复权缺失或过期；触发结构失效；量能/相对强弱不再满足；估值或经营证据失效',
         'invalidation':'经营逻辑证伪/重大风险优先退出复核；不得要求满足买入门槛',
@@ -152,10 +152,15 @@ def actions(t,tm,asof,exit_basis=None):
         'horizon':'20/40/60交易日向前观察；1—3个月；尚无原始已签审持仓期限'}
 
 
-def run_parallel(state_dir,panel,out,reviews=None):
+def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
     root=Path(panel);out=Path(out);out.mkdir(parents=True,exist_ok=False)
+    source_paths=[Path(__file__).with_name(n) for n in ('parallel.py','parallel_collect.py','parallel_bridge.py','parallel_cycle.py','review_time.py')]
+    source_hashes={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source_paths}
+    start_head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     sessions=json.loads((root/'sessions.json').read_text());asof=sessions[-1]
-    now=datetime.now(timezone.utc)
+    from .review_time import instant
+    now=instant(decision_at) if decision_at else datetime.now(timezone.utc)
+    if now>datetime.now(timezone.utc):raise ValueError('future decision time')
     from zoneinfo import ZoneInfo
     local=now.astimezone(ZoneInfo('Asia/Shanghai'))
     manifest=[]
@@ -207,8 +212,8 @@ def run_parallel(state_dir,panel,out,reviews=None):
         for ch in found:
             for kind,target in [('evidence',evidence),('valuation',vals)]:
                 p=packet(code,ch,kind)
-                if p:target[ch]=review_gate(p,code,ch,asof,kind)
-            reviewed_risk=review_gate(packet(code,ch,'risk'),code,ch,asof,'risk')
+                if p:target[ch]=review_gate(p,code,ch,asof,kind,decision_at=now)
+            reviewed_risk=review_gate(packet(code,ch,'risk'),code,ch,asof,'risk',decision_at=now)
             # Research cannot override a deterministic risk rejection or missing numerical data.
             numeric_clear=risk['reasons']==['numeric_risk_checks_pass_major_events_tradability_review_pending']
             financial_adapter=risk['reasons']==['financial_capital_asset_quality_and_major_events_pending']
@@ -219,14 +224,17 @@ def run_parallel(state_dir,panel,out,reviews=None):
             for ch in found:
                 blockers=[]
                 for kind,v in [('risk',channel_risk[ch]),('evidence',evidence[ch]),('valuation',vals[ch])]:
-                    if v['status']!='pass':blockers.append(kind+':'+v['status'])
+                    if v['status']!='pass':blockers.append(kind+':'+v['status']+':'+','.join(v['reasons']))
                 vp=packet(code,ch,'valuation')
                 if vals[ch]['status']=='pass' and t and t['close']>number(vp['price_below']):blockers.append('valuation:price_above_justified_limit')
                 if tm['status']!='trigger':blockers.append('timing:'+tm['status'])
                 readiness[ch]={'blockers':blockers,'research_conditions_ready':not blockers,'final_blocker':'method_shadow_research_signoff_required'}
             plan['channel_readiness']=readiness
             plan['candidate_origin']='mt11_parallel_shadow'
-            plan['unheld']='等待' if any(channel_risk[ch]['status']=='reject' for ch in found) else plan['unheld']
+            rejected=any(channel_risk[ch]['status']=='reject' for ch in found)
+            ready=any(v['research_conditions_ready'] for v in readiness.values())
+            plan['unheld']='风险否决，不推进新买研究' if rejected else '研究已齐，仅待方法与签审批准' if ready else '研究未完成'
+            plan['decision_at']=now.isoformat()
         records.append({'code':code,'name':s['name'],'board':board(code),'industry':s.get('industry'),
             'discovery':channels,'channels':found,'risk':risk,'channel_risk':channel_risk,'evidence':evidence,'valuation':vals,
             'financial':f,'daily':d,'technical':t,'technical_error':err,'timing':tm,
@@ -236,6 +244,8 @@ def run_parallel(state_dir,panel,out,reviews=None):
         not (r['financial']['positive_eps_base'] and (number(r['financial']['current'].get('netprofit_yoy')) or 0)>0),
         r['timing']['status']!='trigger',-(r['technical'] or {}).get('rs60',-999),r['code']))
     for i,r in enumerate(ranked,1):r['research_rank']=i
+    advancing=[r for r in ranked if not any(v['status']=='reject' for v in r['channel_risk'].values())]
+    batch=advancing[:10]
     old=screen({'asof':str(day(asof)),'universe_size':len(universe),'observations':obs,'data_version':'archived-input'})
     totals={}
     for ch in ('VALUE','TREND','REVERSAL'):
@@ -246,7 +256,8 @@ def run_parallel(state_dir,panel,out,reviews=None):
             'evidence':dict(Counter(r['evidence'][ch]['status'] for r in candidates)),
             'valuation':dict(Counter(r['valuation'][ch]['status'] for r in candidates)),
             'timing_diagnostic':dict(Counter(r['timing']['status'] for r in candidates)),
-            'final':{'not_reviewed':len(candidates),'BUY':0}}
+            'final':{'research_incomplete':sum(not r['plan']['channel_readiness'][ch]['research_conditions_ready'] for r in candidates),
+                     'method_approval_pending':sum(r['plan']['channel_readiness'][ch]['research_conditions_ready'] for r in candidates),'BUY':0}}
     stage_distribution={}
     for ch in ('VALUE','TREND','REVERSAL'):
         groups=defaultdict(Counter)
@@ -259,7 +270,9 @@ def run_parallel(state_dir,panel,out,reviews=None):
                 groups[name+'|'+v['status']+'|industry'][r['industry'] or 'unknown']+=1
         stage_distribution[ch]=dict(groups)
     old_codes={r['code'] for r in old['candidates']}; new_codes={r['code'] for r in ranked}
-    summary={'stage_distribution':stage_distribution,'comparison':{'added':sorted(new_codes-old_codes),'removed':sorted(old_codes-new_codes)},'asof':asof,'method':METHOD,'generated_at':now.isoformat(),'universe':len(universe),'channels':totals,
+    summary={'stage_distribution':stage_distribution,'comparison':{'added':sorted(new_codes-old_codes),'removed':sorted(old_codes-new_codes)},'asof':asof,'method':METHOD,'generated_at':datetime.now(timezone.utc).isoformat(),'decision_at':now.isoformat(),'universe':len(universe),'channels':totals,
+        'advancing_research_count':len(advancing),'research_batch_codes':[r['code'] for r in batch],
+        'risk_timing_cross':dict(Counter(r['risk']['status']+'|'+r['timing']['status'] for r in ranked)),
         'deduplicated':len(ranked),'multi_channel':sum(len(r['channels'])>1 for r in ranked),
         'old_value_shadow':{'count':len(old['candidates']),'codes':[r['code'] for r in old['candidates']],'complete_data':old['complete_data_count']},
         'ranking_basis':'research priority only: risk rejection last, technical coverage, positive cumulative profit YoY with positive same-period EPS base, timing trigger, RS60, code; NOT expected returns',
@@ -272,26 +285,29 @@ def run_parallel(state_dir,panel,out,reviews=None):
     (out/'review-input.json').write_text(json.dumps(review_packets,ensure_ascii=False,indent=2))
     summary['source_manifest']=manifest
     summary['frozen_hashes']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in out.glob('*.gz')}
-    summary['git_head']=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
-    summary['code_hashes']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (Path(__file__),Path(__file__).with_name('parallel_collect.py'))}
+    if any(hashlib.sha256(p.read_bytes()).hexdigest()!=source_hashes[p.name] for p in source_paths):
+        raise ValueError('code changed during run; rerun new immutable output')
+    summary['git_head']=start_head
+    summary['code_hashes']=source_hashes
     (out/'forward-cohort.json').write_text(json.dumps({'created_at':now.isoformat(),'decision_close':asof,
         'method':METHOD,'codes':[r['code'] for r in ranked],'holding_inferred':False,
         'horizons':[{'sessions':h,'status':'not_matured','return':None} for h in (20,40,60)],
         'evaluation_contract':'diagnostic selection cohort, not executed portfolio; future returns require costs, limits, executable next price and independent validation'},ensure_ascii=False,indent=2))
     (out/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2))
-    with (out/'research-queue.jsonl').open('w') as fp:
-        for r in ranked:fp.write(json.dumps(r,ensure_ascii=False)+'\n')
+    for filename,items in [('discovery-pool.jsonl',ranked),('research-queue.jsonl',advancing),('research-batch.jsonl',batch)]:
+        with (out/filename).open('w') as fp:
+            for r in items:fp.write(json.dumps(r,ensure_ascii=False)+'\n')
     import csv
     with (out/'stages.csv').open('w') as fp:
         w=csv.writer(fp);w.writerow(['code','name','board','channel','discovery','discovery_reasons','risk','risk_reasons','evidence','valuation','timing','timing_reason','rank'])
         for r in records:
-            for ch,v in r['discovery'].items():w.writerow([r['code'],r['name'],r['board'],ch,v['status'],';'.join(v['reasons']),r.get('channel_risk',{}).get(ch,r['risk'])['status'],';'.join(r.get('channel_risk',{}).get(ch,r['risk'])['reasons']),'pending' if ch in r['channels'] else 'not_admitted','pending' if ch in r['channels'] else 'not_admitted',r['timing']['status'],';'.join(r['timing']['reasons']),r.get('research_rank','')])
+            for ch,v in r['discovery'].items():w.writerow([r['code'],r['name'],r['board'],ch,v['status'],';'.join(v['reasons']),r.get('channel_risk',{}).get(ch,r['risk'])['status'],';'.join(r.get('channel_risk',{}).get(ch,r['risk'])['reasons']),r['evidence'].get(ch,{'status':'not_admitted'})['status'],r['valuation'].get(ch,{'status':'not_admitted'})['status'],r['timing']['status'],';'.join(r['timing']['reasons']),r.get('research_rank','')])
     lines=['**MT-1.1 真实旁路：不是最终推荐**','',f'数据日 {asof}；全池 {len(records)}；去重发现 {len(ranked)}；最终签审未完成，0 BUY 不是研究后全部否决。',
         '|通道|发现通过/拒绝/未知|风险|诊断择时|','|---|---|---|---|']
     for ch,v in totals.items():lines.append(f"|{ch}|{v['discovery']}|{v['risk']}|{v['timing_diagnostic']}|")
-    lines+=['','**优先研究（不是收益排名）**','|代码/名称|通道|未持有|假设已持有|诊断原因|','|---|---|---|---|---|']
-    for r in ranked[:10]:lines.append(f"|{r['code']} {r['name']}|{','.join(r['channels'])}|{r['plan']['unheld']}|{r['plan']['held_hypothetical']}|{','.join(r['timing']['reasons'])}；公司/估值待审|")
-    lines+=['','**完整流程**','独立发现 → 共用行业适配风险 → 分通道公司证据 → 估值/盈利情景 → 技术择时 → 两类持仓条件动作 → 研究签审。风险未知或失败的择时仅作诊断，不构成下游通过。',f"旧价值 shadow {len(old['candidates'])} 只是对照，不是总池；新版 VALUE 仅用年度 ROE，不年化半年报。",'','**代表计划卡（真实指标，shadow条件）**']
+    lines+=['','**十只研究交接批次（不是可买池，已移除风险否决）**','|代码/名称|通道|未持有|假设已持有|诊断原因|','|---|---|---|---|---|']
+    for r in batch:lines.append(f"|{r['code']} {r['name']}|{','.join(r['channels'])}|{r['plan']['unheld']}|{r['plan']['held_hypothetical']}|{','.join(r['timing']['reasons'])}；{str(r['plan']['channel_readiness'])}|")
+    lines+=['','**风险×技术诊断交叉统计（所有trigger都不是可买池）**',str(summary['risk_timing_cross']),'**完整流程**','独立发现 → 共用行业适配风险 → 分通道公司证据 → 估值/盈利情景 → 技术择时 → 两类持仓条件动作 → 研究签审。风险未知或失败的择时仅作诊断，不构成下游通过。',f"旧价值 shadow {len(old['candidates'])} 只是对照，不是总池；新版 VALUE 仅用年度 ROE，不年化半年报。",'','**代表计划卡（真实指标，shadow条件）**']
     reps=[]
     for ch in ('VALUE','TREND','REVERSAL'):
         r=next((r for r in ranked if ch in r['channels'] and r['technical']),None)
@@ -303,7 +319,7 @@ def run_parallel(state_dir,panel,out,reviews=None):
     return {'out':str(out),'asof':asof,'universe':len(records),'deduplicated':len(ranked),'channels':totals}
 
 
-def review_gate(packet, code, channel, asof, kind):
+def review_gate(packet, code, channel, asof, kind, *, decision_at=None):
     """Explicit company research handoff contract; source files are hash-verified.
 
     Pure, no promotion/ledger mutation. Reject expired/future/mismatched evidence;
@@ -312,21 +328,27 @@ def review_gate(packet, code, channel, asof, kind):
     if not packet:return stage('pending','research_packet_missing')
     try:
         assert packet['code']==code and packet['channel']==channel and packet['kind']==kind
-        assert packet['reviewer'] and day(packet['reviewed_at'])<=day(asof)<=day(packet['valid_until'])
-        assert (day(packet['valid_until'])-day(packet['reviewed_at'])).days<=31
-        assert packet['conclusion'] in ('pass','reject') and packet['reason']
+        from .review_time import review_times
+        # Compatibility: absence of decision_at explicitly means historical EOD, NOT now.
+        clock=decision_at or str(day(asof))+'T23:59:59.999999+08:00'
+        times=review_times(packet,asof,clock)
+        assert packet['reviewer']
+        assert packet['conclusion'] in ('pass','reject','partial') and packet['reason']
         assert packet['sources']
         from urllib.parse import urlparse
         for s in packet['sources']:
-            assert day(s['published_at'])<=day(asof)
             assert urlparse(s['url']).scheme in ('http','https') and urlparse(s['url']).netloc
             assert hashlib.sha256(Path(s['path']).read_bytes()).hexdigest()==s['sha256']
-        if kind=='valuation':
+        if packet['conclusion']=='partial':
+            assert packet['remaining_checks'] and packet['facts']
+        elif kind=='valuation':
             assert packet['basis'] in ('earnings_scenarios','peer_comparison','asset_value','financial_capital')
             assert packet['assumptions'] and packet['downside_case']
             assert number(packet['price_below']) is not None and number(packet['price_below'])>0
-        if kind=='evidence':assert packet['milestone'] and 0<(day(packet['milestone_date'])-day(asof)).days<=100
-        if kind=='risk':assert set(packet['checks'])=={'financial','liquidity','major_event','tradability'} and all(v in ('pass','reject') for v in packet['checks'].values())
+        if kind=='evidence' and packet['conclusion']!='partial':
+            from .review_time import instant,CN
+            assert packet['milestone'] and 0<(day(packet['milestone_date'])-instant(clock).astimezone(CN).date()).days<=100
+        if kind=='risk' and packet['conclusion']!='partial':assert set(packet['checks'])=={'financial','liquidity','major_event','tradability'} and all(v in ('pass','reject') for v in packet['checks'].values())
         if kind=='risk' and packet['conclusion']=='pass':assert all(v=='pass' for v in packet['checks'].values())
     except (KeyError,ValueError,TypeError,AssertionError,OSError):return stage('unknown','review_packet_invalid_future_expired_or_unverified')
-    return {**stage(packet['conclusion'],packet['reason']),'reviewer':packet['reviewer'],'source_hashes':[s['sha256'] for s in packet['sources']]}
+    return {**stage(packet['conclusion'],packet['reason']),'reviewer':packet['reviewer'],'times':times,'remaining_checks':packet.get('remaining_checks',[]),'facts':packet.get('facts',{}),'source_hashes':[s['sha256'] for s in packet['sources']]}

@@ -55,14 +55,14 @@ def test_trigger_cancel_hold_separation_and_exit_priority():
     t=tech();tm=timing(t,'20260910','20260910');assert tm['status']=='trigger'
     t['extension20']=.2
     tm=timing(t,'20260910','20260910');assert tm['status']=='wait'
-    p=actions(t,tm,'20260910');assert p['unheld']=='等待' and p['held_hypothetical']=='持有复核'
+    p=actions(t,tm,'20260910');assert p['unheld']=='研究未完成' and p['held_hypothetical']=='持有复核'
     p=actions(None,{'status':'unknown'},'20260910','thesis_invalidated')
     assert p['held_hypothetical']=='退出复核' and p['qualification']!='final'
 
 
 def test_pullback_trigger_volume_cancel():
     t=tech();t.update(previous_high20=110,today_low=100,volume_ratio=1.0)
-    assert timing(t,'20260910','20260910')['reasons']==['pullback_supported']
+    assert timing(t,'20260910','20260910')['reasons']==['near_MA20_low_volume']
     t['volume_ratio']=1.15
     assert timing(t,'20260910','20260910')['status']=='wait'
 

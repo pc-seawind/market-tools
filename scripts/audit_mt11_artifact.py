@@ -17,7 +17,13 @@ def audit(root):
     assert len(records)==s['universe']==len({r['code'] for r in records})
     with (root/'stages.csv').open() as f:rows=list(csv.DictReader(f))
     assert len(rows)==s['universe']*3
-    queue=[json.loads(line) for line in (root/'research-queue.jsonl').read_text().splitlines()]
+    pool=root/'discovery-pool.jsonl'
+    queue=[json.loads(line) for line in (pool if pool.exists() else root/'research-queue.jsonl').read_text().splitlines()]
+    if pool.exists():
+        advancing=[json.loads(line) for line in (root/'research-queue.jsonl').read_text().splitlines()]
+        assert all(not any(v['status']=='reject' for v in r['channel_risk'].values()) for r in advancing)
+        assert len(advancing)==s['advancing_research_count']
+        assert s['research_batch_codes']==[r['code'] for r in advancing[:10]]
     discovered={r['code'] for r in records if r['channels']}
     assert len(queue)==len(discovered)==s['deduplicated']
     assert {r['code'] for r in queue}==discovered

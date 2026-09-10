@@ -42,11 +42,15 @@ def main():
     p=sub.add_parser('evidence'); p.add_argument('--kind',choices=['dispatch','delivery','inventory','collect-dispatch'],default='inventory'); p.add_argument('--run-id'); p.add_argument('--input')
     p=sub.add_parser('data-backfill');p.add_argument('--input',required=True);p.add_argument('--max-requests',type=int,default=100)
     p=sub.add_parser('data-audit')
+    p=sub.add_parser('parallel-cycle');p.add_argument('phase',choices=['morning','evening','saturday','sunday']);p.add_argument('--panel');p.add_argument('--reviews')
     p=sub.add_parser('parallel-collect'); p.add_argument('--out',required=True)
     p=sub.add_parser('parallel-current'); p.add_argument('--panel',required=True); p.add_argument('--out',required=True); p.add_argument('--reviews')
     p=sub.add_parser('parallel'); p.add_argument('--panel',required=True); p.add_argument('--out',required=True); p.add_argument('--reviews')
     p=sub.add_parser('plans')
     args=parser.parse_args()
+    if args.cmd=='parallel-cycle':
+        from mt1.parallel_cycle import cycle
+        print(json.dumps(cycle(args.state_dir,args.phase,args.panel,args.reviews),ensure_ascii=False));return
     if args.cmd=='parallel-collect':
         from mt1.parallel_collect import collect
         collect(args.out); return

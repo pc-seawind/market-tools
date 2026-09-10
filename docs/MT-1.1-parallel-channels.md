@@ -72,3 +72,15 @@ systemd-run --user --unit=mt11-<unique-run> \
 - 复权因子：https://tushare.pro/document/2?doc_id=28
 
 文档只支持字段定义，不证明本策略阈值有效。
+
+## Revision 2（2026-09-11，优先于上文旧措辞）
+
+- P1：价格日期 `price_asof` 只约束完成的K线；研究有效性用显式、带时区的 `decision_at`。`reviewed_at` 不得晚于决策时点，来源发表不晚于审查/决策，`valid_until` 覆盖决策。早盘当天审昨行情、隔夜公告、周末研究可用；精确时间未来1微秒也拒绝，naive时间及超出±14小时时区拒绝。旧date-only审查记录保留日期精度，不伪造实际时间；date-only来源保守按当日末可知，date-only到期日包含当日。新writer写实际带时区时间。没有显式decision_at的旧review_gate调用仍视为历史行情日末，不自动改成现在。
+- P2：原 `pullback_supported` 改为 `near_MA20_low_volume`（均线附近缩量诊断），**没有实现真正回调/承接历史路径识别**；数值门槛未改。新版本 `mt11-parallel-shadow-2`，全程shadow。
+- `discovery-pool.jsonl`保留宽泛发现；`research-queue.jsonl`已排除风险否决；`research-batch.jsonl`按既有排序截取最多10条作为工作批次，不是改阈值精筛。逐条`channel_readiness.blockers`包含剩余原因。风险×择时交叉统计突出所有trigger均不是可买池。
+- “研究未完成”和“研究已齐，仅待方法与签审批准”分开；任何技术诊断触发本身不等于等待最终签字。
+- `parallel-cycle <phase>`：采集/复用→并行分析→读只读plans.db→冻结版本/原日期/原期限/参考价/持仓状态→产出`bound-review.json/.md`。原EXIT不自动重入；确认持仓到期仅复核，不延期；无holding_evidence不称确认持仓。`assert_binding_current`在使用观察前检查原计划所有绑定字段和版本，冲突拒绝。此接口仅输出安全研究观察，**不写权威计划状态，不交易**，后续签审仍使用既有finalize。
+- 默认研究包入口 `.cron_state/mt1/parallel-review-inbox.json`。新增`partial`必须带真实facts与remaining_checks；可接收投资域已有不完整研究，不假造pass。`scripts/import_mt11_research_notes.py`仅格式适配，保留原研究日期、来源层级与primary文件缺失，当前导入时间不是新的公司事实签审。
+- `bound-ledger-snapshot.json`冻结真实账本（包括未进发现池的证券）；`review-sources/<sha256>`冻结研究源字节；报告从产物中取全部通道，禁止手抄漏掉多通道。
+- 生产接入仅通过`scripts/deploy_mt11_sidecar.py --apply`给**现有四条**cron追加标记块；先备份、CAS、回读验证其余字段完全不变。不新增cron。自然下一次触发、飞书投递必须另取真实回执，CLI成功不能冒称自然调度已验收。
+- 20/40/60日只建立冻结队列，**自动收割功能未实现**与“窗口尚未成熟”是两个不同缺口，均保留。
