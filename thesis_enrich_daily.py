@@ -27,15 +27,15 @@ thesis_enrich_daily.py — Thesis 每日数据富集（脚本化确定性部分�
       {
         "ticker": "300750.SZ",
         "name": "宁德时代",
-        "alert_types": ["SELL_EXTREME", "STOP_LOSS_NEAR", "PILLAR_NEWS_CANDIDATE"],
+        "alert_types": ["SIG_TOP_EXTREME", "STOP_LOSS_NEAR", "PILLAR_NEWS_CANDIDATE"],
         "prev_signal": "CLEAN",
-        "curr_signal": "SELL_EXTREME",
+        "curr_signal": "SIG_TOP_EXTREME",
         "price": 376.73,
         "pct_today": -2.88,
         "position": 50,
         "sector": "锂电产业链",
         "sector_tier1_pass": true,
-        "summary": "技术面进入 SELL_EXTREME..."
+        "summary": "技术面进入 SIG_TOP_EXTREME..."
       }
     ],
     "silent": true   // 如果全部无异动则为 true
@@ -285,7 +285,11 @@ def calc_technical_metrics(bars):
 
 
 def detect_signal(metrics):
-    """用 signals.detect 检测信号，返回 list[str]（信号名，如 SELL_EXTREME）。"""
+    """用 signals.detect 检测信号，返回 list[str]（信号名，如 SIG_TOP_EXTREME）。
+
+    2026-09-10: signals.py 只剩 3 条描述性标记 (SIG_TOP_EXTREME/
+    SIG_TODAY_SURGE/SIG_TODAY_DROP); 旧 SELL_*/BUY_* 因回测不支持已删除。
+    """
     if metrics is None:
         return []
     m = {
@@ -666,10 +670,13 @@ def validate_yaml(path):
 def is_significant_change(last_entry, sig_list, stop_triggered):
     """判断是否与上次有显著变化（需要飞书推送告警）。
     只对高优先级风险信号 + stop_loss 触发告警；
-    普通买卖信号（BUY_EARLY 等）只记入 update_log，不单独推送。
+    普通描述性标记（SIG_TODAY_SURGE 等）只记入 update_log，不单独推送。
     """
-    HIGH_PRIORITY_SELL = {"SELL_EXTREME", "SELL_CONFIRMED", "SELL_TOP", "SELL_BREAKDOWN"}
-    EXTREME_DAILY = {"TODAY_DROP"}  # 跌停/暴跌需要注意
+    # 2026-09-10: 只剩 SIG_TOP_EXTREME 一个真·顶部标记.
+    # SELL_EXHAUSTION / SELL_CONFIRMED 已删 —— 全量回测 (n=128/52) 显示其后
+    # 20d 绝对收益 +4.88% / +1.46%, **好于**基准 +2.20%, 方向是反的 (见 signals.py).
+    HIGH_PRIORITY_SELL = {"SIG_TOP_EXTREME"}
+    EXTREME_DAILY = {"SIG_TODAY_DROP"}  # 跌停/暴跌需要注意
 
     # stop_loss 触发 → 始终告警
     if stop_triggered:
@@ -690,26 +697,14 @@ def is_significant_change(last_entry, sig_list, stop_triggered):
 
 
 def classify_alerts(sig_list, stop_triggered, sector_score):
-    """分类告警类型。"""
+    """分类告警类型 (2026-09-10: 只认 signals.py 现行的 3 条标记)."""
     alerts = []
-    if "SELL_EXTREME" in sig_list:
-        alerts.append("SELL_EXTREME")
-    if "SELL_CONFIRMED" in sig_list:
-        alerts.append("SELL_CONFIRMED")
-    if "SELL_TOP" in sig_list:
-        alerts.append("SELL_TOP")
-    if "SELL_BREAKDOWN" in sig_list:
-        alerts.append("SELL_BREAKDOWN")
-    if "SELL_EXHAUSTION" in sig_list:
-        alerts.append("SELL_EXHAUSTION")
-    if "BUY_BREAKOUT" in sig_list:
-        alerts.append("BUY_BREAKOUT")
-    if "BUY_PULLBACK" in sig_list:
-        alerts.append("BUY_PULLBACK")
-    if "TODAY_DROP" in sig_list:
-        alerts.append("TODAY_DROP")
-    if "TODAY_SURGE" in sig_list:
-        alerts.append("TODAY_SURGE")
+    if "SIG_TOP_EXTREME" in sig_list:
+        alerts.append("SIG_TOP_EXTREME")
+    if "SIG_TODAY_DROP" in sig_list:
+        alerts.append("SIG_TODAY_DROP")
+    if "SIG_TODAY_SURGE" in sig_list:
+        alerts.append("SIG_TODAY_SURGE")
     if stop_triggered:
         alerts.append("STOP_LOSS_TRIGGERED")
     # 板块 tier 变化（需要对比上次，这里简单标记一下）

@@ -21,15 +21,14 @@
 #   §5 政策信号         — 过去 3 天新闻联播关键词
 #   §6 待观察扩展       — (暂用 §6 位置) 全市场技术形态异动股
 #
-# 市场信号规则 (纯技术指标, 无个人 cost):
-#   买点:
-#     📈 BUY_EARLY     量比 ≥ 2x + 1W ∈ [-3, +5] → 放量企稳, 早期吸筹
-#     🎯 BUY_BREAKOUT  位置 ≥ 90 + 量比 ≥ 1.5x + 1W ∈ (0, 10) → 放量突破
-#     💧 BUY_PULLBACK  1M ≥ +20 + 1W ∈ (-10, 0) + 量比 < 1 → 强势股健康回调
-#   卖点:
-#     ⚠️  SELL_EXHAUSTION 1W > +15 + 位置 > 85 → 末期加速, 情绪顶
-#     📉 SELL_BREAKDOWN   1W < -10 + 量比 < 0.8 → 持续下跌 + 缩量破位
-#     🔻 SELL_TOP         1M > +50 + 1W < 0 → 主升浪末端, 动能衰竭
+# 市场信号 (规则见 signals.py, 2026-09-10 全量回测后只保留 3 条):
+#     🛑 SIG_TOP_EXTREME  1W > +35% 且 1M > +28%  → 描述性顶部标记 (非减仓指令)
+#     🚀 SIG_TODAY_SURGE  当日 ≥ +7%              → 纯描述
+#     💥 SIG_TODAY_DROP   当日 ≤ -7%              → 纯描述
+# 已删: BUY_EARLY / BUY_BREAKOUT / SELL_EXHAUSTION / SELL_CONFIRMED / SELL_TOP
+# (回测显示 BUY_* 无 alpha, SELL_* 方向相反; 依据见 signals.py 注释)
+# 本文件**不产出推荐**: 推荐动作 (BUY/WATCH/AVOID) 由 sector_picks.py 的
+# action × channel 给出, 见 CONTEXT.md "命名规范".
 #
 # Env: TUSHARE_TOKEN required.
 
@@ -91,7 +90,7 @@ def ret_pct(cur, old):
 # 日期准备 + 全市场数据
 # ====================================================================
 today   = datetime.date.today().strftime("%Y%m%d")
-# 需 60 交易日 lookback (SELL_TOP 需 r3m), 120 calendar days 稳妥覆盖
+# 需 60 交易日 lookback (日常 watchlist 的 r1m/r3m 显示), 120 calendar days 覆盖
 past120  = (datetime.date.today() - datetime.timedelta(days=120)).strftime("%Y%m%d")
 cal = tushare("trade_cal", exchange="SSE", start_date=past120, end_date=today,
               fields="cal_date,is_open")
@@ -129,7 +128,7 @@ daily_5d = {r["ts_code"]: r for r in
             tushare("daily", trade_date=d_5d, fields="ts_code,close,amount")} if d_5d else {}
 daily_20d = {r["ts_code"]: r for r in
              tushare("daily", trade_date=d_20d, fields="ts_code,close,amount")} if d_20d else {}
-# 补拉 60d (SELL_TOP 需要 r3m)
+# 补拉 60d (watchlist 的 r3m 展示用)
 daily_60d = {r["ts_code"]: r for r in
              tushare("daily", trade_date=d_60d, fields="ts_code,close")} if d_60d else {}
 
@@ -288,8 +287,9 @@ def compute_metrics(code):
     r3m = ret_pct(cur, d60.get("close"))
     vol_ratio = amt_cur / amt_20d if amt_20d > 0 else None
 
-    # 位置近似 (由 signals 模块统一计算)
-    pos = sig_mod.position_proxy(r1m)
+    # 位置: 这里只有 1M 涨幅, 拿不到 120 日序列 → 只能给粗近似 pos_proxy.
+    # 真实位置 pos120 由 sector_picks.py 从日线算 (pct_rank_120d), 不要混用.
+    pos_proxy = sig_mod.pos_proxy(r1m)
 
     return {
         "close": cur,
@@ -305,7 +305,7 @@ def compute_metrics(code):
         "r1w": r1w,
         "r1m": r1m,
         "r3m": r3m,
-        "pos": pos,
+        "pos_proxy": pos_proxy,   # 近似值 (展示兜底), 信号规则不再消费
     }
 
 def market_signals(m):
@@ -318,9 +318,6 @@ def market_signals(m):
     sig_input = {
         "r1w":           m.get("r1w"),
         "r1m":           m.get("r1m"),
-        "r3m":           m.get("r3m"),
-        "vol_ratio":     m.get("vol_ratio"),
-        "pos":           m.get("pos"),
         "pct_chg_today": m.get("pct_chg"),
     }
     return sig_mod.detect(sig_input)
@@ -355,7 +352,7 @@ if mode in ("full", "holdings", "signals"):
             for s in sigs: all_signals.append((tier, code, name, s))
 
             vr_str = f"{m['vol_ratio']:.1f}x" if m['vol_ratio'] else "n/a"
-            pos_str = f"{m['pos']:.0f}%" if m['pos'] is not None else "n/a"
+            pos_str = f"{m['pos_proxy']:.0f}%" if m.get('pos_proxy') is not None else "n/a"
             print(f"    {code:<12}{name[:8]:<10} ¥{m['close']:>7.2f} "
                   f"{fmt_pct(m['pct_chg']):>8} {fmt_pct(m['r1w']):>8} "
                   f"{fmt_pct(m['r1m']):>8} {vr_str:>6} {pos_str:>6}  │  {sig_str}")
@@ -368,11 +365,8 @@ if mode in ("full", "holdings", "signals"):
         for tier, code, name, sig in all_signals:
             by_type[sig[1]].append((tier, code, name, sig))
 
-        # 排序顺序: 买点先, 卖点后
-        type_order = ["BUY_EARLY", "BUY_BREAKOUT",
-                      "SELL_EXHAUSTION", "SELL_CONFIRMED", "SELL_EXTREME",
-                      "SELL_TOP",
-                      "TODAY_SURGE", "TODAY_DROP"]
+        # 排序顺序: 顶部标记 → 当日异动
+        type_order = ["SIG_TOP_EXTREME", "SIG_TODAY_SURGE", "SIG_TODAY_DROP"]
         for sig_type in type_order:
             if sig_type not in by_type: continue
             items = by_type[sig_type]

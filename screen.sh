@@ -253,7 +253,7 @@ def sort_value(r, k):
 filtered.sort(key=lambda r: sort_value(r, sort_key), reverse=not sort_asc)
 top_rows = filtered[:top]
 
-# ═══ 综合推荐度分级 (使用 grading.py, 与 funnel/momentum 一致) ═══
+# ═══ 板块热度档 + 诊断标签 (grading.py) ═══
 try:
     import sector_health as _sh_mod
     import grading as _grading
@@ -285,8 +285,8 @@ try:
         daily_latest_map=_dl_map, daily_20d_map=_d20_map,
         stock_basic_map=_basic_map, concept_ranking=_concept_ranking,
     )
-    # screen.sh 的 records 用的字段名不同: r1m vs r1m, 但 compute_grade 要 amt_cur/amt_20d
-    # 在 screen.sh 里量比用 amt 字段需转换. 直接建 vol_ratio 字段吧
+    # screen.sh 的 records 字段名与 grading.compute_grade 期望的略有差异,
+    # 下面做字段映射 (pe→pe_ttm / mv→mv_yi / tor→vol_ratio)
     _fund_map = {}
     try:
         _fund_map = _grading.load_fundamentals_map([r["ts_code"] for r in top_rows])
@@ -325,34 +325,13 @@ print(f" 匹配: {len(filtered)} 只  |  显示 top {len(top_rows)}")
 print("=" * 120)
 
 if _grading_ok:
-    # 按 grade 分组展示
-    from collections import defaultdict as _dd
-    by_grade = _dd(list)
-    for r in top_rows: by_grade[r.get("_grade", "C")].append(r)
-    GRADE_DESC = {
-        "A": "🌟 A 级 · 板块热 + 跑赢 + (可选) 买信号",
-        "B": "✅ B 级 · 板块温和或弱信号",
-        "C": "👀 C 级 · 信号矛盾或跑输板块",
-        "D": "⚠️ D 级 · 板块衰退或严重卖信号",
-    }
-    for grade in ["A", "B", "C", "D"]:
-        if grade not in by_grade: continue
-        rs = by_grade[grade]
-        print(f"\n━━━ {GRADE_DESC[grade]}  ({len(rs)} 只) ━━━")
-        for r in rs:
-            name = (r["name"] or "?")[:8]
-            ind  = (r["industry"] or "?")[:6]
-            heat = r.get("_heat_label", "  ")
-            extras = []
-            if r.get("_sell_label"): extras.append(r["_sell_label"])
-            if r.get("_buy_label"): extras.append(r["_buy_label"])
-            extra_str = ("  " + " ".join(extras)) if extras else ""
-            print(f"  {heat} {r['ts_code']:<10} {name:<8}  "
-                  f"PE={fmt_num(r['pe']):>7} PB={fmt_num(r['pb'],w=5):>5} "
-                  f"股息{fmt_num(r['dv']):>6}  市值{fmt_num(r['mv'], w=6, p=0):>6}亿  "
-                  f"1M={fmt_ret(r['r1m']):>7}  {ind}{extra_str}")
-            if r.get("_fund_label"):
-                print(f"         └ 基本面: {r['_fund_label']}")
+    # 按**板块热度档**分组展示 (2026-09-10: 旧的 A/B/C/D grade 已删除 ——
+    # 回测显示其 grade 分布非单调 (A +3.45% > B +0.17% > D +0.50% > C -0.68%),
+    # 而唯一有前瞻 alpha 的信息是板块热度 4 (+2.27% / 20d). 详见 grading.py 注释.
+    import grading as _g
+    print(_g.render_group(top_rows, show_tags=False))
+else:
+    # fallback 旧版
 else:
     # fallback 旧版
     hdr = (f"  {'排名':<3}{'代码':<11}{'名称':<10}{'行业':<8}"
