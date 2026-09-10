@@ -45,6 +45,7 @@ ai__compute_chip:
   688008.SH: satellite       # 澜起科技 — 内存接口芯片, AI 服务器是次要驱动 (PC/服务器内存为主)
   002371.SZ: core_partial    # 北方华创 — 半导体设备综合, AI 芯片 capex 是多个驱动之一
   688126.SH: satellite       # 沪硅产业 — 大硅片, AI 是间接需求
+  688802.SH: core_pure       # 沐曦股份 — 国产 GPU/AI 加速芯片公司, MXC600 出货直接受益
   605358.SH: satellite       # 立昂微 — 大硅片+功率, AI 间接受益
   002129.SZ: satellite       # TCL 中环 — 光伏硅片+半导体硅片, 半导体业务占比小
   300308.SZ: satellite       # 中际旭创 — 光模块主业, 在 compute_chip 篮子里仅算力情绪共振(主业属 optical_module)
@@ -63,6 +64,12 @@ ai__memory_storage:
   300223.SZ: core_partial    # 北京君正 — 存储+CPU, AI 是部分驱动
   301308.SZ: core_partial    # 江波龙 — 存储模组, AI 服务器是其中一部分
   001309.SZ: satellite       # 德明利 — 存储模组 (规模较小), AI 弹性次要
+
+ai__optical_chip:
+  688498.SH: core_pure       # 源杰科技 — 国产高速光芯片/CW光源核心标的, AI光通信上游直接受益
+  688313.SH: core_partial    # 仕佳光子 — AWG/光芯片+光器件, CW激光器扩产受益但业务较综合
+  002281.SZ: core_partial    # 光迅科技 — 光芯片/器件/模块一体化, 光芯片叙事直接相关但非纯光芯片
+  300394.SZ: satellite       # 天孚通信 — 光器件/无源器件为主, CW光源上游映射偏间接
 
 ai__storage:                 # 存储行业周期复苏叙事 (DRAM/NAND 价格 + 业绩驱动, 区别于 AI 服务器存储)
   688008.SH: core_pure       # 澜起科技 — 内存接口芯片, 存储周期 (DDR5/服务器内存) 纯受益
