@@ -118,3 +118,25 @@ def test_cohort_registration_dedup_and_frozen_decision(tmp_path):
     b=register(root,source,cal,now)
     assert a==b and len(list((root/'cohorts').glob('*.json')))==1
     assert a['decision_at']=='2026-01-02T16:00:00+08:00'
+    late=copy.deepcopy(cal);late['fetched_at']='2026-04-01T07:00:00+08:00'
+    with pytest.raises(ValueError,match='late_registration'):
+        register(tmp_path/'late-registry',source,late,'2026-04-01T16:00:00+08:00')
+
+
+def test_same_day_evening_benchmark_does_not_reuse_morning(tmp_path,monkeypatch):
+    import mt1.parallel_collect as module
+    now=[datetime.fromisoformat('2026-09-11T08:00:00+08:00')]
+    class Clock:
+        @classmethod
+        def now(cls,tz=None):return now[0].astimezone(tz) if tz else now[0]
+    calls=[]
+    def api(name,**params):
+        calls.append((name,params))
+        if name=='trade_cal':
+            return [{'cal_date':(date(2026,2,1)+timedelta(days=i)).strftime('%Y%m%d'),'is_open':'1'} for i in range(223)]
+        return [{'synthetic_only':True}]
+    monkeypatch.setattr(module,'datetime',Clock);monkeypatch.setattr(module,'api',api)
+    module.collect(tmp_path)
+    now[0]=datetime.fromisoformat('2026-09-11T16:00:00+08:00');module.collect(tmp_path)
+    assert {p['end_date'] for n,p in calls if n=='index_daily'}=={'20260910','20260911'}
+    assert (tmp_path/'index_daily-20260910.json').exists() and (tmp_path/'index_daily-20260911.json').exists()

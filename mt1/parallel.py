@@ -189,7 +189,8 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
             if envelope['api']!=name or envelope['params'].get('trade_date')!=d or any(r['trade_date']!=d for r in envelope['rows']):
                 raise ValueError('panel envelope/date mismatch')
             for r in envelope['rows']:target[r['ts_code']].append(r)
-    bench=read(root/'index_daily-all.json')['rows']
+    benchmark_path=root/('index_daily-'+asof+'.json')
+    bench=read(benchmark_path if benchmark_path.exists() else root/'index_daily-all.json')['rows']
     sweep=Path(state_dir)/'sweeps'/str(day(asof)); universe=read(sweep/'stock_basic.json')
     basic_rows=read(sweep/'daily_basic.json')
     if len({r['ts_code'] for r in universe})!=len(universe) or len({r['ts_code'] for r in basic_rows})!=len(basic_rows):

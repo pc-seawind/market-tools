@@ -12,7 +12,9 @@ def collect(root, max_requests=250, max_seconds=3600):
     start=time.monotonic(); used=0
     def fetch(name, **params):
         nonlocal used
-        key=name+'-'+str(params.get('trade_date','all'))
+        # Morning/evening share a directory but benchmark end_date changes.
+        # Keep both vintages instead of returning morning's stale benchmark.
+        key=name+'-'+str(params.get('end_date') if name=='index_daily' else params.get('trade_date','all'))
         path=root/(key+'.json')
         if path.exists(): return json.loads(path.read_text())['rows']
         if used>=max_requests or time.monotonic()-start>=max_seconds:
