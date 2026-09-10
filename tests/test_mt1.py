@@ -276,3 +276,11 @@ def test_stage_failure_retries_and_success_is_checkpointed(tmp_path,monkeypatch)
     b=p.run('evening',tmp_path/'s',tmp_path/'i',now,fx)
     c=p.run('evening',tmp_path/'s',tmp_path/'i',now,fx)
     assert not b['errors'] and not c['errors'] and len(calls)==2
+
+
+def test_legacy_record_cannot_bypass_exit_or_direction_gate():
+    p=legacy_plan({'code':'600000.SH','action':'BUY'},'fixture','600000.SH')
+    with pytest.raises(ValueError):reduce_plan(p,{'state':'EXIT','held_direction':'EXIT'})
+    with pytest.raises(ValueError):reduce_plan(p,{'unheld_direction':'BUY'})
+    q=final_plan();q['review_due']=str(date.today()+timedelta(days=200))
+    assert not eligible(q,date.today())

@@ -1,6 +1,7 @@
 """Separate research direction from actual holding confirmation; immutable episodes."""
 from datetime import date
 import math
+from urllib.parse import urlparse
 from .store import digest
 
 STATES = {'BUY', 'WATCH', 'HOLD', 'SELL', 'EXIT'}
@@ -32,11 +33,14 @@ def reduce_plan(old, patch):
     if new['holding_status'] not in ('unknown', 'not_held', 'confirmed'):
         raise ValueError('invalid holding status')
     cost = new.get('actual_cost')
-    if cost is not None and (new['holding_status'] != 'confirmed' or not isinstance(cost, (int,float)) or cost <= 0 or not new.get('holding_evidence')):
+    if cost is not None and (new['holding_status'] != 'confirmed' or type(cost) not in (int,float) or not math.isfinite(cost) or cost <= 0 or not new.get('holding_evidence')):
         raise ValueError('real cost requires positive confirmed cost and user evidence')
-    if new['state'] == 'BUY' and new.get('qualification') != 'final':
+    if (new['state'] == 'BUY' or new['unheld_direction'] == 'BUY') and new.get('qualification') != 'final':
         raise ValueError('BUY requires final research qualification')
-    if (new['state'] in ('SELL', 'EXIT') or new['held_direction'] in ('SELL', 'EXIT')) and not new.get('legacy_source'):
+    exit_transition = (new['state'] in ('SELL', 'EXIT') or new['held_direction'] in ('SELL', 'EXIT')) and (
+        old is None or new['state'] != old['state'] or new['held_direction'] != old['held_direction'])
+    legacy_exit_import = old is None and new.get('legacy_source') and new.get('legacy_latest_state') == 'EXIT'
+    if exit_transition and not legacy_exit_import:
         if new.get('exit_basis') not in ('thesis_invalidated', 'risk_boundary', 'valuation_realized', 'catalyst_realized', 'time_review') or not new.get('evidence'):
             raise ValueError('exit requires substantive evidence, not sector heat')
     if new.get('qualification') == 'final':
@@ -54,7 +58,7 @@ def qualification_errors(p, asof):
         if not p.get(field):
             errors.append(field+'_missing')
     try:
-        if date.fromisoformat(p['review_due']) < asof:
+        if not 0 <= (date.fromisoformat(p['review_due'])-asof).days <= 31:
             errors.append('review_overdue')
         for m in p.get('milestones', []):
             d = date.fromisoformat(m['date'])
@@ -75,9 +79,9 @@ def qualification_errors(p, asof):
         errors.append('evidence_missing')
     for e in evidence:
         try:
-            if not e.get('url') or not e.get('claim') or date.fromisoformat(e['date']) > asof:
+            if not isinstance(e,dict) or urlparse(e.get('url','')).scheme not in ('https','http') or not urlparse(e.get('url','')).netloc or not e.get('claim') or date.fromisoformat(e['date']) > asof:
                 errors.append('evidence_invalid_or_future')
-        except (KeyError, ValueError, TypeError):
+        except (KeyError, ValueError, TypeError, AttributeError):
             errors.append('evidence_invalid')
     for k in ('financial', 'liquidity', 'major_event', 'technical', 'valuation'):
         if (p.get('checks') or {}).get(k) != 'pass':

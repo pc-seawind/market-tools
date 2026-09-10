@@ -51,7 +51,9 @@ def main():
             reducer=reduce_plan if kind=='plan' else reduce_method
             if d['payload'].get(kind+'_id', d['id']) != d['id']:
                 raise ValueError('entity id mismatch')
-            if kind=='plan' and d['payload'].get('state')=='BUY':
+            current=store.latest('plan:'+d['id']) or {} if kind=='plan' else {}
+            proposed={**current,**d['payload']}
+            if kind=='plan' and (proposed.get('state')=='BUY' or proposed.get('unheld_direction')=='BUY'):
                 now=datetime.now(timezone.utc)
                 current=store.latest('plan:'+d['id']) or {}
                 market=d['payload'].get('market',current.get('market'))

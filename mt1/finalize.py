@@ -25,7 +25,7 @@ def finalize(bundle, state_dir, investment_dir):
                 payload=event['payload']
                 if payload.get('plan_id',event['id'])!=event['id']: raise ValueError('plan id mismatch')
                 new={**(old or {}),**payload}
-                if new.get('state')=='BUY':
+                if new.get('state')=='BUY' or new.get('unheld_direction')=='BUY':
                     market=new['market']
                     if market not in gates:
                         cal=cn_calendar(now) if market=='CN' else foreign_calendar(now,market)

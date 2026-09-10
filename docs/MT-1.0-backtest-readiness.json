@@ -1,1 +1,24 @@
-{"exact_channel_reconstruction": false, "status": "unsupported", "blockers": ["pit_financials", "pit_industry", "historical_universe", "delisted_included", "archived_channel_signals", "next_open_execution", "adjustment_consistent", "suspension_limit_flags", "fees_slippage", "benchmark", "oos_split"], "promotion": "shadow", "limitations": ["复放调用方提供的已归档信号，不重新计算三通道；证据hash仍需审计", "固定等额独立资金槽；重叠样本不当独立事件；退出现金不再投资", "财报修订/历史成分/退市缺失时拒绝计算精确收益"], "metrics": null}
+{
+  "exact_channel_reconstruction": false,
+  "status": "unsupported",
+  "blockers": [
+    "pit_financials",
+    "pit_industry",
+    "historical_universe",
+    "delisted_included",
+    "archived_channel_signals",
+    "next_open_execution",
+    "adjustment_consistent",
+    "suspension_limit_flags",
+    "fees_slippage",
+    "benchmark",
+    "oos_split"
+  ],
+  "promotion": "shadow",
+  "limitations": [
+    "复放调用方提供的已归档信号，不重新计算三通道；证据hash仍需审计",
+    "固定等额独立资金槽；重叠样本不当独立事件；退出现金不再投资",
+    "财报修订/历史成分/退市缺失时拒绝计算精确收益"
+  ],
+  "metrics": null
+}

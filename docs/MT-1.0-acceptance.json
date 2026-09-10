@@ -1,1 +1,101 @@
-{"date": "2026-09-10", "host": "home-ubuntu", "tests": {"passed": 47, "command": "/home/emox/work/homespace/.venv/bin/python -m pytest tests -q"}, "live": {"gates": {"CN": {"market": "CN", "allowed": true, "expected_date": "2026-09-10", "reason": "verified"}, "HK": {"market": "HK", "allowed": true, "expected_date": "2026-09-10", "reason": "verified"}, "US": {"market": "US", "allowed": true, "expected_date": "2026-09-09", "reason": "verified"}}, "plan_count": 64, "errors": [], "universe_size": 5561, "sampled": 8, "complete_data_count": 1, "coverage": 0.0001798237727027513, "candidate_count": 0, "watchlist_added": 0}, "not_verified": ["actual_HTSC_write", "scheduled_four_phase_end_to_end", "other_workers", "full_universe_collection", "exact_historical_channel_reconstruction", "rolling_out_of_sample_validation"]}
+{
+  "date": "2026-09-10",
+  "host": "home-ubuntu",
+  "tests": {
+    "passed": 48,
+    "command": "/home/emox/work/homespace/.venv/bin/python -m pytest tests -q"
+  },
+  "live": {
+    "gates": {
+      "CN": {
+        "market": "CN",
+        "allowed": true,
+        "expected_date": "2026-09-10",
+        "reason": "verified"
+      },
+      "HK": {
+        "market": "HK",
+        "allowed": true,
+        "expected_date": "2026-09-10",
+        "reason": "verified"
+      },
+      "US": {
+        "market": "US",
+        "allowed": true,
+        "expected_date": "2026-09-09",
+        "reason": "verified"
+      }
+    },
+    "plan_count": 64,
+    "errors": [],
+    "universe_size": 5561,
+    "sampled": 8,
+    "complete_data_count": 1,
+    "coverage": 0.0001798237727027513,
+    "candidate_count": 0,
+    "watchlist_added": 0
+  },
+  "not_verified": [
+    "actual_HTSC_write",
+    "scheduled_four_phase_end_to_end",
+    "other_workers",
+    "full_universe_collection",
+    "exact_historical_channel_reconstruction",
+    "rolling_out_of_sample_validation"
+  ],
+  "post_deploy_command": "python3 mt1_job.py run evening --collect --max-stocks 100",
+  "post_deploy_live": {
+    "plan_count": 64,
+    "gates": {
+      "CN": {
+        "market": "CN",
+        "allowed": true,
+        "expected_date": "2026-09-10",
+        "reason": "verified"
+      },
+      "HK": {
+        "market": "HK",
+        "allowed": true,
+        "expected_date": "2026-09-10",
+        "reason": "verified"
+      },
+      "US": {
+        "market": "US",
+        "allowed": true,
+        "expected_date": "2026-09-09",
+        "reason": "verified"
+      }
+    },
+    "errors": [],
+    "sampled": 100,
+    "complete_data_count": 62,
+    "coverage": 0.01114907390757058,
+    "candidate_count": 0,
+    "collection_error_count": 0
+  },
+  "cron_deployment": {
+    "backup": "/home/emox/.homespace/cron/_mt1-engine-backup-20260910-225800266756",
+    "verified": [
+      {
+        "name": "morning-market-brief",
+        "prompt_sha256": "48157540042c9d75261e6577a3ba48f09aa8b6995165167d876a1e2ef13b5f5d",
+        "other_fields_unchanged": true
+      },
+      {
+        "name": "evening-market-recap",
+        "prompt_sha256": "b220e5deccaeb085cc20a9a2b7b9456d8a323f00e9964455884985be4c12592b",
+        "other_fields_unchanged": true
+      },
+      {
+        "name": "weekend-saturday-recap",
+        "prompt_sha256": "0224d9fc26b5eda967e3257e001b6c8d0d7a4bc43af766432c0ad2cdf2f07db3",
+        "other_fields_unchanged": true
+      },
+      {
+        "name": "weekend-sunday-preview",
+        "prompt_sha256": "cacd27288d4d5e0def4639879a6c6baf76fd32281fb72f58f1f51ebeb1e0ffe7",
+        "other_fields_unchanged": true
+      }
+    ]
+  }
+}
