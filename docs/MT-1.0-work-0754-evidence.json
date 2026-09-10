@@ -1,0 +1,311 @@
+{
+  "work_id": "work_0754c4a54bd9c615889b",
+  "parent_work_id": "work_2584297bb8bd6304e99f",
+  "recorded_at": "2026-09-10T20:34:31.849877+00:00",
+  "status": "incomplete_independent_review_required",
+  "implementation_commits": [
+    "c3103f7",
+    "9b2dccc"
+  ],
+  "tests": {
+    "command": "/home/emox/work/homespace/.venv/bin/python -m pytest tests -q",
+    "result": "184 passed in 1.01s",
+    "original_tests_retained": 164,
+    "new_tests": 20,
+    "compileall": "passed",
+    "git_diff_check": "passed"
+  },
+  "download": {
+    "request_budget_reserved": 1960,
+    "requests_executed": 1883,
+    "task_status": {
+      "available": 1878,
+      "available_empty": 5
+    },
+    "rows_by_api": {
+      "adj_factor": 2294932,
+      "daily": 2271584,
+      "daily_basic": 5074,
+      "dividend": 3577,
+      "fina_indicator": 106,
+      "income": 110,
+      "index_member_all": 26,
+      "stk_limit": 2297774,
+      "suspend_d": 15664,
+      "trade_cal": 670
+    },
+    "refs": [
+      {
+        "manifest": {
+          "path": "/home/emox/work/projects/market-tools/docs/MT-1.0-work-0754-backfill.json",
+          "sha256": "d6a627afbd5b00dfef761f079f5c586ffb4c1397fbd04aaf316e04e79a0a2789"
+        },
+        "summary": {
+          "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/backfill/c57e781349e2b4593bf7/summary.json",
+          "sha256": "36bb2e61003fda0cfdf94a7a936761622f5708a86824328e80a8d5e910d9255e"
+        },
+        "requests_this_run": 149
+      },
+      {
+        "manifest": {
+          "path": "/home/emox/work/projects/market-tools/docs/MT-1.0-work-0754-delisted-actions.json",
+          "sha256": "af991eeb5c49ffe70a922e7f78bb5117e760f53786f7ceb3811a5d4577ad3fbf"
+        },
+        "summary": {
+          "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/backfill/e10a015f777eb79c1841/summary.json",
+          "sha256": "a29b5c84179be2aaa36d77aba5af8bc3d240ad3389e4b43522abaa1c29a9812a"
+        },
+        "requests_this_run": 50
+      },
+      {
+        "manifest": {
+          "path": "/home/emox/work/projects/market-tools/docs/MT-1.0-work-0754-market-1.json",
+          "sha256": "387c8026b3b33607a08bcbee95ef4e3fe42abe3a9e79079b156f6038447e631a"
+        },
+        "summary": {
+          "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/backfill/cef24bd079e0af94e5f9/summary.json",
+          "sha256": "32a1ce30aa53a2a596b1f19be629323c6722664b011fa6c601c459107ddc26ea"
+        },
+        "requests_this_run": 450
+      },
+      {
+        "manifest": {
+          "path": "/home/emox/work/projects/market-tools/docs/MT-1.0-work-0754-market-2.json",
+          "sha256": "3579cf8890c79a23e3dbcd5098f8fb60da1a4d5fc1c26804bf409db5aaf96e62"
+        },
+        "summary": {
+          "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/backfill/fb7512fbd21a7532b6ca/summary.json",
+          "sha256": "f5db0f9c97f8e4fc97d25746db46d115d242eaddd1fad023f748a854bad09884"
+        },
+        "requests_this_run": 450
+      },
+      {
+        "manifest": {
+          "path": "/home/emox/work/projects/market-tools/docs/MT-1.0-work-0754-market-3.json",
+          "sha256": "344167a174bccdf5925f6b3434322fdee765f0e2503132114dbd844ee7ac2290"
+        },
+        "summary": {
+          "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/backfill/7baf77cd9ed4e8514063/summary.json",
+          "sha256": "f62553439deda5409b1cba5227e4624436885211711f3d6a4df1e0f9852e85a0"
+        },
+        "requests_this_run": 450
+      },
+      {
+        "manifest": {
+          "path": "/home/emox/work/projects/market-tools/docs/MT-1.0-work-0754-market-4.json",
+          "sha256": "04a9c0346f4d75e2a1d0e4b32eb808eeb2f871e765df028cd09f5f6b20d96b5b"
+        },
+        "summary": {
+          "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/backfill/d5df50597be35cc925b5/summary.json",
+          "sha256": "a5749d5e5bac1d8eda5e876b8ff009bbabdbad1a6f94026937e9cc95b0fc99f2"
+        },
+        "requests_this_run": 334
+      }
+    ],
+    "metrics": null,
+    "PIT_certified": false
+  },
+  "coverage": {
+    "target": {
+      "expected_symbol_sessions": 969309,
+      "complete_symbol_sessions": 966811,
+      "remaining_holes": 2498,
+      "suspension_record_needs_review": 2394,
+      "unexplained_missing_row": 104,
+      "by_api_reason": {
+        "daily:missing_row": 2394,
+        "adj_factor:source_conflict": 104
+      }
+    },
+    "warmup": {
+      "expected_symbol_sessions": 1301414,
+      "remaining_holes": 7166,
+      "unexplained_missing_row": 4669,
+      "complete_symbol_sessions": 1294248,
+      "suspension_record_needs_review": 2497,
+      "by_api_reason": {
+        "adj_factor:source_conflict": 4628,
+        "daily:missing_row": 2538
+      }
+    }
+  },
+  "warmup_features_built": 4703,
+  "real_drafts": 12,
+  "admitted_asof_bundles": 0,
+  "delisted_codes_with_raw_evidence": 50,
+  "independent_verification": {
+    "status": "verified_hashes_and_independent_SQL_anti_join_not_PIT_certification",
+    "source_files": 6915,
+    "unique_blobs_verified": 6912,
+    "remaining_holes": {
+      "target": 2498,
+      "warmup": 7166
+    },
+    "gzip_line_counts": {
+      "target": 2498,
+      "warmup": 7166
+    },
+    "sqlite_quick_check": "ok",
+    "PIT_certified": false,
+    "replay_ready": false
+  },
+  "natural_slots": [
+    {
+      "phase": "morning",
+      "scheduled_at": "2026-09-11T07:15:00+08:00",
+      "status": "awaiting_scheduled_time",
+      "dispatch_run_bundle_finalize_message_readback": "not_yet_collectible"
+    },
+    {
+      "phase": "evening",
+      "scheduled_at": "2026-09-11T18:30:00+08:00",
+      "status": "awaiting_scheduled_time",
+      "dispatch_run_bundle_finalize_message_readback": "not_yet_collectible"
+    },
+    {
+      "phase": "saturday",
+      "scheduled_at": "2026-09-12T07:15:00+08:00",
+      "status": "awaiting_scheduled_time",
+      "dispatch_run_bundle_finalize_message_readback": "not_yet_collectible"
+    },
+    {
+      "phase": "sunday",
+      "scheduled_at": "2026-09-13T05:00:00+08:00",
+      "status": "awaiting_scheduled_time",
+      "dispatch_run_bundle_finalize_message_readback": "not_yet_collectible"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-union-before/summary.json",
+      "sha256": "3df920058cb1fe50f3c10b9b8a166d179e1e471f0490df55e7fa1d30c7bf4264"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-union-after/summary.json",
+      "sha256": "65c85bc701a95565e628f0c0a5850ead8789658210c42defbe81006666a67367"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-asof/summary.json",
+      "sha256": "c6836df07a259738ac06c7eeee5d77746bccfe8d3f5450653acb8ec268edccd4"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-union-after/target-holes.jsonl.gz",
+      "sha256": "a9741a4dc263e557b04d9b0f6d0e2827696e198ad1149eab3b4eae5b09e16dac"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-union-after/warmup-holes.jsonl.gz",
+      "sha256": "7c5a62f13faad6fe106c5849c1b5fca975c5d43d9f56752d37b5315147433ab5"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-union-after/sources.json",
+      "sha256": "2d7b4b6ee3785cc6a4071c2544a286d74b1a67a9703bca89eb7388f9c49a7d9b"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-union-after/discovery.json",
+      "sha256": "f5283ebc01098b2195cc63d74ff378a1f0a52ec79e5972f14e05ebf989eace95"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-union-after/union.sqlite",
+      "sha256": "4c4a311b1f7089444f1b987d8cf4cea0e84d8b3a4331eb8556f80c7f8ed5fdcc"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/conflicts.json",
+      "sha256": "e2daa47247199d4208146650d930b3dbf1fa4586a29880b61306a8a908dad499"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/download-summary.json",
+      "sha256": "d20a768d1b08715e9fb22bb74d42c30af434806cf9d1d09bf1509655c07dbe6a"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-asof-journal.jsonl",
+      "sha256": "bd0bab3d6a90fc8972a160c41bc975a28a77f2cc2cc9904b22de49d0b12d29c5"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-asof-systemd.txt",
+      "sha256": "0d13d93f075cd579d7df2142429e211f7635eba8714af84d32cd130337293615"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-backfill-journal.jsonl",
+      "sha256": "06da5104cbbedb9f8f057ee8b56df51df0e305cd69c90eb02bb2a82d74052ad4"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-backfill-systemd.txt",
+      "sha256": "b64187aa423c06bdc52f4e1947603550329cf8dbc58ba32a348c71480963fc4c"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-delisted-actions-journal.jsonl",
+      "sha256": "35cc882dcb183ab934c64f8347f6d1ea8c20430161025f5475e31cceec56b87b"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-delisted-actions-systemd.txt",
+      "sha256": "4811dad478d73ab4087c106f050c5a68af687b97f5a0a45aff79dc18d94ae1fe"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-fullmarket-journal.jsonl",
+      "sha256": "f1f41bacac55dfc557100d0eb791f9c5b92925ed1c8dedadba9578a2033acf27"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-fullmarket-systemd.txt",
+      "sha256": "a081ddd340b94dda2645b5a7ac80a6e0dff16402fc19994d9f2107fca2cc335d"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-union-after-journal.jsonl",
+      "sha256": "9f6f02837a9a90092c237e05d469f8cf2ee04aba00abf5c42f1853dd1f26137f"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-union-after-systemd.txt",
+      "sha256": "975a88c90e6d324652bcc4fec7fe0990e1d55195ce0a50864109ad664367431e"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-union-before-journal.jsonl",
+      "sha256": "6528cddc899269bef120f5872edcda9f491ce704dd97edf266e36068f227d337"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-union-before-systemd.txt",
+      "sha256": "341a8c3199d0192273d8f253cd5b486f2b288de9c73053bca8ea6599f0623199"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-verify-after-journal.jsonl",
+      "sha256": "c69c2a604d195d0aeb7311dfd6830cc4f9940bfe125c6d7c23e5fee542600356"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-verify-after-systemd.txt",
+      "sha256": "c5b900d15fb3f0d10f3bc5a0176722c3191f98ec257be1d9cde2fd490411c7c0"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-verify-before-journal.jsonl",
+      "sha256": "6a6c90da0db0defce70d614b29bfa50678edba99a36da3ad63264aa8232f4fbf"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/mt1-0754-verify-before-systemd.txt",
+      "sha256": "501802a2767556633411548f984ba88cb00710d6f9054854f07d5a6e4dbe30eb"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/rejection-counts.json",
+      "sha256": "9259c4ee4893473ac334dde072e46db6ba3ac81701dd6f5b096db7e251c310b0"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/tests.txt",
+      "sha256": "2fa2acc52e56b0ab6805e9dfdb9a6960b0a6530cebfd9139fbaa2e0f0dadc4dc"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/verify-after.json",
+      "sha256": "5317c3e7613d652982a18a69bcc1bc3c757405d44b6243c30abc0da434e94903"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-evidence/verify-before.json",
+      "sha256": "3bbf857da51ed48540e24fc64d96a3e771622964094d45f032feb2c29a7dd5b8"
+    }
+  ],
+  "incomplete": [
+    "D1 original financial release/revision evidence and PIT certification",
+    "D2 historical master completeness and 50 delisted settlement proofs",
+    "D3 production concept/ETF historical versions",
+    "D4 target 2498 and warmup 7166 holes including 4732 quarantined in-universe factor keys; no zero filling",
+    "D5 admitted end-to-end asof packages absent; drafts are not acceptance",
+    "D6 audited cash/stock/tax/reinvestment ledger absent; replay_ready=false",
+    "D7 exact three-channel 20/40/60 PIT/OOS blocked upstream; metrics=null",
+    "Four natural schedule chains await actual scheduled times; no manual substitute",
+    "Investment-domain 63-security substantive review remains with originating domain"
+  ]
+}
