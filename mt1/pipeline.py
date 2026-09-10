@@ -14,7 +14,7 @@ from .backtest import audit
 
 def migrate(store, rec_path, thesis_dir):
     import yaml
-    latest={}; invalid=[]
+    latest={}; invalid=[]; ignored=[]
     if Path(rec_path).exists():
         for n,line in enumerate(Path(rec_path).read_text().splitlines(),1):
             if not line.strip(): continue
@@ -31,6 +31,9 @@ def migrate(store, rec_path, thesis_dir):
             r=json.loads(json.dumps(r,default=lambda v:v.isoformat() if isinstance(v,(date,datetime)) else str(v)))
             entity='legacy:thesis:'+digest([str(p),raw])
             store.apply(entity,0,entity,{'path':str(p),'raw':raw},'保留thesis原文，不改源文件',lambda old,v:v)
+            if p.stem.startswith('_'):
+                ignored.append({'path':str(p),'reason':'metadata_not_security; raw preserved'})
+                continue
             if isinstance(r,dict): latest.setdefault(r.get('ticker') or r.get('code') or p.stem,r)
         except Exception as e: invalid.append({'path':str(p),'error':str(e)})
     imported=0
@@ -41,7 +44,7 @@ def migrate(store, rec_path, thesis_dir):
         entity='plan:'+p['plan_id']
         if store.latest(entity): continue
         store.apply(entity,0,entity,p,'冷启动待复核；原始日期/成本未知',lambda old, patch: reduce_plan(old, patch, legacy_import=True)); imported+=1
-    return {'imported':imported,'source_symbols':len(latest),'errors':invalid}
+    return {'imported':imported,'source_symbols':len(latest),'errors':invalid,'ignored_metadata':ignored}
 
 
 def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False, max_stocks=0, run_id=None):

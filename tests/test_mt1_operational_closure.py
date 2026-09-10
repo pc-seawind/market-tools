@@ -124,3 +124,23 @@ def test_evidence_inventory_detects_changed_artifact(tmp_path):
     r=inventory(tmp_path)
     assert r['chains'][0]['integrity_errors'][0]['error']=='hash_changed'
     assert all(x['status']=='awaiting_natural_chain' for x in r['phases'].values())
+
+
+def test_migration_preserves_metadata_raw_without_new_fake_plan(tmp_path):
+    from mt1.pipeline import migrate
+    t=tmp_path/'thesis';t.mkdir();(t/'_bootstrap_state.yaml').write_text('last_run: 2026-09-11\n')
+    s=Store(tmp_path/'plans.db')
+    try:
+        r=migrate(s,tmp_path/'absent.jsonl',t)
+        assert r['imported']==0 and len(r['ignored_metadata'])==1 and not r['errors']
+        assert s.all()==[] and len(s.all('legacy:thesis:'))==1
+    finally:s.close()
+
+
+def test_handoff_export_does_not_overwrite_investment_edits(tmp_path):
+    from mt1.coldstart import export
+    s=Store(tmp_path/'plans.db');s.apply('plan:p1',0,'p1',plan(),'test',reduce_plan);s.close()
+    r=export(tmp_path,tmp_path/'out')
+    path=Path(r['out_dir'])/'batch-01.json';path.write_text('{"user_edit":true}')
+    with pytest.raises(ValueError,match='immutable'):export(tmp_path,tmp_path/'out')
+    assert json.loads(path.read_text())=={'user_edit':True}
