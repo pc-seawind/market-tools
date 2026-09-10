@@ -10,7 +10,7 @@ BASE='/home/emox/work/projects/market-tools'
 
 
 def prompt(phase):
-    collection=' --collect --max-stocks 100' if phase=='evening' else ''
+    collection=' --collect' if phase=='evening' else ''
     return f'''执行 MT-1.0 中期研究（1—3个月），本消息替代旧报告编排；不改变已有生产评分。
 先读 /home/emox/work/investment/reference/medium-term-recommendation-policy.md 与 {BASE}/docs/MT-1.0.md。后者是工程能力现状，前者的“首批待开发”是历史清单，不把它当代码验收结果。
 
@@ -22,15 +22,21 @@ python3 {BASE}/mt1_job.py run {phase}{collection}
 
 【门禁与数据】
 CN/HK/US分别核验日历及expected_date；closed不生成该市场常规介入结论，日历缺失fail-closed。周六/周日方法研究不被休市拦截。早盘只复用上一完成交易日的晚盘数据；缺失报缺口，不拿当天重算冒充。港美股采用当地17点保守完成时刻，半日市精确收盘尚未接入。
-原始raw_recap仅机器候选，不是最终BUY。quality_value为新因子shadow池，本轮最多100只财报采集、列全市场分母与完整数据覆盖率，不声称已全量筛完，不直接改生产评分或同步自选。
+原始raw_recap仅机器候选，不是最终BUY。quality_value为新因子shadow池，全量采集由独立systemd sweep任务自动续批并最多重试2次；列 sweeps/<expected_date>/summary.json 的attempted_unique/usable/unavailable/pending及日期，未闭环不得声称已全量筛完，不直接改生产评分或同步自选。
 
 【agent负责证据，不负责确定性编排】
 读取plans及对应thesis与上次复核记录；未持有/已有持仓分别研究。验证财务/流动性/重大事件/技术/估值硬约束，再分别审查VALUE修复路径、TREND业绩订单景气、REVERSAL经营或供需改善。证据须真实来源日期与URL；1—3个月节点、价格条件、风险边界、失效条件和复核日必填，缺失则WATCH/待复核。板块转冷/资金转负/单日破均线仅复核，不自动退出；HOLD不重置原始日期/参考价/期限；退出重入必须新episode。未确认持仓成本不算个人盈亏，不写金额股数或仓位比例。
 
 【研究后唯一记录入口】
 按 docs/MT-1.0.md 的schema写一个本轮 review-bundle JSON，再调用 python3 {BASE}/mt1_job.py finalize --input <绝对路径>。
-此命令做计划事件/方法事件逐项幂等写入、版本冲突检查、差异、审查覆盖、记录与自选dry-run。只有实质变化才写事件；无变化只填reviewed_plan_ids及研究证据。不另手工拼rec_log add，不重复写旧rec日志；MT-1.0以SQLite事件账本为权威，旧rec保留只读历史。
+review-bundle 必须填 source_run_id=<本轮真实run_id>。此命令做计划事件/方法事件逐项幂等写入、版本冲突检查、差异、审查覆盖、记录与自选dry-run。只有实质变化才写事件；无变化只填reviewed_plan_ids及研究证据。不另手工拼rec_log add，不重复写旧rec日志；MT-1.0以SQLite事件账本为权威，旧rec保留只读历史。
 原始watchlist_sync from-recap已硬禁用。最终同步工具是 mt1.py watchlist，默认dry-run；本轮不要传--execute。真实自选成功写入本次尚未验收，不假称同步成功。
+
+【真实链路留证，不以0 final卡死】
+每次run自动保存chains/<run_id>/run-*（进程/worker/HEAD/manifest/report hash），finalize自动保存实际bundle、结果与Markdown hash。
+冷启动可运行 python3 {BASE}/mt1.py coldstart-export --out {BASE}/.cron_state/mt1/coldstart，选一个尚未完成的batch（10项）审查。不能核验的使用response_template里的review_items(status=pending)，reviewed_plan_ids留空；真实待复核WATCH也可形成报告，不凑final或公司判断。_bootstrap_state是迁移元数据不是股票，单独列数据问题。
+发布前按 docs/MT-1.0-operations.md 保存实际create_doc/发消息工具返回及readback，用 evidence --kind delivery 关联本轮run_id与Markdown hash；没有回执标未送达，不伪造文件。自然任务完成后执行 evidence --kind collect-dispatch --run-id <run_id> 收集gateway调度日志；未关联则明确待验。最后 evidence --kind inventory 查缺哪一环。
+当前四任务绑定home-ubuntu；若实际worker不是home-ubuntu则停止并报未部署，不去其他worker自行补装。不传watchlist --execute。
 
 【节奏】
 本轮phase={phase}。morning查隔夜与到期条件；evening更新当日证据；saturday全量复盘活跃及退出记录；sunday先读最近周六记录，再联网查3—5个可靠来源，可选0—2个方法，不凑数。联网由现有检索工具完成，保存原文与sha256到research.sources；失败标not_verified，不能假称查完。方法candidate→shadow→validated→active，缺PIT/真实通道/样本外证据不得升级。20/40/60回测目前只有信号带复放和数据门禁，真实三通道历史复刻未完成，不能报策略收益已验证。

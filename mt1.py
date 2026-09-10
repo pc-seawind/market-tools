@@ -30,8 +30,40 @@ def main():
     p=sub.add_parser('finalize'); p.add_argument('--input',required=True); p.add_argument('--investment-dir',default='/home/emox/work/investment')
     p=sub.add_parser('register-existing-method'); p.add_argument('--reviewer',required=True)
     p=sub.add_parser('verify'); p.add_argument('--asof')
+    p=sub.add_parser('sweep')
+    p.add_argument('--asof',required=True)
+    p.add_argument('--batch-size',type=int,default=100)
+    p.add_argument('--workers',type=int,default=4)
+    p.add_argument('--attempts',type=int,default=2)
+    p.add_argument('--calls-per-second',type=float,default=3)
+    p.add_argument('--max-seconds',type=int,default=6600)
+    p.add_argument('--max-batches',type=int,default=0)
+    p=sub.add_parser('coldstart-export'); p.add_argument('--out',required=True); p.add_argument('--batch-size',type=int,default=10)
+    p=sub.add_parser('evidence'); p.add_argument('--kind',choices=['dispatch','delivery','inventory','collect-dispatch'],default='inventory'); p.add_argument('--run-id'); p.add_argument('--input')
+    p=sub.add_parser('data-backfill');p.add_argument('--input',required=True);p.add_argument('--max-requests',type=int,default=100)
+    p=sub.add_parser('data-audit')
     p=sub.add_parser('plans')
     args=parser.parse_args()
+    if args.cmd=='data-backfill':
+        from mt1.data_readiness import backfill
+        r=backfill(args.state_dir,json.loads(Path(args.input).read_text()),args.max_requests)
+        print(json.dumps(r,ensure_ascii=False,indent=2));return
+    if args.cmd=='data-audit':
+        from mt1.data_readiness import audit
+        print(json.dumps(audit(args.state_dir),ensure_ascii=False,indent=2));return
+    if args.cmd=='coldstart-export':
+        from mt1.coldstart import export
+        print(json.dumps(export(args.state_dir,args.out,args.batch_size),ensure_ascii=False,indent=2));return
+    if args.cmd=='evidence':
+        from mt1.evidence import attach,inventory,collect_dispatch
+        r=(inventory(args.state_dir) if args.kind=='inventory' else collect_dispatch(args.state_dir,args.run_id) if args.kind=='collect-dispatch' else attach(args.state_dir,args.run_id,args.kind,args.input))
+        print(json.dumps(r,ensure_ascii=False,indent=2));return
+    if args.cmd=='sweep':
+        from mt1.sweep import sweep
+        r=sweep(args.state_dir,args.asof,args.batch_size,args.workers,args.attempts,args.calls_per_second,args.max_seconds,args.max_batches)
+        print(json.dumps(r,ensure_ascii=False,indent=2))
+        if not r['complete']:raise SystemExit(75)
+        return
     if args.cmd=='verify':
         from mt1.verify import verify
         print(json.dumps(verify(args.state_dir,date.fromisoformat(args.asof) if args.asof else None),ensure_ascii=False,indent=2)); return

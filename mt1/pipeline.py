@@ -106,7 +106,10 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
                 if fixture is not None and fixture.get('universe'):
                     pool=stage('quality_value',lambda:screen(fixture['universe']))
                 elif collect and phase=='evening':
-                    pool=stage('quality_value',lambda:screen(collect_universe(expected,state_dir/'universe',max_stocks)))
+                    from .sweep import launch, snapshot
+                    stage('universe_sweep_launch',lambda:launch(state_dir,expected))
+                    # Snapshot is refreshed on every harvest, unlike immutable raw inputs.
+                    pool=snapshot(state_dir,expected)
             if gates['CN']['reason'] == 'calendar_missing_invalid_or_stale':
                 errors.append({'stage':'calendar_gate','error':'CN calendar unavailable; fail-closed'})
             plans=store.all()
@@ -149,5 +152,7 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
                     '完整数据：`'+str(directory/'report.json')+'`']
             with report.open('x') as f: f.write('\n'.join(lines)+'\n')
             result['report_path']=str(report); atomic_json(directory/'report.json',result)
+            from .evidence import capture_run
+            capture_run(state_dir,result,'fixture' if fixture is not None else 'live_cli')
             return result
         finally: store.close()

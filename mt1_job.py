@@ -9,7 +9,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-ALLOWED = {'TUSHARE_TOKEN','HTTP_PROXY','HTTPS_PROXY','ALL_PROXY','NO_PROXY',
+ALLOWED = {'HOMESPACE_WORKER_ID','TUSHARE_TOKEN','HTTP_PROXY','HTTPS_PROXY','ALL_PROXY','NO_PROXY',
            'http_proxy','https_proxy','all_proxy','no_proxy','TUSHARE_INSECURE_SSL'}
 
 

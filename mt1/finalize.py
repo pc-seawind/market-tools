@@ -16,9 +16,22 @@ from .store import Store, digest
 def finalize(bundle, state_dir, investment_dir):
     if bundle.get('phase') not in ('morning','evening','saturday','sunday') or not bundle.get('reviewer'):
         raise ValueError('phase and reviewer required')
+    from .evidence import validate_source, capture_review
+    validate_source(state_dir,bundle)
     now=datetime.now(timezone.utc)
     store=Store(Path(state_dir)/'plans.db'); errors=[]; changes=[]; methods=[]; gates={}
     try:
+        reviewed=set(bundle.get('reviewed_plan_ids',[]))
+        pending=[]
+        for item in bundle.get('review_items',[]):
+            p=store.latest('plan:'+item.get('plan_id',''))
+            if not p or p['version']!=item.get('expected_version'):
+                raise ValueError('review item missing or stale version')
+            if item.get('status')!='pending' or not item.get('note'):
+                raise ValueError('review_items records pending gaps only; validated decisions use plan_events')
+            if p['plan_id'] in reviewed or p['plan_id'] in {e['id'] for e in bundle.get('plan_events',[])}:
+                raise ValueError('pending item cannot count as reviewed')
+            pending.append({'plan':p,'note':item['note']})
         for event in bundle.get('method_events',[]):
             try:
                 if event['payload'].get('method_id',event['id'])!=event['id']: raise ValueError('method id mismatch')
@@ -59,7 +72,8 @@ def finalize(bundle, state_dir, investment_dir):
         summary={'phase':bundle['phase'],'reviewer':bundle['reviewer'],'changes':changes,'methods':methods,
                  'reviewed_plan_ids':sorted(reviewed & actual),'unreviewed_plan_ids':sorted(actual-reviewed),
                  'research_status':'fetched' if research_ok else 'not_verified',
-                 'research':research,'errors':errors,'watchlist':{'mode':'dry_run','pending':[
+                 'research':research,'errors':errors,'source_run_id':bundle.get('source_run_id'),
+                 'pending_review_ids':[v['plan']['plan_id'] for v in pending],'watchlist':{'mode':'dry_run','pending':[
                    {'code':p['code'],'plan_id':p['plan_id'],'version':p['version']}
                    for p in store.all() if eligible(p,date.today(),store.latest)]},
                  'legacy_rec_projection':'not_written; structured ledger is authoritative for MT-1.0'}
@@ -71,11 +85,20 @@ def finalize(bundle, state_dir, investment_dir):
         report.parent.mkdir(parents=True,exist_ok=True)
         lines=['**MT-1.0 证据审查结果**','',f'审查人：{bundle["reviewer"]}；覆盖 {len(reviewed & actual)}/{len(actual)}。',
                '|标的|未持有者方向|已有持仓方向|变化理由|下次复核|','|---|---|---|---|---|']
+        if bundle.get('report_context'):
+            lines.insert(1,str(bundle['report_context']))
         for c in changes:
             p=c['after']; reason=c['reason'].replace('|','/').replace('\n',' ')
             lines.append(f"|{p['code']}|{p['unheld_direction']}|{p['held_direction']}|{reason}|{p.get('review_due') or '未知'}|")
+        for item in pending:
+            p=item['plan']; note=item['note'].replace('|','/').replace('\n',' ')
+            lines.append(f"|{p['code']}|{p['unheld_direction']}|{p['held_direction']}|待复核：{note}|{p.get('review_due') or '未知'}|")
+        lines.append('')
+        lines.append('运行关联：`'+str(bundle.get('source_run_id') or '未关联')+'`')
         if not changes:lines.append('无新增状态事件；不代表未审查的计划已经验证。')
         lines.extend(['',f"联网：{summary['research_status']}；自选：仅 dry-run。",'异常：'+str(errors),'数据：`'+str(out)+'`'])
         with report.open('x') as f:f.write('\n'.join(lines)+'\n')
-        return {**summary,'report_path':str(report),'result_json':str(out)}
+        result={**summary,'report_path':str(report),'result_json':str(out)}
+        capture_review(state_dir,bundle,result)
+        return result
     finally:store.close()

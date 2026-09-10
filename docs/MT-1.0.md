@@ -1,5 +1,7 @@
 # MT-1.0 工程交付与运行手册
 
+**2026-09-11 操作更新**：全量后台扫描、冷启动批次交接和真实链路留证以 [MT-1.0-operations.md](MT-1.0-operations.md) 为准；下文最初100只采样数字仅历史。精确历史数据实测与任务见 [MT-1.0-data-gap-tasks.md](MT-1.0-data-gap-tasks.md)。
+
 2026-09-10。策略规范来自 investment/reference/medium-term-recommendation-policy.md。
 **不是完整策略上线声明：工程安全与记录层启用，新质量价值因子留 shadow；精确三通道历史回测仍未完成。**
 
