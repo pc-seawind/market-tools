@@ -39,7 +39,22 @@ def audit(root):
     assert all(r['plan']['qualification']=='pending_review' and not r['plan']['final_buy'] for r in queue)
     with gzip.open(root/'price-input.json.gz','rt') as f:prices=json.load(f)
     assert prices['sessions'][-1]==s['asof'] and len(prices['sessions'])==120
-    result={'engineering_audit':'passed','strategy_acceptance':'not_assessed','asof':s['asof'],'universe':s['universe'],'deduplicated':len(queue),'stage_rows':len(rows),'frozen_hashes_checked':len(s['frozen_hashes']),'final_buy':0}
+    bound_count=0
+    if (root/'bound-review.json').exists():
+        bound=json.loads((root/'bound-review.json').read_text())
+        raw=(root/'bound-ledger-snapshot.json').read_bytes()
+        assert hashlib.sha256(raw).hexdigest()==bound['ledger_snapshot_sha256']
+        plans={p['plan_id']:p for p in json.loads(raw)}
+        for o in bound['observations']:
+            fields=o['binding']['bound_fields'];original=plans[fields['plan_id']]
+            assert all(original.get(k)==v for k,v in fields.items())
+            assert o['final'] is False and o['trade_intent'] is False
+            assert o['decision_at']==s['decision_at'] and o['price_asof']==s['asof']
+        bound_count=len(bound['observations'])
+        for p in json.loads((root/'review-input.json').read_text()):
+            for source in p['sources']:
+                assert hashlib.sha256((root/'review-sources'/source['sha256']).read_bytes()).hexdigest()==source['sha256']
+    result={'bound_plans_checked':bound_count,'engineering_audit':'passed','strategy_acceptance':'not_assessed','asof':s['asof'],'universe':s['universe'],'deduplicated':len(queue),'stage_rows':len(rows),'frozen_hashes_checked':len(s['frozen_hashes']),'final_buy':0}
     return result
 
 if __name__=='__main__':
