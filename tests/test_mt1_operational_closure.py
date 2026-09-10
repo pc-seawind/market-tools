@@ -144,3 +144,16 @@ def test_handoff_export_does_not_overwrite_investment_edits(tmp_path):
     path=Path(r['out_dir'])/'batch-01.json';path.write_text('{"user_edit":true}')
     with pytest.raises(ValueError,match='immutable'):export(tmp_path,tmp_path/'out')
     assert json.loads(path.read_text())=={'user_edit':True}
+
+
+def test_launcher_total_restart_budget_not_rolling_window(tmp_path,monkeypatch):
+    from types import SimpleNamespace
+    commands=[]
+    def run(cmd,**kwargs):
+        commands.append(cmd)
+        return SimpleNamespace(returncode=0,stdout='inactive\n',stderr='')
+    monkeypatch.setattr('mt1.sweep.subprocess.run',run)
+    r=launch(tmp_path,str(date.today()))
+    assert r['status']=='started'
+    assert '--property=StartLimitIntervalSec=infinity' in commands[-1]
+    assert '--property=StartLimitBurst=3' in commands[-1]
