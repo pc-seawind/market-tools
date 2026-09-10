@@ -81,7 +81,7 @@ def _backfill(state_dir,manifest,max_requests=100,provider=fetch):
     """Finite read-only request list; immutable responses and per-task checkpoints."""
     from .store import digest
     if not 1<=max_requests<=500:raise ValueError('max_requests must be 1..500')
-    tasks=manifest['tasks'];allowed={n for n,p in PROBES}
+    tasks=manifest['tasks'];allowed={n for n,p in PROBES}|{'daily_basic','dividend'}
     if any(t['api'] not in allowed or not t.get('id') for t in tasks):raise ValueError('unsupported task')
     if len({t['id'] for t in tasks})!=len(tasks):raise ValueError('duplicate task ids')
     root=Path(state_dir)/'backfill'/digest(manifest)[:20];root.mkdir(parents=True,exist_ok=True)

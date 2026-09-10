@@ -1,0 +1,4494 @@
+{
+  "scope": "all-market 250 warmup + 181 target sessions; cap rows require universe anti-join, never assume response completeness",
+  "calendar_source": {
+    "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/backfill/c57e781349e2b4593bf7/6d0fb905ce6b93e9dc6347a1-rows.json",
+    "sha256": "ec1fc561b2ad385cf5ca8d39550ee34ea26b1147f6c6d2b17391a6140c1f3b9f"
+  },
+  "warmup_sessions": [
+    "20221221",
+    "20221222",
+    "20221223",
+    "20221226",
+    "20221227",
+    "20221228",
+    "20221229",
+    "20221230",
+    "20230103",
+    "20230104",
+    "20230105",
+    "20230106",
+    "20230109",
+    "20230110",
+    "20230111",
+    "20230112",
+    "20230113",
+    "20230116",
+    "20230117",
+    "20230118",
+    "20230119",
+    "20230120",
+    "20230130",
+    "20230131",
+    "20230201",
+    "20230202",
+    "20230203",
+    "20230206",
+    "20230207",
+    "20230208",
+    "20230209",
+    "20230210",
+    "20230213",
+    "20230214",
+    "20230215",
+    "20230216",
+    "20230217",
+    "20230220",
+    "20230221",
+    "20230222",
+    "20230223",
+    "20230224",
+    "20230227",
+    "20230228",
+    "20230301",
+    "20230302",
+    "20230303",
+    "20230306",
+    "20230307",
+    "20230308",
+    "20230309",
+    "20230310",
+    "20230313",
+    "20230314",
+    "20230315",
+    "20230316",
+    "20230317",
+    "20230320",
+    "20230321",
+    "20230322",
+    "20230323",
+    "20230324",
+    "20230327",
+    "20230328",
+    "20230329",
+    "20230330",
+    "20230331",
+    "20230403",
+    "20230404",
+    "20230406",
+    "20230407",
+    "20230410",
+    "20230411",
+    "20230412",
+    "20230413",
+    "20230414",
+    "20230417",
+    "20230418",
+    "20230419",
+    "20230420",
+    "20230421",
+    "20230424",
+    "20230425",
+    "20230426",
+    "20230427",
+    "20230428",
+    "20230504",
+    "20230505",
+    "20230508",
+    "20230509",
+    "20230510",
+    "20230511",
+    "20230512",
+    "20230515",
+    "20230516",
+    "20230517",
+    "20230518",
+    "20230519",
+    "20230522",
+    "20230523",
+    "20230524",
+    "20230525",
+    "20230526",
+    "20230529",
+    "20230530",
+    "20230531",
+    "20230601",
+    "20230602",
+    "20230605",
+    "20230606",
+    "20230607",
+    "20230608",
+    "20230609",
+    "20230612",
+    "20230613",
+    "20230614",
+    "20230615",
+    "20230616",
+    "20230619",
+    "20230620",
+    "20230621",
+    "20230626",
+    "20230627",
+    "20230628",
+    "20230629",
+    "20230630",
+    "20230703",
+    "20230704",
+    "20230705",
+    "20230706",
+    "20230707",
+    "20230710",
+    "20230711",
+    "20230712",
+    "20230713",
+    "20230714",
+    "20230717",
+    "20230718",
+    "20230719",
+    "20230720",
+    "20230721",
+    "20230724",
+    "20230725",
+    "20230726",
+    "20230727",
+    "20230728",
+    "20230731",
+    "20230801",
+    "20230802",
+    "20230803",
+    "20230804",
+    "20230807",
+    "20230808",
+    "20230809",
+    "20230810",
+    "20230811",
+    "20230814",
+    "20230815",
+    "20230816",
+    "20230817",
+    "20230818",
+    "20230821",
+    "20230822",
+    "20230823",
+    "20230824",
+    "20230825",
+    "20230828",
+    "20230829",
+    "20230830",
+    "20230831",
+    "20230901",
+    "20230904",
+    "20230905",
+    "20230906",
+    "20230907",
+    "20230908",
+    "20230911",
+    "20230912",
+    "20230913",
+    "20230914",
+    "20230915",
+    "20230918",
+    "20230919",
+    "20230920",
+    "20230921",
+    "20230922",
+    "20230925",
+    "20230926",
+    "20230927",
+    "20230928",
+    "20231009",
+    "20231010",
+    "20231011",
+    "20231012",
+    "20231013",
+    "20231016",
+    "20231017",
+    "20231018",
+    "20231019",
+    "20231020",
+    "20231023",
+    "20231024",
+    "20231025",
+    "20231026",
+    "20231027",
+    "20231030",
+    "20231031",
+    "20231101",
+    "20231102",
+    "20231103",
+    "20231106",
+    "20231107",
+    "20231108",
+    "20231109",
+    "20231110",
+    "20231113",
+    "20231114",
+    "20231115",
+    "20231116",
+    "20231117",
+    "20231120",
+    "20231121",
+    "20231122",
+    "20231123",
+    "20231124",
+    "20231127",
+    "20231128",
+    "20231129",
+    "20231130",
+    "20231201",
+    "20231204",
+    "20231205",
+    "20231206",
+    "20231207",
+    "20231208",
+    "20231211",
+    "20231212",
+    "20231213",
+    "20231214",
+    "20231215",
+    "20231218",
+    "20231219",
+    "20231220",
+    "20231221",
+    "20231222",
+    "20231225",
+    "20231226",
+    "20231227",
+    "20231228",
+    "20231229"
+  ],
+  "target_sessions": [
+    "20240102",
+    "20240103",
+    "20240104",
+    "20240105",
+    "20240108",
+    "20240109",
+    "20240110",
+    "20240111",
+    "20240112",
+    "20240115",
+    "20240116",
+    "20240117",
+    "20240118",
+    "20240119",
+    "20240122",
+    "20240123",
+    "20240124",
+    "20240125",
+    "20240126",
+    "20240129",
+    "20240130",
+    "20240131",
+    "20240201",
+    "20240202",
+    "20240205",
+    "20240206",
+    "20240207",
+    "20240208",
+    "20240219",
+    "20240220",
+    "20240221",
+    "20240222",
+    "20240223",
+    "20240226",
+    "20240227",
+    "20240228",
+    "20240229",
+    "20240301",
+    "20240304",
+    "20240305",
+    "20240306",
+    "20240307",
+    "20240308",
+    "20240311",
+    "20240312",
+    "20240313",
+    "20240314",
+    "20240315",
+    "20240318",
+    "20240319",
+    "20240320",
+    "20240321",
+    "20240322",
+    "20240325",
+    "20240326",
+    "20240327",
+    "20240328",
+    "20240329",
+    "20240401",
+    "20240402",
+    "20240403",
+    "20240408",
+    "20240409",
+    "20240410",
+    "20240411",
+    "20240412",
+    "20240415",
+    "20240416",
+    "20240417",
+    "20240418",
+    "20240419",
+    "20240422",
+    "20240423",
+    "20240424",
+    "20240425",
+    "20240426",
+    "20240429",
+    "20240430",
+    "20240506",
+    "20240507",
+    "20240508",
+    "20240509",
+    "20240510",
+    "20240513",
+    "20240514",
+    "20240515",
+    "20240516",
+    "20240517",
+    "20240520",
+    "20240521",
+    "20240522",
+    "20240523",
+    "20240524",
+    "20240527",
+    "20240528",
+    "20240529",
+    "20240530",
+    "20240531",
+    "20240603",
+    "20240604",
+    "20240605",
+    "20240606",
+    "20240607",
+    "20240611",
+    "20240612",
+    "20240613",
+    "20240614",
+    "20240617",
+    "20240618",
+    "20240619",
+    "20240620",
+    "20240621",
+    "20240624",
+    "20240625",
+    "20240626",
+    "20240627",
+    "20240628",
+    "20240701",
+    "20240702",
+    "20240703",
+    "20240704",
+    "20240705",
+    "20240708",
+    "20240709",
+    "20240710",
+    "20240711",
+    "20240712",
+    "20240715",
+    "20240716",
+    "20240717",
+    "20240718",
+    "20240719",
+    "20240722",
+    "20240723",
+    "20240724",
+    "20240725",
+    "20240726",
+    "20240729",
+    "20240730",
+    "20240731",
+    "20240801",
+    "20240802",
+    "20240805",
+    "20240806",
+    "20240807",
+    "20240808",
+    "20240809",
+    "20240812",
+    "20240813",
+    "20240814",
+    "20240815",
+    "20240816",
+    "20240819",
+    "20240820",
+    "20240821",
+    "20240822",
+    "20240823",
+    "20240826",
+    "20240827",
+    "20240828",
+    "20240829",
+    "20240830",
+    "20240902",
+    "20240903",
+    "20240904",
+    "20240905",
+    "20240906",
+    "20240909",
+    "20240910",
+    "20240911",
+    "20240912",
+    "20240913",
+    "20240918",
+    "20240919",
+    "20240920",
+    "20240923",
+    "20240924",
+    "20240925",
+    "20240926",
+    "20240927",
+    "20240930"
+  ],
+  "tasks": [
+    {
+      "id": "20230609-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230609",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230609-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230609",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230612-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230612",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230612-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230612",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230612-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230612",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230612-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230612",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230613-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230613",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230613-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230613",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230613-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230613",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230613-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230613",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230614-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230614",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230614-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230614",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230614-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230614",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230614-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230614",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230615-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230615",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230615-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230615",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230615-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230615",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230615-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230615",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230616-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230616",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230616-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230616",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230616-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230616",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230616-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230616",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230619-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230619",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230619-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230619",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230619-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230619",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230619-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230619",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230620-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230620",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230620-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230620",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230620-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230620",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230620-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230620",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230621-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230621",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230621-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230621",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230621-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230621",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230621-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230621",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230626-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230626",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230626-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230626",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230626-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230626",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230626-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230626",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230627-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230627",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230627-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230627",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230627-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230627",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230627-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230627",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230628-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230628",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230628-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230628",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230628-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230628",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230628-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230628",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230629-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230629",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230629-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230629",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230629-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230629",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230629-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230629",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230630-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230630",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230630-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230630",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230630-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230630",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230630-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230630",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230703-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230703",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230703-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230703",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230703-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230703",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230703-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230703",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230704-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230704",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230704-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230704",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230704-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230704",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230704-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230704",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230705-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230705",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230705-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230705",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230705-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230705",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230705-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230705",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230706-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230706",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230706-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230706",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230706-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230706",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230706-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230706",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230707-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230707",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230707-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230707",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230707-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230707",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230707-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230707",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230710-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230710",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230710-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230710",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230710-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230710",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230710-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230710",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230711-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230711",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230711-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230711",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230711-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230711",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230711-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230711",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230712-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230712",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230712-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230712",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230712-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230712",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230712-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230712",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230713-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230713",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230713-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230713",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230713-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230713",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230713-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230713",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230714-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230714",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230714-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230714",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230714-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230714",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230714-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230714",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230717-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230717",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230717-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230717",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230717-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230717",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230717-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230717",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230718-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230718",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230718-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230718",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230718-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230718",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230718-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230718",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230719-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230719",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230719-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230719",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230719-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230719",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230719-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230719",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230720-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230720",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230720-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230720",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230720-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230720",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230720-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230720",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230721-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230721",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230721-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230721",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230721-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230721",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230721-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230721",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230724-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230724",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230724-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230724",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230724-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230724",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230724-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230724",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230725-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230725",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230725-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230725",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230725-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230725",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230725-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230725",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230726-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230726",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230726-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230726",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230726-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230726",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230726-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230726",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230727-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230727",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230727-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230727",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230727-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230727",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230727-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230727",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230728-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230728",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230728-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230728",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230728-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230728",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230728-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230728",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230731-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230731",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230731-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230731",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230731-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230731",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230731-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230731",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230801-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230801",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230801-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230801",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230801-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230801",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230801-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230801",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230802-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230802",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230802-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230802",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230802-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230802",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230802-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230802",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230803-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230803",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230803-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230803",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230803-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230803",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230803-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230803",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230804-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230804",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230804-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230804",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230804-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230804",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230804-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230804",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230807-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230807",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230807-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230807",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230807-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230807",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230807-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230807",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230808-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230808",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230808-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230808",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230808-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230808",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230808-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230808",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230809-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230809",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230809-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230809",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230809-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230809",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230809-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230809",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230810-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230810",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230810-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230810",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230810-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230810",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230810-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230810",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230811-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230811",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230811-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230811",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230811-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230811",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230811-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230811",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230814-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230814",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230814-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230814",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230814-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230814",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230814-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230814",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230815-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230815",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230815-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230815",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230815-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230815",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230815-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230815",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230816-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230816",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230816-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230816",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230816-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230816",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230816-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230816",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230817-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230817",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230817-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230817",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230817-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230817",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230817-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230817",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230818-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230818",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230818-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230818",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230818-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230818",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230818-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230818",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230821-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230821",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230821-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230821",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230821-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230821",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230821-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230821",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230822-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230822",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230822-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230822",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230822-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230822",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230822-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230822",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230823-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230823",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230823-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230823",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230823-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230823",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230823-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230823",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230824-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230824",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230824-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230824",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230824-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230824",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230824-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230824",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230825-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230825",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230825-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230825",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230825-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230825",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230825-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230825",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230828-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230828",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230828-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230828",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230828-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230828",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230828-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230828",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230829-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230829",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230829-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230829",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230829-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230829",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230829-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230829",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230830-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230830",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230830-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230830",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230830-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230830",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230830-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230830",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230831-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230831",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230831-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230831",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230831-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230831",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230831-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230831",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230901-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230901",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230901-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230901",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230901-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230901",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230901-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230901",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230904-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230904",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230904-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230904",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230904-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230904",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230904-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230904",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230905-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230905",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230905-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230905",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230905-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230905",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230905-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230905",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230906-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230906",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230906-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230906",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230906-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230906",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230906-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230906",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230907-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230907",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230907-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230907",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230907-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230907",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230907-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230907",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230908-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230908",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230908-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230908",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230908-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230908",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230908-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230908",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230911-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230911",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230911-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230911",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230911-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230911",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230911-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230911",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230912-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230912",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230912-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230912",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230912-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230912",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230912-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230912",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230913-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230913",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230913-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230913",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230913-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230913",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230913-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230913",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230914-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230914",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230914-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230914",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230914-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230914",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230914-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230914",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230915-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230915",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230915-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230915",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230915-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230915",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230915-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230915",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230918-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230918",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230918-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230918",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230918-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230918",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230918-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230918",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230919-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230919",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230919-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230919",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230919-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230919",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230919-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230919",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230920-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230920",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230920-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230920",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230920-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230920",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230920-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230920",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230921-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230921",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230921-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230921",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230921-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230921",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230921-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230921",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230922-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230922",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230922-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230922",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230922-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230922",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230922-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230922",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230925-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230925",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230925-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230925",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230925-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230925",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230925-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230925",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230926-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230926",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230926-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230926",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230926-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230926",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230926-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230926",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230927-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230927",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230927-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230927",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230927-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230927",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230927-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230927",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230928-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20230928",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230928-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20230928",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230928-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20230928",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20230928-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20230928",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231009-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231009",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231009-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231009",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231009-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231009",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231009-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231009",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231010-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231010",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231010-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231010",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231010-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231010",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231010-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231010",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231011-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231011",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231011-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231011",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231011-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231011",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231011-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231011",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231012-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231012",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231012-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231012",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231012-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231012",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231012-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231012",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231013-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231013",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231013-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231013",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231013-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231013",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231013-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231013",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231016-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231016",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231016-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231016",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231016-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231016",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231016-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231016",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231017-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231017",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231017-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231017",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231017-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231017",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231017-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231017",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231018-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231018",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231018-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231018",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231018-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231018",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231018-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231018",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231019-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231019",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231019-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231019",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231019-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231019",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231019-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231019",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231020-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231020",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231020-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231020",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231020-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231020",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231020-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231020",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231023-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231023",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231023-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231023",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231023-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231023",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231023-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231023",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231024-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231024",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231024-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231024",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231024-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231024",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231024-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231024",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231025-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231025",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231025-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231025",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231025-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231025",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231025-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231025",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231026-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231026",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231026-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231026",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231026-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231026",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231026-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231026",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231027-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231027",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231027-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231027",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231027-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231027",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231027-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231027",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231030-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231030",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231030-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231030",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231030-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231030",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231030-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231030",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231031-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231031",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231031-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231031",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231031-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231031",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231031-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231031",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231101-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231101",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231101-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231101",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231101-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231101",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231101-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231101",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231102-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231102",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231102-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231102",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231102-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231102",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231102-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231102",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231103-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231103",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231103-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231103",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231103-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231103",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231103-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231103",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231106-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231106",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231106-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231106",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231106-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231106",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231106-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231106",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231107-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231107",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231107-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231107",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231107-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231107",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231107-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231107",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231108-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231108",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231108-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231108",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231108-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231108",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231108-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231108",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231109-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231109",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231109-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231109",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231109-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231109",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231109-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231109",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231110-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231110",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231110-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231110",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231110-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231110",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231110-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231110",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231113-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231113",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231113-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231113",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231113-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231113",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231113-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231113",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231114-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231114",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231114-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231114",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231114-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231114",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231114-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231114",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231115-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231115",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231115-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231115",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231115-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231115",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231115-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231115",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231116-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231116",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231116-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231116",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231116-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231116",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231116-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231116",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231117-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231117",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231117-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231117",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231117-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231117",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231117-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231117",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231120-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231120",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231120-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231120",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231120-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231120",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231120-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231120",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231121-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231121",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231121-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231121",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231121-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231121",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231121-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231121",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231122-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231122",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231122-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231122",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231122-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231122",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231122-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231122",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231123-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231123",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231123-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231123",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231123-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231123",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231123-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231123",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231124-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20231124",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231124-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20231124",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231124-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20231124",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "20231124-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20231124",
+        "fields": "ts_code,trade_date,suspend_timing,suspend_type",
+        "limit": 6000
+      }
+    }
+  ]
+}

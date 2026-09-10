@@ -1,0 +1,1330 @@
+{
+  "scope": "deterministic first 12 listed-before-20221201 symbols sorted by code; 250-session warmup; whole-market first 10 target sessions; raw inputs NOT PIT certification",
+  "selection_source": ".cron_state/mt1/sweeps/2026-09-10/stock_basic.json",
+  "codes": [
+    "000001.SZ",
+    "000002.SZ",
+    "000006.SZ",
+    "000007.SZ",
+    "000008.SZ",
+    "000009.SZ",
+    "000010.SZ",
+    "000011.SZ",
+    "000012.SZ",
+    "000014.SZ",
+    "000016.SZ",
+    "000017.SZ"
+  ],
+  "tasks": [
+    {
+      "id": "calendar-warmup",
+      "api": "trade_cal",
+      "params": {
+        "exchange": "SSE",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "cal_date,is_open"
+      }
+    },
+    {
+      "id": "000001.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000001.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000001.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000001.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000001.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000001.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000001.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000001.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000001.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000001.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000001.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000001.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000001.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000001.SZ"
+      }
+    },
+    {
+      "id": "000001.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000001.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000001.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000001.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000002.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000002.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000002.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000002.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000002.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000002.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000002.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000002.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000002.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000002.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000002.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000002.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000002.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000002.SZ"
+      }
+    },
+    {
+      "id": "000002.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000002.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000002.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000002.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000006.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000006.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000006.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000006.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000006.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000006.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000006.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000006.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000006.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000006.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000006.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000006.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000006.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000006.SZ"
+      }
+    },
+    {
+      "id": "000006.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000006.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000006.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000006.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000007.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000007.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000007.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000007.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000007.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000007.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000007.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000007.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000007.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000007.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000007.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000007.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000007.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000007.SZ"
+      }
+    },
+    {
+      "id": "000007.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000007.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000007.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000007.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000008.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000008.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000008.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000008.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000008.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000008.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000008.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000008.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000008.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000008.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000008.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000008.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000008.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000008.SZ"
+      }
+    },
+    {
+      "id": "000008.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000008.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000008.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000008.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000009.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000009.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000009.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000009.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000009.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000009.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000009.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000009.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000009.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000009.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000009.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000009.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000009.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000009.SZ"
+      }
+    },
+    {
+      "id": "000009.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000009.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000009.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000009.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000010.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000010.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000010.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000010.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000010.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000010.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000010.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000010.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000010.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000010.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000010.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000010.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000010.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000010.SZ"
+      }
+    },
+    {
+      "id": "000010.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000010.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000010.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000010.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000011.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000011.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000011.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000011.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000011.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000011.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000011.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000011.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000011.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000011.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000011.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000011.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000011.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000011.SZ"
+      }
+    },
+    {
+      "id": "000011.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000011.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000011.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000011.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000012.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000012.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000012.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000012.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000012.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000012.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000012.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000012.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000012.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000012.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000012.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000012.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000012.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000012.SZ"
+      }
+    },
+    {
+      "id": "000012.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000012.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000012.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000012.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000014.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000014.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000014.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000014.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000014.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000014.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000014.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000014.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000014.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000014.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000014.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000014.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000014.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000014.SZ"
+      }
+    },
+    {
+      "id": "000014.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000014.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000014.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000014.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000016.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000016.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000016.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000016.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000016.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000016.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000016.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000016.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000016.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000016.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000016.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000016.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000016.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000016.SZ"
+      }
+    },
+    {
+      "id": "000016.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000016.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000016.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000016.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "000017.SZ-daily-warmup",
+      "api": "daily",
+      "params": {
+        "ts_code": "000017.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount"
+      }
+    },
+    {
+      "id": "000017.SZ-adj_factor-warmup",
+      "api": "adj_factor",
+      "params": {
+        "ts_code": "000017.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,adj_factor"
+      }
+    },
+    {
+      "id": "000017.SZ-stk_limit-warmup",
+      "api": "stk_limit",
+      "params": {
+        "ts_code": "000017.SZ",
+        "start_date": "20221201",
+        "end_date": "20240930",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit"
+      }
+    },
+    {
+      "id": "000017.SZ-daily_basic-raw",
+      "api": "daily_basic",
+      "params": {
+        "ts_code": "000017.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000017.SZ-income-raw",
+      "api": "income",
+      "params": {
+        "ts_code": "000017.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000017.SZ-fina_indicator-raw",
+      "api": "fina_indicator",
+      "params": {
+        "ts_code": "000017.SZ",
+        "start_date": "20230101",
+        "end_date": "20240930"
+      }
+    },
+    {
+      "id": "000017.SZ-dividend-raw",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000017.SZ"
+      }
+    },
+    {
+      "id": "000017.SZ-membership-Y",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000017.SZ",
+        "is_new": "Y"
+      }
+    },
+    {
+      "id": "000017.SZ-membership-N",
+      "api": "index_member_all",
+      "params": {
+        "ts_code": "000017.SZ",
+        "is_new": "N"
+      }
+    },
+    {
+      "id": "market-20240102-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20240102",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240102-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20240102",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240102-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20240102",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "suspension-20240102",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20240102"
+      }
+    },
+    {
+      "id": "market-20240103-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20240103",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240103-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20240103",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240103-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20240103",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "suspension-20240103",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20240103"
+      }
+    },
+    {
+      "id": "market-20240104-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20240104",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240104-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20240104",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240104-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20240104",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "suspension-20240104",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20240104"
+      }
+    },
+    {
+      "id": "market-20240105-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20240105",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240105-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20240105",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240105-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20240105",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "suspension-20240105",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20240105"
+      }
+    },
+    {
+      "id": "market-20240108-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20240108",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240108-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20240108",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240108-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20240108",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "suspension-20240108",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20240108"
+      }
+    },
+    {
+      "id": "market-20240109-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20240109",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240109-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20240109",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240109-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20240109",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "suspension-20240109",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20240109"
+      }
+    },
+    {
+      "id": "market-20240110-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20240110",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240110-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20240110",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240110-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20240110",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "suspension-20240110",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20240110"
+      }
+    },
+    {
+      "id": "market-20240111-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20240111",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240111-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20240111",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240111-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20240111",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "suspension-20240111",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20240111"
+      }
+    },
+    {
+      "id": "market-20240112-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20240112",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240112-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20240112",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240112-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20240112",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "suspension-20240112",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20240112"
+      }
+    },
+    {
+      "id": "market-20240115-daily",
+      "api": "daily",
+      "params": {
+        "trade_date": "20240115",
+        "fields": "ts_code,trade_date,open,high,low,close,vol,amount",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240115-adj_factor",
+      "api": "adj_factor",
+      "params": {
+        "trade_date": "20240115",
+        "fields": "ts_code,trade_date,adj_factor",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "market-20240115-stk_limit",
+      "api": "stk_limit",
+      "params": {
+        "trade_date": "20240115",
+        "fields": "ts_code,trade_date,pre_close,up_limit,down_limit",
+        "limit": 6000
+      }
+    },
+    {
+      "id": "suspension-20240115",
+      "api": "suspend_d",
+      "params": {
+        "trade_date": "20240115"
+      }
+    }
+  ]
+}

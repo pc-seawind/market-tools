@@ -1,0 +1,657 @@
+{
+  "scope": "all downloaded D master delisting effective in target window; dividend raw evidence only, no zero/last-price settlement",
+  "selected": [
+    {
+      "ts_code": "000005.SZ",
+      "name": "ST\u661f\u6e90(\u9000)",
+      "list_date": "19901210",
+      "delist_date": "20240426"
+    },
+    {
+      "ts_code": "000023.SZ",
+      "name": "*ST\u6df1\u5929(\u9000)",
+      "list_date": "19930429",
+      "delist_date": "20240902"
+    },
+    {
+      "ts_code": "000046.SZ",
+      "name": "*ST\u6cdb\u6d77(\u9000)",
+      "list_date": "19940912",
+      "delist_date": "20240207"
+    },
+    {
+      "ts_code": "000416.SZ",
+      "name": "*ST\u6c11\u63a7(\u9000)",
+      "list_date": "19960719",
+      "delist_date": "20240605"
+    },
+    {
+      "ts_code": "000836.SZ",
+      "name": "ST\u5bcc\u901a(\u9000)",
+      "list_date": "19970929",
+      "delist_date": "20240812"
+    },
+    {
+      "ts_code": "000861.SZ",
+      "name": "\u6d77\u5370\u80a1\u4efd(\u9000)",
+      "list_date": "19981028",
+      "delist_date": "20240918"
+    },
+    {
+      "ts_code": "000961.SZ",
+      "name": "ST\u4e2d\u5357(\u9000)",
+      "list_date": "20000301",
+      "delist_date": "20240711"
+    },
+    {
+      "ts_code": "000971.SZ",
+      "name": "*ST\u9ad8\u5347(\u9000)",
+      "list_date": "20000427",
+      "delist_date": "20240724"
+    },
+    {
+      "ts_code": "000976.SZ",
+      "name": "*ST\u534e\u94c1(\u9000)",
+      "list_date": "20000601",
+      "delist_date": "20240827"
+    },
+    {
+      "ts_code": "000982.SZ",
+      "name": "\u4e2d\u94f6\u7ed2\u4e1a(\u9000)",
+      "list_date": "20000706",
+      "delist_date": "20240812"
+    },
+    {
+      "ts_code": "000996.SZ",
+      "name": "\u4e2d\u671f\u9000(\u9000)",
+      "list_date": "20000718",
+      "delist_date": "20240628"
+    },
+    {
+      "ts_code": "002002.SZ",
+      "name": "ST\u9e3f\u8fbe(\u9000)",
+      "list_date": "20040625",
+      "delist_date": "20240318"
+    },
+    {
+      "ts_code": "002087.SZ",
+      "name": "\u65b0\u7eba\u9000(\u9000)",
+      "list_date": "20061130",
+      "delist_date": "20240628"
+    },
+    {
+      "ts_code": "002089.SZ",
+      "name": "\u65b0\u6d77\u9000(\u9000)",
+      "list_date": "20061130",
+      "delist_date": "20240418"
+    },
+    {
+      "ts_code": "002280.SZ",
+      "name": "ST\u8054\u7edc(\u9000)",
+      "list_date": "20090821",
+      "delist_date": "20240816"
+    },
+    {
+      "ts_code": "002288.SZ",
+      "name": "*ST\u8d85\u534e(\u9000)",
+      "list_date": "20090903",
+      "delist_date": "20240819"
+    },
+    {
+      "ts_code": "002308.SZ",
+      "name": "*ST\u5a01\u521b(\u9000)",
+      "list_date": "20091127",
+      "delist_date": "20240927"
+    },
+    {
+      "ts_code": "002325.SZ",
+      "name": "*ST\u6d2a\u6d9b(\u9000)",
+      "list_date": "20091222",
+      "delist_date": "20240815"
+    },
+    {
+      "ts_code": "002341.SZ",
+      "name": "ST\u65b0\u7eb6(\u9000)",
+      "list_date": "20100122",
+      "delist_date": "20240823"
+    },
+    {
+      "ts_code": "002433.SZ",
+      "name": "\u592a\u5b89\u9000(\u9000)",
+      "list_date": "20100618",
+      "delist_date": "20240705"
+    },
+    {
+      "ts_code": "002435.SZ",
+      "name": "ST\u957f\u5eb7(\u9000)",
+      "list_date": "20100618",
+      "delist_date": "20240815"
+    },
+    {
+      "ts_code": "002502.SZ",
+      "name": "ST\u9f0e\u9f99(\u9000)",
+      "list_date": "20101117",
+      "delist_date": "20240905"
+    },
+    {
+      "ts_code": "002505.SZ",
+      "name": "\u9e4f\u90fd\u519c\u7267(\u9000)",
+      "list_date": "20101118",
+      "delist_date": "20240830"
+    },
+    {
+      "ts_code": "002610.SZ",
+      "name": "ST\u7231\u5eb7(\u9000)",
+      "list_date": "20110815",
+      "delist_date": "20240812"
+    },
+    {
+      "ts_code": "002621.SZ",
+      "name": "*ST\u7f8e\u5409(\u9000)",
+      "list_date": "20110929",
+      "delist_date": "20240805"
+    },
+    {
+      "ts_code": "002665.SZ",
+      "name": "ST\u822a\u9ad8(\u9000)",
+      "list_date": "20120327",
+      "delist_date": "20240826"
+    },
+    {
+      "ts_code": "002699.SZ",
+      "name": "*ST\u7f8e\u76db(\u9000)",
+      "list_date": "20120911",
+      "delist_date": "20240605"
+    },
+    {
+      "ts_code": "002740.SZ",
+      "name": "*ST\u7231\u8fea(\u9000)",
+      "list_date": "20150122",
+      "delist_date": "20240304"
+    },
+    {
+      "ts_code": "002776.SZ",
+      "name": "*ST\u67cf\u9f99(\u9000)",
+      "list_date": "20150626",
+      "delist_date": "20240125"
+    },
+    {
+      "ts_code": "300116.SZ",
+      "name": "*ST\u4fdd\u529b(\u9000)",
+      "list_date": "20100902",
+      "delist_date": "20240725"
+    },
+    {
+      "ts_code": "300262.SZ",
+      "name": "*ST\u5df4\u5b89(\u9000)",
+      "list_date": "20110916",
+      "delist_date": "20240819"
+    },
+    {
+      "ts_code": "300282.SZ",
+      "name": "\u4e09\u76db\u9000(\u9000)",
+      "list_date": "20111229",
+      "delist_date": "20240718"
+    },
+    {
+      "ts_code": "300495.SZ",
+      "name": "*ST\u7f8e\u5c1a(\u9000)",
+      "list_date": "20151222",
+      "delist_date": "20240920"
+    },
+    {
+      "ts_code": "300742.SZ",
+      "name": "\u8d8a\u535a\u9000(\u9000)",
+      "list_date": "20180508",
+      "delist_date": "20240722"
+    },
+    {
+      "ts_code": "300799.SZ",
+      "name": "\u5de6\u6c5f\u9000(\u9000)",
+      "list_date": "20191029",
+      "delist_date": "20240729"
+    },
+    {
+      "ts_code": "600112.SH",
+      "name": "*ST\u5929\u6210(\u9000)",
+      "list_date": "19971127",
+      "delist_date": "20240815"
+    },
+    {
+      "ts_code": "600220.SH",
+      "name": "ST\u9633\u5149(\u9000)",
+      "list_date": "19990927",
+      "delist_date": "20240710"
+    },
+    {
+      "ts_code": "600277.SH",
+      "name": "ST\u4ebf\u5229(\u9000)",
+      "list_date": "20000725",
+      "delist_date": "20240718"
+    },
+    {
+      "ts_code": "600290.SH",
+      "name": "*ST\u534e\u4eea(\u9000)",
+      "list_date": "20001106",
+      "delist_date": "20240116"
+    },
+    {
+      "ts_code": "600297.SH",
+      "name": "\u5e7f\u6c47\u6c7d\u8f66(\u9000)",
+      "list_date": "20001116",
+      "delist_date": "20240828"
+    },
+    {
+      "ts_code": "600306.SH",
+      "name": "\u9000\u5546\u57ce(\u9000)",
+      "list_date": "20001226",
+      "delist_date": "20240626"
+    },
+    {
+      "ts_code": "600321.SH",
+      "name": "\u6b63\u6e90\u80a1\u4efd(\u9000)",
+      "list_date": "20010524",
+      "delist_date": "20240627"
+    },
+    {
+      "ts_code": "600565.SH",
+      "name": "ST\u8fea\u9a6c(\u9000)",
+      "list_date": "20020723",
+      "delist_date": "20240807"
+    },
+    {
+      "ts_code": "600647.SH",
+      "name": "\u9000\u540c\u8fbe(\u9000)",
+      "list_date": "19930504",
+      "delist_date": "20240703"
+    },
+    {
+      "ts_code": "600766.SH",
+      "name": "\u9000\u56ed\u57ce(\u9000)",
+      "list_date": "19961028",
+      "delist_date": "20240703"
+    },
+    {
+      "ts_code": "600823.SH",
+      "name": "*ST\u4e16\u8302(\u9000)",
+      "list_date": "19940204",
+      "delist_date": "20240614"
+    },
+    {
+      "ts_code": "600836.SH",
+      "name": "*ST\u6613\u8fde(\u9000)",
+      "list_date": "19940224",
+      "delist_date": "20240711"
+    },
+    {
+      "ts_code": "603133.SH",
+      "name": "\u9000\u78b3\u5143(\u9000)",
+      "list_date": "20170320",
+      "delist_date": "20240703"
+    },
+    {
+      "ts_code": "603555.SH",
+      "name": "ST\u8d35\u4eba(\u9000)",
+      "list_date": "20140124",
+      "delist_date": "20240329"
+    },
+    {
+      "ts_code": "603603.SH",
+      "name": "\u9000\u535a\u5929(\u9000)",
+      "list_date": "20170217",
+      "delist_date": "20240425"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "000005.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000005.SZ"
+      }
+    },
+    {
+      "id": "000023.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000023.SZ"
+      }
+    },
+    {
+      "id": "000046.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000046.SZ"
+      }
+    },
+    {
+      "id": "000416.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000416.SZ"
+      }
+    },
+    {
+      "id": "000836.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000836.SZ"
+      }
+    },
+    {
+      "id": "000861.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000861.SZ"
+      }
+    },
+    {
+      "id": "000961.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000961.SZ"
+      }
+    },
+    {
+      "id": "000971.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000971.SZ"
+      }
+    },
+    {
+      "id": "000976.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000976.SZ"
+      }
+    },
+    {
+      "id": "000982.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000982.SZ"
+      }
+    },
+    {
+      "id": "000996.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "000996.SZ"
+      }
+    },
+    {
+      "id": "002002.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002002.SZ"
+      }
+    },
+    {
+      "id": "002087.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002087.SZ"
+      }
+    },
+    {
+      "id": "002089.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002089.SZ"
+      }
+    },
+    {
+      "id": "002280.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002280.SZ"
+      }
+    },
+    {
+      "id": "002288.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002288.SZ"
+      }
+    },
+    {
+      "id": "002308.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002308.SZ"
+      }
+    },
+    {
+      "id": "002325.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002325.SZ"
+      }
+    },
+    {
+      "id": "002341.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002341.SZ"
+      }
+    },
+    {
+      "id": "002433.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002433.SZ"
+      }
+    },
+    {
+      "id": "002435.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002435.SZ"
+      }
+    },
+    {
+      "id": "002502.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002502.SZ"
+      }
+    },
+    {
+      "id": "002505.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002505.SZ"
+      }
+    },
+    {
+      "id": "002610.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002610.SZ"
+      }
+    },
+    {
+      "id": "002621.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002621.SZ"
+      }
+    },
+    {
+      "id": "002665.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002665.SZ"
+      }
+    },
+    {
+      "id": "002699.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002699.SZ"
+      }
+    },
+    {
+      "id": "002740.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002740.SZ"
+      }
+    },
+    {
+      "id": "002776.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "002776.SZ"
+      }
+    },
+    {
+      "id": "300116.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "300116.SZ"
+      }
+    },
+    {
+      "id": "300262.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "300262.SZ"
+      }
+    },
+    {
+      "id": "300282.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "300282.SZ"
+      }
+    },
+    {
+      "id": "300495.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "300495.SZ"
+      }
+    },
+    {
+      "id": "300742.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "300742.SZ"
+      }
+    },
+    {
+      "id": "300799.SZ-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "300799.SZ"
+      }
+    },
+    {
+      "id": "600112.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600112.SH"
+      }
+    },
+    {
+      "id": "600220.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600220.SH"
+      }
+    },
+    {
+      "id": "600277.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600277.SH"
+      }
+    },
+    {
+      "id": "600290.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600290.SH"
+      }
+    },
+    {
+      "id": "600297.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600297.SH"
+      }
+    },
+    {
+      "id": "600306.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600306.SH"
+      }
+    },
+    {
+      "id": "600321.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600321.SH"
+      }
+    },
+    {
+      "id": "600565.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600565.SH"
+      }
+    },
+    {
+      "id": "600647.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600647.SH"
+      }
+    },
+    {
+      "id": "600766.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600766.SH"
+      }
+    },
+    {
+      "id": "600823.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600823.SH"
+      }
+    },
+    {
+      "id": "600836.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "600836.SH"
+      }
+    },
+    {
+      "id": "603133.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "603133.SH"
+      }
+    },
+    {
+      "id": "603555.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "603555.SH"
+      }
+    },
+    {
+      "id": "603603.SH-delisted-dividend",
+      "api": "dividend",
+      "params": {
+        "ts_code": "603603.SH"
+      }
+    }
+  ]
+}
