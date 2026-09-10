@@ -187,3 +187,21 @@ def test_live_pipeline_launches_once_but_refreshes_sweep_snapshot(tmp_path,monke
     a=pipeline.run('evening',tmp_path/'state',tmp_path/'investment',now,collect=True)
     b=pipeline.run('evening',tmp_path/'state',tmp_path/'investment',now,collect=True)
     assert len(starts)==1 and a['quality_value']['observed']==1 and b['quality_value']['observed']==2
+
+
+@pytest.mark.parametrize('phase',['morning','saturday','sunday'])
+def test_following_phases_consume_prior_sweep_with_its_date(tmp_path,monkeypatch,phase):
+    from mt1 import pipeline
+    from test_mt1 import calendar
+    from datetime import datetime
+    now=datetime.fromisoformat('2026-09-11T07:15:00+08:00')
+    state=tmp_path/'state';cache=state/'sweeps/2026-09-10';cache.mkdir(parents=True)
+    (cache/'daily_basic.json').write_text('[]');(cache/'summary.json').write_text('{}')
+    monkeypatch.setattr(pipeline,'cn_calendar',lambda now:calendar(now))
+    monkeypatch.setattr(pipeline,'foreign_calendar',lambda now,market:calendar(now,market))
+    monkeypatch.setattr(pipeline,'migrate',lambda *a:{'imported':0,'errors':[]})
+    monkeypatch.setattr('mt1.evidence.capture_run',lambda *a:None)
+    monkeypatch.setattr('mt1.sweep.launch',lambda *a:pytest.fail('reuse must not launch collection'))
+    monkeypatch.setattr('mt1.sweep.snapshot',lambda state,asof:{'asof':asof,'status':'shadow'})
+    r=pipeline.run(phase,state,tmp_path/'investment',now)
+    assert r['quality_value']=={'asof':'2026-09-10','status':'shadow'}

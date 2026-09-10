@@ -35,6 +35,7 @@ systemd-run --user --unit=mt1-full-20260910 --property=RuntimeMaxSec=7200 \
 Restart=on-failure、RestartSec=60、StartLimitBurst=3 / StartLimitIntervalSec=infinity（unit生命周期最多3次启动）：失败/软超时自动从断点续跑，
 不会无限重启；超过预算保持pending并报具体缺口。入口每次收割重读全量snapshot，不把首批快照缓存成永久结果。
 `manifest` 的 universe_sweep_launch 只是发起记录，不是全量完成证明；以 sweep summary 为准。
+早盘按expected_date复用该交易日全量snapshot；周末读取最近一份snapshot并保留其asof，不冒充周末当日行情。
 `--max-stocks` 为旧CLI兼容参数，生产新路径不再用它限制全市场覆盖。
 
 ## 2. 64项逐批投研交接（公司判断归investment）

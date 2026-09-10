@@ -113,6 +113,17 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
                     stage('universe_sweep_launch',lambda:launch(state_dir,expected))
                     # Snapshot is refreshed on every harvest, unlike immutable raw inputs.
                     pool=snapshot(state_dir,expected)
+            # A completed evening sweep must be consumable next morning, not
+            # discarded when the next date's evening launch starts another sweep.
+            if fixture is None and phase=='morning' and gates['CN']['allowed']:
+                from .sweep import snapshot
+                if (state_dir/'sweeps'/expected/'daily_basic.json').exists():
+                    pool=snapshot(state_dir,expected)
+            if fixture is None and phase in ('saturday','sunday'):
+                from .sweep import snapshot
+                available=sorted(p.parent.name for p in (state_dir/'sweeps').glob('*/summary.json')
+                                 if p.parent.name<=today and (p.parent/'daily_basic.json').exists())
+                if available:pool=snapshot(state_dir,available[-1])
             if gates['CN']['reason'] == 'calendar_missing_invalid_or_stale':
                 errors.append({'stage':'calendar_gate','error':'CN calendar unavailable; fail-closed'})
             plans=store.all()
