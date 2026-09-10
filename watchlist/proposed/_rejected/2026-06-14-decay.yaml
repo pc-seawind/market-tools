@@ -1,0 +1,139 @@
+schema_version: 1
+generated_at: '2026-06-14T09:03:53+08:00'
+generated_by: watchlist_decay.py
+decay_meta:
+  threshold: 5
+  age_floor_days: 30
+  total_evaluated: 14
+  n_stale: 1
+  n_near_stale: 8
+proposals:
+- id: 1000
+  op: remove
+  code: 300014.SZ
+  name: 亿纬锂能
+  reason: '[decay score=7] theme_cooled+never_buy+vol_dead: theme_cooled(2/2), never_buy(n=7), 无量(主力-98.3亿/nav-16.0%). 加入
+    32 天.'
+  evidence:
+    score: 7
+    signals_fired:
+    - theme_cooled
+    - never_buy
+    - vol_dead
+    details:
+      theme_cooled:
+        themes_evaluated:
+          锂电产业链:
+            concept: 锂电产业链
+            nav_1m_pct: -8.75
+            flow_20d_yi: -22.59
+            tier: ⚖️ NEUTRAL
+            score: 49.5
+            cooled: true
+          电池:
+            concept: 固态电池
+            nav_1m_pct: -9.07
+            flow_20d_yi: -0.99
+            tier: ⚖️ NEUTRAL
+            score: 50.7
+            cooled: true
+        unmapped:
+        - 动力储能
+        mapped_themes: 2
+        cooled_themes: 2
+      never_buy:
+        n_evaluations: 7
+        verdicts_seen:
+        - WATCH
+        - WATCH
+        - WATCH
+        - WATCH
+        - WATCH
+        - WATCH
+        - WATCH
+        has_any_buy: false
+      vol_dead:
+        main_net_60d_yi: -98.3
+        nav_60d_pct: -16.0
+    added_at: 2026-05-13
+    days_held: 32
+    themes:
+    - 锂电产业链
+    - 电池
+    - 动力储能
+near_stale_monitor:
+- code: 600519.SH
+  name: 贵州茅台
+  score: 4
+  signals_fired:
+  - theme_cooled
+  - vol_dead
+  themes:
+  - 白酒
+  - 蓝筹防御
+  days_held: 37
+- code: 688041.SH
+  name: 海光信息
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - AI芯片
+  - 国产算力
+  days_held: 37
+- code: 688008.SH
+  name: 澜起科技
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - AI芯片
+  - HBM中间件
+  days_held: 37
+- code: 688256.SH
+  name: 寒武纪
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - AI芯片
+  days_held: 37
+- code: 600036.SH
+  name: 招商银行
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - 银行
+  - 蓝筹防御
+  days_held: 37
+- code: 603444.SH
+  name: 吉比特
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - 游戏传媒
+  - 手游龙头
+  days_held: 32
+- code: 300750.SZ
+  name: 宁德时代
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - 锂电产业链
+  - 储能龙头
+  - 全球电池龙头
+  days_held: 32
+- code: 002371.SZ
+  name: 北方华创
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - 半导体设备
+  - AI芯片辅助
+  - 国产替代
+  days_held: 32
+

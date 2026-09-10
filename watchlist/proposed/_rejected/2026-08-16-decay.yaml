@@ -1,0 +1,230 @@
+schema_version: 1
+generated_at: '2026-08-16T09:13:13+08:00'
+generated_by: watchlist_decay.py
+decay_meta:
+  threshold: 5
+  age_floor_days: 30
+  total_evaluated: 32
+  n_stale: 3
+  n_near_stale: 10
+proposals:
+- id: 1000
+  op: remove
+  code: 688521.SH
+  name: 芯原股份
+  reason: '[decay score=8] never_buy+fundamentals_broken+underperform_csi300+vol_dead: never_buy(n=84), 基本面破裂(ROE=-10.3844,YoY=-54.6871%),
+    跑输沪深300(-25.9pp), 无量(主力-35.57亿/nav-24.8%). 加入 88 天.'
+  evidence:
+    score: 8
+    signals_fired:
+    - never_buy
+    - fundamentals_broken
+    - underperform_csi300
+    - vol_dead
+    details:
+      never_buy:
+        n_evaluations: 84
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+      fundamentals_broken:
+        end_date: '20260331'
+        roe: -10.3844
+        q_profit_yoy: -54.6871
+      underperform_csi300:
+        since: '2026-05-20'
+        stock_ret_pct: -29.7
+        csi300_ret_pct: -3.8
+        excess_pct: -25.9
+      vol_dead:
+        main_net_60d_yi: -35.57
+        nav_60d_pct: -24.8
+    added_at: 2026-05-20
+    days_held: 88
+    themes:
+    - 半导体IP
+    - 芯片设计服务
+    - 国产替代
+    - ASIC定制
+- id: 1001
+  op: remove
+  code: 688126.SH
+  name: 沪硅产业
+  reason: '[decay score=5] never_buy+fundamentals_broken: never_buy(n=33), 基本面破裂(ROE=-2.8619,YoY=-88.7885%). 加入 88 天.'
+  evidence:
+    score: 5
+    signals_fired:
+    - never_buy
+    - fundamentals_broken
+    details:
+      never_buy:
+        n_evaluations: 33
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+      fundamentals_broken:
+        end_date: '20260331'
+        roe: -2.8619
+        q_profit_yoy: -88.7885
+    added_at: 2026-05-20
+    days_held: 88
+    themes:
+    - 硅片
+    - 半导体材料
+    - 国产替代
+    - 12英寸晶圆
+- id: 1002
+  op: remove
+  code: 002837.SZ
+  name: 英维克
+  reason: '[decay score=5] fundamentals_broken+underperform_csi300+vol_dead: 基本面破裂(ROE=0.2507,YoY=-73.96%), 跑输沪深300(-41.0pp),
+    无量(主力-70.3亿/nav-45.6%). 加入 83 天.'
+  evidence:
+    score: 5
+    signals_fired:
+    - fundamentals_broken
+    - underperform_csi300
+    - vol_dead
+    details:
+      fundamentals_broken:
+        end_date: '20260331'
+        roe: 0.2507
+        q_profit_yoy: -73.96
+      underperform_csi300:
+        since: '2026-05-25'
+        stock_ret_pct: -46.2
+        csi300_ret_pct: -5.2
+        excess_pct: -41.0
+      vol_dead:
+        main_net_60d_yi: -70.3
+        nav_60d_pct: -45.6
+    added_at: 2026-05-25
+    days_held: 83
+    themes:
+    - 液冷
+    - 冷板
+    - 精密空调
+    - DC散热
+near_stale_monitor:
+- code: 688041.SH
+  name: 海光信息
+  score: 4
+  signals_fired:
+  - never_buy
+  - vol_dead
+  themes:
+  - AI芯片
+  - 国产算力
+  days_held: 100
+- code: 300014.SZ
+  name: 亿纬锂能
+  score: 4
+  signals_fired:
+  - never_buy
+  - vol_dead
+  themes:
+  - 锂电产业链
+  - 电池
+  - 动力储能
+  days_held: 95
+- code: 300476.SZ
+  name: 胜宏科技
+  score: 4
+  signals_fired:
+  - never_buy
+  - vol_dead
+  themes:
+  - PCB
+  - 高速PCB
+  - AI算力
+  - NVDA供应链
+  days_held: 83
+- code: 600519.SH
+  name: 贵州茅台
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - 白酒
+  - 蓝筹防御
+  days_held: 100
+- code: 600036.SH
+  name: 招商银行
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - 银行
+  - 蓝筹防御
+  days_held: 100
+- code: 601688.SH
+  name: 华泰证券
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - 金融-证券
+  - 券商龙头
+  days_held: 95
+- code: 002371.SZ
+  name: 北方华创
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - 半导体设备
+  - AI芯片辅助
+  - 国产替代
+  days_held: 95
+- code: 688195.SH
+  name: 腾景科技
+  score: 3
+  signals_fired:
+  - underperform_csi300
+  - vol_dead
+  themes:
+  - 光交换
+  - OCS
+  - 光通信
+  - TPU pod
+  - Google OCS
+  days_held: 83
+- code: 001309.SZ
+  name: 德明利
+  score: 3
+  signals_fired:
+  - underperform_csi300
+  - vol_dead
+  themes:
+  - 存储
+  - 主控芯片
+  - 模组
+  - NAND
+  days_held: 83
+- code: 601126.SH
+  name: 四方股份
+  score: 3
+  signals_fired:
+  - underperform_csi300
+  - vol_dead
+  themes:
+  - 固态变压器
+  - SST
+  - 中压配电
+  - 电网
+  days_held: 83
+

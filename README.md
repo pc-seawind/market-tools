@@ -18,54 +18,36 @@ For news / research context that tushare doesn't cover (公告, 研报, 实时�
 combine with the homespace domain's `search_baidu` / `search_tavily` /
 `fetch_url` tools — that's the full 消息面 pipeline.
 
-## 推荐度分级 (A/B/C/D) — funnel / momentum / screen 共享
+## 板块热度档 (HEAT_1~4) — 唯一的横截面分级
 
-单一选股工具 "过滤式" 剔除 border-line 候选的老逻辑 (`funnel` 严格过滤,
-`momentum` 只看涨幅) 暴露出三类假阳性:
-陕西煤业单独看"-8% 1W"像杀跌, 但煤炭板块同期 -2%, 是板块事件不是个股问题;
-寒武纪板块 +26% 但个股 +5.7%, 明显跑输龙头; 江波龙 1W+25% 触发 SELL_EXHAUSTION
-却被 momentum 放过. 2026-05 全量回归后改成 **多因子分级** 而非二元过滤 —
-**所有候选都保留到监控清单, 通过标签告知推荐度**.
+> ⚠️ 2026-09-10 审计后重写。旧的 **A/B/C/D 推荐度分级**（`grading.py::compute_grade`）
+> 与其消费者 `funnel.sh` / `momentum.sh` 已退役进 `archive/`：全量回测
+> (n=15788, 2025-01~2026-07) 显示该分级**非单调**
+> （A +3.45% / 20d > B +0.17% > D +0.50% > C −0.68%），
+> 而它依赖的 `sell_penalty` / `buy_bonus` 信号本身方向相反或零 alpha。
+> 证据见 `docs/COMPONENT_LEDGER.md` §8。
 
-公式 (`grading.py::compute_grade`, balanced style):
-```
-adjusted = heat_score (1-4)                    # 板块健康度
-         - sell_penalty (0-3)                  # SELL_EXHAUSTION/CONFIRMED/EXTREME
-         + buy_bonus (0-1)                     # BUY_EARLY / BUY_BREAKOUT
-         + relative_strength_adj (±2)          # 个股 1M vs 板块 1M
-         + fundamentals_adj (±2)               # ROE + 净利 YoY (可选)
+现在保留的分级只有一层：**板块热度档**（`grading.py`，输入来自
+`sector_health.build_index`）。
 
-A: adj ≥ 5    🌟 强推 — 板块热 + 无卖 + 跑赢/买信号/基本面强
-B: adj ≥ 3    ✅ 推荐 — 板块温和或弱信号, 至少两个维度正向
-C: adj ≥ 2    👀 观察 — 维度矛盾 (板块热但个股弱 / 基本面差但题材热)
-D: adj < 2    ⚠️ 警示 — 板块衰退/严重卖信号/跑输板块, 不剔除但降级
-```
+| 档 | 含义 | 回测 (n / 20d 超额) |
+|---|---|---|
+| `HEAT_4` | 概念池 top3 或申万行业 1M 均涨 > +15% | 1826 / **+2.27%**（40d +5.29%） |
+| `HEAT_3` | top7 / 行业 > 0 | — |
+| `HEAT_2` | 中段 / 行业 > −5% | — / −0.89% |
+| `HEAT_1` | 末 4 位 / 其余 | 冷档（左侧反转通道的输入条件） |
 
-样本输出 (funnel.sh 2026-05-08):
-```
-━━━ 🌟 A 级 (1 只) ━━━
-  🟡 000776.SZ 广发证券  PE=10.5  市值=1640亿  1M=+18.1%  │ 证券 [行业]  BUY_EARLY
-         └ 板块: industry=证券 (1M 均涨 +4.2%) (相对板块↑13.8pp)
-         └ 基本面: 👍 ROE 2.9% 净利 YoY +71% 营收 YoY +64%
-
-━━━ 👀 C 级 (1 只) ━━━
-  🟡 000333.SZ 美的集团  PE=13.8  市值=6116亿  1M=+5.6%  │ 家用电器 [行业]
-         └ 板块: industry=家用电器 (1M 均涨 +11%) (相对板块↓5.4pp)
-         └ 基本面: · ROE 5.6% 净利 YoY +2%
-```
-
-**风格差异** (同一公式不同硬规则):
-- `balanced` (funnel) — 上面的通用公式, rel_strength 加分能抵消弱卖信号
-- `momentum` (momentum.sh) — **SELL_EXTREME / SELL_CONFIRMED 强制 min(adj, 1) 直降 D**,
-  避免"追涨拿着末期筹码"的接盘场景
-- `contrarian` — BUY 信号加分 ×2, 偏向左侧埋伏
+**判定规则**：只有 `HEAT_4` 有正 alpha；`HEAT_1`（冷）之所以有价值，
+是因为它同时是 `sector_picks.py` 的 **REVERSAL 左侧通道** 的准入条件
+（COLD + pos120 ≤ 30 + 距 120 日高点 ≤ −40% → 20d 超额 +2.96%，n=2148）。
+"中段档"没有信息量，不要当信号用。
 
 ### 依赖模块
 
 | 模块 | 作用 | 说明 |
 |------|------|------|
 | `sector_health.py` | 计算 `heat_score` 1-4 | 概念池排名 + 申万行业 1M 均涨, 取 max. 概念 top3 = 4🔥, top7 = 3🟡, end4 = 1🧊 |
-| `signals.py` | `sell_penalty` / `buy_bonus` | 已 `backtest.sh` 验证的信号 (SELL_EXHAUSTION +20d 正收益 0%, 6/6 下跌) |
+| `signals.py` | 3 条描述性标记 (`SIG_TOP_EXTREME` / `SIG_TOP_EXTENDED` / `SIG_TOP_WATCH`) | ⚠️ 2026-09-10 起**不再产出任何行动型买卖信号**：`BUY_EARLY`/`BUY_BREAKOUT` 负 alpha 或从不触发, `SELL_EXHAUSTION`/`SELL_CONFIRMED` **方向相反**（之后继续持有更赚）。数字见 `docs/COMPONENT_LEDGER.md` §8 |
 | `grading.py::fundamentals_adj` | ROE + 净利/营收 YoY 调整 ±2 | 读取 `fina_indicator` parquet (`fina_sync.py` 预热) |
 
 ### `fina_sync.py` — 批量预热全市场 fina_indicator
@@ -84,36 +66,22 @@ sync 一次 (财报发布后).
 
 ## Scripts
 
-### `backtest.sh <ticker1> [...] [--days=180]` — 🔬 信号规则回测验证
+### ~~`backtest.sh`~~ — 🔬 信号规则回测验证 (已退役, 见 `archive/`)
 
-每次修改 `signals.py` 的规则后跑 `backtest.sh` 验证**规则是否真正预测了
-后续走势**。避免凭感觉改参数, 信号成为 noise.
+2026-09-10 退役。它做的是"单票滑动窗口重放 `signals.detect`"，而 `signals.py`
+如今只剩描述性标记 → 失去对象。信号有效性的证据改由两个横截面回测提供：
 
 ```bash
-$ ./backtest.sh sh688256 sh688041 sh688008 sz301308 --days=240
+python3 backtest_component_audit.py     # 入场侧全量审计 (15788 样本, 214 只 × 75 评估日)
+python3 backtest_leftside_reversal.py   # 左侧反转通道专项
+python3 backtest_exit_rules.py          # 出场侧: 触发卖出规则 vs 继续持有
 ```
 
-对每只 ticker sliding window 跑 signals.detect, 算 forward returns
-(+5d / +10d / +20d), 输出:
-- 每只股的所有触发点 + 后续收益
-- 全局统计: 平均收益 + 正收益占比 + 判断 (✅ 有效 / ⚪ 中性 / ❌ 无效)
-
-**发现的真实信号有效性** (240 天, 4 只 AI 链股 backtest):
-
-| 信号 | 触发次数 | +20d 平均 | +20d 正收益 | 判断 |
-|------|---------|----------|-------------|------|
-| **SELL_EXHAUSTION** | 6 | **-11.6%** | **0%** | ✅ 黄金信号 |
-| SELL_CONFIRMED | 1 | -14.1% | 0% | ✅ |
-| TODAY_SURGE | 18 | -2.0% | 33% | ⚪ 略负 (参考) |
-| TODAY_DROP | 7 | +8.5% | 71% | 反弹预示 |
-| ~~BUY_PULLBACK~~ | - | - | - | ❌ 已移除 (两轮改都无效) |
-| ~~SELL_BREAKDOWN~~ | - | - | - | ❌ 已移除 |
-
-**核心发现**: 纯技术指标无法区分"强势股回调"和"顶部震荡" → BUY_PULLBACK
-在高位假信号太多; "持续下跌缩量" 在 A 股更多是"超跌反弹前夜" →
-SELL_BREAKDOWN 也被移除. **只保留 backtest 验证有效的信号, 不凭感觉加**.
-
----
+**为什么删掉旧的"黄金信号"结论**：README 曾据 `backtest.sh` 的 240 天 × 4 只
+AI 链股样本把 `SELL_EXHAUSTION` 记为"✅ 黄金信号（+20d 均值 −11.6%，6/6 下跌）"。
+全量横截面复核后该结论**被推翻**：`SELL_EXHAUSTION` 触发后 20d 超额
+**+4.03%**（n=128，胜率 50%）—— 也就是说触发后**继续持有更赚钱**，
+原结论是 4 只票 + 小样本的产物。**教训：单票重放不能代替横截面回测。**
 
 ### `daily.sh [--holdings-only | --alerts | --themes]` — 📅 每日监控简报
 
@@ -131,14 +99,22 @@ SELL_BREAKDOWN 也被移除. **只保留 backtest 验证有效的信号, 不凭�
 | §5 | 政策信号 | 过去 3 天新闻联播关键词 |
 | §6 | 观察清单 | 未买但跟踪中的股票动态 |
 
-**自动触发的信号** (持仓每只都检测):
+**自动检测的标记**（⚠️ 2026-09-10 起不再有"触发即建议买卖"的告警）:
 
-| 信号 | 条件 | 建议 |
+| 标记 | 条件 | 含义 |
 |------|------|------|
-| 🚨 **STOP_LOSS** | 基础仓 P&L ≤ -15% / 博弈仓 ≤ -10% | 清仓, 不扛跌 |
-| ✅ **TAKE_PROFIT** | 基础仓 P&L ≥ +50% / 博弈仓 ≥ +30% | 减仓 1/3 |
-| ⚠️ **REDUCE** | 1W 涨幅 > +15% | 末期加速, 减 30% |
-| 💡 **ADD** | 基础仓回调 -8%~-15% | 基本面未变则加 1/3 |
+| `SIG_TOP_EXTREME` | 1W > +35% 且 1M > +28% | 末期加速（n=26，20d 超额 −3.38%）→ **别加仓**，不构成减仓指令 |
+| `SIG_TOP_EXTENDED` | 1W > +25% | 同上，程度更轻 |
+| `SIG_TOP_WATCH` | 1W > +15% | 仅提示 |
+
+旧的 `STOP_LOSS` / `TAKE_PROFIT` / `REDUCE` / `ADD` 四行告警**已删除**：
+`daily.sh` 不控盘、不发基于成本价的 P&L 告警；其中 `REDUCE`（1W > +15% → 减 30%）
+与被毙的 `SELL_EXHAUSTION` 同族，回测证据是**反的**。
+卖出纪律改由三层承担（见 `docs/COMPONENT_LEDGER.md` §8）：
+**thesis `stop_loss`**（价格 / 证伪 / 时间三层）+ 推荐流水线 `EXIT/SELL` 状态迁移
++ `SIG_TOP_EXTREME` 的"别加仓"提示。出场侧回测（`backtest_exit_rules.py`，
+10 条候选规则 × 2 个持有窗口 × 4 个 cohort）显示**没有任何纯技术出场规则**
+能稳定跑赢"持满不动"。
 
 ```bash
 # 每日完整简报 (推荐每天开盘前 1h 跑)
@@ -159,7 +135,12 @@ $ ./daily.sh --themes
 
 ---
 
-### `momentum.sh [--deep] [--final=N] [--preset=NAME]` — 🚀 博弈仓筛选器
+### ~~`momentum.sh`~~ — 🚀 博弈仓筛选器 (**已退役**, 见 `archive/`)
+
+> 退役原因：与 `funnel.sh` 共用已判死的 A/B/C/D 分级；"博弈仓追涨"通道
+> 已由 `sector_picks.py` 的 `TREND` 通道承担（20d 超额 +2.79%）。
+> 以下内容保留为历史设计记录。
+
 
 **与 `funnel.sh` 对偶**. funnel 是基础仓哲学 (过滤末期加速, 找 deep
 value), momentum 主动追"已在趋势中 + 放量 + 接近高位"的强势股, 但保
@@ -213,7 +194,12 @@ $ ./momentum.sh --preset=contrarian   # 左侧博弈 (短期回调, 1M≥+20%, 1
 
 ---
 
-### `funnel.sh [--deep] [--final=N] [--preset=NAME] [--group-by=KEY]` — 🌊 多轮漏斗选股
+### ~~`funnel.sh`~~ — 🌊 多轮漏斗选股 (**已退役**, 见 `archive/`)
+
+> 退役原因：无任何 cron 消费者 + 所依赖的 A/B/C/D 分级被回测判死。
+> "全市场基础仓候选"这条能力目前仍在空缺, 见 `docs/COMPONENT_LEDGER.md` §7 缺口 1。
+> 以下内容保留为历史设计记录。
+
 
 **比 `screen.sh` 更先进的选股工具**. screen.sh 是单轮阈值筛选,
 funnel.sh 是**渐进多轮收敛**, 每轮启用不同因子 —— 其中**资金动向提前

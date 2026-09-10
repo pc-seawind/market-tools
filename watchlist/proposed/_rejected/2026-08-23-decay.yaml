@@ -1,0 +1,316 @@
+schema_version: 1
+generated_at: '2026-08-23T09:05:19+08:00'
+generated_by: watchlist_decay.py
+decay_meta:
+  threshold: 5
+  age_floor_days: 30
+  total_evaluated: 32
+  n_stale: 5
+  n_near_stale: 10
+proposals:
+- id: 1000
+  op: remove
+  code: 688521.SH
+  name: 芯原股份
+  reason: '[decay score=8] never_buy+fundamentals_broken+underperform_csi300+vol_dead: never_buy(n=93), 基本面破裂(ROE=-10.3844,YoY=-54.6871%),
+    跑输沪深300(-34.7pp), 无量(主力-40.96亿/nav-27.7%). 加入 95 天.'
+  evidence:
+    score: 8
+    signals_fired:
+    - never_buy
+    - fundamentals_broken
+    - underperform_csi300
+    - vol_dead
+    details:
+      never_buy:
+        n_evaluations: 93
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+      fundamentals_broken:
+        end_date: '20260331'
+        roe: -10.3844
+        q_profit_yoy: -54.6871
+      underperform_csi300:
+        since: '2026-05-20'
+        stock_ret_pct: -39.5
+        csi300_ret_pct: -4.8
+        excess_pct: -34.7
+      vol_dead:
+        main_net_60d_yi: -40.96
+        nav_60d_pct: -27.7
+    added_at: 2026-05-20
+    days_held: 95
+    themes:
+    - 半导体IP
+    - 芯片设计服务
+    - 国产替代
+    - ASIC定制
+- id: 1001
+  op: remove
+  code: 688041.SH
+  name: 海光信息
+  reason: '[decay score=7] theme_cooled+never_buy+vol_dead: theme_cooled(1/1), never_buy(n=39), 无量(主力-73.41亿/nav-16.2%). 加入
+    107 天.'
+  evidence:
+    score: 7
+    signals_fired:
+    - theme_cooled
+    - never_buy
+    - vol_dead
+    details:
+      theme_cooled:
+        themes_evaluated:
+          AI芯片:
+            concept: AI芯片 (算力核心)
+            nav_1m_pct: -7.56
+            flow_20d_yi: -65.77
+            tier: ⛔ AVOID
+            score: 28.2
+            cooled: true
+        unmapped:
+        - 国产算力
+        mapped_themes: 1
+        cooled_themes: 1
+      never_buy:
+        n_evaluations: 39
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+      vol_dead:
+        main_net_60d_yi: -73.41
+        nav_60d_pct: -16.2
+    added_at: 2026-05-08
+    days_held: 107
+    themes:
+    - AI芯片
+    - 国产算力
+- id: 1002
+  op: remove
+  code: 688126.SH
+  name: 沪硅产业
+  reason: '[decay score=6] never_buy+fundamentals_broken+vol_dead: never_buy(n=35), 基本面破裂(ROE=-2.8619,YoY=-88.7885%), 无量(主力-41.65亿/nav-11.1%).
+    加入 95 天.'
+  evidence:
+    score: 6
+    signals_fired:
+    - never_buy
+    - fundamentals_broken
+    - vol_dead
+    details:
+      never_buy:
+        n_evaluations: 35
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+      fundamentals_broken:
+        end_date: '20260331'
+        roe: -2.8619
+        q_profit_yoy: -88.7885
+      vol_dead:
+        main_net_60d_yi: -41.65
+        nav_60d_pct: -11.1
+    added_at: 2026-05-20
+    days_held: 95
+    themes:
+    - 硅片
+    - 半导体材料
+    - 国产替代
+    - 12英寸晶圆
+- id: 1003
+  op: remove
+  code: 300476.SZ
+  name: 胜宏科技
+  reason: '[decay score=6] never_buy+underperform_csi300+vol_dead: never_buy(n=182), 跑输沪深300(-27.7pp), 无量(主力-268.36亿/nav-31.1%).
+    加入 90 天.'
+  evidence:
+    score: 6
+    signals_fired:
+    - never_buy
+    - underperform_csi300
+    - vol_dead
+    details:
+      never_buy:
+        n_evaluations: 182
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+      underperform_csi300:
+        since: '2026-05-25'
+        stock_ret_pct: -33.8
+        csi300_ret_pct: -6.2
+        excess_pct: -27.7
+      vol_dead:
+        main_net_60d_yi: -268.36
+        nav_60d_pct: -31.1
+    added_at: 2026-05-25
+    days_held: 90
+    themes:
+    - PCB
+    - 高速PCB
+    - AI算力
+    - NVDA供应链
+- id: 1004
+  op: remove
+  code: 002837.SZ
+  name: 英维克
+  reason: '[decay score=5] fundamentals_broken+underperform_csi300+vol_dead: 基本面破裂(ROE=0.2507,YoY=-73.96%), 跑输沪深300(-42.8pp),
+    无量(主力-60.16亿/nav-40.5%). 加入 90 天.'
+  evidence:
+    score: 5
+    signals_fired:
+    - fundamentals_broken
+    - underperform_csi300
+    - vol_dead
+    details:
+      fundamentals_broken:
+        end_date: '20260331'
+        roe: 0.2507
+        q_profit_yoy: -73.96
+      underperform_csi300:
+        since: '2026-05-25'
+        stock_ret_pct: -49.0
+        csi300_ret_pct: -6.2
+        excess_pct: -42.8
+      vol_dead:
+        main_net_60d_yi: -60.16
+        nav_60d_pct: -40.5
+    added_at: 2026-05-25
+    days_held: 90
+    themes:
+    - 液冷
+    - 冷板
+    - 精密空调
+    - DC散热
+near_stale_monitor:
+- code: 688008.SH
+  name: 澜起科技
+  score: 4
+  signals_fired:
+  - theme_cooled
+  - vol_dead
+  themes:
+  - AI芯片
+  - HBM中间件
+  days_held: 107
+- code: 300014.SZ
+  name: 亿纬锂能
+  score: 4
+  signals_fired:
+  - never_buy
+  - vol_dead
+  themes:
+  - 锂电产业链
+  - 电池
+  - 动力储能
+  days_held: 102
+- code: 688256.SH
+  name: 寒武纪
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - AI芯片
+  days_held: 107
+- code: 600519.SH
+  name: 贵州茅台
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - 白酒
+  - 蓝筹防御
+  days_held: 107
+- code: 600036.SH
+  name: 招商银行
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - 银行
+  - 蓝筹防御
+  days_held: 107
+- code: 601688.SH
+  name: 华泰证券
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - 金融-证券
+  - 券商龙头
+  days_held: 102
+- code: 002371.SZ
+  name: 北方华创
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - 半导体设备
+  - AI芯片辅助
+  - 国产替代
+  days_held: 102
+- code: 001309.SZ
+  name: 德明利
+  score: 3
+  signals_fired:
+  - underperform_csi300
+  - vol_dead
+  themes:
+  - 存储
+  - 主控芯片
+  - 模组
+  - NAND
+  days_held: 90
+- code: 300757.SZ
+  name: 罗博特科
+  score: 3
+  signals_fired:
+  - fundamentals_broken
+  - vol_dead
+  themes:
+  - 光模块设备
+  - 半导体设备
+  - AOI
+  - 激光封装
+  days_held: 90
+- code: 601126.SH
+  name: 四方股份
+  score: 3
+  signals_fired:
+  - underperform_csi300
+  - vol_dead
+  themes:
+  - 固态变压器
+  - SST
+  - 中压配电
+  - 电网
+  days_held: 90
+

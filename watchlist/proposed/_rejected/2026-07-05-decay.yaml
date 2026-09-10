@@ -1,0 +1,380 @@
+schema_version: 1
+generated_at: '2026-07-05T09:11:26+08:00'
+generated_by: watchlist_decay.py
+decay_meta:
+  threshold: 5
+  age_floor_days: 30
+  total_evaluated: 32
+  n_stale: 7
+  n_near_stale: 9
+proposals:
+- id: 1000
+  op: remove
+  code: 600519.SH
+  name: 贵州茅台
+  reason: '[decay score=7] theme_cooled+never_buy+vol_dead: theme_cooled(1/1), never_buy(n=9), 无量(主力-22.51亿/nav-17.1%). 加入
+    58 天.'
+  evidence:
+    score: 7
+    signals_fired:
+    - theme_cooled
+    - never_buy
+    - vol_dead
+    details:
+      theme_cooled:
+        themes_evaluated:
+          白酒:
+            concept: 白酒 (消费龙头)
+            nav_1m_pct: -8.55
+            flow_20d_yi: 0.0
+            tier: ⚖️ NEUTRAL
+            score: 45.5
+            cooled: true
+        unmapped:
+        - 蓝筹防御
+        mapped_themes: 1
+        cooled_themes: 1
+      never_buy:
+        n_evaluations: 9
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+      vol_dead:
+        main_net_60d_yi: -22.51
+        nav_60d_pct: -17.1
+    added_at: 2026-05-08
+    days_held: 58
+    themes:
+    - 白酒
+    - 蓝筹防御
+- id: 1001
+  op: remove
+  code: 600036.SH
+  name: 招商银行
+  reason: '[decay score=6] theme_cooled+never_buy: theme_cooled(1/1), never_buy(n=22). 加入 58 天.'
+  evidence:
+    score: 6
+    signals_fired:
+    - theme_cooled
+    - never_buy
+    details:
+      theme_cooled:
+        themes_evaluated:
+          银行:
+            concept: 金融-银行
+            nav_1m_pct: -3.49
+            flow_20d_yi: 0.0
+            tier: 🧊 COLD
+            score: 42.2
+            cooled: true
+        unmapped:
+        - 蓝筹防御
+        mapped_themes: 1
+        cooled_themes: 1
+      never_buy:
+        n_evaluations: 22
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+    added_at: 2026-05-08
+    days_held: 58
+    themes:
+    - 银行
+    - 蓝筹防御
+- id: 1002
+  op: remove
+  code: 300014.SZ
+  name: 亿纬锂能
+  reason: '[decay score=6] theme_cooled+never_buy: theme_cooled(2/2), never_buy(n=24). 加入 53 天.'
+  evidence:
+    score: 6
+    signals_fired:
+    - theme_cooled
+    - never_buy
+    details:
+      theme_cooled:
+        themes_evaluated:
+          锂电产业链:
+            concept: 锂电产业链
+            nav_1m_pct: -3.04
+            flow_20d_yi: 0.0
+            tier: ⚖️ NEUTRAL
+            score: 50.5
+            cooled: true
+          电池:
+            concept: 固态电池
+            nav_1m_pct: -4.92
+            flow_20d_yi: 0.0
+            tier: ⚖️ NEUTRAL
+            score: 50.7
+            cooled: true
+        unmapped:
+        - 动力储能
+        mapped_themes: 2
+        cooled_themes: 2
+      never_buy:
+        n_evaluations: 24
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+    added_at: 2026-05-13
+    days_held: 53
+    themes:
+    - 锂电产业链
+    - 电池
+    - 动力储能
+- id: 1003
+  op: remove
+  code: 688195.SH
+  name: 腾景科技
+  reason: '[decay score=6] theme_cooled+underperform_csi300+vol_dead: theme_cooled(1/1), 跑输沪深300(-48.8pp), 无量(主力-15.57亿/nav-49.8%).
+    加入 41 天.'
+  evidence:
+    score: 6
+    signals_fired:
+    - theme_cooled
+    - underperform_csi300
+    - vol_dead
+    details:
+      theme_cooled:
+        themes_evaluated:
+          光通信:
+            concept: 光通信 (光模块/CPO)
+            nav_1m_pct: -5.57
+            flow_20d_yi: 0.0
+            tier: ⚖️ NEUTRAL
+            score: 52.3
+            cooled: true
+        unmapped:
+        - 光交换
+        - OCS
+        - TPU pod
+        - Google OCS
+        mapped_themes: 1
+        cooled_themes: 1
+      underperform_csi300:
+        since: '2026-05-25'
+        stock_ret_pct: -50.4
+        csi300_ret_pct: -1.6
+        excess_pct: -48.8
+      vol_dead:
+        main_net_60d_yi: -15.57
+        nav_60d_pct: -49.8
+    added_at: 2026-05-25
+    days_held: 41
+    themes:
+    - 光交换
+    - OCS
+    - 光通信
+    - TPU pod
+    - Google OCS
+- id: 1004
+  op: remove
+  code: 688126.SH
+  name: 沪硅产业
+  reason: '[decay score=5] never_buy+fundamentals_broken: never_buy(n=17), 基本面破裂(ROE=-2.8619,YoY=-88.7885%). 加入 46 天.'
+  evidence:
+    score: 5
+    signals_fired:
+    - never_buy
+    - fundamentals_broken
+    details:
+      never_buy:
+        n_evaluations: 17
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+      fundamentals_broken:
+        end_date: '20260331'
+        roe: -2.8619
+        q_profit_yoy: -88.7885
+    added_at: 2026-05-20
+    days_held: 46
+    themes:
+    - 硅片
+    - 半导体材料
+    - 国产替代
+    - 12英寸晶圆
+- id: 1005
+  op: remove
+  code: 688521.SH
+  name: 芯原股份
+  reason: '[decay score=5] never_buy+fundamentals_broken: never_buy(n=48), 基本面破裂(ROE=-10.3844,YoY=-54.6871%). 加入 46 天.'
+  evidence:
+    score: 5
+    signals_fired:
+    - never_buy
+    - fundamentals_broken
+    details:
+      never_buy:
+        n_evaluations: 48
+        verdicts_seen:
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        - AVOID
+        has_any_buy: false
+      fundamentals_broken:
+        end_date: '20260331'
+        roe: -10.3844
+        q_profit_yoy: -54.6871
+    added_at: 2026-05-20
+    days_held: 46
+    themes:
+    - 半导体IP
+    - 芯片设计服务
+    - 国产替代
+    - ASIC定制
+- id: 1006
+  op: remove
+  code: 002837.SZ
+  name: 英维克
+  reason: '[decay score=5] fundamentals_broken+underperform_csi300+vol_dead: 基本面破裂(ROE=0.2507,YoY=-73.96%), 跑输沪深300(-31.1pp),
+    无量(主力-77.86亿/nav-15.8%). 加入 41 天.'
+  evidence:
+    score: 5
+    signals_fired:
+    - fundamentals_broken
+    - underperform_csi300
+    - vol_dead
+    details:
+      fundamentals_broken:
+        end_date: '20260331'
+        roe: 0.2507
+        q_profit_yoy: -73.96
+      underperform_csi300:
+        since: '2026-05-25'
+        stock_ret_pct: -32.7
+        csi300_ret_pct: -1.6
+        excess_pct: -31.1
+      vol_dead:
+        main_net_60d_yi: -77.86
+        nav_60d_pct: -15.8
+    added_at: 2026-05-25
+    days_held: 41
+    themes:
+    - 液冷
+    - 冷板
+    - 精密空调
+    - DC散热
+near_stale_monitor:
+- code: 688041.SH
+  name: 海光信息
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - AI芯片
+  - 国产算力
+  days_held: 58
+- code: 688008.SH
+  name: 澜起科技
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - AI芯片
+  - HBM中间件
+  days_held: 58
+- code: 300308.SZ
+  name: 中际旭创
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - 光通信
+  - 光模块
+  days_held: 58
+- code: 300502.SZ
+  name: 新易盛
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - 光通信
+  - 光模块
+  days_held: 58
+- code: 002475.SZ
+  name: 立讯精密
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - 消费电子
+  - 果链
+  - 汽车电子
+  - 光模块
+  days_held: 55
+- code: 603444.SH
+  name: 吉比特
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - 游戏传媒
+  - 手游龙头
+  days_held: 53
+- code: 300750.SZ
+  name: 宁德时代
+  score: 3
+  signals_fired:
+  - theme_cooled
+  themes:
+  - 锂电产业链
+  - 储能龙头
+  - 全球电池龙头
+  days_held: 53
+- code: 002371.SZ
+  name: 北方华创
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - 半导体设备
+  - AI芯片辅助
+  - 国产替代
+  days_held: 53
+- code: 300476.SZ
+  name: 胜宏科技
+  score: 3
+  signals_fired:
+  - never_buy
+  themes:
+  - PCB
+  - 高速PCB
+  - AI算力
+  - NVDA供应链
+  days_held: 41
+

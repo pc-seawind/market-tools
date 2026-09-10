@@ -14,6 +14,7 @@ concept 成分股 × 75 个评估日, 2025-01 ~ 2026-07) 之后, 把"没有任�
 | `signal_collector.py` | 7 维短线信号采集器 (龙虎榜/北向/主力/公告/研报/融资/突破结构), 唯一消费者是它自己的两个回测脚本, 从未进入任何报告的推荐路径。 |
 | `backtest_signals.py` | 只服务 `signal_collector.py` (已退役)。 |
 | `backtest_signals_v2.py` | 同上。 |
+| `watchlist_decay.py` | 观察池 staleness 评分器。**回测反向** (2026-09-10, `backtest_decay_proposals.py`, 点内样本 14 周 × 32 只池): score ≥ 5 的"建议移除"组 20 日超额 **+3.34%** vs 池内 fresh 组 **−5.21%** (逐股聚合 +6.14% vs −7.69%), Spearman(score, 20d 超额) = +0.03 → 分数没有负向分辨力, 移除的反事实是亏钱的 (逐周 spread +0.64pp/20d, t=0.19)。根因: 5 个信号里 `theme_cooled`(3) + `vol_dead`(1) + `underperform_csi300`(2) **合计 6 分 > 阈值 5** 且三个方向全反 —— 它们描述的"冷板块 + 缩量深跌 + 跑输" 正是同日验证通过的 REVERSAL 左侧通道**要买**的状态。保留的两项正确信号 (`never_buy` / `fundamentals_broken`) 样本仅 2 只, 记入台账观察项。cron `watchlist-decay-weekly`(周日 04:00) 已删除, 14 份提案拒绝归档到 `watchlist/proposed/_rejected/`。 |
 
 ## 退役判据
 

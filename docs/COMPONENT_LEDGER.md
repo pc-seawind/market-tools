@@ -41,7 +41,6 @@
 | `rec_log.py` | daily-rec-verify / evening-market-recap / morning-market-brief / +2 | — | 推荐状态流（append-only），唯一有 T+N 后验证闭环的路径 |
 | `rec_watchdog.py` | daily-rec-verify / weekend-saturday-recap | — | 只看每只票**最新**状态，EXIT/SELL 后不再对旧 BUY 重复报警 |
 | `watchlist_sync.py` | evening-market-recap / morning-market-brief | — | 2026-09-10 改为按 `action × channel` 解析；REVERSAL 允许 COLD 板块 |
-| `watchlist_decay.py` | watchlist-decay-weekly | — | 只评 `tier == 观察池` |
 | `htsc_raw_data.py` | evening-market-recap / morning-market-brief / weekend-sunday-preview | — | HTSC 半结构化 raw 层（候选补充，不得绕过 Framework 直接 BUY） |
 | `htsc_skill_bridge.py` | evening-market-recap / morning-market-brief / narrative-prefilter-daily / +1 | — | HTSC skill 桥 |
 | `htsc_sector_flow.py` | weekend-saturday-recap | — | 板块资金流（首选 HTSC，THS 兜底） |
@@ -114,6 +113,7 @@
 | `signal_collector.py` | ✅ 唯一消费者是它自己的两个回测脚本 | 从未进入推荐路径 | ✅ 7 维短线信号无一进入生产 |
 | `backtest_signals.py` | ✅ 只服务 `signal_collector.py` | — | — |
 | `backtest_signals_v2.py` | ✅ 同上 | — | — |
+| `watchlist_decay.py` | ✅ cron `watchlist-decay-weekly` 已删（2026-09-10）| ❌ **反向**：score ≥ 5 的"建议移除"组 20d 超额 +3.34% vs fresh 组 −5.21%（14 周 × 32 只池，点内样本；逐股聚合 +6.14% vs −7.69%），Spearman(score, 20d 超额) = +0.03 | ✅ `sector_picks.py` 的 `REVERSAL` 左侧通道（COLD + pos120 ≤ 30 + 距高 ≤ −40% → +2.96%/20d）|
 
 ---
 
