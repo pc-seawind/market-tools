@@ -108,7 +108,7 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
                 recap=stage('recap',recap_stage)
                 if fixture is not None and fixture.get('universe'):
                     pool=stage('quality_value',lambda:screen(fixture['universe']))
-                elif collect and phase=='evening':
+                elif fixture is None and collect and phase=='evening':
                     from .sweep import launch, snapshot
                     stage('universe_sweep_launch',lambda:launch(state_dir,expected))
                     # Snapshot is refreshed on every harvest, unlike immutable raw inputs.

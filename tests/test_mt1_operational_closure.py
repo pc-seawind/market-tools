@@ -157,3 +157,14 @@ def test_launcher_total_restart_budget_not_rolling_window(tmp_path,monkeypatch):
     assert r['status']=='started'
     assert '--property=StartLimitIntervalSec=infinity' in commands[-1]
     assert '--property=StartLimitBurst=3' in commands[-1]
+
+
+def test_fixture_collect_never_starts_real_sweep(tmp_path,monkeypatch):
+    from mt1.pipeline import run
+    from test_mt1 import calendar
+    from datetime import datetime
+    now=datetime.fromisoformat('2026-09-10T18:30:00+08:00')
+    monkeypatch.setattr('mt1.sweep.launch',lambda *a:pytest.fail('fixture must not launch real service'))
+    r=run('evening',tmp_path/'state',tmp_path/'investment',now,
+          {'calendars':{'CN':calendar(now)},'recap':{'meta':{'trade_date':'20260910','fresh':True,'errors':[]}}},collect=True)
+    assert r['quality_value'] is None
