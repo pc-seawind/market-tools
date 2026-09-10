@@ -161,7 +161,11 @@ def test_full_funnel_conservation_and_frozen_hashes(tmp_path):
     assert len(records)==4 and all(r['channels']==['TREND'] for r in records)
     assert all(r['plan']['final_buy'] is False for r in records)
     for path,h in summary['frozen_hashes'].items():assert hashlib.sha256((out/path).read_bytes()).hexdigest()==h
+    from scripts.audit_mt11_artifact import audit
+    assert audit(out)['stage_rows']==12
     with pytest.raises(FileExistsError):run_parallel(state,root,out)
+    (out/'financial-input.json.gz').write_bytes(b'tampered synthetic file')
+    with pytest.raises(AssertionError):audit(out)
 
 
 def test_growth_negative_base_not_quality_bonus():
