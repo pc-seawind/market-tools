@@ -168,3 +168,22 @@ def test_fixture_collect_never_starts_real_sweep(tmp_path,monkeypatch):
     r=run('evening',tmp_path/'state',tmp_path/'investment',now,
           {'calendars':{'CN':calendar(now)},'recap':{'meta':{'trade_date':'20260910','fresh':True,'errors':[]}}},collect=True)
     assert r['quality_value'] is None
+
+
+def test_live_pipeline_launches_once_but_refreshes_sweep_snapshot(tmp_path,monkeypatch):
+    from mt1 import pipeline
+    from test_mt1 import calendar
+    from datetime import datetime
+    now=datetime.fromisoformat('2026-09-10T18:30:00+08:00')
+    monkeypatch.setattr(pipeline,'cn_calendar',lambda now:calendar(now))
+    monkeypatch.setattr(pipeline,'foreign_calendar',lambda now,market:calendar(now,market))
+    monkeypatch.setattr(pipeline,'migrate',lambda *a:{'imported':0,'errors':[]})
+    monkeypatch.setattr('mt1.evidence.capture_run',lambda *a:None)
+    # If a cached recap is absent, isolate the legacy recap subprocess too.
+    monkeypatch.setattr(pipeline.subprocess,'run',lambda *a,**k:(_ for _ in ()).throw(RuntimeError('isolated recap')))
+    starts=[];snapshots=[]
+    monkeypatch.setattr('mt1.sweep.launch',lambda *a:starts.append(a) or {'status':'started'})
+    monkeypatch.setattr('mt1.sweep.snapshot',lambda *a:snapshots.append(a) or {'observed':len(snapshots),'status':'shadow'})
+    a=pipeline.run('evening',tmp_path/'state',tmp_path/'investment',now,collect=True)
+    b=pipeline.run('evening',tmp_path/'state',tmp_path/'investment',now,collect=True)
+    assert len(starts)==1 and a['quality_value']['observed']==1 and b['quality_value']['observed']==2
