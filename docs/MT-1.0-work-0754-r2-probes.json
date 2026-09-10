@@ -1,0 +1,187 @@
+{
+  "scope": "only 7 BJ codes across 41 unexplained warmup days; no broad download",
+  "tasks": [
+    {
+      "id": "920039.BJ-daily",
+      "api": "daily",
+      "params": {
+        "ts_code": "920039.BJ",
+        "start_date": "20230301",
+        "end_date": "20230310"
+      }
+    },
+    {
+      "id": "920039.BJ-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "ts_code": "920039.BJ",
+        "start_date": "20230301",
+        "end_date": "20230310"
+      }
+    },
+    {
+      "id": "920039.BJ-master",
+      "api": "stock_basic",
+      "params": {
+        "ts_code": "920039.BJ",
+        "fields": "ts_code,symbol,name,list_date,delist_date,list_status,exchange"
+      }
+    },
+    {
+      "id": "920090.BJ-daily",
+      "api": "daily",
+      "params": {
+        "ts_code": "920090.BJ",
+        "start_date": "20230802",
+        "end_date": "20230808"
+      }
+    },
+    {
+      "id": "920090.BJ-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "ts_code": "920090.BJ",
+        "start_date": "20230802",
+        "end_date": "20230808"
+      }
+    },
+    {
+      "id": "920090.BJ-master",
+      "api": "stock_basic",
+      "params": {
+        "ts_code": "920090.BJ",
+        "fields": "ts_code,symbol,name,list_date,delist_date,list_status,exchange"
+      }
+    },
+    {
+      "id": "920171.BJ-daily",
+      "api": "daily",
+      "params": {
+        "ts_code": "920171.BJ",
+        "start_date": "20231128",
+        "end_date": "20231130"
+      }
+    },
+    {
+      "id": "920171.BJ-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "ts_code": "920171.BJ",
+        "start_date": "20231128",
+        "end_date": "20231130"
+      }
+    },
+    {
+      "id": "920171.BJ-master",
+      "api": "stock_basic",
+      "params": {
+        "ts_code": "920171.BJ",
+        "fields": "ts_code,symbol,name,list_date,delist_date,list_status,exchange"
+      }
+    },
+    {
+      "id": "920198.BJ-daily",
+      "api": "daily",
+      "params": {
+        "ts_code": "920198.BJ",
+        "start_date": "20231204",
+        "end_date": "20231208"
+      }
+    },
+    {
+      "id": "920198.BJ-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "ts_code": "920198.BJ",
+        "start_date": "20231204",
+        "end_date": "20231208"
+      }
+    },
+    {
+      "id": "920198.BJ-master",
+      "api": "stock_basic",
+      "params": {
+        "ts_code": "920198.BJ",
+        "fields": "ts_code,symbol,name,list_date,delist_date,list_status,exchange"
+      }
+    },
+    {
+      "id": "920526.BJ-daily",
+      "api": "daily",
+      "params": {
+        "ts_code": "920526.BJ",
+        "start_date": "20231128",
+        "end_date": "20231130"
+      }
+    },
+    {
+      "id": "920526.BJ-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "ts_code": "920526.BJ",
+        "start_date": "20231128",
+        "end_date": "20231130"
+      }
+    },
+    {
+      "id": "920526.BJ-master",
+      "api": "stock_basic",
+      "params": {
+        "ts_code": "920526.BJ",
+        "fields": "ts_code,symbol,name,list_date,delist_date,list_status,exchange"
+      }
+    },
+    {
+      "id": "920753.BJ-daily",
+      "api": "daily",
+      "params": {
+        "ts_code": "920753.BJ",
+        "start_date": "20230717",
+        "end_date": "20230725"
+      }
+    },
+    {
+      "id": "920753.BJ-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "ts_code": "920753.BJ",
+        "start_date": "20230717",
+        "end_date": "20230725"
+      }
+    },
+    {
+      "id": "920753.BJ-master",
+      "api": "stock_basic",
+      "params": {
+        "ts_code": "920753.BJ",
+        "fields": "ts_code,symbol,name,list_date,delist_date,list_status,exchange"
+      }
+    },
+    {
+      "id": "920856.BJ-daily",
+      "api": "daily",
+      "params": {
+        "ts_code": "920856.BJ",
+        "start_date": "20231016",
+        "end_date": "20231027"
+      }
+    },
+    {
+      "id": "920856.BJ-suspend_d",
+      "api": "suspend_d",
+      "params": {
+        "ts_code": "920856.BJ",
+        "start_date": "20231016",
+        "end_date": "20231027"
+      }
+    },
+    {
+      "id": "920856.BJ-master",
+      "api": "stock_basic",
+      "params": {
+        "ts_code": "920856.BJ",
+        "fields": "ts_code,symbol,name,list_date,delist_date,list_status,exchange"
+      }
+    }
+  ]
+}

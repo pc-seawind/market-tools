@@ -1,0 +1,360 @@
+{
+  "work_id": "work_0754c4a54bd9c615889b",
+  "revision": "r2",
+  "baseline": "81b00d6",
+  "status": "incomplete",
+  "accepted_requested": false,
+  "replay_ready": false,
+  "metrics": null,
+  "tests": {
+    "command": "/home/emox/work/homespace/.venv/bin/python -m pytest tests -q",
+    "passed": 195
+  },
+  "new_resolved_explanations": 36,
+  "unexplained_warmup_daily_remaining": 5,
+  "physical_target_holes": 2498,
+  "physical_warmup_holes": 7166,
+  "union_mutated": false,
+  "conflict_keys_attributed": 9924,
+  "factor_rounding_compatible": 4760,
+  "normalization_applied": false,
+  "sample": "600519.SH 2024-04-08T16:00:00+08:00",
+  "certified_inputs": 0,
+  "natural_slots": [
+    {
+      "at_BJ": "2026-09-11 07:15",
+      "status": "awaiting_natural_time",
+      "receipt": null
+    },
+    {
+      "at_BJ": "2026-09-11 18:30",
+      "status": "awaiting_natural_time",
+      "receipt": null
+    },
+    {
+      "at_BJ": "2026-09-12 07:15",
+      "status": "awaiting_natural_time",
+      "receipt": null
+    },
+    {
+      "at_BJ": "2026-09-13 05:00",
+      "status": "awaiting_natural_time",
+      "receipt": null
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/conflict-attribution/conflicts.json",
+      "sha256": "b17ffa9b51e7a933ff0299612c166cfe996f66f50b484a18255b5f5ce0936929"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/conflict-attribution/ratios.json",
+      "sha256": "e8d55799b75245c7e9d2ec3a44881c554d94bf22218901d8f430c83aee5af9be"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/conflict-attribution/sources.json",
+      "sha256": "689ef5c9a85c92fe99c67cebf9aae8b73f1c8f8728f28795236b3a77b6dece15"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/conflict-attribution/summary.json",
+      "sha256": "894c722a76af3dc052bb27d8f3c65e9751e318a44537e43c1b794088152807ec"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/evidence/mt1-0754-r2-conflicts.journal.txt",
+      "sha256": "a3f64df50a432f247da10f6535e327f76f6dc9b7f03bd55d9102f0adb7fe6c1c"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/evidence/mt1-0754-r2-offline-final.journal.txt",
+      "sha256": "9ae7d2e06feaf9871ffe966a7cbcc5dae00150492f111e0bc78a790b69bea904"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/evidence/mt1-0754-r2-offline.journal.txt",
+      "sha256": "25aa40b9b40883c54dc336e22d052a6ae229e877afd3b5a541e179e7d07166ef"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/evidence/mt1-0754-r2-precision.journal.txt",
+      "sha256": "cbae2527787f1f1d08d4f6dca925ba80f5bc251da31a5d3416e5f23a5ec55d50"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/evidence/mt1-0754-r2-probes.journal.txt",
+      "sha256": "99a046014d7a083637a963774b6c548d07415c7a833e364ed0d498903c0322f7"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/evidence/mt1-0754-r2-public-fallback.journal.txt",
+      "sha256": "707ee02821c6aa21d357843afe5d86f69f2c9f67a68ccc7da458602480db1a13"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/evidence/mt1-0754-r2-public.journal.txt",
+      "sha256": "7a69eccff63a06749cdfb1c2d1e8642bbb3785bc9b4275a6ab70062b55fb0638"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/evidence/precision-comparison.json",
+      "sha256": "3870649c289faa04f9d93ec08419a28c2f54d089ff6949673e25308563c2121a"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/evidence/probe-summary.json",
+      "sha256": "e762cdb6d557cb6566af475b207fe8a5478b954bb6818ce0b3adb63958df6f16"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/evidence/tests.txt",
+      "sha256": "d90f68de740490800263a712ba6cfb9c348d7356b89d005247f125ddad269714"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/explained-holes.json",
+      "sha256": "036b90799727c50955b82d57c2056038e7ffde86f8f6c919820cc79363a1b400"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/offline/600519-restricted-draft.json",
+      "sha256": "4d1463c186a7d0a48860be553eaf94fdc8c358edcebc1fc854d7b265391df8ba"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/offline/daily-differences.json",
+      "sha256": "43f14307425ca7e044b473a311394dda3778b5e02f4d6085ff67028781c45445"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/offline/explanations.json",
+      "sha256": "036b90799727c50955b82d57c2056038e7ffde86f8f6c919820cc79363a1b400"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/offline/ratio-variation.json",
+      "sha256": "9a1f16a894cdf850dff770bf9abe3d4aae8f0c0793fa978516a6746fc07d3c35"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/offline/summary.json",
+      "sha256": "2f8d75a1060801537e34692c86e0df97d043e0b49f162378028c67ed026da8b2"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/offline-final/600519-restricted-draft.json",
+      "sha256": "44c2dd1cbd39a5ac474fc7fe0a8cd2dd679d981b3e07c1b3bce725a6adeb7691"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/offline-final/daily-differences.json",
+      "sha256": "43f14307425ca7e044b473a311394dda3778b5e02f4d6085ff67028781c45445"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/offline-final/explanations.json",
+      "sha256": "036b90799727c50955b82d57c2056038e7ffde86f8f6c919820cc79363a1b400"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/offline-final/ratio-variation.json",
+      "sha256": "9a1f16a894cdf850dff770bf9abe3d4aae8f0c0793fa978516a6746fc07d3c35"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/offline-final/summary.json",
+      "sha256": "000aa2d0fcd7e820a446cd095ea516f9a0ce1c221c7d8aed68ae6c5066656e95"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/precision/0-adj_factor-json.txt",
+      "sha256": "6fcaafe63bf6c193138e10d9e99cf6d1d280a2a870cb56f2aa279a0c45392605"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/precision/1-adj_factor-csv.txt",
+      "sha256": "0d8cbd526afd5729704913fc756c1a7c2f6f999f570607ce3dcf17e6dd938acc"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/precision/2-adj_factor-json.txt",
+      "sha256": "a5811fb72eecba03687775e9b3f288f60c901ec5dc6de6de256b7d4f8f3138db"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/precision/3-adj_factor-csv.txt",
+      "sha256": "9291482f297633a7a60f294dca2c4967788d945e5e212bd32dd32b749742d442"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/precision/4-daily-json.txt",
+      "sha256": "281780eb363b9870fb67d0b04402b879d22fe1f20143deea215179a1fbc0b47d"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/precision/5-daily-csv.txt",
+      "sha256": "570345948e92101c58a347ac831abba1f3f4b0b04d8031d7464ec5ffebe04b51"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/precision/6-daily_basic-json.txt",
+      "sha256": "8a039cb14404a8b6dc000c3836a132f3f1584e365d57ba981eeb73b494a0b92f"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/precision/summary.json",
+      "sha256": "7471b914fc137584fa0654707869b847fba7e917f142bb0f8224c3a02ee7256d"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/code-mapping.headers",
+      "sha256": "28296a6b4639cc0f404bcf08a22bb89d652d805290c842df52c454f63a51cc0d"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/code-mapping.html",
+      "sha256": "32f2fa940d4b4fe19aca1e53a24e5aac29c57b7c5ee78588325b87f1b649c864"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/guoyi-resume.headers",
+      "sha256": "289847fd431bc713c0a5d647364608d11348a25903cecbefa047fd1db51492ea"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/guoyi-resume.pdf",
+      "sha256": "da59a170d3bea1de228da6fa558ee99c9b6ddd60d160d1567a978c0feff02c26"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/guoyi-resume.txt",
+      "sha256": "271598e940fa8a490ebc4c11c5e8d913f467048fa1927332121298c262e23a31"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/haomiao-resume.headers",
+      "sha256": "637a5e78bd6018e99baa3e6deced5e40eae20aeb22da032a45e2ead835cf53f8"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/haomiao-resume.pdf",
+      "sha256": "4c7a423a1f6203bfd707e16526107ed2b3e6ad134f98eda52b3a4c9f6dd5188c"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/haomiao-resume.txt",
+      "sha256": "bdb69929b882f1dc89fbdc7ef45f11420ca06ec9ae184c5308c44ce40484ad89"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/kaihua-resume.headers",
+      "sha256": "1813cf7e3048e231dd223ace9937cd985a2ccb66a585e7ca9b0698f42c058308"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/kaihua-resume.pdf",
+      "sha256": "ec10fa10fcd97d55c7ac94ea10cced4c0c96e468cf7d7df5716dede8afae8374"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/kaihua-resume.txt",
+      "sha256": "df6ac90d6a055ff2eeabaa54e040efe9145e4a1f5ae4827584500e37a719acee"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/summary.json",
+      "sha256": "573ffff3ab78eab2b78e465453c210a98b22d1ce82fc52a05f1fef5a6aa354e4"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/tianfang-resume.headers",
+      "sha256": "2ec96d69ac0e3f1a3b8acc5fa21d31592989d6d05258822f05b0d7491ac29f5d"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/tianfang-resume.pdf",
+      "sha256": "2a8ab0710f7deaf88f55f6da0eb7a4bc027fcbf4d814aec7ea3ab346779cdddf"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/tianfang-resume.txt",
+      "sha256": "bf86216d7fd9ab24a3b39e015c6ce308b8cc03938ac3e4d605a6a93561283e9e"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/tonghui-proposal.headers",
+      "sha256": "ce6d04e2503dd91c3e4615dc1ea30f565b8032fb95b18110c5b8c55c83f20385"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/tonghui-proposal.pdf",
+      "sha256": "0a55216098318b21e38d2de1b092c44fc5ee749db0b8914bfac9d0d06544e280"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/tonghui-proposal.txt",
+      "sha256": "a8120f5bb623c317c961800e59607034357aa2198724dadc867545dca56f6929"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/tonghui-stop.headers",
+      "sha256": "1b3cd0428244f12f30b4b57512fa12f9dee6a6566b9bfe584e584e8ddc50b23f"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/tonghui-stop.html",
+      "sha256": "ca211817eda6fbef5d4a3955fb7347e28991db84dfdee82bade806a8daa764b1"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/weichuang-resume.headers",
+      "sha256": "e1d55f8a172f1d7d3018e52438dac7ac7341f982ff55412ec7c1541f3b582ad9"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/weichuang-resume.pdf",
+      "sha256": "32f2fa940d4b4fe19aca1e53a24e5aac29c57b7c5ee78588325b87f1b649c864"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/weichuang-stop.headers",
+      "sha256": "24c7c79eb1a3d711d853e13d0d1cfe1d10faf68a39e2da3e79bc3c68d14bcffc"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/weichuang-stop.pdf",
+      "sha256": "32f2fa940d4b4fe19aca1e53a24e5aac29c57b7c5ee78588325b87f1b649c864"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/zhisheng-resume.headers",
+      "sha256": "8b61e96f7ec9939dd923c6f0bd415906512e4804209e90465565dfb2c978f4e5"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/zhisheng-resume.pdf",
+      "sha256": "403098fdf074538dd80175a673063c081a926d9ac9a91896a6f9abf42faae075"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/zhisheng-resume.txt",
+      "sha256": "50d92d458edac519f60716dffad4647dd2541acbff63fe9abbf4598440db2b71"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/code-mapping.headers",
+      "sha256": "4fa9ab4eb6de3b5d22d8a0510cd79c5adf928bef2e8d80d7b326adb26d9eed3c"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/code-mapping.pdf",
+      "sha256": "0048edb25532a6e31eab084e707da283ac88b4ea703d927f05012f034b5fc9e3"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/code-mapping.txt",
+      "sha256": "d7a920645c22495b961f0ca3050725b51f8d37765ced9a38f861735aa4921920"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/moutai-index.headers",
+      "sha256": "ead0415229628c225fee2e34aa67f15301bedab3a3ca907de927045950eee30d"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/moutai-index.html",
+      "sha256": "d799fb1d31fb0f9e9e0efad9014577b70506702a5e2bc6a2ee8095d4b72de754"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/moutai-original.headers",
+      "sha256": "876f2690f8224e161e1c4dfb4a05210291cffe155da169584aacd7638ab75400"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/moutai-original.pdf",
+      "sha256": "2125ff97a452ea79b0d784e2432f7d224b6aecc330b644b593477d69e22f4ed1"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/moutai-original.txt",
+      "sha256": "b16b7ae5adaff17e803ca93829b144bb150d0b395be8e750a1552d56d9bf9e5a"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/summary.json",
+      "sha256": "c6f9a7edcd0be365701c68d193f1980512a511e799d5d297ac40d4624c6d58de"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/tonghui-stop.headers",
+      "sha256": "4c3b23252fb475d54bba5723db031cf42e0048ad322b68122ab74eacfd0c9820"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/tonghui-stop.pdf",
+      "sha256": "5ca9c7fc41410114d4feadafd9b999758f7fa18e09dfce4474bb5d1045237a0a"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/tonghui-stop.txt",
+      "sha256": "7702ef18ce121a29db292321dd0348b28c63982c66d3c7d2779a1bb6f8e88039"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/weichuang-resume.headers",
+      "sha256": "73117d772d7c23af20eed21337c7a2b457f6ef36d1bb8fe47055373ce8324d91"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/weichuang-resume.pdf",
+      "sha256": "b58d115e9c2c0a1ad9e175f115cbad81dfa781b2cd4620476a02dc4e2d4fc326"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/weichuang-resume.txt",
+      "sha256": "e52014e97f05d01464e0eb91ba06303999f773383dd6025bcd7c3b9b1742a97e"
+    }
+  ],
+  "probe_summary": {
+    "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/backfill/85835ab82421cb648c90/summary.json",
+    "sha256": "e59df6cd48cbb6228e1e49a8e9337408bf1d265f255f2097494ed32e3e40a708"
+  },
+  "incomplete": [
+    "historical precision/version provenance unresolved; all conflicts quarantined",
+    "920090.BJ actual resumption evidence missing: 5 days",
+    "original 2024 manual concept/context absent in all available local git history",
+    "contemporaneous financial/valuation version chain unverified",
+    "corporate action cash/tax/reinvestment and delisting settlement not certified",
+    "four natural scheduled delivery chains pending their actual times",
+    "three-channel 20/40/60 PIT/OOS not admissible; research remains investment domain"
+  ]
+}

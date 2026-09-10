@@ -1,0 +1,110 @@
+[
+  {
+    "code": "920039.BJ",
+    "old_code": "831039",
+    "start": "2023-03-01",
+    "resume": "2023-03-13",
+    "pdf": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/guoyi-resume.pdf",
+      "sha256": "da59a170d3bea1de228da6fa558ee99c9b6ddd60d160d1567a978c0feff02c26"
+    },
+    "text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/guoyi-resume.txt",
+      "sha256": "271598e940fa8a490ebc4c11c5e8d913f467048fa1927332121298c262e23a31"
+    },
+    "mapping_text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/code-mapping.txt",
+      "sha256": "d7a920645c22495b961f0ca3050725b51f8d37765ced9a38f861735aa4921920"
+    }
+  },
+  {
+    "code": "920753.BJ",
+    "old_code": "871753",
+    "start": "2023-07-17",
+    "resume": "2023-07-26",
+    "pdf": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/tianfang-resume.pdf",
+      "sha256": "2a8ab0710f7deaf88f55f6da0eb7a4bc027fcbf4d814aec7ea3ab346779cdddf"
+    },
+    "text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/tianfang-resume.txt",
+      "sha256": "bf86216d7fd9ab24a3b39e015c6ce308b8cc03938ac3e4d605a6a93561283e9e"
+    },
+    "mapping_text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/code-mapping.txt",
+      "sha256": "d7a920645c22495b961f0ca3050725b51f8d37765ced9a38f861735aa4921920"
+    }
+  },
+  {
+    "code": "920856.BJ",
+    "old_code": "831856",
+    "start": "2023-10-16",
+    "resume": "2023-10-30",
+    "pdf": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/haomiao-resume.pdf",
+      "sha256": "4c7a423a1f6203bfd707e16526107ed2b3e6ad134f98eda52b3a4c9f6dd5188c"
+    },
+    "text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/haomiao-resume.txt",
+      "sha256": "bdb69929b882f1dc89fbdc7ef45f11420ca06ec9ae184c5308c44ce40484ad89"
+    },
+    "mapping_text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/code-mapping.txt",
+      "sha256": "d7a920645c22495b961f0ca3050725b51f8d37765ced9a38f861735aa4921920"
+    }
+  },
+  {
+    "code": "920171.BJ",
+    "old_code": "832171",
+    "start": "2023-11-28",
+    "resume": "2023-12-01",
+    "pdf": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/zhisheng-resume.pdf",
+      "sha256": "403098fdf074538dd80175a673063c081a926d9ac9a91896a6f9abf42faae075"
+    },
+    "text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/zhisheng-resume.txt",
+      "sha256": "50d92d458edac519f60716dffad4647dd2541acbff63fe9abbf4598440db2b71"
+    },
+    "mapping_text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/code-mapping.txt",
+      "sha256": "d7a920645c22495b961f0ca3050725b51f8d37765ced9a38f861735aa4921920"
+    }
+  },
+  {
+    "code": "920526.BJ",
+    "old_code": "831526",
+    "start": "2023-11-28",
+    "resume": "2023-12-01",
+    "pdf": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/kaihua-resume.pdf",
+      "sha256": "ec10fa10fcd97d55c7ac94ea10cced4c0c96e468cf7d7df5716dede8afae8374"
+    },
+    "text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public/kaihua-resume.txt",
+      "sha256": "df6ac90d6a055ff2eeabaa54e040efe9145e4a1f5ae4827584500e37a719acee"
+    },
+    "mapping_text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/code-mapping.txt",
+      "sha256": "d7a920645c22495b961f0ca3050725b51f8d37765ced9a38f861735aa4921920"
+    }
+  },
+  {
+    "code": "920198.BJ",
+    "old_code": "430198",
+    "start": "2023-12-04",
+    "resume": "2023-12-11",
+    "pdf": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/weichuang-resume.pdf",
+      "sha256": "b58d115e9c2c0a1ad9e175f115cbad81dfa781b2cd4620476a02dc4e2d4fc326"
+    },
+    "text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/weichuang-resume.txt",
+      "sha256": "e52014e97f05d01464e0eb91ba06303999f773383dd6025bcd7c3b9b1742a97e"
+    },
+    "mapping_text": {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/work-0754-r2/public-fallback/code-mapping.txt",
+      "sha256": "d7a920645c22495b961f0ca3050725b51f8d37765ced9a38f861735aa4921920"
+    }
+  }
+]

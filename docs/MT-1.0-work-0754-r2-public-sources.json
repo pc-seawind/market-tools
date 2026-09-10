@@ -1,0 +1,12 @@
+[
+ {"id":"code-mapping","url":"https://www.bse.cn/service/code_mapping.html","kind":"html"},
+ {"id":"guoyi-resume","url":"https://pdf.dfcfw.com/pdf/H2_AN202306301591944158_1.pdf","kind":"pdf"},
+ {"id":"tianfang-resume","url":"https://static.cninfo.com.cn/finalpage/2023-07-25/1217384622.PDF","kind":"pdf"},
+ {"id":"haomiao-resume","url":"https://static.cninfo.com.cn/finalpage/2023-12-15/1218636574.PDF","kind":"pdf"},
+ {"id":"zhisheng-resume","url":"https://pdf.dfcfw.com/pdf/H2_AN202311301613090728_1.pdf","kind":"pdf"},
+ {"id":"kaihua-resume","url":"https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSEBJ_STOCK/2023/2023-11/2023-11-30/9674039.PDF","kind":"pdf"},
+ {"id":"weichuang-stop","url":"https://www.bse.cn/disclosure/2023/2023-12-01/17b97b2de7eb40feaf00cddd67a5940e.pdf","kind":"pdf"},
+ {"id":"weichuang-resume","url":"https://www.bse.cn/disclosure/2023/2023-12-08/712b6dba5a674413b16842cc6d3614be.pdf","kind":"pdf"},
+ {"id":"tonghui-stop","url":"https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?CompanyCode=80177332&gather=1&id=9383138","kind":"html"},
+ {"id":"tonghui-proposal","url":"https://static.cninfo.com.cn/finalpage/2023-08-08/1217491674.PDF","kind":"pdf"}
+]
