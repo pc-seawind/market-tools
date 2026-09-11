@@ -1,0 +1,8 @@
+{
+  "api": "hk_daily_adj",
+  "at": "2026-09-11T20:55:37.102401+00:00",
+  "result": {
+    "error": "provider_error:40203:抱歉，您没有接口(hk_daily_adj)访问权限，权限的具体详情访问：https://tushare.pro/document/1?doc_id=108。",
+    "status": "blocked"
+  }
+}

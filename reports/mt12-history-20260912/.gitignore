@@ -1,0 +1,4 @@
+# Deterministic derived intermediates are archived as .gz and rebuilt offline.
+panel-*.json
+*-collection.json
+first-pass/*.json

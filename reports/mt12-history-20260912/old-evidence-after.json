@@ -1,0 +1,610 @@
+{
+  "DELIVERY.md": {
+    "actual": "fb2701c351e9d496727901331eea49c4c406378cf7b942d7aeb0b3e3d78c0bca",
+    "expected": "fb2701c351e9d496727901331eea49c4c406378cf7b942d7aeb0b3e3d78c0bca"
+  },
+  "final-receipt.json": {
+    "actual": "60e6b5cdaeaeafa810e8838c0957850df24b59e42c85a577534c3c5d9b9d5bb1",
+    "expected": "60e6b5cdaeaeafa810e8838c0957850df24b59e42c85a577534c3c5d9b9d5bb1"
+  },
+  "read-only-proof.json": {
+    "actual": "c6c7d5725a89e3a657885a8199e846ea05ab1da5a165e55f73f2839e58752c72",
+    "expected": "c6c7d5725a89e3a657885a8199e846ea05ab1da5a165e55f73f2839e58752c72"
+  },
+  "real-ab-final.json": {
+    "actual": "ab6da6fe6562bf3bd0ee026a36fb0704de2ded54cde83767bc84a9126701ad74",
+    "expected": "ab6da6fe6562bf3bd0ee026a36fb0704de2ded54cde83767bc84a9126701ad74"
+  },
+  "real-ab-first.json": {
+    "actual": "7223b156810c9e32b1db1efc78db200e96e3474b35f86d713e04560fe43cd97c",
+    "expected": "7223b156810c9e32b1db1efc78db200e96e3474b35f86d713e04560fe43cd97c"
+  },
+  "real-archive/latest.json": {
+    "actual": "0d58a29bad88e989ac792440193e07cd31be085cf1fbcabaf0c993b2a5cf206c",
+    "expected": "0d58a29bad88e989ac792440193e07cd31be085cf1fbcabaf0c993b2a5cf206c"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json": {
+    "actual": "528c2aeb4636f060ed4cebad2bf2018d43a4695a113fd0a5cd0f5937663107d4",
+    "expected": "528c2aeb4636f060ed4cebad2bf2018d43a4695a113fd0a5cd0f5937663107d4"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/00700.HK.http.json": {
+    "actual": "a7555814b57643e6e99192ee97339de28559a1828c015755159894a082135536",
+    "expected": "a7555814b57643e6e99192ee97339de28559a1828c015755159894a082135536"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/01810.HK.http.json": {
+    "actual": "072383b2e80750c02923296c314e5705d11fbb2f280751fb70b7b3b9573c3104",
+    "expected": "072383b2e80750c02923296c314e5705d11fbb2f280751fb70b7b3b9573c3104"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/03690.HK.http.json": {
+    "actual": "eb18eaaf03d3f5bdc416bbbf2091bf04456088fda6a2b99f858bf3d66d61f57e",
+    "expected": "eb18eaaf03d3f5bdc416bbbf2091bf04456088fda6a2b99f858bf3d66d61f57e"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/adj_factor-22534f427434.csv": {
+    "actual": "0915468ca257890f11fb896be6b593bb82e7c99dfa8fe15bae82f3f020c2682b",
+    "expected": "0915468ca257890f11fb896be6b593bb82e7c99dfa8fe15bae82f3f020c2682b"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/adj_factor-442a3ec8db37.csv": {
+    "actual": "b97bd18272d9fce0ea71a80831e7b0fabced209b7af1378564ceaf9985918fa0",
+    "expected": "b97bd18272d9fce0ea71a80831e7b0fabced209b7af1378564ceaf9985918fa0"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/adj_factor-6cdcc25bfd3c.csv": {
+    "actual": "225341057023a5f5d4a9e2024b3ab4e9f2fee1ee199f72a38b0a4ca6fd7674b7",
+    "expected": "225341057023a5f5d4a9e2024b3ab4e9f2fee1ee199f72a38b0a4ca6fd7674b7"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/adj_factor-6f7571f0a431.csv": {
+    "actual": "eabd322ee4b983526f355d8a40c133d375587cef34fd3770cc4005a9e9831deb",
+    "expected": "eabd322ee4b983526f355d8a40c133d375587cef34fd3770cc4005a9e9831deb"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/adj_factor-7cc2dd6c93ce.csv": {
+    "actual": "c359a810a7bbc173c3c3e99fb5a528abc980d49f3d34439ee67cf878bb1cbf36",
+    "expected": "c359a810a7bbc173c3c3e99fb5a528abc980d49f3d34439ee67cf878bb1cbf36"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/adj_factor-e6d4cbac918e.csv": {
+    "actual": "ffcfb9cd94bb6850deee049dff6c3caf744a1ce54069f79cd2494b6d071f4a13",
+    "expected": "ffcfb9cd94bb6850deee049dff6c3caf744a1ce54069f79cd2494b6d071f4a13"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/bundle.json": {
+    "actual": "70f95b058737965509e6d9f26d2512f5b6dbdfc28186fb46c2db1d54ac73794b",
+    "expected": "70f95b058737965509e6d9f26d2512f5b6dbdfc28186fb46c2db1d54ac73794b"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/daily-22534f427434.csv": {
+    "actual": "cbea5c6708cb81b9279534961e78fea85c18c15f386bd1d888d99a71fc359d19",
+    "expected": "cbea5c6708cb81b9279534961e78fea85c18c15f386bd1d888d99a71fc359d19"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/daily-442a3ec8db37.csv": {
+    "actual": "20de0371d46ddf22af40cd4a7f39ebfa824ffffbcbd21cdce8ea217d86cf4beb",
+    "expected": "20de0371d46ddf22af40cd4a7f39ebfa824ffffbcbd21cdce8ea217d86cf4beb"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/daily-6cdcc25bfd3c.csv": {
+    "actual": "c30d73fdd80682ccbfadba655b6258d7fed88fe5e5d5e09bfe274cbe5dada65a",
+    "expected": "c30d73fdd80682ccbfadba655b6258d7fed88fe5e5d5e09bfe274cbe5dada65a"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/daily-6f7571f0a431.csv": {
+    "actual": "f2ed4688ac1f4707b7bbe1cfdebc726a048720ec820911d691e6b65ab3356f9e",
+    "expected": "f2ed4688ac1f4707b7bbe1cfdebc726a048720ec820911d691e6b65ab3356f9e"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/daily-7cc2dd6c93ce.csv": {
+    "actual": "db472353d2727cadfd0c51182cc60cafcbfa5b34701922bf7b97cd935efd41fd",
+    "expected": "db472353d2727cadfd0c51182cc60cafcbfa5b34701922bf7b97cd935efd41fd"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/daily-e6d4cbac918e.csv": {
+    "actual": "0290ae403b02551b9364dba058534336288536a8687eaf1578e712d82534ede4",
+    "expected": "0290ae403b02551b9364dba058534336288536a8687eaf1578e712d82534ede4"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/experiment-contract.json": {
+    "actual": "173b8350e1864f30034615661a167803a888ffa93dc3f778e8a566f440ed9019",
+    "expected": "173b8350e1864f30034615661a167803a888ffa93dc3f778e8a566f440ed9019"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/hk_tradecal-796b1e7d630c.csv": {
+    "actual": "96472f083597ff62cbeabfd192e7e1b6175ca952dc97a999d3f69f4d1e979c7f",
+    "expected": "96472f083597ff62cbeabfd192e7e1b6175ca952dc97a999d3f69f4d1e979c7f"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/index_daily-b03c46b153fe.csv": {
+    "actual": "1eb01a07a4a6c7a2f6ed02b786d2d32b1de8f00dc970757e405c265a383ffaaa",
+    "expected": "1eb01a07a4a6c7a2f6ed02b786d2d32b1de8f00dc970757e405c265a383ffaaa"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/report.md": {
+    "actual": "4d1102354dfd9721b31ca9075648bafc40d1d7914fac39ac56046662dfb162ae",
+    "expected": "4d1102354dfd9721b31ca9075648bafc40d1d7914fac39ac56046662dfb162ae"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/scope.json": {
+    "actual": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+    "expected": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/timing.py": {
+    "actual": "e5454175464486ddf2186e07ff8d4c4ca871a8b21ca57948cb22c186edea87f6",
+    "expected": "e5454175464486ddf2186e07ff8d4c4ca871a8b21ca57948cb22c186edea87f6"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/timing_cli.py": {
+    "actual": "3372ec5fb7862dee6128c219af8b70ec45bf9ccf0a2581f5de0c44d70680e805",
+    "expected": "3372ec5fb7862dee6128c219af8b70ec45bf9ccf0a2581f5de0c44d70680e805"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/timing_experiment.py": {
+    "actual": "277e1f4afd54167951fc8cdd0fe09bc997f55761607407e30d19bcc0156b11e0",
+    "expected": "277e1f4afd54167951fc8cdd0fe09bc997f55761607407e30d19bcc0156b11e0"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/trade_cal-b0f58defa5c4.csv": {
+    "actual": "107e95a0a9d122afdeb0d9b7a122594b502b19d401366eb05f2398a89d003333",
+    "expected": "107e95a0a9d122afdeb0d9b7a122594b502b19d401366eb05f2398a89d003333"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/materials/us_tradecal-796b1e7d630c.csv": {
+    "actual": "4c89137ebfec562112019df449ce653f0992cdfcb83b51633c09c830e8c6401c",
+    "expected": "4c89137ebfec562112019df449ce653f0992cdfcb83b51633c09c830e8c6401c"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/result.json": {
+    "actual": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+    "expected": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/manifest.json": {
+    "actual": "829dd7b5f9082733fd6045b3b2671bac1c9ac7f79cff86bead86f1b0ed390240",
+    "expected": "829dd7b5f9082733fd6045b3b2671bac1c9ac7f79cff86bead86f1b0ed390240"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/00700.HK.http.json": {
+    "actual": "175908d9119cb3b67c6a36052688db27b936d37d054f1435b2108ae57434a393",
+    "expected": "175908d9119cb3b67c6a36052688db27b936d37d054f1435b2108ae57434a393"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/01810.HK.http.json": {
+    "actual": "cce8d7bd048e5a02a0271f12d7426dba831c42f8ec4fd3a6cd6e0b335e5550dc",
+    "expected": "cce8d7bd048e5a02a0271f12d7426dba831c42f8ec4fd3a6cd6e0b335e5550dc"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/03690.HK.http.json": {
+    "actual": "3ac14bd361274e3ff1c07bb4557f2a61b0e139e31210f16ca45843b38069e641",
+    "expected": "3ac14bd361274e3ff1c07bb4557f2a61b0e139e31210f16ca45843b38069e641"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/adj_factor-22534f427434.csv": {
+    "actual": "0915468ca257890f11fb896be6b593bb82e7c99dfa8fe15bae82f3f020c2682b",
+    "expected": "0915468ca257890f11fb896be6b593bb82e7c99dfa8fe15bae82f3f020c2682b"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/adj_factor-442a3ec8db37.csv": {
+    "actual": "b97bd18272d9fce0ea71a80831e7b0fabced209b7af1378564ceaf9985918fa0",
+    "expected": "b97bd18272d9fce0ea71a80831e7b0fabced209b7af1378564ceaf9985918fa0"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/adj_factor-6cdcc25bfd3c.csv": {
+    "actual": "225341057023a5f5d4a9e2024b3ab4e9f2fee1ee199f72a38b0a4ca6fd7674b7",
+    "expected": "225341057023a5f5d4a9e2024b3ab4e9f2fee1ee199f72a38b0a4ca6fd7674b7"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/adj_factor-6f7571f0a431.csv": {
+    "actual": "eabd322ee4b983526f355d8a40c133d375587cef34fd3770cc4005a9e9831deb",
+    "expected": "eabd322ee4b983526f355d8a40c133d375587cef34fd3770cc4005a9e9831deb"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/adj_factor-7cc2dd6c93ce.csv": {
+    "actual": "c359a810a7bbc173c3c3e99fb5a528abc980d49f3d34439ee67cf878bb1cbf36",
+    "expected": "c359a810a7bbc173c3c3e99fb5a528abc980d49f3d34439ee67cf878bb1cbf36"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/adj_factor-e6d4cbac918e.csv": {
+    "actual": "ffcfb9cd94bb6850deee049dff6c3caf744a1ce54069f79cd2494b6d071f4a13",
+    "expected": "ffcfb9cd94bb6850deee049dff6c3caf744a1ce54069f79cd2494b6d071f4a13"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/bundle.json": {
+    "actual": "6881b42d175fa62c7d4499985fdc84c897685ba2943954e6f4436d97fce41e83",
+    "expected": "6881b42d175fa62c7d4499985fdc84c897685ba2943954e6f4436d97fce41e83"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/daily-22534f427434.csv": {
+    "actual": "cbea5c6708cb81b9279534961e78fea85c18c15f386bd1d888d99a71fc359d19",
+    "expected": "cbea5c6708cb81b9279534961e78fea85c18c15f386bd1d888d99a71fc359d19"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/daily-442a3ec8db37.csv": {
+    "actual": "20de0371d46ddf22af40cd4a7f39ebfa824ffffbcbd21cdce8ea217d86cf4beb",
+    "expected": "20de0371d46ddf22af40cd4a7f39ebfa824ffffbcbd21cdce8ea217d86cf4beb"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/daily-6cdcc25bfd3c.csv": {
+    "actual": "c30d73fdd80682ccbfadba655b6258d7fed88fe5e5d5e09bfe274cbe5dada65a",
+    "expected": "c30d73fdd80682ccbfadba655b6258d7fed88fe5e5d5e09bfe274cbe5dada65a"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/daily-6f7571f0a431.csv": {
+    "actual": "f2ed4688ac1f4707b7bbe1cfdebc726a048720ec820911d691e6b65ab3356f9e",
+    "expected": "f2ed4688ac1f4707b7bbe1cfdebc726a048720ec820911d691e6b65ab3356f9e"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/daily-7cc2dd6c93ce.csv": {
+    "actual": "db472353d2727cadfd0c51182cc60cafcbfa5b34701922bf7b97cd935efd41fd",
+    "expected": "db472353d2727cadfd0c51182cc60cafcbfa5b34701922bf7b97cd935efd41fd"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/daily-e6d4cbac918e.csv": {
+    "actual": "0290ae403b02551b9364dba058534336288536a8687eaf1578e712d82534ede4",
+    "expected": "0290ae403b02551b9364dba058534336288536a8687eaf1578e712d82534ede4"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/experiment-contract.json": {
+    "actual": "173b8350e1864f30034615661a167803a888ffa93dc3f778e8a566f440ed9019",
+    "expected": "173b8350e1864f30034615661a167803a888ffa93dc3f778e8a566f440ed9019"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/hk_tradecal-796b1e7d630c.csv": {
+    "actual": "96472f083597ff62cbeabfd192e7e1b6175ca952dc97a999d3f69f4d1e979c7f",
+    "expected": "96472f083597ff62cbeabfd192e7e1b6175ca952dc97a999d3f69f4d1e979c7f"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/index_daily-b03c46b153fe.csv": {
+    "actual": "1eb01a07a4a6c7a2f6ed02b786d2d32b1de8f00dc970757e405c265a383ffaaa",
+    "expected": "1eb01a07a4a6c7a2f6ed02b786d2d32b1de8f00dc970757e405c265a383ffaaa"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/report.md": {
+    "actual": "19e57b9c350932411a29282d2dba2b0db28b17c6ae024e6885035a5d6a65eb21",
+    "expected": "19e57b9c350932411a29282d2dba2b0db28b17c6ae024e6885035a5d6a65eb21"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/scope.json": {
+    "actual": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+    "expected": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/timing.py": {
+    "actual": "381a2bc3f0dd6f17becd790f025573f64515de9a5a1a3b8b7ddd780e58020dbf",
+    "expected": "381a2bc3f0dd6f17becd790f025573f64515de9a5a1a3b8b7ddd780e58020dbf"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/timing_cli.py": {
+    "actual": "405ce8f07d8c50a57a109c9e1b69e6cb41db0d0b848f47b117a549004e2e8493",
+    "expected": "405ce8f07d8c50a57a109c9e1b69e6cb41db0d0b848f47b117a549004e2e8493"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/timing_experiment.py": {
+    "actual": "ca56403f7f92e17053cb9a9c6e0b14fb5dbe899e776f7d437c7de3472c14aae6",
+    "expected": "ca56403f7f92e17053cb9a9c6e0b14fb5dbe899e776f7d437c7de3472c14aae6"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/trade_cal-b0f58defa5c4.csv": {
+    "actual": "107e95a0a9d122afdeb0d9b7a122594b502b19d401366eb05f2398a89d003333",
+    "expected": "107e95a0a9d122afdeb0d9b7a122594b502b19d401366eb05f2398a89d003333"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/materials/us_tradecal-796b1e7d630c.csv": {
+    "actual": "4c89137ebfec562112019df449ce653f0992cdfcb83b51633c09c830e8c6401c",
+    "expected": "4c89137ebfec562112019df449ce653f0992cdfcb83b51633c09c830e8c6401c"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/result.json": {
+    "actual": "d350a327ff134534c8284ddb7cfbd87ed468fc9d0c3659fd27cc529b074fadcf",
+    "expected": "d350a327ff134534c8284ddb7cfbd87ed468fc9d0c3659fd27cc529b074fadcf"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/manifest.json": {
+    "actual": "25daf49a1e8fe2d21c8d01462846f393570deada749602fed4557aed37384b42",
+    "expected": "25daf49a1e8fe2d21c8d01462846f393570deada749602fed4557aed37384b42"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/00700.HK.http.json": {
+    "actual": "a7555814b57643e6e99192ee97339de28559a1828c015755159894a082135536",
+    "expected": "a7555814b57643e6e99192ee97339de28559a1828c015755159894a082135536"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/01810.HK.http.json": {
+    "actual": "072383b2e80750c02923296c314e5705d11fbb2f280751fb70b7b3b9573c3104",
+    "expected": "072383b2e80750c02923296c314e5705d11fbb2f280751fb70b7b3b9573c3104"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/03690.HK.http.json": {
+    "actual": "eb18eaaf03d3f5bdc416bbbf2091bf04456088fda6a2b99f858bf3d66d61f57e",
+    "expected": "eb18eaaf03d3f5bdc416bbbf2091bf04456088fda6a2b99f858bf3d66d61f57e"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/adj_factor-22534f427434.csv": {
+    "actual": "0915468ca257890f11fb896be6b593bb82e7c99dfa8fe15bae82f3f020c2682b",
+    "expected": "0915468ca257890f11fb896be6b593bb82e7c99dfa8fe15bae82f3f020c2682b"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/adj_factor-442a3ec8db37.csv": {
+    "actual": "b97bd18272d9fce0ea71a80831e7b0fabced209b7af1378564ceaf9985918fa0",
+    "expected": "b97bd18272d9fce0ea71a80831e7b0fabced209b7af1378564ceaf9985918fa0"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/adj_factor-6cdcc25bfd3c.csv": {
+    "actual": "225341057023a5f5d4a9e2024b3ab4e9f2fee1ee199f72a38b0a4ca6fd7674b7",
+    "expected": "225341057023a5f5d4a9e2024b3ab4e9f2fee1ee199f72a38b0a4ca6fd7674b7"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/adj_factor-6f7571f0a431.csv": {
+    "actual": "eabd322ee4b983526f355d8a40c133d375587cef34fd3770cc4005a9e9831deb",
+    "expected": "eabd322ee4b983526f355d8a40c133d375587cef34fd3770cc4005a9e9831deb"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/adj_factor-7cc2dd6c93ce.csv": {
+    "actual": "c359a810a7bbc173c3c3e99fb5a528abc980d49f3d34439ee67cf878bb1cbf36",
+    "expected": "c359a810a7bbc173c3c3e99fb5a528abc980d49f3d34439ee67cf878bb1cbf36"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/adj_factor-e6d4cbac918e.csv": {
+    "actual": "ffcfb9cd94bb6850deee049dff6c3caf744a1ce54069f79cd2494b6d071f4a13",
+    "expected": "ffcfb9cd94bb6850deee049dff6c3caf744a1ce54069f79cd2494b6d071f4a13"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/bundle.json": {
+    "actual": "70f95b058737965509e6d9f26d2512f5b6dbdfc28186fb46c2db1d54ac73794b",
+    "expected": "70f95b058737965509e6d9f26d2512f5b6dbdfc28186fb46c2db1d54ac73794b"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/daily-22534f427434.csv": {
+    "actual": "cbea5c6708cb81b9279534961e78fea85c18c15f386bd1d888d99a71fc359d19",
+    "expected": "cbea5c6708cb81b9279534961e78fea85c18c15f386bd1d888d99a71fc359d19"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/daily-442a3ec8db37.csv": {
+    "actual": "20de0371d46ddf22af40cd4a7f39ebfa824ffffbcbd21cdce8ea217d86cf4beb",
+    "expected": "20de0371d46ddf22af40cd4a7f39ebfa824ffffbcbd21cdce8ea217d86cf4beb"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/daily-6cdcc25bfd3c.csv": {
+    "actual": "c30d73fdd80682ccbfadba655b6258d7fed88fe5e5d5e09bfe274cbe5dada65a",
+    "expected": "c30d73fdd80682ccbfadba655b6258d7fed88fe5e5d5e09bfe274cbe5dada65a"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/daily-6f7571f0a431.csv": {
+    "actual": "f2ed4688ac1f4707b7bbe1cfdebc726a048720ec820911d691e6b65ab3356f9e",
+    "expected": "f2ed4688ac1f4707b7bbe1cfdebc726a048720ec820911d691e6b65ab3356f9e"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/daily-7cc2dd6c93ce.csv": {
+    "actual": "db472353d2727cadfd0c51182cc60cafcbfa5b34701922bf7b97cd935efd41fd",
+    "expected": "db472353d2727cadfd0c51182cc60cafcbfa5b34701922bf7b97cd935efd41fd"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/daily-e6d4cbac918e.csv": {
+    "actual": "0290ae403b02551b9364dba058534336288536a8687eaf1578e712d82534ede4",
+    "expected": "0290ae403b02551b9364dba058534336288536a8687eaf1578e712d82534ede4"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/experiment-contract.json": {
+    "actual": "173b8350e1864f30034615661a167803a888ffa93dc3f778e8a566f440ed9019",
+    "expected": "173b8350e1864f30034615661a167803a888ffa93dc3f778e8a566f440ed9019"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/hk_tradecal-796b1e7d630c.csv": {
+    "actual": "96472f083597ff62cbeabfd192e7e1b6175ca952dc97a999d3f69f4d1e979c7f",
+    "expected": "96472f083597ff62cbeabfd192e7e1b6175ca952dc97a999d3f69f4d1e979c7f"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/index_daily-b03c46b153fe.csv": {
+    "actual": "1eb01a07a4a6c7a2f6ed02b786d2d32b1de8f00dc970757e405c265a383ffaaa",
+    "expected": "1eb01a07a4a6c7a2f6ed02b786d2d32b1de8f00dc970757e405c265a383ffaaa"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/report.md": {
+    "actual": "4d1102354dfd9721b31ca9075648bafc40d1d7914fac39ac56046662dfb162ae",
+    "expected": "4d1102354dfd9721b31ca9075648bafc40d1d7914fac39ac56046662dfb162ae"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/scope.json": {
+    "actual": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+    "expected": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/timing.py": {
+    "actual": "96b1a8f7d98fd0bf9bf0a014fd4a4f2d41f4724656d4fd85ffc13d77fc2c13e7",
+    "expected": "96b1a8f7d98fd0bf9bf0a014fd4a4f2d41f4724656d4fd85ffc13d77fc2c13e7"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/timing_cli.py": {
+    "actual": "3372ec5fb7862dee6128c219af8b70ec45bf9ccf0a2581f5de0c44d70680e805",
+    "expected": "3372ec5fb7862dee6128c219af8b70ec45bf9ccf0a2581f5de0c44d70680e805"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/timing_experiment.py": {
+    "actual": "7d2a320913faa77bde8f56081f609d5de82d068b5a1d1da203f22ea1bbaac732",
+    "expected": "7d2a320913faa77bde8f56081f609d5de82d068b5a1d1da203f22ea1bbaac732"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/trade_cal-b0f58defa5c4.csv": {
+    "actual": "107e95a0a9d122afdeb0d9b7a122594b502b19d401366eb05f2398a89d003333",
+    "expected": "107e95a0a9d122afdeb0d9b7a122594b502b19d401366eb05f2398a89d003333"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/materials/us_tradecal-796b1e7d630c.csv": {
+    "actual": "4c89137ebfec562112019df449ce653f0992cdfcb83b51633c09c830e8c6401c",
+    "expected": "4c89137ebfec562112019df449ce653f0992cdfcb83b51633c09c830e8c6401c"
+  },
+  "real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/result.json": {
+    "actual": "83184d42c52c4e188cfc4937e5027c310aba8fcf4c3cef5c1c52b0e05537cd34",
+    "expected": "83184d42c52c4e188cfc4937e5027c310aba8fcf4c3cef5c1c52b0e05537cd34"
+  },
+  "real-input-r2/00700.HK.http.json": {
+    "actual": "175908d9119cb3b67c6a36052688db27b936d37d054f1435b2108ae57434a393",
+    "expected": "175908d9119cb3b67c6a36052688db27b936d37d054f1435b2108ae57434a393"
+  },
+  "real-input-r2/01810.HK.http.json": {
+    "actual": "cce8d7bd048e5a02a0271f12d7426dba831c42f8ec4fd3a6cd6e0b335e5550dc",
+    "expected": "cce8d7bd048e5a02a0271f12d7426dba831c42f8ec4fd3a6cd6e0b335e5550dc"
+  },
+  "real-input-r2/03690.HK.http.json": {
+    "actual": "3ac14bd361274e3ff1c07bb4557f2a61b0e139e31210f16ca45843b38069e641",
+    "expected": "3ac14bd361274e3ff1c07bb4557f2a61b0e139e31210f16ca45843b38069e641"
+  },
+  "real-input-r2/adj_factor-22534f427434.csv": {
+    "actual": "0915468ca257890f11fb896be6b593bb82e7c99dfa8fe15bae82f3f020c2682b",
+    "expected": "0915468ca257890f11fb896be6b593bb82e7c99dfa8fe15bae82f3f020c2682b"
+  },
+  "real-input-r2/adj_factor-442a3ec8db37.csv": {
+    "actual": "b97bd18272d9fce0ea71a80831e7b0fabced209b7af1378564ceaf9985918fa0",
+    "expected": "b97bd18272d9fce0ea71a80831e7b0fabced209b7af1378564ceaf9985918fa0"
+  },
+  "real-input-r2/adj_factor-6cdcc25bfd3c.csv": {
+    "actual": "225341057023a5f5d4a9e2024b3ab4e9f2fee1ee199f72a38b0a4ca6fd7674b7",
+    "expected": "225341057023a5f5d4a9e2024b3ab4e9f2fee1ee199f72a38b0a4ca6fd7674b7"
+  },
+  "real-input-r2/adj_factor-6f7571f0a431.csv": {
+    "actual": "eabd322ee4b983526f355d8a40c133d375587cef34fd3770cc4005a9e9831deb",
+    "expected": "eabd322ee4b983526f355d8a40c133d375587cef34fd3770cc4005a9e9831deb"
+  },
+  "real-input-r2/adj_factor-7cc2dd6c93ce.csv": {
+    "actual": "c359a810a7bbc173c3c3e99fb5a528abc980d49f3d34439ee67cf878bb1cbf36",
+    "expected": "c359a810a7bbc173c3c3e99fb5a528abc980d49f3d34439ee67cf878bb1cbf36"
+  },
+  "real-input-r2/adj_factor-e6d4cbac918e.csv": {
+    "actual": "ffcfb9cd94bb6850deee049dff6c3caf744a1ce54069f79cd2494b6d071f4a13",
+    "expected": "ffcfb9cd94bb6850deee049dff6c3caf744a1ce54069f79cd2494b6d071f4a13"
+  },
+  "real-input-r2/bundle.json": {
+    "actual": "6881b42d175fa62c7d4499985fdc84c897685ba2943954e6f4436d97fce41e83",
+    "expected": "6881b42d175fa62c7d4499985fdc84c897685ba2943954e6f4436d97fce41e83"
+  },
+  "real-input-r2/daily-22534f427434.csv": {
+    "actual": "cbea5c6708cb81b9279534961e78fea85c18c15f386bd1d888d99a71fc359d19",
+    "expected": "cbea5c6708cb81b9279534961e78fea85c18c15f386bd1d888d99a71fc359d19"
+  },
+  "real-input-r2/daily-442a3ec8db37.csv": {
+    "actual": "20de0371d46ddf22af40cd4a7f39ebfa824ffffbcbd21cdce8ea217d86cf4beb",
+    "expected": "20de0371d46ddf22af40cd4a7f39ebfa824ffffbcbd21cdce8ea217d86cf4beb"
+  },
+  "real-input-r2/daily-6cdcc25bfd3c.csv": {
+    "actual": "c30d73fdd80682ccbfadba655b6258d7fed88fe5e5d5e09bfe274cbe5dada65a",
+    "expected": "c30d73fdd80682ccbfadba655b6258d7fed88fe5e5d5e09bfe274cbe5dada65a"
+  },
+  "real-input-r2/daily-6f7571f0a431.csv": {
+    "actual": "f2ed4688ac1f4707b7bbe1cfdebc726a048720ec820911d691e6b65ab3356f9e",
+    "expected": "f2ed4688ac1f4707b7bbe1cfdebc726a048720ec820911d691e6b65ab3356f9e"
+  },
+  "real-input-r2/daily-7cc2dd6c93ce.csv": {
+    "actual": "db472353d2727cadfd0c51182cc60cafcbfa5b34701922bf7b97cd935efd41fd",
+    "expected": "db472353d2727cadfd0c51182cc60cafcbfa5b34701922bf7b97cd935efd41fd"
+  },
+  "real-input-r2/daily-e6d4cbac918e.csv": {
+    "actual": "0290ae403b02551b9364dba058534336288536a8687eaf1578e712d82534ede4",
+    "expected": "0290ae403b02551b9364dba058534336288536a8687eaf1578e712d82534ede4"
+  },
+  "real-input-r2/hk_tradecal-796b1e7d630c.csv": {
+    "actual": "96472f083597ff62cbeabfd192e7e1b6175ca952dc97a999d3f69f4d1e979c7f",
+    "expected": "96472f083597ff62cbeabfd192e7e1b6175ca952dc97a999d3f69f4d1e979c7f"
+  },
+  "real-input-r2/index_daily-b03c46b153fe.csv": {
+    "actual": "1eb01a07a4a6c7a2f6ed02b786d2d32b1de8f00dc970757e405c265a383ffaaa",
+    "expected": "1eb01a07a4a6c7a2f6ed02b786d2d32b1de8f00dc970757e405c265a383ffaaa"
+  },
+  "real-input-r2/trade_cal-b0f58defa5c4.csv": {
+    "actual": "107e95a0a9d122afdeb0d9b7a122594b502b19d401366eb05f2398a89d003333",
+    "expected": "107e95a0a9d122afdeb0d9b7a122594b502b19d401366eb05f2398a89d003333"
+  },
+  "real-input-r2/us_tradecal-796b1e7d630c.csv": {
+    "actual": "4c89137ebfec562112019df449ce653f0992cdfcb83b51633c09c830e8c6401c",
+    "expected": "4c89137ebfec562112019df449ce653f0992cdfcb83b51633c09c830e8c6401c"
+  },
+  "real-input-r3/00700.HK.http.json": {
+    "actual": "a7555814b57643e6e99192ee97339de28559a1828c015755159894a082135536",
+    "expected": "a7555814b57643e6e99192ee97339de28559a1828c015755159894a082135536"
+  },
+  "real-input-r3/01810.HK.http.json": {
+    "actual": "072383b2e80750c02923296c314e5705d11fbb2f280751fb70b7b3b9573c3104",
+    "expected": "072383b2e80750c02923296c314e5705d11fbb2f280751fb70b7b3b9573c3104"
+  },
+  "real-input-r3/03690.HK.http.json": {
+    "actual": "eb18eaaf03d3f5bdc416bbbf2091bf04456088fda6a2b99f858bf3d66d61f57e",
+    "expected": "eb18eaaf03d3f5bdc416bbbf2091bf04456088fda6a2b99f858bf3d66d61f57e"
+  },
+  "real-input-r3/adj_factor-22534f427434.csv": {
+    "actual": "0915468ca257890f11fb896be6b593bb82e7c99dfa8fe15bae82f3f020c2682b",
+    "expected": "0915468ca257890f11fb896be6b593bb82e7c99dfa8fe15bae82f3f020c2682b"
+  },
+  "real-input-r3/adj_factor-442a3ec8db37.csv": {
+    "actual": "b97bd18272d9fce0ea71a80831e7b0fabced209b7af1378564ceaf9985918fa0",
+    "expected": "b97bd18272d9fce0ea71a80831e7b0fabced209b7af1378564ceaf9985918fa0"
+  },
+  "real-input-r3/adj_factor-6cdcc25bfd3c.csv": {
+    "actual": "225341057023a5f5d4a9e2024b3ab4e9f2fee1ee199f72a38b0a4ca6fd7674b7",
+    "expected": "225341057023a5f5d4a9e2024b3ab4e9f2fee1ee199f72a38b0a4ca6fd7674b7"
+  },
+  "real-input-r3/adj_factor-6f7571f0a431.csv": {
+    "actual": "eabd322ee4b983526f355d8a40c133d375587cef34fd3770cc4005a9e9831deb",
+    "expected": "eabd322ee4b983526f355d8a40c133d375587cef34fd3770cc4005a9e9831deb"
+  },
+  "real-input-r3/adj_factor-7cc2dd6c93ce.csv": {
+    "actual": "c359a810a7bbc173c3c3e99fb5a528abc980d49f3d34439ee67cf878bb1cbf36",
+    "expected": "c359a810a7bbc173c3c3e99fb5a528abc980d49f3d34439ee67cf878bb1cbf36"
+  },
+  "real-input-r3/adj_factor-e6d4cbac918e.csv": {
+    "actual": "ffcfb9cd94bb6850deee049dff6c3caf744a1ce54069f79cd2494b6d071f4a13",
+    "expected": "ffcfb9cd94bb6850deee049dff6c3caf744a1ce54069f79cd2494b6d071f4a13"
+  },
+  "real-input-r3/bundle.json": {
+    "actual": "70f95b058737965509e6d9f26d2512f5b6dbdfc28186fb46c2db1d54ac73794b",
+    "expected": "70f95b058737965509e6d9f26d2512f5b6dbdfc28186fb46c2db1d54ac73794b"
+  },
+  "real-input-r3/daily-22534f427434.csv": {
+    "actual": "cbea5c6708cb81b9279534961e78fea85c18c15f386bd1d888d99a71fc359d19",
+    "expected": "cbea5c6708cb81b9279534961e78fea85c18c15f386bd1d888d99a71fc359d19"
+  },
+  "real-input-r3/daily-442a3ec8db37.csv": {
+    "actual": "20de0371d46ddf22af40cd4a7f39ebfa824ffffbcbd21cdce8ea217d86cf4beb",
+    "expected": "20de0371d46ddf22af40cd4a7f39ebfa824ffffbcbd21cdce8ea217d86cf4beb"
+  },
+  "real-input-r3/daily-6cdcc25bfd3c.csv": {
+    "actual": "c30d73fdd80682ccbfadba655b6258d7fed88fe5e5d5e09bfe274cbe5dada65a",
+    "expected": "c30d73fdd80682ccbfadba655b6258d7fed88fe5e5d5e09bfe274cbe5dada65a"
+  },
+  "real-input-r3/daily-6f7571f0a431.csv": {
+    "actual": "f2ed4688ac1f4707b7bbe1cfdebc726a048720ec820911d691e6b65ab3356f9e",
+    "expected": "f2ed4688ac1f4707b7bbe1cfdebc726a048720ec820911d691e6b65ab3356f9e"
+  },
+  "real-input-r3/daily-7cc2dd6c93ce.csv": {
+    "actual": "db472353d2727cadfd0c51182cc60cafcbfa5b34701922bf7b97cd935efd41fd",
+    "expected": "db472353d2727cadfd0c51182cc60cafcbfa5b34701922bf7b97cd935efd41fd"
+  },
+  "real-input-r3/daily-e6d4cbac918e.csv": {
+    "actual": "0290ae403b02551b9364dba058534336288536a8687eaf1578e712d82534ede4",
+    "expected": "0290ae403b02551b9364dba058534336288536a8687eaf1578e712d82534ede4"
+  },
+  "real-input-r3/hk_tradecal-796b1e7d630c.csv": {
+    "actual": "96472f083597ff62cbeabfd192e7e1b6175ca952dc97a999d3f69f4d1e979c7f",
+    "expected": "96472f083597ff62cbeabfd192e7e1b6175ca952dc97a999d3f69f4d1e979c7f"
+  },
+  "real-input-r3/index_daily-b03c46b153fe.csv": {
+    "actual": "1eb01a07a4a6c7a2f6ed02b786d2d32b1de8f00dc970757e405c265a383ffaaa",
+    "expected": "1eb01a07a4a6c7a2f6ed02b786d2d32b1de8f00dc970757e405c265a383ffaaa"
+  },
+  "real-input-r3/trade_cal-b0f58defa5c4.csv": {
+    "actual": "107e95a0a9d122afdeb0d9b7a122594b502b19d401366eb05f2398a89d003333",
+    "expected": "107e95a0a9d122afdeb0d9b7a122594b502b19d401366eb05f2398a89d003333"
+  },
+  "real-input-r3/us_tradecal-796b1e7d630c.csv": {
+    "actual": "4c89137ebfec562112019df449ce653f0992cdfcb83b51633c09c830e8c6401c",
+    "expected": "4c89137ebfec562112019df449ce653f0992cdfcb83b51633c09c830e8c6401c"
+  },
+  "real-input/00700.HK.http.json": {
+    "actual": "ae5e3dd3bb781d92b3795ce936962c02f2bb29342d9a7b5b5d05aabb8a973e59",
+    "expected": "ae5e3dd3bb781d92b3795ce936962c02f2bb29342d9a7b5b5d05aabb8a973e59"
+  },
+  "real-input/01810.HK.http.json": {
+    "actual": "511df0456bed48bbf2f1a86d1170bbd8f9ae4adaf801e6d93be185121789694b",
+    "expected": "511df0456bed48bbf2f1a86d1170bbd8f9ae4adaf801e6d93be185121789694b"
+  },
+  "real-input/03690.HK.http.json": {
+    "actual": "0d81d39e5c3ada730152c4d365759fdea36490c8acdc9b27454a7dc39b6e9e58",
+    "expected": "0d81d39e5c3ada730152c4d365759fdea36490c8acdc9b27454a7dc39b6e9e58"
+  },
+  "real-input/bundle.json": {
+    "actual": "3725d2a812e4babb109ba20cbb16467b8efcb851a4fc2269e3110627a31eee51",
+    "expected": "3725d2a812e4babb109ba20cbb16467b8efcb851a4fc2269e3110627a31eee51"
+  },
+  "real-input/daily-22534f427434.csv": {
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "real-input/daily-442a3ec8db37.csv": {
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "real-input/daily-6cdcc25bfd3c.csv": {
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "real-input/daily-6f7571f0a431.csv": {
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "real-input/daily-7cc2dd6c93ce.csv": {
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "real-input/daily-e6d4cbac918e.csv": {
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "real-input/hk_tradecal-796b1e7d630c.csv": {
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "real-input/index_daily-b03c46b153fe.csv": {
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "real-input/trade_cal-b0f58defa5c4.csv": {
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "real-input/us_tradecal-796b1e7d630c.csv": {
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "real-nine-cards.md": {
+    "actual": "4d1102354dfd9721b31ca9075648bafc40d1d7914fac39ac56046662dfb162ae",
+    "expected": "4d1102354dfd9721b31ca9075648bafc40d1d7914fac39ac56046662dfb162ae"
+  },
+  "repeat-proof.json": {
+    "actual": "673417d0f421d967b63e0973a132d4c24562009e117f8e673a61528b62a98e1e",
+    "expected": "673417d0f421d967b63e0973a132d4c24562009e117f8e673a61528b62a98e1e"
+  },
+  "synthetic-ab-final-input.json": {
+    "actual": "12c159f07d9c3b785945b4ca6d3e520c468355c7e0bd414e27661256255af4e1",
+    "expected": "12c159f07d9c3b785945b4ca6d3e520c468355c7e0bd414e27661256255af4e1"
+  },
+  "synthetic-ab-final.json": {
+    "actual": "c97050560405d15613e1c79e9db08a4fba32572e4e5c33ba21e52f875c8d0d74",
+    "expected": "c97050560405d15613e1c79e9db08a4fba32572e4e5c33ba21e52f875c8d0d74"
+  },
+  "synthetic-ab-first.json": {
+    "actual": "9972f547b47e02e367813128840e1069341683da0c9e15f5780c998ff3c86cd6",
+    "expected": "9972f547b47e02e367813128840e1069341683da0c9e15f5780c998ff3c86cd6"
+  },
+  "synthetic-ab-input.json": {
+    "actual": "0aafab2effdef8dd0fedaa9b4ca14a02994673c0cb254a60739c7d5437afe8ee",
+    "expected": "0aafab2effdef8dd0fedaa9b4ca14a02994673c0cb254a60739c7d5437afe8ee"
+  },
+  "tests-final.txt": {
+    "actual": "791b980290e0deac99dfc4e5e664ef6347b13b2a058b06a486ed3d4f5d685571",
+    "expected": "791b980290e0deac99dfc4e5e664ef6347b13b2a058b06a486ed3d4f5d685571"
+  },
+  "weekly-final.json": {
+    "actual": "c49a308914671d3a6017bd6c97139420f6f4e6282dd02cd6d7ffa416185926a3",
+    "expected": "c49a308914671d3a6017bd6c97139420f6f4e6282dd02cd6d7ffa416185926a3"
+  }
+}

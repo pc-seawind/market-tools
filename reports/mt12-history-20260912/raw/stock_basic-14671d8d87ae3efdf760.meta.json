@@ -1,0 +1,15 @@
+{
+  "endpoint": "https://api.tushare.pro",
+  "fetched_at": "2026-09-11T20:52:49.807081+00:00",
+  "kind": "actual_http_response_bytes",
+  "request": {
+    "api_name": "stock_basic",
+    "fields": "",
+    "params": {
+      "list_status": "L",
+      "ts_code": "600519.SH"
+    }
+  },
+  "rows": 1,
+  "sha256": "3f009fdd3e4865d019f1155a4d915678bb64bdd080720ea917130c093376c820"
+}

@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-09-11T21:05:30.792435+00:00",
+  "credential_in_artifacts": false,
+  "credential_present_for_initial_collection": true,
+  "git_base": "f2512e9",
+  "implementation_commit": "38164901700b72cd951366dc40602a91483201c4",
+  "production_actions": [],
+  "python": "Python 3.12.3",
+  "runtime_dependencies": "Python stdlib + unchanged local MT1 modules; pytest only for tests",
+  "scope_commit": "1bfbe457060ff874ed5df037a8e9f70a4e94a305",
+  "tracked_original_code_diff": ""
+}

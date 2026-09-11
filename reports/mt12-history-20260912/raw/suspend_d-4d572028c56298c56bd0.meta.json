@@ -1,0 +1,16 @@
+{
+  "endpoint": "https://api.tushare.pro",
+  "fetched_at": "2026-09-11T20:52:52.604048+00:00",
+  "kind": "actual_http_response_bytes",
+  "request": {
+    "api_name": "suspend_d",
+    "fields": "",
+    "params": {
+      "end_date": "20221231",
+      "start_date": "20220101",
+      "ts_code": "000651.SZ"
+    }
+  },
+  "rows": 0,
+  "sha256": "acdf876f0842011f217beb5fb5735af756891b2af0363eea4040c6927b8609f0"
+}

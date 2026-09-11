@@ -1,0 +1,18 @@
+{
+  "basis": "predeclared independent feasibility sample; no parameter tuning; not CN trial amendment",
+  "codes": [
+    "00005.HK",
+    "00388.HK",
+    "00941.HK"
+  ],
+  "end": "20251231",
+  "frozen_at": "2026-09-11T20:54:39.166134+00:00",
+  "requirements": [
+    "hk_daily",
+    "hk_adjfactor",
+    "hk_tradecal",
+    "HSI benchmark",
+    "historical execution evidence"
+  ],
+  "start": "20210101"
+}

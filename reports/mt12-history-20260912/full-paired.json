@@ -1,0 +1,445 @@
+{
+  "structure_failure": {
+    "caution": "conditional_on_both_closed_same_entry; censored_outcomes_excluded; small correlated clusters; not superiority proof",
+    "descriptive_crossed_cluster_95_interval": [
+      -0.03270762195844503,
+      0.0010576743402517892
+    ],
+    "mean_paired_drawdown_delta": -0.009978541738511718,
+    "mean_paired_net_delta": -0.014788022439701773,
+    "pair_count": 24,
+    "pairs": [
+      {
+        "code": "600000.SH",
+        "drawdown_delta": -0.029274776816644033,
+        "episode_id": "600000.SH:fold4:20230925",
+        "fold": 4,
+        "net_delta": -0.03476305764505272
+      },
+      {
+        "code": "600000.SH",
+        "drawdown_delta": 0.0,
+        "episode_id": "600000.SH:fold7:20250324",
+        "fold": 7,
+        "net_delta": -0.02527617025166462
+      },
+      {
+        "code": "600009.SH",
+        "drawdown_delta": -0.0428539603960395,
+        "episode_id": "600009.SH:fold2:20221103",
+        "fold": 2,
+        "net_delta": -0.05445322373156425
+      },
+      {
+        "code": "600009.SH",
+        "drawdown_delta": 0.02740710552322767,
+        "episode_id": "600009.SH:fold5:20240325",
+        "fold": 5,
+        "net_delta": 0.05769828526546439
+      },
+      {
+        "code": "600009.SH",
+        "drawdown_delta": 0.016448749237339966,
+        "episode_id": "600009.SH:fold7:20250604",
+        "fold": 7,
+        "net_delta": 0.016565613118783462
+      },
+      {
+        "code": "600028.SH",
+        "drawdown_delta": 0.001394230769230731,
+        "episode_id": "600028.SH:fold4:20230920",
+        "fold": 4,
+        "net_delta": 0.003242291034992184
+      },
+      {
+        "code": "600028.SH",
+        "drawdown_delta": -0.027055389221556814,
+        "episode_id": "600028.SH:fold5:20240401",
+        "fold": 5,
+        "net_delta": -0.02669145887467994
+      },
+      {
+        "code": "600030.SH",
+        "drawdown_delta": -0.003843341031562808,
+        "episode_id": "600030.SH:fold0:20211022",
+        "fold": 0,
+        "net_delta": -0.003915964231186675
+      },
+      {
+        "code": "600030.SH",
+        "drawdown_delta": -0.04436895338610369,
+        "episode_id": "600030.SH:fold3:20230413",
+        "fold": 3,
+        "net_delta": -0.05172465005490334
+      },
+      {
+        "code": "600030.SH",
+        "drawdown_delta": -0.012087296102110012,
+        "episode_id": "600030.SH:fold4:20230922",
+        "fold": 4,
+        "net_delta": -0.017296786137519726
+      },
+      {
+        "code": "600036.SH",
+        "drawdown_delta": -0.02066481703659273,
+        "episode_id": "600036.SH:fold4:20230920",
+        "fold": 4,
+        "net_delta": -0.021005590850365796
+      },
+      {
+        "code": "600050.SH",
+        "drawdown_delta": -0.011802600472813118,
+        "episode_id": "600050.SH:fold0:20211015",
+        "fold": 0,
+        "net_delta": -0.01181284944620975
+      },
+      {
+        "code": "600050.SH",
+        "drawdown_delta": -0.027634266886326198,
+        "episode_id": "600050.SH:fold3:20230413",
+        "fold": 3,
+        "net_delta": -0.032944496299029735
+      },
+      {
+        "code": "600050.SH",
+        "drawdown_delta": -0.001431256920116697,
+        "episode_id": "600050.SH:fold5:20240401",
+        "fold": 5,
+        "net_delta": -0.027401814825330884
+      },
+      {
+        "code": "600104.SH",
+        "drawdown_delta": 0.020518115942029014,
+        "episode_id": "600104.SH:fold4:20230920",
+        "fold": 4,
+        "net_delta": 0.023928107838242618
+      },
+      {
+        "code": "600104.SH",
+        "drawdown_delta": -0.005850585937499986,
+        "episode_id": "600104.SH:fold5:20240329",
+        "fold": 5,
+        "net_delta": -0.005950292068528484
+      },
+      {
+        "code": "600104.SH",
+        "drawdown_delta": 0.028023684767276236,
+        "episode_id": "600104.SH:fold8:20250922",
+        "fold": 8,
+        "net_delta": 0.004193499445889204
+      },
+      {
+        "code": "600276.SH",
+        "drawdown_delta": -0.036547528805627505,
+        "episode_id": "600276.SH:fold5:20240513",
+        "fold": 5,
+        "net_delta": -0.03569333020017518
+      },
+      {
+        "code": "600276.SH",
+        "drawdown_delta": -0.026036183755361653,
+        "episode_id": "600276.SH:fold8:20250915",
+        "fold": 8,
+        "net_delta": -0.033618241234385615
+      },
+      {
+        "code": "600519.SH",
+        "drawdown_delta": -0.06522962525764664,
+        "episode_id": "600519.SH:fold7:20250324",
+        "fold": 7,
+        "net_delta": -0.06705922539364739
+      },
+      {
+        "code": "000333.SZ",
+        "drawdown_delta": 0.026260536912751764,
+        "episode_id": "000333.SZ:fold0:20211011",
+        "fold": 0,
+        "net_delta": 0.023554599193882586
+      },
+      {
+        "code": "000333.SZ",
+        "drawdown_delta": 0.0,
+        "episode_id": "000333.SZ:fold7:20250331",
+        "fold": 7,
+        "net_delta": -0.03216967122939152
+      },
+      {
+        "code": "000651.SZ",
+        "drawdown_delta": 0.021254843338914142,
+        "episode_id": "000651.SZ:fold3:20230403",
+        "fold": 3,
+        "net_delta": 0.02390447195585932
+      },
+      {
+        "code": "000651.SZ",
+        "drawdown_delta": -0.026111686189049355,
+        "episode_id": "000651.SZ:fold4:20230920",
+        "fold": 4,
+        "net_delta": -0.026222583932320687
+      }
+    ],
+    "stock_clusters": 11,
+    "time_clusters": 7,
+    "total_episodes": 71
+  },
+  "structure_failure_atr": {
+    "caution": "conditional_on_both_closed_same_entry; censored_outcomes_excluded; small correlated clusters; not superiority proof",
+    "descriptive_crossed_cluster_95_interval": [
+      -0.00502721167031693,
+      0.046799549513008756
+    ],
+    "mean_paired_drawdown_delta": 0.019872292438152063,
+    "mean_paired_net_delta": 0.014685784297200202,
+    "pair_count": 35,
+    "pairs": [
+      {
+        "code": "600000.SH",
+        "drawdown_delta": -0.029274776816644033,
+        "episode_id": "600000.SH:fold4:20230925",
+        "fold": 4,
+        "net_delta": -0.03476305764505272
+      },
+      {
+        "code": "600000.SH",
+        "drawdown_delta": 0.05714285714285727,
+        "episode_id": "600000.SH:fold6:20240923",
+        "fold": 6,
+        "net_delta": 0.069505456101562
+      },
+      {
+        "code": "600000.SH",
+        "drawdown_delta": 0.0,
+        "episode_id": "600000.SH:fold7:20250324",
+        "fold": 7,
+        "net_delta": -0.02527617025166462
+      },
+      {
+        "code": "000001.SZ",
+        "drawdown_delta": 0.008828835198552154,
+        "episode_id": "000001.SZ:fold0:20211028",
+        "fold": 0,
+        "net_delta": 0.00711057712972063
+      },
+      {
+        "code": "600009.SH",
+        "drawdown_delta": -0.015337541254125453,
+        "episode_id": "600009.SH:fold2:20221103",
+        "fold": 2,
+        "net_delta": -0.026035447596654326
+      },
+      {
+        "code": "600009.SH",
+        "drawdown_delta": 0.02740710552322767,
+        "episode_id": "600009.SH:fold5:20240325",
+        "fold": 5,
+        "net_delta": 0.05769828526546439
+      },
+      {
+        "code": "600009.SH",
+        "drawdown_delta": 0.016448749237339966,
+        "episode_id": "600009.SH:fold7:20250604",
+        "fold": 7,
+        "net_delta": 0.016565613118783462
+      },
+      {
+        "code": "600028.SH",
+        "drawdown_delta": 0.023773863015001395,
+        "episode_id": "600028.SH:fold0:20210930",
+        "fold": 0,
+        "net_delta": 0.02589622060415875
+      },
+      {
+        "code": "600028.SH",
+        "drawdown_delta": 0.001394230769230731,
+        "episode_id": "600028.SH:fold4:20230920",
+        "fold": 4,
+        "net_delta": 0.003242291034992184
+      },
+      {
+        "code": "600028.SH",
+        "drawdown_delta": 0.01195808383233532,
+        "episode_id": "600028.SH:fold5:20240401",
+        "fold": 5,
+        "net_delta": 0.012560686529261234
+      },
+      {
+        "code": "600030.SH",
+        "drawdown_delta": -0.003843341031562808,
+        "episode_id": "600030.SH:fold0:20211022",
+        "fold": 0,
+        "net_delta": -0.003915964231186675
+      },
+      {
+        "code": "600030.SH",
+        "drawdown_delta": 0.052582541655460724,
+        "episode_id": "600030.SH:fold3:20230413",
+        "fold": 3,
+        "net_delta": 0.009965299551862095
+      },
+      {
+        "code": "600030.SH",
+        "drawdown_delta": -0.012087296102110012,
+        "episode_id": "600030.SH:fold4:20230922",
+        "fold": 4,
+        "net_delta": -0.017296786137519726
+      },
+      {
+        "code": "600036.SH",
+        "drawdown_delta": 0.02780632911392389,
+        "episode_id": "600036.SH:fold0:20211012",
+        "fold": 0,
+        "net_delta": 0.028996920106148405
+      },
+      {
+        "code": "600036.SH",
+        "drawdown_delta": 0.0,
+        "episode_id": "600036.SH:fold4:20230920",
+        "fold": 4,
+        "net_delta": 0.0
+      },
+      {
+        "code": "600050.SH",
+        "drawdown_delta": 0.0,
+        "episode_id": "600050.SH:fold0:20211015",
+        "fold": 0,
+        "net_delta": 0.0
+      },
+      {
+        "code": "600050.SH",
+        "drawdown_delta": -0.00460461285008229,
+        "episode_id": "600050.SH:fold3:20230413",
+        "fold": 3,
+        "net_delta": -0.008669604289218258
+      },
+      {
+        "code": "600050.SH",
+        "drawdown_delta": -0.001431256920116697,
+        "episode_id": "600050.SH:fold5:20240401",
+        "fold": 5,
+        "net_delta": -0.027401814825330884
+      },
+      {
+        "code": "600104.SH",
+        "drawdown_delta": 0.020518115942029014,
+        "episode_id": "600104.SH:fold4:20230920",
+        "fold": 4,
+        "net_delta": 0.023928107838242618
+      },
+      {
+        "code": "600104.SH",
+        "drawdown_delta": 0.028588042251968093,
+        "episode_id": "600104.SH:fold5:20240329",
+        "fold": 5,
+        "net_delta": 0.028429173216302894
+      },
+      {
+        "code": "600104.SH",
+        "drawdown_delta": 0.028023684767276236,
+        "episode_id": "600104.SH:fold8:20250922",
+        "fold": 8,
+        "net_delta": 0.004193499445889204
+      },
+      {
+        "code": "600276.SH",
+        "drawdown_delta": 0.0,
+        "episode_id": "600276.SH:fold0:20211124",
+        "fold": 0,
+        "net_delta": -0.010565558213738946
+      },
+      {
+        "code": "600276.SH",
+        "drawdown_delta": 0.039550992890414305,
+        "episode_id": "600276.SH:fold2:20221109",
+        "fold": 2,
+        "net_delta": 0.03347965705762346
+      },
+      {
+        "code": "600276.SH",
+        "drawdown_delta": 0.010812578092461389,
+        "episode_id": "600276.SH:fold4:20231114",
+        "fold": 4,
+        "net_delta": 0.010873371151326583
+      },
+      {
+        "code": "600276.SH",
+        "drawdown_delta": 0.0,
+        "episode_id": "600276.SH:fold5:20240513",
+        "fold": 5,
+        "net_delta": 0.0
+      },
+      {
+        "code": "600276.SH",
+        "drawdown_delta": 0.10036698803785038,
+        "episode_id": "600276.SH:fold6:20240919",
+        "fold": 6,
+        "net_delta": 0.12501414915488684
+      },
+      {
+        "code": "600276.SH",
+        "drawdown_delta": 0.016932337069323622,
+        "episode_id": "600276.SH:fold8:20250915",
+        "fold": 8,
+        "net_delta": 0.011254175177176529
+      },
+      {
+        "code": "600519.SH",
+        "drawdown_delta": 0.02221721587591119,
+        "episode_id": "600519.SH:fold7:20250324",
+        "fold": 7,
+        "net_delta": 0.0031329045474609574
+      },
+      {
+        "code": "000333.SZ",
+        "drawdown_delta": 0.026260536912751764,
+        "episode_id": "000333.SZ:fold0:20211011",
+        "fold": 0,
+        "net_delta": 0.023554599193882586
+      },
+      {
+        "code": "000333.SZ",
+        "drawdown_delta": 0.016421516628440713,
+        "episode_id": "000333.SZ:fold5:20240329",
+        "fold": 5,
+        "net_delta": 0.018879647121220033
+      },
+      {
+        "code": "000333.SZ",
+        "drawdown_delta": 0.011988035871928426,
+        "episode_id": "000333.SZ:fold7:20250331",
+        "fold": 7,
+        "net_delta": -0.029361207868095374
+      },
+      {
+        "code": "000651.SZ",
+        "drawdown_delta": 0.03558395120784508,
+        "episode_id": "000651.SZ:fold3:20230403",
+        "fold": 3,
+        "net_delta": 0.04001984630812405
+      },
+      {
+        "code": "000651.SZ",
+        "drawdown_delta": 0.019039771179515053,
+        "episode_id": "000651.SZ:fold4:20230920",
+        "fold": 4,
+        "net_delta": 0.019120634117317126
+      },
+      {
+        "code": "000651.SZ",
+        "drawdown_delta": 0.028521921395289973,
+        "episode_id": "000651.SZ:fold5:20240329",
+        "fold": 5,
+        "net_delta": -0.04442349134526058
+      },
+      {
+        "code": "000651.SZ",
+        "drawdown_delta": 0.12994077669902915,
+        "episode_id": "000651.SZ:fold6:20240919",
+        "fold": 6,
+        "net_delta": 0.16829043903432317
+      }
+    ],
+    "stock_clusters": 12,
+    "time_clusters": 8,
+    "total_episodes": 71
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "command": "python -m mt1.history_research --out /home/emox/work/projects/market-tools/reports/mt12-history-20260912 --pilot --offline",
+  "completed_at": "2026-09-11T20:52:19.236792+00:00",
+  "git_head": "f2512e97eca2ce2101c6a17812299df74e8ab387",
+  "implementations": {
+    "history_research.py": "c69f2cc32e4c08ffaefe3794df16ae839c10eff78258f8dbe8e273de652779c6",
+    "parallel.py": "c3bfa7e20bbcc5bc7a16353bf1b4a131c7533f6d5e1b98e610b59bb43f3ec167",
+    "timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "timing_experiment.py": "277e1f4afd54167951fc8cdd0fe09bc997f55761607407e30d19bcc0156b11e0"
+  },
+  "python": "3.12.3",
+  "results_sha256": "8be5d0a8ceec15cce9db8da5bdfc489f8b1087bd15190c1e211ffae71fc8c769"
+}

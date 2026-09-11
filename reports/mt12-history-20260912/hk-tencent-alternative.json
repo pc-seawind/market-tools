@@ -1,0 +1,21 @@
+{
+  "data_keys": [
+    "day",
+    "qt",
+    "prec",
+    "vcm",
+    "version"
+  ],
+  "fetched_at": "2026-09-11T21:00:53.764302+00:00",
+  "limitations": [
+    "requested_qfq_but_returned_day_only_no_verified_factor_anchor",
+    "no_HSI_compatible_benchmark",
+    "no_historical_open_auction_suspension_evidence",
+    "no_full_HK_AB_run"
+  ],
+  "raw_path": "raw/hk00005-tencent-2021.http.json",
+  "rows": 247,
+  "sha256": "17969875408260559fa2faf6c224a9a1f264bc7a116509a0866c9e6cade94fe4",
+  "status": "price_only_not_execution_ready",
+  "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00005,day,2021-01-01,2021-12-31,400,qfq"
+}

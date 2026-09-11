@@ -1,0 +1,16 @@
+{
+  "endpoint": "https://api.tushare.pro",
+  "fetched_at": "2026-09-11T20:52:44.091832+00:00",
+  "kind": "actual_http_response_bytes",
+  "request": {
+    "api_name": "adj_factor",
+    "fields": "",
+    "params": {
+      "end_date": "20211231",
+      "start_date": "20210101",
+      "ts_code": "600050.SH"
+    }
+  },
+  "rows": 243,
+  "sha256": "f45758fd31a4d59f6c98235897f6c0612550dea924cb6f5ba062ebf82d648f5d"
+}

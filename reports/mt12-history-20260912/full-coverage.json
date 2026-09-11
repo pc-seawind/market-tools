@@ -1,0 +1,2295 @@
+{
+  "coverage": [
+    {
+      "code": "600000.SH",
+      "counts": {
+        "exchange_sessions": 1212,
+        "price_bars": 1212
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 14.082,
+          "before": 13.406,
+          "date": "20210721"
+        },
+        {
+          "after": 14.864,
+          "before": 14.082,
+          "date": "20220721"
+        },
+        {
+          "after": 14.865,
+          "before": 14.864,
+          "date": "20230601"
+        },
+        {
+          "after": 15.535,
+          "before": 14.865,
+          "date": "20230721"
+        },
+        {
+          "after": 16.1051,
+          "before": 15.535,
+          "date": "20240718"
+        },
+        {
+          "after": 16.5935,
+          "before": 16.1051,
+          "date": "20250716"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "银行",
+      "start": "20210104"
+    },
+    {
+      "code": "000001.SZ",
+      "counts": {
+        "exchange_sessions": 1212,
+        "high_touch_up": 3,
+        "open_at_up_limit": 1,
+        "price_bars": 1212
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 111.922,
+          "before": 111.049,
+          "date": "20210514"
+        },
+        {
+          "after": 113.936,
+          "before": 111.922,
+          "date": "20220722"
+        },
+        {
+          "after": 116.713,
+          "before": 113.936,
+          "date": "20230614"
+        },
+        {
+          "after": 125.05,
+          "before": 116.713,
+          "date": "20240614"
+        },
+        {
+          "after": 125.049,
+          "before": 125.05,
+          "date": "20240625"
+        },
+        {
+          "after": 127.7841,
+          "before": 125.049,
+          "date": "20241010"
+        },
+        {
+          "after": 131.7878,
+          "before": 127.7841,
+          "date": "20250612"
+        },
+        {
+          "after": 134.5794,
+          "before": 131.7878,
+          "date": "20251015"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "银行",
+      "start": "20210104"
+    },
+    {
+      "code": "600009.SH",
+      "counts": {
+        "exchange_sessions": 1212,
+        "high_touch_up": 3,
+        "low_touch_down": 4,
+        "missing_price_bar": 11,
+        "open_at_down_limit": 3,
+        "price_bars": 1201,
+        "suspension_records": 13
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 3.0816,
+          "before": 3.071,
+          "date": "20240719"
+        },
+        {
+          "after": 3.0911,
+          "before": 3.0816,
+          "date": "20240909"
+        },
+        {
+          "after": 3.1201,
+          "before": 3.0911,
+          "date": "20250808"
+        },
+        {
+          "after": 3.1408,
+          "before": 3.1201,
+          "date": "20251016"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "机场",
+      "start": "20210104"
+    },
+    {
+      "code": "600028.SH",
+      "counts": {
+        "exchange_sessions": 1212,
+        "price_bars": 1212
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 3.399,
+          "before": 3.305,
+          "date": "20210617"
+        },
+        {
+          "after": 3.52,
+          "before": 3.399,
+          "date": "20210917"
+        },
+        {
+          "after": 3.7792,
+          "before": 3.52,
+          "date": "20220610"
+        },
+        {
+          "after": 3.779,
+          "before": 3.7792,
+          "date": "20220630"
+        },
+        {
+          "after": 3.925,
+          "before": 3.779,
+          "date": "20220919"
+        },
+        {
+          "after": 4.047,
+          "before": 3.925,
+          "date": "20230621"
+        },
+        {
+          "after": 4.138,
+          "before": 4.047,
+          "date": "20230915"
+        },
+        {
+          "after": 4.2683,
+          "before": 4.138,
+          "date": "20240716"
+        },
+        {
+          "after": 4.3719,
+          "before": 4.2683,
+          "date": "20240913"
+        },
+        {
+          "after": 4.4771,
+          "before": 4.3719,
+          "date": "20250618"
+        },
+        {
+          "after": 4.5498,
+          "before": 4.4771,
+          "date": "20250912"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "石油加工",
+      "start": "20210104"
+    },
+    {
+      "code": "600030.SH",
+      "counts": {
+        "exchange_sessions": 1212,
+        "high_touch_up": 8,
+        "low_touch_down": 1,
+        "missing_price_bar": 6,
+        "open_at_up_limit": 3,
+        "price_bars": 1206,
+        "suspension_records": 7
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 5.661,
+          "before": 5.569,
+          "date": "20210820"
+        },
+        {
+          "after": 6.17,
+          "before": 6.004,
+          "date": "20220826"
+        },
+        {
+          "after": 6.301,
+          "before": 6.17,
+          "date": "20230825"
+        },
+        {
+          "after": 6.46,
+          "before": 6.301,
+          "date": "20240826"
+        },
+        {
+          "after": 6.5115,
+          "before": 6.46,
+          "date": "20241220"
+        },
+        {
+          "after": 6.5686,
+          "before": 6.5115,
+          "date": "20250825"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "证券",
+      "start": "20210104"
+    },
+    {
+      "code": "600036.SH",
+      "counts": {
+        "exchange_sessions": 1212,
+        "high_touch_up": 1,
+        "open_at_up_limit": 1,
+        "price_bars": 1212
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 5.189,
+          "before": 5.06,
+          "date": "20210713"
+        },
+        {
+          "after": 5.415,
+          "before": 5.189,
+          "date": "20220715"
+        },
+        {
+          "after": 5.714,
+          "before": 5.415,
+          "date": "20230713"
+        },
+        {
+          "after": 6.0581,
+          "before": 5.714,
+          "date": "20240711"
+        },
+        {
+          "after": 6.3201,
+          "before": 6.0581,
+          "date": "20250711"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "银行",
+      "start": "20210104"
+    },
+    {
+      "code": "600050.SH",
+      "counts": {
+        "exchange_sessions": 1212,
+        "high_touch_up": 17,
+        "low_touch_down": 2,
+        "price_bars": 1212
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 1.616,
+          "before": 1.59,
+          "date": "20210630"
+        },
+        {
+          "after": 1.636,
+          "before": 1.616,
+          "date": "20211117"
+        },
+        {
+          "after": 1.655,
+          "before": 1.636,
+          "date": "20220629"
+        },
+        {
+          "after": 1.688,
+          "before": 1.655,
+          "date": "20221109"
+        },
+        {
+          "after": 1.689,
+          "before": 1.688,
+          "date": "20230601"
+        },
+        {
+          "after": 1.703,
+          "before": 1.689,
+          "date": "20230707"
+        },
+        {
+          "after": 1.7354,
+          "before": 1.703,
+          "date": "20231208"
+        },
+        {
+          "after": 1.735,
+          "before": 1.7354,
+          "date": "20240515"
+        },
+        {
+          "after": 1.7532,
+          "before": 1.735,
+          "date": "20240719"
+        },
+        {
+          "after": 1.7846,
+          "before": 1.7532,
+          "date": "20241030"
+        },
+        {
+          "after": 1.8048,
+          "before": 1.7846,
+          "date": "20250627"
+        },
+        {
+          "after": 1.8413,
+          "before": 1.8048,
+          "date": "20251024"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "电信运营",
+      "start": "20210104"
+    },
+    {
+      "code": "600104.SH",
+      "counts": {
+        "exchange_sessions": 1212,
+        "high_touch_up": 9,
+        "low_touch_down": 2,
+        "open_at_up_limit": 1,
+        "price_bars": 1212
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 10.053,
+          "before": 9.732,
+          "date": "20210730"
+        },
+        {
+          "after": 10.464,
+          "before": 10.053,
+          "date": "20220715"
+        },
+        {
+          "after": 10.708,
+          "before": 10.464,
+          "date": "20230719"
+        },
+        {
+          "after": 11.0107,
+          "before": 10.708,
+          "date": "20240816"
+        },
+        {
+          "after": 11.0675,
+          "before": 11.0107,
+          "date": "20250731"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "汽车整车",
+      "start": "20210104"
+    },
+    {
+      "code": "600276.SH",
+      "counts": {
+        "exchange_sessions": 1212,
+        "high_touch_up": 5,
+        "low_touch_down": 2,
+        "open_at_up_limit": 1,
+        "price_bars": 1212
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 64.178,
+          "before": 53.356,
+          "date": "20210610"
+        },
+        {
+          "after": 64.428,
+          "before": 64.178,
+          "date": "20220705"
+        },
+        {
+          "after": 64.656,
+          "before": 64.428,
+          "date": "20230608"
+        },
+        {
+          "after": 64.9761,
+          "before": 64.656,
+          "date": "20240712"
+        },
+        {
+          "after": 65.2107,
+          "before": 64.9761,
+          "date": "20250523"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "化学制药",
+      "start": "20210104"
+    },
+    {
+      "code": "600519.SH",
+      "counts": {
+        "exchange_sessions": 1212,
+        "high_touch_up": 1,
+        "price_bars": 1212
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 7.474,
+          "before": 7.404,
+          "date": "20210625"
+        },
+        {
+          "after": 7.555,
+          "before": 7.474,
+          "date": "20220630"
+        },
+        {
+          "after": 7.651,
+          "before": 7.555,
+          "date": "20221227"
+        },
+        {
+          "after": 7.768,
+          "before": 7.651,
+          "date": "20230630"
+        },
+        {
+          "after": 7.8576,
+          "before": 7.768,
+          "date": "20231220"
+        },
+        {
+          "after": 7.858,
+          "before": 7.8576,
+          "date": "20240515"
+        },
+        {
+          "after": 8.02,
+          "before": 7.858,
+          "date": "20240619"
+        },
+        {
+          "after": 8.021,
+          "before": 8.02,
+          "date": "20240625"
+        },
+        {
+          "after": 8.02,
+          "before": 8.021,
+          "date": "20240626"
+        },
+        {
+          "after": 8.1454,
+          "before": 8.02,
+          "date": "20241220"
+        },
+        {
+          "after": 8.305,
+          "before": 8.1454,
+          "date": "20250626"
+        },
+        {
+          "after": 8.4464,
+          "before": 8.305,
+          "date": "20251219"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "白酒",
+      "start": "20210104"
+    },
+    {
+      "code": "000333.SZ",
+      "counts": {
+        "exchange_sessions": 1212,
+        "high_touch_up": 1,
+        "low_touch_down": 1,
+        "open_at_up_limit": 1,
+        "price_bars": 1212
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 4.728,
+          "before": 4.635,
+          "date": "20210602"
+        },
+        {
+          "after": 4.8781,
+          "before": 4.728,
+          "date": "20220602"
+        },
+        {
+          "after": 4.878,
+          "before": 4.8781,
+          "date": "20220630"
+        },
+        {
+          "after": 5.122,
+          "before": 4.878,
+          "date": "20230601"
+        },
+        {
+          "after": 5.347,
+          "before": 5.122,
+          "date": "20240515"
+        },
+        {
+          "after": 5.6054,
+          "before": 5.347,
+          "date": "20250612"
+        },
+        {
+          "after": 5.6406,
+          "before": 5.6054,
+          "date": "20251118"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "家用电器",
+      "start": "20210104"
+    },
+    {
+      "code": "000651.SZ",
+      "counts": {
+        "exchange_sessions": 1212,
+        "high_touch_up": 1,
+        "low_touch_down": 1,
+        "open_at_up_limit": 1,
+        "price_bars": 1212
+      },
+      "end": "20251231",
+      "factor_changes": [
+        {
+          "after": 171.831,
+          "before": 161.469,
+          "date": "20210823"
+        },
+        {
+          "after": 176.8565,
+          "before": 171.831,
+          "date": "20220408"
+        },
+        {
+          "after": 176.857,
+          "before": 176.8565,
+          "date": "20220420"
+        },
+        {
+          "after": 176.856,
+          "before": 176.857,
+          "date": "20220530"
+        },
+        {
+          "after": 188.397,
+          "before": 176.856,
+          "date": "20220805"
+        },
+        {
+          "after": 193.695,
+          "before": 188.397,
+          "date": "20230227"
+        },
+        {
+          "after": 198.944,
+          "before": 193.695,
+          "date": "20230809"
+        },
+        {
+          "after": 210.697,
+          "before": 198.944,
+          "date": "20240828"
+        },
+        {
+          "after": 215.2873,
+          "before": 210.697,
+          "date": "20250515"
+        },
+        {
+          "after": 224.7531,
+          "before": 215.2873,
+          "date": "20250829"
+        }
+      ],
+      "historical_industry": "unknown",
+      "industry_current_vintage": "家用电器",
+      "start": "20210104"
+    }
+  ],
+  "execution_examples": {
+    "gap_fills": [
+      {
+        "arm": "pullback",
+        "code": "600009.SH",
+        "fill": {
+          "date": "20221107",
+          "evidence_index": 445,
+          "factor": 3.071,
+          "gap_from_signal_close": -0.02310231023102305,
+          "index": 445,
+          "model": "open_price_limit_base_v1",
+          "open_at": "2022-11-07T09:30:00+08:00",
+          "price": 181.80320000000003,
+          "raw_price": 59.2,
+          "realization_at": "2022-11-07T15:00:00+08:00",
+          "settlement": "CN_Tplus1_exchange_sessions",
+          "side": "buy",
+          "skipped": [],
+          "source_hash": "40d1d7b43039be900d122f12b83a5fecec12836f26f7797ee851734f766d706a",
+          "status": "filled"
+        },
+        "group": "B"
+      },
+      {
+        "arm": "old_ma60_5",
+        "code": "600028.SH",
+        "fill": {
+          "date": "20211008",
+          "evidence_index": 182,
+          "factor": 3.52,
+          "gap_from_signal_close": 0.03587443946188351,
+          "index": 182,
+          "model": "open_price_limit_base_v1",
+          "open_at": "2021-10-08T09:30:00+08:00",
+          "price": 16.2624,
+          "raw_price": 4.62,
+          "realization_at": "2021-10-08T15:00:00+08:00",
+          "settlement": "CN_Tplus1_exchange_sessions",
+          "side": "buy",
+          "skipped": [],
+          "source_hash": "723d9f92ad6c4f397d627f938cd9f4f049335e12b7ac20c7dbd49638ecd2eea5",
+          "status": "filled"
+        },
+        "group": "A"
+      },
+      {
+        "arm": "structure_failure",
+        "code": "600028.SH",
+        "fill": {
+          "date": "20211008",
+          "evidence_index": 182,
+          "factor": 3.52,
+          "gap_from_signal_close": 0.03587443946188351,
+          "index": 182,
+          "model": "open_price_limit_base_v1",
+          "open_at": "2021-10-08T09:30:00+08:00",
+          "price": 16.2624,
+          "raw_price": 4.62,
+          "realization_at": "2021-10-08T15:00:00+08:00",
+          "settlement": "CN_Tplus1_exchange_sessions",
+          "side": "buy",
+          "skipped": [],
+          "source_hash": "723d9f92ad6c4f397d627f938cd9f4f049335e12b7ac20c7dbd49638ecd2eea5",
+          "status": "filled"
+        },
+        "group": "A"
+      },
+      {
+        "arm": "structure_failure_atr",
+        "code": "600028.SH",
+        "fill": {
+          "date": "20211008",
+          "evidence_index": 182,
+          "factor": 3.52,
+          "gap_from_signal_close": 0.03587443946188351,
+          "index": 182,
+          "model": "open_price_limit_base_v1",
+          "open_at": "2021-10-08T09:30:00+08:00",
+          "price": 16.2624,
+          "raw_price": 4.62,
+          "realization_at": "2021-10-08T15:00:00+08:00",
+          "settlement": "CN_Tplus1_exchange_sessions",
+          "side": "buy",
+          "skipped": [],
+          "source_hash": "723d9f92ad6c4f397d627f938cd9f4f049335e12b7ac20c7dbd49638ecd2eea5",
+          "status": "filled"
+        },
+        "group": "A"
+      },
+      {
+        "arm": "old_trigger",
+        "code": "600028.SH",
+        "fill": {
+          "date": "20211008",
+          "evidence_index": 182,
+          "factor": 3.52,
+          "gap_from_signal_close": 0.03587443946188351,
+          "index": 182,
+          "model": "open_price_limit_base_v1",
+          "open_at": "2021-10-08T09:30:00+08:00",
+          "price": 16.2624,
+          "raw_price": 4.62,
+          "realization_at": "2021-10-08T15:00:00+08:00",
+          "settlement": "CN_Tplus1_exchange_sessions",
+          "side": "buy",
+          "skipped": [],
+          "source_hash": "723d9f92ad6c4f397d627f938cd9f4f049335e12b7ac20c7dbd49638ecd2eea5",
+          "status": "filled"
+        },
+        "group": "B"
+      }
+    ],
+    "high_touch_up": [
+      {
+        "code": "000001.SZ",
+        "date": "20221129",
+        "limit": {
+          "down_limit": 10.63,
+          "trade_date": "20221129",
+          "ts_code": "000001.SZ",
+          "up_limit": 12.99
+        },
+        "raw": {
+          "close": 12.99,
+          "high": 12.99,
+          "low": 12.13,
+          "open": 12.16
+        },
+        "sources": [
+          {
+            "path": "raw/daily-72b33db9f0ba3b6d9479.json",
+            "sha256": "55bfea262d4ab8e0cf354d6d8e3e1611acb5454197b70fd1aebdfdc3044c2366"
+          },
+          {
+            "path": "raw/daily-fad3f10e1aceca168d5a.json",
+            "sha256": "3cea544b20d308fbdb5d8809a7720be425e3111dae6d83bd1e85c09cf0a7c6fe"
+          },
+          {
+            "path": "raw/daily-db4ef4756d8ffb7d948d.json",
+            "sha256": "3dde7599a560a5cf467fbee27c1855126f35e78d45dcc1fca1e6b1525c5026fb"
+          },
+          {
+            "path": "raw/daily-3d85de154af9d26c5331.json",
+            "sha256": "c49ce91feea8ee0866aa28c860368ec73b5e0575a8f0cce44bcdddb70f97f7c4"
+          },
+          {
+            "path": "raw/daily-4b806753dc46cd4e9834.json",
+            "sha256": "55edc1022193394eed209b72bb0ec8f8187ade5a334f84e560ec82dbd1e94d42"
+          },
+          {
+            "path": "raw/adj_factor-31aae47219e7a85fa7fe.json",
+            "sha256": "177bcc2c34fa444b29f9de54274d40e33707c51471d802f19b30682c47f05426"
+          },
+          {
+            "path": "raw/adj_factor-cbee809db4b1f1e9d676.json",
+            "sha256": "668bfda251a9dd8b21aeab348bde9d814763a05f0d12c9796f4b7d31a1a48a80"
+          },
+          {
+            "path": "raw/adj_factor-a6f8f5a73606cd5d8ee6.json",
+            "sha256": "f407245456eb43a189b41de683adbe256d19c83b7d625f0dca3d6406de1e6652"
+          },
+          {
+            "path": "raw/adj_factor-96289ecd24cea047d66a.json",
+            "sha256": "58c97bd0254bb0f8b458253557998ab176a12cb47781b1f02b11b4b1713d2230"
+          },
+          {
+            "path": "raw/adj_factor-ed914592ee146f399b90.json",
+            "sha256": "43d1e9ac5df7eb0aeab46c813ca856eef8b64a54c4f6589200b327ee268f2817"
+          },
+          {
+            "path": "raw/stk_limit-727cd4981abf4c14b55b.json",
+            "sha256": "582bab903bb37372096581c290eec15842d23ea2745742c3dca329094f155dd9"
+          },
+          {
+            "path": "raw/stk_limit-de1a5470ee06495d1c4b.json",
+            "sha256": "a2f09277a9341099dbad547b755230b47866e7c8a2dc50c97e87510af59aa48e"
+          },
+          {
+            "path": "raw/stk_limit-1da0821bd430416a08e8.json",
+            "sha256": "adab589e20e08a6904d535c485acc045530214c6f06a86f15726aa04d4777df2"
+          },
+          {
+            "path": "raw/stk_limit-d7054163fe066dd22535.json",
+            "sha256": "f3140be931bdddca67955614ded7320640252da67ec2025ef787e7d52ddde48d"
+          },
+          {
+            "path": "raw/stk_limit-26d6f9927a51e6249b9c.json",
+            "sha256": "fee92bf091b6541ecba37c60dc6c49670d74c4cdd51a17443edc0f491614440a"
+          },
+          {
+            "path": "raw/suspend_d-db0a9716e5a113e14c1c.json",
+            "sha256": "2bdc2fb9665574a94c2017670a493e26b565f3f932124f00af51102aa6b61954"
+          },
+          {
+            "path": "raw/suspend_d-d83427083a9c5ecb8536.json",
+            "sha256": "e506a5f5f31290010ae94364b58ff3513d835f234fb23e84274addfa89ee774f"
+          },
+          {
+            "path": "raw/suspend_d-131e854a8e8d168efd0e.json",
+            "sha256": "99965ad80357da21e83d252a0b631164777318b381b2903e86e6096e35fe3c64"
+          },
+          {
+            "path": "raw/suspend_d-55e4fdfacf18c1f03d47.json",
+            "sha256": "314973fb79d54494e03f29d621809a3692eb27b8df077596cb4fc94105a31297"
+          },
+          {
+            "path": "raw/suspend_d-7dc5944502fde2dee18f.json",
+            "sha256": "ad2a98702bdcd898ada68a8ea4bf18208e21ca55dd93fc96b8d7832673c9b94f"
+          },
+          {
+            "path": "raw/stock_basic-66f6733fd3f0d7bb199d.json",
+            "sha256": "1921b3985cfed053ad99b6e1016f47fa2025483c028ee3a08dcadf8501709e4d"
+          }
+        ]
+      },
+      {
+        "code": "000001.SZ",
+        "date": "20240221",
+        "limit": {
+          "down_limit": 8.84,
+          "trade_date": "20240221",
+          "ts_code": "000001.SZ",
+          "up_limit": 10.8
+        },
+        "raw": {
+          "close": 10.8,
+          "high": 10.8,
+          "low": 9.77,
+          "open": 9.78
+        },
+        "sources": [
+          {
+            "path": "raw/daily-72b33db9f0ba3b6d9479.json",
+            "sha256": "55bfea262d4ab8e0cf354d6d8e3e1611acb5454197b70fd1aebdfdc3044c2366"
+          },
+          {
+            "path": "raw/daily-fad3f10e1aceca168d5a.json",
+            "sha256": "3cea544b20d308fbdb5d8809a7720be425e3111dae6d83bd1e85c09cf0a7c6fe"
+          },
+          {
+            "path": "raw/daily-db4ef4756d8ffb7d948d.json",
+            "sha256": "3dde7599a560a5cf467fbee27c1855126f35e78d45dcc1fca1e6b1525c5026fb"
+          },
+          {
+            "path": "raw/daily-3d85de154af9d26c5331.json",
+            "sha256": "c49ce91feea8ee0866aa28c860368ec73b5e0575a8f0cce44bcdddb70f97f7c4"
+          },
+          {
+            "path": "raw/daily-4b806753dc46cd4e9834.json",
+            "sha256": "55edc1022193394eed209b72bb0ec8f8187ade5a334f84e560ec82dbd1e94d42"
+          },
+          {
+            "path": "raw/adj_factor-31aae47219e7a85fa7fe.json",
+            "sha256": "177bcc2c34fa444b29f9de54274d40e33707c51471d802f19b30682c47f05426"
+          },
+          {
+            "path": "raw/adj_factor-cbee809db4b1f1e9d676.json",
+            "sha256": "668bfda251a9dd8b21aeab348bde9d814763a05f0d12c9796f4b7d31a1a48a80"
+          },
+          {
+            "path": "raw/adj_factor-a6f8f5a73606cd5d8ee6.json",
+            "sha256": "f407245456eb43a189b41de683adbe256d19c83b7d625f0dca3d6406de1e6652"
+          },
+          {
+            "path": "raw/adj_factor-96289ecd24cea047d66a.json",
+            "sha256": "58c97bd0254bb0f8b458253557998ab176a12cb47781b1f02b11b4b1713d2230"
+          },
+          {
+            "path": "raw/adj_factor-ed914592ee146f399b90.json",
+            "sha256": "43d1e9ac5df7eb0aeab46c813ca856eef8b64a54c4f6589200b327ee268f2817"
+          },
+          {
+            "path": "raw/stk_limit-727cd4981abf4c14b55b.json",
+            "sha256": "582bab903bb37372096581c290eec15842d23ea2745742c3dca329094f155dd9"
+          },
+          {
+            "path": "raw/stk_limit-de1a5470ee06495d1c4b.json",
+            "sha256": "a2f09277a9341099dbad547b755230b47866e7c8a2dc50c97e87510af59aa48e"
+          },
+          {
+            "path": "raw/stk_limit-1da0821bd430416a08e8.json",
+            "sha256": "adab589e20e08a6904d535c485acc045530214c6f06a86f15726aa04d4777df2"
+          },
+          {
+            "path": "raw/stk_limit-d7054163fe066dd22535.json",
+            "sha256": "f3140be931bdddca67955614ded7320640252da67ec2025ef787e7d52ddde48d"
+          },
+          {
+            "path": "raw/stk_limit-26d6f9927a51e6249b9c.json",
+            "sha256": "fee92bf091b6541ecba37c60dc6c49670d74c4cdd51a17443edc0f491614440a"
+          },
+          {
+            "path": "raw/suspend_d-db0a9716e5a113e14c1c.json",
+            "sha256": "2bdc2fb9665574a94c2017670a493e26b565f3f932124f00af51102aa6b61954"
+          },
+          {
+            "path": "raw/suspend_d-d83427083a9c5ecb8536.json",
+            "sha256": "e506a5f5f31290010ae94364b58ff3513d835f234fb23e84274addfa89ee774f"
+          },
+          {
+            "path": "raw/suspend_d-131e854a8e8d168efd0e.json",
+            "sha256": "99965ad80357da21e83d252a0b631164777318b381b2903e86e6096e35fe3c64"
+          },
+          {
+            "path": "raw/suspend_d-55e4fdfacf18c1f03d47.json",
+            "sha256": "314973fb79d54494e03f29d621809a3692eb27b8df077596cb4fc94105a31297"
+          },
+          {
+            "path": "raw/suspend_d-7dc5944502fde2dee18f.json",
+            "sha256": "ad2a98702bdcd898ada68a8ea4bf18208e21ca55dd93fc96b8d7832673c9b94f"
+          },
+          {
+            "path": "raw/stock_basic-66f6733fd3f0d7bb199d.json",
+            "sha256": "1921b3985cfed053ad99b6e1016f47fa2025483c028ee3a08dcadf8501709e4d"
+          }
+        ]
+      },
+      {
+        "code": "000001.SZ",
+        "date": "20241008",
+        "limit": {
+          "down_limit": 10.99,
+          "trade_date": "20241008",
+          "ts_code": "000001.SZ",
+          "up_limit": 13.43
+        },
+        "raw": {
+          "close": 12.88,
+          "high": 13.43,
+          "low": 12.34,
+          "open": 13.43
+        },
+        "sources": [
+          {
+            "path": "raw/daily-72b33db9f0ba3b6d9479.json",
+            "sha256": "55bfea262d4ab8e0cf354d6d8e3e1611acb5454197b70fd1aebdfdc3044c2366"
+          },
+          {
+            "path": "raw/daily-fad3f10e1aceca168d5a.json",
+            "sha256": "3cea544b20d308fbdb5d8809a7720be425e3111dae6d83bd1e85c09cf0a7c6fe"
+          },
+          {
+            "path": "raw/daily-db4ef4756d8ffb7d948d.json",
+            "sha256": "3dde7599a560a5cf467fbee27c1855126f35e78d45dcc1fca1e6b1525c5026fb"
+          },
+          {
+            "path": "raw/daily-3d85de154af9d26c5331.json",
+            "sha256": "c49ce91feea8ee0866aa28c860368ec73b5e0575a8f0cce44bcdddb70f97f7c4"
+          },
+          {
+            "path": "raw/daily-4b806753dc46cd4e9834.json",
+            "sha256": "55edc1022193394eed209b72bb0ec8f8187ade5a334f84e560ec82dbd1e94d42"
+          },
+          {
+            "path": "raw/adj_factor-31aae47219e7a85fa7fe.json",
+            "sha256": "177bcc2c34fa444b29f9de54274d40e33707c51471d802f19b30682c47f05426"
+          },
+          {
+            "path": "raw/adj_factor-cbee809db4b1f1e9d676.json",
+            "sha256": "668bfda251a9dd8b21aeab348bde9d814763a05f0d12c9796f4b7d31a1a48a80"
+          },
+          {
+            "path": "raw/adj_factor-a6f8f5a73606cd5d8ee6.json",
+            "sha256": "f407245456eb43a189b41de683adbe256d19c83b7d625f0dca3d6406de1e6652"
+          },
+          {
+            "path": "raw/adj_factor-96289ecd24cea047d66a.json",
+            "sha256": "58c97bd0254bb0f8b458253557998ab176a12cb47781b1f02b11b4b1713d2230"
+          },
+          {
+            "path": "raw/adj_factor-ed914592ee146f399b90.json",
+            "sha256": "43d1e9ac5df7eb0aeab46c813ca856eef8b64a54c4f6589200b327ee268f2817"
+          },
+          {
+            "path": "raw/stk_limit-727cd4981abf4c14b55b.json",
+            "sha256": "582bab903bb37372096581c290eec15842d23ea2745742c3dca329094f155dd9"
+          },
+          {
+            "path": "raw/stk_limit-de1a5470ee06495d1c4b.json",
+            "sha256": "a2f09277a9341099dbad547b755230b47866e7c8a2dc50c97e87510af59aa48e"
+          },
+          {
+            "path": "raw/stk_limit-1da0821bd430416a08e8.json",
+            "sha256": "adab589e20e08a6904d535c485acc045530214c6f06a86f15726aa04d4777df2"
+          },
+          {
+            "path": "raw/stk_limit-d7054163fe066dd22535.json",
+            "sha256": "f3140be931bdddca67955614ded7320640252da67ec2025ef787e7d52ddde48d"
+          },
+          {
+            "path": "raw/stk_limit-26d6f9927a51e6249b9c.json",
+            "sha256": "fee92bf091b6541ecba37c60dc6c49670d74c4cdd51a17443edc0f491614440a"
+          },
+          {
+            "path": "raw/suspend_d-db0a9716e5a113e14c1c.json",
+            "sha256": "2bdc2fb9665574a94c2017670a493e26b565f3f932124f00af51102aa6b61954"
+          },
+          {
+            "path": "raw/suspend_d-d83427083a9c5ecb8536.json",
+            "sha256": "e506a5f5f31290010ae94364b58ff3513d835f234fb23e84274addfa89ee774f"
+          },
+          {
+            "path": "raw/suspend_d-131e854a8e8d168efd0e.json",
+            "sha256": "99965ad80357da21e83d252a0b631164777318b381b2903e86e6096e35fe3c64"
+          },
+          {
+            "path": "raw/suspend_d-55e4fdfacf18c1f03d47.json",
+            "sha256": "314973fb79d54494e03f29d621809a3692eb27b8df077596cb4fc94105a31297"
+          },
+          {
+            "path": "raw/suspend_d-7dc5944502fde2dee18f.json",
+            "sha256": "ad2a98702bdcd898ada68a8ea4bf18208e21ca55dd93fc96b8d7832673c9b94f"
+          },
+          {
+            "path": "raw/stock_basic-66f6733fd3f0d7bb199d.json",
+            "sha256": "1921b3985cfed053ad99b6e1016f47fa2025483c028ee3a08dcadf8501709e4d"
+          }
+        ]
+      }
+    ],
+    "low_touch_down": [
+      {
+        "code": "600009.SH",
+        "date": "20210201",
+        "limit": {
+          "down_limit": 71.1,
+          "trade_date": "20210201",
+          "ts_code": "600009.SH",
+          "up_limit": 86.9
+        },
+        "raw": {
+          "close": 71.1,
+          "high": 71.1,
+          "low": 71.1,
+          "open": 71.1
+        },
+        "sources": [
+          {
+            "path": "raw/daily-ace006cb61dc05a74f3b.json",
+            "sha256": "d4500a939deac7455ba9a32de3cdbf38ba7e0abc55b4ede2568772df83612511"
+          },
+          {
+            "path": "raw/daily-dfde7e2c44d12f4e84c9.json",
+            "sha256": "ada187a85c76b71ec43138b0d262cddadfbaf20c53d94b12c1a7cb147f663f33"
+          },
+          {
+            "path": "raw/daily-15afa67b1689bb50e215.json",
+            "sha256": "92887a1eb9228a6ecbd4674e6d56755dab6d9efd809253e1e6a8afa3544fbefc"
+          },
+          {
+            "path": "raw/daily-88dde1b72e01a698178c.json",
+            "sha256": "1199e40fad1a39f0c17c9723f387ccec167d143851114d099fe67083ee710664"
+          },
+          {
+            "path": "raw/daily-2b74410a49454bbed645.json",
+            "sha256": "41307c2d81aa08879738a00af506759dbfb8fca0587febae1e1d428d183e2584"
+          },
+          {
+            "path": "raw/adj_factor-f5ed33c4a235a52b762a.json",
+            "sha256": "488d84f72be828b1bc1345c8d5a996904e6862c2e1a85c138d669f8dde48281d"
+          },
+          {
+            "path": "raw/adj_factor-980f5c70ede4412e5e9b.json",
+            "sha256": "dd6782a6d660a9d4faeef284e7bd5a0d751cb12e0143aeb5180645e95576dc72"
+          },
+          {
+            "path": "raw/adj_factor-d2820bf70fb41be733cd.json",
+            "sha256": "60257f126ab30e2e554992f4e39b43b62b9168f548c3fc0516923c102a9456cd"
+          },
+          {
+            "path": "raw/adj_factor-13d00bb1e6a07d0826ac.json",
+            "sha256": "697d28c3eb3a4a68af36ad449bac6a6494e43886d716bd04138288d385d9807b"
+          },
+          {
+            "path": "raw/adj_factor-77198128af714f8c23ad.json",
+            "sha256": "c982b8cf4704a7ce7f085ef64ec1a09e7befdc2e6d6a7e154537c22da19b0d5d"
+          },
+          {
+            "path": "raw/stk_limit-514ff7e72b238a725027.json",
+            "sha256": "04cdf382e1d270ed774d1c853f6e5f81b1054e3881690a9cefd0cc44db71dfa8"
+          },
+          {
+            "path": "raw/stk_limit-226c83f839d4f71fd5ca.json",
+            "sha256": "3781d3b56d4b27f514b75a0d1bda4cc984e7aa1b4aedbdf1dcfbbb26e7b6b966"
+          },
+          {
+            "path": "raw/stk_limit-0798f90b05a5533358bc.json",
+            "sha256": "2aa769123c12250de608d5eec401ac7b2bf19c634990360963e8781ea02904c4"
+          },
+          {
+            "path": "raw/stk_limit-558285ff5fb1ab943c94.json",
+            "sha256": "0c94c322a21dfc001716d5f49239474807bd5bda50dff0576bed30ef79797831"
+          },
+          {
+            "path": "raw/stk_limit-78ebf7685009a413fda2.json",
+            "sha256": "c620d99b39a1cf2bce1e6ab0ac7be0d2cc94f3bad6bc3aad550988b125533c3f"
+          },
+          {
+            "path": "raw/suspend_d-d6611bd103ab2267777e.json",
+            "sha256": "f715e63128fd836fa0c643b6e9f58fcd52cfe72d68772d230864cd33800d2813"
+          },
+          {
+            "path": "raw/suspend_d-b318d9e51f08465bda2e.json",
+            "sha256": "e6cf1732d07ad31201e5550440761aed2364ab9e04de0f4ec884aafb20859d24"
+          },
+          {
+            "path": "raw/suspend_d-fd3130638418674b430a.json",
+            "sha256": "604d8c4b3b56df43a78fd82d1f272be9d4f484eacb9dbf2256e5b67615b502d6"
+          },
+          {
+            "path": "raw/suspend_d-c8fd41b6c47eebc83f6a.json",
+            "sha256": "cb5f5dbb114bc07b91c4cdfa6dba3e0cbdfa82f1d1a306a6162f2a3c3c989c9b"
+          },
+          {
+            "path": "raw/suspend_d-3dd360ad30279c387f9b.json",
+            "sha256": "51e7803379713fe3d5330f8a7c51cbe07b8b85c35f752885e4fe33a1c363118e"
+          },
+          {
+            "path": "raw/stock_basic-f01a879589194eedc5b0.json",
+            "sha256": "e998c9e85acfc83c1ab522c586f9695c8547f5b6436a38bce3f9234481e4835e"
+          }
+        ]
+      },
+      {
+        "code": "600009.SH",
+        "date": "20210202",
+        "limit": {
+          "down_limit": 63.99,
+          "trade_date": "20210202",
+          "ts_code": "600009.SH",
+          "up_limit": 78.21
+        },
+        "raw": {
+          "close": 63.99,
+          "high": 63.99,
+          "low": 63.99,
+          "open": 63.99
+        },
+        "sources": [
+          {
+            "path": "raw/daily-ace006cb61dc05a74f3b.json",
+            "sha256": "d4500a939deac7455ba9a32de3cdbf38ba7e0abc55b4ede2568772df83612511"
+          },
+          {
+            "path": "raw/daily-dfde7e2c44d12f4e84c9.json",
+            "sha256": "ada187a85c76b71ec43138b0d262cddadfbaf20c53d94b12c1a7cb147f663f33"
+          },
+          {
+            "path": "raw/daily-15afa67b1689bb50e215.json",
+            "sha256": "92887a1eb9228a6ecbd4674e6d56755dab6d9efd809253e1e6a8afa3544fbefc"
+          },
+          {
+            "path": "raw/daily-88dde1b72e01a698178c.json",
+            "sha256": "1199e40fad1a39f0c17c9723f387ccec167d143851114d099fe67083ee710664"
+          },
+          {
+            "path": "raw/daily-2b74410a49454bbed645.json",
+            "sha256": "41307c2d81aa08879738a00af506759dbfb8fca0587febae1e1d428d183e2584"
+          },
+          {
+            "path": "raw/adj_factor-f5ed33c4a235a52b762a.json",
+            "sha256": "488d84f72be828b1bc1345c8d5a996904e6862c2e1a85c138d669f8dde48281d"
+          },
+          {
+            "path": "raw/adj_factor-980f5c70ede4412e5e9b.json",
+            "sha256": "dd6782a6d660a9d4faeef284e7bd5a0d751cb12e0143aeb5180645e95576dc72"
+          },
+          {
+            "path": "raw/adj_factor-d2820bf70fb41be733cd.json",
+            "sha256": "60257f126ab30e2e554992f4e39b43b62b9168f548c3fc0516923c102a9456cd"
+          },
+          {
+            "path": "raw/adj_factor-13d00bb1e6a07d0826ac.json",
+            "sha256": "697d28c3eb3a4a68af36ad449bac6a6494e43886d716bd04138288d385d9807b"
+          },
+          {
+            "path": "raw/adj_factor-77198128af714f8c23ad.json",
+            "sha256": "c982b8cf4704a7ce7f085ef64ec1a09e7befdc2e6d6a7e154537c22da19b0d5d"
+          },
+          {
+            "path": "raw/stk_limit-514ff7e72b238a725027.json",
+            "sha256": "04cdf382e1d270ed774d1c853f6e5f81b1054e3881690a9cefd0cc44db71dfa8"
+          },
+          {
+            "path": "raw/stk_limit-226c83f839d4f71fd5ca.json",
+            "sha256": "3781d3b56d4b27f514b75a0d1bda4cc984e7aa1b4aedbdf1dcfbbb26e7b6b966"
+          },
+          {
+            "path": "raw/stk_limit-0798f90b05a5533358bc.json",
+            "sha256": "2aa769123c12250de608d5eec401ac7b2bf19c634990360963e8781ea02904c4"
+          },
+          {
+            "path": "raw/stk_limit-558285ff5fb1ab943c94.json",
+            "sha256": "0c94c322a21dfc001716d5f49239474807bd5bda50dff0576bed30ef79797831"
+          },
+          {
+            "path": "raw/stk_limit-78ebf7685009a413fda2.json",
+            "sha256": "c620d99b39a1cf2bce1e6ab0ac7be0d2cc94f3bad6bc3aad550988b125533c3f"
+          },
+          {
+            "path": "raw/suspend_d-d6611bd103ab2267777e.json",
+            "sha256": "f715e63128fd836fa0c643b6e9f58fcd52cfe72d68772d230864cd33800d2813"
+          },
+          {
+            "path": "raw/suspend_d-b318d9e51f08465bda2e.json",
+            "sha256": "e6cf1732d07ad31201e5550440761aed2364ab9e04de0f4ec884aafb20859d24"
+          },
+          {
+            "path": "raw/suspend_d-fd3130638418674b430a.json",
+            "sha256": "604d8c4b3b56df43a78fd82d1f272be9d4f484eacb9dbf2256e5b67615b502d6"
+          },
+          {
+            "path": "raw/suspend_d-c8fd41b6c47eebc83f6a.json",
+            "sha256": "cb5f5dbb114bc07b91c4cdfa6dba3e0cbdfa82f1d1a306a6162f2a3c3c989c9b"
+          },
+          {
+            "path": "raw/suspend_d-3dd360ad30279c387f9b.json",
+            "sha256": "51e7803379713fe3d5330f8a7c51cbe07b8b85c35f752885e4fe33a1c363118e"
+          },
+          {
+            "path": "raw/stock_basic-f01a879589194eedc5b0.json",
+            "sha256": "e998c9e85acfc83c1ab522c586f9695c8547f5b6436a38bce3f9234481e4835e"
+          }
+        ]
+      },
+      {
+        "code": "600009.SH",
+        "date": "20210203",
+        "limit": {
+          "down_limit": 57.59,
+          "trade_date": "20210203",
+          "ts_code": "600009.SH",
+          "up_limit": 70.39
+        },
+        "raw": {
+          "close": 59.3,
+          "high": 60.4,
+          "low": 57.59,
+          "open": 57.59
+        },
+        "sources": [
+          {
+            "path": "raw/daily-ace006cb61dc05a74f3b.json",
+            "sha256": "d4500a939deac7455ba9a32de3cdbf38ba7e0abc55b4ede2568772df83612511"
+          },
+          {
+            "path": "raw/daily-dfde7e2c44d12f4e84c9.json",
+            "sha256": "ada187a85c76b71ec43138b0d262cddadfbaf20c53d94b12c1a7cb147f663f33"
+          },
+          {
+            "path": "raw/daily-15afa67b1689bb50e215.json",
+            "sha256": "92887a1eb9228a6ecbd4674e6d56755dab6d9efd809253e1e6a8afa3544fbefc"
+          },
+          {
+            "path": "raw/daily-88dde1b72e01a698178c.json",
+            "sha256": "1199e40fad1a39f0c17c9723f387ccec167d143851114d099fe67083ee710664"
+          },
+          {
+            "path": "raw/daily-2b74410a49454bbed645.json",
+            "sha256": "41307c2d81aa08879738a00af506759dbfb8fca0587febae1e1d428d183e2584"
+          },
+          {
+            "path": "raw/adj_factor-f5ed33c4a235a52b762a.json",
+            "sha256": "488d84f72be828b1bc1345c8d5a996904e6862c2e1a85c138d669f8dde48281d"
+          },
+          {
+            "path": "raw/adj_factor-980f5c70ede4412e5e9b.json",
+            "sha256": "dd6782a6d660a9d4faeef284e7bd5a0d751cb12e0143aeb5180645e95576dc72"
+          },
+          {
+            "path": "raw/adj_factor-d2820bf70fb41be733cd.json",
+            "sha256": "60257f126ab30e2e554992f4e39b43b62b9168f548c3fc0516923c102a9456cd"
+          },
+          {
+            "path": "raw/adj_factor-13d00bb1e6a07d0826ac.json",
+            "sha256": "697d28c3eb3a4a68af36ad449bac6a6494e43886d716bd04138288d385d9807b"
+          },
+          {
+            "path": "raw/adj_factor-77198128af714f8c23ad.json",
+            "sha256": "c982b8cf4704a7ce7f085ef64ec1a09e7befdc2e6d6a7e154537c22da19b0d5d"
+          },
+          {
+            "path": "raw/stk_limit-514ff7e72b238a725027.json",
+            "sha256": "04cdf382e1d270ed774d1c853f6e5f81b1054e3881690a9cefd0cc44db71dfa8"
+          },
+          {
+            "path": "raw/stk_limit-226c83f839d4f71fd5ca.json",
+            "sha256": "3781d3b56d4b27f514b75a0d1bda4cc984e7aa1b4aedbdf1dcfbbb26e7b6b966"
+          },
+          {
+            "path": "raw/stk_limit-0798f90b05a5533358bc.json",
+            "sha256": "2aa769123c12250de608d5eec401ac7b2bf19c634990360963e8781ea02904c4"
+          },
+          {
+            "path": "raw/stk_limit-558285ff5fb1ab943c94.json",
+            "sha256": "0c94c322a21dfc001716d5f49239474807bd5bda50dff0576bed30ef79797831"
+          },
+          {
+            "path": "raw/stk_limit-78ebf7685009a413fda2.json",
+            "sha256": "c620d99b39a1cf2bce1e6ab0ac7be0d2cc94f3bad6bc3aad550988b125533c3f"
+          },
+          {
+            "path": "raw/suspend_d-d6611bd103ab2267777e.json",
+            "sha256": "f715e63128fd836fa0c643b6e9f58fcd52cfe72d68772d230864cd33800d2813"
+          },
+          {
+            "path": "raw/suspend_d-b318d9e51f08465bda2e.json",
+            "sha256": "e6cf1732d07ad31201e5550440761aed2364ab9e04de0f4ec884aafb20859d24"
+          },
+          {
+            "path": "raw/suspend_d-fd3130638418674b430a.json",
+            "sha256": "604d8c4b3b56df43a78fd82d1f272be9d4f484eacb9dbf2256e5b67615b502d6"
+          },
+          {
+            "path": "raw/suspend_d-c8fd41b6c47eebc83f6a.json",
+            "sha256": "cb5f5dbb114bc07b91c4cdfa6dba3e0cbdfa82f1d1a306a6162f2a3c3c989c9b"
+          },
+          {
+            "path": "raw/suspend_d-3dd360ad30279c387f9b.json",
+            "sha256": "51e7803379713fe3d5330f8a7c51cbe07b8b85c35f752885e4fe33a1c363118e"
+          },
+          {
+            "path": "raw/stock_basic-f01a879589194eedc5b0.json",
+            "sha256": "e998c9e85acfc83c1ab522c586f9695c8547f5b6436a38bce3f9234481e4835e"
+          }
+        ]
+      }
+    ],
+    "missing_bar": [
+      {
+        "code": "600009.SH",
+        "date": "20210610",
+        "sources": [
+          {
+            "path": "raw/daily-ace006cb61dc05a74f3b.json",
+            "sha256": "d4500a939deac7455ba9a32de3cdbf38ba7e0abc55b4ede2568772df83612511"
+          },
+          {
+            "path": "raw/daily-dfde7e2c44d12f4e84c9.json",
+            "sha256": "ada187a85c76b71ec43138b0d262cddadfbaf20c53d94b12c1a7cb147f663f33"
+          },
+          {
+            "path": "raw/daily-15afa67b1689bb50e215.json",
+            "sha256": "92887a1eb9228a6ecbd4674e6d56755dab6d9efd809253e1e6a8afa3544fbefc"
+          },
+          {
+            "path": "raw/daily-88dde1b72e01a698178c.json",
+            "sha256": "1199e40fad1a39f0c17c9723f387ccec167d143851114d099fe67083ee710664"
+          },
+          {
+            "path": "raw/daily-2b74410a49454bbed645.json",
+            "sha256": "41307c2d81aa08879738a00af506759dbfb8fca0587febae1e1d428d183e2584"
+          },
+          {
+            "path": "raw/adj_factor-f5ed33c4a235a52b762a.json",
+            "sha256": "488d84f72be828b1bc1345c8d5a996904e6862c2e1a85c138d669f8dde48281d"
+          },
+          {
+            "path": "raw/adj_factor-980f5c70ede4412e5e9b.json",
+            "sha256": "dd6782a6d660a9d4faeef284e7bd5a0d751cb12e0143aeb5180645e95576dc72"
+          },
+          {
+            "path": "raw/adj_factor-d2820bf70fb41be733cd.json",
+            "sha256": "60257f126ab30e2e554992f4e39b43b62b9168f548c3fc0516923c102a9456cd"
+          },
+          {
+            "path": "raw/adj_factor-13d00bb1e6a07d0826ac.json",
+            "sha256": "697d28c3eb3a4a68af36ad449bac6a6494e43886d716bd04138288d385d9807b"
+          },
+          {
+            "path": "raw/adj_factor-77198128af714f8c23ad.json",
+            "sha256": "c982b8cf4704a7ce7f085ef64ec1a09e7befdc2e6d6a7e154537c22da19b0d5d"
+          },
+          {
+            "path": "raw/stk_limit-514ff7e72b238a725027.json",
+            "sha256": "04cdf382e1d270ed774d1c853f6e5f81b1054e3881690a9cefd0cc44db71dfa8"
+          },
+          {
+            "path": "raw/stk_limit-226c83f839d4f71fd5ca.json",
+            "sha256": "3781d3b56d4b27f514b75a0d1bda4cc984e7aa1b4aedbdf1dcfbbb26e7b6b966"
+          },
+          {
+            "path": "raw/stk_limit-0798f90b05a5533358bc.json",
+            "sha256": "2aa769123c12250de608d5eec401ac7b2bf19c634990360963e8781ea02904c4"
+          },
+          {
+            "path": "raw/stk_limit-558285ff5fb1ab943c94.json",
+            "sha256": "0c94c322a21dfc001716d5f49239474807bd5bda50dff0576bed30ef79797831"
+          },
+          {
+            "path": "raw/stk_limit-78ebf7685009a413fda2.json",
+            "sha256": "c620d99b39a1cf2bce1e6ab0ac7be0d2cc94f3bad6bc3aad550988b125533c3f"
+          },
+          {
+            "path": "raw/suspend_d-d6611bd103ab2267777e.json",
+            "sha256": "f715e63128fd836fa0c643b6e9f58fcd52cfe72d68772d230864cd33800d2813"
+          },
+          {
+            "path": "raw/suspend_d-b318d9e51f08465bda2e.json",
+            "sha256": "e6cf1732d07ad31201e5550440761aed2364ab9e04de0f4ec884aafb20859d24"
+          },
+          {
+            "path": "raw/suspend_d-fd3130638418674b430a.json",
+            "sha256": "604d8c4b3b56df43a78fd82d1f272be9d4f484eacb9dbf2256e5b67615b502d6"
+          },
+          {
+            "path": "raw/suspend_d-c8fd41b6c47eebc83f6a.json",
+            "sha256": "cb5f5dbb114bc07b91c4cdfa6dba3e0cbdfa82f1d1a306a6162f2a3c3c989c9b"
+          },
+          {
+            "path": "raw/suspend_d-3dd360ad30279c387f9b.json",
+            "sha256": "51e7803379713fe3d5330f8a7c51cbe07b8b85c35f752885e4fe33a1c363118e"
+          },
+          {
+            "path": "raw/stock_basic-f01a879589194eedc5b0.json",
+            "sha256": "e998c9e85acfc83c1ab522c586f9695c8547f5b6436a38bce3f9234481e4835e"
+          }
+        ],
+        "suspension": [
+          {
+            "suspend_timing": null,
+            "suspend_type": "S",
+            "trade_date": "20210610",
+            "ts_code": "600009.SH"
+          }
+        ]
+      },
+      {
+        "code": "600009.SH",
+        "date": "20210611",
+        "sources": [
+          {
+            "path": "raw/daily-ace006cb61dc05a74f3b.json",
+            "sha256": "d4500a939deac7455ba9a32de3cdbf38ba7e0abc55b4ede2568772df83612511"
+          },
+          {
+            "path": "raw/daily-dfde7e2c44d12f4e84c9.json",
+            "sha256": "ada187a85c76b71ec43138b0d262cddadfbaf20c53d94b12c1a7cb147f663f33"
+          },
+          {
+            "path": "raw/daily-15afa67b1689bb50e215.json",
+            "sha256": "92887a1eb9228a6ecbd4674e6d56755dab6d9efd809253e1e6a8afa3544fbefc"
+          },
+          {
+            "path": "raw/daily-88dde1b72e01a698178c.json",
+            "sha256": "1199e40fad1a39f0c17c9723f387ccec167d143851114d099fe67083ee710664"
+          },
+          {
+            "path": "raw/daily-2b74410a49454bbed645.json",
+            "sha256": "41307c2d81aa08879738a00af506759dbfb8fca0587febae1e1d428d183e2584"
+          },
+          {
+            "path": "raw/adj_factor-f5ed33c4a235a52b762a.json",
+            "sha256": "488d84f72be828b1bc1345c8d5a996904e6862c2e1a85c138d669f8dde48281d"
+          },
+          {
+            "path": "raw/adj_factor-980f5c70ede4412e5e9b.json",
+            "sha256": "dd6782a6d660a9d4faeef284e7bd5a0d751cb12e0143aeb5180645e95576dc72"
+          },
+          {
+            "path": "raw/adj_factor-d2820bf70fb41be733cd.json",
+            "sha256": "60257f126ab30e2e554992f4e39b43b62b9168f548c3fc0516923c102a9456cd"
+          },
+          {
+            "path": "raw/adj_factor-13d00bb1e6a07d0826ac.json",
+            "sha256": "697d28c3eb3a4a68af36ad449bac6a6494e43886d716bd04138288d385d9807b"
+          },
+          {
+            "path": "raw/adj_factor-77198128af714f8c23ad.json",
+            "sha256": "c982b8cf4704a7ce7f085ef64ec1a09e7befdc2e6d6a7e154537c22da19b0d5d"
+          },
+          {
+            "path": "raw/stk_limit-514ff7e72b238a725027.json",
+            "sha256": "04cdf382e1d270ed774d1c853f6e5f81b1054e3881690a9cefd0cc44db71dfa8"
+          },
+          {
+            "path": "raw/stk_limit-226c83f839d4f71fd5ca.json",
+            "sha256": "3781d3b56d4b27f514b75a0d1bda4cc984e7aa1b4aedbdf1dcfbbb26e7b6b966"
+          },
+          {
+            "path": "raw/stk_limit-0798f90b05a5533358bc.json",
+            "sha256": "2aa769123c12250de608d5eec401ac7b2bf19c634990360963e8781ea02904c4"
+          },
+          {
+            "path": "raw/stk_limit-558285ff5fb1ab943c94.json",
+            "sha256": "0c94c322a21dfc001716d5f49239474807bd5bda50dff0576bed30ef79797831"
+          },
+          {
+            "path": "raw/stk_limit-78ebf7685009a413fda2.json",
+            "sha256": "c620d99b39a1cf2bce1e6ab0ac7be0d2cc94f3bad6bc3aad550988b125533c3f"
+          },
+          {
+            "path": "raw/suspend_d-d6611bd103ab2267777e.json",
+            "sha256": "f715e63128fd836fa0c643b6e9f58fcd52cfe72d68772d230864cd33800d2813"
+          },
+          {
+            "path": "raw/suspend_d-b318d9e51f08465bda2e.json",
+            "sha256": "e6cf1732d07ad31201e5550440761aed2364ab9e04de0f4ec884aafb20859d24"
+          },
+          {
+            "path": "raw/suspend_d-fd3130638418674b430a.json",
+            "sha256": "604d8c4b3b56df43a78fd82d1f272be9d4f484eacb9dbf2256e5b67615b502d6"
+          },
+          {
+            "path": "raw/suspend_d-c8fd41b6c47eebc83f6a.json",
+            "sha256": "cb5f5dbb114bc07b91c4cdfa6dba3e0cbdfa82f1d1a306a6162f2a3c3c989c9b"
+          },
+          {
+            "path": "raw/suspend_d-3dd360ad30279c387f9b.json",
+            "sha256": "51e7803379713fe3d5330f8a7c51cbe07b8b85c35f752885e4fe33a1c363118e"
+          },
+          {
+            "path": "raw/stock_basic-f01a879589194eedc5b0.json",
+            "sha256": "e998c9e85acfc83c1ab522c586f9695c8547f5b6436a38bce3f9234481e4835e"
+          }
+        ],
+        "suspension": [
+          {
+            "suspend_timing": null,
+            "suspend_type": "S",
+            "trade_date": "20210611",
+            "ts_code": "600009.SH"
+          }
+        ]
+      },
+      {
+        "code": "600009.SH",
+        "date": "20210615",
+        "sources": [
+          {
+            "path": "raw/daily-ace006cb61dc05a74f3b.json",
+            "sha256": "d4500a939deac7455ba9a32de3cdbf38ba7e0abc55b4ede2568772df83612511"
+          },
+          {
+            "path": "raw/daily-dfde7e2c44d12f4e84c9.json",
+            "sha256": "ada187a85c76b71ec43138b0d262cddadfbaf20c53d94b12c1a7cb147f663f33"
+          },
+          {
+            "path": "raw/daily-15afa67b1689bb50e215.json",
+            "sha256": "92887a1eb9228a6ecbd4674e6d56755dab6d9efd809253e1e6a8afa3544fbefc"
+          },
+          {
+            "path": "raw/daily-88dde1b72e01a698178c.json",
+            "sha256": "1199e40fad1a39f0c17c9723f387ccec167d143851114d099fe67083ee710664"
+          },
+          {
+            "path": "raw/daily-2b74410a49454bbed645.json",
+            "sha256": "41307c2d81aa08879738a00af506759dbfb8fca0587febae1e1d428d183e2584"
+          },
+          {
+            "path": "raw/adj_factor-f5ed33c4a235a52b762a.json",
+            "sha256": "488d84f72be828b1bc1345c8d5a996904e6862c2e1a85c138d669f8dde48281d"
+          },
+          {
+            "path": "raw/adj_factor-980f5c70ede4412e5e9b.json",
+            "sha256": "dd6782a6d660a9d4faeef284e7bd5a0d751cb12e0143aeb5180645e95576dc72"
+          },
+          {
+            "path": "raw/adj_factor-d2820bf70fb41be733cd.json",
+            "sha256": "60257f126ab30e2e554992f4e39b43b62b9168f548c3fc0516923c102a9456cd"
+          },
+          {
+            "path": "raw/adj_factor-13d00bb1e6a07d0826ac.json",
+            "sha256": "697d28c3eb3a4a68af36ad449bac6a6494e43886d716bd04138288d385d9807b"
+          },
+          {
+            "path": "raw/adj_factor-77198128af714f8c23ad.json",
+            "sha256": "c982b8cf4704a7ce7f085ef64ec1a09e7befdc2e6d6a7e154537c22da19b0d5d"
+          },
+          {
+            "path": "raw/stk_limit-514ff7e72b238a725027.json",
+            "sha256": "04cdf382e1d270ed774d1c853f6e5f81b1054e3881690a9cefd0cc44db71dfa8"
+          },
+          {
+            "path": "raw/stk_limit-226c83f839d4f71fd5ca.json",
+            "sha256": "3781d3b56d4b27f514b75a0d1bda4cc984e7aa1b4aedbdf1dcfbbb26e7b6b966"
+          },
+          {
+            "path": "raw/stk_limit-0798f90b05a5533358bc.json",
+            "sha256": "2aa769123c12250de608d5eec401ac7b2bf19c634990360963e8781ea02904c4"
+          },
+          {
+            "path": "raw/stk_limit-558285ff5fb1ab943c94.json",
+            "sha256": "0c94c322a21dfc001716d5f49239474807bd5bda50dff0576bed30ef79797831"
+          },
+          {
+            "path": "raw/stk_limit-78ebf7685009a413fda2.json",
+            "sha256": "c620d99b39a1cf2bce1e6ab0ac7be0d2cc94f3bad6bc3aad550988b125533c3f"
+          },
+          {
+            "path": "raw/suspend_d-d6611bd103ab2267777e.json",
+            "sha256": "f715e63128fd836fa0c643b6e9f58fcd52cfe72d68772d230864cd33800d2813"
+          },
+          {
+            "path": "raw/suspend_d-b318d9e51f08465bda2e.json",
+            "sha256": "e6cf1732d07ad31201e5550440761aed2364ab9e04de0f4ec884aafb20859d24"
+          },
+          {
+            "path": "raw/suspend_d-fd3130638418674b430a.json",
+            "sha256": "604d8c4b3b56df43a78fd82d1f272be9d4f484eacb9dbf2256e5b67615b502d6"
+          },
+          {
+            "path": "raw/suspend_d-c8fd41b6c47eebc83f6a.json",
+            "sha256": "cb5f5dbb114bc07b91c4cdfa6dba3e0cbdfa82f1d1a306a6162f2a3c3c989c9b"
+          },
+          {
+            "path": "raw/suspend_d-3dd360ad30279c387f9b.json",
+            "sha256": "51e7803379713fe3d5330f8a7c51cbe07b8b85c35f752885e4fe33a1c363118e"
+          },
+          {
+            "path": "raw/stock_basic-f01a879589194eedc5b0.json",
+            "sha256": "e998c9e85acfc83c1ab522c586f9695c8547f5b6436a38bce3f9234481e4835e"
+          }
+        ],
+        "suspension": [
+          {
+            "suspend_timing": null,
+            "suspend_type": "S",
+            "trade_date": "20210615",
+            "ts_code": "600009.SH"
+          }
+        ]
+      }
+    ],
+    "open_at_down_limit": [
+      {
+        "code": "600009.SH",
+        "date": "20210201",
+        "limit": {
+          "down_limit": 71.1,
+          "trade_date": "20210201",
+          "ts_code": "600009.SH",
+          "up_limit": 86.9
+        },
+        "raw": {
+          "close": 71.1,
+          "high": 71.1,
+          "low": 71.1,
+          "open": 71.1
+        },
+        "sources": [
+          {
+            "path": "raw/daily-ace006cb61dc05a74f3b.json",
+            "sha256": "d4500a939deac7455ba9a32de3cdbf38ba7e0abc55b4ede2568772df83612511"
+          },
+          {
+            "path": "raw/daily-dfde7e2c44d12f4e84c9.json",
+            "sha256": "ada187a85c76b71ec43138b0d262cddadfbaf20c53d94b12c1a7cb147f663f33"
+          },
+          {
+            "path": "raw/daily-15afa67b1689bb50e215.json",
+            "sha256": "92887a1eb9228a6ecbd4674e6d56755dab6d9efd809253e1e6a8afa3544fbefc"
+          },
+          {
+            "path": "raw/daily-88dde1b72e01a698178c.json",
+            "sha256": "1199e40fad1a39f0c17c9723f387ccec167d143851114d099fe67083ee710664"
+          },
+          {
+            "path": "raw/daily-2b74410a49454bbed645.json",
+            "sha256": "41307c2d81aa08879738a00af506759dbfb8fca0587febae1e1d428d183e2584"
+          },
+          {
+            "path": "raw/adj_factor-f5ed33c4a235a52b762a.json",
+            "sha256": "488d84f72be828b1bc1345c8d5a996904e6862c2e1a85c138d669f8dde48281d"
+          },
+          {
+            "path": "raw/adj_factor-980f5c70ede4412e5e9b.json",
+            "sha256": "dd6782a6d660a9d4faeef284e7bd5a0d751cb12e0143aeb5180645e95576dc72"
+          },
+          {
+            "path": "raw/adj_factor-d2820bf70fb41be733cd.json",
+            "sha256": "60257f126ab30e2e554992f4e39b43b62b9168f548c3fc0516923c102a9456cd"
+          },
+          {
+            "path": "raw/adj_factor-13d00bb1e6a07d0826ac.json",
+            "sha256": "697d28c3eb3a4a68af36ad449bac6a6494e43886d716bd04138288d385d9807b"
+          },
+          {
+            "path": "raw/adj_factor-77198128af714f8c23ad.json",
+            "sha256": "c982b8cf4704a7ce7f085ef64ec1a09e7befdc2e6d6a7e154537c22da19b0d5d"
+          },
+          {
+            "path": "raw/stk_limit-514ff7e72b238a725027.json",
+            "sha256": "04cdf382e1d270ed774d1c853f6e5f81b1054e3881690a9cefd0cc44db71dfa8"
+          },
+          {
+            "path": "raw/stk_limit-226c83f839d4f71fd5ca.json",
+            "sha256": "3781d3b56d4b27f514b75a0d1bda4cc984e7aa1b4aedbdf1dcfbbb26e7b6b966"
+          },
+          {
+            "path": "raw/stk_limit-0798f90b05a5533358bc.json",
+            "sha256": "2aa769123c12250de608d5eec401ac7b2bf19c634990360963e8781ea02904c4"
+          },
+          {
+            "path": "raw/stk_limit-558285ff5fb1ab943c94.json",
+            "sha256": "0c94c322a21dfc001716d5f49239474807bd5bda50dff0576bed30ef79797831"
+          },
+          {
+            "path": "raw/stk_limit-78ebf7685009a413fda2.json",
+            "sha256": "c620d99b39a1cf2bce1e6ab0ac7be0d2cc94f3bad6bc3aad550988b125533c3f"
+          },
+          {
+            "path": "raw/suspend_d-d6611bd103ab2267777e.json",
+            "sha256": "f715e63128fd836fa0c643b6e9f58fcd52cfe72d68772d230864cd33800d2813"
+          },
+          {
+            "path": "raw/suspend_d-b318d9e51f08465bda2e.json",
+            "sha256": "e6cf1732d07ad31201e5550440761aed2364ab9e04de0f4ec884aafb20859d24"
+          },
+          {
+            "path": "raw/suspend_d-fd3130638418674b430a.json",
+            "sha256": "604d8c4b3b56df43a78fd82d1f272be9d4f484eacb9dbf2256e5b67615b502d6"
+          },
+          {
+            "path": "raw/suspend_d-c8fd41b6c47eebc83f6a.json",
+            "sha256": "cb5f5dbb114bc07b91c4cdfa6dba3e0cbdfa82f1d1a306a6162f2a3c3c989c9b"
+          },
+          {
+            "path": "raw/suspend_d-3dd360ad30279c387f9b.json",
+            "sha256": "51e7803379713fe3d5330f8a7c51cbe07b8b85c35f752885e4fe33a1c363118e"
+          },
+          {
+            "path": "raw/stock_basic-f01a879589194eedc5b0.json",
+            "sha256": "e998c9e85acfc83c1ab522c586f9695c8547f5b6436a38bce3f9234481e4835e"
+          }
+        ]
+      },
+      {
+        "code": "600009.SH",
+        "date": "20210202",
+        "limit": {
+          "down_limit": 63.99,
+          "trade_date": "20210202",
+          "ts_code": "600009.SH",
+          "up_limit": 78.21
+        },
+        "raw": {
+          "close": 63.99,
+          "high": 63.99,
+          "low": 63.99,
+          "open": 63.99
+        },
+        "sources": [
+          {
+            "path": "raw/daily-ace006cb61dc05a74f3b.json",
+            "sha256": "d4500a939deac7455ba9a32de3cdbf38ba7e0abc55b4ede2568772df83612511"
+          },
+          {
+            "path": "raw/daily-dfde7e2c44d12f4e84c9.json",
+            "sha256": "ada187a85c76b71ec43138b0d262cddadfbaf20c53d94b12c1a7cb147f663f33"
+          },
+          {
+            "path": "raw/daily-15afa67b1689bb50e215.json",
+            "sha256": "92887a1eb9228a6ecbd4674e6d56755dab6d9efd809253e1e6a8afa3544fbefc"
+          },
+          {
+            "path": "raw/daily-88dde1b72e01a698178c.json",
+            "sha256": "1199e40fad1a39f0c17c9723f387ccec167d143851114d099fe67083ee710664"
+          },
+          {
+            "path": "raw/daily-2b74410a49454bbed645.json",
+            "sha256": "41307c2d81aa08879738a00af506759dbfb8fca0587febae1e1d428d183e2584"
+          },
+          {
+            "path": "raw/adj_factor-f5ed33c4a235a52b762a.json",
+            "sha256": "488d84f72be828b1bc1345c8d5a996904e6862c2e1a85c138d669f8dde48281d"
+          },
+          {
+            "path": "raw/adj_factor-980f5c70ede4412e5e9b.json",
+            "sha256": "dd6782a6d660a9d4faeef284e7bd5a0d751cb12e0143aeb5180645e95576dc72"
+          },
+          {
+            "path": "raw/adj_factor-d2820bf70fb41be733cd.json",
+            "sha256": "60257f126ab30e2e554992f4e39b43b62b9168f548c3fc0516923c102a9456cd"
+          },
+          {
+            "path": "raw/adj_factor-13d00bb1e6a07d0826ac.json",
+            "sha256": "697d28c3eb3a4a68af36ad449bac6a6494e43886d716bd04138288d385d9807b"
+          },
+          {
+            "path": "raw/adj_factor-77198128af714f8c23ad.json",
+            "sha256": "c982b8cf4704a7ce7f085ef64ec1a09e7befdc2e6d6a7e154537c22da19b0d5d"
+          },
+          {
+            "path": "raw/stk_limit-514ff7e72b238a725027.json",
+            "sha256": "04cdf382e1d270ed774d1c853f6e5f81b1054e3881690a9cefd0cc44db71dfa8"
+          },
+          {
+            "path": "raw/stk_limit-226c83f839d4f71fd5ca.json",
+            "sha256": "3781d3b56d4b27f514b75a0d1bda4cc984e7aa1b4aedbdf1dcfbbb26e7b6b966"
+          },
+          {
+            "path": "raw/stk_limit-0798f90b05a5533358bc.json",
+            "sha256": "2aa769123c12250de608d5eec401ac7b2bf19c634990360963e8781ea02904c4"
+          },
+          {
+            "path": "raw/stk_limit-558285ff5fb1ab943c94.json",
+            "sha256": "0c94c322a21dfc001716d5f49239474807bd5bda50dff0576bed30ef79797831"
+          },
+          {
+            "path": "raw/stk_limit-78ebf7685009a413fda2.json",
+            "sha256": "c620d99b39a1cf2bce1e6ab0ac7be0d2cc94f3bad6bc3aad550988b125533c3f"
+          },
+          {
+            "path": "raw/suspend_d-d6611bd103ab2267777e.json",
+            "sha256": "f715e63128fd836fa0c643b6e9f58fcd52cfe72d68772d230864cd33800d2813"
+          },
+          {
+            "path": "raw/suspend_d-b318d9e51f08465bda2e.json",
+            "sha256": "e6cf1732d07ad31201e5550440761aed2364ab9e04de0f4ec884aafb20859d24"
+          },
+          {
+            "path": "raw/suspend_d-fd3130638418674b430a.json",
+            "sha256": "604d8c4b3b56df43a78fd82d1f272be9d4f484eacb9dbf2256e5b67615b502d6"
+          },
+          {
+            "path": "raw/suspend_d-c8fd41b6c47eebc83f6a.json",
+            "sha256": "cb5f5dbb114bc07b91c4cdfa6dba3e0cbdfa82f1d1a306a6162f2a3c3c989c9b"
+          },
+          {
+            "path": "raw/suspend_d-3dd360ad30279c387f9b.json",
+            "sha256": "51e7803379713fe3d5330f8a7c51cbe07b8b85c35f752885e4fe33a1c363118e"
+          },
+          {
+            "path": "raw/stock_basic-f01a879589194eedc5b0.json",
+            "sha256": "e998c9e85acfc83c1ab522c586f9695c8547f5b6436a38bce3f9234481e4835e"
+          }
+        ]
+      },
+      {
+        "code": "600009.SH",
+        "date": "20210203",
+        "limit": {
+          "down_limit": 57.59,
+          "trade_date": "20210203",
+          "ts_code": "600009.SH",
+          "up_limit": 70.39
+        },
+        "raw": {
+          "close": 59.3,
+          "high": 60.4,
+          "low": 57.59,
+          "open": 57.59
+        },
+        "sources": [
+          {
+            "path": "raw/daily-ace006cb61dc05a74f3b.json",
+            "sha256": "d4500a939deac7455ba9a32de3cdbf38ba7e0abc55b4ede2568772df83612511"
+          },
+          {
+            "path": "raw/daily-dfde7e2c44d12f4e84c9.json",
+            "sha256": "ada187a85c76b71ec43138b0d262cddadfbaf20c53d94b12c1a7cb147f663f33"
+          },
+          {
+            "path": "raw/daily-15afa67b1689bb50e215.json",
+            "sha256": "92887a1eb9228a6ecbd4674e6d56755dab6d9efd809253e1e6a8afa3544fbefc"
+          },
+          {
+            "path": "raw/daily-88dde1b72e01a698178c.json",
+            "sha256": "1199e40fad1a39f0c17c9723f387ccec167d143851114d099fe67083ee710664"
+          },
+          {
+            "path": "raw/daily-2b74410a49454bbed645.json",
+            "sha256": "41307c2d81aa08879738a00af506759dbfb8fca0587febae1e1d428d183e2584"
+          },
+          {
+            "path": "raw/adj_factor-f5ed33c4a235a52b762a.json",
+            "sha256": "488d84f72be828b1bc1345c8d5a996904e6862c2e1a85c138d669f8dde48281d"
+          },
+          {
+            "path": "raw/adj_factor-980f5c70ede4412e5e9b.json",
+            "sha256": "dd6782a6d660a9d4faeef284e7bd5a0d751cb12e0143aeb5180645e95576dc72"
+          },
+          {
+            "path": "raw/adj_factor-d2820bf70fb41be733cd.json",
+            "sha256": "60257f126ab30e2e554992f4e39b43b62b9168f548c3fc0516923c102a9456cd"
+          },
+          {
+            "path": "raw/adj_factor-13d00bb1e6a07d0826ac.json",
+            "sha256": "697d28c3eb3a4a68af36ad449bac6a6494e43886d716bd04138288d385d9807b"
+          },
+          {
+            "path": "raw/adj_factor-77198128af714f8c23ad.json",
+            "sha256": "c982b8cf4704a7ce7f085ef64ec1a09e7befdc2e6d6a7e154537c22da19b0d5d"
+          },
+          {
+            "path": "raw/stk_limit-514ff7e72b238a725027.json",
+            "sha256": "04cdf382e1d270ed774d1c853f6e5f81b1054e3881690a9cefd0cc44db71dfa8"
+          },
+          {
+            "path": "raw/stk_limit-226c83f839d4f71fd5ca.json",
+            "sha256": "3781d3b56d4b27f514b75a0d1bda4cc984e7aa1b4aedbdf1dcfbbb26e7b6b966"
+          },
+          {
+            "path": "raw/stk_limit-0798f90b05a5533358bc.json",
+            "sha256": "2aa769123c12250de608d5eec401ac7b2bf19c634990360963e8781ea02904c4"
+          },
+          {
+            "path": "raw/stk_limit-558285ff5fb1ab943c94.json",
+            "sha256": "0c94c322a21dfc001716d5f49239474807bd5bda50dff0576bed30ef79797831"
+          },
+          {
+            "path": "raw/stk_limit-78ebf7685009a413fda2.json",
+            "sha256": "c620d99b39a1cf2bce1e6ab0ac7be0d2cc94f3bad6bc3aad550988b125533c3f"
+          },
+          {
+            "path": "raw/suspend_d-d6611bd103ab2267777e.json",
+            "sha256": "f715e63128fd836fa0c643b6e9f58fcd52cfe72d68772d230864cd33800d2813"
+          },
+          {
+            "path": "raw/suspend_d-b318d9e51f08465bda2e.json",
+            "sha256": "e6cf1732d07ad31201e5550440761aed2364ab9e04de0f4ec884aafb20859d24"
+          },
+          {
+            "path": "raw/suspend_d-fd3130638418674b430a.json",
+            "sha256": "604d8c4b3b56df43a78fd82d1f272be9d4f484eacb9dbf2256e5b67615b502d6"
+          },
+          {
+            "path": "raw/suspend_d-c8fd41b6c47eebc83f6a.json",
+            "sha256": "cb5f5dbb114bc07b91c4cdfa6dba3e0cbdfa82f1d1a306a6162f2a3c3c989c9b"
+          },
+          {
+            "path": "raw/suspend_d-3dd360ad30279c387f9b.json",
+            "sha256": "51e7803379713fe3d5330f8a7c51cbe07b8b85c35f752885e4fe33a1c363118e"
+          },
+          {
+            "path": "raw/stock_basic-f01a879589194eedc5b0.json",
+            "sha256": "e998c9e85acfc83c1ab522c586f9695c8547f5b6436a38bce3f9234481e4835e"
+          }
+        ]
+      }
+    ],
+    "open_at_up_limit": [
+      {
+        "code": "000001.SZ",
+        "date": "20241008",
+        "limit": {
+          "down_limit": 10.99,
+          "trade_date": "20241008",
+          "ts_code": "000001.SZ",
+          "up_limit": 13.43
+        },
+        "raw": {
+          "close": 12.88,
+          "high": 13.43,
+          "low": 12.34,
+          "open": 13.43
+        },
+        "sources": [
+          {
+            "path": "raw/daily-72b33db9f0ba3b6d9479.json",
+            "sha256": "55bfea262d4ab8e0cf354d6d8e3e1611acb5454197b70fd1aebdfdc3044c2366"
+          },
+          {
+            "path": "raw/daily-fad3f10e1aceca168d5a.json",
+            "sha256": "3cea544b20d308fbdb5d8809a7720be425e3111dae6d83bd1e85c09cf0a7c6fe"
+          },
+          {
+            "path": "raw/daily-db4ef4756d8ffb7d948d.json",
+            "sha256": "3dde7599a560a5cf467fbee27c1855126f35e78d45dcc1fca1e6b1525c5026fb"
+          },
+          {
+            "path": "raw/daily-3d85de154af9d26c5331.json",
+            "sha256": "c49ce91feea8ee0866aa28c860368ec73b5e0575a8f0cce44bcdddb70f97f7c4"
+          },
+          {
+            "path": "raw/daily-4b806753dc46cd4e9834.json",
+            "sha256": "55edc1022193394eed209b72bb0ec8f8187ade5a334f84e560ec82dbd1e94d42"
+          },
+          {
+            "path": "raw/adj_factor-31aae47219e7a85fa7fe.json",
+            "sha256": "177bcc2c34fa444b29f9de54274d40e33707c51471d802f19b30682c47f05426"
+          },
+          {
+            "path": "raw/adj_factor-cbee809db4b1f1e9d676.json",
+            "sha256": "668bfda251a9dd8b21aeab348bde9d814763a05f0d12c9796f4b7d31a1a48a80"
+          },
+          {
+            "path": "raw/adj_factor-a6f8f5a73606cd5d8ee6.json",
+            "sha256": "f407245456eb43a189b41de683adbe256d19c83b7d625f0dca3d6406de1e6652"
+          },
+          {
+            "path": "raw/adj_factor-96289ecd24cea047d66a.json",
+            "sha256": "58c97bd0254bb0f8b458253557998ab176a12cb47781b1f02b11b4b1713d2230"
+          },
+          {
+            "path": "raw/adj_factor-ed914592ee146f399b90.json",
+            "sha256": "43d1e9ac5df7eb0aeab46c813ca856eef8b64a54c4f6589200b327ee268f2817"
+          },
+          {
+            "path": "raw/stk_limit-727cd4981abf4c14b55b.json",
+            "sha256": "582bab903bb37372096581c290eec15842d23ea2745742c3dca329094f155dd9"
+          },
+          {
+            "path": "raw/stk_limit-de1a5470ee06495d1c4b.json",
+            "sha256": "a2f09277a9341099dbad547b755230b47866e7c8a2dc50c97e87510af59aa48e"
+          },
+          {
+            "path": "raw/stk_limit-1da0821bd430416a08e8.json",
+            "sha256": "adab589e20e08a6904d535c485acc045530214c6f06a86f15726aa04d4777df2"
+          },
+          {
+            "path": "raw/stk_limit-d7054163fe066dd22535.json",
+            "sha256": "f3140be931bdddca67955614ded7320640252da67ec2025ef787e7d52ddde48d"
+          },
+          {
+            "path": "raw/stk_limit-26d6f9927a51e6249b9c.json",
+            "sha256": "fee92bf091b6541ecba37c60dc6c49670d74c4cdd51a17443edc0f491614440a"
+          },
+          {
+            "path": "raw/suspend_d-db0a9716e5a113e14c1c.json",
+            "sha256": "2bdc2fb9665574a94c2017670a493e26b565f3f932124f00af51102aa6b61954"
+          },
+          {
+            "path": "raw/suspend_d-d83427083a9c5ecb8536.json",
+            "sha256": "e506a5f5f31290010ae94364b58ff3513d835f234fb23e84274addfa89ee774f"
+          },
+          {
+            "path": "raw/suspend_d-131e854a8e8d168efd0e.json",
+            "sha256": "99965ad80357da21e83d252a0b631164777318b381b2903e86e6096e35fe3c64"
+          },
+          {
+            "path": "raw/suspend_d-55e4fdfacf18c1f03d47.json",
+            "sha256": "314973fb79d54494e03f29d621809a3692eb27b8df077596cb4fc94105a31297"
+          },
+          {
+            "path": "raw/suspend_d-7dc5944502fde2dee18f.json",
+            "sha256": "ad2a98702bdcd898ada68a8ea4bf18208e21ca55dd93fc96b8d7832673c9b94f"
+          },
+          {
+            "path": "raw/stock_basic-66f6733fd3f0d7bb199d.json",
+            "sha256": "1921b3985cfed053ad99b6e1016f47fa2025483c028ee3a08dcadf8501709e4d"
+          }
+        ]
+      },
+      {
+        "code": "600030.SH",
+        "date": "20230828",
+        "limit": {
+          "down_limit": 21.09,
+          "trade_date": "20230828",
+          "ts_code": "600030.SH",
+          "up_limit": 25.77
+        },
+        "raw": {
+          "close": 23.79,
+          "high": 25.77,
+          "low": 23.66,
+          "open": 25.77
+        },
+        "sources": [
+          {
+            "path": "raw/daily-a4f1a95f2d12f0acb773.json",
+            "sha256": "02810ffe9c2ce3fdc1355181471cc78dc4d759c8129b7b14f890f7fc6fc30b83"
+          },
+          {
+            "path": "raw/daily-36f25aa1bb209fab635a.json",
+            "sha256": "0c02b7c2782251c80e72cb29b9172b1b298d301aee8f543a61d950ae350afba0"
+          },
+          {
+            "path": "raw/daily-27cb236927854904b327.json",
+            "sha256": "4aaa5cdfce1b23cbcea47b9e299890664447fcfa2e5d5c4045feed8778fca491"
+          },
+          {
+            "path": "raw/daily-89a3b5fd19a24a42319c.json",
+            "sha256": "ef7f830c2ff24519880ddcbfa93bc676208778ec7f69d55ce5686ed9f1ab66f6"
+          },
+          {
+            "path": "raw/daily-5ef516b3fa1b7b8c92e9.json",
+            "sha256": "21a6fd579f6ecd4389c75ccc9a4c305370956fc60fbbe5ef6dcb0eeeb3f9225b"
+          },
+          {
+            "path": "raw/adj_factor-5e3e8925833ca5da6885.json",
+            "sha256": "2cec6f75dda1614af4b19b2459506c2b4da54b723b75e95a5cf71b110edaada1"
+          },
+          {
+            "path": "raw/adj_factor-7092161b5ff2c0fb2ee6.json",
+            "sha256": "84dae28202475df0bb1c4201ac0c41a44d3107f2475c4e72dbc4085795466162"
+          },
+          {
+            "path": "raw/adj_factor-b627aed42b560463edbf.json",
+            "sha256": "0460ed48d464734cf92feba51c1ee1ffa879db189d154e25ae88497f652b9a7c"
+          },
+          {
+            "path": "raw/adj_factor-7f96f35653c343e516b0.json",
+            "sha256": "c219f1513e1fe4b2a9be64ad93e2380f6d2ea79ae3cc59e860e31f3a4af91aa4"
+          },
+          {
+            "path": "raw/adj_factor-bdfaddc7d8666688d6aa.json",
+            "sha256": "8630dd082502c6c53cf187115e050a385863fe29b3a2434639e1f048411c782e"
+          },
+          {
+            "path": "raw/stk_limit-00b79fd0562c9e92a72b.json",
+            "sha256": "2737f84b67869c5ae321f0746cd758e670e0f9977f8e5334aa21b294fe23eea5"
+          },
+          {
+            "path": "raw/stk_limit-d0fa943e22b193fa4acb.json",
+            "sha256": "ea73a7db1023c8d543efc02d07b7b244f2c13f5aedd5ba6ef5df24473b53f107"
+          },
+          {
+            "path": "raw/stk_limit-1d7383f0fe5c15176ef2.json",
+            "sha256": "eed6a9899f4eab0565e35f75ec540d7ee70bdff2665c1e0d8e120902e68c0e1b"
+          },
+          {
+            "path": "raw/stk_limit-2cbc707de640b3594840.json",
+            "sha256": "bbb1d423a3cf6c32e0f2706846c7bcc52a4cf92889557f6e2e645c6ecff0f121"
+          },
+          {
+            "path": "raw/stk_limit-761c5b2d6be409951724.json",
+            "sha256": "624d061d34eef824433ffd7f7b7c7502bd3ddff65fe333c617cef05515f3de3a"
+          },
+          {
+            "path": "raw/suspend_d-1990b3e43929c17b7839.json",
+            "sha256": "e47f87f3aac6537441557fdbd7828365ee8454bd6cee788573106766b0aa2ccc"
+          },
+          {
+            "path": "raw/suspend_d-69406a603a85442bba7b.json",
+            "sha256": "01ff2feecd1e1fbd3f59bc48379c78d1c467eb677a3851bf477d6916849404db"
+          },
+          {
+            "path": "raw/suspend_d-ddf9e1022e0df48b7d60.json",
+            "sha256": "06c7f13a2d6225e467275e75671301f4bca67c74b8092e7f95e9248d12f8f0c6"
+          },
+          {
+            "path": "raw/suspend_d-53b5b2fbb515a4b7b9a4.json",
+            "sha256": "ac84620110447a82f5afe11befb708d4a21533272b4a7c7e495016cf187621d7"
+          },
+          {
+            "path": "raw/suspend_d-46e04f74b65c2b924baa.json",
+            "sha256": "5cc30a6e7b2153fbadcecab9a3f83b3596e3f38c108f56a6ee82be4b7a389493"
+          },
+          {
+            "path": "raw/stock_basic-4d38c77ba85d13978de6.json",
+            "sha256": "472cc448225d8ebbe9a5a248feebc35d6545385a132935f3446582c9628ee26b"
+          }
+        ]
+      },
+      {
+        "code": "600030.SH",
+        "date": "20240930",
+        "limit": {
+          "down_limit": 22.26,
+          "trade_date": "20240930",
+          "ts_code": "600030.SH",
+          "up_limit": 27.2
+        },
+        "raw": {
+          "close": 27.2,
+          "high": 27.2,
+          "low": 26.44,
+          "open": 27.2
+        },
+        "sources": [
+          {
+            "path": "raw/daily-a4f1a95f2d12f0acb773.json",
+            "sha256": "02810ffe9c2ce3fdc1355181471cc78dc4d759c8129b7b14f890f7fc6fc30b83"
+          },
+          {
+            "path": "raw/daily-36f25aa1bb209fab635a.json",
+            "sha256": "0c02b7c2782251c80e72cb29b9172b1b298d301aee8f543a61d950ae350afba0"
+          },
+          {
+            "path": "raw/daily-27cb236927854904b327.json",
+            "sha256": "4aaa5cdfce1b23cbcea47b9e299890664447fcfa2e5d5c4045feed8778fca491"
+          },
+          {
+            "path": "raw/daily-89a3b5fd19a24a42319c.json",
+            "sha256": "ef7f830c2ff24519880ddcbfa93bc676208778ec7f69d55ce5686ed9f1ab66f6"
+          },
+          {
+            "path": "raw/daily-5ef516b3fa1b7b8c92e9.json",
+            "sha256": "21a6fd579f6ecd4389c75ccc9a4c305370956fc60fbbe5ef6dcb0eeeb3f9225b"
+          },
+          {
+            "path": "raw/adj_factor-5e3e8925833ca5da6885.json",
+            "sha256": "2cec6f75dda1614af4b19b2459506c2b4da54b723b75e95a5cf71b110edaada1"
+          },
+          {
+            "path": "raw/adj_factor-7092161b5ff2c0fb2ee6.json",
+            "sha256": "84dae28202475df0bb1c4201ac0c41a44d3107f2475c4e72dbc4085795466162"
+          },
+          {
+            "path": "raw/adj_factor-b627aed42b560463edbf.json",
+            "sha256": "0460ed48d464734cf92feba51c1ee1ffa879db189d154e25ae88497f652b9a7c"
+          },
+          {
+            "path": "raw/adj_factor-7f96f35653c343e516b0.json",
+            "sha256": "c219f1513e1fe4b2a9be64ad93e2380f6d2ea79ae3cc59e860e31f3a4af91aa4"
+          },
+          {
+            "path": "raw/adj_factor-bdfaddc7d8666688d6aa.json",
+            "sha256": "8630dd082502c6c53cf187115e050a385863fe29b3a2434639e1f048411c782e"
+          },
+          {
+            "path": "raw/stk_limit-00b79fd0562c9e92a72b.json",
+            "sha256": "2737f84b67869c5ae321f0746cd758e670e0f9977f8e5334aa21b294fe23eea5"
+          },
+          {
+            "path": "raw/stk_limit-d0fa943e22b193fa4acb.json",
+            "sha256": "ea73a7db1023c8d543efc02d07b7b244f2c13f5aedd5ba6ef5df24473b53f107"
+          },
+          {
+            "path": "raw/stk_limit-1d7383f0fe5c15176ef2.json",
+            "sha256": "eed6a9899f4eab0565e35f75ec540d7ee70bdff2665c1e0d8e120902e68c0e1b"
+          },
+          {
+            "path": "raw/stk_limit-2cbc707de640b3594840.json",
+            "sha256": "bbb1d423a3cf6c32e0f2706846c7bcc52a4cf92889557f6e2e645c6ecff0f121"
+          },
+          {
+            "path": "raw/stk_limit-761c5b2d6be409951724.json",
+            "sha256": "624d061d34eef824433ffd7f7b7c7502bd3ddff65fe333c617cef05515f3de3a"
+          },
+          {
+            "path": "raw/suspend_d-1990b3e43929c17b7839.json",
+            "sha256": "e47f87f3aac6537441557fdbd7828365ee8454bd6cee788573106766b0aa2ccc"
+          },
+          {
+            "path": "raw/suspend_d-69406a603a85442bba7b.json",
+            "sha256": "01ff2feecd1e1fbd3f59bc48379c78d1c467eb677a3851bf477d6916849404db"
+          },
+          {
+            "path": "raw/suspend_d-ddf9e1022e0df48b7d60.json",
+            "sha256": "06c7f13a2d6225e467275e75671301f4bca67c74b8092e7f95e9248d12f8f0c6"
+          },
+          {
+            "path": "raw/suspend_d-53b5b2fbb515a4b7b9a4.json",
+            "sha256": "ac84620110447a82f5afe11befb708d4a21533272b4a7c7e495016cf187621d7"
+          },
+          {
+            "path": "raw/suspend_d-46e04f74b65c2b924baa.json",
+            "sha256": "5cc30a6e7b2153fbadcecab9a3f83b3596e3f38c108f56a6ee82be4b7a389493"
+          },
+          {
+            "path": "raw/stock_basic-4d38c77ba85d13978de6.json",
+            "sha256": "472cc448225d8ebbe9a5a248feebc35d6545385a132935f3446582c9628ee26b"
+          }
+        ]
+      }
+    ]
+  },
+  "no_delisted_population_reason": "current-vintage survivorship-biased purposive scope; all sampled securities listed before start; not PIT eligibility",
+  "unknowns": [
+    "PIT_universe",
+    "historical_industry_membership",
+    "auction_queue_and_fill_quantity",
+    "broker_actual_cost",
+    "cash_dividend_total_return",
+    "delisted_population"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "completed_at": "2026-09-11T20:54:41.185050+00:00",
+  "results": [
+    {
+      "api": "hk_daily",
+      "path": "raw/hk_daily-4353befab7c9a258d671.json",
+      "rows": 247,
+      "sha256": "79d83813ad28823ff8c656a2ef862265f208bae4cc5776d278c240359ed6d0d2",
+      "status": "ok"
+    },
+    {
+      "api": "hk_adjfactor",
+      "error": "provider_error:40203:抱歉，您没有接口(hk_adjfactor)访问权限，权限的具体详情访问：https://tushare.pro/document/1?doc_id=108。",
+      "status": "blocked"
+    },
+    {
+      "api": "hk_tradecal",
+      "path": "raw/hk_tradecal-9acb2f0d0155cbfce792.json",
+      "rows": 365,
+      "sha256": "c03c3edd6a6455fc0005b6968d3a9741af7f1dbe8d5939ee3f05835cf4285f06",
+      "status": "ok"
+    }
+  ]
+}

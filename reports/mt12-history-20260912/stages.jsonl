@@ -1,0 +1,359 @@
+{"at": "2026-09-11T20:51:53.485038+00:00", "stage": "start", "label": "pilot", "offline": false, "contract_sha256": "10836dd31652c1e3ed1e2b285f065a0c327c90c79dd448239a0a7b3b33d1910f"}
+{"at": "2026-09-11T20:51:53.485239+00:00", "stage": "fetch", "api": "trade_cal", "params": {"start_date": "20210101", "end_date": "20211231", "exchange": "SSE"}}
+{"at": "2026-09-11T20:51:53.562673+00:00", "stage": "fetch", "api": "trade_cal", "params": {"start_date": "20220101", "end_date": "20221231", "exchange": "SSE"}}
+{"at": "2026-09-11T20:51:53.615924+00:00", "stage": "fetch", "api": "trade_cal", "params": {"start_date": "20230101", "end_date": "20231231", "exchange": "SSE"}}
+{"at": "2026-09-11T20:51:53.682372+00:00", "stage": "fetch", "api": "trade_cal", "params": {"start_date": "20240101", "end_date": "20241231", "exchange": "SSE"}}
+{"at": "2026-09-11T20:51:53.752062+00:00", "stage": "fetch", "api": "trade_cal", "params": {"start_date": "20250101", "end_date": "20251231", "exchange": "SSE"}}
+{"at": "2026-09-11T20:51:53.826607+00:00", "stage": "fetch", "api": "trade_cal", "params": {"start_date": "20210101", "end_date": "20211231", "exchange": "SZSE"}}
+{"at": "2026-09-11T20:51:53.879060+00:00", "stage": "fetch", "api": "trade_cal", "params": {"start_date": "20220101", "end_date": "20221231", "exchange": "SZSE"}}
+{"at": "2026-09-11T20:51:53.921418+00:00", "stage": "fetch", "api": "trade_cal", "params": {"start_date": "20230101", "end_date": "20231231", "exchange": "SZSE"}}
+{"at": "2026-09-11T20:51:53.978447+00:00", "stage": "fetch", "api": "trade_cal", "params": {"start_date": "20240101", "end_date": "20241231", "exchange": "SZSE"}}
+{"at": "2026-09-11T20:51:54.059133+00:00", "stage": "fetch", "api": "trade_cal", "params": {"start_date": "20250101", "end_date": "20251231", "exchange": "SZSE"}}
+{"at": "2026-09-11T20:51:54.122326+00:00", "stage": "fetch", "api": "index_daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000300.SH"}}
+{"at": "2026-09-11T20:51:54.206366+00:00", "stage": "fetch", "api": "index_daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000300.SH"}}
+{"at": "2026-09-11T20:51:54.271075+00:00", "stage": "fetch", "api": "index_daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000300.SH"}}
+{"at": "2026-09-11T20:51:54.351119+00:00", "stage": "fetch", "api": "index_daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000300.SH"}}
+{"at": "2026-09-11T20:51:54.432643+00:00", "stage": "fetch", "api": "index_daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000300.SH"}}
+{"at": "2026-09-11T20:51:54.494057+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:54.559038+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:54.614575+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:54.686222+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:54.740424+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:54.814243+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:54.861590+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:54.961146+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.013891+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.067317+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.115662+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.185422+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.259547+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.326831+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.395837+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.463232+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.522451+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.573538+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.625846+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.684117+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600000.SH"}}
+{"at": "2026-09-11T20:51:55.744272+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "600000.SH", "list_status": "L"}}
+{"at": "2026-09-11T20:51:55.910341+00:00", "stage": "panel_complete", "code": "600000.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:51:55.910483+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:55.975151+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.037079+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.115736+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.172675+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.222155+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.273795+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.339026+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.403420+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.463656+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.522837+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.610547+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.681242+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.757742+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.821192+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.892201+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:56.952808+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:57.010533+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:57.066051+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:57.144797+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000001.SZ"}}
+{"at": "2026-09-11T20:51:57.210098+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "000001.SZ", "list_status": "L"}}
+{"at": "2026-09-11T20:51:57.369289+00:00", "stage": "panel_complete", "code": "000001.SZ", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:51:57.369438+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:57.430328+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:57.489104+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:57.558004+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:57.637996+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:57.703868+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:57.759177+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:57.824827+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:57.902552+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:57.953675+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.016163+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.085682+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.145306+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.200982+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.287085+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.338386+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.383996+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.441218+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.506655+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.567795+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600009.SH"}}
+{"at": "2026-09-11T20:51:58.635326+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "600009.SH", "list_status": "L"}}
+{"at": "2026-09-11T20:51:58.801541+00:00", "stage": "panel_complete", "code": "600009.SH", "sessions": 1212, "bars": 1201}
+{"at": "2026-09-11T20:52:07.787301+00:00", "stage": "replayed", "code": "600000.SH", "trades": 216}
+{"at": "2026-09-11T20:52:14.756288+00:00", "stage": "replayed", "code": "000001.SZ", "trades": 366}
+{"at": "2026-09-11T20:52:19.206874+00:00", "stage": "replayed", "code": "600009.SH", "trades": 480}
+{"at": "2026-09-11T20:52:19.240322+00:00", "stage": "complete", "label": "pilot", "closed": 294}
+{"at": "2026-09-11T20:52:38.795746+00:00", "stage": "start", "label": "full", "offline": false, "contract_sha256": "10836dd31652c1e3ed1e2b285f065a0c327c90c79dd448239a0a7b3b33d1910f"}
+{"at": "2026-09-11T20:52:38.883852+00:00", "stage": "panel_complete", "code": "600000.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:52:38.959758+00:00", "stage": "panel_complete", "code": "000001.SZ", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:52:39.034085+00:00", "stage": "panel_complete", "code": "600009.SH", "sessions": 1212, "bars": 1201}
+{"at": "2026-09-11T20:52:39.034253+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.111928+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.176059+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.242253+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.306136+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.382949+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.454845+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.513778+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.575383+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.635149+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.705793+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.777753+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.867478+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:39.946575+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:40.026987+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:40.147058+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:40.214788+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:40.269216+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:40.326295+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:40.401609+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600028.SH"}}
+{"at": "2026-09-11T20:52:40.464349+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "600028.SH", "list_status": "L"}}
+{"at": "2026-09-11T20:52:40.633565+00:00", "stage": "panel_complete", "code": "600028.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:52:40.633718+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:40.699897+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:40.769027+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:40.839030+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:40.906083+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:40.970875+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.037322+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.110190+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.173616+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.244122+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.313109+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.381328+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.458836+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.539067+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.626392+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.699916+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.767553+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.837756+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.901476+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:41.970066+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600030.SH"}}
+{"at": "2026-09-11T20:52:42.041741+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "600030.SH", "list_status": "L"}}
+{"at": "2026-09-11T20:52:42.162733+00:00", "stage": "panel_complete", "code": "600030.SH", "sessions": 1212, "bars": 1206}
+{"at": "2026-09-11T20:52:42.162883+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.228294+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.290703+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.355996+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.424192+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.503278+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.569115+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.630309+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.701144+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.759028+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.821900+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.912041+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:42.992005+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:43.056860+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:43.141428+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:43.233429+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:43.292074+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:43.354371+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:43.413888+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:43.479542+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600036.SH"}}
+{"at": "2026-09-11T20:52:43.534432+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "600036.SH", "list_status": "L"}}
+{"at": "2026-09-11T20:52:43.669590+00:00", "stage": "panel_complete", "code": "600036.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:52:43.669740+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:43.728488+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:43.795956+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:43.866368+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:43.945820+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.030354+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.094238+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.155335+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.223058+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.308294+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.371206+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.470490+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.547276+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.621633+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.714234+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.787240+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.852570+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.921806+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:44.994471+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:45.082255+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600050.SH"}}
+{"at": "2026-09-11T20:52:45.138274+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "600050.SH", "list_status": "L"}}
+{"at": "2026-09-11T20:52:45.304706+00:00", "stage": "panel_complete", "code": "600050.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:52:45.304857+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:45.372541+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:45.442943+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:45.510959+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:45.575887+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:45.647813+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:45.714170+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:45.792824+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:45.864028+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:45.932713+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.005070+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.093503+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.174946+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.257344+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.324722+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.412057+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.472455+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.534796+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.602067+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.680097+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600104.SH"}}
+{"at": "2026-09-11T20:52:46.750416+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "600104.SH", "list_status": "L"}}
+{"at": "2026-09-11T20:52:46.915410+00:00", "stage": "panel_complete", "code": "600104.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:52:46.915556+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:46.971745+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.033803+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.102023+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.161200+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.234296+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.293768+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.365825+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.425351+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.499327+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.557179+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.622056+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.681134+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.743254+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.814529+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.880408+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.936244+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:47.996292+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:48.057110+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:48.121922+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600276.SH"}}
+{"at": "2026-09-11T20:52:48.186289+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "600276.SH", "list_status": "L"}}
+{"at": "2026-09-11T20:52:48.349371+00:00", "stage": "panel_complete", "code": "600276.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:52:48.349517+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:48.416026+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:48.495401+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:48.574905+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:48.654724+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:48.728405+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:48.782460+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:48.845561+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:48.908292+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:48.975224+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.047289+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.118964+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.203859+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.274458+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.346067+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.416127+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.473475+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.530445+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.602162+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.680914+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "600519.SH"}}
+{"at": "2026-09-11T20:52:49.743883+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "600519.SH", "list_status": "L"}}
+{"at": "2026-09-11T20:52:49.918184+00:00", "stage": "panel_complete", "code": "600519.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:52:49.918334+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:49.977991+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.039335+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.100793+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.165865+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.225628+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.283713+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.349050+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.411242+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.476824+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.541718+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.608722+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.682129+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.753900+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.834341+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.898884+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:50.960466+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:51.024258+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:51.083295+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:51.146400+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000333.SZ"}}
+{"at": "2026-09-11T20:52:51.213452+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "000333.SZ", "list_status": "L"}}
+{"at": "2026-09-11T20:52:51.381885+00:00", "stage": "panel_complete", "code": "000333.SZ", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:52:51.382035+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:51.454801+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:51.534200+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:51.613261+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:51.681725+00:00", "stage": "fetch", "api": "daily", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:51.760756+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:51.822758+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:51.884348+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:51.945700+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.035314+00:00", "stage": "fetch", "api": "adj_factor", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.096159+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.163318+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.261575+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.329817+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.401921+00:00", "stage": "fetch", "api": "stk_limit", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.477902+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20210101", "end_date": "20211231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.543046+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20220101", "end_date": "20221231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.605547+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20230101", "end_date": "20231231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.664292+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20240101", "end_date": "20241231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.725848+00:00", "stage": "fetch", "api": "suspend_d", "params": {"start_date": "20250101", "end_date": "20251231", "ts_code": "000651.SZ"}}
+{"at": "2026-09-11T20:52:52.784276+00:00", "stage": "fetch", "api": "stock_basic", "params": {"ts_code": "000651.SZ", "list_status": "L"}}
+{"at": "2026-09-11T20:52:52.946919+00:00", "stage": "panel_complete", "code": "000651.SZ", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:53:02.503688+00:00", "stage": "replayed", "code": "600000.SH", "trades": 216}
+{"at": "2026-09-11T20:53:09.601469+00:00", "stage": "replayed", "code": "000001.SZ", "trades": 366}
+{"at": "2026-09-11T20:53:14.038543+00:00", "stage": "replayed", "code": "600009.SH", "trades": 480}
+{"at": "2026-09-11T20:53:23.170854+00:00", "stage": "replayed", "code": "600028.SH", "trades": 738}
+{"at": "2026-09-11T20:53:28.152024+00:00", "stage": "replayed", "code": "600030.SH", "trades": 894}
+{"at": "2026-09-11T20:53:36.475749+00:00", "stage": "replayed", "code": "600036.SH", "trades": 1116}
+{"at": "2026-09-11T20:53:44.264845+00:00", "stage": "replayed", "code": "600050.SH", "trades": 1272}
+{"at": "2026-09-11T20:53:51.650015+00:00", "stage": "replayed", "code": "600104.SH", "trades": 1452}
+{"at": "2026-09-11T20:54:01.128335+00:00", "stage": "replayed", "code": "600276.SH", "trades": 1692}
+{"at": "2026-09-11T20:54:08.673964+00:00", "stage": "replayed", "code": "600519.SH", "trades": 1806}
+{"at": "2026-09-11T20:54:17.305025+00:00", "stage": "replayed", "code": "000333.SZ", "trades": 2028}
+{"at": "2026-09-11T20:54:25.794466+00:00", "stage": "replayed", "code": "000651.SZ", "trades": 2244}
+{"at": "2026-09-11T20:54:25.923287+00:00", "stage": "complete", "label": "full", "closed": 1458}
+{"at": "2026-09-11T20:54:39.166345+00:00", "stage": "fetch", "api": "hk_daily", "params": {"ts_code": "00005.HK", "start_date": "20210101", "end_date": "20211231"}}
+{"at": "2026-09-11T20:54:40.045484+00:00", "stage": "fetch", "api": "hk_adjfactor", "params": {"ts_code": "00005.HK", "start_date": "20210101", "end_date": "20211231"}}
+{"at": "2026-09-11T20:54:40.615824+00:00", "stage": "fetch_failed", "api": "hk_adjfactor", "attempt": 0, "error": "provider_error:40203:抱歉，您没有接口(hk_adjfactor)访问权限，权限的具体详情访问：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T20:54:40.616429+00:00", "stage": "fetch", "api": "hk_tradecal", "params": {"start_date": "20210101", "end_date": "20211231"}}
+{"at": "2026-09-11T20:55:35.956881+00:00", "stage": "fetch", "api": "hk_daily_adj", "params": {"ts_code": "00005.HK", "start_date": "20210101", "end_date": "20211231"}}
+{"at": "2026-09-11T20:55:37.102021+00:00", "stage": "fetch_failed", "api": "hk_daily_adj", "attempt": 0, "error": "provider_error:40203:抱歉，您没有接口(hk_daily_adj)访问权限，权限的具体详情访问：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T20:58:21.554606+00:00", "stage": "start", "label": "full", "offline": true, "contract_sha256": "10836dd31652c1e3ed1e2b285f065a0c327c90c79dd448239a0a7b3b33d1910f"}
+{"at": "2026-09-11T20:58:21.645191+00:00", "stage": "panel_complete", "code": "600000.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:58:21.722967+00:00", "stage": "panel_complete", "code": "000001.SZ", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:58:21.798320+00:00", "stage": "panel_complete", "code": "600009.SH", "sessions": 1212, "bars": 1201}
+{"at": "2026-09-11T20:58:21.871054+00:00", "stage": "panel_complete", "code": "600028.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:58:21.945243+00:00", "stage": "panel_complete", "code": "600030.SH", "sessions": 1212, "bars": 1206}
+{"at": "2026-09-11T20:58:22.018793+00:00", "stage": "panel_complete", "code": "600036.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:58:22.098335+00:00", "stage": "panel_complete", "code": "600050.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:58:22.172499+00:00", "stage": "panel_complete", "code": "600104.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:58:22.246373+00:00", "stage": "panel_complete", "code": "600276.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:58:22.320977+00:00", "stage": "panel_complete", "code": "600519.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:58:22.393820+00:00", "stage": "panel_complete", "code": "000333.SZ", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:58:22.467510+00:00", "stage": "panel_complete", "code": "000651.SZ", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T20:58:33.506321+00:00", "stage": "replayed", "code": "600000.SH", "trades": 216}
+{"at": "2026-09-11T20:58:41.737163+00:00", "stage": "replayed", "code": "000001.SZ", "trades": 366}
+{"at": "2026-09-11T20:58:46.231361+00:00", "stage": "replayed", "code": "600009.SH", "trades": 480}
+{"at": "2026-09-11T20:58:57.654549+00:00", "stage": "replayed", "code": "600028.SH", "trades": 738}
+{"at": "2026-09-11T20:59:03.349809+00:00", "stage": "replayed", "code": "600030.SH", "trades": 894}
+{"at": "2026-09-11T20:59:13.574722+00:00", "stage": "replayed", "code": "600036.SH", "trades": 1116}
+{"at": "2026-09-11T20:59:21.827750+00:00", "stage": "replayed", "code": "600050.SH", "trades": 1272}
+{"at": "2026-09-11T20:59:29.737742+00:00", "stage": "replayed", "code": "600104.SH", "trades": 1452}
+{"at": "2026-09-11T20:59:40.796685+00:00", "stage": "replayed", "code": "600276.SH", "trades": 1692}
+{"at": "2026-09-11T20:59:48.708828+00:00", "stage": "replayed", "code": "600519.SH", "trades": 1806}
+{"at": "2026-09-11T20:59:59.139743+00:00", "stage": "replayed", "code": "000333.SZ", "trades": 2028}
+{"at": "2026-09-11T21:00:08.922885+00:00", "stage": "replayed", "code": "000651.SZ", "trades": 2244}
+{"at": "2026-09-11T21:00:09.121777+00:00", "stage": "complete", "label": "full", "closed": 1458}
+{"at": "2026-09-11T21:00:30.690378+00:00", "stage": "start", "label": "full", "offline": true, "contract_sha256": "10836dd31652c1e3ed1e2b285f065a0c327c90c79dd448239a0a7b3b33d1910f"}
+{"at": "2026-09-11T21:00:30.778329+00:00", "stage": "panel_complete", "code": "600000.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T21:00:30.853655+00:00", "stage": "panel_complete", "code": "000001.SZ", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T21:00:30.927096+00:00", "stage": "panel_complete", "code": "600009.SH", "sessions": 1212, "bars": 1201}
+{"at": "2026-09-11T21:00:31.000040+00:00", "stage": "panel_complete", "code": "600028.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T21:00:31.072063+00:00", "stage": "panel_complete", "code": "600030.SH", "sessions": 1212, "bars": 1206}
+{"at": "2026-09-11T21:00:31.146198+00:00", "stage": "panel_complete", "code": "600036.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T21:00:31.230839+00:00", "stage": "panel_complete", "code": "600050.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T21:00:31.307448+00:00", "stage": "panel_complete", "code": "600104.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T21:00:31.381015+00:00", "stage": "panel_complete", "code": "600276.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T21:00:31.454399+00:00", "stage": "panel_complete", "code": "600519.SH", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T21:00:31.526882+00:00", "stage": "panel_complete", "code": "000333.SZ", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T21:00:31.598925+00:00", "stage": "panel_complete", "code": "000651.SZ", "sessions": 1212, "bars": 1212}
+{"at": "2026-09-11T21:00:42.457780+00:00", "stage": "replayed", "code": "600000.SH", "trades": 216}
+{"at": "2026-09-11T21:00:50.552808+00:00", "stage": "replayed", "code": "000001.SZ", "trades": 366}
+{"at": "2026-09-11T21:00:55.007878+00:00", "stage": "replayed", "code": "600009.SH", "trades": 480}
+{"at": "2026-09-11T21:01:05.951340+00:00", "stage": "replayed", "code": "600028.SH", "trades": 738}
+{"at": "2026-09-11T21:01:11.541393+00:00", "stage": "replayed", "code": "600030.SH", "trades": 894}
+{"at": "2026-09-11T21:01:21.401530+00:00", "stage": "replayed", "code": "600036.SH", "trades": 1116}
+{"at": "2026-09-11T21:01:29.583504+00:00", "stage": "replayed", "code": "600050.SH", "trades": 1272}
+{"at": "2026-09-11T21:01:37.455912+00:00", "stage": "replayed", "code": "600104.SH", "trades": 1452}
+{"at": "2026-09-11T21:01:48.486681+00:00", "stage": "replayed", "code": "600276.SH", "trades": 1692}
+{"at": "2026-09-11T21:01:56.371825+00:00", "stage": "replayed", "code": "600519.SH", "trades": 1806}
+{"at": "2026-09-11T21:02:06.705074+00:00", "stage": "replayed", "code": "000333.SZ", "trades": 2028}
+{"at": "2026-09-11T21:02:16.474589+00:00", "stage": "replayed", "code": "000651.SZ", "trades": 2244}
+{"at": "2026-09-11T21:02:16.663315+00:00", "stage": "complete", "label": "full", "closed": 1458}

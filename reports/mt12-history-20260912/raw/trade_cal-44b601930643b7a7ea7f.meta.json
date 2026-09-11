@@ -1,0 +1,16 @@
+{
+  "endpoint": "https://api.tushare.pro",
+  "fetched_at": "2026-09-11T20:51:53.822561+00:00",
+  "kind": "actual_http_response_bytes",
+  "request": {
+    "api_name": "trade_cal",
+    "fields": "",
+    "params": {
+      "end_date": "20251231",
+      "exchange": "SSE",
+      "start_date": "20250101"
+    }
+  },
+  "rows": 365,
+  "sha256": "d94bb5d5bb78e7ad5a7cabce8f7d941058cd9e1cb30b31c521d4d0c5adac65ee"
+}
