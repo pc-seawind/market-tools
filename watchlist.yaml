@@ -138,16 +138,4 @@ entries:
   reason: 2026-09-11 用户明确确认当前持仓；成本、数量、实际买入日期未提供；不代表新增推荐
   themes: []
   added_at: '2026-09-11'
-us_anchors:
-- code: NVDA
-  name: NVIDIA
-- code: TSM
-  name: 台积电
-- code: MSFT
-  name: Microsoft
-- code: META
-  name: Meta
-- code: GOOGL
-  name: Google
-- code: MU
-  name: Micron
+us_anchors: []
