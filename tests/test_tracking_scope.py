@@ -14,6 +14,7 @@ def scoped(tmp_path, monkeypatch):
     path.write_text(json.dumps({'scope_epoch':'reset-test','reset_at':'2026-09-11T10:00:00+00:00',
         'confirmed_holdings':[{'code':f'{n:06}.SZ'} for n in range(9)], 'active_candidates':[]}))
     monkeypatch.setenv('MT1_TRACKING_SCOPE',str(path))
+    monkeypatch.setenv('MT1_ARCHIVE_ROOT',str(tmp_path/'archive'))
     return path
 
 

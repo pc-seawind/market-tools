@@ -47,6 +47,10 @@ def write_thesis(path: Path, update_log=None):
 
 class ThesisEnrichDailyTests(unittest.TestCase):
     def setUp(self):
+        archive_dir=tempfile.TemporaryDirectory()
+        self.addCleanup(archive_dir.cleanup)
+        envpatch=mock.patch.dict("os.environ", {"MT1_ARCHIVE_ROOT":archive_dir.name})
+        envpatch.start(); self.addCleanup(envpatch.stop)
         scope = {"epoch": "test", "holdings": {"000001.SZ": {}}, "candidates": {}, "recommendations": {}}
         patcher = mock.patch("mt1.scope.load", return_value=scope)
         patcher.start(); self.addCleanup(patcher.stop)

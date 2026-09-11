@@ -15,7 +15,7 @@ def calendars(now):
     for market in ('CN', 'HK', 'US'):
         try:
             snapshot = cn_calendar(now) if market == 'CN' else foreign_calendar(now, market)
-            result[market] = gate(snapshot, market, 'evening', now)
+            result[market] = {**gate(snapshot, market, 'evening', now), 'calendar_input':snapshot}
         except Exception as e:
             result[market] = {'market': market, 'allowed': False, 'expected_date': None,
                               'reason': 'calendar_failed', 'error': str(e)}
@@ -46,6 +46,7 @@ def track(scope_path=None, now=None, fetch=None, gates=None):
     gates = calendars(now) if gates is None else gates
     fetch = fetch or fetch_daily_bars
     rows = []
+    inputs = {}
     for code, item in {**scope['recommendations'], **scope['holdings']}.items():
         market = market_of(code)
         g = gates[market]
@@ -58,7 +59,9 @@ def track(scope_path=None, now=None, fetch=None, gates=None):
                'basis': 'provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return',
                'source': 'thesis_enrich_daily.fetch_daily_bars', 'fetched_at': now.isoformat()}
         try:
-            bars = dated_bars(fetch(code), g.get('expected_date'))
+            raw_bars = fetch(code)
+            inputs[code] = {'provider_parsed_bars':raw_bars,'raw_http_body':'not_captured','fetched_at':now.isoformat()}
+            bars = dated_bars(raw_bars, g.get('expected_date'))
             row.update(status='ok', quote_date=g['expected_date'], close=float(bars[-1]['close']),
                        pct_today=(float(bars[-1]['close'])/float(bars[-2]['close'])-1)*100 if len(bars)>1 and float(bars[-2]['close'])>0 else None)
         except Exception as e:
@@ -66,5 +69,5 @@ def track(scope_path=None, now=None, fetch=None, gates=None):
         rows.append(row)
     errors = [r for r in rows if r['status'] == 'failed']
     return {'asof': now.isoformat(), 'tracking_scope': counts(scope), 'markets': gates,
-            'status': 'partial' if errors else 'ok', 'rows': rows,
+            'status': 'partial' if errors else 'ok', 'rows': rows, 'inputs':inputs,
             'failed': errors, 'historical_performance_included': False, 'read_only': True}

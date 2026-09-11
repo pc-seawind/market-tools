@@ -723,6 +723,9 @@ def main():
     from mt1.scope import DEFAULT, load, codes, counts
     parser.add_argument('--scope', default=os.environ.get('MT1_TRACKING_SCOPE', DEFAULT))
     parser.add_argument('--out', help='结果 manifest 路径')
+    from mt1.longitudinal import archive, DEFAULT_ROOT
+    parser.add_argument('--archive-root', default=os.environ.get('MT1_ARCHIVE_ROOT', str(DEFAULT_ROOT)))
+    parser.add_argument('--run-id')
     args = parser.parse_args()
     scope = load(args.scope)
     from mt1.daily_tracking import calendars, dated_bars, market_of
@@ -741,6 +744,9 @@ def main():
 
     # 收集所有 ACTIVE thesis
     thesis_files = []
+    input_materials = [{"name":"scope.json","path":args.scope}]
+    if args.evening_recap_json:
+        input_materials.append({"name":"optional-evening-recap.json","path":args.evening_recap_json})
     read_errors = []
     for f in sorted(thesis_dir.glob("*.yaml")):
         if f.name.startswith("_"):
@@ -752,6 +758,7 @@ def main():
             status = data.get("status", "ACTIVE")
             if status == "ACTIVE" or data.get("ticker", f.stem) in scope["holdings"]:
                 thesis_files.append((f, data))
+                input_materials.append({"name":f.name,"content":f.read_bytes(),"source_path":str(f)})
         except Exception as e:
             read_errors.append({"ticker": f.stem, "error": str(e)})
 
@@ -778,6 +785,7 @@ def main():
         "markets": gates,
         "alerts": [],
         "entries": [],
+        "inputs": {},
         "sector_map": {},  # ticker -> sector_name
         "silent": True,
     }
@@ -803,6 +811,7 @@ def main():
         try:
             # 获取行情 + 计算指标
             bars = fetch_daily_bars(ticker)
+            result["inputs"][ticker] = {"provider_parsed_bars":bars,"raw_http_body":"not_captured"}
             bars = dated_bars(bars, date_str)
             metrics = calc_technical_metrics(bars)
             if metrics is None:
@@ -830,6 +839,7 @@ def main():
 
             # 写回
             if not args.dry_run:
+                archive(root=args.archive_root,job="enrich-before-write",run_id=(args.run_id or date_str)+"-"+ticker,trade_date=date_str,scope_epoch=scope["epoch"],result={"status":"prepared_not_yet_written","entry":entry,"ticker":ticker,"bars":bars},materials=[{"name":"thesis-before.yaml","content":path.read_bytes(),"source_path":str(path)}])
                 append_update_to_yaml(path, entry)
                 ok, err = validate_yaml(path)
                 if not ok:
@@ -869,6 +879,9 @@ def main():
     result["silent"] = result["silent"] and not result["failed"]
     result["status"] = "partial" if result["failed"] else "ok"
     result_file = args.out or f"/tmp/thesis_enrich_{date_str}.json"
+    if Path(result_file).exists():
+        input_materials.append({"name":"previous-handoff.json","path":result_file})
+    result["archive"] = archive(root=args.archive_root,job="thesis-enrich",run_id=args.run_id or date_str,trade_date=date_str,scope_epoch=scope["epoch"],result=result,materials=input_materials)
     with open(result_file, "w") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 

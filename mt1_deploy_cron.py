@@ -40,6 +40,9 @@ review-bundle 必须填 source_run_id=<本轮真实run_id>。此命令做计划�
 发布前按 docs/MT-1.0-operations.md 保存实际create_doc/发消息工具返回及readback，用 evidence --kind delivery 关联本轮run_id与Markdown hash；没有回执标未送达，不伪造文件。自然任务完成后执行 evidence --kind collect-dispatch --run-id <run_id> 收集gateway调度日志；未关联则明确待验。最后 evidence --kind inventory 查缺哪一环。
 当前四任务绑定home-ubuntu；若实际worker不是home-ubuntu则停止并报未部署，不去其他worker自行补装。不传watchlist --execute。
 
+【持久留档与周报】
+先读reference/operations/longitudinal-evidence-policy.md。使用 python3 {BASE}/mt1_job.py weekly-evidence --out <周报证据索引路径> 获取跨周稳定ID/pending/历史epoch/原始forecast引用；该索引不是已完成周报判断。周六对照每日预测原稿、材料及成熟窗口，周日沿用未成熟/blocked队列；缺材料不能声称核验完成。schema见docs/longitudinal-evidence.md。
+
 【节奏】
 本轮phase={phase}。morning查隔夜与到期条件；evening更新当日证据；saturday全量复盘活跃及退出记录；sunday先读最近周六记录，再联网查3—5个可靠来源，可选0—2个方法，不凑数。联网由现有检索工具完成，保存原文与sha256到research.sources；失败标not_verified，不能假称查完。方法candidate→shadow→validated→active，缺PIT/真实通道/样本外证据不得升级。20/40/60回测目前只有信号带复放和数据门禁，真实三通道历史复刻未完成，不能报策略收益已验证。
 
@@ -56,6 +59,7 @@ def daily_prompt(phase):
 只读行情入口：python3 {BASE}/mt1_job.py --scope /home/emox/work/investment/reference/tracking-scope.json daily-track --out /tmp/mt-daily-{phase}-<本轮唯一ID>.json
 CN/HK/US独立日历/asof，休市显示最近完成收盘及实际日期，失败/partial逐只明示。此产物非完整日报，指数、外部原文与走势条件由投资域核验补全，不把shadow作为新推荐。
 MT研究仅取已完成时效合格产物；需要后台启动时使用独立cgroup，不为日报重复运行。保留原投递/归档规则和实际正文hash与回执；未收到回执不得声称已送达。
+先读 /home/emox/work/investment/reference/operations/longitudinal-evidence-policy.md。每日原始材料、forecast原稿、解析输出及失败manifest先用 mt1.py archive-evidence --input <bundle> 持久归档后再发布/覆盖handoff；URL/hash不代替内容，schema见docs/longitudinal-evidence.md。同日重跑追加revision；长期效果核验集中周报，跨周pending不清零。
 [/MT_DAILY_POLICY_BACKEND_V1]"""
 
 def main():

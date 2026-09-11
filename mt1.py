@@ -48,16 +48,44 @@ def main():
     p=sub.add_parser('parallel-collect'); p.add_argument('--out',required=True)
     p=sub.add_parser('parallel-current'); p.add_argument('--panel',required=True); p.add_argument('--out',required=True); p.add_argument('--reviews')
     p=sub.add_parser('parallel'); p.add_argument('--panel',required=True); p.add_argument('--out',required=True); p.add_argument('--reviews')
-    p=sub.add_parser('daily-track'); p.add_argument('--out',required=True)
+    p=sub.add_parser('daily-track'); p.add_argument('--out',required=True); p.add_argument('--run-id'); p.add_argument('--archive-root')
+    p=sub.add_parser('archive-evidence'); p.add_argument('--input',required=True); p.add_argument('--archive-root')
+    p=sub.add_parser('weekly-evidence'); p.add_argument('--out',required=True); p.add_argument('--asof'); p.add_argument('--archive-root')
     p=sub.add_parser('plans')
     args=parser.parse_args()
     import os
     os.environ['MT1_TRACKING_SCOPE'] = args.scope
     from mt1.scope import load
-    load()
+    if args.cmd!='archive-evidence': load()
+    if args.cmd in ('archive-evidence','weekly-evidence'):
+        from mt1.longitudinal import archive, weekly_index, DEFAULT_ROOT
+        root=args.archive_root or DEFAULT_ROOT
+        if args.cmd=='archive-evidence':
+            bundle=json.loads(Path(args.input).read_text())
+            bundle.setdefault('materials',[]).append({'name':'submitted-bundle.json','path':args.input})
+            print(json.dumps(archive(root=root,**bundle),ensure_ascii=False))
+        else:
+            value=weekly_index(root,asof=args.asof,current_epoch=load()['epoch'])
+            receipt=archive(root=root,job='weekly-evidence',run_id=value['asof'],trade_date=value['asof'],scope_epoch=load()['epoch'],result=value,materials=[{'name':'previous-index.json','path':args.out}] if Path(args.out).exists() else [])
+            atomic_json(args.out,{**value,'archive':receipt})
+            print('RESULT_JSON='+args.out)
+        return
     if args.cmd=='daily-track':
         from mt1.daily_tracking import track
         result=track(args.scope)
+        from mt1.longitudinal import archive, DEFAULT_ROOT
+        from zoneinfo import ZoneInfo
+        day=datetime.now(ZoneInfo('Asia/Shanghai')).date().isoformat()
+        materials=[{'name':'scope.json','path':args.scope}, {'name':'provider-inputs.json','content':json.dumps(result['inputs'],ensure_ascii=False),'representation':'parsed_provider_rows_not_raw_http'}]
+        if Path(args.out).exists(): materials.append({'name':'previous-handoff.json','path':args.out})
+        scope=load()
+        events=[{'kind':'holding' if row['holding_status']=='confirmed' else 'recommendation',
+                 'origin_id':row['code'] if row['holding_status']=='confirmed' else scope['recommendations'][row['code']]['research_event_id'],
+                 'status':'blocked' if row['status']=='failed' else 'pending',
+                 'verification_target':'行情与条件证据持续核验；长期结论留周报',
+                 'original_judgment':'用户持仓事实，不是策略BUY' if row['holding_status']=='confirmed' else '正式推荐事件待原文核验',
+                 'reference_price':None,'condition_status':row['condition_status']} for row in result['rows']]
+        result['archive']=archive(root=args.archive_root or DEFAULT_ROOT,job='daily-track',run_id=args.run_id or day,trade_date=day,scope_epoch=scope['epoch'],result=result,materials=materials,events=events)
         atomic_json(args.out,result)
         print('RESULT_JSON='+args.out)
         if result['status']!='ok': raise SystemExit(75)
