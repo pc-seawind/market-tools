@@ -1,0 +1,67 @@
+﻿if (typeof window.titleSearchConfig == 'undefined') {
+    window.titleSearchConfig = {};
+}
+(function (m) {
+    m.Language = 'EN';
+    m.HeadlineCategoryStart = new Date(2007, 5, 25); // 25 June 2007
+    m.DocumentTypeStart = new Date(1999, 3, 1); // 1 April 1999
+    m.DocumentTypeEnd = new Date(2007, 5, 24); // 24 June 2007
+    m.JsonFileMimeType = "application/json; charset=UTF-8";
+    m.TierOneUrl = "/ncms/script/eds/tierone_e.json";
+    m.TierTwoUrl = "/ncms/script/eds/tiertwo_e.json";
+    m.TierTwoGrpUrl = "/ncms/script/eds/tiertwogrp_e.json";
+    m.ActiveStockUrl = "/ncms/script/eds/activestock_sehk_e.json";
+    m.InactiveStockUrl = "/ncms/script/eds/inactivestock_sehk_e.json";
+    m.DocUrl = "/ncms/script/eds/doc_e.json";
+    if (window.location.hostname.toLowerCase() == "www.hkexnews.hk" || window.location.hostname.toLowerCase() == "sc.hkexnews.hk") {
+        m.ActiveStockPopupUrl = "https://www.hkexnews.hk/stocklist_active_main.htm";
+        m.InactiveStockPopupUrl = "https://www.hkexnews.hk/stocklist_delisted_main.htm";
+        m.TitleSearchActionUrl = "https://www1.hkexnews.hk/search/titlesearch.xhtml";
+        m.StockSearchPartialUrl = "https://www1.hkexnews.hk/search/partial.do?";
+        m.StockSearchPrefixUrl = "https://www1.hkexnews.hk/search/prefix.do?";
+    } else {
+        m.ActiveStockPopupUrl = "stocklist_active_main.htm";
+        m.InactiveStockPopupUrl = "stocklist_delisted_main.htm";
+        m.TitleSearchActionUrl = "/search/titlesearch.xhtml";
+        m.StockSearchPartialUrl = "/search/partial.do?";
+        m.StockSearchPrefixUrl = "/search/prefix.do?";
+    }
+    m.Label_All = "ALL";
+    m.Label_StockCode = "Stock Code";
+    m.Label_StockShortName = "Stock Short Name";
+    m.Label_StockListTitle = "List of Securities";
+	m.jsonFailMessage = "Please refresh the webpage to get latest data: ";
+    m.Label_ViewAll = 'View More';
+    m.Interim = false;
+    m.SearchDocAllMaxMonthRange = 1;
+    m.SearchDocSingleMaxMonthRange = 12;
+    m.PredictiveMinLength = 1;
+    m.g_str_error_01 = "Your input stock code or stock name does not exist or is invalid. Please re-enter.";
+    m.g_str_error_02 = "Your ";
+    m.g_str_error_03 = " is incorrect. Please re-enter.";
+    m.g_str_error_04 = "input date";
+    m.g_str_error_05 = "Your input date range is invalid. Please re-enter.";
+    m.g_str_error_06 = "The ";
+    m.g_str_error_07 = " cannot be greater than the system date. Please re-enter.";
+    m.g_str_error_08 = "Stock or document type or headline category must be selected for any search period more than ";
+    m.g_str_error_09 = " month.";
+    m.g_str_error_10 = "Stock must be selected for any search period more than ";
+    m.g_str_error_11 = " months.";
+    m.g_str_error_12 = "Stock code must be numeric !"
+    m.g_str_error_13 = "Stock code must be at least 4 digits long !";
+	m.market = "SEHK";
+    m.ViewMoreRecords = 1000;
+    m.ViewMoreMessage = "Display 1,000 records only.  Please refine search.";
+
+    // Interim Config
+    if (m.Interim) {
+        m.TitleSearchActionUrl = "http://www3.hkexnews.hk/listedco/listconews/advancedsearch/search_active_main.aspx";
+        m.StockSearchPartialUrl = "http://www3.hkexnews.hk/listedco/listconews/advancedsearch/StockSearchPartial.ashx";
+        m.StockSearchPrefixUrl = "http://www3.hkexnews.hk/listedco/listconews/advancedsearch/StockSearchPrefix.ashx";
+    }
+
+    // TESTING CONFIG
+    //m.StockSearchPartialUrl = "eds/predictive/rest/stockSearch/partial";
+    //m.StockSearchPrefixUrl = "eds/predictive/rest/stockSearch/prefix";
+	$(document).trigger('titlesearchinit');
+})(window.titleSearchConfig)

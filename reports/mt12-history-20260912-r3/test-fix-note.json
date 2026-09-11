@@ -1,0 +1,5 @@
+{
+  "final": "462 passed; 30 HK tests, original 432 retained",
+  "fix": "Test monkeypatches ROOT to its tmp_path. Production eligibility/replay unchanged.",
+  "issue": "New synthetic positive-halt fixture was outside repository root; source-reference formatting rejected temp path."
+}

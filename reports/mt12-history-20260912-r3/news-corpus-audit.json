@@ -1,0 +1,272 @@
+[
+  {
+    "code": "00005",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 158,
+      "recordCnt": 158,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00005_2020",
+    "rows": 158,
+    "year": 2020
+  },
+  {
+    "code": "00005",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 216,
+      "recordCnt": 216,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00005_2021",
+    "rows": 216,
+    "year": 2021
+  },
+  {
+    "code": "00005",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 392,
+      "recordCnt": 392,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00005_2022",
+    "rows": 392,
+    "year": 2022
+  },
+  {
+    "code": "00005",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 497,
+      "recordCnt": 497,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00005_2023",
+    "rows": 497,
+    "year": 2023
+  },
+  {
+    "code": "00005",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 666,
+      "recordCnt": 666,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00005_2024",
+    "rows": 666,
+    "year": 2024
+  },
+  {
+    "code": "00005",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 564,
+      "recordCnt": 564,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00005_2025",
+    "rows": 564,
+    "year": 2025
+  },
+  {
+    "code": "00388",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 59,
+      "recordCnt": 59,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00388_2020",
+    "rows": 59,
+    "year": 2020
+  },
+  {
+    "code": "00388",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 53,
+      "recordCnt": 53,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00388_2021",
+    "rows": 53,
+    "year": 2021
+  },
+  {
+    "code": "00388",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 56,
+      "recordCnt": 56,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00388_2022",
+    "rows": 56,
+    "year": 2022
+  },
+  {
+    "code": "00388",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 55,
+      "recordCnt": 55,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00388_2023",
+    "rows": 55,
+    "year": 2023
+  },
+  {
+    "code": "00388",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 59,
+      "recordCnt": 59,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00388_2024",
+    "rows": 59,
+    "year": 2024
+  },
+  {
+    "code": "00388",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 53,
+      "recordCnt": 53,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00388_2025",
+    "rows": 53,
+    "year": 2025
+  },
+  {
+    "code": "00941",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 43,
+      "recordCnt": 43,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00941_2020",
+    "rows": 43,
+    "year": 2020
+  },
+  {
+    "code": "00941",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 77,
+      "recordCnt": 77,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00941_2021",
+    "rows": 77,
+    "year": 2021
+  },
+  {
+    "code": "00941",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 179,
+      "recordCnt": 179,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00941_2022",
+    "rows": 179,
+    "year": 2022
+  },
+  {
+    "code": "00941",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 116,
+      "recordCnt": 116,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00941_2023",
+    "rows": 116,
+    "year": 2023
+  },
+  {
+    "code": "00941",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 125,
+      "recordCnt": 125,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00941_2024",
+    "rows": 125,
+    "year": 2024
+  },
+  {
+    "code": "00941",
+    "halts": [],
+    "metadata": {
+      "hasNextRow": false,
+      "lang": "E",
+      "loadedRecord": 106,
+      "recordCnt": 106,
+      "rowRange": 1000,
+      "sortList": "[[0,0]]"
+    },
+    "name": "corpus_00941_2025",
+    "rows": 106,
+    "year": 2025
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "command": "python3 -m mt1.hk_history --out reports/mt12-history-20260912-r3 --decode",
+  "contract_sha256": "89035ea5120b577807a20e80339c5f945284086383c12458412249f75f25160b",
+  "git_head": "2eb9596e41eb35e69f144cf96af7e69496049ab7",
+  "implementation_sha256": "83dee61ccd85fa6d52eb33912855a4bd75c1993de5677724bbc86417b8d01eb0",
+  "results_sha256": "722b8a154308ebb352139ade8d485485985a83af5b25d976153f41dc8e0cff8f",
+  "valuation_sha256": "7efec2287ed36cf15262e641780335682d1a3012fa521f2370a29140ba79a5b0"
+}

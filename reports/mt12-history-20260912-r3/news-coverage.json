@@ -1,0 +1,161 @@
+{
+  "00005": {
+    "halt_records": [],
+    "inference": "mandatory publication rules + complete nonempty stock/year corpus + three explicit halt category cross-checks; not zero search alone; not exchange tick-state certification",
+    "records": 2493,
+    "sources": [
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00005_2020.raw",
+        "records": 158,
+        "sha256": "9fa2d1487eab686f6da16d95f0ddfe1d43881c1b07aa32b3b46eb38816d4f5ee"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00005_2021.raw",
+        "records": 216,
+        "sha256": "5df600afa41873929c0b632d28da8818a94f90e1d130ba5bf6bd7eed39576463"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00005_2022.raw",
+        "records": 392,
+        "sha256": "7810fc4e19fd4430913a6f8ab502c78b91335967ecf6323ad87a06c026db9d33"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00005_2023.raw",
+        "records": 497,
+        "sha256": "68577fc7863370b10f3c1383fa92d1a9afc7d484cd4319802d4766fead37a00c"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00005_2024.raw",
+        "records": 666,
+        "sha256": "e08a788162ba1ca73563994f05df13273fe64d1791118c8e61c51bfeb90afe9f"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00005_2025.raw",
+        "records": 564,
+        "sha256": "bddfd25ac0f49a328dab2e99445b7f7a32cc21e4b7badba4d5ba3cf9c745a181"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/halts_00005_17650.raw",
+        "records": 0,
+        "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/halts_00005_17850.raw",
+        "records": 0,
+        "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/halts_00005_17960.raw",
+        "records": 0,
+        "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b"
+      }
+    ],
+    "status": "disclosure_reconstructed_no_halt"
+  },
+  "00388": {
+    "halt_records": [],
+    "inference": "mandatory publication rules + complete nonempty stock/year corpus + three explicit halt category cross-checks; not zero search alone; not exchange tick-state certification",
+    "records": 335,
+    "sources": [
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00388_2020.raw",
+        "records": 59,
+        "sha256": "e5e65d2313aae6380fe48d693e10905e7cc170bc41457b677381e1176d5568db"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00388_2021.raw",
+        "records": 53,
+        "sha256": "6e140293cc8be2c345b0eb7932f4c28c6627dff4e2c1a2760e3426a5c803a2dd"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00388_2022.raw",
+        "records": 56,
+        "sha256": "418d4b9dacfa49b7c67deac251554390e39d5ba1a49b5140f19f62d6a9c6a5dd"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00388_2023.raw",
+        "records": 55,
+        "sha256": "bd541ee0f4a4b0cb49e0341319491354b9e9c9a3741f8209d4608f7931d2f646"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00388_2024.raw",
+        "records": 59,
+        "sha256": "421f93249eb1dbbff204e6ce4bc060d852d7243e2da47ab1ff593f2c239c887c"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00388_2025.raw",
+        "records": 53,
+        "sha256": "805dd6cc93ab50f02f4e057a8b82945dbc04d4e47fa8c15342ca226d37cbe1ac"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/halts_00388_17650.raw",
+        "records": 0,
+        "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/halts_00388_17850.raw",
+        "records": 0,
+        "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/halts_00388_17960.raw",
+        "records": 0,
+        "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b"
+      }
+    ],
+    "status": "disclosure_reconstructed_no_halt"
+  },
+  "00941": {
+    "halt_records": [],
+    "inference": "mandatory publication rules + complete nonempty stock/year corpus + three explicit halt category cross-checks; not zero search alone; not exchange tick-state certification",
+    "records": 646,
+    "sources": [
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00941_2020.raw",
+        "records": 43,
+        "sha256": "aea1df77c7186d0cb13f87bb2497913885a9ea7d42a72cf6b25b202d7343f743"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00941_2021.raw",
+        "records": 77,
+        "sha256": "7e333fd338f396c5c739fb3951e3b985e27d39e9187f5e574d5a8ec9f47cb7a0"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00941_2022.raw",
+        "records": 179,
+        "sha256": "5116f00a62244eaa73c91d02ce2ab7b0f611f8b7865099a75e701d5a48291082"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00941_2023.raw",
+        "records": 116,
+        "sha256": "2f5df55a2d4553660f1dc9769d3ad827ab98831a6924a97d5a518cd124c03947"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00941_2024.raw",
+        "records": 125,
+        "sha256": "d300df7e353ee69eb92f714b25c9ac3c632c96dcfceb6a0b28e87e42fd56dc82"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/corpus_00941_2025.raw",
+        "records": 106,
+        "sha256": "b9692c8b6598377c90dd049b75a8c1b3cc5dc1484ba70005789d2db04e1d4f48"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/halts_00941_17650.raw",
+        "records": 0,
+        "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/halts_00941_17850.raw",
+        "records": 0,
+        "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b"
+      },
+      {
+        "path": "reports/mt12-history-20260912-r3/raw/halts_00941_17960.raw",
+        "records": 0,
+        "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b"
+      }
+    ],
+    "status": "disclosure_reconstructed_no_halt"
+  }
+}

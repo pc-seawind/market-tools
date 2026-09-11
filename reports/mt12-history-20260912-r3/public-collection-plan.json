@@ -1,0 +1,242 @@
+[
+  {
+    "name": "activestock_sehk_e",
+    "url": "https://www1.hkexnews.hk/ncms/script/eds/activestock_sehk_e.json"
+  },
+  {
+    "name": "corpus_00005_2020",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20200101&toDate=20201231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00005_2021",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20210101&toDate=20211231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00005_2022",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20220101&toDate=20221231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00005_2023",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20230101&toDate=20231231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00005_2024",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20240101&toDate=20241231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00005_2025",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20250101&toDate=20251231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00388_2020",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20200101&toDate=20201231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00388_2021",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20210101&toDate=20211231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00388_2022",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20220101&toDate=20221231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00388_2023",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20230101&toDate=20231231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00388_2024",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20240101&toDate=20241231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00388_2025",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20250101&toDate=20251231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00941_2020",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20200101&toDate=20201231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00941_2021",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20210101&toDate=20211231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00941_2022",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20220101&toDate=20221231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00941_2023",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20230101&toDate=20231231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00941_2024",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20240101&toDate=20241231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "corpus_00941_2025",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20250101&toDate=20251231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "name": "halts_00005_17650",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17650&rowRange=1000&lang=E"
+  },
+  {
+    "name": "halts_00005_17850",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17850&rowRange=1000&lang=E"
+  },
+  {
+    "name": "halts_00005_17960",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17960&rowRange=1000&lang=E"
+  },
+  {
+    "name": "halts_00388_17650",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17650&rowRange=1000&lang=E"
+  },
+  {
+    "name": "halts_00388_17850",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17850&rowRange=1000&lang=E"
+  },
+  {
+    "name": "halts_00388_17960",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17960&rowRange=1000&lang=E"
+  },
+  {
+    "name": "halts_00941_17650",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17650&rowRange=1000&lang=E"
+  },
+  {
+    "name": "halts_00941_17850",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17850&rowRange=1000&lang=E"
+  },
+  {
+    "name": "halts_00941_17960",
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17960&rowRange=1000&lang=E"
+  },
+  {
+    "name": "holiday_2021",
+    "url": "https://www.hkex.com.hk/-/media/hkex-market/services/circulars-and-notices/participant-and-members-circulars/sehk/2020/ce_sehk_ct_038_2020.pdf"
+  },
+  {
+    "name": "holiday_2022",
+    "url": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Circulars-and-Notices/Participant-and-Members-Circulars/SEHK/2021/ce_SEHK_CT_082_2021.pdf"
+  },
+  {
+    "name": "holiday_2023",
+    "url": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Circulars-and-Notices/Participant-and-Members-Circulars/SEHK/2022/ce_SEHK_CT_058_2022.pdf"
+  },
+  {
+    "name": "holiday_2024",
+    "url": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Circulars-and-Notices/Participant-and-Members-Circulars/SEHK/2023/ce_SEHK_CT_079_2023.pdf"
+  },
+  {
+    "name": "holiday_2025",
+    "url": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Circulars-and-Notices/Participant-and-Members-Circulars/SEHK/2024/ce_SEHK_CT_063_2024.pdf"
+  },
+  {
+    "name": "jina_probe",
+    "url": "https://r.jina.ai/https://www1.hkexnews.hk/search/titlesearch.xhtml?lang=en"
+  },
+  {
+    "name": "news_rules",
+    "url": "https://en-rules.hkex.com.hk/entiresection/1"
+  },
+  {
+    "name": "research_js",
+    "url": "https://www1.hkexnews.hk/ncms/js/titlesearch_research.js"
+  },
+  {
+    "name": "search_js",
+    "url": "https://www1.hkexnews.hk/ncms/js/search.js"
+  },
+  {
+    "name": "settlement_change",
+    "url": "https://www.hkexgroup.com/-/media/HKEX-Group-Site/Ir/Key-Revenue-Drivers/1H-2025-Key-Revenue-Driver.pdf"
+  },
+  {
+    "name": "sina_daily_00005",
+    "url": "https://finance.sina.com.cn/stock/hkstock/00005/klc2_kl.js"
+  },
+  {
+    "name": "sina_daily_00388",
+    "url": "https://finance.sina.com.cn/stock/hkstock/00388/klc2_kl.js"
+  },
+  {
+    "name": "sina_daily_00941",
+    "url": "https://finance.sina.com.cn/stock/hkstock/00941/klc2_kl.js"
+  },
+  {
+    "name": "stamp_rates",
+    "url": "https://www.ird.gov.hk/eng/pdf/sd_stock_rates.pdf"
+  },
+  {
+    "name": "tiertwo_e",
+    "url": "https://www1.hkexnews.hk/ncms/script/eds/tiertwo_e.json"
+  },
+  {
+    "name": "title_config",
+    "url": "https://www1.hkexnews.hk/ncms/eds/titlesearch/config.js"
+  },
+  {
+    "name": "title_js",
+    "url": "https://www1.hkexnews.hk/ncms/js/titlesearch.js"
+  },
+  {
+    "name": "title_page",
+    "url": "https://www1.hkexnews.hk/search/titlesearch.xhtml?lang=en"
+  },
+  {
+    "name": "trading_faq",
+    "url": "https://www.hkex.com.hk/Global/Exchange/FAQ/Securities-Market/Trading?sc_lang=en"
+  },
+  {
+    "name": "trading_hours",
+    "url": "https://www.hkex.com.hk/Services/Trading-hours-and-Severe-Weather-Arrangements/Trading-Hours/Securities-Market"
+  },
+  {
+    "name": "transaction_fees",
+    "url": "https://www.hkex.com.hk/Services/Rules-and-Forms-and-Fees/Fees/Securities-%28Hong-Kong%29/Trading/Transaction?sc_lang=en"
+  },
+  {
+    "name": "vcm_mechanism",
+    "url": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Trading/Securities/Overview/Trading-Mechanism/Trading-Mechanism-for-VCM_E.pdf"
+  },
+  {
+    "name": "weather_2106283",
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2021/2106283news?sc_lang=en"
+  },
+  {
+    "name": "weather_2110132",
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2021/2110132news?sc_lang=en"
+  },
+  {
+    "name": "weather_2208252",
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2022/2208252news?sc_lang=en"
+  },
+  {
+    "name": "weather_221102",
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2022/221102news?sc_lang=en"
+  },
+  {
+    "name": "weather_2211022",
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2022/2211022news?sc_lang=en"
+  },
+  {
+    "name": "weather_231009",
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2023/231009news?sc_lang=en"
+  },
+  {
+    "name": "weather_2310092",
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2023/2310092news?sc_lang=en"
+  },
+  {
+    "name": "weather_2310093",
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2023/2310093news?sc_lang=en"
+  },
+  {
+    "name": "weather_2409062",
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2024/2409062news?sc_lang=en"
+  },
+  {
+    "name": "weather_change",
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2024/240618news?sc_lang=en"
+  }
+]

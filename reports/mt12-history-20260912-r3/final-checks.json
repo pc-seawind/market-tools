@@ -1,0 +1,16 @@
+{
+  "A_results_modified": false,
+  "code_commit": "4959267b7dd099c895be49e40923762f22d1bbf8",
+  "code_sha256": {
+    "mt1/hk_history.py": "83dee61ccd85fa6d52eb33912855a4bd75c1993de5677724bbc86417b8d01eb0",
+    "mt1/hk_history_collect.py": "e22d895d4fe9a19e404292a5311a2a66dd74c00dbe0e8e2a7a11adcf20ed549b",
+    "tests/test_mt12_hk_history.py": "26363a30e9f21927387ba73a26c9eb0c28148ffcc96e3b70505d0f587e66ff84"
+  },
+  "new_tests": 30,
+  "original_379_preserved": true,
+  "production_actions": [],
+  "protected_files_verified": 738,
+  "purchases": [],
+  "same_source_replay": true,
+  "tests": "462 passed in 28.09s"
+}

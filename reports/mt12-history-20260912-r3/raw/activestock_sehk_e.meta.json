@@ -1,0 +1,8 @@
+{
+  "bytes": 1067894,
+  "fetched_at": "2026-09-11T21:39:09.561274+00:00",
+  "name": "activestock_sehk_e",
+  "sha256": "4d8980e9ff2535a1c66ad96ebdc5bc82fb7ae3070abc0ba35ce7f3a585bf6ec8",
+  "status": 200,
+  "url": "https://www1.hkexnews.hk/ncms/script/eds/activestock_sehk_e.json"
+}

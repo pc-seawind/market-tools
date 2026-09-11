@@ -1,0 +1,11 @@
+{
+  "equal": {
+    "HK-RESULTS.md": true,
+    "common-cutoff-results.json": true,
+    "full-results.json": true,
+    "market-calendar.json": true,
+    "price-decisions.json": true,
+    "session-eligibility.json": true
+  },
+  "method": "two_offline_replays_raw_decode_and_all_panels_rebuilt"
+}

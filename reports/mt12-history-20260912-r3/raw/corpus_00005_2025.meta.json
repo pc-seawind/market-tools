@@ -1,0 +1,8 @@
+{
+  "bytes": 300696,
+  "fetched_at": "2026-09-11T21:40:04.463417+00:00",
+  "name": "corpus_00005_2025",
+  "sha256": "bddfd25ac0f49a328dab2e99445b7f7a32cc21e4b7badba4d5ba3cf9c745a181",
+  "status": 200,
+  "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20250101&toDate=20251231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+}

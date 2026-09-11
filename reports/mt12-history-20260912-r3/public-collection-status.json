@@ -1,0 +1,482 @@
+[
+  {
+    "bytes": 1067894,
+    "fetched_at": "2026-09-11T21:39:09.561274+00:00",
+    "name": "activestock_sehk_e",
+    "sha256": "4d8980e9ff2535a1c66ad96ebdc5bc82fb7ae3070abc0ba35ce7f3a585bf6ec8",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/ncms/script/eds/activestock_sehk_e.json"
+  },
+  {
+    "bytes": 107104,
+    "fetched_at": "2026-09-11T21:39:55.811064+00:00",
+    "name": "corpus_00005_2020",
+    "sha256": "9fa2d1487eab686f6da16d95f0ddfe1d43881c1b07aa32b3b46eb38816d4f5ee",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20200101&toDate=20201231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 119151,
+    "fetched_at": "2026-09-11T21:39:32.004838+00:00",
+    "name": "corpus_00005_2021",
+    "sha256": "5df600afa41873929c0b632d28da8818a94f90e1d130ba5bf6bd7eed39576463",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20210101&toDate=20211231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 209118,
+    "fetched_at": "2026-09-11T21:39:58.250226+00:00",
+    "name": "corpus_00005_2022",
+    "sha256": "7810fc4e19fd4430913a6f8ab502c78b91335967ecf6323ad87a06c026db9d33",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20220101&toDate=20221231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 263969,
+    "fetched_at": "2026-09-11T21:40:00.313045+00:00",
+    "name": "corpus_00005_2023",
+    "sha256": "68577fc7863370b10f3c1383fa92d1a9afc7d484cd4319802d4766fead37a00c",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20230101&toDate=20231231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 354540,
+    "fetched_at": "2026-09-11T21:40:02.400815+00:00",
+    "name": "corpus_00005_2024",
+    "sha256": "e08a788162ba1ca73563994f05df13273fe64d1791118c8e61c51bfeb90afe9f",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20240101&toDate=20241231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 300696,
+    "fetched_at": "2026-09-11T21:40:04.463417+00:00",
+    "name": "corpus_00005_2025",
+    "sha256": "bddfd25ac0f49a328dab2e99445b7f7a32cc21e4b7badba4d5ba3cf9c745a181",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20250101&toDate=20251231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 32343,
+    "fetched_at": "2026-09-11T21:40:14.731907+00:00",
+    "name": "corpus_00388_2020",
+    "sha256": "e5e65d2313aae6380fe48d693e10905e7cc170bc41457b677381e1176d5568db",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20200101&toDate=20201231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 29342,
+    "fetched_at": "2026-09-11T21:40:17.541393+00:00",
+    "name": "corpus_00388_2021",
+    "sha256": "6e140293cc8be2c345b0eb7932f4c28c6627dff4e2c1a2760e3426a5c803a2dd",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20210101&toDate=20211231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 30888,
+    "fetched_at": "2026-09-11T21:40:20.418758+00:00",
+    "name": "corpus_00388_2022",
+    "sha256": "418d4b9dacfa49b7c67deac251554390e39d5ba1a49b5140f19f62d6a9c6a5dd",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20220101&toDate=20221231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 31104,
+    "fetched_at": "2026-09-11T21:40:22.253670+00:00",
+    "name": "corpus_00388_2023",
+    "sha256": "bd541ee0f4a4b0cb49e0341319491354b9e9c9a3741f8209d4608f7931d2f646",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20230101&toDate=20231231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 36350,
+    "fetched_at": "2026-09-11T21:40:26.133365+00:00",
+    "name": "corpus_00388_2024",
+    "sha256": "421f93249eb1dbbff204e6ce4bc060d852d7243e2da47ab1ff593f2c239c887c",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20240101&toDate=20241231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 32475,
+    "fetched_at": "2026-09-11T21:40:29.976623+00:00",
+    "name": "corpus_00388_2025",
+    "sha256": "805dd6cc93ab50f02f4e057a8b82945dbc04d4e47fa8c15342ca226d37cbe1ac",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20250101&toDate=20251231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 23940,
+    "fetched_at": "2026-09-11T21:40:41.101744+00:00",
+    "name": "corpus_00941_2020",
+    "sha256": "aea1df77c7186d0cb13f87bb2497913885a9ea7d42a72cf6b25b202d7343f743",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20200101&toDate=20201231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 50348,
+    "fetched_at": "2026-09-11T21:40:43.012099+00:00",
+    "name": "corpus_00941_2021",
+    "sha256": "7e333fd338f396c5c739fb3951e3b985e27d39e9187f5e574d5a8ec9f47cb7a0",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20210101&toDate=20211231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 113332,
+    "fetched_at": "2026-09-11T21:40:46.937429+00:00",
+    "name": "corpus_00941_2022",
+    "sha256": "5116f00a62244eaa73c91d02ce2ab7b0f611f8b7865099a75e701d5a48291082",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20220101&toDate=20221231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 77027,
+    "fetched_at": "2026-09-11T21:40:49.834892+00:00",
+    "name": "corpus_00941_2023",
+    "sha256": "2f5df55a2d4553660f1dc9769d3ad827ab98831a6924a97d5a518cd124c03947",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20230101&toDate=20231231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 83271,
+    "fetched_at": "2026-09-11T21:40:53.731919+00:00",
+    "name": "corpus_00941_2024",
+    "sha256": "d300df7e353ee69eb92f714b25c9ac3c632c96dcfceb6a0b28e87e42fd56dc82",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20240101&toDate=20241231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 73267,
+    "fetched_at": "2026-09-11T21:40:55.626346+00:00",
+    "name": "corpus_00941_2025",
+    "sha256": "b9692c8b6598377c90dd049b75a8c1b3cc5dc1484ba70005789d2db04e1d4f48",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20250101&toDate=20251231&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 113,
+    "fetched_at": "2026-09-11T21:40:08.245049+00:00",
+    "name": "halts_00005_17650",
+    "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17650&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 113,
+    "fetched_at": "2026-09-11T21:40:10.026983+00:00",
+    "name": "halts_00005_17850",
+    "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17850&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 113,
+    "fetched_at": "2026-09-11T21:40:12.810851+00:00",
+    "name": "halts_00005_17960",
+    "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17960&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 113,
+    "fetched_at": "2026-09-11T21:40:32.764740+00:00",
+    "name": "halts_00388_17650",
+    "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17650&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 113,
+    "fetched_at": "2026-09-11T21:40:35.530612+00:00",
+    "name": "halts_00388_17850",
+    "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17850&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 113,
+    "fetched_at": "2026-09-11T21:40:39.297318+00:00",
+    "name": "halts_00388_17960",
+    "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=781&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17960&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 113,
+    "fetched_at": "2026-09-11T21:40:58.443731+00:00",
+    "name": "halts_00941_17650",
+    "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17650&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 113,
+    "fetched_at": "2026-09-11T21:41:02.214497+00:00",
+    "name": "halts_00941_17850",
+    "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17850&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 113,
+    "fetched_at": "2026-09-11T21:41:05.992240+00:00",
+    "name": "halts_00941_17960",
+    "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=2247&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17960&rowRange=1000&lang=E"
+  },
+  {
+    "bytes": 171368,
+    "fetched_at": "2026-09-11T21:41:10.460668+00:00",
+    "name": "holiday_2021",
+    "sha256": "97aa7937a41cbab40162aa4ec750d2730d9aa51a9db7393abba2215b019dfad1",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/-/media/hkex-market/services/circulars-and-notices/participant-and-members-circulars/sehk/2020/ce_sehk_ct_038_2020.pdf"
+  },
+  {
+    "bytes": 230801,
+    "fetched_at": "2026-09-11T21:41:11.185682+00:00",
+    "name": "holiday_2022",
+    "sha256": "09c6cbbd97964c399cf4419633d364cab3c1f877ff6e1b03e6f63850e8e60538",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Circulars-and-Notices/Participant-and-Members-Circulars/SEHK/2021/ce_SEHK_CT_082_2021.pdf"
+  },
+  {
+    "bytes": 170751,
+    "fetched_at": "2026-09-11T21:41:11.790202+00:00",
+    "name": "holiday_2023",
+    "sha256": "57cbc2589f506b595a17ac340a576d5937be4fd8eab688f02cf78f8d7b03ae56",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Circulars-and-Notices/Participant-and-Members-Circulars/SEHK/2022/ce_SEHK_CT_058_2022.pdf"
+  },
+  {
+    "bytes": 172262,
+    "fetched_at": "2026-09-11T21:41:12.461737+00:00",
+    "name": "holiday_2024",
+    "sha256": "0bd2859b4f5b2e65efa8c088c10326f0bf168eb22ee2d92e2ceb8e0d2c1ce5b0",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Circulars-and-Notices/Participant-and-Members-Circulars/SEHK/2023/ce_SEHK_CT_079_2023.pdf"
+  },
+  {
+    "bytes": 267510,
+    "fetched_at": "2026-09-11T21:41:13.173128+00:00",
+    "name": "holiday_2025",
+    "sha256": "517377ccb83466229d20d262dc8e1acfa168036e58cc4c0edc9d3b60ebc38980",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Circulars-and-Notices/Participant-and-Members-Circulars/SEHK/2024/ce_SEHK_CT_063_2024.pdf"
+  },
+  {
+    "bytes": 373,
+    "fetched_at": "2026-09-11T21:38:38.333128+00:00",
+    "name": "jina_probe",
+    "sha256": "b0de6cca5f2b1a12d74ed22f1ba9b7cbf680bf67a245f36b6cf4c9a884c71d3f",
+    "status": 401,
+    "url": "https://r.jina.ai/https://www1.hkexnews.hk/search/titlesearch.xhtml?lang=en"
+  },
+  {
+    "bytes": 128,
+    "fetched_at": "2026-09-11T21:41:16.898669+00:00",
+    "name": "news_rules",
+    "sha256": "dbd87245fac490ac84f6adb09afc8a748522589e4b34ff60a98e990351690e25",
+    "status": "network_error",
+    "url": "https://en-rules.hkex.com.hk/entiresection/1"
+  },
+  {
+    "bytes": 12134,
+    "fetched_at": "2026-09-11T21:39:00.218573+00:00",
+    "name": "research_js",
+    "sha256": "00735dbbaeeec86d92b7676c9fa1f0d4b4c168a4f1da89fc5fd2eabc193448fe",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/ncms/js/titlesearch_research.js"
+  },
+  {
+    "bytes": 6358,
+    "fetched_at": "2026-09-11T21:38:37.940406+00:00",
+    "name": "search_js",
+    "sha256": "53a8b722706123e7bf2fc749c626d2e7d287a400364d57a3c481b2be2435de12",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/ncms/js/search.js"
+  },
+  {
+    "bytes": 2344308,
+    "fetched_at": "2026-09-11T21:45:52.755233+00:00",
+    "name": "settlement_change",
+    "sha256": "a594d017501e0dd394ac22d2f50a14b892de4b236c16b1056bf701158c44a01b",
+    "status": 200,
+    "url": "https://www.hkexgroup.com/-/media/HKEX-Group-Site/Ir/Key-Revenue-Drivers/1H-2025-Key-Revenue-Driver.pdf"
+  },
+  {
+    "bytes": 86630,
+    "fetched_at": "2026-09-11T21:41:56.085733+00:00",
+    "name": "sina_daily_00005",
+    "sha256": "d49279b4e138e20cd190d8de32fbd09fabeb050817a4e3d00281b7ec99be6605",
+    "status": 200,
+    "url": "https://finance.sina.com.cn/stock/hkstock/00005/klc2_kl.js"
+  },
+  {
+    "bytes": 93314,
+    "fetched_at": "2026-09-11T21:41:56.850770+00:00",
+    "name": "sina_daily_00388",
+    "sha256": "ad674cada077fef68eed672fef524ff02e371ef6632e084fd27faf3d5d79b3e5",
+    "status": 200,
+    "url": "https://finance.sina.com.cn/stock/hkstock/00388/klc2_kl.js"
+  },
+  {
+    "bytes": 83948,
+    "fetched_at": "2026-09-11T21:41:57.844788+00:00",
+    "name": "sina_daily_00941",
+    "sha256": "373b942f3ebf6551e83e9dd0bdde136e128dc156b348021660cd6b733a2b8f2a",
+    "status": 200,
+    "url": "https://finance.sina.com.cn/stock/hkstock/00941/klc2_kl.js"
+  },
+  {
+    "bytes": 22670,
+    "fetched_at": "2026-09-11T21:45:47.467745+00:00",
+    "name": "stamp_rates",
+    "sha256": "0262489a033010c72e7d78f4b5951d5416cce37989a631b081e71f755c584210",
+    "status": 200,
+    "url": "https://www.ird.gov.hk/eng/pdf/sd_stock_rates.pdf"
+  },
+  {
+    "bytes": 30798,
+    "fetched_at": "2026-09-11T21:39:11.075902+00:00",
+    "name": "tiertwo_e",
+    "sha256": "bf2bc521a03e6fe6bfd9cc1a289be1122c0a84b67090dbe65f0db038ccb67617",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/ncms/script/eds/tiertwo_e.json"
+  },
+  {
+    "bytes": 3681,
+    "fetched_at": "2026-09-11T21:38:59.825147+00:00",
+    "name": "title_config",
+    "sha256": "3a79247a5995c4880dc8a6c49329ced0a4784a68abae13a6f887dafb72d9a989",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/ncms/eds/titlesearch/config.js"
+  },
+  {
+    "bytes": 49034,
+    "fetched_at": "2026-09-11T21:38:37.586569+00:00",
+    "name": "title_js",
+    "sha256": "abba9c4103523220e47ba1436487872b0069d487ee3e3cb12ae7d909303a4817",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/ncms/js/titlesearch.js"
+  },
+  {
+    "bytes": 12472,
+    "fetched_at": "2026-09-11T21:38:37.173271+00:00",
+    "name": "title_page",
+    "sha256": "781627a6eda21eb4e3865c7deff3951de1d36fce0ea1c4bf002f1a9ca6c170f5",
+    "status": 200,
+    "url": "https://www1.hkexnews.hk/search/titlesearch.xhtml?lang=en"
+  },
+  {
+    "bytes": 1109486,
+    "fetched_at": "2026-09-11T21:43:31.213329+00:00",
+    "name": "trading_faq",
+    "sha256": "33701342b66bedf6f51d1780ee5413501752bfd71ae8c21592e4fb91e5c698eb",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/Global/Exchange/FAQ/Securities-Market/Trading?sc_lang=en"
+  },
+  {
+    "bytes": 242039,
+    "fetched_at": "2026-09-11T21:43:26.909853+00:00",
+    "name": "trading_hours",
+    "sha256": "3c5b8046f5432d7403d21f240396b8f3910b82ccfa46181da0cd9cb35dfa6a11",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/Services/Trading-hours-and-Severe-Weather-Arrangements/Trading-Hours/Securities-Market"
+  },
+  {
+    "bytes": 377544,
+    "fetched_at": "2026-09-11T21:45:51.754844+00:00",
+    "name": "transaction_fees",
+    "sha256": "61ee1ced0059a2f208097964e2492f4b272644748ff2f69c1b6acb65c1aaaa33",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/Services/Rules-and-Forms-and-Fees/Fees/Securities-%28Hong-Kong%29/Trading/Transaction?sc_lang=en"
+  },
+  {
+    "bytes": 1182808,
+    "fetched_at": "2026-09-11T21:41:15.933645+00:00",
+    "name": "vcm_mechanism",
+    "sha256": "ede37921aaa219bfd28ecc0a6a445ed83c474a7e8d98f5d30e7785c4d135bad4",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/-/media/HKEX-Market/Services/Trading/Securities/Overview/Trading-Mechanism/Trading-Mechanism-for-VCM_E.pdf"
+  },
+  {
+    "bytes": 359251,
+    "fetched_at": "2026-09-11T21:42:30.591509+00:00",
+    "name": "weather_2106283",
+    "sha256": "4db83f20d16b7c10a2b769a92517cf9a7c95eef434b3b0b10fddad0a3e6992f1",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2021/2106283news?sc_lang=en"
+  },
+  {
+    "bytes": 357678,
+    "fetched_at": "2026-09-11T21:42:32.620670+00:00",
+    "name": "weather_2110132",
+    "sha256": "f7a430b8354448e282c447ab0a5e5b59e4a02c89329249d885851b70cf29aef9",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2021/2110132news?sc_lang=en"
+  },
+  {
+    "bytes": 360061,
+    "fetched_at": "2026-09-11T21:42:34.724804+00:00",
+    "name": "weather_2208252",
+    "sha256": "4e0d519fdb402c0dcbbad979b0282e310dbce2ac69a1acd34d9430b00425354f",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2022/2208252news?sc_lang=en"
+  },
+  {
+    "bytes": 359140,
+    "fetched_at": "2026-09-11T21:42:37.715763+00:00",
+    "name": "weather_221102",
+    "sha256": "8297bde1e1e7ad61948cf51d8e0556709fdbecb36d44f6086bc49ba56c0cc6cb",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2022/221102news?sc_lang=en"
+  },
+  {
+    "bytes": 2946,
+    "fetched_at": "2026-09-11T21:42:41.262775+00:00",
+    "name": "weather_2211022",
+    "sha256": "07e0a1b978ed0b29e381cb03b5453a4be3edd3ad7ce2c414641a7113f468a530",
+    "status": 404,
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2022/2211022news?sc_lang=en"
+  },
+  {
+    "bytes": 361472,
+    "fetched_at": "2026-09-11T21:42:44.225320+00:00",
+    "name": "weather_231009",
+    "sha256": "249987b5d678dfb53e9b5241821657e28d8aa99fb905fafab79ce839f925ea40",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2023/231009news?sc_lang=en"
+  },
+  {
+    "bytes": 359874,
+    "fetched_at": "2026-09-11T21:42:48.295495+00:00",
+    "name": "weather_2310092",
+    "sha256": "b7525134e0948984215af1a1c0fbda9ba142749f7fc6c54683a3f2f1171159c6",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2023/2310092news?sc_lang=en"
+  },
+  {
+    "bytes": 2946,
+    "fetched_at": "2026-09-11T21:42:49.849740+00:00",
+    "name": "weather_2310093",
+    "sha256": "5b3f71e3a209ed35a2c288a4058567318381fb9f44a22573ddfa5da5bbcab0b1",
+    "status": 404,
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2023/2310093news?sc_lang=en"
+  },
+  {
+    "bytes": 359207,
+    "fetched_at": "2026-09-11T21:42:51.836086+00:00",
+    "name": "weather_2409062",
+    "sha256": "d1bff1c6bb69f2723a41d8127e1169cd64797a64b974edc9c25d733d93af0ef5",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2024/2409062news?sc_lang=en"
+  },
+  {
+    "bytes": 379500,
+    "fetched_at": "2026-09-11T21:41:15.160353+00:00",
+    "name": "weather_change",
+    "sha256": "9f20a397c644a8773a87d25f9a4b91fb091250942b1834c4ba105b217c815887",
+    "status": 200,
+    "url": "https://www.hkex.com.hk/News/Market-Communications/2024/240618news?sc_lang=en"
+  }
+]

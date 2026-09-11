@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-11T21:40:42.291590+00:00",
+  "request": {
+    "api_name": "hk_daily",
+    "fields": "",
+    "params": {
+      "end_date": "20210211",
+      "start_date": "20210211",
+      "ts_code": "00388.HK"
+    }
+  },
+  "retry": 0,
+  "sha256": "473538abddec12866b26a97311615b0026490d41c2cd33e9e2fe690a845044ac"
+}

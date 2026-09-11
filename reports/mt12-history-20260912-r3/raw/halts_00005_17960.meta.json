@@ -1,0 +1,8 @@
+{
+  "bytes": 113,
+  "fetched_at": "2026-09-11T21:40:12.810851+00:00",
+  "name": "halts_00005_17960",
+  "sha256": "4242ba0cb42adb25317ac8ad1c38d55ce3ebd701946fddf6df4c92513ba3b05b",
+  "status": 200,
+  "url": "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=5&documentType=-1&fromDate=20200101&toDate=20251231&title=&searchType=1&t1code=10000&t2Gcode=7&t2code=17960&rowRange=1000&lang=E"
+}

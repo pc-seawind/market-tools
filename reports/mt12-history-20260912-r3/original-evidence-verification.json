@@ -1,0 +1,18 @@
+{
+  "status": "developer_readonly_audit_not_independent_acceptance",
+  "old_files_verified": 152,
+  "raw_responses_verified": 269,
+  "securities": 12,
+  "stock_oos_folds": 108,
+  "closed_rows_including_cost_scenario_duplicates": 1458,
+  "A_episode_scenario_cost_sets_same_entry": 426,
+  "A_sets_cancelled_differentially": 0,
+  "baseline_unique_closed_by_arm": {
+    "open_price_limit_base_v1|15|A|old_ma60_5": 36,
+    "open_price_limit_base_v1|15|A|structure_failure": 29,
+    "open_price_limit_base_v1|15|A|structure_failure_atr": 54,
+    "open_price_limit_base_v1|15|B|breakout": 15,
+    "open_price_limit_base_v1|15|B|old_trigger": 54,
+    "open_price_limit_base_v1|15|B|pullback": 55
+  }
+}
