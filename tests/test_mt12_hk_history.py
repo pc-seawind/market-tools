@@ -134,7 +134,8 @@ def test_real_calendar_and_disputed_dates_readonly(tmp_path):
     assert all(d['matches']==['Tencent'] for d in disputes)
 
 
-def test_positive_halt_not_silently_admitted(tmp_path):
+def test_positive_halt_not_silently_admitted(tmp_path,monkeypatch):
+    monkeypatch.setattr("mt1.hk_history.ROOT",tmp_path)
     for year in range(2020,2026):
         row=dict(NEWS_ID=str(year),STOCK_CODE='00005',DATE_TIME=f'02/01/{year} 10:00',LONG_TEXT='Trading Halt' if year==2023 else 'Ordinary notice')
         write(tmp_path/f'corpus_00005_{year}.raw',dict(result=json.dumps([row]),hasNextRow=False,recordCnt=1,loadedRecord=1))
