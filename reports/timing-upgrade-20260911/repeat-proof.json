@@ -1,0 +1,9 @@
+{
+  "receipt": {
+    "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+    "idempotent": true,
+    "sha256": "528c2aeb4636f060ed4cebad2bf2018d43a4695a113fd0a5cd0f5937663107d4"
+  },
+  "same_manifest": true,
+  "same_sha256": true
+}

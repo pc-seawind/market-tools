@@ -1,0 +1,876 @@
+{
+  "contract_hash": "6b2fce1c4bd4ec8a65ccd77e7c7070a039a78e69c1230c71a19a347658bfbc4f",
+  "trial": 1,
+  "mode": "diagnostic_current_vintage_NOT_PIT_backtest",
+  "executed_at": "2026-09-11T13:47:18.531115+00:00",
+  "implementation_hashes": {
+    "timing.py": "e5454175464486ddf2186e07ff8d4c4ca871a8b21ca57948cb22c186edea87f6",
+    "timing_experiment.py": "277e1f4afd54167951fc8cdd0fe09bc997f55761607407e30d19bcc0156b11e0"
+  },
+  "return_basis": "equal_weight_event_price_returns_not_portfolio_or_personal_PnL",
+  "source_kind": "real_current_readonly_collection",
+  "scope_epoch": "user-reset-20260911T120928Z",
+  "audit": [
+    {
+      "code": "001309.SZ",
+      "status": "not_matured",
+      "sessions": 120,
+      "entry_opportunities": {},
+      "A_episodes": 1
+    },
+    {
+      "code": "603986.SH",
+      "status": "not_matured",
+      "sessions": 120,
+      "entry_opportunities": {},
+      "A_episodes": 1
+    },
+    {
+      "code": "688195.SH",
+      "status": "not_matured",
+      "sessions": 120,
+      "entry_opportunities": {},
+      "A_episodes": 1
+    },
+    {
+      "code": "301511.SZ",
+      "status": "not_matured",
+      "sessions": 120,
+      "entry_opportunities": {},
+      "A_episodes": 1
+    },
+    {
+      "code": "300750.SZ",
+      "status": "not_matured",
+      "sessions": 120,
+      "entry_opportunities": {},
+      "A_episodes": 1
+    },
+    {
+      "code": "601138.SH",
+      "status": "not_matured",
+      "sessions": 120,
+      "entry_opportunities": {},
+      "A_episodes": 1
+    },
+    {
+      "code": "01810.HK",
+      "status": "blocked",
+      "reason": "adjustment_unknown_risk_prices_blocked"
+    },
+    {
+      "code": "03690.HK",
+      "status": "blocked",
+      "reason": "adjustment_unknown_risk_prices_blocked"
+    },
+    {
+      "code": "00700.HK",
+      "status": "blocked",
+      "reason": "adjustment_unknown_risk_prices_blocked"
+    }
+  ],
+  "trades": [
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "old_ma60_5",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "old_ma60_5",
+      "code": "001309.SZ",
+      "episode_id": "hypothetical-forward-001309.SZ",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure",
+      "code": "001309.SZ",
+      "episode_id": "hypothetical-forward-001309.SZ",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure_atr",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure_atr",
+      "code": "001309.SZ",
+      "episode_id": "hypothetical-forward-001309.SZ",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "old_ma60_5",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "old_ma60_5",
+      "code": "603986.SH",
+      "episode_id": "hypothetical-forward-603986.SH",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure",
+      "code": "603986.SH",
+      "episode_id": "hypothetical-forward-603986.SH",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure_atr",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure_atr",
+      "code": "603986.SH",
+      "episode_id": "hypothetical-forward-603986.SH",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "old_ma60_5",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "old_ma60_5",
+      "code": "688195.SH",
+      "episode_id": "hypothetical-forward-688195.SH",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure",
+      "code": "688195.SH",
+      "episode_id": "hypothetical-forward-688195.SH",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure_atr",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure_atr",
+      "code": "688195.SH",
+      "episode_id": "hypothetical-forward-688195.SH",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "old_ma60_5",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "old_ma60_5",
+      "code": "301511.SZ",
+      "episode_id": "hypothetical-forward-301511.SZ",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure",
+      "code": "301511.SZ",
+      "episode_id": "hypothetical-forward-301511.SZ",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure_atr",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure_atr",
+      "code": "301511.SZ",
+      "episode_id": "hypothetical-forward-301511.SZ",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "high",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "old_ma60_5",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "old_ma60_5",
+      "code": "300750.SZ",
+      "episode_id": "hypothetical-forward-300750.SZ",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "medium",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure",
+      "code": "300750.SZ",
+      "episode_id": "hypothetical-forward-300750.SZ",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "medium",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure_atr",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure_atr",
+      "code": "300750.SZ",
+      "episode_id": "hypothetical-forward-300750.SZ",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "medium",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "old_ma60_5",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "old_ma60_5",
+      "code": "601138.SH",
+      "episode_id": "hypothetical-forward-601138.SH",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "medium",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure",
+      "code": "601138.SH",
+      "episode_id": "hypothetical-forward-601138.SH",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "medium",
+      "regime": "other"
+    },
+    {
+      "signal_date": "2026-09-11",
+      "exit_rule": "structure_failure_atr",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 0,
+      "entry_fill": {
+        "status": "pending",
+        "reason": "no_later_verified_executable_open"
+      },
+      "status": "pending",
+      "group": "A",
+      "arm": "structure_failure_atr",
+      "code": "601138.SH",
+      "episode_id": "hypothetical-forward-601138.SH",
+      "entry_source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "medium",
+      "regime": "other"
+    }
+  ],
+  "folds": [],
+  "limitations": [
+    "no_survivorship_free_PIT_universe",
+    "fees_are_scenarios",
+    "no_automatic_promotion"
+  ],
+  "summary": {
+    "A": {
+      "old_ma60_5": {
+        "sample_count": 6,
+        "status_counts": {
+          "pending": 6
+        },
+        "mean_net_price_return": null,
+        "worst_trade_tail_loss": null,
+        "worst_close_drawdown": null,
+        "round_trips": 0,
+        "turnover_one_way_units": 0,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 6,
+        "post_exit_rally_mean": null,
+        "post_exit_rally_unknown": 6
+      },
+      "structure_failure": {
+        "sample_count": 6,
+        "status_counts": {
+          "pending": 6
+        },
+        "mean_net_price_return": null,
+        "worst_trade_tail_loss": null,
+        "worst_close_drawdown": null,
+        "round_trips": 0,
+        "turnover_one_way_units": 0,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 6,
+        "post_exit_rally_mean": null,
+        "post_exit_rally_unknown": 6
+      },
+      "structure_failure_atr": {
+        "sample_count": 6,
+        "status_counts": {
+          "pending": 6
+        },
+        "mean_net_price_return": null,
+        "worst_trade_tail_loss": null,
+        "worst_close_drawdown": null,
+        "round_trips": 0,
+        "turnover_one_way_units": 0,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 6,
+        "post_exit_rally_mean": null,
+        "post_exit_rally_unknown": 6
+      }
+    },
+    "B": {
+      "old_trigger": {
+        "sample_count": 0,
+        "status_counts": {},
+        "mean_net_price_return": null,
+        "worst_trade_tail_loss": null,
+        "worst_close_drawdown": null,
+        "round_trips": 0,
+        "turnover_one_way_units": 0,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 0,
+        "post_exit_rally_mean": null,
+        "post_exit_rally_unknown": 0
+      },
+      "breakout": {
+        "sample_count": 0,
+        "status_counts": {},
+        "mean_net_price_return": null,
+        "worst_trade_tail_loss": null,
+        "worst_close_drawdown": null,
+        "round_trips": 0,
+        "turnover_one_way_units": 0,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 0,
+        "post_exit_rally_mean": null,
+        "post_exit_rally_unknown": 0
+      },
+      "pullback": {
+        "sample_count": 0,
+        "status_counts": {},
+        "mean_net_price_return": null,
+        "worst_trade_tail_loss": null,
+        "worst_close_drawdown": null,
+        "round_trips": 0,
+        "turnover_one_way_units": 0,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 0,
+        "post_exit_rally_mean": null,
+        "post_exit_rally_unknown": 0
+      }
+    }
+  },
+  "strata": {
+    "A|old_ma60_5|market|CN": {
+      "sample_count": 6,
+      "status_counts": {
+        "pending": 6
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 6,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 6
+    },
+    "A|old_ma60_5|industry|unknown": {
+      "sample_count": 6,
+      "status_counts": {
+        "pending": 6
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 6,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 6
+    },
+    "A|old_ma60_5|volatility|high": {
+      "sample_count": 4,
+      "status_counts": {
+        "pending": 4
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 4,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 4
+    },
+    "A|old_ma60_5|regime|other": {
+      "sample_count": 6,
+      "status_counts": {
+        "pending": 6
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 6,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 6
+    },
+    "A|structure_failure|market|CN": {
+      "sample_count": 6,
+      "status_counts": {
+        "pending": 6
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 6,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 6
+    },
+    "A|structure_failure|industry|unknown": {
+      "sample_count": 6,
+      "status_counts": {
+        "pending": 6
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 6,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 6
+    },
+    "A|structure_failure|volatility|high": {
+      "sample_count": 4,
+      "status_counts": {
+        "pending": 4
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 4,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 4
+    },
+    "A|structure_failure|regime|other": {
+      "sample_count": 6,
+      "status_counts": {
+        "pending": 6
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 6,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 6
+    },
+    "A|structure_failure_atr|market|CN": {
+      "sample_count": 6,
+      "status_counts": {
+        "pending": 6
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 6,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 6
+    },
+    "A|structure_failure_atr|industry|unknown": {
+      "sample_count": 6,
+      "status_counts": {
+        "pending": 6
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 6,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 6
+    },
+    "A|structure_failure_atr|volatility|high": {
+      "sample_count": 4,
+      "status_counts": {
+        "pending": 4
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 4,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 4
+    },
+    "A|structure_failure_atr|regime|other": {
+      "sample_count": 6,
+      "status_counts": {
+        "pending": 6
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 6,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 6
+    },
+    "A|old_ma60_5|volatility|medium": {
+      "sample_count": 2,
+      "status_counts": {
+        "pending": 2
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 2,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 2
+    },
+    "A|structure_failure|volatility|medium": {
+      "sample_count": 2,
+      "status_counts": {
+        "pending": 2
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 2,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 2
+    },
+    "A|structure_failure_atr|volatility|medium": {
+      "sample_count": 2,
+      "status_counts": {
+        "pending": 2
+      },
+      "mean_net_price_return": null,
+      "worst_trade_tail_loss": null,
+      "worst_close_drawdown": null,
+      "round_trips": 0,
+      "turnover_one_way_units": 0,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 2,
+      "post_exit_rally_mean": null,
+      "post_exit_rally_unknown": 2
+    }
+  },
+  "status": "diagnostic_only_not_validated",
+  "input_bundle_sha256": "70f95b058737965509e6d9f26d2512f5b6dbdfc28186fb46c2db1d54ac73794b",
+  "frozen_entries": [
+    {
+      "id": "hypothetical-forward-001309.SZ",
+      "code": "001309.SZ",
+      "signal_date": "2026-09-11",
+      "source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "basis": "forward_monitor_hypothetical_NOT_user_entry_NOT_recommendation"
+    },
+    {
+      "id": "hypothetical-forward-603986.SH",
+      "code": "603986.SH",
+      "signal_date": "2026-09-11",
+      "source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "basis": "forward_monitor_hypothetical_NOT_user_entry_NOT_recommendation"
+    },
+    {
+      "id": "hypothetical-forward-688195.SH",
+      "code": "688195.SH",
+      "signal_date": "2026-09-11",
+      "source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "basis": "forward_monitor_hypothetical_NOT_user_entry_NOT_recommendation"
+    },
+    {
+      "id": "hypothetical-forward-301511.SZ",
+      "code": "301511.SZ",
+      "signal_date": "2026-09-11",
+      "source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "basis": "forward_monitor_hypothetical_NOT_user_entry_NOT_recommendation"
+    },
+    {
+      "id": "hypothetical-forward-300750.SZ",
+      "code": "300750.SZ",
+      "signal_date": "2026-09-11",
+      "source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "basis": "forward_monitor_hypothetical_NOT_user_entry_NOT_recommendation"
+    },
+    {
+      "id": "hypothetical-forward-601138.SH",
+      "code": "601138.SH",
+      "signal_date": "2026-09-11",
+      "source_hash": "c064ec931616edf01737c6bde72df80d1b09682f804ce43d0370a1eb24002c11",
+      "basis": "forward_monitor_hypothetical_NOT_user_entry_NOT_recommendation"
+    }
+  ],
+  "observation_source": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/result.json"
+}

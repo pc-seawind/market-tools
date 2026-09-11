@@ -1,0 +1,537 @@
+{
+  "source_kind": "real_current_readonly_collection",
+  "scope_epoch": "user-reset-20260911T120928Z",
+  "scope_codes": [
+    "001309.SZ",
+    "00700.HK",
+    "01810.HK",
+    "03690.HK",
+    "300750.SZ",
+    "301511.SZ",
+    "601138.SH",
+    "603986.SH",
+    "688195.SH"
+  ],
+  "asof": "2026-09-11T13:33:44.497610+00:00",
+  "started_at": "2026-09-11T13:33:43.496837+00:00",
+  "panels": [
+    {
+      "code": "001309.SZ",
+      "name": "德明利",
+      "market": "CN",
+      "sessions": [],
+      "calendar_verified": false,
+      "expected_date": null,
+      "bars": [],
+      "adjustment": "unknown",
+      "basis_id": null,
+      "benchmarks": {},
+      "channel": "TREND",
+      "collection_error": "daily_failed_exit_3",
+      "fetched_at": "2026-09-11T13:33:43.767770+00:00"
+    },
+    {
+      "code": "603986.SH",
+      "name": "兆易创新",
+      "market": "CN",
+      "sessions": [],
+      "calendar_verified": false,
+      "expected_date": null,
+      "bars": [],
+      "adjustment": "unknown",
+      "basis_id": null,
+      "benchmarks": {},
+      "channel": "TREND",
+      "collection_error": "daily_failed_exit_3",
+      "fetched_at": "2026-09-11T13:33:43.821012+00:00"
+    },
+    {
+      "code": "688195.SH",
+      "name": "腾景科技",
+      "market": "CN",
+      "sessions": [],
+      "calendar_verified": false,
+      "expected_date": null,
+      "bars": [],
+      "adjustment": "unknown",
+      "basis_id": null,
+      "benchmarks": {},
+      "channel": "TREND",
+      "collection_error": "daily_failed_exit_3",
+      "fetched_at": "2026-09-11T13:33:43.874654+00:00"
+    },
+    {
+      "code": "301511.SZ",
+      "name": "德福科技",
+      "market": "CN",
+      "sessions": [],
+      "calendar_verified": false,
+      "expected_date": null,
+      "bars": [],
+      "adjustment": "unknown",
+      "basis_id": null,
+      "benchmarks": {},
+      "channel": "TREND",
+      "collection_error": "daily_failed_exit_3",
+      "fetched_at": "2026-09-11T13:33:43.928719+00:00"
+    },
+    {
+      "code": "300750.SZ",
+      "name": "宁德时代",
+      "market": "CN",
+      "sessions": [],
+      "calendar_verified": false,
+      "expected_date": null,
+      "bars": [],
+      "adjustment": "unknown",
+      "basis_id": null,
+      "benchmarks": {},
+      "channel": "TREND",
+      "collection_error": "daily_failed_exit_3",
+      "fetched_at": "2026-09-11T13:33:43.982386+00:00"
+    },
+    {
+      "code": "601138.SH",
+      "name": "工业富联",
+      "market": "CN",
+      "sessions": [],
+      "calendar_verified": false,
+      "expected_date": null,
+      "bars": [],
+      "adjustment": "unknown",
+      "basis_id": null,
+      "benchmarks": {},
+      "channel": "TREND",
+      "collection_error": "daily_failed_exit_3",
+      "fetched_at": "2026-09-11T13:33:44.035733+00:00"
+    },
+    {
+      "code": "01810.HK",
+      "name": "小米集团",
+      "market": "HK",
+      "sessions": [],
+      "calendar_verified": false,
+      "expected_date": null,
+      "bars": [],
+      "adjustment": "unknown",
+      "basis_id": null,
+      "benchmarks": {},
+      "channel": "TREND",
+      "data_gap": "HK_factor_anchor_and_industry_benchmark_unknown_no_risk_price",
+      "fetched_at": "2026-09-11T13:33:44.219474+00:00"
+    },
+    {
+      "code": "03690.HK",
+      "name": "美团",
+      "market": "HK",
+      "sessions": [],
+      "calendar_verified": false,
+      "expected_date": null,
+      "bars": [],
+      "adjustment": "unknown",
+      "basis_id": null,
+      "benchmarks": {},
+      "channel": "TREND",
+      "data_gap": "HK_factor_anchor_and_industry_benchmark_unknown_no_risk_price",
+      "fetched_at": "2026-09-11T13:33:44.336856+00:00"
+    },
+    {
+      "code": "00700.HK",
+      "name": "腾讯控股",
+      "market": "HK",
+      "sessions": [],
+      "calendar_verified": false,
+      "expected_date": null,
+      "bars": [],
+      "adjustment": "unknown",
+      "basis_id": null,
+      "benchmarks": {},
+      "channel": "TREND",
+      "data_gap": "HK_factor_anchor_and_industry_benchmark_unknown_no_risk_price",
+      "fetched_at": "2026-09-11T13:33:44.497570+00:00"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "trade_cal-b0f58defa5c4.csv",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/trade_cal-b0f58defa5c4.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "api": "trade_cal",
+      "params": {
+        "start_date": "20251225",
+        "end_date": "20260911",
+        "exchange": "SSE"
+      },
+      "fetched_at": "2026-09-11T13:33:43.552875+00:00",
+      "representation": "exact_provider_CLI_stdout_bytes_not_HTTP_body",
+      "returncode": 3
+    },
+    {
+      "name": "hk_tradecal-796b1e7d630c.csv",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/hk_tradecal-796b1e7d630c.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "api": "hk_tradecal",
+      "params": {
+        "start_date": "20251225",
+        "end_date": "20260911"
+      },
+      "fetched_at": "2026-09-11T13:33:43.607241+00:00",
+      "representation": "exact_provider_CLI_stdout_bytes_not_HTTP_body",
+      "returncode": 3
+    },
+    {
+      "name": "us_tradecal-796b1e7d630c.csv",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/us_tradecal-796b1e7d630c.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "api": "us_tradecal",
+      "params": {
+        "start_date": "20251225",
+        "end_date": "20260911"
+      },
+      "fetched_at": "2026-09-11T13:33:43.661253+00:00",
+      "representation": "exact_provider_CLI_stdout_bytes_not_HTTP_body",
+      "returncode": 3
+    },
+    {
+      "name": "index_daily-b03c46b153fe.csv",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/index_daily-b03c46b153fe.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "api": "index_daily",
+      "params": {
+        "ts_code": "000300.SH",
+        "start_date": "20251225",
+        "end_date": "20260911"
+      },
+      "fetched_at": "2026-09-11T13:33:43.714103+00:00",
+      "representation": "exact_provider_CLI_stdout_bytes_not_HTTP_body",
+      "returncode": 3
+    },
+    {
+      "name": "daily-22534f427434.csv",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/daily-22534f427434.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "api": "daily",
+      "params": {
+        "ts_code": "001309.SZ",
+        "start_date": "20251225",
+        "end_date": "20260911"
+      },
+      "fetched_at": "2026-09-11T13:33:43.767598+00:00",
+      "representation": "exact_provider_CLI_stdout_bytes_not_HTTP_body",
+      "returncode": 3
+    },
+    {
+      "name": "daily-e6d4cbac918e.csv",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/daily-e6d4cbac918e.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "api": "daily",
+      "params": {
+        "ts_code": "603986.SH",
+        "start_date": "20251225",
+        "end_date": "20260911"
+      },
+      "fetched_at": "2026-09-11T13:33:43.820851+00:00",
+      "representation": "exact_provider_CLI_stdout_bytes_not_HTTP_body",
+      "returncode": 3
+    },
+    {
+      "name": "daily-6f7571f0a431.csv",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/daily-6f7571f0a431.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "api": "daily",
+      "params": {
+        "ts_code": "688195.SH",
+        "start_date": "20251225",
+        "end_date": "20260911"
+      },
+      "fetched_at": "2026-09-11T13:33:43.874464+00:00",
+      "representation": "exact_provider_CLI_stdout_bytes_not_HTTP_body",
+      "returncode": 3
+    },
+    {
+      "name": "daily-6cdcc25bfd3c.csv",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/daily-6cdcc25bfd3c.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "api": "daily",
+      "params": {
+        "ts_code": "301511.SZ",
+        "start_date": "20251225",
+        "end_date": "20260911"
+      },
+      "fetched_at": "2026-09-11T13:33:43.928538+00:00",
+      "representation": "exact_provider_CLI_stdout_bytes_not_HTTP_body",
+      "returncode": 3
+    },
+    {
+      "name": "daily-442a3ec8db37.csv",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/daily-442a3ec8db37.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "api": "daily",
+      "params": {
+        "ts_code": "300750.SZ",
+        "start_date": "20251225",
+        "end_date": "20260911"
+      },
+      "fetched_at": "2026-09-11T13:33:43.982219+00:00",
+      "representation": "exact_provider_CLI_stdout_bytes_not_HTTP_body",
+      "returncode": 3
+    },
+    {
+      "name": "daily-7cc2dd6c93ce.csv",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/daily-7cc2dd6c93ce.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "api": "daily",
+      "params": {
+        "ts_code": "601138.SH",
+        "start_date": "20251225",
+        "end_date": "20260911"
+      },
+      "fetched_at": "2026-09-11T13:33:44.035556+00:00",
+      "representation": "exact_provider_CLI_stdout_bytes_not_HTTP_body",
+      "returncode": 3
+    },
+    {
+      "name": "01810.HK.http.json",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/01810.HK.http.json",
+      "sha256": "511df0456bed48bbf2f1a86d1170bbd8f9ae4adaf801e6d93be185121789694b",
+      "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk01810,day,,,150,qfq",
+      "fetched_at": "2026-09-11T13:33:44.218718+00:00",
+      "representation": "exact_HTTP_body"
+    },
+    {
+      "name": "03690.HK.http.json",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/03690.HK.http.json",
+      "sha256": "0d81d39e5c3ada730152c4d365759fdea36490c8acdc9b27454a7dc39b6e9e58",
+      "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk03690,day,,,150,qfq",
+      "fetched_at": "2026-09-11T13:33:44.336046+00:00",
+      "representation": "exact_HTTP_body"
+    },
+    {
+      "name": "00700.HK.http.json",
+      "path": "/home/emox/work/projects/market-tools/reports/timing-upgrade-20260911/real-input/00700.HK.http.json",
+      "sha256": "ae5e3dd3bb781d92b3795ce936962c02f2bb29342d9a7b5b5d05aabb8a973e59",
+      "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00700,day,,,150,qfq",
+      "fetched_at": "2026-09-11T13:33:44.496835+00:00",
+      "representation": "exact_HTTP_body"
+    }
+  ],
+  "errors": [
+    {
+      "market": "CN",
+      "calendar": "trade_cal_failed_exit_3"
+    },
+    {
+      "market": "HK",
+      "calendar": "hk_tradecal_failed_exit_3"
+    },
+    {
+      "market": "US",
+      "calendar": "us_tradecal_failed_exit_3"
+    },
+    {
+      "broad_CN": "index_daily_failed_exit_3"
+    },
+    {
+      "code": "001309.SZ",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "603986.SH",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "688195.SH",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "301511.SZ",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "300750.SZ",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "601138.SH",
+      "error": "daily_failed_exit_3"
+    }
+  ],
+  "markets": {
+    "CN": {
+      "sessions": [],
+      "verified": false,
+      "error": "trade_cal_failed_exit_3"
+    },
+    "HK": {
+      "sessions": [],
+      "verified": false,
+      "error": "hk_tradecal_failed_exit_3"
+    },
+    "US": {
+      "sessions": [],
+      "verified": false,
+      "error": "us_tradecal_failed_exit_3"
+    }
+  },
+  "entry_episodes": [],
+  "contract_hash": "6b2fce1c4bd4ec8a65ccd77e7c7070a039a78e69c1230c71a19a347658bfbc4f",
+  "protected_before": {
+    "/home/emox/work/investment/reference/tracking-scope.json": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+    "/home/emox/work/projects/market-tools/watchlist.yaml": "946d3877e43ba6edbdc77943c601193b9cf134e3178cdf87c743d4dc41ca1894",
+    "/home/emox/work/projects/market-tools/watchlist_changes.jsonl": "d7d434e121ac12be79eedd8e25efb3c47cf812aeafc1061746f10f0ce7242d95",
+    "/home/emox/work/projects/market-tools/recommendations.jsonl": "985b766990eeaf8ae7fd6d7c3527c9335ea2d571e628aa42be4a464f51f795eb",
+    "/home/emox/work/investment/thesis/_bootstrap_state.yaml": "77d9c58445f8fa4322eea616a64a104976a6959a5f3b1955933eca78dbfe1c7c",
+    "/home/emox/work/investment/thesis/002353.SZ.yaml": "908cd2bbe147eea9a1e7e36cdf4fb497295729140f1fa884377c587d33bd5d8b",
+    "/home/emox/work/investment/thesis/000988.SZ.yaml": "626ba10d645569abea5672bd8346f5571af5535ec6ed6ade8e7063d9596022e1",
+    "/home/emox/work/investment/thesis/002475.SZ.yaml": "476e271c4cd214b76d0e6e5effd2db831dd47166a0de2d9c2daa404fab98e665",
+    "/home/emox/work/investment/thesis/00700.HK.yaml": "aea3d0502aa30ea9a83eb0a8d4a8a718f1483591baa8d7e106abd835e58430ff",
+    "/home/emox/work/investment/thesis/300502.SZ.yaml": "e342737e6ccf8e2bed07dd43fb68de4f2a77cd21d333ef339af5dea0ffb4cf13",
+    "/home/emox/work/investment/thesis/688256.SH.yaml": "f9c59c42c444e39e58d94769358c8ba16e51cf8f4a0d70bf4d3b55e1f45accd7",
+    "/home/emox/work/investment/thesis/002837.SZ.yaml": "256facbea01265c9e9dad6d3bdb2daf054fa2231fe9d6aa6da7f3e674fafd357",
+    "/home/emox/work/investment/thesis/002371.SZ.yaml": "fe5f681d4dae602ce1d360e62587d88016291725424b551dd77db952db51f831",
+    "/home/emox/work/investment/thesis/300476.SZ.yaml": "c423051d201b69a3923f61b19b7e71500354a8270ee9f387e364c04b4651d4b7",
+    "/home/emox/work/investment/thesis/601138.SH.yaml": "de05152cee68a2c7238cbe900754e001a9bdcadf18c375711cd9a96865edf51d",
+    "/home/emox/work/investment/thesis/301308.SZ.yaml": "32dfb8438fb3b3c6357fee629384a6dc39d5eb3729ba97c79f23eb4ccd94b365",
+    "/home/emox/work/investment/thesis/600036.SH.yaml": "d6a9ec27f117f9cf171e5ad60bacdc080019f263fed80d5fbc141e1d79b88bc4",
+    "/home/emox/work/investment/thesis/688041.SH.yaml": "497a8cbb69a46f412e398d78f05cee5b5ab4f5f43b334a1dd7ac8adc21433ecf",
+    "/home/emox/work/investment/thesis/603444.SH.yaml": "90570c025eb599610bbc7b145b49af8e9a16f945124f8af5147268c121e5e99b",
+    "/home/emox/work/investment/thesis/603256.SH.yaml": "c7e3a0c7abfb1c8f52893dd006251a503c8af33f6ac80a311a4b705a47de5f39",
+    "/home/emox/work/investment/thesis/300757.SZ.yaml": "3f2f0040a2c95db8bebed2fc74d15eebda09680b8cf4ab092f8d1e9b70ef8db2",
+    "/home/emox/work/investment/thesis/601869.SH.yaml": "b91dca7927deae5e1921cff01eb7852bd567027866239bf291f4caa1079eff77",
+    "/home/emox/work/investment/thesis/001896.SZ.yaml": "188d46bd2d956a15a180bdc30ab4d6635f4520e8caeed8996106290d9be495b9",
+    "/home/emox/work/investment/thesis/688008.SH.yaml": "7f47604cfb9d83684c11c20b2bf1093e0bf524b4ace5568f4198141f177a883f",
+    "/home/emox/work/investment/thesis/600519.SH.yaml": "7e6df0138a9634eb54ddd4aee5e243fcfa4e7988fd34353a6806f07d82d31e85",
+    "/home/emox/work/investment/thesis/601126.SH.yaml": "6dbd1d224f7dc781a8aad86f3df9cfed0f0266a17b175e5a8fe3913cb89d8883",
+    "/home/emox/work/investment/thesis/688498.SH.yaml": "430183fa698a89635fd6af5c2174f66f7d66be6c9b85946de37b6a26ce089f3c",
+    "/home/emox/work/investment/thesis/688126.SH.yaml": "21d0e09102bf0081465aa6577c2d1cde1f5886bed7cf045194ee57c6f030e196",
+    "/home/emox/work/investment/thesis/601688.SH.yaml": "210a529f8b65a47d5379b84db160b230ae276f8924c8f04eb6d025106dbe9de7",
+    "/home/emox/work/investment/thesis/300014.SZ.yaml": "a83af0e3ee6e816f5b9d2d708198f2f21f943c4043f41a58d8a9f5af4f09a054",
+    "/home/emox/work/investment/thesis/01810.HK.yaml": "dd162c24b466532332e8ba1da7fc7f93480b0e1534ba8c7e6be5e432e4684c9d",
+    "/home/emox/work/investment/thesis/300394.SZ.yaml": "64b60b8890fcae73f0d7d0271cf0d06110971d0e9949689230d49a3e24aa06ec",
+    "/home/emox/work/investment/thesis/002281.SZ.yaml": "03a8a426a5d8ff310c4f47f0ad898079445d77379cfaca8a047d5c2d8434fd47",
+    "/home/emox/work/investment/thesis/601208.SH.yaml": "9fcfb6128bed05e463978aab4d7775d97b246c2c59bd2762eeb07adf85f2f5a7",
+    "/home/emox/work/investment/thesis/688195.SH.yaml": "add1f2df8f93576179ffee49b2e7adfc18bac5d882d1d2cf6c2cb87d02040041",
+    "/home/emox/work/investment/thesis/300308.SZ.yaml": "44cae4f05ba37f94a8a6d484ed77b63e5683b51df235f0e15c8f2417cdf068fb",
+    "/home/emox/work/investment/thesis/002594.SZ.yaml": "64adf07c6c8de91b0fa61554e503fdf9b0e7e2436d471ba68cb2c2a3d906a576",
+    "/home/emox/work/investment/thesis/301511.SZ.yaml": "417d16ea1e5c32500d80cebaae6b36d3ece89d0e059e0a97125638d2d4dcc728",
+    "/home/emox/work/investment/thesis/600110.SH.yaml": "3920a676c2385fb957466344db3c2f88efa2fb07e2f4e9328b566cea5d6fd82e",
+    "/home/emox/work/investment/thesis/03690.HK.yaml": "f5b8f82b10f910ef896398b88b665dfaae383877984007ee5ff3fce550156554",
+    "/home/emox/work/investment/thesis/688012.SH.yaml": "63068bfbe9fda929c80fe249fe36184edcde6c88c9e04a1f91da01b16fae8df6",
+    "/home/emox/work/investment/thesis/688521.SH.yaml": "6b91102c74ecbb06ba7f9f468aa448b345e41336c3ae33a15e6077a0063de2e7",
+    "/home/emox/work/investment/thesis/002364.SZ.yaml": "3ee41f112678d74c779adbff01f70b6d4aa8d8e456d3061b1934970708940efb",
+    "/home/emox/work/investment/thesis/688048.SH.yaml": "b377cebc45910f39cf5c2977b5dfc1f3a951efe820d82515617aab2942b69077",
+    "/home/emox/work/investment/thesis/300442.SZ.yaml": "60e4acdc83ff31e3f9b1c61f3cf38b7814fd1f8cdf9e8abe9a55038ef9c800f0",
+    "/home/emox/work/investment/thesis/603986.SH.yaml": "96ff9f9d4020da5d35ccb969f1842aa14f866e113ca4ccde025caaec8a002f16",
+    "/home/emox/work/investment/thesis/300750.SZ.yaml": "f4e49472c07980196768b57a94af18bf2b983c0afb3519215509f8c1e6c22b27",
+    "/home/emox/work/investment/thesis/001309.SZ.yaml": "163e1ca8815929dedaf193dd64895a94e833efd417cdc35b37c5653155f5d104",
+    "/home/emox/work/projects/market-tools/watchlist/applied/2026-05-25.yaml": "979db995d34e1bfe8fdce7cd3d5266648d6c4d65c0a1995075d59fbfca8f4eaf",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/user-reset-20260911T120928Z.yaml": "dc5a2dafc62d35fef7f6535b92495f464c4f86f863fc56aef36a61763bebb76e",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-07-19-decay.yaml": "c4e0ec385578cace7c64ca7e97d85f4ab9d6a38047408c0366dbfb1f92e128fb",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/README.md": "05865e96bfd478612024463294b1432809786e9efddfd68462ab6069a8a295e7",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-05-31-decay.yaml": "2915548894f697d43e2a0b5462e281e4cf6c86c494840c2d718cd70054ecae94",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-06-21-decay.yaml": "9131a121e845d4b43655c3d07ad547a3c548e52ab79dd149ce9d227247220e06",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-09-07-decay.yaml": "ac00d5882179f3287de100e4d26866d4950b8f3d3618e54ba55d8e1c4c93aef1",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-07-26-decay.yaml": "ca42f0a49107717d25dbc226fc0518400b7b4f4e1c0ed5c1cef86edeaf0c5544",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-08-16-decay.yaml": "26a36f28b9aa47723665307c853f13c0bc6b7ce60832656046a7f98d3b2ff728",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-06-14-decay.yaml": "8798963c9a8d0b71addf97a5817a268e71505a50a00980e955191d2ca23d7042",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-08-23-decay.yaml": "95c81c5f0681a65c72e6aa548a6735d9f65c38473d2a750adf7fb7961aefdac2",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-08-09-decay.yaml": "fae04f8e312455b7cb4488cfa593dfeda6857c5adee27d40c6c6e4bc930e7021",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-07-12-decay.yaml": "c68d262e4a62a911458bd194f5733dfa7c386507b87df3552e55246ad0115542",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-07-05-decay.yaml": "882af9817de4878cc255d047a4cae3b65e9b79af29df42a7372b9355f9482a5d",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-06-07-decay.yaml": "383f436672e96bf2fb8e02702cc08a574643e328c26b1dec8b5b88678b2ca01b",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-08-02-decay.yaml": "a251c5692b727979e5cc8f80c722e22279842272a8964d895c9f48b75ee853f2",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-08-30-decay.yaml": "4fd99d8c52624e474ac3cf40cbf3b397cf2d6d6c91dc18992aabbe964c973a97",
+    "/home/emox/work/projects/market-tools/watchlist/proposed-archive/user-reset-20260911T120928Z/2026-05-20.yaml": "69a5d3825501337a5d9e27447f2c6792915386d61bbb6f3cef68dd332a485502",
+    "/home/emox/work/projects/market-tools/watchlist/proposed-archive/user-reset-20260911T120928Z/2026-05-13.yaml": "81b5156eef42ca3690776fcd032a016421e7a8982d8bcfc99d18048b5a37146f",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/plans.db-wal": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/plans.db-shm": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/plans.db": "578f19063dcfa0002c877da0181fc3804fe7d035b7c6ef0aa1ee150efed5ea2c",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-result-20260911/forward-cohort.json": "9505e16d1c6ebfe7c0d7e20ccbb594dddff814ac1363f894ebd8685d418fe502",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T231602827684Z-morning/forward-cohort.json": "ce06da8e0be338dfb9ad647cf69cc015ecb055d470f8c16c6c638993dd09257a",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T213214185283Z-morning/forward-cohort.json": "30e12e3643a2879a69cf80eae43e8a5e6c7163392b3e40bf361989fb9d9716f0",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T215149232799Z-morning/forward-cohort.json": "a6229a0aa551462ba31d2d67d1d09a4dcca4328ed54dee3d0a17d4cd7171ed9c",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T213453549663Z-morning/forward-cohort.json": "b71f351e9d5bc97eb39c30bf85c47973c836e204faa1f7098991af73232bafc5",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T214833059072Z-morning/forward-cohort.json": "a20bf5a9f4240c4d6eea306772b315bb17ab367603da1b55d9f21b5c89f336a1"
+  },
+  "protected_after": {
+    "/home/emox/work/investment/reference/tracking-scope.json": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+    "/home/emox/work/projects/market-tools/watchlist.yaml": "946d3877e43ba6edbdc77943c601193b9cf134e3178cdf87c743d4dc41ca1894",
+    "/home/emox/work/projects/market-tools/watchlist_changes.jsonl": "d7d434e121ac12be79eedd8e25efb3c47cf812aeafc1061746f10f0ce7242d95",
+    "/home/emox/work/projects/market-tools/recommendations.jsonl": "985b766990eeaf8ae7fd6d7c3527c9335ea2d571e628aa42be4a464f51f795eb",
+    "/home/emox/work/investment/thesis/_bootstrap_state.yaml": "77d9c58445f8fa4322eea616a64a104976a6959a5f3b1955933eca78dbfe1c7c",
+    "/home/emox/work/investment/thesis/002353.SZ.yaml": "908cd2bbe147eea9a1e7e36cdf4fb497295729140f1fa884377c587d33bd5d8b",
+    "/home/emox/work/investment/thesis/000988.SZ.yaml": "626ba10d645569abea5672bd8346f5571af5535ec6ed6ade8e7063d9596022e1",
+    "/home/emox/work/investment/thesis/002475.SZ.yaml": "476e271c4cd214b76d0e6e5effd2db831dd47166a0de2d9c2daa404fab98e665",
+    "/home/emox/work/investment/thesis/00700.HK.yaml": "aea3d0502aa30ea9a83eb0a8d4a8a718f1483591baa8d7e106abd835e58430ff",
+    "/home/emox/work/investment/thesis/300502.SZ.yaml": "e342737e6ccf8e2bed07dd43fb68de4f2a77cd21d333ef339af5dea0ffb4cf13",
+    "/home/emox/work/investment/thesis/688256.SH.yaml": "f9c59c42c444e39e58d94769358c8ba16e51cf8f4a0d70bf4d3b55e1f45accd7",
+    "/home/emox/work/investment/thesis/002837.SZ.yaml": "256facbea01265c9e9dad6d3bdb2daf054fa2231fe9d6aa6da7f3e674fafd357",
+    "/home/emox/work/investment/thesis/002371.SZ.yaml": "fe5f681d4dae602ce1d360e62587d88016291725424b551dd77db952db51f831",
+    "/home/emox/work/investment/thesis/300476.SZ.yaml": "c423051d201b69a3923f61b19b7e71500354a8270ee9f387e364c04b4651d4b7",
+    "/home/emox/work/investment/thesis/601138.SH.yaml": "de05152cee68a2c7238cbe900754e001a9bdcadf18c375711cd9a96865edf51d",
+    "/home/emox/work/investment/thesis/301308.SZ.yaml": "32dfb8438fb3b3c6357fee629384a6dc39d5eb3729ba97c79f23eb4ccd94b365",
+    "/home/emox/work/investment/thesis/600036.SH.yaml": "d6a9ec27f117f9cf171e5ad60bacdc080019f263fed80d5fbc141e1d79b88bc4",
+    "/home/emox/work/investment/thesis/688041.SH.yaml": "497a8cbb69a46f412e398d78f05cee5b5ab4f5f43b334a1dd7ac8adc21433ecf",
+    "/home/emox/work/investment/thesis/603444.SH.yaml": "90570c025eb599610bbc7b145b49af8e9a16f945124f8af5147268c121e5e99b",
+    "/home/emox/work/investment/thesis/603256.SH.yaml": "c7e3a0c7abfb1c8f52893dd006251a503c8af33f6ac80a311a4b705a47de5f39",
+    "/home/emox/work/investment/thesis/300757.SZ.yaml": "3f2f0040a2c95db8bebed2fc74d15eebda09680b8cf4ab092f8d1e9b70ef8db2",
+    "/home/emox/work/investment/thesis/601869.SH.yaml": "b91dca7927deae5e1921cff01eb7852bd567027866239bf291f4caa1079eff77",
+    "/home/emox/work/investment/thesis/001896.SZ.yaml": "188d46bd2d956a15a180bdc30ab4d6635f4520e8caeed8996106290d9be495b9",
+    "/home/emox/work/investment/thesis/688008.SH.yaml": "7f47604cfb9d83684c11c20b2bf1093e0bf524b4ace5568f4198141f177a883f",
+    "/home/emox/work/investment/thesis/600519.SH.yaml": "7e6df0138a9634eb54ddd4aee5e243fcfa4e7988fd34353a6806f07d82d31e85",
+    "/home/emox/work/investment/thesis/601126.SH.yaml": "6dbd1d224f7dc781a8aad86f3df9cfed0f0266a17b175e5a8fe3913cb89d8883",
+    "/home/emox/work/investment/thesis/688498.SH.yaml": "430183fa698a89635fd6af5c2174f66f7d66be6c9b85946de37b6a26ce089f3c",
+    "/home/emox/work/investment/thesis/688126.SH.yaml": "21d0e09102bf0081465aa6577c2d1cde1f5886bed7cf045194ee57c6f030e196",
+    "/home/emox/work/investment/thesis/601688.SH.yaml": "210a529f8b65a47d5379b84db160b230ae276f8924c8f04eb6d025106dbe9de7",
+    "/home/emox/work/investment/thesis/300014.SZ.yaml": "a83af0e3ee6e816f5b9d2d708198f2f21f943c4043f41a58d8a9f5af4f09a054",
+    "/home/emox/work/investment/thesis/01810.HK.yaml": "dd162c24b466532332e8ba1da7fc7f93480b0e1534ba8c7e6be5e432e4684c9d",
+    "/home/emox/work/investment/thesis/300394.SZ.yaml": "64b60b8890fcae73f0d7d0271cf0d06110971d0e9949689230d49a3e24aa06ec",
+    "/home/emox/work/investment/thesis/002281.SZ.yaml": "03a8a426a5d8ff310c4f47f0ad898079445d77379cfaca8a047d5c2d8434fd47",
+    "/home/emox/work/investment/thesis/601208.SH.yaml": "9fcfb6128bed05e463978aab4d7775d97b246c2c59bd2762eeb07adf85f2f5a7",
+    "/home/emox/work/investment/thesis/688195.SH.yaml": "add1f2df8f93576179ffee49b2e7adfc18bac5d882d1d2cf6c2cb87d02040041",
+    "/home/emox/work/investment/thesis/300308.SZ.yaml": "44cae4f05ba37f94a8a6d484ed77b63e5683b51df235f0e15c8f2417cdf068fb",
+    "/home/emox/work/investment/thesis/002594.SZ.yaml": "64adf07c6c8de91b0fa61554e503fdf9b0e7e2436d471ba68cb2c2a3d906a576",
+    "/home/emox/work/investment/thesis/301511.SZ.yaml": "417d16ea1e5c32500d80cebaae6b36d3ece89d0e059e0a97125638d2d4dcc728",
+    "/home/emox/work/investment/thesis/600110.SH.yaml": "3920a676c2385fb957466344db3c2f88efa2fb07e2f4e9328b566cea5d6fd82e",
+    "/home/emox/work/investment/thesis/03690.HK.yaml": "f5b8f82b10f910ef896398b88b665dfaae383877984007ee5ff3fce550156554",
+    "/home/emox/work/investment/thesis/688012.SH.yaml": "63068bfbe9fda929c80fe249fe36184edcde6c88c9e04a1f91da01b16fae8df6",
+    "/home/emox/work/investment/thesis/688521.SH.yaml": "6b91102c74ecbb06ba7f9f468aa448b345e41336c3ae33a15e6077a0063de2e7",
+    "/home/emox/work/investment/thesis/002364.SZ.yaml": "3ee41f112678d74c779adbff01f70b6d4aa8d8e456d3061b1934970708940efb",
+    "/home/emox/work/investment/thesis/688048.SH.yaml": "b377cebc45910f39cf5c2977b5dfc1f3a951efe820d82515617aab2942b69077",
+    "/home/emox/work/investment/thesis/300442.SZ.yaml": "60e4acdc83ff31e3f9b1c61f3cf38b7814fd1f8cdf9e8abe9a55038ef9c800f0",
+    "/home/emox/work/investment/thesis/603986.SH.yaml": "96ff9f9d4020da5d35ccb969f1842aa14f866e113ca4ccde025caaec8a002f16",
+    "/home/emox/work/investment/thesis/300750.SZ.yaml": "f4e49472c07980196768b57a94af18bf2b983c0afb3519215509f8c1e6c22b27",
+    "/home/emox/work/investment/thesis/001309.SZ.yaml": "163e1ca8815929dedaf193dd64895a94e833efd417cdc35b37c5653155f5d104",
+    "/home/emox/work/projects/market-tools/watchlist/applied/2026-05-25.yaml": "979db995d34e1bfe8fdce7cd3d5266648d6c4d65c0a1995075d59fbfca8f4eaf",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/user-reset-20260911T120928Z.yaml": "dc5a2dafc62d35fef7f6535b92495f464c4f86f863fc56aef36a61763bebb76e",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-07-19-decay.yaml": "c4e0ec385578cace7c64ca7e97d85f4ab9d6a38047408c0366dbfb1f92e128fb",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/README.md": "05865e96bfd478612024463294b1432809786e9efddfd68462ab6069a8a295e7",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-05-31-decay.yaml": "2915548894f697d43e2a0b5462e281e4cf6c86c494840c2d718cd70054ecae94",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-06-21-decay.yaml": "9131a121e845d4b43655c3d07ad547a3c548e52ab79dd149ce9d227247220e06",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-09-07-decay.yaml": "ac00d5882179f3287de100e4d26866d4950b8f3d3618e54ba55d8e1c4c93aef1",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-07-26-decay.yaml": "ca42f0a49107717d25dbc226fc0518400b7b4f4e1c0ed5c1cef86edeaf0c5544",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-08-16-decay.yaml": "26a36f28b9aa47723665307c853f13c0bc6b7ce60832656046a7f98d3b2ff728",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-06-14-decay.yaml": "8798963c9a8d0b71addf97a5817a268e71505a50a00980e955191d2ca23d7042",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-08-23-decay.yaml": "95c81c5f0681a65c72e6aa548a6735d9f65c38473d2a750adf7fb7961aefdac2",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-08-09-decay.yaml": "fae04f8e312455b7cb4488cfa593dfeda6857c5adee27d40c6c6e4bc930e7021",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-07-12-decay.yaml": "c68d262e4a62a911458bd194f5733dfa7c386507b87df3552e55246ad0115542",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-07-05-decay.yaml": "882af9817de4878cc255d047a4cae3b65e9b79af29df42a7372b9355f9482a5d",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-06-07-decay.yaml": "383f436672e96bf2fb8e02702cc08a574643e328c26b1dec8b5b88678b2ca01b",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-08-02-decay.yaml": "a251c5692b727979e5cc8f80c722e22279842272a8964d895c9f48b75ee853f2",
+    "/home/emox/work/projects/market-tools/watchlist/proposed/_rejected/2026-08-30-decay.yaml": "4fd99d8c52624e474ac3cf40cbf3b397cf2d6d6c91dc18992aabbe964c973a97",
+    "/home/emox/work/projects/market-tools/watchlist/proposed-archive/user-reset-20260911T120928Z/2026-05-20.yaml": "69a5d3825501337a5d9e27447f2c6792915386d61bbb6f3cef68dd332a485502",
+    "/home/emox/work/projects/market-tools/watchlist/proposed-archive/user-reset-20260911T120928Z/2026-05-13.yaml": "81b5156eef42ca3690776fcd032a016421e7a8982d8bcfc99d18048b5a37146f",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/plans.db-wal": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/plans.db-shm": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/plans.db": "578f19063dcfa0002c877da0181fc3804fe7d035b7c6ef0aa1ee150efed5ea2c",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-result-20260911/forward-cohort.json": "9505e16d1c6ebfe7c0d7e20ccbb594dddff814ac1363f894ebd8685d418fe502",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T231602827684Z-morning/forward-cohort.json": "ce06da8e0be338dfb9ad647cf69cc015ecb055d470f8c16c6c638993dd09257a",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T213214185283Z-morning/forward-cohort.json": "30e12e3643a2879a69cf80eae43e8a5e6c7163392b3e40bf361989fb9d9716f0",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T215149232799Z-morning/forward-cohort.json": "a6229a0aa551462ba31d2d67d1d09a4dcca4328ed54dee3d0a17d4cd7171ed9c",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T213453549663Z-morning/forward-cohort.json": "b71f351e9d5bc97eb39c30bf85c47973c836e204faa1f7098991af73232bafc5",
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T214833059072Z-morning/forward-cohort.json": "a20bf5a9f4240c4d6eea306772b315bb17ab367603da1b55d9f21b5c89f336a1"
+  },
+  "protected_unchanged": true
+}

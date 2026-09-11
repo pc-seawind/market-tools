@@ -1,0 +1,446 @@
+{
+  "asof": "2026-09-11",
+  "cutoff_at": "2026-09-11T13:47:19.276843+00:00",
+  "cutoff_exclusive": false,
+  "timezone": "Asia/Shanghai",
+  "status": "partial",
+  "anomalies": {
+    "unfinished_runs": [
+      {
+        "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/manifest.json",
+        "status": "partial"
+      },
+      {
+        "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/manifest.json",
+        "status": "partial"
+      },
+      {
+        "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+        "status": "partial"
+      }
+    ],
+    "material_gaps": [],
+    "integrity_errors": [],
+    "time_errors": [],
+    "coverage_gaps": [],
+    "coverage_unverified": true
+  },
+  "integrity_errors": [],
+  "current_epoch": "user-reset-20260911T120928Z",
+  "run_count": 3,
+  "events": [
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "603986.SH:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:0fb0ba148e99df9c3d812555",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "001309.SZ:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:1986425a58ac96110027cec7",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "688195.SH:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:339818dfccc901d03584c35d",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "300750.SZ:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:4945e4fd08227966b3d89805",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "601138.SH:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:4dd2f5cf04027e800246ba60",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "00700.HK:mt12-timing-shadow-1",
+      "status": "blocked",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 0,
+      "latest_risk": {
+        "status": "unknown"
+      },
+      "entity_id": "mt12-monitor:57219e365b8a4e56f7bade9d",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "301511.SZ:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:59f76ffb57b1bd60bb5f128c",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "01810.HK:mt12-timing-shadow-1",
+      "status": "blocked",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 0,
+      "latest_risk": {
+        "status": "unknown"
+      },
+      "entity_id": "mt12-monitor:715d616085f14f4b490d217a",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "03690.HK:mt12-timing-shadow-1",
+      "status": "blocked",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 0,
+      "latest_risk": {
+        "status": "unknown"
+      },
+      "entity_id": "mt12-monitor:ecc311f0e66b3cf2611c890c",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    }
+  ],
+  "pending": [
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "603986.SH:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:0fb0ba148e99df9c3d812555",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "001309.SZ:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:1986425a58ac96110027cec7",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "688195.SH:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:339818dfccc901d03584c35d",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "300750.SZ:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:4945e4fd08227966b3d89805",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "601138.SH:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:4dd2f5cf04027e800246ba60",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "00700.HK:mt12-timing-shadow-1",
+      "status": "blocked",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 0,
+      "latest_risk": {
+        "status": "unknown"
+      },
+      "entity_id": "mt12-monitor:57219e365b8a4e56f7bade9d",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "301511.SZ:mt12-timing-shadow-1",
+      "status": "not_matured",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 1,
+      "latest_risk": {
+        "status": "monitor",
+        "reasons": [],
+        "original_trigger": null,
+        "intrabar_order": "not_used_close_only"
+      },
+      "entity_id": "mt12-monitor:59f76ffb57b1bd60bb5f128c",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "01810.HK:mt12-timing-shadow-1",
+      "status": "blocked",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 0,
+      "latest_risk": {
+        "status": "unknown"
+      },
+      "entity_id": "mt12-monitor:715d616085f14f4b490d217a",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    },
+    {
+      "kind": "mt12-monitor",
+      "origin_id": "03690.HK:mt12-timing-shadow-1",
+      "status": "blocked",
+      "original_judgment": "前向技术观察，不是用户建仓/推荐起点",
+      "original_date": "2026-09-11",
+      "reference_price": null,
+      "verification_target": "20/40/60_completed_sessions_not_personal_pnl",
+      "next_review_date": "2026-09-12",
+      "observed_sessions": 0,
+      "latest_risk": {
+        "status": "unknown"
+      },
+      "entity_id": "mt12-monitor:ecc311f0e66b3cf2611c890c",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "manifest": "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json",
+      "recorded_at": "2026-09-11T13:46:48.701196+00:00",
+      "historical_epoch": false,
+      "overdue": false
+    }
+  ],
+  "closed_history": [],
+  "forecast_originals": [],
+  "material_gaps": [],
+  "failed_runs": [
+    "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/554ba59a32fa84c91b3fb570/r000001/manifest.json",
+    "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/d1b993cdf34d1438a70950c7/r000001/manifest.json",
+    "reports/timing-upgrade-20260911/real-archive/mt12-timing/user-reset-20260911T120928Z/2026-09-11/1ea322065a61d04256903d8d/r000001/manifest.json"
+  ],
+  "coverage": {
+    "mode": "observed_only",
+    "status": "not_verified",
+    "reason": "expected_schedule_not_supplied",
+    "gaps": []
+  },
+  "strategy_evaluation": "weekly_review_required_not_automatically_completed"
+}

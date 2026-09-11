@@ -1,0 +1,682 @@
+{
+  "contract_hash": "6b2fce1c4bd4ec8a65ccd77e7c7070a039a78e69c1230c71a19a347658bfbc4f",
+  "trial": 1,
+  "mode": "diagnostic_current_vintage_NOT_PIT_backtest",
+  "source_kind": "SYNTHETIC_CORRECTNESS_ONLY",
+  "scope_epoch": "test",
+  "audit": [
+    {
+      "code": "TEST",
+      "status": "observed",
+      "sessions": 420,
+      "entry_opportunities": {
+        "old_trigger|wait": 103,
+        "breakout|setup": 36,
+        "pullback|setup": 53,
+        "breakout|cancel": 4,
+        "pullback|cancel": 4,
+        "breakout|watch_structure": 80,
+        "old_trigger|trigger": 17,
+        "pullback|trigger": 1,
+        "pullback|watch_structure": 62
+      },
+      "A_episodes": 1
+    }
+  ],
+  "trades": [
+    {
+      "signal_date": "2024-06-17",
+      "exit_rule": "old_ma60_5",
+      "net_price_return": -0.10090718502039198,
+      "max_drawdown": -0.13312045454545463,
+      "post_exit_rally": 0.05026178010471205,
+      "false_breakout": null,
+      "round_trips": 1,
+      "turnover": 2,
+      "entry_fill": {
+        "status": "filled",
+        "index": 120,
+        "date": "2024-06-18",
+        "price": 105.9,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "exit_signal_date": "2024-07-17",
+      "exit_reason": [
+        "old_ma60_or_horizon"
+      ],
+      "exit_fill": {
+        "status": "filled",
+        "index": 142,
+        "date": "2024-07-18",
+        "price": 95.5,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "status": "closed",
+      "group": "A",
+      "arm": "old_ma60_5",
+      "code": "TEST",
+      "episode_id": "synthetic-entry-119",
+      "entry_source_hash": "253ee578a4f2d3ff2d7e2426a4e1650018519b50d47d067885dddf04a6047221",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "low",
+      "regime": "uptrend"
+    },
+    {
+      "signal_date": "2024-06-17",
+      "exit_rule": "structure_failure",
+      "net_price_return": -0.05571717966016021,
+      "max_drawdown": -0.0895495454545453,
+      "post_exit_rally": -0.010967098703888456,
+      "false_breakout": null,
+      "round_trips": 1,
+      "turnover": 2,
+      "entry_fill": {
+        "status": "filled",
+        "index": 120,
+        "date": "2024-06-18",
+        "price": 105.9,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "exit_signal_date": "2024-07-11",
+      "exit_reason": [
+        "initial_structure_invalidated",
+        "ATR_trailing_close_breach"
+      ],
+      "exit_fill": {
+        "status": "filled",
+        "index": 138,
+        "date": "2024-07-12",
+        "price": 100.30000000000001,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "status": "closed",
+      "group": "A",
+      "arm": "structure_failure",
+      "code": "TEST",
+      "episode_id": "synthetic-entry-119",
+      "entry_source_hash": "253ee578a4f2d3ff2d7e2426a4e1650018519b50d47d067885dddf04a6047221",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "low",
+      "regime": "uptrend"
+    },
+    {
+      "signal_date": "2024-06-17",
+      "exit_rule": "structure_failure_atr",
+      "net_price_return": -0.02182467563998669,
+      "max_drawdown": -0.05687136363636369,
+      "post_exit_rally": -0.010587102983638186,
+      "false_breakout": null,
+      "round_trips": 1,
+      "turnover": 2,
+      "entry_fill": {
+        "status": "filled",
+        "index": 120,
+        "date": "2024-06-18",
+        "price": 105.9,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "exit_signal_date": "2024-07-08",
+      "exit_reason": [
+        "ATR_trailing_close_breach"
+      ],
+      "exit_fill": {
+        "status": "filled",
+        "index": 135,
+        "date": "2024-07-09",
+        "price": 103.9,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "status": "closed",
+      "group": "A",
+      "arm": "structure_failure_atr",
+      "code": "TEST",
+      "episode_id": "synthetic-entry-119",
+      "entry_source_hash": "253ee578a4f2d3ff2d7e2426a4e1650018519b50d47d067885dddf04a6047221",
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "low",
+      "regime": "uptrend"
+    },
+    {
+      "signal_date": "2024-10-03",
+      "exit_rule": "structure_failure_atr",
+      "net_price_return": -0.01904576846850936,
+      "max_drawdown": -0.05687136363636358,
+      "post_exit_rally": -0.010587102983638186,
+      "false_breakout": null,
+      "round_trips": 1,
+      "turnover": 2,
+      "entry_fill": {
+        "status": "filled",
+        "index": 198,
+        "date": "2024-10-04",
+        "price": 105.60000000000001,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "exit_signal_date": "2024-10-28",
+      "exit_reason": [
+        "ATR_trailing_close_breach"
+      ],
+      "exit_fill": {
+        "status": "filled",
+        "index": 215,
+        "date": "2024-10-29",
+        "price": 103.9,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "status": "closed",
+      "group": "B",
+      "arm": "old_trigger",
+      "code": "TEST",
+      "fold": 0,
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "low",
+      "regime": "uptrend"
+    },
+    {
+      "signal_date": "2024-10-22",
+      "exit_rule": "structure_failure_atr",
+      "net_price_return": -0.05802795346997913,
+      "max_drawdown": -0.05802795346997913,
+      "post_exit_rally": -0.0107108081791627,
+      "false_breakout": null,
+      "round_trips": 1,
+      "turnover": 2,
+      "entry_fill": {
+        "status": "filled",
+        "index": 211,
+        "date": "2024-10-23",
+        "price": 108.7,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "exit_signal_date": "2024-10-29",
+      "exit_reason": [
+        "ATR_trailing_close_breach"
+      ],
+      "exit_fill": {
+        "status": "filled",
+        "index": 216,
+        "date": "2024-10-30",
+        "price": 102.7,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "status": "closed",
+      "group": "B",
+      "arm": "pullback",
+      "code": "TEST",
+      "fold": 0,
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "low",
+      "regime": "uptrend"
+    },
+    {
+      "signal_date": "2025-05-15",
+      "exit_rule": "structure_failure_atr",
+      "net_price_return": null,
+      "max_drawdown": null,
+      "post_exit_rally": null,
+      "false_breakout": null,
+      "round_trips": 0,
+      "turnover": 1,
+      "entry_fill": {
+        "status": "filled",
+        "index": 358,
+        "date": "2025-05-16",
+        "price": 105.60000000000001,
+        "source": "SYNTHETIC_ONLY"
+      },
+      "status": "not_matured",
+      "group": "B",
+      "arm": "old_trigger",
+      "code": "TEST",
+      "fold": 1,
+      "market": "CN",
+      "industry": "unknown",
+      "volatility": "low",
+      "regime": "uptrend"
+    }
+  ],
+  "folds": [
+    {
+      "code": "TEST",
+      "fold": 0,
+      "train_start_index": 0,
+      "train_end_index": 119,
+      "test_start_index": 180,
+      "test_end_index": 239,
+      "purge": 60,
+      "refit": false
+    },
+    {
+      "code": "TEST",
+      "fold": 1,
+      "train_start_index": 120,
+      "train_end_index": 239,
+      "test_start_index": 300,
+      "test_end_index": 359,
+      "purge": 60,
+      "refit": false
+    }
+  ],
+  "limitations": [
+    "no_survivorship_free_PIT_universe",
+    "fees_are_scenarios",
+    "no_automatic_promotion"
+  ],
+  "summary": {
+    "A": {
+      "old_ma60_5": {
+        "sample_count": 1,
+        "status_counts": {
+          "closed": 1
+        },
+        "mean_net_price_return": -0.10090718502039198,
+        "worst_trade_tail_loss": -0.10090718502039198,
+        "worst_close_drawdown": -0.13312045454545463,
+        "round_trips": 1,
+        "turnover_one_way_units": 2,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 1,
+        "post_exit_rally_mean": 0.05026178010471205,
+        "post_exit_rally_unknown": 0
+      },
+      "structure_failure": {
+        "sample_count": 1,
+        "status_counts": {
+          "closed": 1
+        },
+        "mean_net_price_return": -0.05571717966016021,
+        "worst_trade_tail_loss": -0.05571717966016021,
+        "worst_close_drawdown": -0.0895495454545453,
+        "round_trips": 1,
+        "turnover_one_way_units": 2,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 1,
+        "post_exit_rally_mean": -0.010967098703888456,
+        "post_exit_rally_unknown": 0
+      },
+      "structure_failure_atr": {
+        "sample_count": 1,
+        "status_counts": {
+          "closed": 1
+        },
+        "mean_net_price_return": -0.02182467563998669,
+        "worst_trade_tail_loss": -0.02182467563998669,
+        "worst_close_drawdown": -0.05687136363636369,
+        "round_trips": 1,
+        "turnover_one_way_units": 2,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 1,
+        "post_exit_rally_mean": -0.010587102983638186,
+        "post_exit_rally_unknown": 0
+      }
+    },
+    "B": {
+      "old_trigger": {
+        "sample_count": 2,
+        "status_counts": {
+          "closed": 1,
+          "not_matured": 1
+        },
+        "mean_net_price_return": -0.01904576846850936,
+        "worst_trade_tail_loss": -0.01904576846850936,
+        "worst_close_drawdown": -0.05687136363636358,
+        "round_trips": 1,
+        "turnover_one_way_units": 3,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 2,
+        "post_exit_rally_mean": -0.010587102983638186,
+        "post_exit_rally_unknown": 1
+      },
+      "breakout": {
+        "sample_count": 0,
+        "status_counts": {},
+        "mean_net_price_return": null,
+        "worst_trade_tail_loss": null,
+        "worst_close_drawdown": null,
+        "round_trips": 0,
+        "turnover_one_way_units": 0,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 0,
+        "post_exit_rally_mean": null,
+        "post_exit_rally_unknown": 0
+      },
+      "pullback": {
+        "sample_count": 1,
+        "status_counts": {
+          "closed": 1
+        },
+        "mean_net_price_return": -0.05802795346997913,
+        "worst_trade_tail_loss": -0.05802795346997913,
+        "worst_close_drawdown": -0.05802795346997913,
+        "round_trips": 1,
+        "turnover_one_way_units": 2,
+        "false_breakouts": 0,
+        "false_breakout_unknown": 1,
+        "post_exit_rally_mean": -0.0107108081791627,
+        "post_exit_rally_unknown": 0
+      }
+    }
+  },
+  "strata": {
+    "A|old_ma60_5|market|CN": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.10090718502039198,
+      "worst_trade_tail_loss": -0.10090718502039198,
+      "worst_close_drawdown": -0.13312045454545463,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": 0.05026178010471205,
+      "post_exit_rally_unknown": 0
+    },
+    "A|old_ma60_5|industry|unknown": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.10090718502039198,
+      "worst_trade_tail_loss": -0.10090718502039198,
+      "worst_close_drawdown": -0.13312045454545463,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": 0.05026178010471205,
+      "post_exit_rally_unknown": 0
+    },
+    "A|old_ma60_5|volatility|low": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.10090718502039198,
+      "worst_trade_tail_loss": -0.10090718502039198,
+      "worst_close_drawdown": -0.13312045454545463,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": 0.05026178010471205,
+      "post_exit_rally_unknown": 0
+    },
+    "A|old_ma60_5|regime|uptrend": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.10090718502039198,
+      "worst_trade_tail_loss": -0.10090718502039198,
+      "worst_close_drawdown": -0.13312045454545463,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": 0.05026178010471205,
+      "post_exit_rally_unknown": 0
+    },
+    "A|structure_failure|market|CN": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.05571717966016021,
+      "worst_trade_tail_loss": -0.05571717966016021,
+      "worst_close_drawdown": -0.0895495454545453,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.010967098703888456,
+      "post_exit_rally_unknown": 0
+    },
+    "A|structure_failure|industry|unknown": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.05571717966016021,
+      "worst_trade_tail_loss": -0.05571717966016021,
+      "worst_close_drawdown": -0.0895495454545453,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.010967098703888456,
+      "post_exit_rally_unknown": 0
+    },
+    "A|structure_failure|volatility|low": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.05571717966016021,
+      "worst_trade_tail_loss": -0.05571717966016021,
+      "worst_close_drawdown": -0.0895495454545453,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.010967098703888456,
+      "post_exit_rally_unknown": 0
+    },
+    "A|structure_failure|regime|uptrend": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.05571717966016021,
+      "worst_trade_tail_loss": -0.05571717966016021,
+      "worst_close_drawdown": -0.0895495454545453,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.010967098703888456,
+      "post_exit_rally_unknown": 0
+    },
+    "A|structure_failure_atr|market|CN": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.02182467563998669,
+      "worst_trade_tail_loss": -0.02182467563998669,
+      "worst_close_drawdown": -0.05687136363636369,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.010587102983638186,
+      "post_exit_rally_unknown": 0
+    },
+    "A|structure_failure_atr|industry|unknown": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.02182467563998669,
+      "worst_trade_tail_loss": -0.02182467563998669,
+      "worst_close_drawdown": -0.05687136363636369,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.010587102983638186,
+      "post_exit_rally_unknown": 0
+    },
+    "A|structure_failure_atr|volatility|low": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.02182467563998669,
+      "worst_trade_tail_loss": -0.02182467563998669,
+      "worst_close_drawdown": -0.05687136363636369,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.010587102983638186,
+      "post_exit_rally_unknown": 0
+    },
+    "A|structure_failure_atr|regime|uptrend": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.02182467563998669,
+      "worst_trade_tail_loss": -0.02182467563998669,
+      "worst_close_drawdown": -0.05687136363636369,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.010587102983638186,
+      "post_exit_rally_unknown": 0
+    },
+    "B|old_trigger|market|CN": {
+      "sample_count": 2,
+      "status_counts": {
+        "closed": 1,
+        "not_matured": 1
+      },
+      "mean_net_price_return": -0.01904576846850936,
+      "worst_trade_tail_loss": -0.01904576846850936,
+      "worst_close_drawdown": -0.05687136363636358,
+      "round_trips": 1,
+      "turnover_one_way_units": 3,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 2,
+      "post_exit_rally_mean": -0.010587102983638186,
+      "post_exit_rally_unknown": 1
+    },
+    "B|old_trigger|industry|unknown": {
+      "sample_count": 2,
+      "status_counts": {
+        "closed": 1,
+        "not_matured": 1
+      },
+      "mean_net_price_return": -0.01904576846850936,
+      "worst_trade_tail_loss": -0.01904576846850936,
+      "worst_close_drawdown": -0.05687136363636358,
+      "round_trips": 1,
+      "turnover_one_way_units": 3,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 2,
+      "post_exit_rally_mean": -0.010587102983638186,
+      "post_exit_rally_unknown": 1
+    },
+    "B|old_trigger|volatility|low": {
+      "sample_count": 2,
+      "status_counts": {
+        "closed": 1,
+        "not_matured": 1
+      },
+      "mean_net_price_return": -0.01904576846850936,
+      "worst_trade_tail_loss": -0.01904576846850936,
+      "worst_close_drawdown": -0.05687136363636358,
+      "round_trips": 1,
+      "turnover_one_way_units": 3,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 2,
+      "post_exit_rally_mean": -0.010587102983638186,
+      "post_exit_rally_unknown": 1
+    },
+    "B|old_trigger|regime|uptrend": {
+      "sample_count": 2,
+      "status_counts": {
+        "closed": 1,
+        "not_matured": 1
+      },
+      "mean_net_price_return": -0.01904576846850936,
+      "worst_trade_tail_loss": -0.01904576846850936,
+      "worst_close_drawdown": -0.05687136363636358,
+      "round_trips": 1,
+      "turnover_one_way_units": 3,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 2,
+      "post_exit_rally_mean": -0.010587102983638186,
+      "post_exit_rally_unknown": 1
+    },
+    "B|pullback|market|CN": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.05802795346997913,
+      "worst_trade_tail_loss": -0.05802795346997913,
+      "worst_close_drawdown": -0.05802795346997913,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.0107108081791627,
+      "post_exit_rally_unknown": 0
+    },
+    "B|pullback|industry|unknown": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.05802795346997913,
+      "worst_trade_tail_loss": -0.05802795346997913,
+      "worst_close_drawdown": -0.05802795346997913,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.0107108081791627,
+      "post_exit_rally_unknown": 0
+    },
+    "B|pullback|volatility|low": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.05802795346997913,
+      "worst_trade_tail_loss": -0.05802795346997913,
+      "worst_close_drawdown": -0.05802795346997913,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.0107108081791627,
+      "post_exit_rally_unknown": 0
+    },
+    "B|pullback|regime|uptrend": {
+      "sample_count": 1,
+      "status_counts": {
+        "closed": 1
+      },
+      "mean_net_price_return": -0.05802795346997913,
+      "worst_trade_tail_loss": -0.05802795346997913,
+      "worst_close_drawdown": -0.05802795346997913,
+      "round_trips": 1,
+      "turnover_one_way_units": 2,
+      "false_breakouts": 0,
+      "false_breakout_unknown": 1,
+      "post_exit_rally_mean": -0.0107108081791627,
+      "post_exit_rally_unknown": 0
+    }
+  },
+  "status": "diagnostic_only_not_validated",
+  "input_bundle_sha256": "0aafab2effdef8dd0fedaa9b4ca14a02994673c0cb254a60739c7d5437afe8ee",
+  "frozen_entries": [
+    {
+      "id": "synthetic-entry-119",
+      "code": "TEST",
+      "signal_date": "2024-06-17",
+      "source_hash": "253ee578a4f2d3ff2d7e2426a4e1650018519b50d47d067885dddf04a6047221"
+    }
+  ],
+  "observation_source": null
+}
