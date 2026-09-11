@@ -1,0 +1,116 @@
+{
+  "at": "2026-09-11T21:38:34.806458+00:00",
+  "codes": [
+    "00005",
+    "00388",
+    "00941"
+  ],
+  "costs_bps_per_side": [
+    25,
+    50,
+    75
+  ],
+  "eligibility": "Complete official stock-specific publication query incl all years and pagination; empty searches not sufficient. Require nonempty stock/date validated corpus plus explicit halt category query and market exceptions. Otherwise unknown, not inferred from volume.",
+  "end": "20251231",
+  "execution": "HK next session open model, no fixed daily CN limit or CN T+1; cash funded unit event diagnostic T+2 settlement not lock; not auction liquidity proof; unknown stops order; factor adjusted return not cash dividend portfolio.",
+  "folds": "unchanged 180 train/warmup, 60 purge, 60 test, 120 stride; no fitting",
+  "price_rule": "HKD .011 OHLC tolerance; positive volume and valid OHLC required; agreeing Yahoo/Tencent use Tencent raw (cent precision). Disputes require third-source full OHLC agreement; match Tencent adopts Tencent, match Yahoo adopts Yahoo; neither/absent unknown. Volume only positive gate, no comparison across inconsistent units. No outcome selection.",
+  "scenarios": [
+    "hk_next_open_v1",
+    "hk_vcm_day_conservative_v1"
+  ],
+  "start": "20210101",
+  "trial_contract": {
+    "atr_multiple": 3.0,
+    "atr_smoothing": "TR_simple_mean_matches_mt11_not_Wilder",
+    "atr_window": 20,
+    "benchmarks": {
+      "CN": "000300.SH",
+      "HK": "HSI",
+      "US": "SP500"
+    },
+    "breakout_volume_min": 1.2,
+    "compression_range_max": 0.12,
+    "compression_recent_to_prior": 0.8,
+    "evaluation": {
+      "metrics": [
+        "net_price_return",
+        "max_drawdown",
+        "tail_loss",
+        "round_trips",
+        "turnover",
+        "false_breakout",
+        "post_exit_rally",
+        "sample_count",
+        "unknown",
+        "not_matured"
+      ],
+      "mode": "current_vintage_diagnostic_replay_unless_PIT_certified",
+      "oos_test_sessions": 60,
+      "oos_train_sessions": 120,
+      "parameter_refit": false,
+      "purge_sessions": 60,
+      "strata": [
+        "market",
+        "industry",
+        "volatility",
+        "regime"
+      ]
+    },
+    "execution": {
+      "cost_status": "exploratory all-in commission/tax/slippage scenario, not verified broker tariff",
+      "fill": "first later session open with explicit side-specific executable evidence and settlement eligibility; otherwise pending/unknown",
+      "intrabar": "daily OHLC cannot establish event ordering; close-only rule, intrabar breach diagnostic not a fill",
+      "min_holding_sessions": {
+        "CN": 1,
+        "HK": 0,
+        "US": 0
+      },
+      "missing_suspension_limit_delisting_settlement": "unknown_no_fill",
+      "per_side_cost_bps": {
+        "CN": 15,
+        "HK": 25,
+        "US": 10
+      },
+      "signal": "completed_close; never same-bar fill or stop-price fill"
+    },
+    "extension_atr_diagnostic": 2.5,
+    "failure_closes": 2,
+    "failure_window_sessions": 10,
+    "grid": [],
+    "group_A": {
+      "entry": "same frozen episode list",
+      "exits": [
+        "old_ma60_5",
+        "structure_failure",
+        "structure_failure_atr"
+      ]
+    },
+    "group_B": {
+      "candidate_set": "same audited frozen scope; no discovery expansion",
+      "entries": [
+        "old_trigger",
+        "breakout",
+        "pullback"
+      ],
+      "exit": "structure_failure_atr"
+    },
+    "horizons_sessions": [
+      20,
+      40,
+      60
+    ],
+    "industry": "explicit market-matched benchmark + membership known_at required; unknown is not zero or veto",
+    "method": "mt12-timing-shadow-1",
+    "parameters_status": "exploratory_not_optimized",
+    "promotion": "candidate -> shadow -> validated -> active requires independent research signoff; development approval is not efficacy approval",
+    "pullback_ma20_band": 0.02,
+    "pullback_volume_max": 1.1,
+    "selection": "one prespecified engineering baseline; no performance-based parameter choice or automatic promotion",
+    "setup_ttl_sessions": 10,
+    "status": "shadow",
+    "structure_window": 20,
+    "trial": 1,
+    "warmup": 120
+  }
+}
