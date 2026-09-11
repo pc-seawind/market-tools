@@ -726,7 +726,9 @@ def main():
     from mt1.longitudinal import archive, DEFAULT_ROOT
     parser.add_argument('--archive-root', default=os.environ.get('MT1_ARCHIVE_ROOT', str(DEFAULT_ROOT)))
     parser.add_argument('--run-id')
+    parser.add_argument('--execution-id')
     args = parser.parse_args()
+    started_at = datetime.datetime.now(datetime.timezone.utc).isoformat()
     scope = load(args.scope)
     from mt1.daily_tracking import calendars, dated_bars, market_of
     gates = calendars(datetime.datetime.now(datetime.timezone.utc))
@@ -881,7 +883,7 @@ def main():
     result_file = args.out or f"/tmp/thesis_enrich_{date_str}.json"
     if Path(result_file).exists():
         input_materials.append({"name":"previous-handoff.json","path":result_file})
-    result["archive"] = archive(root=args.archive_root,job="thesis-enrich",run_id=args.run_id or date_str,trade_date=date_str,scope_epoch=scope["epoch"],result=result,materials=input_materials)
+    result["archive"] = archive(root=args.archive_root,job="thesis-enrich",run_id=args.run_id or date_str,trade_date=date_str,scope_epoch=scope["epoch"],result=result,materials=input_materials,execution={"execution_id":args.execution_id or "thesis-enrich:"+(args.run_id or date_str),"started_at":started_at,"completed_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"status":result["status"],"source":"local_process_clock; not_scheduler_attestation"})
     with open(result_file, "w") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 

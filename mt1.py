@@ -48,9 +48,9 @@ def main():
     p=sub.add_parser('parallel-collect'); p.add_argument('--out',required=True)
     p=sub.add_parser('parallel-current'); p.add_argument('--panel',required=True); p.add_argument('--out',required=True); p.add_argument('--reviews')
     p=sub.add_parser('parallel'); p.add_argument('--panel',required=True); p.add_argument('--out',required=True); p.add_argument('--reviews')
-    p=sub.add_parser('daily-track'); p.add_argument('--out',required=True); p.add_argument('--run-id'); p.add_argument('--archive-root')
+    p=sub.add_parser('daily-track'); p.add_argument('--out',required=True); p.add_argument('--run-id'); p.add_argument('--archive-root'); p.add_argument('--execution-id')
     p=sub.add_parser('archive-evidence'); p.add_argument('--input',required=True); p.add_argument('--archive-root')
-    p=sub.add_parser('weekly-evidence'); p.add_argument('--out',required=True); p.add_argument('--asof'); p.add_argument('--archive-root')
+    p=sub.add_parser('weekly-evidence'); p.add_argument('--out',required=True); p.add_argument('--asof'); p.add_argument('--archive-root'); p.add_argument('--expected',help='expected occurrence and execution evidence JSON')
     p=sub.add_parser('plans')
     args=parser.parse_args()
     import os
@@ -65,12 +65,15 @@ def main():
             bundle.setdefault('materials',[]).append({'name':'submitted-bundle.json','path':args.input})
             print(json.dumps(archive(root=root,**bundle),ensure_ascii=False))
         else:
-            value=weekly_index(root,asof=args.asof,current_epoch=load()['epoch'])
-            receipt=archive(root=root,job='weekly-evidence',run_id=value['asof'],trade_date=value['asof'],scope_epoch=load()['epoch'],result=value,materials=[{'name':'previous-index.json','path':args.out}] if Path(args.out).exists() else [])
+            value=weekly_index(root,asof=args.asof,current_epoch=load()['epoch'],expected=json.loads(Path(args.expected).read_text()) if args.expected else None)
+            materials=[{'name':'expected-executions.json','path':args.expected}] if args.expected else []
+            if Path(args.out).exists(): materials.append({'name':'previous-index.json','path':args.out})
+            receipt=archive(root=root,job='weekly-evidence',run_id=value['asof'],trade_date=value['asof'],scope_epoch=load()['epoch'],result=value,materials=materials)
             atomic_json(args.out,{**value,'archive':receipt})
             print('RESULT_JSON='+args.out)
         return
     if args.cmd=='daily-track':
+        started_at=datetime.now(timezone.utc).isoformat()
         from mt1.daily_tracking import track
         result=track(args.scope)
         from mt1.longitudinal import archive, DEFAULT_ROOT
@@ -85,7 +88,7 @@ def main():
                  'verification_target':'行情与条件证据持续核验；长期结论留周报',
                  'original_judgment':'用户持仓事实，不是策略BUY' if row['holding_status']=='confirmed' else '正式推荐事件待原文核验',
                  'reference_price':None,'condition_status':row['condition_status']} for row in result['rows']]
-        result['archive']=archive(root=args.archive_root or DEFAULT_ROOT,job='daily-track',run_id=args.run_id or day,trade_date=day,scope_epoch=scope['epoch'],result=result,materials=materials,events=events)
+        result['archive']=archive(root=args.archive_root or DEFAULT_ROOT,job='daily-track',run_id=args.run_id or day,trade_date=day,scope_epoch=scope['epoch'],result=result,materials=materials,events=events,execution={'execution_id':args.execution_id or 'daily-track:'+(args.run_id or day),'started_at':started_at,'completed_at':datetime.now(timezone.utc).isoformat(),'status':result['status'],'source':'local_process_clock; not_scheduler_attestation'})
         atomic_json(args.out,result)
         print('RESULT_JSON='+args.out)
         if result['status']!='ok': raise SystemExit(75)

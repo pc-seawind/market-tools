@@ -70,3 +70,66 @@ python3 mt1_job.py --scope /home/emox/work/investment/reference/tracking-scope.j
 - 实际weekly索引38 pending：29份旧材料追溯+9持仓持续核验，完整性错误0。没有伪造实际预测原稿或长期收益结论。
 - 其他新闻/早晚报正文/发布回执的归档通用接口及生成器规则已提供，线上cron由投资topic接线；未声称所有历史来源原文、未来自然投递或完整周报已验证。
 - 前次剩余边界不变：自由文本入场/失效条件自动判断、逐事件推荐基准重建、复权费用收益未实现；真实长期成熟窗口效果没有据本轮短测判通过。
+
+## R3 独立验收修正：截止时点、异常与期望覆盖率
+
+本节覆盖上文“只有observed coverage”的旧限制：现在支持显式期望执行清单；未传入时仍诚实标not_verified，不猜生产cron。
+
+### 时间合同
+
+- `weekly_index(asof="2026-09-11")`：北京时间9/11整日，`recorded_at < 2026-09-12T00:00:00+08:00`。9/11 17:00 UTC等于北京9/12 01:00，**不进入**9/11报告。
+- `asof="2026-09-11T20:00:00+08:00"`：截至该时刻（包含相等边界）。不接受无时区的datetime。
+- 输出`cutoff_at`、`cutoff_exclusive`、`timezone`。实时未结束的一天建议传精确带时区asof；纯日期明确表示该日完整日末，不表示当前瞬间。
+- 原`recorded_at`文本排序改为解析后的真实时刻排序；无效/无时区记录不混入事实集合，列time_errors。
+
+### 明确异常摘要
+
+`anomalies`统一列unfinished_runs、material_gaps、integrity_errors、time_errors、coverage_gaps、coverage_unverified。有任一异常/未验证项则顶层status=partial。blocked、not_matured、pending_provenance_review等不会遗漏；兼容字段failed_runs包含这些非完成运行，但不把它们冒充策略失败。pending/长期判断仍需周报逐项处理。
+
+### 期望执行清单 CLI
+
+```bash
+python3 mt1_job.py weekly-evidence \
+  --asof 2026-09-11T23:59:59+08:00 \
+  --expected /absolute/expected-executions.json \
+  --out /absolute/weekly-evidence.json
+```
+
+清单schema（以下仅说明，不是真实任务证据）：
+
+```json
+{
+  "expected": [{
+    "execution_id": "daily-track:20260911-evening",
+    "job": "daily-track", "run_id": "20260911-evening",
+    "scope_epoch": "user-reset-20260911T120928Z",
+    "market": "CN", "trade_date": "2026-09-11",
+    "scheduled_at": "2026-09-11T18:00:00+08:00",
+    "deadline_at": "2026-09-11T19:00:00+08:00",
+    "calendar": {
+      "market": "CN", "date": "2026-09-11", "is_open": true,
+      "source": "实际使用的交易所日历来源",
+      "verified_at": "2026-09-11T08:00:00+08:00"
+    }
+  }],
+  "executions": [{
+    "execution_id": "daily-track:20260911-evening",
+    "started_at": "2026-09-11T18:00:02+08:00",
+    "completed_at": "2026-09-11T18:02:00+08:00",
+    "status": "ok", "source": "实际runner日志/回执来源"
+  }]
+}
+```
+
+- 期望清单由调用方依据实际任务配置及独立CN/HK/US日历传入，本工具不写VPS、不按周一至周五猜开市。每个occurrence的execution_id唯一，按job/run_id/epoch/交易日期绑定归档。
+- calendar缺失、市场/日期不符、无来源或verified_at晚于截止时间，标calendar_or_schedule_unverified；一个市场无日历不会阻断其他市场核对。明确休市标not_expected_market_closed。
+- 固定每日执行、不依赖单个市场是否开市的任务使用`market:null`及`calendar:{"mode":"always","source":"实际任务规则","verified_at":"带时区时间"}`。跨三市场daily任务本身可always，行情有效性仍由其原有三个独立市场门禁负责；不能以CN休市取消整个daily。
+- `daily-track`、`thesis-enrich`新增实际进程started_at/completed_at归档；可传`--execution-id`与清单绑定，默认`job:run_id`。该时间是local_process_clock，不冒充scheduler_attestation。通用archive-evidence bundle也可提供execution对象。
+- executions列表可补充runner证据，以区分“执行过但无归档”和“执行及归档均无证据”；也可直接使用manifest内execution。仅文件存在、mtime或recorded_at不证明实际执行。
+- 已到deadline才参与应有/实有检查；截止时点前未到deadline标not_due。实际执行晚于deadline标late，执行时间在未来/早于计划/晚于对应归档提交均不放行。归档blocked、材料缺失或hash错误不会标covered。
+- 输出scheduled_count、expected_count（已到期且日历已验证的应有任务）、observed_archive_count、observed_execution_count、missing_archive_count、unverified_calendar_count及逐项状态。无归档与无执行分别列missing_archive、missing_execution_and_archive；有归档无执行证据列execution_unverified。
+- 清单JSON随周报索引保存实际字节。提供清单/日志的真实性仍由操作方核验；这里不根据随意填写的source字符串独立证明外部scheduler真的运行过。
+
+### R3 实测边界
+
+真实验证为“预先声明人工只读验证任务→实际daily-track→匹配进程时间与归档”：1个应有、1个实际、covered=1。不是生产cron覆盖率或自然投递证明。旧tar包原字节未变，重建仍32 manifests/38 pending/0材料缺失/0完整性错误，29个pending_provenance_review现已进入异常摘要。其他已确认限制不扩范围；不等待成熟窗口、不伪造历史来源或US持仓、不改VPS。

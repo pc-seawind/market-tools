@@ -9,7 +9,8 @@ import json
 import os
 import re
 import subprocess
-from datetime import datetime, timezone, date
+from datetime import datetime, timezone, date, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from .data import atomic_json
 
@@ -86,7 +87,7 @@ def _write_new(path, raw):
 
 
 def archive(*, root=DEFAULT_ROOT, job, run_id, trade_date, scope_epoch, result,
-            materials=(), events=()):
+            materials=(), events=(), execution=None):
     """Copy real content before a caller overwrites /tmp/handoff or publishes.
 
     materials: name + path or content; inaccessible items require status/reason.
@@ -131,7 +132,7 @@ def archive(*, root=DEFAULT_ROOT, job, run_id, trade_date, scope_epoch, result,
             head=subprocess.check_output(['git','-C',str(Path(__file__).resolve().parents[1]),'rev-parse','HEAD'],text=True,timeout=5).strip()
         except (OSError,subprocess.SubprocessError):head='unavailable'
         record={'schema_version':1,'job':job,'run_id':run_id,'trade_date':trade_date,'scope_epoch':scope_epoch,
-                'revision':revision,'recorded_at':now,'git_head':head,
+                'revision':revision,'recorded_at':now,'git_head':head,'execution':execution,
                 'materials':[i for i,raw in contents],'events':events,
                 'result':{'path':'result.json','sha256':hashlib.sha256(output).hexdigest()},
                 'status':result.get('status','recorded'),
@@ -145,10 +146,18 @@ def archive(*, root=DEFAULT_ROOT, job, run_id, trade_date, scope_epoch, result,
         return receipt
 
 
-def weekly_index(root=DEFAULT_ROOT, *, asof=None, current_epoch=None):
+def weekly_index(root=DEFAULT_ROOT, *, asof=None, current_epoch=None, expected=None):
     """Rebuild from immutable daily manifests; no week boundary drops pending."""
-    asof=asof or date.today().isoformat();date.fromisoformat(asof)
-    records=[r for r in manifests(root) if r[2]['recorded_at'][:10]<=asof]
+    day,cutoff,exclusive=asof_cutoff(asof)
+    asof=day
+    records=[];time_errors=[]
+    for r in manifests(root):
+        try:
+            recorded=aware_time(r[2]['recorded_at'])
+        except (ValueError,TypeError) as error:
+            time_errors.append({'manifest':r[1],'error':str(error)});continue
+        if recorded<cutoff or (not exclusive and recorded==cutoff):records.append(r)
+    records.sort(key=lambda r:(aware_time(r[2]['recorded_at']),r[1]))
     latest=_latest_events(records)
     events=[]
     for eid,e in sorted(latest.items()):
@@ -165,11 +174,121 @@ def weekly_index(root=DEFAULT_ROOT, *, asof=None, current_epoch=None):
                     raise ValueError('archive bytes hash mismatch')
             except (OSError,ValueError) as error:
                 integrity.append({'manifest':path,'blob':ref['blob'],'error':str(error)})
-    return {'asof':asof,'integrity_errors':integrity,'current_epoch':current_epoch,'run_count':len(records),
+    material_gaps=[{'manifest':p,'missing':v['missing_materials']} for _,p,v in records if v['missing_materials']]
+    unfinished=[{'manifest':p,'status':v['status']} for _,p,v in records if v['status'] not in ('ok','recorded')]
+    coverage=expected_coverage(expected,records,cutoff,exclusive,invalid_manifests={r['manifest'] for r in integrity+material_gaps})
+    anomalies={'unfinished_runs':unfinished,'material_gaps':material_gaps,'integrity_errors':integrity,'time_errors':time_errors,
+               'coverage_gaps':coverage.get('gaps',[]),'coverage_unverified':coverage['status']=='not_verified'}
+    has_anomalies=any(anomalies.values())
+    return {'asof':asof,'cutoff_at':cutoff.isoformat(),'cutoff_exclusive':exclusive,'timezone':'Asia/Shanghai',
+            'status':'partial' if has_anomalies else 'ok','anomalies':anomalies,'integrity_errors':integrity,'current_epoch':current_epoch,'run_count':len(records),
             'events':events,'pending':[e for e in events if e['status'] not in TERMINAL],
             'closed_history':[e for e in events if e['status'] in TERMINAL],
             'forecast_originals':[{'manifest':p,'event':e} for _,p,v in records for e in v.get('events',[]) if e['kind']=='forecast'],
-            'material_gaps':[{'manifest':p,'missing':v['missing_materials']} for _,p,v in records if v['missing_materials']],
-            'failed_runs':[p for _,p,v in records if v['status'] in ('partial','failed')],
-            'coverage':'observed_archives_only; expected_schedule_not_supplied',
+            'material_gaps':material_gaps,
+            'failed_runs':[r['manifest'] for r in unfinished],
+            'coverage':coverage,
             'strategy_evaluation':'weekly_review_required_not_automatically_completed'}
+
+
+def aware_time(value):
+    result=datetime.fromisoformat(value.replace('Z','+00:00'))
+    if result.tzinfo is None or result.utcoffset() is None:
+        raise ValueError('timezone-required timestamp')
+    return result
+
+
+def asof_cutoff(asof=None):
+    """Date = complete Beijing day [.., next midnight); timestamp = <= instant."""
+    if asof is None:
+        asof=datetime.now(ZoneInfo('Asia/Shanghai')).date().isoformat()
+    if re.fullmatch(r'\d{4}-\d{2}-\d{2}',asof):
+        d=date.fromisoformat(asof)
+        return asof,datetime.combine(d+timedelta(days=1),datetime.min.time(),ZoneInfo('Asia/Shanghai')),True
+    instant=aware_time(asof)
+    return instant.astimezone(ZoneInfo('Asia/Shanghai')).date().isoformat(),instant,False
+
+
+def expected_coverage(bundle, records, cutoff, exclusive, invalid_manifests=()):
+    """Explicit job occurrences + independent calendar facts + execution evidence.
+
+    Never manufactures an exchange calendar from weekdays or infers execution
+    from a file's mtime/recorded_at. Missing data stays unverified, not covered.
+    """
+    if bundle is None:
+        return {'mode':'observed_only','status':'not_verified','reason':'expected_schedule_not_supplied','gaps':[]}
+    if not isinstance(bundle,dict) or not isinstance(bundle.get('expected'),list):
+        raise ValueError('expected schedule requires expected[]')
+    items=bundle['expected'];ids=[i['execution_id'] for i in items]
+    if len(ids)!=len(set(ids)):raise ValueError('duplicate expected execution_id')
+    supplied=bundle.get('executions',[])
+    if not isinstance(supplied,list):raise ValueError('executions must be a list')
+    if len({x['execution_id'] for x in supplied})!=len(supplied):raise ValueError('duplicate execution evidence ID')
+    actual={x['execution_id']:x for x in supplied}
+    rows=[]
+    def visible(t):return t<cutoff or (not exclusive and t==cutoff)
+    for item in items:
+        row={'execution_id':item['execution_id'],'job':item.get('job'),'market':item.get('market'),
+             'trade_date':item.get('trade_date'),'manifests':[]}
+        try:
+            for k in ('job','run_id','scope_epoch'): _part(item[k])
+            date.fromisoformat(item['trade_date'])
+            scheduled=aware_time(item['scheduled_at']);deadline=aware_time(item['deadline_at'])
+            if deadline<scheduled:raise ValueError('deadline precedes scheduled time')
+            if not visible(deadline):
+                row.update(status='not_due');rows.append(row);continue
+            calendar=item['calendar'];market=item.get('market')
+            if not calendar.get('source'):raise ValueError('calendar source missing')
+            if not visible(aware_time(calendar['verified_at'])):raise ValueError('calendar evidence after cutoff')
+            if market is not None:
+                if market not in ('CN','HK','US') or calendar.get('market')!=market or calendar.get('date')!=item['trade_date'] or type(calendar.get('is_open')) is not bool:
+                    raise ValueError('independent market/date calendar required')
+                if not calendar['is_open']:
+                    row.update(status='not_expected_market_closed');rows.append(row);continue
+            elif calendar.get('mode')!='always':raise ValueError('nonmarket job needs explicit always calendar')
+            matches=[(p,v) for _,p,v in records if all(v.get(k)==item[k] for k in ('job','run_id','scope_epoch','trade_date'))]
+            row['manifests']=[p for p,v in matches]
+            evidences=[(p,v,v.get('execution')) for p,v in matches if v.get('execution')]
+            if item['execution_id'] in actual:
+                evidences.append((None,None,actual[item['execution_id']]))
+            valid=[];issues=[]
+            for p,v,e in evidences:
+                if e.get('execution_id')!=item['execution_id']:continue
+                try:
+                    started=aware_time(e['started_at']);completed=aware_time(e['completed_at'])
+                    if not e.get('source'):raise ValueError('execution source missing')
+                    if completed<started or not visible(completed):raise ValueError('invalid or future execution time')
+                    if started<scheduled:raise ValueError('execution before scheduled window')
+                    if v and completed>aware_time(v['recorded_at']):raise ValueError('execution after archive commit')
+                    if e.get('status') not in ('ok','failed','partial','blocked'):raise ValueError('execution status missing')
+                    valid.append((p,v,e,completed))
+                except (ValueError,KeyError,TypeError) as error:issues.append(str(error))
+            if not valid:
+                row.update(status='execution_unverified' if matches or evidences else 'missing_execution_and_archive',evidence_errors=issues)
+            else:
+                valid.sort(key=lambda x:x[3]);p,v,e,completed=valid[-1]
+                row['execution']=e
+                if not matches:row.update(status='missing_archive')
+                elif e['status']!='ok':row.update(status='execution_incomplete')
+                elif p is None:
+                    after=[(mp,mv) for mp,mv in matches if aware_time(mv['recorded_at'])>=completed]
+                    if not after:row.update(status='archive_before_execution')
+                    else:row.update(status='late' if completed>deadline else 'covered')
+                else:row.update(status='late' if completed>deadline else 'covered')
+                # An execution receipt cannot upgrade an incomplete archive.
+                if row['status'] in ('covered','late') and (matches[-1][1]['status'] not in ('ok','recorded') or matches[-1][0] in invalid_manifests):
+                    row['status']='archive_incomplete'
+        except (KeyError,ValueError,TypeError) as error:
+            row.update(status='calendar_or_schedule_unverified',error=str(error))
+        rows.append(row)
+    from collections import Counter
+    counts=dict(Counter(r['status'] for r in rows))
+    gaps=[r for r in rows if r['status'] not in ('covered','not_due','not_expected_market_closed')]
+    due=[r for r in rows if r['status'] not in ('not_due','not_expected_market_closed','calendar_or_schedule_unverified')]
+    return {'mode':'explicit_expected_schedule','status':'partial' if gaps else 'ok',
+            'scheduled_count':len(rows),'expected_count':len(due),'observed_archive_count':sum(bool(r['manifests']) for r in due),
+            'observed_execution_count':sum(bool(r.get('execution')) for r in due),
+            'missing_archive_count':sum(not r['manifests'] for r in due),
+            'unverified_calendar_count':counts.get('calendar_or_schedule_unverified',0),
+            'rows':rows,'counts':counts,'gaps':gaps,
+            'evidence_basis':'caller supplied calendar facts and actual execution timestamps; no weekday fallback'}
