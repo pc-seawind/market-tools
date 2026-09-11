@@ -1,0 +1,17 @@
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  reports/scope-repair-20260911-r3/real-archive/.archive.lock
+453b22f24b16e92d617037833a9c676ce376de1b38ee8c3f77d4f00ea4ecd460  reports/scope-repair-20260911-r3/real-archive/daily-track/user-reset-20260911T120928Z/2026-09-11/coverage-readonly-20260911T124046Z/r000001/manifest.json
+dd72b4a7b79346e784b8618bbbc7bbd37eb7f1574428a2682b6ab24c753eeb3f  reports/scope-repair-20260911-r3/real-archive/daily-track/user-reset-20260911T120928Z/2026-09-11/coverage-readonly-20260911T124046Z/r000001/materials/provider-inputs.json
+8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4  reports/scope-repair-20260911-r3/real-archive/daily-track/user-reset-20260911T120928Z/2026-09-11/coverage-readonly-20260911T124046Z/r000001/materials/scope.json
+6657a9c2b08f4c85deef743bd4c646e6bfbc784295323f31e5b669210ac2cf78  reports/scope-repair-20260911-r3/real-archive/daily-track/user-reset-20260911T120928Z/2026-09-11/coverage-readonly-20260911T124046Z/r000001/result.json
+56d1170609ad15a3ba7126a80f4ac0776f3392cf5a65a92e36952680a9bacb4a  reports/scope-repair-20260911-r3/real-archive/latest.json
+58e2377f37b536f861f2da8fe95bc1abd24f7b61fd69ab1385b4a65d900190a8  reports/scope-repair-20260911-r3/real-archive/weekly-evidence/user-reset-20260911T120928Z/2026-09-11/2026-09-11/r000001/manifest.json
+b3bd2993255cff380f97dae9692044e8200d061dfcd6210f09ebdf0271349dd0  reports/scope-repair-20260911-r3/real-archive/weekly-evidence/user-reset-20260911T120928Z/2026-09-11/2026-09-11/r000001/materials/expected-executions.json
+05ebfee2b8c1fcbf94ecc5e1c5670f9aa1c1f09e47b51edeeabc4177388c542d  reports/scope-repair-20260911-r3/real-archive/weekly-evidence/user-reset-20260911T120928Z/2026-09-11/2026-09-11/r000001/result.json
+4a075e3429a956e60fe93a69c419ae21ccc80d60611db93743a9479686bafcf8  reports/scope-repair-20260911-r3/real-cli-weekly.json
+76ef9b3a481ef40dc772a436ba0a12d85d74e8d1e11446941ff35e6824207a38  reports/scope-repair-20260911-r3/real-daily.json
+b3bd2993255cff380f97dae9692044e8200d061dfcd6210f09ebdf0271349dd0  reports/scope-repair-20260911-r3/real-expected-manual-job.json
+b918e6b414047bf2884cc390f6b413051174dcfae8f851ca8963504c4982e1f2  reports/scope-repair-20260911-r3/real-historical-recheck.json
+920afe6a8035820a6095c734cec459ff5546fcfbcdcfafe860e5d53e6742b340  reports/scope-repair-20260911-r3/real-manual-coverage-index.json
+c4b080681d1d30985a011742412ad7a3572f4245e1eda23f8fd92b3f0d90b1c0  reports/scope-repair-20260911-r3/real-validation-receipt.json
+75bef00083290d7e0b30eda580a11b58999cd433ebcda385e7b62b72c6e9f7a3  reports/scope-repair-20260911-r3/tests.txt
+39ab2e7c061c128a4b84f10b467487e91d1b06811aff3d73ef5693506641cce5  reports/scope-repair-20260911-r3/verification.json

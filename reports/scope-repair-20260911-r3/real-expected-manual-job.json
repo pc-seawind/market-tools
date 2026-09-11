@@ -1,0 +1,20 @@
+{
+  "provenance": "predeclared manual validation occurrence; NOT a real cron schedule",
+  "expected": [
+    {
+      "execution_id": "manual-validation:coverage-readonly-20260911T124046Z",
+      "job": "daily-track",
+      "run_id": "coverage-readonly-20260911T124046Z",
+      "scope_epoch": "user-reset-20260911T120928Z",
+      "market": null,
+      "trade_date": "2026-09-11",
+      "scheduled_at": "2026-09-11T12:40:46.656372+00:00",
+      "deadline_at": "2026-09-11T12:43:46.656372+00:00",
+      "calendar": {
+        "mode": "always",
+        "source": "explicit manual verification job; not an assumed exchange weekday",
+        "verified_at": "2026-09-11T12:40:46.656372+00:00"
+      }
+    }
+  ]
+}

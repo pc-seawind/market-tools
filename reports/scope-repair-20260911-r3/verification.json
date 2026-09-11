@@ -1,0 +1,26 @@
+{
+  "code_commit": "212d944df08c6dac0c5079d9161eba1125466054",
+  "tests": "337 passed in 1.79s",
+  "test_command": "/home/emox/work/homespace/.venv/bin/python -m pytest tests -q --disable-warnings --maxfail=3",
+  "source_sha256": {
+    "docs/longitudinal-evidence.md": "c8cefcb749a9ac4deec44cb57adbfa9f0d34e7de45dd0ad1196b562eb970034b",
+    "mt1.py": "9012c7f0996025e855bfc2706562c1b4ca7ab0001e07411e16021ee9d13a4ab4",
+    "mt1/longitudinal.py": "93f35f8e3dfa2971c8cd59f23f51567e6cf0aaada2281db72380f636bbae31e1",
+    "tests/test_weekly_coverage.py": "02109bfb05ed9bcd586bc6ca13eb328d7c0ce1d5fc2ed30c3c97fab0c136fc03",
+    "thesis_enrich_daily.py": "4fb335b1667190a945494706b4e4f2ff486d8c8eecd9410251786a34f5a929e1"
+  },
+  "resolved": [
+    "Beijing complete-day exclusive cutoff and explicit aware instant inclusive cutoff; future/out-of-cutoff records excluded",
+    "blocked/noncompleted runs, missing materials, integrity/time errors and coverage gaps included in anomalies; partial summary",
+    "optional --expected schedule with independent explicit calendars and actual execution timestamps; missing execution vs missing archive vs not_due vs unverified calendar; no weekday fallback"
+  ],
+  "live_validation": "predeclared manual real-data job; not natural cron attestation",
+  "old_archive_unchanged": true,
+  "user_data_writes": false,
+  "vps_writes": false,
+  "production_cron_coverage_claimed": false,
+  "remaining_boundaries": [
+    "原topic负责线上expected清单与接线，代码不改VPS；无需等待自然投递继续开发",
+    "旧推荐基准/复权/自由文本条件限制按已披露范围保留，本轮不扩展"
+  ]
+}
