@@ -1,0 +1,141 @@
+{
+  "work_id": "work_9d513102eda442f41a04",
+  "frozen_at": "2026-09-11T20:48:51.858559+00:00",
+  "start": "20210101",
+  "end": "20251231",
+  "sample_rule": "Predeclared purposive cross-sector current-vintage CN large liquid names, not historical index membership or PIT stock selection; no performance screening. First three pilot, then all twelve regardless of returns. All TREND. Exclude user nine holdings. No outcome-driven replacement.",
+  "codes": [
+    "600000.SH",
+    "000001.SZ",
+    "600009.SH",
+    "600028.SH",
+    "600030.SH",
+    "600036.SH",
+    "600050.SH",
+    "600104.SH",
+    "600276.SH",
+    "600519.SH",
+    "000333.SZ",
+    "000651.SZ"
+  ],
+  "pilot_count": 3,
+  "excluded": {
+    "user_holdings": [
+      "001309.SZ",
+      "603986.SH",
+      "688195.SH",
+      "301511.SZ",
+      "300750.SZ",
+      "601138.SH"
+    ],
+    "HK": "Separate later coverage; factor/calendar/execution still required",
+    "US": "out_of_scope"
+  },
+  "trial_contract": {
+    "method": "mt12-timing-shadow-1",
+    "status": "shadow",
+    "parameters_status": "exploratory_not_optimized",
+    "trial": 1,
+    "grid": [],
+    "selection": "one prespecified engineering baseline; no performance-based parameter choice or automatic promotion",
+    "warmup": 120,
+    "structure_window": 20,
+    "compression_range_max": 0.12,
+    "compression_recent_to_prior": 0.8,
+    "setup_ttl_sessions": 10,
+    "breakout_volume_min": 1.2,
+    "failure_closes": 2,
+    "failure_window_sessions": 10,
+    "pullback_volume_max": 1.1,
+    "pullback_ma20_band": 0.02,
+    "atr_window": 20,
+    "atr_smoothing": "TR_simple_mean_matches_mt11_not_Wilder",
+    "atr_multiple": 3.0,
+    "extension_atr_diagnostic": 2.5,
+    "horizons_sessions": [
+      20,
+      40,
+      60
+    ],
+    "execution": {
+      "signal": "completed_close; never same-bar fill or stop-price fill",
+      "fill": "first later session open with explicit side-specific executable evidence and settlement eligibility; otherwise pending/unknown",
+      "intrabar": "daily OHLC cannot establish event ordering; close-only rule, intrabar breach diagnostic not a fill",
+      "per_side_cost_bps": {
+        "CN": 15,
+        "HK": 25,
+        "US": 10
+      },
+      "cost_status": "exploratory all-in commission/tax/slippage scenario, not verified broker tariff",
+      "min_holding_sessions": {
+        "CN": 1,
+        "HK": 0,
+        "US": 0
+      },
+      "missing_suspension_limit_delisting_settlement": "unknown_no_fill"
+    },
+    "benchmarks": {
+      "CN": "000300.SH",
+      "HK": "HSI",
+      "US": "SP500"
+    },
+    "industry": "explicit market-matched benchmark + membership known_at required; unknown is not zero or veto",
+    "group_A": {
+      "entry": "same frozen episode list",
+      "exits": [
+        "old_ma60_5",
+        "structure_failure",
+        "structure_failure_atr"
+      ]
+    },
+    "group_B": {
+      "entries": [
+        "old_trigger",
+        "breakout",
+        "pullback"
+      ],
+      "exit": "structure_failure_atr",
+      "candidate_set": "same audited frozen scope; no discovery expansion"
+    },
+    "evaluation": {
+      "mode": "current_vintage_diagnostic_replay_unless_PIT_certified",
+      "oos_train_sessions": 120,
+      "oos_test_sessions": 60,
+      "purge_sessions": 60,
+      "parameter_refit": false,
+      "strata": [
+        "market",
+        "industry",
+        "volatility",
+        "regime"
+      ],
+      "metrics": [
+        "net_price_return",
+        "max_drawdown",
+        "tail_loss",
+        "round_trips",
+        "turnover",
+        "false_breakout",
+        "post_exit_rally",
+        "sample_count",
+        "unknown",
+        "not_matured"
+      ]
+    },
+    "promotion": "candidate -> shadow -> validated -> active requires independent research signoff; development approval is not efficacy approval"
+  },
+  "A_entries": "first old_trigger per common test fold, minimum 61 exchange sessions apart, irrespective of outcomes; identical entry episode all exits",
+  "folds": "rolling train120 purge60 test60 stride120; no fit; all arms no fills beyond test end; terminal partial fold retained",
+  "costs_bps_per_side": [
+    15,
+    30,
+    50
+  ],
+  "execution_scenarios": [
+    "open_price_limit_base_v1",
+    "any_limit_touch_conservative_v1"
+  ],
+  "execution": "historical ex-post open realization, not forward known_at evidence; observed raw open strictly inside vendor buy/sell limit, positive daily volume, full calendar, missing price/limit/factor unknown stops order; no assumed price for missing bars; T+1 exchange sessions. conservative additionally blocks buy if high touches upper / sell if low touches lower. Missing bars split indicator state, not fabricated.",
+  "metrics": "event adjusted-price returns, not portfolio; all statuses denominator; paired A closed intersections reported with censoring warning; no tuning",
+  "later_extension": "HK feasibility only after all CN; no cost purchase"
+}

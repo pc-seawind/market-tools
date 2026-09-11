@@ -1,0 +1,20 @@
+ M narrative_perf.jsonl
+ M narrative_prefilter_candidates.jsonl
+ M recommendations_performance.jsonl
+ M sector_picks_history.jsonl
+ D watchlist/proposed/2026-05-13.yaml
+ D watchlist/proposed/2026-05-20.yaml
+?? _review_joined_d14-28.jsonl
+?? backtest_exit_rules.py
+?? backtest_screen_presets.py
+?? reports/mt12-history-20260912/
+?? reports/scope-repair-20260911/real-bridge/funnel.json.gz
+?? reports/scope-repair-20260911/real-bridge/review-input.json
+?? reports/scope-repair-20260911/real-bridge/review-sources/
+?? reports/scope-repair-20260911/real-bridge/summary.json
+?? reports/scope-repair-20260911/real-enrich-dry-run.json
+?? reports/scope-repair-20260911/real-holdings-quotes.json
+?? reports/timing-upgrade-20260911/real-archive/.archive.lock
+?? reports/timing-upgrade-20260911/real-archive/.timing.lock
+?? watchlist/proposed-archive/
+?? watchlist/proposed/user-reset-20260911T120928Z.yaml
