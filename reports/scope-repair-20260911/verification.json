@@ -1,0 +1,27 @@
+{
+  "code_commit": "ffd1c77cf03eb42256ac21ae72324eec2eede3c9",
+  "tests": "302 passed in 1.62s",
+  "test_command": "/home/emox/work/homespace/.venv/bin/python -m pytest -q --disable-warnings --maxfail=3",
+  "source_sha256": {
+    "docs/2026-09-11-scope-daily-repair.md": "fcfab12c948e79dfc11b2891fad7559f8d4eb08931a90c5d862e8b8bfe343148",
+    "mt1.py": "b95ebb9af977a94406848660fb285925de7ebfc11c3a4d1bd92596c28f09e1a3",
+    "mt1/coldstart.py": "2a23f8ed4c78ce9c5f4caf81e62ada6d7556168fb0a0ff296559158135100f95",
+    "mt1/daily_tracking.py": "f8bb17c2d08f05fa193c0ec51ac00a2fc28a0d9e13fada397911cc7a5ebeb9f4",
+    "mt1/finalize.py": "0cef741440965f57ccf44e2c3a396b680d6210713b24ebff19c27f14a26c0a2e",
+    "mt1/parallel.py": "c3bfa7e20bbcc5bc7a16353bf1b4a131c7533f6d5e1b98e610b59bb43f3ec167",
+    "mt1/parallel_bridge.py": "34f396ac90f68774cda88ff872062cfa7af4cbebc797bd4acab4f1ecdd4ccfff",
+    "mt1/pipeline.py": "81851c095db3dd2f09d8c73d0adb77c4f42f8abf5e31715996cde32ad2e0deb3",
+    "mt1/scope.py": "3bee53ad023973c61d61b43e307a004af7183bf6d20a177a48e024aa9e39f8d6",
+    "mt1/store.py": "57622068ac04201d258599150239eb0be75a0393ec94439a96b4e2d70772bc6a",
+    "mt1_deploy_cron.py": "cfbddd85e58da2ba9e1c1f4b90f9a4dc371f0de8676670f4275472fd73a3df2f",
+    "mt1_job.py": "84cf89263d0ab5b10e5dc81202f85346ddbfdf37bf16d3b955ce70cc93b84011",
+    "narrative_track.py": "7b6ecce684a036ad0416cf2ba0ee05bcae8106a596265c843ec69cc20a46d3a4",
+    "scripts/deploy_mt11_sidecar.py": "722e6c983c57f39aaad442a7072ae4a443f203b5a479309913916236cb948357",
+    "tests/test_thesis_enrich_daily.py": "1be7766405f4396586a46e32bdc7992d24b6fe997d2b2f8e06dbfe3556809af1",
+    "tests/test_tracking_scope.py": "5d56909408b184b434950ddd6cff4a94fbca9e99c94d8b322f29b76aa7bcfa6d",
+    "thesis_enrich_daily.py": "6099529fb3b968c7500c79e34072f24ff6bd03cea17f10faf22760e9cdaf8db3"
+  },
+  "natural_delivery_verified": false,
+  "user_data_writes": false,
+  "vps_changes": false
+}

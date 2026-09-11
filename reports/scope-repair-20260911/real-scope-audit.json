@@ -1,0 +1,42 @@
+{
+  "input_ledger": "/home/emox/work/projects/market-tools/.cron_state/mt1/plans.db",
+  "ledger_sha256_before": "578f19063dcfa0002c877da0181fc3804fe7d035b7c6ef0aa1ee150efed5ea2c",
+  "scope": {
+    "scope_epoch": "user-reset-20260911T120928Z",
+    "confirmed_holdings": 9,
+    "active_candidates": 0,
+    "active_recommendations": 0,
+    "raw_scan_is_separate": true
+  },
+  "legacy_plan_count": 64,
+  "scoped_plan_count": 8,
+  "scoped_codes": [
+    "001309.SZ",
+    "00700.HK",
+    "01810.HK",
+    "03690.HK",
+    "300750.SZ",
+    "601138.SH",
+    "603986.SH",
+    "688195.SH"
+  ],
+  "missing_plan_holdings": [
+    "301511.SZ"
+  ],
+  "exit_preserved": [
+    "300750.SZ"
+  ],
+  "raw_diagnostic_path": "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20260910T231602827684Z-morning/funnel.json.gz",
+  "raw_diagnostic_sha256": "13e6badb95b4450aef5582c3a25802e54a45901dffc00826b522c191c798fd40",
+  "raw_diagnostic_count": 5561,
+  "raw_diagnostic_active_candidates": [],
+  "coldstart": {
+    "out_dir": "reports/scope-repair-20260911/real-coldstart/2026-09-11-3ccd72aea20e39f8",
+    "items": 8,
+    "batches": 1,
+    "invalid_symbols": [],
+    "snapshot_hash": "3ccd72aea20e39f8de64922e789c3e7f0f07afcb8709fe54da765141dd616ecb"
+  },
+  "source": "actual read-only SQLite and archived funnel, no fixture",
+  "ledger_sha256_after": "578f19063dcfa0002c877da0181fc3804fe7d035b7c6ef0aa1ee150efed5ea2c"
+}

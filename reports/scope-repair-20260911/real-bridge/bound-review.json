@@ -1,0 +1,538 @@
+{
+  "tracking_scope": {
+    "scope_epoch": "user-reset-20260911T120928Z",
+    "confirmed_holdings": 9,
+    "active_candidates": 0,
+    "active_recommendations": 0,
+    "raw_scan_is_separate": true
+  },
+  "holdings_without_plan": [
+    "301511.SZ"
+  ],
+  "decision_at": "2026-09-10T23:16:02.828913+00:00",
+  "price_asof": "20260910",
+  "ledger_path": "/home/emox/work/projects/market-tools/.cron_state/mt1/plans.db",
+  "ledger_snapshot_sha256": "669050049379bbe926360153b8d60016244e94e0beb58a110aa67e7da43ffc57",
+  "observations": [
+    {
+      "code": "300750.SZ",
+      "binding": {
+        "bound_fields": {
+          "plan_id": "legacy-547c0a1c7deeb99c8c258ca8",
+          "version": 1,
+          "code": "300750.SZ",
+          "episode": "legacy-unreconstructed",
+          "original_date": null,
+          "original_reason": "晚盘复盘 2026-08-28：锂电产业链由HOT(63.4)降至COLD(38.7)，Tier1 Gate失败，5日/20日资金-30.32/-156.97亿元；8/27 BUY退出当前机会池。非机械SELL，不等于立即卖出指令。framework v2.4 applied。",
+          "original_deadline": null,
+          "reference_price": null,
+          "deadline_extension": null
+        },
+        "holding_status": "confirmed",
+        "effective_deadline": null,
+        "deadline_status": "unknown",
+        "held_action": "原计划已退出；不自动重入",
+        "original_state": "EXIT",
+        "actual_cost": null
+      },
+      "price_asof": "20260910",
+      "decision_at": "2026-09-10T23:16:02.828913+00:00",
+      "channels": [
+        "REVERSAL"
+      ],
+      "discovery_admitted": true,
+      "review_input_results": [],
+      "conditional_plan": {
+        "qualification": "pending_review",
+        "method_status": "shadow",
+        "unheld": "研究未完成",
+        "held_hypothetical": "减仓或退出复核",
+        "holding_status": "unknown",
+        "final_buy": false,
+        "current_timing": {
+          "status": "wait",
+          "reasons": [
+            "structure_volume_or_relative_strength_not_confirmed"
+          ]
+        },
+        "valid_for_close": "20260910",
+        "expires": "next_completed_session; recompute, do not carry trigger",
+        "trigger": {
+          "breakout_close_above": 400.99,
+          "volume_ratio_at_least": 1.2,
+          "near_MA20_diagnostic": 368.4735,
+          "near_MA20_volume_at_most": 1.1,
+          "common": "close>rising MA60, RS60>0, extension20<=10%; risk/evidence/valuation/signoff all pass"
+        },
+        "cancel": "任一价格/日历/复权缺失或过期；触发结构失效；量能/相对强弱不再满足；估值或经营证据失效",
+        "invalidation": "经营逻辑证伪/重大风险优先退出复核；不得要求满足买入门槛",
+        "risk_boundary": {
+          "diagnostic_MA60": 378.44627361238884,
+          "diagnostic_ATR20": 9.8005,
+          "policy": "非自动止损价；连续5交易日破MA60仅触发复核；需公司风险证据签审"
+        },
+        "next_review": "下一已完成交易日检查条件；周末补研究；原期限不可覆盖",
+        "horizon": "20/40/60交易日向前观察；1—3个月；尚无原始已签审持仓期限",
+        "channel_readiness": {
+          "REVERSAL": {
+            "blockers": [
+              "risk:unknown:numeric_risk_checks_pass_major_events_tradability_review_pending",
+              "evidence:pending:经营/供需改善证据待核验，深跌不等于反转",
+              "valuation:pending:earnings_scenarios_peer_comparison_price_justification_required",
+              "timing:wait"
+            ],
+            "research_conditions_ready": false,
+            "final_blocker": "method_shadow_research_signoff_required"
+          }
+        },
+        "candidate_origin": "mt11_parallel_shadow",
+        "decision_at": "2026-09-10T23:16:02.828913+00:00"
+      },
+      "proposal_type": "review_observation_only",
+      "final": false,
+      "trade_intent": false,
+      "remaining_blocks": [
+        "original_deadline_missing",
+        "method_shadow_no_final"
+      ]
+    },
+    {
+      "code": "601138.SH",
+      "binding": {
+        "bound_fields": {
+          "plan_id": "legacy-a15468d7df4d521140c380d2",
+          "version": 1,
+          "code": "601138.SH",
+          "episode": "legacy-unreconstructed",
+          "original_date": null,
+          "original_reason": "早盘前瞻 2026-09-10: 英伟达产业链 NEUTRAL(46.5,9/8)→HOT(69.0,+22.5), flow5d +28.6亿(20d仍-380.7亿,底部反转拐点); 工业富联 Tier2-4 通过、乖离+41.4%、FOLLOWER、位置56%<70, 仓位≤8%; WATCH(8/20)→BUY 晋级",
+          "original_deadline": null,
+          "reference_price": null,
+          "deadline_extension": null
+        },
+        "holding_status": "confirmed",
+        "effective_deadline": null,
+        "deadline_status": "unknown",
+        "held_action": "原期限未知，先重建，不自动延期",
+        "original_state": "WATCH",
+        "actual_cost": null
+      },
+      "price_asof": "20260910",
+      "decision_at": "2026-09-10T23:16:02.828913+00:00",
+      "channels": [
+        "REVERSAL"
+      ],
+      "discovery_admitted": true,
+      "review_input_results": [],
+      "conditional_plan": {
+        "qualification": "pending_review",
+        "method_status": "shadow",
+        "unheld": "研究未完成",
+        "held_hypothetical": "持有复核",
+        "holding_status": "unknown",
+        "final_buy": false,
+        "current_timing": {
+          "status": "wait",
+          "reasons": [
+            "structure_volume_or_relative_strength_not_confirmed"
+          ]
+        },
+        "valid_for_close": "20260910",
+        "expires": "next_completed_session; recompute, do not carry trigger",
+        "trigger": {
+          "breakout_close_above": 68.5,
+          "volume_ratio_at_least": 1.2,
+          "near_MA20_diagnostic": 63.669,
+          "near_MA20_volume_at_most": 1.1,
+          "common": "close>rising MA60, RS60>0, extension20<=10%; risk/evidence/valuation/signoff all pass"
+        },
+        "cancel": "任一价格/日历/复权缺失或过期；触发结构失效；量能/相对强弱不再满足；估值或经营证据失效",
+        "invalidation": "经营逻辑证伪/重大风险优先退出复核；不得要求满足买入门槛",
+        "risk_boundary": {
+          "diagnostic_MA60": 64.35367247772429,
+          "diagnostic_ATR20": 2.382500000000001,
+          "policy": "非自动止损价；连续5交易日破MA60仅触发复核；需公司风险证据签审"
+        },
+        "next_review": "下一已完成交易日检查条件；周末补研究；原期限不可覆盖",
+        "horizon": "20/40/60交易日向前观察；1—3个月；尚无原始已签审持仓期限",
+        "channel_readiness": {
+          "REVERSAL": {
+            "blockers": [
+              "risk:unknown:numeric_risk_checks_pass_major_events_tradability_review_pending",
+              "evidence:pending:经营/供需改善证据待核验，深跌不等于反转",
+              "valuation:pending:earnings_scenarios_peer_comparison_price_justification_required",
+              "timing:wait"
+            ],
+            "research_conditions_ready": false,
+            "final_blocker": "method_shadow_research_signoff_required"
+          }
+        },
+        "candidate_origin": "mt11_parallel_shadow",
+        "decision_at": "2026-09-10T23:16:02.828913+00:00"
+      },
+      "proposal_type": "review_observation_only",
+      "final": false,
+      "trade_intent": false,
+      "remaining_blocks": [
+        "original_deadline_missing",
+        "method_shadow_no_final"
+      ]
+    },
+    {
+      "code": "001309.SZ",
+      "binding": {
+        "bound_fields": {
+          "plan_id": "legacy-5b6cf1eba9fd876221a8d746",
+          "version": 1,
+          "code": "001309.SZ",
+          "episode": "legacy-unreconstructed",
+          "original_date": null,
+          "original_reason": "daily.sh SELL_CONFIRMED: 1W +25.6% ≥ +25%, 位置≈85%, 今日+10.00%急涨，末期加速加剧；建议减仓30-50%；backtest置信度=技术顶部信号中等偏高，需结合持仓执行",
+          "original_deadline": null,
+          "reference_price": null,
+          "deadline_extension": null
+        },
+        "holding_status": "confirmed",
+        "effective_deadline": null,
+        "deadline_status": "unknown",
+        "held_action": "原期限未知，先重建，不自动延期",
+        "original_state": "WATCH",
+        "actual_cost": null
+      },
+      "price_asof": "20260910",
+      "decision_at": "2026-09-10T23:16:02.828913+00:00",
+      "channels": [
+        "REVERSAL"
+      ],
+      "discovery_admitted": true,
+      "review_input_results": [],
+      "conditional_plan": {
+        "qualification": "pending_review",
+        "method_status": "shadow",
+        "unheld": "风险否决，不推进新买研究",
+        "held_hypothetical": "减仓或退出复核",
+        "holding_status": "unknown",
+        "final_buy": false,
+        "current_timing": {
+          "status": "wait",
+          "reasons": [
+            "structure_volume_or_relative_strength_not_confirmed"
+          ]
+        },
+        "valid_for_close": "20260910",
+        "expires": "next_completed_session; recompute, do not carry trigger",
+        "trigger": {
+          "breakout_close_above": 450.65,
+          "volume_ratio_at_least": 1.2,
+          "near_MA20_diagnostic": 412.266,
+          "near_MA20_volume_at_most": 1.1,
+          "common": "close>rising MA60, RS60>0, extension20<=10%; risk/evidence/valuation/signoff all pass"
+        },
+        "cancel": "任一价格/日历/复权缺失或过期；触发结构失效；量能/相对强弱不再满足；估值或经营证据失效",
+        "invalidation": "经营逻辑证伪/重大风险优先退出复核；不得要求满足买入门槛",
+        "risk_boundary": {
+          "diagnostic_MA60": 546.6206666666667,
+          "diagnostic_ATR20": 23.380000000000003,
+          "policy": "非自动止损价；连续5交易日破MA60仅触发复核；需公司风险证据签审"
+        },
+        "next_review": "下一已完成交易日检查条件；周末补研究；原期限不可覆盖",
+        "horizon": "20/40/60交易日向前观察；1—3个月；尚无原始已签审持仓期限",
+        "channel_readiness": {
+          "REVERSAL": {
+            "blockers": [
+              "risk:reject:nonfinancial_leverage_shadow_limit",
+              "evidence:pending:经营/供需改善证据待核验，深跌不等于反转",
+              "valuation:pending:earnings_scenarios_peer_comparison_price_justification_required",
+              "timing:wait"
+            ],
+            "research_conditions_ready": false,
+            "final_blocker": "method_shadow_research_signoff_required"
+          }
+        },
+        "candidate_origin": "mt11_parallel_shadow",
+        "decision_at": "2026-09-10T23:16:02.828913+00:00"
+      },
+      "proposal_type": "review_observation_only",
+      "final": false,
+      "trade_intent": false,
+      "remaining_blocks": [
+        "original_deadline_missing",
+        "method_shadow_no_final"
+      ]
+    },
+    {
+      "code": "603986.SH",
+      "binding": {
+        "bound_fields": {
+          "plan_id": "legacy-1d3eacbcf45daa9a47d37252",
+          "version": 1,
+          "code": "603986.SH",
+          "episode": "legacy-unreconstructed",
+          "original_date": null,
+          "original_reason": "周日展望 2026-07-26: 最新价457.00已低于7/10 BUY@663.49的-5%止损630.32约27.5%；板块仅NEUTRAL(54.6)，非HOT，按framework v2.3执行减仓/清仓。",
+          "original_deadline": null,
+          "reference_price": null,
+          "deadline_extension": null
+        },
+        "holding_status": "confirmed",
+        "effective_deadline": null,
+        "deadline_status": "unknown",
+        "held_action": "原期限未知，先重建，不自动延期",
+        "original_state": "WATCH",
+        "actual_cost": null
+      },
+      "price_asof": "20260910",
+      "decision_at": "2026-09-10T23:16:02.828913+00:00",
+      "channels": [
+        "REVERSAL"
+      ],
+      "discovery_admitted": true,
+      "review_input_results": [],
+      "conditional_plan": {
+        "qualification": "pending_review",
+        "method_status": "shadow",
+        "unheld": "研究未完成",
+        "held_hypothetical": "减仓或退出复核",
+        "holding_status": "unknown",
+        "final_buy": false,
+        "current_timing": {
+          "status": "wait",
+          "reasons": [
+            "structure_volume_or_relative_strength_not_confirmed"
+          ]
+        },
+        "valid_for_close": "20260910",
+        "expires": "next_completed_session; recompute, do not carry trigger",
+        "trigger": {
+          "breakout_close_above": 455.81,
+          "volume_ratio_at_least": 1.2,
+          "near_MA20_diagnostic": 398.4515,
+          "near_MA20_volume_at_most": 1.1,
+          "common": "close>rising MA60, RS60>0, extension20<=10%; risk/evidence/valuation/signoff all pass"
+        },
+        "cancel": "任一价格/日历/复权缺失或过期；触发结构失效；量能/相对强弱不再满足；估值或经营证据失效",
+        "invalidation": "经营逻辑证伪/重大风险优先退出复核；不得要求满足买入门槛",
+        "risk_boundary": {
+          "diagnostic_MA60": 492.472,
+          "diagnostic_ATR20": 18.8175,
+          "policy": "非自动止损价；连续5交易日破MA60仅触发复核；需公司风险证据签审"
+        },
+        "next_review": "下一已完成交易日检查条件；周末补研究；原期限不可覆盖",
+        "horizon": "20/40/60交易日向前观察；1—3个月；尚无原始已签审持仓期限",
+        "channel_readiness": {
+          "REVERSAL": {
+            "blockers": [
+              "risk:unknown:numeric_risk_checks_pass_major_events_tradability_review_pending",
+              "evidence:pending:经营/供需改善证据待核验，深跌不等于反转",
+              "valuation:pending:earnings_scenarios_peer_comparison_price_justification_required",
+              "timing:wait"
+            ],
+            "research_conditions_ready": false,
+            "final_blocker": "method_shadow_research_signoff_required"
+          }
+        },
+        "candidate_origin": "mt11_parallel_shadow",
+        "decision_at": "2026-09-10T23:16:02.828913+00:00"
+      },
+      "proposal_type": "review_observation_only",
+      "final": false,
+      "trade_intent": false,
+      "remaining_blocks": [
+        "original_deadline_missing",
+        "method_shadow_no_final"
+      ]
+    },
+    {
+      "code": "688195.SH",
+      "binding": {
+        "bound_fields": {
+          "plan_id": "legacy-81f3f33e51041da44c1350e4",
+          "version": 1,
+          "code": "688195.SH",
+          "episode": "legacy-unreconstructed",
+          "original_date": null,
+          "original_reason": "晚盘复盘 2026-08-26：daily.sh 触发 BUY_BREAKOUT（位置约90%、量比2.1x、1W +5.6%），但板块仅 NEUTRAL(52.6)，5日主力资金约-234.6亿元、板块量比0.74x；按 top-down 纪律将技术 BUY 降级为 WATCH，不追突破。8/18 SELL 后首次出现反向技术信号，但尚未满足常规 BUY。framework v2.4 applied。",
+          "original_deadline": null,
+          "reference_price": null,
+          "deadline_extension": null
+        },
+        "holding_status": "confirmed",
+        "effective_deadline": null,
+        "deadline_status": "unknown",
+        "held_action": "原期限未知，先重建，不自动延期",
+        "original_state": "WATCH",
+        "actual_cost": null
+      },
+      "price_asof": "20260910",
+      "decision_at": "2026-09-10T23:16:02.828913+00:00",
+      "channels": [
+        "REVERSAL"
+      ],
+      "discovery_admitted": true,
+      "review_input_results": [],
+      "conditional_plan": {
+        "qualification": "pending_review",
+        "method_status": "shadow",
+        "unheld": "研究未完成",
+        "held_hypothetical": "持有复核",
+        "holding_status": "unknown",
+        "final_buy": false,
+        "current_timing": {
+          "status": "wait",
+          "reasons": [
+            "extended_above_MA20_do_not_chase"
+          ]
+        },
+        "valid_for_close": "20260910",
+        "expires": "next_completed_session; recompute, do not carry trigger",
+        "trigger": {
+          "breakout_close_above": 215.5,
+          "volume_ratio_at_least": 1.2,
+          "near_MA20_diagnostic": 183.693,
+          "near_MA20_volume_at_most": 1.1,
+          "common": "close>rising MA60, RS60>0, extension20<=10%; risk/evidence/valuation/signoff all pass"
+        },
+        "cancel": "任一价格/日历/复权缺失或过期；触发结构失效；量能/相对强弱不再满足；估值或经营证据失效",
+        "invalidation": "经营逻辑证伪/重大风险优先退出复核；不得要求满足买入门槛",
+        "risk_boundary": {
+          "diagnostic_MA60": 161.82933333333332,
+          "diagnostic_ATR20": 15.6315,
+          "policy": "非自动止损价；连续5交易日破MA60仅触发复核；需公司风险证据签审"
+        },
+        "next_review": "下一已完成交易日检查条件；周末补研究；原期限不可覆盖",
+        "horizon": "20/40/60交易日向前观察；1—3个月；尚无原始已签审持仓期限",
+        "channel_readiness": {
+          "REVERSAL": {
+            "blockers": [
+              "risk:unknown:numeric_risk_checks_pass_major_events_tradability_review_pending",
+              "evidence:pending:经营/供需改善证据待核验，深跌不等于反转",
+              "valuation:pending:earnings_scenarios_peer_comparison_price_justification_required",
+              "timing:wait"
+            ],
+            "research_conditions_ready": false,
+            "final_blocker": "method_shadow_research_signoff_required"
+          }
+        },
+        "candidate_origin": "mt11_parallel_shadow",
+        "decision_at": "2026-09-10T23:16:02.828913+00:00"
+      },
+      "proposal_type": "review_observation_only",
+      "final": false,
+      "trade_intent": false,
+      "remaining_blocks": [
+        "original_deadline_missing",
+        "method_shadow_no_final"
+      ]
+    },
+    {
+      "code": "00700.HK",
+      "binding": {
+        "bound_fields": {
+          "plan_id": "legacy-b83835907228e83ed6346c0c",
+          "version": 1,
+          "code": "00700.HK",
+          "episode": "legacy-unreconstructed",
+          "original_date": null,
+          "original_reason": "历史原文见 legacy_source，原始建仓理由未知",
+          "original_deadline": null,
+          "reference_price": null,
+          "deadline_extension": null
+        },
+        "holding_status": "confirmed",
+        "effective_deadline": null,
+        "deadline_status": "unknown",
+        "held_action": "原期限未知，先重建，不自动延期",
+        "original_state": "WATCH",
+        "actual_cost": null
+      },
+      "price_asof": "20260910",
+      "decision_at": "2026-09-10T23:16:02.828913+00:00",
+      "channels": [],
+      "discovery_admitted": false,
+      "review_input_results": [],
+      "conditional_plan": null,
+      "proposal_type": "review_observation_only",
+      "final": false,
+      "trade_intent": false,
+      "remaining_blocks": [
+        "not_in_current_discovery",
+        "original_deadline_missing",
+        "method_shadow_no_final"
+      ]
+    },
+    {
+      "code": "01810.HK",
+      "binding": {
+        "bound_fields": {
+          "plan_id": "legacy-4584f9f69c254e4703e830f9",
+          "version": 1,
+          "code": "01810.HK",
+          "episode": "legacy-unreconstructed",
+          "original_date": null,
+          "original_reason": "历史原文见 legacy_source，原始建仓理由未知",
+          "original_deadline": null,
+          "reference_price": null,
+          "deadline_extension": null
+        },
+        "holding_status": "confirmed",
+        "effective_deadline": null,
+        "deadline_status": "unknown",
+        "held_action": "原期限未知，先重建，不自动延期",
+        "original_state": "WATCH",
+        "actual_cost": null
+      },
+      "price_asof": "20260910",
+      "decision_at": "2026-09-10T23:16:02.828913+00:00",
+      "channels": [],
+      "discovery_admitted": false,
+      "review_input_results": [],
+      "conditional_plan": null,
+      "proposal_type": "review_observation_only",
+      "final": false,
+      "trade_intent": false,
+      "remaining_blocks": [
+        "not_in_current_discovery",
+        "original_deadline_missing",
+        "method_shadow_no_final"
+      ]
+    },
+    {
+      "code": "03690.HK",
+      "binding": {
+        "bound_fields": {
+          "plan_id": "legacy-0bc7cb4dd7936616c8fad09b",
+          "version": 1,
+          "code": "03690.HK",
+          "episode": "legacy-unreconstructed",
+          "original_date": null,
+          "original_reason": "历史原文见 legacy_source，原始建仓理由未知",
+          "original_deadline": null,
+          "reference_price": null,
+          "deadline_extension": null
+        },
+        "holding_status": "confirmed",
+        "effective_deadline": null,
+        "deadline_status": "unknown",
+        "held_action": "原期限未知，先重建，不自动延期",
+        "original_state": "WATCH",
+        "actual_cost": null
+      },
+      "price_asof": "20260910",
+      "decision_at": "2026-09-10T23:16:02.828913+00:00",
+      "channels": [],
+      "discovery_admitted": false,
+      "review_input_results": [],
+      "conditional_plan": null,
+      "proposal_type": "review_observation_only",
+      "final": false,
+      "trade_intent": false,
+      "remaining_blocks": [
+        "not_in_current_discovery",
+        "original_deadline_missing",
+        "method_shadow_no_final"
+      ]
+    }
+  ],
+  "writes": "immutable observations only; authoritative ledger untouched",
+  "method_status": "shadow"
+}

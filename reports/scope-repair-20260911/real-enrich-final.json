@@ -1,0 +1,251 @@
+{
+  "date": "2026-09-11",
+  "dry_run": true,
+  "written": 0,
+  "total": 44,
+  "active": 9,
+  "updated": 9,
+  "skipped_existing": 0,
+  "failed": [],
+  "tracking_scope": {
+    "scope_epoch": "user-reset-20260911T120928Z",
+    "confirmed_holdings": 9,
+    "active_candidates": 0,
+    "active_recommendations": 0,
+    "raw_scan_is_separate": true
+  },
+  "markets": {
+    "CN": {
+      "market": "CN",
+      "allowed": true,
+      "expected_date": "2026-09-11",
+      "reason": "verified"
+    },
+    "HK": {
+      "market": "HK",
+      "allowed": true,
+      "expected_date": "2026-09-11",
+      "reason": "verified"
+    },
+    "US": {
+      "market": "US",
+      "allowed": true,
+      "expected_date": "2026-09-10",
+      "reason": "verified"
+    }
+  },
+  "alerts": [],
+  "entries": [
+    {
+      "ticker": "001309.SZ",
+      "entry": {
+        "date": "2026-09-11",
+        "data_point": "收 ¥402.73 (-3.70%), 1W +2.92%, 1M -0.85%, 量比 1.2x, 位置 13%. pillar_impact 待新闻/财报验证后更新（默认 PENDING，不把价格波动直接等同基本面证伪）。",
+        "source": "thesis_enrich_daily.py (provider daily + signals.py; sector=unavailable_optional)",
+        "pillar_impact": {
+          "业绩增长持续性": "PENDING",
+          "行业景气度": "PENDING",
+          "估值合理性 + 催化剂": "PENDING"
+        },
+        "technical_status": {
+          "signal": "CLEAN",
+          "position": 12.6,
+          "w1_pct": 2.92,
+          "m1_pct": -0.85,
+          "volume_ratio": 1.18,
+          "interpretation": "CLEAN；位置 13% / 1W +2.92% / 1M -0.85% / 量比 1.2x。未触发高优先级技术信号。"
+        },
+        "stop_loss_check": "price_trigger: 无法精确量化（规则 '现价 -15%' 缺少已封存基准价）；参考：距 120 日高点 -58.5%（仅作参考，不自动触发）; thesis_trigger: 待核验（缺新闻/财报证据，不视为通过）; time_stop: 建立于 2026-06-28，窗口 ~6 个月，到期约 2026-12-25（剩余 105 天）",
+        "action_hint": "无新增动作；进入周度 thesis review 汇总。"
+      },
+      "dry_run": true
+    },
+    {
+      "ticker": "00700.HK",
+      "entry": {
+        "date": "2026-09-11",
+        "data_point": "收 HK$428.40 (+0.66%), 1W -3.25%, 1M -2.64%, 量比 0.9x, 位置 15%. pillar_impact 待新闻/财报验证后更新（默认 PENDING，不把价格波动直接等同基本面证伪）。",
+        "source": "thesis_enrich_daily.py (provider daily + signals.py; sector=unavailable_optional)",
+        "pillar_impact": {
+          "业绩增长持续性": "PENDING",
+          "行业景气度": "PENDING",
+          "估值合理性 + 催化剂": "PENDING"
+        },
+        "technical_status": {
+          "signal": "CLEAN",
+          "position": 15.0,
+          "w1_pct": -3.25,
+          "m1_pct": -2.64,
+          "volume_ratio": 0.92,
+          "interpretation": "CLEAN；位置 15% / 1W -3.25% / 1M -2.64% / 量比 0.9x。未触发高优先级技术信号。"
+        },
+        "stop_loss_check": "price_trigger: 无法精确量化（规则 '现价 -15%' 缺少已封存基准价）；参考：距 120 日高点 -18.0%（仅作参考，不自动触发）; thesis_trigger: 待核验（缺新闻/财报证据，不视为通过）; time_stop: 建立于 2026-05-24，窗口 ~6 个月，到期约 2026-11-20（剩余 70 天）",
+        "action_hint": "无新增动作；进入周度 thesis review 汇总。"
+      },
+      "dry_run": true
+    },
+    {
+      "ticker": "01810.HK",
+      "entry": {
+        "date": "2026-09-11",
+        "data_point": "收 HK$26.36 (+1.70%), 1W -7.31%, 1M +2.89%, 量比 0.7x, 位置 33%. pillar_impact 待新闻/财报验证后更新（默认 PENDING，不把价格波动直接等同基本面证伪）。",
+        "source": "thesis_enrich_daily.py (provider daily + signals.py; sector=unavailable_optional)",
+        "pillar_impact": {
+          "业绩增长持续性": "PENDING",
+          "行业景气度": "PENDING",
+          "估值合理性 + 催化剂": "PENDING"
+        },
+        "technical_status": {
+          "signal": "CLEAN",
+          "position": 33.2,
+          "w1_pct": -7.31,
+          "m1_pct": 2.89,
+          "volume_ratio": 0.72,
+          "interpretation": "CLEAN；位置 33% / 1W -7.31% / 1M +2.89% / 量比 0.7x。未触发高优先级技术信号。"
+        },
+        "stop_loss_check": "price_trigger: 无法精确量化（规则 '现价 -15%' 缺少已封存基准价）；参考：距 120 日高点 -27.4%（仅作参考，不自动触发）; thesis_trigger: 待核验（缺新闻/财报证据，不视为通过）; time_stop: 建立于 2026-05-24，窗口 ~6 个月，到期约 2026-11-20（剩余 70 天）",
+        "action_hint": "无新增动作；进入周度 thesis review 汇总。"
+      },
+      "dry_run": true
+    },
+    {
+      "ticker": "03690.HK",
+      "entry": {
+        "date": "2026-09-11",
+        "data_point": "收 HK$75.10 (+0.47%), 1W -8.13%, 1M -13.88%, 量比 0.7x, 位置 37%. pillar_impact 待新闻/财报验证后更新（默认 PENDING，不把价格波动直接等同基本面证伪）。",
+        "source": "thesis_enrich_daily.py (provider daily + signals.py; sector=unavailable_optional)",
+        "pillar_impact": {
+          "业绩增长持续性": "PENDING",
+          "行业景气度": "PENDING",
+          "估值合理性 + 催化剂": "PENDING"
+        },
+        "technical_status": {
+          "signal": "CLEAN",
+          "position": 36.6,
+          "w1_pct": -8.13,
+          "m1_pct": -13.88,
+          "volume_ratio": 0.72,
+          "interpretation": "CLEAN；位置 37% / 1W -8.13% / 1M -13.88% / 量比 0.7x。未触发高优先级技术信号。"
+        },
+        "stop_loss_check": "price_trigger: 无法精确量化（规则 '现价 -15%' 缺少已封存基准价）；参考：距 120 日高点 -20.0%（仅作参考，不自动触发）; thesis_trigger: 待核验（缺新闻/财报证据，不视为通过）; time_stop: 建立于 2026-05-31，窗口 ~6 个月，到期约 2026-11-27（剩余 77 天）",
+        "action_hint": "无新增动作；进入周度 thesis review 汇总。"
+      },
+      "dry_run": true
+    },
+    {
+      "ticker": "300750.SZ",
+      "entry": {
+        "date": "2026-09-11",
+        "data_point": "收 ¥330.51 (-2.23%), 1W -5.84%, 1M -16.10%, 量比 0.8x, 位置 0%. pillar_impact 待新闻/财报验证后更新（默认 PENDING，不把价格波动直接等同基本面证伪）。",
+        "source": "thesis_enrich_daily.py (provider daily + signals.py; sector=unavailable_optional)",
+        "pillar_impact": {
+          "业绩增长持续性": "PENDING",
+          "新能源车渗透率 + 储能需求": "PENDING",
+          "估值合理性 + 催化剂": "PENDING"
+        },
+        "technical_status": {
+          "signal": "CLEAN",
+          "position": 0.0,
+          "w1_pct": -5.84,
+          "m1_pct": -16.1,
+          "volume_ratio": 0.83,
+          "interpretation": "CLEAN；位置 0% / 1W -5.84% / 1M -16.10% / 量比 0.8x。未触发高优先级技术信号。"
+        },
+        "stop_loss_check": "price_trigger: 无法精确量化（规则 '现价 -15%' 缺少已封存基准价）；参考：距 120 日高点 -28.2%（仅作参考，不自动触发）; thesis_trigger: 待核验（缺新闻/财报证据，不视为通过）; time_stop: 建立于 2026-06-21，窗口 ~6 个月，到期约 2026-12-18（剩余 98 天）",
+        "action_hint": "无新增动作；进入周度 thesis review 汇总。"
+      },
+      "dry_run": true
+    },
+    {
+      "ticker": "301511.SZ",
+      "entry": {
+        "date": "2026-09-11",
+        "data_point": "收 ¥106.40 (-2.10%), 1W +25.10%, 1M +11.98%, 量比 0.9x, 位置 53%. pillar_impact 待新闻/财报验证后更新（默认 PENDING，不把价格波动直接等同基本面证伪）。",
+        "source": "thesis_enrich_daily.py (provider daily + signals.py; sector=unavailable_optional)",
+        "pillar_impact": {},
+        "technical_status": {
+          "signal": "CLEAN",
+          "position": 53.3,
+          "w1_pct": 25.1,
+          "m1_pct": 11.98,
+          "volume_ratio": 0.89,
+          "interpretation": "CLEAN；位置 53% / 1W +25.10% / 1M +11.98% / 量比 0.9x。未触发高优先级技术信号。"
+        },
+        "stop_loss_check": "price_trigger: 无法精确量化（规则 '' 缺少已封存基准价）; time_stop: 无 established_date 或无 window 设定",
+        "action_hint": "无新增动作；进入周度 thesis review 汇总。"
+      },
+      "dry_run": true
+    },
+    {
+      "ticker": "601138.SH",
+      "entry": {
+        "date": "2026-09-11",
+        "data_point": "收 ¥64.07 (+0.25%), 1W +0.60%, 1M -3.20%, 量比 0.7x, 位置 49%. pillar_impact 待新闻/财报验证后更新（默认 PENDING，不把价格波动直接等同基本面证伪）。",
+        "source": "thesis_enrich_daily.py (provider daily + signals.py; sector=unavailable_optional)",
+        "pillar_impact": {
+          "业绩增长持续性": "PENDING",
+          "行业景气度": "PENDING",
+          "估值合理性 + 催化剂": "PENDING"
+        },
+        "technical_status": {
+          "signal": "CLEAN",
+          "position": 49.2,
+          "w1_pct": 0.6,
+          "m1_pct": -3.2,
+          "volume_ratio": 0.7,
+          "interpretation": "CLEAN；位置 49% / 1W +0.60% / 1M -3.20% / 量比 0.7x。未触发高优先级技术信号。"
+        },
+        "stop_loss_check": "price_trigger: 无法精确量化（规则 '现价 -15%' 缺少已封存基准价）；参考：距 120 日高点 -21.0%（仅作参考，不自动触发）; thesis_trigger: 待核验（缺新闻/财报证据，不视为通过）; time_stop: 建立于 2026-06-28，窗口 ~6 个月，到期约 2026-12-25（剩余 105 天）",
+        "action_hint": "无新增动作；进入周度 thesis review 汇总。"
+      },
+      "dry_run": true
+    },
+    {
+      "ticker": "603986.SH",
+      "entry": {
+        "date": "2026-09-11",
+        "data_point": "收 ¥371.32 (-2.45%), 1W -0.15%, 1M -11.06%, 量比 1.0x, 位置 22%. pillar_impact 待新闻/财报验证后更新（默认 PENDING，不把价格波动直接等同基本面证伪）。",
+        "source": "thesis_enrich_daily.py (provider daily + signals.py; sector=unavailable_optional)",
+        "pillar_impact": {},
+        "technical_status": {
+          "signal": "CLEAN",
+          "position": 22.1,
+          "w1_pct": -0.15,
+          "m1_pct": -11.06,
+          "volume_ratio": 1.0,
+          "interpretation": "CLEAN；位置 22% / 1W -0.15% / 1M -11.06% / 量比 1.0x。未触发高优先级技术信号。"
+        },
+        "stop_loss_check": "price_trigger: 无法精确量化（规则 '' 缺少已封存基准价）; time_stop: 无 established_date 或无 window 设定",
+        "action_hint": "无新增动作；进入周度 thesis review 汇总。"
+      },
+      "dry_run": true
+    },
+    {
+      "ticker": "688195.SH",
+      "entry": {
+        "date": "2026-09-11",
+        "data_point": "收 ¥194.89 (-3.83%), 1W +0.90%, 1M +18.78%, 量比 0.8x, 位置 32%. pillar_impact 待新闻/财报验证后更新（默认 PENDING，不把价格波动直接等同基本面证伪）。",
+        "source": "thesis_enrich_daily.py (provider daily + signals.py; sector=unavailable_optional)",
+        "pillar_impact": {
+          "OCS 全光交换放量兑现": "PENDING",
+          "1.6T 光模块元件国产验证转订单": "PENDING",
+          "净利率修复 (规模效应)": "PENDING"
+        },
+        "technical_status": {
+          "signal": "CLEAN",
+          "position": 31.8,
+          "w1_pct": 0.9,
+          "m1_pct": 18.78,
+          "volume_ratio": 0.83,
+          "interpretation": "CLEAN；位置 32% / 1W +0.90% / 1M +18.78% / 量比 0.8x。未触发高优先级技术信号。"
+        },
+        "stop_loss_check": "price_trigger: 无法精确量化（规则 '现价 -15%' 缺少已封存基准价）；参考：距 120 日高点 -50.9%（仅作参考，不自动触发）; thesis_trigger: 待核验（缺新闻/财报证据，不视为通过）",
+        "action_hint": "无新增动作；进入周度 thesis review 汇总。"
+      },
+      "dry_run": true
+    }
+  ],
+  "sector_map": {},
+  "silent": true,
+  "status": "ok"
+}
