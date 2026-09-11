@@ -75,3 +75,9 @@ factor anchor，仍缺HSI兼容基准和历史执行证据。不能将价格可�
 - full-results/paired/summary/coverage/report = 最终研究结果；reproducibility.json =
   两次离线重放内容一致性；verification.json = 开发侧逐交易独立算术/边界审计。
 - acceptance-checklist.md = handoff12项映射；投资topic自行复验，开发侧不标验收通过。
+
+## Revision2 更正（2026-09-12）
+
+**最新主比较请读 [REVISION2.md](REVISION2.md)。** 原报告/参数/成交结果全部冻结保留；
+共同fold截止全部71个A入场episode的ATR−旧退出为−0.165个百分点，与原35个双闭合
+子集+1.47个百分点方向不同。不得继续沿用旧子集的较好倾向作为主结论。

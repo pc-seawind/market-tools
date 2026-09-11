@@ -1,0 +1,16 @@
+{
+  "B_opportunity": "all108 code-folds per arm; no signal with complete source evaluation=zero-interest cash. missing/warmup prevents classification of no-signal=>unknown. No equal-entry causal interpretation",
+  "HK": "Do not call denied Tushare factor/adjusted endpoints. Inspect existing authorized free alternative paths and retain exact response bytes; no purchases.",
+  "analysis": "common_fold_cutoff_all_entered_event_valuation_v1",
+  "fees": "all original15/30/50bps, both original execution scenarios",
+  "frozen_at": "2026-09-11T21:09:28.327774+00:00",
+  "inference": "fixed seed1201,2000 crossed stock x fold resamples, complete observed pairs only plus explicit total/known/unknown coverage; means are event/capital-opportunity diagnostics not funded portfolio returns",
+  "input_commit": "b83b178",
+  "input_results_sha256": "ce220917812554ab7d5a1ac26f0436daff6046cc35c2783ca1d3a0e8ab7d9fec",
+  "no_entry": "no confirmed fill: entered-event valuation absent; verified unentered capital opportunity cash=1. execution unknown stays null, not zero",
+  "no_strategy_change": true,
+  "path": "all completed session closes plus actual entry and exit open valuation, cash before entry and after exit; no high/low ordering assumption. Any exposed missing mark makes full-path DD unknown; observed-only DD separately labeled",
+  "sensitivity": "still-open hypothetical liquidation sell-cost only, not a fill, not realized PnL",
+  "trial_contract_sha256": "10836dd31652c1e3ed1e2b285f065a0c327c90c79dd448239a0a7b3b33d1910f",
+  "valuation": "initial event capital=1; entered qty=1/(adjusted_open*(1+buy_cost)); exited proceeds net actual sell-cost then zero-interest cash; still-open mark at exact fold last close with no unrealized sell cost; no last-price substitution for missing terminal price"
+}
