@@ -22,8 +22,10 @@ def main():
             if b'=' not in item: continue
             key,value=item.split(b'=',1)
             if key.decode() in ALLOWED: env[key.decode()]=value.decode()
-    script=str(Path(__file__).with_name('mt1.py'))
-    os.execve(sys.executable,[sys.executable,script,*sys.argv[1:]],env)
+    args=sys.argv[1:]
+    enrich=bool(args and args[0]=='thesis-enrich')
+    script=str(Path(__file__).with_name('thesis_enrich_daily.py' if enrich else 'mt1.py'))
+    os.execve(sys.executable,[sys.executable,script,*(args[1:] if enrich else args)],env)
 
 
 if __name__=='__main__': main()

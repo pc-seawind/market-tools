@@ -172,6 +172,8 @@ def _fetch_stock_close(ts_code: str, trade_date: Optional[str] = None) -> Option
     rows = _ts_csv(api, ts_code=ts_code, trade_date=trade_date) if trade_date \
         else _ts_csv(api, ts_code=ts_code)
 
+    if trade_date:
+        rows = [r for r in rows if str(r.get("trade_date", "")).replace("-", "") == trade_date]
     if rows:
         rows.sort(key=lambda x: x.get("trade_date", ""), reverse=True)
         try:
@@ -189,10 +191,6 @@ def _fetch_stock_close(ts_code: str, trade_date: Optional[str] = None) -> Option
             for b in bars:
                 if str(b.get("trade_date", "")).replace("-", "") == trade_date:
                     return float(b["close"])
-            # 找不到精确日期, 返回 ≤trade_date 最近的
-            cands = [b for b in bars if str(b.get("trade_date", "")).replace("-", "") <= trade_date]
-            if cands:
-                return float(cands[-1]["close"])
             return None
         return float(bars[-1]["close"])
     except Exception:
@@ -202,7 +200,7 @@ def _fetch_stock_close(ts_code: str, trade_date: Optional[str] = None) -> Option
 def _fetch_benchmark_close(market: str, trade_date: Optional[str] = None) -> tuple[str, Optional[float]]:
     """benchmark close. market='A' → CSI300 via index_daily; 'HK' → HSI via index_global.
 
-    trade_date 找不到 (周末/节假日) 时, fallback 到 ≤trade_date 的最近交易日.
+    trade_date 找不到则返回缺失，历史补采必须明确指定其自己的日期。
     """
     if market == "HK":
         bench = BENCHMARK_HK
@@ -214,16 +212,8 @@ def _fetch_benchmark_close(market: str, trade_date: Optional[str] = None) -> tup
     # 1) 精确 trade_date
     if trade_date:
         rows = _ts_csv(api, ts_code=bench, trade_date=trade_date)
+        rows = [r for r in rows if str(r.get("trade_date", "")).replace("-", "") == trade_date]
         if rows:
-            try:
-                return bench, float(rows[0]["close"])
-            except (KeyError, ValueError):
-                pass
-        # 2) fallback: 拉最近 7 天, 取 ≤trade_date 的最近一条
-        start = (dt.datetime.strptime(trade_date, "%Y%m%d").date() - dt.timedelta(days=10)).strftime("%Y%m%d")
-        rows = _ts_csv(api, ts_code=bench, start_date=start, end_date=trade_date)
-        if rows:
-            rows.sort(key=lambda x: x.get("trade_date", ""), reverse=True)
             try:
                 return bench, float(rows[0]["close"])
             except (KeyError, ValueError):
@@ -526,7 +516,9 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
     if seen_keys is not None and key in seen_keys:
         return None
 
-    # current = verify_date close (None = 最新)
+    # Daily default is an exact date, never a stale latest close labelled today.
+    verify_date = verify_date or today.strftime("%Y%m%d")
+    # current = exact verify_date close
     current = _fetch_stock_close(code, trade_date=verify_date)
     if current is None:
         return None

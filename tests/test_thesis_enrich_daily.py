@@ -46,6 +46,13 @@ def write_thesis(path: Path, update_log=None):
 
 
 class ThesisEnrichDailyTests(unittest.TestCase):
+    def setUp(self):
+        scope = {"epoch": "test", "holdings": {"000001.SZ": {}}, "candidates": {}, "recommendations": {}}
+        patcher = mock.patch("mt1.scope.load", return_value=scope)
+        patcher.start(); self.addCleanup(patcher.stop)
+        patcher = mock.patch("mt1.daily_tracking.calendars", side_effect=lambda now: {"CN": {"allowed": True, "expected_date": sys.argv[sys.argv.index("--date")+1]}})
+        patcher.start(); self.addCleanup(patcher.stop)
+
     def test_has_update_for_date_handles_yaml_date_objects(self):
         thesis = {"update_log": [{"date": dt.date(2026, 8, 25)}]}
         self.assertTrue(ted.has_update_for_date(thesis, "2026-08-25"))
@@ -112,12 +119,13 @@ class ThesisEnrichDailyTests(unittest.TestCase):
                     with mock.patch.object(sys, "argv", [
                         "thesis_enrich_daily.py", "--thesis-dir", d, "--date", "2026-08-26"
                     ]):
-                        with contextlib.redirect_stdout(io.StringIO()):
+                        with contextlib.redirect_stdout(io.StringIO()), self.assertRaises(SystemExit) as raised:
                             ted.main()
+                        self.assertEqual(raised.exception.code, 75)
                 result = json.loads(result_path.read_text())
                 self.assertEqual(result["updated"], 0)
                 self.assertEqual(len(result["failed"]), 1)
-                self.assertIn("日线不足 20 条", result["failed"][0]["error"])
+                self.assertIn("quote_stale_or_missing", result["failed"][0]["error"])
                 self.assertEqual(target.read_text(), original)
             finally:
                 result_path.unlink(missing_ok=True)

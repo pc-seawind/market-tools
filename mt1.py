@@ -17,6 +17,7 @@ from mt1.finalize import finalize
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--state-dir',default=str(HERE/'.cron_state/mt1'))
+    parser.add_argument('--scope', default=__import__('os').environ.get('MT1_TRACKING_SCOPE', '/home/emox/work/investment/reference/tracking-scope.json'))
     sub=parser.add_subparsers(dest='cmd',required=True)
     p=sub.add_parser('run')
     p.add_argument('phase',choices=['morning','evening','saturday','sunday'])
@@ -47,8 +48,20 @@ def main():
     p=sub.add_parser('parallel-collect'); p.add_argument('--out',required=True)
     p=sub.add_parser('parallel-current'); p.add_argument('--panel',required=True); p.add_argument('--out',required=True); p.add_argument('--reviews')
     p=sub.add_parser('parallel'); p.add_argument('--panel',required=True); p.add_argument('--out',required=True); p.add_argument('--reviews')
+    p=sub.add_parser('daily-track'); p.add_argument('--out',required=True)
     p=sub.add_parser('plans')
     args=parser.parse_args()
+    import os
+    os.environ['MT1_TRACKING_SCOPE'] = args.scope
+    from mt1.scope import load
+    load()
+    if args.cmd=='daily-track':
+        from mt1.daily_tracking import track
+        result=track(args.scope)
+        atomic_json(args.out,result)
+        print('RESULT_JSON='+args.out)
+        if result['status']!='ok': raise SystemExit(75)
+        return
     if args.cmd=='forward-harvest':
         from mt1.forward import run as forward_run,save_new
         r=forward_run(Path(args.state_dir)/'forward',args.source,args.panel)

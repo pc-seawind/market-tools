@@ -16,7 +16,8 @@ def ledger_snapshot(path):
     try:
         plans=[json.loads(r[0]) for r in con.execute("SELECT after_json FROM events e WHERE entity LIKE 'plan:%' AND version=(SELECT MAX(version) FROM events WHERE entity=e.entity)")]
     finally:con.close()
-    return plans
+    from .scope import filter_plans
+    return filter_plans(plans)
 
 
 def bind_plan(p, decision_at):
@@ -70,12 +71,16 @@ def close_review(result_dir, ledger_path, *, batch_size=10):
             if not dest.exists():dest.write_bytes(raw)
     snap=json.dumps(plans,ensure_ascii=False,sort_keys=True).encode()
     (root/'bound-ledger-snapshot.json').write_bytes(snap)
-    receipt={'decision_at':decision,'price_asof':price,'ledger_path':str(Path(ledger_path).resolve()),
+    from .scope import counts, load
+    scope=load()
+    receipt={'tracking_scope':counts(scope),
+             'holdings_without_plan':sorted(set(scope['holdings'])-{p['code'] for p in plans}) if scope else [],
+             'decision_at':decision,'price_asof':price,'ledger_path':str(Path(ledger_path).resolve()),
              'ledger_snapshot_sha256':hashlib.sha256(snap).hexdigest(),'observations':observations,
              'writes':'immutable observations only; authoritative ledger untouched','method_status':'shadow'}
     (root/'bound-review.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2))
     lines=['**研究输入—时间—条件—原计划绑定闭环（非交易）**','',f'行情日 {price}；决策时间 {decision}。',
-           f'真实账本绑定 {len(observations)} 项；成本/期限未知保留未知，不能伪造确认持仓。',
+           f'范围 {counts(scope)}；真实账本绑定 {len(observations)} 项；成本/期限未知保留未知，不能伪造确认持仓。',
            '|代码|全部发现通道|研究包结果|持仓绑定|原期限|当前条件/卡点|','|---|---|---|---|---|---|']
     for o in observations:
         if not o['review_input_results']:continue

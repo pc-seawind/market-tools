@@ -10,6 +10,8 @@ BASE='/home/emox/work/projects/market-tools'
 
 
 def prompt(phase):
+    if phase in ('morning', 'evening'):
+        return daily_prompt(phase)
     collection=' --collect' if phase=='evening' else ''
     return f'''执行 MT-1.0 中期研究（1—3个月），本消息替代旧报告编排；不改变已有生产评分。
 先读 /home/emox/work/investment/reference/medium-term-recommendation-policy.md 与 {BASE}/docs/MT-1.0.md。后者是工程能力现状，前者的“首批待开发”是历史清单，不把它当代码验收结果。
@@ -45,6 +47,17 @@ review-bundle 必须填 source_run_id=<本轮真实run_id>。此命令做计划�
 run的初步记录不是已完成审查，finalize记录才是本轮审查产物。先记录再沿用飞书文档发布（domain=investment，topic_label={'周报' if phase in ('saturday','sunday') else '日报'}）；工具不可用直接当前消息交付，不伪造链接。第一屏表格：标的｜未持有者方向｜已有持仓方向｜变化理由｜下次验证点；只详述变化，未审查项明确未审查，无变化不凑推荐。禁#标题、禁止邀请回复句。列已生效/试运行/未完成。'''
 
 
+
+def daily_prompt(phase):
+    return f"""[MT_DAILY_POLICY_BACKEND_V1]
+先读 /home/emox/work/investment/reference/daily-report-policy.md 与 /home/emox/work/investment/reference/tracking-scope.json；本节优先于旧MT报告定位。
+早盘前瞻/晚盘总结固定三部分：三地行情播报、目标交易时段预测及外部观点对照、荐股行动条件与已推荐行情跟踪附表。第一屏市场摘要，不是研究批次；MT后台未完成不能阻断日报。不新增cron、不自动交易、不写自选。
+持仓事实、活跃候选与原始扫描严格分开；旧计划/诊断不能回灌。未知成本及原推荐基准保持unknown，原EXIT不因用户清池改成BUY/HOLD。
+只读行情入口：python3 {BASE}/mt1_job.py --scope /home/emox/work/investment/reference/tracking-scope.json daily-track --out /tmp/mt-daily-{phase}-<本轮唯一ID>.json
+CN/HK/US独立日历/asof，休市显示最近完成收盘及实际日期，失败/partial逐只明示。此产物非完整日报，指数、外部原文与走势条件由投资域核验补全，不把shadow作为新推荐。
+MT研究仅取已完成时效合格产物；需要后台启动时使用独立cgroup，不为日报重复运行。保留原投递/归档规则和实际正文hash与回执；未收到回执不得声称已送达。
+[/MT_DAILY_POLICY_BACKEND_V1]"""
+
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');a=ap.parse_args()
     payload={name:prompt(phase) for name,phase in PHASES.items()}
@@ -64,6 +77,13 @@ for n,raw in original.items():
 for n,text in incoming.items():
  p=root/(n+'.json');raw=original[n];d=json.loads(raw)
  assert p.read_bytes()==raw,'concurrent cron update; abort'
+ if n in ('morning-market-brief','evening-market-recap'):
+  mark='[MT_DAILY_POLICY_BACKEND_V1]';end='[/MT_DAILY_POLICY_BACKEND_V1]'
+  old=d['prompt']
+  if mark in old:
+   assert old.count(mark)==old.count(end)==1
+   start=old.index(mark);stop=old.index(end)+len(end);text=old[:start]+text+old[stop:]
+  else:text=old+'\n\n'+text
  updated={**d,'prompt':text}
  temp=backup/(n+'.tmp');temp.write_text(json.dumps(updated,ensure_ascii=False,indent=2)+'\n');os.replace(temp,p)
  after=json.loads(p.read_text())

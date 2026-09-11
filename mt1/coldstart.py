@@ -17,6 +17,8 @@ def export(state_dir,out_dir,batch_size=10):
         rows=c.execute("SELECT after_json FROM events e WHERE entity LIKE 'plan:%' AND version=(SELECT MAX(version) FROM events WHERE entity=e.entity)").fetchall()
     finally:c.close()
     plans=sorted([json.loads(r[0]) for r in rows],key=lambda p:p['plan_id'])
+    from .scope import filter_plans, counts
+    plans=filter_plans(plans)
     identity=date.today().isoformat()+'-'+digest(plans)[:16];out=Path(out_dir)/identity;out.mkdir(parents=True,exist_ok=True)
     def write(path,value):
         if path.exists():
@@ -47,11 +49,11 @@ def export(state_dir,out_dir,batch_size=10):
         write(out/f'batch-{i//batch_size+1:02}.json',obj)
     write(out/'items.json',items)
     lines=['**MT-1.0 冷启动逐项缺口｜不是公司投资判断**','',
-           f'账本快照 `{identity}`；共 {len(items)} 项。未知原始事实不补造，历史 EXIT 不改回 WATCH。',
+           f'范围 {counts()}；账本快照 `{identity}`；共 {len(items)} 项。未知原始事实不补造，历史 EXIT 不改回 WATCH。',
            '|标的|当前研究状态|缺口|plan_id / version|','|---|---|---|---|']
     for p in items:
         lines.append(f"|{p['code']} {p['name']}|{p['state']}|{'；'.join(p['gap_labels'])}|{p['plan_id']} / {p['expected_version']}|")
     (out/'gaps.md').write_text('\n'.join(lines)+'\n')
-    return {'out_dir':str(out),'items':len(items),'batches':(len(items)+batch_size-1)//batch_size,
+    return {'tracking_scope':counts(),'out_dir':str(out),'items':len(items),'batches':(len(items)+batch_size-1)//batch_size,
             'invalid_symbols':[p['code'] for p in items if not p['symbol_valid']],
             'snapshot_hash':digest(plans)}

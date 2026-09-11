@@ -246,6 +246,10 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
         r['timing']['status']!='trigger',-(r['technical'] or {}).get('rs60',-999),r['code']))
     for i,r in enumerate(ranked,1):r['research_rank']=i
     advancing=[r for r in ranked if not any(v['status']=='reject' for v in r['channel_risk'].values())]
+    from .scope import load, codes, counts
+    scope=load()
+    if scope is not None:
+        advancing=[r for r in advancing if r['code'] in codes(scope)]
     batch=advancing[:10]
     old=screen({'asof':str(day(asof)),'universe_size':len(universe),'observations':obs,'data_version':'archived-input'})
     totals={}
@@ -272,7 +276,7 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
         stage_distribution[ch]=dict(groups)
     old_codes={r['code'] for r in old['candidates']}; new_codes={r['code'] for r in ranked}
     summary={'stage_distribution':stage_distribution,'comparison':{'added':sorted(new_codes-old_codes),'removed':sorted(old_codes-new_codes)},'asof':asof,'method':METHOD,'generated_at':datetime.now(timezone.utc).isoformat(),'decision_at':now.isoformat(),'universe':len(universe),'channels':totals,
-        'advancing_research_count':len(advancing),'research_batch_codes':[r['code'] for r in batch],
+        'tracking_scope':counts(scope),'advancing_research_count':len(advancing),'research_batch_codes':[r['code'] for r in batch],
         'risk_timing_cross':dict(Counter(r['risk']['status']+'|'+r['timing']['status'] for r in ranked)),
         'deduplicated':len(ranked),'multi_channel':sum(len(r['channels'])>1 for r in ranked),
         'old_value_shadow':{'count':len(old['candidates']),'codes':[r['code'] for r in old['candidates']],'complete_data':old['complete_data_count']},
@@ -303,7 +307,7 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
         w=csv.writer(fp);w.writerow(['code','name','board','channel','discovery','discovery_reasons','risk','risk_reasons','evidence','valuation','timing','timing_reason','rank'])
         for r in records:
             for ch,v in r['discovery'].items():w.writerow([r['code'],r['name'],r['board'],ch,v['status'],';'.join(v['reasons']),r.get('channel_risk',{}).get(ch,r['risk'])['status'],';'.join(r.get('channel_risk',{}).get(ch,r['risk'])['reasons']),r['evidence'].get(ch,{'status':'not_admitted'})['status'],r['valuation'].get(ch,{'status':'not_admitted'})['status'],r['timing']['status'],';'.join(r['timing']['reasons']),r.get('research_rank','')])
-    lines=['**MT-1.1 真实旁路：不是最终推荐**','',f'数据日 {asof}；全池 {len(records)}；去重发现 {len(ranked)}；最终签审未完成，0 BUY 不是研究后全部否决。',
+    lines=['**MT-1.1 真实旁路：不是最终推荐**','',f'用户范围 {counts(scope)}；数据日 {asof}；原始扫描池 {len(records)}；去重发现 {len(ranked)}；最终签审未完成，0 BUY 不是研究后全部否决。',
         '|通道|发现通过/拒绝/未知|风险|诊断择时|','|---|---|---|---|']
     for ch,v in totals.items():lines.append(f"|{ch}|{v['discovery']}|{v['risk']}|{v['timing_diagnostic']}|")
     lines+=['','**十只研究交接批次（不是可买池，已移除风险否决）**','|代码/名称|通道|未持有|假设已持有|诊断原因|','|---|---|---|---|---|']

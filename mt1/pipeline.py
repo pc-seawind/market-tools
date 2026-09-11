@@ -36,6 +36,11 @@ def migrate(store, rec_path, thesis_dir):
                 continue
             if isinstance(r,dict): latest.setdefault(r.get('ticker') or r.get('code') or p.stem,r)
         except Exception as e: invalid.append({'path':str(p),'error':str(e)})
+    from .scope import load, codes
+    scope=load()
+    if scope is not None:
+        # A reset is not a new research admission, even for confirmed holdings.
+        latest={}
     imported=0
     for code,r in latest.items():
         p=legacy_plan(r,'legacy-cold-start',code)
@@ -59,7 +64,9 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
         fcntl.flock(lock,fcntl.LOCK_EX)
         directory=state_dir/'runs'/run_id; directory.mkdir(parents=True,exist_ok=True)
         manifest_path=directory/'manifest.json'
-        signature=digest([phase,today,fixture,collect,max_stocks,str(investment_dir)])
+        from .scope import load, counts
+        scope=load()
+        signature=digest([phase,today,fixture,collect,max_stocks,str(investment_dir),scope])
         manifest=json.loads(manifest_path.read_text()) if manifest_path.exists() else {'stages':{},'signature':signature}
         if manifest['signature']!=signature: raise ValueError('run_id reused with different inputs')
         errors=[]
@@ -142,7 +149,7 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
             result={'version':'MT-1.0','run_id':run_id,'phase':phase,'asof':today,'gates':gates,
                     'migration':migration,'plans':plans,'review_due':due,'plan_changes':changes,
                     'raw_recap':recap,'quality_value':pool,'errors':errors,
-                    'backtest_readiness':audit({}), 'methods':store.all('method:'),
+                    'tracking_scope':counts(scope), 'backtest_readiness':audit({}), 'methods':store.all('method:'),
                     'previous_saturday':None,
                     'research_status':'not_fetched' if phase=='sunday' else 'not_requested',
                     'final_watchlist_candidates':[], 'sync':'dry_run_only',

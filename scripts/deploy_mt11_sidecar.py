@@ -10,10 +10,10 @@ BASE='/home/emox/work/projects/market-tools'
 def section(phase):
     return f'''{MARK}
 【MT-1.1修订：本节优先于旧quality_value池描述】
-旧quality_value49只仅价值shadow对照，不是全市场精筛。已有MT1 run完成后，再用独立cgroup运行同一确定性旁路入口：
+先读daily-report-policy.md与tracking-scope.json，日报纠偏优先；后台研究不是日报前置依赖，不覆盖原cron修订。旧quality_value池仅原始shadow对照，不是用户候选。确需后台研究时用独立cgroup运行：
 systemd-run --user --unit=mt11-{phase}-$(date +%s) --property=RuntimeMaxSec=3900 --working-directory={BASE} /usr/bin/python3 {BASE}/mt1_job.py parallel-cycle {phase}
 本入口采集/复用当日panel、计算三通道与诊断、读取 .cron_state/mt1/parallel-review-inbox.json（若存在）并绑定只读plans.db，输出RESULT_JSON。收割journal后读cycle.json/report.md/bound-review.md。单次请求预算250、内部3600秒、独立cgroup3900秒硬限。财报sweep未完成或数据缺失明确报依赖，不用旧日替换、不把pending改成pass。
-报告第一屏用research-batch.jsonl（最多10项，已移除风险否决），discovery-pool.jsonl仅宽泛发现留痕；列risk×timing交叉统计，trigger不是可买池。near_MA20_low_volume仅均线附近缩量诊断，不得写成已确认回调承接。未齐写研究未完成，齐备写仅待方法与签审批准；shadow永不final。
+仅研究附录用research-batch.jsonl（最多10项，已移除风险否决且经过tracking-scope门禁），日报第一屏必须三地市场摘要，discovery-pool.jsonl仅宽泛发现留痕；列risk×timing交叉统计，trigger不是可买池。near_MA20_low_volume仅均线附近缩量诊断，不得写成已确认回调承接。未齐写研究未完成，齐备写仅待方法与签审批准；shadow永不final。
 公司原文研究由investment完成：按docs/MT-1.1-parallel-channels.md协议准备真实研究包。reviewed_at/decision_at必须带时区和实际时间；行情price_asof可为昨交易日，隔夜证据按decision_at校验，不倒填日期。partial只表示已接入部分证据。
 持仓/原期限从bound-review.json绑定；unknown保持unknown、原EXIT不自动重入、期限不自动延长。旁路观察文件不是实际交易或最终计划事件，后续真实签审仍走既有finalize门禁；不传watchlist --execute。
 保留原运行/投递回执和collect-dispatch留证；MT11本次为shadow接入，不宣称策略收益已验证。parallel-cycle已自动注册稳定cohort并收割20/40/60交易日观察，读forward-harvest.json及其不可变artifact；未成熟必须not_matured且收益null，成熟后遇停牌/退市/公司行动或来源未知必须blocked，不丢失败股票凑均值。费用是冻结的双边各10bps情景、CSI300价格基准、退出后现金不再投资，不是实盘或收益验证。自动收割功能已实现与当前窗口未成熟分开说明。旧2024缺档独立incomplete。

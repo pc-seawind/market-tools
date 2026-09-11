@@ -25,6 +25,9 @@ def finalize(bundle, state_dir, investment_dir):
         pending=[]
         for item in bundle.get('review_items',[]):
             p=store.latest('plan:'+item.get('plan_id',''))
+            from .scope import filter_plans
+            if p and not filter_plans([p]):
+                raise ValueError('pending_review_outside_tracking_scope')
             if not p or p['version']!=item.get('expected_version'):
                 raise ValueError('review item missing or stale version')
             if item.get('status')!='pending' or not item.get('note'):

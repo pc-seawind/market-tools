@@ -41,11 +41,19 @@ class Store:
 
     def all(self, prefix='plan:'):
         rows = self.db.execute('SELECT after_json FROM events e WHERE entity LIKE ? AND version=(SELECT MAX(version) FROM events WHERE entity=e.entity)', (prefix+'%',))
-        return [json.loads(r[0]) for r in rows]
+        values = [json.loads(r[0]) for r in rows]
+        from .scope import filter_plans
+        return filter_plans(values) if prefix == 'plan:' else values
 
     def apply(self, entity, expected, request_id, payload, reason, reducer):
         if not reason.strip() or not request_id:
             raise ValueError('reason and request_id required')
+        if entity.startswith('plan:'):
+            from .scope import load, filter_plans
+            scope = load()
+            proposed = {**(self.latest(entity) or {}), **payload}
+            if scope is not None and not filter_plans([proposed],scope):
+                raise ValueError('plan_outside_tracking_scope')
         fingerprint = digest([entity, expected, payload, reason])
         self.db.execute('BEGIN IMMEDIATE')
         try:

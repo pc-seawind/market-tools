@@ -385,7 +385,7 @@ def check_stop_loss(thesis, metrics):
     # thesis_trigger（只能做框架性检查，具体 pillar 判断留给 agent）
     tt = sl.get("thesis_trigger", []) or []
     if tt:
-        checks.append("thesis_trigger: 框架性检查通过（具体 pillar 证伪由新闻/财报验证，见 pillar_impact）")
+        checks.append("thesis_trigger: 待核验（缺新闻/财报证据，不视为通过）")
 
     # time_stop
     ts = sl.get("time_stop", {}) or {}
@@ -465,7 +465,7 @@ def build_update_entry(date_str, thesis, metrics, sig_list, sector_name, sector_
         tier = sector_score.get("tier", "?") if sector_score else "?"
         parts.append(f"所属板块 {sector_name}（Tier {tier}）。")
 
-    parts.append("pillar_impact 待新闻/财报验证后更新（默认 NEUTRAL，不把价格波动直接等同基本面证伪）。")
+    parts.append("pillar_impact 待新闻/财报验证后更新（默认 PENDING，不把价格波动直接等同基本面证伪）。")
 
     data_point = " ".join(parts)
 
@@ -475,7 +475,7 @@ def build_update_entry(date_str, thesis, metrics, sig_list, sector_name, sector_
     for p_item in pillars:
         pname = p_item.get("name", "")
         if pname:
-            pillar_impact[pname] = "NEUTRAL"
+            pillar_impact[pname] = "PENDING"
 
     # technical_status
     signal_label = sig_list[0] if sig_list else "CLEAN"
@@ -720,7 +720,13 @@ def main():
     parser.add_argument("--date", help="交易日期 YYYY-MM-DD（默认今天）")
     parser.add_argument("--dry-run", action="store_true", help="不写回文件")
     parser.add_argument("--max-stocks", type=int, help="最多处理 N 只（调试用）")
+    from mt1.scope import DEFAULT, load, codes, counts
+    parser.add_argument('--scope', default=os.environ.get('MT1_TRACKING_SCOPE', DEFAULT))
+    parser.add_argument('--out', help='结果 manifest 路径')
     args = parser.parse_args()
+    scope = load(args.scope)
+    from mt1.daily_tracking import calendars, dated_bars, market_of
+    gates = calendars(datetime.datetime.now(datetime.timezone.utc))
 
     date_str = args.date or datetime.date.today().isoformat()
     thesis_dir = Path(args.thesis_dir).resolve()
@@ -735,16 +741,23 @@ def main():
 
     # 收集所有 ACTIVE thesis
     thesis_files = []
+    read_errors = []
     for f in sorted(thesis_dir.glob("*.yaml")):
         if f.name.startswith("_"):
             continue
         try:
             data = load_yaml_safe(f)
+            if data.get("ticker", f.stem) not in codes(scope):
+                continue
             status = data.get("status", "ACTIVE")
-            if status == "ACTIVE":
+            if status == "ACTIVE" or data.get("ticker", f.stem) in scope["holdings"]:
                 thesis_files.append((f, data))
         except Exception as e:
-            print(f"[warn] 读取 {f.name} 失败: {e}", file=sys.stderr)
+            read_errors.append({"ticker": f.stem, "error": str(e)})
+
+    present = {data.get("ticker", path.stem) for path, data in thesis_files}
+    read_errors.extend({"ticker": code, "error": "holding_thesis_missing"}
+                       for code in scope["holdings"] if code not in present)
 
     if args.max_stocks:
         thesis_files = thesis_files[: args.max_stocks]
@@ -754,22 +767,33 @@ def main():
 
     result = {
         "date": date_str,
+        "dry_run": args.dry_run,
+        "written": 0,
         "total": total,
         "active": active,
         "updated": 0,
         "skipped_existing": 0,
-        "failed": [],
+        "failed": read_errors,
+        "tracking_scope": counts(scope),
+        "markets": gates,
         "alerts": [],
+        "entries": [],
         "sector_map": {},  # ticker -> sector_name
         "silent": True,
     }
 
-    source_str = "thesis_enrich_daily.py (tushare daily + signals.py + evening_recap sector data)"
+    source_str = "thesis_enrich_daily.py (provider daily + signals.py; sector=" + ("evening_recap" if evening_recap else "unavailable_optional") + ")"
 
     for path, thesis in thesis_files:
         ticker = thesis.get("ticker", path.stem)
         name = thesis.get("name", "")
         market = thesis.get("market", "CN")
+
+        g = gates[market_of(ticker)]
+        if not g['allowed'] or g.get('expected_date') != date_str:
+            result["failed"].append({"ticker":ticker,"error":"enrich_date_or_market_gate_failed: "+str(g)})
+            result["silent"] = False
+            continue
 
         # Idempotency: retries only fill tickers that did not complete earlier.
         if has_update_for_date(thesis, date_str):
@@ -779,6 +803,7 @@ def main():
         try:
             # 获取行情 + 计算指标
             bars = fetch_daily_bars(ticker)
+            bars = dated_bars(bars, date_str)
             metrics = calc_technical_metrics(bars)
             if metrics is None:
                 raise RuntimeError(f"日线不足 20 条（实际 {len(bars)} 条），不写入空数据 entry")
@@ -801,6 +826,8 @@ def main():
                 stop_loss_str, source_str
             )
 
+            result["entries"].append({"ticker":ticker,"entry":entry,"dry_run":args.dry_run})
+
             # 写回
             if not args.dry_run:
                 append_update_to_yaml(path, entry)
@@ -810,6 +837,8 @@ def main():
                     continue
 
             result["updated"] += 1
+            if not args.dry_run:
+                result["written"] += 1
 
             # 判断是否异动
             significant = is_significant_change(last_entry, sig_list, stop_triggered)
@@ -837,7 +866,9 @@ def main():
             result["silent"] = False
 
     # 写结果 JSON 到临时文件
-    result_file = f"/tmp/thesis_enrich_{date_str}.json"
+    result["silent"] = result["silent"] and not result["failed"]
+    result["status"] = "partial" if result["failed"] else "ok"
+    result_file = args.out or f"/tmp/thesis_enrich_{date_str}.json"
     with open(result_file, "w") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
@@ -856,6 +887,8 @@ def main():
         print(f"  ⚠ {a['ticker']} {a['name']}: {', '.join(a['alert_types'])} (signal: {a['prev_signal']} -> {a['curr_signal']})")
     print(f"Silent: {result['silent']}")
     print(f"RESULT_JSON={result_file}")
+    if result["failed"]:
+        raise SystemExit(75)
 
 
 if __name__ == "__main__":
