@@ -1,0 +1,8 @@
+{
+  "bytes": 124038,
+  "fetched_at": "2026-09-11T21:15:19.603795+00:00",
+  "name": "yahoo_hsbc",
+  "sha256": "313fdfb4e70f1306f63dfa69674bcc715c0107c42186de43106e1b36da64d4f3",
+  "status": 200,
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/0005.HK?period1=1609459200&period2=1767225600&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+}

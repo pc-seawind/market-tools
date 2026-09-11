@@ -1,0 +1,43 @@
+[
+  {
+    "api": "hk_daily",
+    "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。",
+    "params": {
+      "end_date": "20251231",
+      "start_date": "20210101",
+      "ts_code": "00005.HK"
+    },
+    "status": "failed"
+  },
+  {
+    "api": "hk_daily",
+    "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。",
+    "params": {
+      "end_date": "20251231",
+      "start_date": "20210101",
+      "ts_code": "00388.HK"
+    },
+    "status": "failed"
+  },
+  {
+    "api": "hk_daily",
+    "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。",
+    "params": {
+      "end_date": "20251231",
+      "start_date": "20210101",
+      "ts_code": "00941.HK"
+    },
+    "status": "failed"
+  },
+  {
+    "api": "hk_tradecal",
+    "params": {
+      "end_date": "20251231",
+      "start_date": "20210101"
+    },
+    "path": "raw/hk_tradecal-eebfbb15815bc22a8762.json",
+    "rows": 1826,
+    "sha256": "d2c359c65ac8b084ecb81aa8e0fb22424fb43cfd96205cab9383199744342d81",
+    "status": "ok"
+  }
+]

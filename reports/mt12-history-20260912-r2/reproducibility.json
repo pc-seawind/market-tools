@@ -1,0 +1,38 @@
+{
+  "CN": {
+    "common-cutoff-report.md": {
+      "after": "9f183648d27e0c87dfd5947151d7cf18abe196652b367faf03935f4a7eb88d47",
+      "before": "9f183648d27e0c87dfd5947151d7cf18abe196652b367faf03935f4a7eb88d47",
+      "equal": true
+    },
+    "common-cutoff-results.json": {
+      "after": "1b99c713f545e7546b302f5a316be2f701d304f232f5dcee657723dda27a7523",
+      "before": "1b99c713f545e7546b302f5a316be2f701d304f232f5dcee657723dda27a7523",
+      "equal": true
+    },
+    "run.json": {
+      "after": "7c4f4b730cf6c54d008bb659bea652aea094de49f16019cba114bc3614bce27c",
+      "before": "7c4f4b730cf6c54d008bb659bea652aea094de49f16019cba114bc3614bce27c",
+      "equal": true
+    }
+  },
+  "HK": {
+    "extended-free-audit.json": {
+      "after": "76baa84529d23d0c33fb4d2c8e415ac1be9dd47a5c882ba4c92b93a14ed5b6a3",
+      "before": "76baa84529d23d0c33fb4d2c8e415ac1be9dd47a5c882ba4c92b93a14ed5b6a3",
+      "equal": true
+    },
+    "free-path-audit.json": {
+      "after": "544ba568fa2a626bc6ccf5bfe700b48edda04f53dd2fb869719cc55d4eb21d6a",
+      "before": "544ba568fa2a626bc6ccf5bfe700b48edda04f53dd2fb869719cc55d4eb21d6a",
+      "equal": true
+    },
+    "normalized-free-charts.json": {
+      "after": "f483fc4c91f573f1ab53666cf5fceb5e88f9554ee07d3194168a223f75715fc1",
+      "before": "f483fc4c91f573f1ab53666cf5fceb5e88f9554ee07d3194168a223f75715fc1",
+      "equal": true
+    }
+  },
+  "all_equal": true,
+  "old_revision1_files_unchanged": 605
+}

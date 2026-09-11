@@ -1,0 +1,303 @@
+{
+  "charts": {
+    "yahoo_hkex": {
+      "currency": "HKD",
+      "dividends": 10,
+      "end": "20251231",
+      "factor_changes": 10,
+      "factor_dividend_internal_mismatch_over_1bp": [],
+      "hsi_dates_equal": true,
+      "missing_ohlcv": 0,
+      "rows": 1228,
+      "splits": 0,
+      "start": "20210104",
+      "symbol": "0388.HK",
+      "zero_volume_dates": [
+        "20210211",
+        "20220131",
+        "20240115",
+        "20240209",
+        "20241224",
+        "20241231",
+        "20250128",
+        "20251224",
+        "20251231"
+      ]
+    },
+    "yahoo_hsbc": {
+      "currency": "HKD",
+      "dividends": 16,
+      "end": "20251231",
+      "factor_changes": 16,
+      "factor_dividend_internal_mismatch_over_1bp": [],
+      "hsi_dates_equal": true,
+      "missing_ohlcv": 0,
+      "rows": 1228,
+      "splits": 0,
+      "start": "20210104",
+      "symbol": "0005.HK",
+      "zero_volume_dates": [
+        "20210211",
+        "20220131",
+        "20241224",
+        "20241231",
+        "20250128",
+        "20251224",
+        "20251231"
+      ]
+    },
+    "yahoo_hsi": {
+      "currency": "HKD",
+      "dividends": 0,
+      "end": "20251231",
+      "factor_changes": 0,
+      "factor_dividend_internal_mismatch_over_1bp": [],
+      "hsi_dates_equal": true,
+      "missing_ohlcv": 0,
+      "rows": 1228,
+      "splits": 0,
+      "start": "20210104",
+      "symbol": "^HSI",
+      "zero_volume_dates": []
+    },
+    "yahoo_mobile": {
+      "currency": "HKD",
+      "dividends": 10,
+      "end": "20251231",
+      "factor_changes": 10,
+      "factor_dividend_internal_mismatch_over_1bp": [],
+      "hsi_dates_equal": true,
+      "missing_ohlcv": 0,
+      "rows": 1228,
+      "splits": 0,
+      "start": "20210104",
+      "symbol": "0941.HK",
+      "zero_volume_dates": [
+        "20210211",
+        "20220131",
+        "20240115",
+        "20240209",
+        "20241224",
+        "20241231",
+        "20250128",
+        "20251224",
+        "20251231"
+      ]
+    }
+  },
+  "decision": "Do not purchase duplicate price/factor/HSI data. Free factor and calendar paths verified; resolve enumerated conflicting raw sessions and obtain historical open eligibility; independent HK execution adapter remains unimplemented.",
+  "evidence": [
+    {
+      "bytes": 124038,
+      "fetched_at": "2026-09-11T21:15:19.603795+00:00",
+      "name": "yahoo_hsbc",
+      "sha256": "313fdfb4e70f1306f63dfa69674bcc715c0107c42186de43106e1b36da64d4f3",
+      "status": 200,
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/0005.HK?period1=1609459200&period2=1767225600&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+    },
+    {
+      "bytes": 120040,
+      "fetched_at": "2026-09-11T21:15:20.088483+00:00",
+      "name": "yahoo_hsi",
+      "sha256": "1b9da4db3dced71bb981c15baa6ee1f47603d00fc7b4a1c0a52f72712f97d388",
+      "status": 200,
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EHSI?period1=1609459200&period2=1767225600&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+    },
+    {
+      "bytes": 118278,
+      "fetched_at": "2026-09-11T21:17:49.874200+00:00",
+      "name": "yahoo_hkex",
+      "sha256": "87daa730d2ba98ad96755caf9c378f77bf803080d7471083d980479f2d545378",
+      "status": 200,
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/0388.HK?period1=1609459200&period2=1767225600&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+    },
+    {
+      "bytes": 121171,
+      "fetched_at": "2026-09-11T21:17:50.385325+00:00",
+      "name": "yahoo_mobile",
+      "sha256": "290e6a0ed5ec9a5807b824a004ec15589586a093de8dfaa336302173697ced9e",
+      "status": 200,
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/0941.HK?period1=1609459200&period2=1767225600&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+    },
+    {
+      "bytes": 3979,
+      "fetched_at": "2026-09-11T21:17:51.082993+00:00",
+      "name": "sina_hsbc_qfq",
+      "sha256": "0c11b9e88f0a99a6874a2dcf25f7a4142825194ccfe1f03ede06464d9e2cfc7e",
+      "status": 200,
+      "url": "https://finance.sina.com.cn/stock/hkstock/00005/qfq.js"
+    },
+    {
+      "bytes": 5133,
+      "fetched_at": "2026-09-11T21:17:51.401304+00:00",
+      "name": "sina_hsbc_hfq",
+      "sha256": "ed4defb7b163df68d1eeda9e8fffb8f0c2daedf3b82a4fabee4a51376930d032",
+      "status": 200,
+      "url": "https://finance.sina.com.cn/stock/hkstock/00005/hfq.js"
+    },
+    {
+      "bytes": 2346,
+      "fetched_at": "2026-09-11T21:17:52.032045+00:00",
+      "name": "sina_hkex_qfq",
+      "sha256": "a04bfa5aada2fcd3252f13871ca1b7cacc7487171f2169d473fad37ec1675a32",
+      "status": 200,
+      "url": "https://finance.sina.com.cn/stock/hkstock/00388/qfq.js"
+    },
+    {
+      "bytes": 2153,
+      "fetched_at": "2026-09-11T21:17:52.722327+00:00",
+      "name": "sina_mobile_qfq",
+      "sha256": "734ac1bbe8fba5d6f51aad9a324fc09b8386370ef97551be995767baf96536f3",
+      "status": 200,
+      "url": "https://finance.sina.com.cn/stock/hkstock/00941/qfq.js"
+    },
+    {
+      "bytes": 402915,
+      "fetched_at": "2026-09-11T21:17:54.005031+00:00",
+      "name": "hsbc_dividend_official",
+      "sha256": "665d543e7dec955d359383f85b57dfa4176902414bbacbcff69b77563d7379c7",
+      "status": 200,
+      "url": "https://www.hsbc.com/investors/shareholder-and-dividend-information/dividend-information-and-timetable"
+    },
+    {
+      "bytes": 364896,
+      "fetched_at": "2026-09-11T21:17:55.912642+00:00",
+      "name": "hkex_vcm_official",
+      "sha256": "3a859527c10ebc6637ac67d52591d4106842981cae5ee536645c85418d8ae5b3",
+      "status": 200,
+      "url": "https://www.hkex.com.hk/Services/Trading/Securities/Overview/Trading-Mechanism/VCM-Enhancements-Initiative?sc_lang=en"
+    },
+    {
+      "bytes": 72690,
+      "fetched_at": "2026-09-11T21:17:58.404311+00:00",
+      "name": "hkex_halts_official",
+      "sha256": "fc1cad2ebc7edd44438ca30f96a99225674ee8e219224073f6e160a150d1f89d",
+      "status": 200,
+      "url": "https://www1.hkexnews.hk/search/predefineddoc.xhtml?lang=en&predefineddocuments=9"
+    },
+    {
+      "bytes": 378411,
+      "fetched_at": "2026-09-11T21:18:01.628805+00:00",
+      "name": "hkex_data_official",
+      "sha256": "ffcc8d98cdad6b2c349adf6f45837aba2a132426fce85dce6577a5d21335467d",
+      "status": 200,
+      "url": "https://www.hkex.com.hk/Global/Exchange/FAQ/Market-Data/Getting-Market-Data/Historical-Data?sc_lang=en"
+    }
+  ],
+  "independent_raw_price_check": {
+    "common_days": 247,
+    "differences": [
+      {
+        "date": "20210211",
+        "field": "open",
+        "tushare": 42.5,
+        "yahoo": 42.650001525878906
+      },
+      {
+        "date": "20210211",
+        "field": "high",
+        "tushare": 42.85,
+        "yahoo": 42.650001525878906
+      },
+      {
+        "date": "20210211",
+        "field": "low",
+        "tushare": 42.3,
+        "yahoo": 42.650001525878906
+      },
+      {
+        "date": "20210211",
+        "field": "close",
+        "tushare": 42.5,
+        "yahoo": 42.650001525878906
+      }
+    ],
+    "tolerance_HKD": 0.011,
+    "tushare_only": []
+  },
+  "minimum_remaining": [
+    "resolve_specific_disputed_or_zero_volume_raw_days_with_third_source_not_arbitrary_vendor_cherry_pick",
+    "session_open_eligibility_and_halt_resumption_timestamp_coverage_not_proven_by_daily_volume",
+    "implement_and_test_independent_HK_execution_adapter_after_readiness_acceptance_not_copy_CN_limits_Tplus1"
+  ],
+  "parse_errors": [],
+  "resolved": [
+    "five_year_OHLCV_available_from_two_free_vendors",
+    "five_year_HSI_available",
+    "five_year_exchange_open_date_calendar_matches",
+    "three_factor_chains_cross_vendor_relative_consistency",
+    "36_Yahoo_dividend_events_internal_consistency"
+  ],
+  "sina": {
+    "sina_hkex_qfq": {
+      "keys": [
+        "total",
+        "data"
+      ],
+      "rows": 54,
+      "sample": [
+        {
+          "d": "2026-09-01",
+          "f": "1"
+        },
+        {
+          "d": "2026-03-11",
+          "f": "0.9825258702"
+        }
+      ]
+    },
+    "sina_hsbc_hfq": {
+      "keys": [
+        "total",
+        "data"
+      ],
+      "rows": 96,
+      "sample": [
+        {
+          "c": "375.311055139",
+          "d": "2026-08-13",
+          "f": "4.2501"
+        },
+        {
+          "c": "371.977986466",
+          "d": "2026-05-14",
+          "f": "4.2501"
+        }
+      ]
+    },
+    "sina_hsbc_qfq": {
+      "keys": [
+        "total",
+        "data"
+      ],
+      "rows": 96,
+      "sample": [
+        {
+          "d": "2026-08-13",
+          "f": "1"
+        },
+        {
+          "d": "2026-05-14",
+          "f": "0.9951410595"
+        }
+      ]
+    },
+    "sina_mobile_qfq": {
+      "keys": [
+        "total",
+        "data"
+      ],
+      "rows": 49,
+      "sample": [
+        {
+          "d": "2026-08-25",
+          "f": "1"
+        },
+        {
+          "d": "2026-06-05",
+          "f": "0.9647808136"
+        }
+      ]
+    }
+  }
+}

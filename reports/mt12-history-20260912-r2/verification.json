@@ -1,0 +1,16 @@
+{
+  "A_complete_pair_coverage": 71,
+  "A_review_numbers_match": true,
+  "B_opportunities_per_arm": 108,
+  "CN_and_HK_offline_reproducible": true,
+  "event_paths_checked": 2244,
+  "implementation_hashes": {
+    "history_cutoff.py": "9fd05b6f43a1df0022104e37b6d3c40f7e6170640ecfe86591aeb879ddf4d49e",
+    "hk_free_probe.py": "e0646d41861769c822689af0b33193dc716ba2f61527a7535d417153a338a23a"
+  },
+  "old_MT12_evidence_files": 152,
+  "old_revision1_files_unchanged": 605,
+  "old_successful_HTTP": 269,
+  "original_orders_not_modified": true,
+  "status": "developer_verification_not_acceptance"
+}

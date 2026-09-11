@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html class="news-hkex" xmlns="http://www.w3.org/1999/xhtml" xmlns:a4j="http://richfaces.org/a4j"><head id="j_idt2">
+    <title>Predefined Documents</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <link href="/ncms/images/favicon.ico" rel="icon" />
+    <link href="/ncms/css/main.css" rel="stylesheet" />
+    <link href="/ncms/css/pd.css" rel="stylesheet" />
+    <script type="text/javascript" src="/ncms/script/hkex_app.js"></script>
+    <script type="text/javascript" src="/ncms/script/hkex_settings.js"></script>
+    <script type="text/javascript" src="/ncms/script/hkex_widget.js"></script>
+	<script type="text/javascript">
+        // JS variables, please set before hkex_pagebanner.js
+        var pageDefaultTitle = "Predefined Documents"; // TO override page title
+        var pageDefaultSubTitle = ""; // TO override page subtitle
+        var pageDefaultBanner = "/ncms/media/HKEXnews/top_banner_bg.png"; // TO override page banner for desktop
+        var pageDefaultTabletBanner = "/ncms/media/HKEXnews/top_banner_bg_tablet.png"; // TO override page banner for tablet
+        // TO override breadcrumb
+        var overrideBreadcrumb = [{
+            title: "Listed Company Publications ",
+            url: "#"
+        }];
+    </script>
+    <script type="text/javascript">
+    		document.documentElement.setAttribute("lang","en");
+		 	
+	</script></head><body>
+<input id="predefinedId" type="hidden" value="9" />
+<form id="j_idt11" name="j_idt11" method="post" action="/search/predefineddoc.xhtml;jsessionid=2lClsLFnCbl1ndnJBaUQ6i71uJ8MkjNI5gRtCWNF.p107" enctype="application/x-www-form-urlencoded" style="display: none;">
+<input type="hidden" name="j_idt11" value="j_idt11" />
+<input id="j_idt11:loadMoreRange" type="hidden" name="j_idt11:loadMoreRange" value="100" />
+
+<input id="selectedDropListIndex" type="hidden" value="9" /><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="4650998647108944618:8634996180904343964" autocomplete="off" />
+</form>
+
+	<script type="text/javascript" src="/ncms/script/vendor.js"></script>
+    	
+    	<script type="text/javascript" src="/ncms/script/hkex_head.js"></script>
+    	
+    	
+    	<script type="text/javascript" src="/ncms/script/hkex_pagebanner.js"></script>
+	
+    
+
+    
+
+	<div id="skip-to-content"></div>
+    
+    <div class="container  PD_container ">
+        <div role="tabpanel" class="tab-pane active" id="tab-panel-title-search">
+        <div class="PD_top-part">
+<form id="j_idt19" name="j_idt19" method="post" action="/search/predefineddoc.xhtml;jsessionid=2lClsLFnCbl1ndnJBaUQ6i71uJ8MkjNI5gRtCWNF.p107" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="j_idt19" value="j_idt19" />
+
+            <div class="PD_top-dropdown combobox-group" data-list-height="300" id="">
+                <div class="combobox-body">
+                    <div class="combobox-trigger-wrap">
+                        <div class="combobox-input-wrap">								 
+                       <a class="combobox-field" data-select="true" data-value="9" href="#" aria-expanded="false">Resumption / Suspension / Trading Halt</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="combobox-boundlist">
+                    <div class="combobox-picker-list-wrap">
+                        <div class="droplist-group">
+                            <ul class="droplist-items">
+                                <li class="droplist-item" data-value="3"><a href="#">Financial Statements/ESG Information</a></li>
+                                <li class="droplist-item" data-value="4"><a href="#">IPO Allotment Results</a></li>
+                                <li class="droplist-item" data-value="5"><a href="#">Notices of General Meetings</a></li>
+                                <li class="droplist-item" data-value="6"><a href="#">Prospectuses</a></li>
+                                <li class="droplist-item" data-value="7"><a href="#">Results Announcements</a></li>
+                                <li class="droplist-item" data-value="8"><a href="#">Results of General Meetings</a></li>
+                                <li class="droplist-item" data-value="9"><a href="#">Resumption / Suspension / Trading Halt</a></li>
+                            </ul>           
+                        </div>
+                    </div>
+                </div>
+            </div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:1" value="4650998647108944618:8634996180904343964" autocomplete="off" />
+</form><div id="categoriesPanel">
+            <div class="PD-headline">
+                <div class="PD-headline-title">HEADLINE CATEGORIES</div>
+                <div class="PD-headline-area">
+                    <ul>Resumption &#x3b; Resumption - CBBC &#x3b; Resumption - DW &#x3b; Resumption - Debt Securities &#x3b; Resumption - ELI &#x3b; Suspension &#x3b; Suspension - CBBC &#x3b; Suspension - DW &#x3b; Suspension - Debt Securities &#x3b; Suspension - ELI &#x3b; Trading Halt &#x3b; Trading Halt - CBBC &#x3b; Trading Halt - DW &#x3b; Trading Halt - Debt Securities &#x3b; Trading Halt - ELI
+                    </ul>
+                </div>
+            </div></div>
+            </div><div id="recordCountPanel">
+            <div class="PD-box">            
+                <div class="filter__radioGroup PD-selectedbar">                 
+                <input id="selectedDayPeriod" type="hidden" value="SevenDays" style="display: none;" />
+                <input id="lang" type="hidden" value="E" style="display: none;" />
+                           <div class="PD-TotalRecords">Total records found: 45</div>
+                   
+                    <div class="PD_MB_filter">
+                        <div class="PD_MB_filter_Btn_area">
+                            <a tabindex="0" class="PD_MB_filter_Btn">Show Filters</a>
+                        </div>
+                        <div class="PD_MB_filter_Btn_Close">
+                            <a tabindex="0" class="btn-close-filter" href="#">X</a>
+                        </div>
+                        <div class="filter__inputGroup">
+                            <div class="PD_MB_DATE radio-custom">
+                                <span class="Date_selected">SHOW:</span>
+                                <input type="radio" name="Daterange" id="Daterange1" value="today" onclick="javascript:searchByDateRange('today')" /><label for="Daterange1">LATEST</label>
+                                <input type="radio" name="Daterange" id="Daterange2" value="SevenDays" onclick="javascript:searchByDateRange('SevenDays')" /><label for="Daterange2">7 DAYS</label>						 
+                            	
+                            
+                            
+                            </div>
+                            <div class="PD_MB_filter_border-bottom"></div>
+                            <div class="PD_MB_hideHeadline">
+                                <a tabindex="0" class="hideShow showing"><span class="hide-headline">Hide Headline</span><span class="show-headline">Show Headline</span></a>
+                            </div>
+                        </div>
+                        <div class="filter__buttonGroup">
+                            <a class="btn-blue filter__btn-applyFilters-js" href="#">APPLY FILTER</a>
+                        </div>
+                    </div>
+                </div>                
+            </div></div>
+            
+            <div class="title-search-content PD-search-content search-page-container table-mobile-list-container">
+                <div class="title-search-result">
+                    <div class="title-search-result-toolbar result-toolbar PD-toolbar">
+                        <div class="hideHeadline">
+                            <a tabindex="0" class="hideShow showing"><span class="hide-headline">Hide Headline</span><span class="show-headline">Show Headline</span></a>
+                        </div>
+                        <div class="mobileSort">
+                            <a tabindex="0" data-toggle="nav-popover" class="sort__dropdown">Sort</a>
+                            <div class="popover result-toolbar-popover">
+                                <div class="popover__content">
+                                    <ul class="popover__content-list">
+                                        <li class="popover__list-item" onclick="javascript:sortByReleaseTimeAsc()"><a tabindex="0" data-sort-by="0" data-sort-dir="1">Latest information</a></li>
+                                        <li class="popover__list-item" onclick="javascript:sortByReleaseTimeDesc()"><a tabindex="0" data-sort-by="0" data-sort-dir="0">Oldest information</a></li>
+                                        <li class="popover__list-item" onclick="javascript:sortByStockCodeAsc()"><a tabindex="0" data-sort-by="1" data-sort-dir="0">Stock Code low to high</a></li>
+                                        <li class="popover__list-item" onclick="javascript:sortByStockCodeDesc()"><a tabindex="0" data-sort-by="1" data-sort-dir="1">Stock Code high to low</a></li>
+                                        <li class="popover__list-item" onclick="javascript:sortByStockNameAsc()"><a tabindex="0" data-sort-by="2" data-sort-dir="0">Stock Name A to Z</a></li>
+                                        <li class="popover__list-item" onclick="javascript:sortByStockNameDesc()"><a tabindex="0" data-sort-by="2" data-sort-dir="1">Stock Name Z to A</a></li> 
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="PD_MB_border-bottom"></div>
+                        <div class="PD_MB_Details">
+                            <a tabindex="0" href="http://www.hkexnews.hk/epsfiles/SimpleSearchDetails.htm">Disclaimer</a>
+                        </div>
+                    </div>
+                    <div class="title-search-result-mobile desktop-hidden tablet-hidden">
+                    </div><div id="preDefinedSearchResultPanel"> 
+                     <input id="sortOption" type="hidden" value="[[0,0]]" />
+                    <table class="table sticky-header-table table-scroll table-mobile-list" role="grid" data-sortlist="[[0,1]]">
+                        <thead>
+                            <tr>
+                                <th class="release-date" data-column-class="release-date" data-sorter="extractDDMMYYYY" data-date-format="ddmmyyyy" onclick="javascript:sortTable('DateTime')">Release Time</th>
+                                <th class="stock-code" data-column-class="stock-code" data-sorter="text" onclick="javascript:sortTable('StockCode')">Stock Code</th>
+                                <th class="stock-code-name" data-column-class="stock-code-name" onclick="javascript:sortTable('StockName')">Stock Short Name</th>
+                                <th class="sorter-false document-details headline-toggle" data-column-class="document-details">Document</th>
+                            </tr>
+                        </thead>
+						<tbody>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>11/09/2026 22:38</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>00399</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>STARCOIN GROUP</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Change in Terms of Securities or Rights attaching to Securities &#x2f; Connected Transaction &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0911/2026091101845.pdf" rel="noopener noreferrer" target="_blank">FURTHER DELAY IN DESPATCH OF CIRCULAR
+IN RELATION TO THE
+AMENDMENT TO THE TERMS AND CONDITIONS OF
+THE CONVERTIBLE BONDS
+AND
+CONNECTED TRANSACTION AT SUBSIDIARY LEVEL
+AND CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">482KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>11/09/2026 18:53</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>22968<br/>24543<br/>24748<br/>27170<br/>27433<br/>28278<br/>28486<br/>28618<br/>67808<br/>67838<br/>68487</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>BPCSA50@EC2610A<br/>BPALIBA@EP2609A<br/>BPALIHI@EC2610A<br/>BPCNOOC@EP2609A<br/>BPZIJIN@EC2609A<br/>BPGEELY@EP2610A<br/>BPSMORE@EC2610A<br/>BP-CHQG@EC2609B<br/>BP#HSI RC2609A<br/>BP#HSI RC2609O<br/>BP#SMIC RC2609A</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Debt and Structured Products - [Suspension - CBBC &#x2f; Withdrawal of Listing (Announcement Form) - CBBC &#x2f; Withdrawal of...<div class='fancy-note-tooltip-hover' data-tooltip-position='nextsibling'>  <a href='javascript:void(0)' class='fancy-note-label tooltip' >More</a></div><div class='fancy-note-hover bottom mobile-hidden'>Debt and Structured Products - [Suspension - CBBC &#x2f; Withdrawal of Listing (Announcement Form) - CBBC &#x2f; Withdrawal of Listing - CBBC &#x2f; Suspension - DW &#x2f; Withdrawal of Listing (Announcement Form) - DW &#x2f; Withdrawal of Listing - DW]</div>]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0911/2026091101243.pdf" rel="noopener noreferrer" target="_blank">Announcement for Suspension of Trading and Withdrawal of Listing of CBBC and Warrant by BNP PARIBAS ISSUANCE B.V.						             	
+										</a>
+                                          (<span class="attachment_filesize">40KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>11/09/2026 17:17</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>00352</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>FORTUNE SUN</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Inside Information &#x2f; Delay in Results Announcement &#x2f; Other - Business Update &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0911/2026091100740.pdf" rel="noopener noreferrer" target="_blank">QUARTERLY UPDATE ON STATUS OF RESUMPTION,FURTHER CLARIFICATION OF DELAY IN PUBLICATION OF THE 2026 INTERIM RESULTS AND DELAY IN DESPATCH OF THE 2026 INTERIM REPORT AND CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">219KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>11/09/2026 17:00</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01107</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>MODERN LAND</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Inside Information &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0911/2026091100575.pdf" rel="noopener noreferrer" target="_blank">FURTHER UPDATE ON THE IMPLEMENTATION OF PLANS AND MEASURES IN RESOLVING THE DISCLAIMER OF OPINION						             	
+										</a>
+                                          (<span class="attachment_filesize">238KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>11/09/2026 12:15</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>00653</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>BONJOUR HOLD</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Trading Halt]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0911/2026091100243.pdf" rel="noopener noreferrer" target="_blank">TRADING HALT						             	
+										</a>
+                                          (<span class="attachment_filesize">193KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>11/09/2026 10:02</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>00653</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>BONJOUR HOLD</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Trading Halt]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0911/2026091100155.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - TRADING HALT						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>11/09/2026 08:43</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08297</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>OCEAN STAR TECH</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Resumption]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0911/2026091100119.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - RESUMPTION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>11/09/2026 08:43</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01402</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>I-CONTROL</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Resumption]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0911/2026091100117.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - RESUMPTION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 22:10</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08349</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>GUIXIN GROUP</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Change in Company Secretary &#x2f; Change in Registered Address or Office, Registered Place of...<div class='fancy-note-tooltip-hover' data-tooltip-position='nextsibling'>  <a href='javascript:void(0)' class='fancy-note-label tooltip' >More</a></div><div class='fancy-note-hover bottom mobile-hidden'>Announcements and Notices - [Change in Company Secretary &#x2f; Change in Registered Address or Office, Registered Place of Business in HK or Agent for Service of Process in HK &#x2f; Suspension]</div>]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0910/2026091001691.pdf" rel="noopener noreferrer" target="_blank">CHANGE OF COMPANY SECRETARY AND
+AUTHORISED REPRESENTATIVE
+AND
+CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">52KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 21:13</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08297</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>OCEAN STAR TECH</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Inside Information &#x2f; Other - Business Update &#x2f; Resumption]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0910/2026091001597.pdf" rel="noopener noreferrer" target="_blank">FULFILMENT OF RESUMPTION GUIDANCE AND
+RESUMPTION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">141KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 20:21</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01402</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>I-CONTROL</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Announcement by Offeree Company under the Takeovers Code &#x2f; Inside Information &#x2f; Unusual...<div class='fancy-note-tooltip-hover' data-tooltip-position='nextsibling'>  <a href='javascript:void(0)' class='fancy-note-label tooltip' >More</a></div><div class='fancy-note-hover bottom mobile-hidden'>Announcements and Notices - [Announcement by Offeree Company under the Takeovers Code &#x2f; Inside Information &#x2f; Unusual Price&#x2f;Turnover Movements - Qualified &#x2f; Resumption]</div>]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0910/2026091001533.pdf" rel="noopener noreferrer" target="_blank">(1) UNUSUAL MOVEMENTS IN PRICE AND TRADING VOLUME&#x3b;
+(2) ANNOUNCEMENT PURSUANT TO RULE 3.7 OF
+THE TAKEOVERS CODE, RULE 13.09 OF THE LISTING RULES
+AND INSIDE INFORMATION PROVISIONS UNDER PART XIVA OF
+THE SECURITIES AND FUTURES ORDINANCE&#x3b; AND
+(3) RESUMPTION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">81KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 09:25</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01402</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>I-CONTROL</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Trading Halt &#x2f; Inside Information]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0910/2026091000159.pdf" rel="noopener noreferrer" target="_blank">TRADING HALT						             	
+										</a>
+                                          (<span class="attachment_filesize">64KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 09:12</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01936</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>RITAMIX</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Trading Halt]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0910/2026091000147.pdf" rel="noopener noreferrer" target="_blank">TRADING HALT						             	
+										</a>
+                                          (<span class="attachment_filesize">33KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 08:58</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01561</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>PAN ASIA DATA H</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Trading Halt]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0910/2026091000145.pdf" rel="noopener noreferrer" target="_blank">TRADING HALT						             	
+										</a>
+                                          (<span class="attachment_filesize">73KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 08:54</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01936</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>RITAMIX</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Trading Halt]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0910/2026091000143.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - TRADING HALT						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 08:54</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01561</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>PAN ASIA DATA H</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Trading Halt]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0910/2026091000141.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - TRADING HALT						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 08:40</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01402</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>I-CONTROL</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Trading Halt]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0910/2026091000135.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - TRADING HALT						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 08:40</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>02496</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>YZYBIO-B</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Resumption]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0910/2026091000133.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - RESUMPTION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 08:40</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08525</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>BAIYING HOLDING</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Resumption]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0910/2026091000131.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - RESUMPTION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>10/09/2026 08:22</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>02592</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>CLOUDBREAK-B</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0910/2026091000105.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - SUSPENSION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>09/09/2026 21:35</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>02496</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>YZYBIO-B</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Connected Transaction &#x2f; Announcement by Offeree Company under the Takeovers Code &#x2f; Issue of...<div class='fancy-note-tooltip-hover' data-tooltip-position='nextsibling'>  <a href='javascript:void(0)' class='fancy-note-label tooltip' >More</a></div><div class='fancy-note-hover bottom mobile-hidden'>Announcements and Notices - [Connected Transaction &#x2f; Announcement by Offeree Company under the Takeovers Code &#x2f; Issue of Shares under a Specific Mandate &#x2f; Amendment of Constitutional Documents &#x2f; Resumption]</div>]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0909/2026090901167.pdf" rel="noopener noreferrer" target="_blank">ANNOUNCEMENT
+(1) CONNECTED TRANSACTION IN RESPECT OF THE PROPOSED ISSUE
+OF NEW DOMESTIC SHARES UNDER SPECIFIC MANDATE&#x3b;
+(2) APPLICATION FOR WHITEWASH WAIVER&#x3b;
+(3) PROPOSED AMENDMENTS TO THE ARTICLES OF ASSOCIATION&#x3b;
+(4) APPOINTMENT OF INDEPENDENT FINANCIAL ADVISER&#x3b; AND
+(5) RESUMPTION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">424KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>09/09/2026 21:13</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08206</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>S ROBOT EDU</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Announcement by Offeree Company under the Takeovers Code &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0909/2026090901135.pdf" rel="noopener noreferrer" target="_blank">APPOINTMENT OF INDEPENDENT FINANCIAL ADVISER AND CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">80KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>09/09/2026 19:19</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08525</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>BAIYING HOLDING</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Inside Information &#x2f; Other - Business Update &#x2f; Resumption]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0909/2026090900963.pdf" rel="noopener noreferrer" target="_blank">FULFILMENT OF RESUMPTION GUIDANCE AND RESUMPTION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">215KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>09/09/2026 08:45</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>06063</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>LOTUS HORIZON</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Resumption]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0909/2026090900073.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - RESUMPTION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>09/09/2026 08:45</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>00626</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>PUBLIC FIN HOLD</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Resumption]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0909/2026090900071.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - RESUMPTION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>09/09/2026 08:45</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>11070<br/>11121<br/>26453<br/>26649<br/>27328<br/>27329<br/>28183<br/>49518<br/>49986<br/>49988<br/>49991<br/>55829<br/>55869<br/>60285<br/>64178<br/>67877</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>SG-AMZN@RC2609A<br/>SG-S&P @EC2609A<br/>SG-GEG @EC2609A<br/>SG-AAC @EC2609A<br/>SGSMORE@EC2609A<br/>SG-CHQG@EC2609A<br/>SG-ICBC@EC2609A<br/>SG#S&P RC2609C<br/>SG#DJIA RC2609A<br/>SG#DJIA RC2609B<br/>SG#NQ100RC2609C<br/>SG#HSI RC2609N<br/>SG#HUAHORC2609A<br/>SG#HUAHORC2609E<br/>SG#HKEX RC2609A<br/>SG#HSI RC2609C</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Debt and Structured Products - [Suspension - DW &#x2f; Suspension - CBBC]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0909/2026090900069.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - SUSPENSION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>08/09/2026 22:06</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>06063</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>LOTUS HORIZON</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Announcement by Offeree Company under the Takeovers Code &#x2f; Announcement by Offeror Company...<div class='fancy-note-tooltip-hover' data-tooltip-position='nextsibling'>  <a href='javascript:void(0)' class='fancy-note-label tooltip' >More</a></div><div class='fancy-note-hover bottom mobile-hidden'>Announcements and Notices - [Announcement by Offeree Company under the Takeovers Code &#x2f; Announcement by Offeror Company under the Takeovers Code &#x2f; Change in Shareholding &#x2f; Resumption]</div>]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0908/2026090801195.pdf" rel="noopener noreferrer" target="_blank">(1) COMPLETION OF THE SALE AND PURCHASE OF THE SALE SHARES  (2) MANDATORY UNCONDITIONAL CASH OFFER BY RAINBOW CAPITAL (HK) LIMITED FOR AND ON BEHALF OF VICTOR XU LIMITED TO ACQUIRE ALL OF THE ISSUED SHARES OF LOTUS HORIZON HOLDINGS LIMITED (3) APPOINTMENT OF INDEPENDENT FINANCIAL ADVISER TO THE INDEPENDENT BOARD COMMITTEE AND (4) RESUMPTION OF TRADING IN SHARES						             	
+										</a>
+                                          (<span class="attachment_filesize">718KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>08/09/2026 18:17</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>49518<br/>49986<br/>49988<br/>49991<br/>55829<br/>55869<br/>60285<br/>64178<br/>67877</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>SG#S&P RC2609C<br/>SG#DJIA RC2609A<br/>SG#DJIA RC2609B<br/>SG#NQ100RC2609C<br/>SG#HSI RC2609N<br/>SG#HUAHORC2609A<br/>SG#HUAHORC2609E<br/>SG#HKEX RC2609A<br/>SG#HSI RC2609C</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Debt and Structured Products - [Suspension - CBBC &#x2f; Withdrawal of Listing (Announcement Form) - CBBC &#x2f; Withdrawal of...<div class='fancy-note-tooltip-hover' data-tooltip-position='nextsibling'>  <a href='javascript:void(0)' class='fancy-note-label tooltip' >More</a></div><div class='fancy-note-hover bottom mobile-hidden'>Debt and Structured Products - [Suspension - CBBC &#x2f; Withdrawal of Listing (Announcement Form) - CBBC &#x2f; Withdrawal of Listing - CBBC]</div>]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0908/2026090800647.pdf" rel="noopener noreferrer" target="_blank">Announcement issued by SG Issuer regarding the Suspension of Trading and Withdrawal of Listing of Callable Bull&#x2f;Bear Contracts						             	
+										</a>
+                                          (<span class="attachment_filesize">40KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>08/09/2026 18:17</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>11070<br/>11121<br/>26453<br/>26649<br/>27328<br/>27329<br/>28183</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>SG-AMZN@RC2609A<br/>SG-S&P @EC2609A<br/>SG-GEG @EC2609A<br/>SG-AAC @EC2609A<br/>SGSMORE@EC2609A<br/>SG-CHQG@EC2609A<br/>SG-ICBC@EC2609A</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Debt and Structured Products - [Suspension - DW &#x2f; Withdrawal of Listing (Announcement Form) - DW &#x2f; Withdrawal of Listing - DW]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0908/2026090800645.pdf" rel="noopener noreferrer" target="_blank">Announcement issued by SG Issuer regarding the Suspension of Trading and Withdrawal of Listing of Warrants						             	
+										</a>
+                                          (<span class="attachment_filesize">40KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>08/09/2026 17:54</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>00626</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>PUBLIC FIN HOLD</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Announcement by Offeror Company under the Takeovers Code &#x2f; Announcement by Offeree Company...<div class='fancy-note-tooltip-hover' data-tooltip-position='nextsibling'>  <a href='javascript:void(0)' class='fancy-note-label tooltip' >More</a></div><div class='fancy-note-hover bottom mobile-hidden'>Announcements and Notices - [Announcement by Offeror Company under the Takeovers Code &#x2f; Announcement by Offeree Company under the Takeovers Code &#x2f; Group Restructuring or Scheme of Arrangement &#x2f; Privatisation&#x2f;Withdrawal or Cancellation of Listing of Securities &#x2f; Inside Information &#x2f; Resumption]</div>]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0908/2026090800612.pdf" rel="noopener noreferrer" target="_blank">JOINT ANNOUNCEMENT (1) PROPOSED PRIVATISATION OF PUBLIC FINANCIAL HOLDINGS LIMITED BY PUBLIC BANK BERHAD BY WAY OF A SCHEME OF ARRANGEMENT UNDER SECTION 99 OF THE COMPANIES ACT 1981 OF BERMUDA (AS AMENDED FROM TIME TO TIME)&#x3b; (2) PROPOSED WITHDRAWAL OF LISTING OF SHARES OF PUBLIC FINANCIAL HOLDINGS LIMITED&#x3b; AND (3) RESUMPTION OF TRADING IN THE SHARES						             	
+										</a>
+                                          (<span class="attachment_filesize">321KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>08/09/2026 16:45</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>06696</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>MANY IDEA CLOUD</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Inside Information &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0908/2026090800292.pdf" rel="noopener noreferrer" target="_blank">(1) ESTABLISHMENT OF AN INDEPENDENT COMMITTEE&#x3b;
+(2) APPOINTMENT OF AN INDEPENDENT INVESTIGATOR&#x3b; AND
+(3) APPOINTMENT OF AN INDEPENDENT INTERNAL
+CONTROL CONSULTANT						             	
+										</a>
+                                          (<span class="attachment_filesize">103KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>08/09/2026 08:41</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>11066<br/>11098<br/>20683<br/>24483<br/>25430<br/>25791<br/>25965<br/>26669<br/>26793<br/>26795<br/>26878<br/>27323<br/>28220<br/>28478<br/>49579<br/>49981<br/>55697<br/>55944<br/>57086<br/>61281<br/>62273<br/>64029<br/>67448<br/>68130<br/>69125</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>JPAUDHK@EP2609A<br/>JP-DJIA@EC2609A<br/>JPPETCH@EC2609A<br/>JPMTUAN@EP2609A<br/>JPCTIHK@EC2610A<br/>JPPHANC@EC2609A<br/>JPBUDWS@EC2609A<br/>JP-SHKP@EP2609A<br/>JP-COSL@EC2609A<br/>JP-AAC @EC2609A<br/>JPBOCHK@EC2609A<br/>JPCKINF@EC2610A<br/>JPGEELY@EP2610B<br/>JPXINYI@EC2609A<br/>JP#NQ100RC2609E<br/>JP#S&P RC2609A<br/>JP#HSI RP2906U<br/>JP#HSI RC2809H<br/>JP#HSI RP2905T<br/>JP#HSI RC2807S<br/>JP#HSI RC2807D<br/>JP#HSI RP2902F<br/>JP#HKEX RC2610H<br/>JP#HKEX RC2610I<br/>JP#HSI RP2905R</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Debt and Structured Products - [Suspension - CBBC &#x2f; Suspension - DW]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0908/2026090800063.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - SUSPENSION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>07/09/2026 19:04</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>11066<br/>11098<br/>20683<br/>24483<br/>25430<br/>25791<br/>25965<br/>26669<br/>26793<br/>26795<br/>26878<br/>27323<br/>28220<br/>28478<br/>49579<br/>49981<br/>55697<br/>55944<br/>57086<br/>61281<br/>62273<br/>64029<br/>67448<br/>68130<br/>69125</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>JPAUDHK@EP2609A<br/>JP-DJIA@EC2609A<br/>JPPETCH@EC2609A<br/>JPMTUAN@EP2609A<br/>JPCTIHK@EC2610A<br/>JPPHANC@EC2609A<br/>JPBUDWS@EC2609A<br/>JP-SHKP@EP2609A<br/>JP-COSL@EC2609A<br/>JP-AAC @EC2609A<br/>JPBOCHK@EC2609A<br/>JPCKINF@EC2610A<br/>JPGEELY@EP2610B<br/>JPXINYI@EC2609A<br/>JP#NQ100RC2609E<br/>JP#S&P RC2609A<br/>JP#HSI RP2906U<br/>JP#HSI RC2809H<br/>JP#HSI RP2905T<br/>JP#HSI RC2807S<br/>JP#HSI RC2807D<br/>JP#HSI RP2902F<br/>JP#HKEX RC2610H<br/>JP#HKEX RC2610I<br/>JP#HSI RP2905R</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Debt and Structured Products - [Suspension - DW &#x2f; Withdrawal of Listing (Announcement Form) - DW &#x2f; Withdrawal of Listing -...<div class='fancy-note-tooltip-hover' data-tooltip-position='nextsibling'>  <a href='javascript:void(0)' class='fancy-note-label tooltip' >More</a></div><div class='fancy-note-hover bottom mobile-hidden'>Debt and Structured Products - [Suspension - DW &#x2f; Withdrawal of Listing (Announcement Form) - DW &#x2f; Withdrawal of Listing - DW &#x2f; Suspension - CBBC &#x2f; Withdrawal of Listing (Announcement Form) - CBBC &#x2f; Withdrawal of Listing - CBBC]</div>]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0907/2026090701062.pdf" rel="noopener noreferrer" target="_blank">J.P. Morgan Structured Products B.V. - Notice of Suspension of Trading and Withdrawal of Listing						             	
+										</a>
+                                          (<span class="attachment_filesize">41KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>07/09/2026 18:29</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01252</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>CHINA TIANRUI</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Change in Auditors &#x2f; Change in Auditors subject to Shareholders&#x27; Approval &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0907/2026090700951.pdf" rel="noopener noreferrer" target="_blank">(1) SUPPLEMENTAL INFORMATION ON RESIGNATION OF AUDITOR&#x3b; (2) PROPOSED APPOINTMENT OF AUDITOR AND (3) CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">182KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>07/09/2026 08:44</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08168</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>AMASSE CAPITAL</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Change in Directors or of Important Executive Functions or Responsibilities &#x2f; Suspension &#x2f;...<div class='fancy-note-tooltip-hover' data-tooltip-position='nextsibling'>  <a href='javascript:void(0)' class='fancy-note-label tooltip' >More</a></div><div class='fancy-note-hover bottom mobile-hidden'>Announcements and Notices - [Change in Directors or of Important Executive Functions or Responsibilities &#x2f; Suspension &#x2f; Inside Information]</div>]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0907/2026090700005.pdf" rel="noopener noreferrer" target="_blank">INSIDE INFORMATION:
+REMOVAL OF
+EXECUTIVE DIRECTOR AND CHIEF EXECUTIVE OFFICER
+AND
+SUSPENSION IN TRADING OF SHARES						             	
+										</a>
+                                          (<span class="attachment_filesize">89KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>07/09/2026 08:43</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08168</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>AMASSE CAPITAL</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0907/2026090700085.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - SUSPENSION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>07/09/2026 08:43</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>24592<br/>25399<br/>26871<br/>28169<br/>50556<br/>50988<br/>62676<br/>63060<br/>64704<br/>66746<br/>67488<br/>69272</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>UBHSTEC@EP2609A<br/>UBPOMRT@EP2609A<br/>UB-BOCL@EC2609A<br/>UBGEELY@EP2610B<br/>UB#HKEX RC2610C<br/>UB#HKEX RC2609E<br/>UB#CATL RC2609A<br/>UB#ANTASRP2609A<br/>UB#AIA RC2609B<br/>UB#HSI RC2609Z<br/>UB#HSI RC26099<br/>UB#HKEX RC2609C</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Debt and Structured Products - [Suspension - CBBC &#x2f; Suspension - DW]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0907/2026090700083.htm" rel="noopener noreferrer" target="_blank">EXCHANGE NOTICE - SUSPENSION OF TRADING						             	
+										</a>
+						            	   (<span class="attachment_filesize">2KB</span>, HTM)
+						            	  
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>04/09/2026 22:47</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>01376</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>RAFFLESINTERIOR</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Notice of EGM&#x2f;SGM &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0904/2026090402513.pdf" rel="noopener noreferrer" target="_blank">UPDATES ON (1) NOTICE OF EGM REQUISITIONED BY HAN VISION HOLDING LIMITED AND (2) NOTICE OF EGM REQUISITIONED BY CERTAIN REQUESTING SHAREHOLDERS TO REMOVE CERTAIN EXISTING DIRECTORS AND APPOINT NEW DIRECTORS AND CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">99KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>04/09/2026 21:00</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>02629</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>MIRXES-B</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Inside Information &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0904/2026090402297.pdf" rel="noopener noreferrer" target="_blank">(1) ADDITIONAL RESUMPTION GUIDANCE&#x3b;
+AND
+(2) CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">449KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>04/09/2026 20:57</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>02479</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>TIANJUDIHE</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Date of Board Meeting &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0904/2026090402289.pdf" rel="noopener noreferrer" target="_blank">(1) DATE OF BOARD MEETING
+AND
+(2) CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">60KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>04/09/2026 20:21</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>03903</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>HANHUA HOLDING</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Inside Information &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0904/2026090402209.pdf" rel="noopener noreferrer" target="_blank">UPDATE ON RESUMPTION PROGRESS AND CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">172KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>04/09/2026 19:58</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08525</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>BAIYING HOLDING</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Inside Information &#x2f; Other - Business Update &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0904/2026090402135.pdf" rel="noopener noreferrer" target="_blank">(1) QUARTERLY UPDATE ON STATUS OF RESUMPTION&#x3b; AND (2) CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">48KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>04/09/2026 18:53</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08631</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>SUN KONG HLDGS</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Inside Information &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0904/2026090401897.pdf" rel="noopener noreferrer" target="_blank">ESTABLISHMENT OF
+INDEPENDENT INVESTIGATION COMMITTEE						             	
+										</a>
+                                          (<span class="attachment_filesize">83KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>04/09/2026 18:20</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>24592<br/>25399<br/>26871<br/>28169<br/>50556<br/>50988<br/>62676<br/>63060<br/>64704<br/>66746<br/>67488<br/>69272</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>UBHSTEC@EP2609A<br/>UBPOMRT@EP2609A<br/>UB-BOCL@EC2609A<br/>UBGEELY@EP2610B<br/>UB#HKEX RC2610C<br/>UB#HKEX RC2609E<br/>UB#CATL RC2609A<br/>UB#ANTASRP2609A<br/>UB#AIA RC2609B<br/>UB#HSI RC2609Z<br/>UB#HSI RC26099<br/>UB#HKEX RC2609C</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Debt and Structured Products - [Suspension - DW &#x2f; Withdrawal of Listing - DW &#x2f; Withdrawal of Listing (Announcement Form) -...<div class='fancy-note-tooltip-hover' data-tooltip-position='nextsibling'>  <a href='javascript:void(0)' class='fancy-note-label tooltip' >More</a></div><div class='fancy-note-hover bottom mobile-hidden'>Debt and Structured Products - [Suspension - DW &#x2f; Withdrawal of Listing - DW &#x2f; Withdrawal of Listing (Announcement Form) - DW &#x2f; Suspension - CBBC &#x2f; Withdrawal of Listing - CBBC &#x2f; Withdrawal of Listing (Announcement Form) - CBBC]</div>]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/sehk/2026/0904/2026090401655.pdf" rel="noopener noreferrer" target="_blank">Suspension and Withdrawal of Listing Announcement of Derivative Warrants and Callable Bull&#x2f; Bear Contracts issued by UBS AG						             	
+										</a>
+                                          (<span class="attachment_filesize">40KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr>
+						      <tr>
+						      	 <td class="text-right text-end release-time"> <span class="mobile-list-heading">Release Time: </span>04/09/2026 16:36</td>
+			
+						         <td class="text-right text-end stock-short-code"><span class="mobile-list-heading">Stock Code: </span>08297</td>
+						        
+						         <td class="stock-short-name"><span class="mobile-list-heading">Stock Short Name: </span>OCEAN STAR TECH</td>
+						        
+						         <td>
+						         	 <span class="mobile-list-heading">Document: </span>
+						             <div class="headline">Announcements and Notices - [Other - Miscellaneous &#x2f; Suspension]<br/>
+						             </div>         
+						             <div class="doc-link">
+						             	<a href="/listedco/listconews/gem/2026/0904/2026090400699.pdf" rel="noopener noreferrer" target="_blank">KEY FINDINGS OF INTERNAL CONTROL REVIEW
+AND
+CONTINUED SUSPENSION OF TRADING						             	
+										</a>
+                                          (<span class="attachment_filesize">71KB</span>)<span class="pdf"></span>
+						             </div>
+						         </td>
+						      </tr> 							
+                        </tbody>                        
+                    </table></div>  
+                </div><div id="recordCountPanel2">
+                <div class="search-results__content-loadmore component-loadmore component-loadmore-no-options">
+                    <div class="component-loadmore__container">
+                        <div class="component-loadmore-leftPart__container">
+                        		Showing 45 of 45 records 
+                        </div>
+                    </div>
+                </div>
+                <div class="component-loadmore-leftPart__container-Mobile">
+                        	Showing 45 of 45 records 
+                </div></div>
+            </div>
+        </div>
+    </div>
+     	
+    	<script type="text/javascript" src="/ncms/script/hkex_foot.js"></script>
+   
+    
+    <script type="text/javascript" src="/ncms/script/main.js"></script>
+    
+    <script src="/ncms/js/search.js"></script>
+    <script src="/ncms/js/pd.js"></script>
+    <script type="text/javascript">
+    var lang = $('input#lang').val();
+    
+    setSelectedRadio(selectedDayPeriod);    
+    setLang(lang);  
+    predefinedSearchConfig();
+    </script><script type="text/javascript" nonce="8e1f6d9933b88aa2af2cec4893b86095" src="/2WxqwfDE/Duc/e8g/HGtru_wieL/mVurbcLa/eSkaAg/BT/4IOltdKAwc?v=078791f3-0f62-aa73-f1c7-7a8ae6b8173e" defer></script></body>
+</html>

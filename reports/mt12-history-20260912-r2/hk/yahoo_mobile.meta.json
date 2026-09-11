@@ -1,0 +1,8 @@
+{
+  "bytes": 121171,
+  "fetched_at": "2026-09-11T21:17:50.385325+00:00",
+  "name": "yahoo_mobile",
+  "sha256": "290e6a0ed5ec9a5807b824a004ec15589586a093de8dfaa336302173697ced9e",
+  "status": 200,
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/0941.HK?period1=1609459200&period2=1767225600&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+}

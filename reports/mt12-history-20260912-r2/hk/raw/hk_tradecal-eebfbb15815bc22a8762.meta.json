@@ -1,0 +1,15 @@
+{
+  "endpoint": "https://api.tushare.pro",
+  "fetched_at": "2026-09-11T21:20:41.389661+00:00",
+  "kind": "actual_http_response_bytes",
+  "request": {
+    "api_name": "hk_tradecal",
+    "fields": "",
+    "params": {
+      "end_date": "20251231",
+      "start_date": "20210101"
+    }
+  },
+  "rows": 1826,
+  "sha256": "d2c359c65ac8b084ecb81aa8e0fb22424fb43cfd96205cab9383199744342d81"
+}

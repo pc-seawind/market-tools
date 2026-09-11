@@ -1,0 +1,8 @@
+{
+  "bytes": 72690,
+  "fetched_at": "2026-09-11T21:17:58.404311+00:00",
+  "name": "hkex_halts_official",
+  "sha256": "fc1cad2ebc7edd44438ca30f96a99225674ee8e219224073f6e160a150d1f89d",
+  "status": 200,
+  "url": "https://www1.hkexnews.hk/search/predefineddoc.xhtml?lang=en&predefineddocuments=9"
+}

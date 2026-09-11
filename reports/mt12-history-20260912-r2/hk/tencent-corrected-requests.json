@@ -1,0 +1,122 @@
+[
+  {
+    "bytes": 25042,
+    "fetched_at": "2026-09-11T21:21:53.363600+00:00",
+    "name": "tencent_qfq_request_00005_2021",
+    "sha256": "aeff4c047b1923766bd06713ebeb60b7ead794d75a341c487c65853710204ace",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00005,day,2021-01-01,2021-12-31,400,qfq"
+  },
+  {
+    "bytes": 35229,
+    "fetched_at": "2026-09-11T21:21:54.011912+00:00",
+    "name": "tencent_qfq_request_00005_2022",
+    "sha256": "67f2cfaea33d9c70ce2e50ebec17c6533fb9ce4775b189512177bd2b439b1eaa",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00005,day,2022-01-01,2022-12-31,400,qfq"
+  },
+  {
+    "bytes": 40967,
+    "fetched_at": "2026-09-11T21:21:54.637517+00:00",
+    "name": "tencent_qfq_request_00005_2023",
+    "sha256": "b004a456cb6edd2e5033618f391158fd8bb14856a673f03dce6322252b722d4e",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00005,day,2023-01-01,2023-12-31,400,qfq"
+  },
+  {
+    "bytes": 51917,
+    "fetched_at": "2026-09-11T21:21:55.321748+00:00",
+    "name": "tencent_qfq_request_00005_2024",
+    "sha256": "bd0e95cc513d856cafd507d229ccff22d25ed5fe3c3769546649e96b2acf4236",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00005,day,2024-01-01,2024-12-31,400,qfq"
+  },
+  {
+    "bytes": 45152,
+    "fetched_at": "2026-09-11T21:21:55.991802+00:00",
+    "name": "tencent_qfq_request_00005_2025",
+    "sha256": "d1b036950c68186b8e9e36f08f388a59fa77e4910d4b08399e381c22cc4ef3a1",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00005,day,2025-01-01,2025-12-31,400,qfq"
+  },
+  {
+    "bytes": 18816,
+    "fetched_at": "2026-09-11T21:21:56.614619+00:00",
+    "name": "tencent_qfq_request_00388_2021",
+    "sha256": "1541df4ab86626dd5b524d0e4918421bc25b03b763946d01630ff8192c7d8eb5",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00388,day,2021-01-01,2021-12-31,400,qfq"
+  },
+  {
+    "bytes": 18757,
+    "fetched_at": "2026-09-11T21:21:57.237963+00:00",
+    "name": "tencent_qfq_request_00388_2022",
+    "sha256": "21f5ff586e7037fa40573961a1bc5282e4bba7b01123ee6e1e0aa8f96855d03e",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00388,day,2022-01-01,2022-12-31,400,qfq"
+  },
+  {
+    "bytes": 18718,
+    "fetched_at": "2026-09-11T21:21:57.841607+00:00",
+    "name": "tencent_qfq_request_00388_2023",
+    "sha256": "28f86530745e1aff02827a6ee828220df27f5c66d5cccddffc4370e2498b4338",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00388,day,2023-01-01,2023-12-31,400,qfq"
+  },
+  {
+    "bytes": 18765,
+    "fetched_at": "2026-09-11T21:21:58.462542+00:00",
+    "name": "tencent_qfq_request_00388_2024",
+    "sha256": "78ec4e835dc27ba04549a9eac94d7fe4c0a504fbf29c57b251240242b2aa5764",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00388,day,2024-01-01,2024-12-31,400,qfq"
+  },
+  {
+    "bytes": 18771,
+    "fetched_at": "2026-09-11T21:21:59.042686+00:00",
+    "name": "tencent_qfq_request_00388_2025",
+    "sha256": "ad7864579197dde0771eabc06d7df57efb774caf6cea5fe1765689bdd3bbda1b",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00388,day,2025-01-01,2025-12-31,400,qfq"
+  },
+  {
+    "bytes": 18128,
+    "fetched_at": "2026-09-11T21:21:59.668187+00:00",
+    "name": "tencent_qfq_request_00941_2021",
+    "sha256": "884bb01c47a8b201241bbc39a11137c3c4f41c8a31cdc6738ee17bf603173c8d",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00941,day,2021-01-01,2021-12-31,400,qfq"
+  },
+  {
+    "bytes": 18846,
+    "fetched_at": "2026-09-11T21:22:00.261471+00:00",
+    "name": "tencent_qfq_request_00941_2022",
+    "sha256": "ff6475cb8af741a71cd7bd262c0ddb285afa71927ec50a73fd374bce51cd6537",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00941,day,2022-01-01,2022-12-31,400,qfq"
+  },
+  {
+    "bytes": 17996,
+    "fetched_at": "2026-09-11T21:22:00.890457+00:00",
+    "name": "tencent_qfq_request_00941_2023",
+    "sha256": "cc457a30bc9e4ba9e13ddaa603b1b472b14793512b1c5359dade941602fafe6e",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00941,day,2023-01-01,2023-12-31,400,qfq"
+  },
+  {
+    "bytes": 19802,
+    "fetched_at": "2026-09-11T21:22:01.485417+00:00",
+    "name": "tencent_qfq_request_00941_2024",
+    "sha256": "181e6a68e28f372553bfafce16287fb25227d4c94fe1a8931350c4884faed799",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00941,day,2024-01-01,2024-12-31,400,qfq"
+  },
+  {
+    "bytes": 18036,
+    "fetched_at": "2026-09-11T21:22:02.064226+00:00",
+    "name": "tencent_qfq_request_00941_2025",
+    "sha256": "a311c8a76f2884771686f268ed3896c685a9b95c2af79d0cf0314d453ab65e3b",
+    "status": 200,
+    "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00941,day,2025-01-01,2025-12-31,400,qfq"
+  }
+]

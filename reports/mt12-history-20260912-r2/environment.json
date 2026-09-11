@@ -1,0 +1,13 @@
+{
+  "base_revision1_commit": "b83b178",
+  "code_sha256": {
+    "history_cutoff.py": "9fd05b6f43a1df0022104e37b6d3c40f7e6170640ecfe86591aeb879ddf4d49e",
+    "hk_free_probe.py": "e0646d41861769c822689af0b33193dc716ba2f61527a7535d417153a338a23a"
+  },
+  "credential_in_artifacts": false,
+  "denied_HK_factor_endpoints_called": false,
+  "implementation_commit": "90da4f89779289744a4ecc3e09cf69cce5694a8c",
+  "new_runtime_dependencies": [],
+  "production_actions": [],
+  "python": "Python 3.12.3"
+}

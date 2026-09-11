@@ -1,0 +1,13 @@
+{"at": "2026-09-11T21:19:58.182421+00:00", "stage": "fetch", "api": "hk_daily", "params": {"ts_code": "00005.HK", "start_date": "20210101", "end_date": "20251231"}}
+{"at": "2026-09-11T21:19:58.763053+00:00", "stage": "fetch_failed", "api": "hk_daily", "attempt": 0, "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/小时)，具体频次详情：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T21:20:01.493316+00:00", "stage": "fetch_failed", "api": "hk_daily", "attempt": 1, "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T21:20:06.224181+00:00", "stage": "fetch_failed", "api": "hk_daily", "attempt": 2, "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T21:20:12.224456+00:00", "stage": "fetch", "api": "hk_daily", "params": {"ts_code": "00388.HK", "start_date": "20210101", "end_date": "20251231"}}
+{"at": "2026-09-11T21:20:12.852986+00:00", "stage": "fetch_failed", "api": "hk_daily", "attempt": 0, "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T21:20:15.594154+00:00", "stage": "fetch_failed", "api": "hk_daily", "attempt": 1, "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T21:20:20.176770+00:00", "stage": "fetch_failed", "api": "hk_daily", "attempt": 2, "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T21:20:26.177041+00:00", "stage": "fetch", "api": "hk_daily", "params": {"ts_code": "00941.HK", "start_date": "20210101", "end_date": "20251231"}}
+{"at": "2026-09-11T21:20:27.458899+00:00", "stage": "fetch_failed", "api": "hk_daily", "attempt": 0, "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T21:20:30.003133+00:00", "stage": "fetch_failed", "api": "hk_daily", "attempt": 1, "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T21:20:34.767056+00:00", "stage": "fetch_failed", "api": "hk_daily", "attempt": 2, "error": "provider_error:40203:抱歉，您访问接口(hk_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。"}
+{"at": "2026-09-11T21:20:40.767920+00:00", "stage": "fetch", "api": "hk_tradecal", "params": {"start_date": "20210101", "end_date": "20251231"}}

@@ -1,0 +1,8 @@
+{
+  "bytes": 120040,
+  "fetched_at": "2026-09-11T21:15:20.088483+00:00",
+  "name": "yahoo_hsi",
+  "sha256": "1b9da4db3dced71bb981c15baa6ee1f47603d00fc7b4a1c0a52f72712f97d388",
+  "status": 200,
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EHSI?period1=1609459200&period2=1767225600&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+}

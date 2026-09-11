@@ -1,0 +1,134 @@
+{
+  "yahoo_hkex": {
+    "anchor": {
+      "date": "20251231",
+      "sina": 0.9671488451,
+      "yahoo": 0.9671489262347159
+    },
+    "days_over_5bps": 0,
+    "max_abs_normalized_factor_difference_bps": 0.0028528177287157064,
+    "paired_days": 1228,
+    "worst_days": [
+      {
+        "date": "20210104",
+        "normalized_ratio_delta_bps": 0.0028528177287157064
+      },
+      {
+        "date": "20210623",
+        "normalized_ratio_delta_bps": 0.0026952744214270297
+      },
+      {
+        "date": "20210621",
+        "normalized_ratio_delta_bps": 0.0026505955341704635
+      },
+      {
+        "date": "20210222",
+        "normalized_ratio_delta_bps": 0.0025298034089793475
+      },
+      {
+        "date": "20220426",
+        "normalized_ratio_delta_bps": 0.0024220010064190944
+      },
+      {
+        "date": "20210511",
+        "normalized_ratio_delta_bps": 0.002417976114887921
+      },
+      {
+        "date": "20221221",
+        "normalized_ratio_delta_bps": 0.0024010769728022296
+      },
+      {
+        "date": "20230808",
+        "normalized_ratio_delta_bps": 0.0023988830899490665
+      }
+    ]
+  },
+  "yahoo_hsbc": {
+    "anchor": {
+      "date": "20251231",
+      "sina": 0.9634041717,
+      "yahoo": 0.967508393270699
+    },
+    "days_over_5bps": 0,
+    "max_abs_normalized_factor_difference_bps": 0.004145611165462526,
+    "paired_days": 1228,
+    "worst_days": [
+      {
+        "date": "20211124",
+        "normalized_ratio_delta_bps": 0.004145611165462526
+      },
+      {
+        "date": "20220715",
+        "normalized_ratio_delta_bps": 0.00397666562568233
+      },
+      {
+        "date": "20211203",
+        "normalized_ratio_delta_bps": 0.003896330424968397
+      },
+      {
+        "date": "20211206",
+        "normalized_ratio_delta_bps": 0.003896330424968397
+      },
+      {
+        "date": "20211130",
+        "normalized_ratio_delta_bps": 0.0038788343759144084
+      },
+      {
+        "date": "20210707",
+        "normalized_ratio_delta_bps": 0.0038341761499083304
+      },
+      {
+        "date": "20210616",
+        "normalized_ratio_delta_bps": 0.0037595209811946972
+      },
+      {
+        "date": "20220819",
+        "normalized_ratio_delta_bps": 0.0035676613929780387
+      }
+    ]
+  },
+  "yahoo_mobile": {
+    "anchor": {
+      "date": "20251231",
+      "sina": 0.9360935257,
+      "yahoo": 0.9360934995875271
+    },
+    "days_over_5bps": 0,
+    "max_abs_normalized_factor_difference_bps": 0.0029305133864010458,
+    "paired_days": 1228,
+    "worst_days": [
+      {
+        "date": "20210326",
+        "normalized_ratio_delta_bps": -0.0029305133864010458
+      },
+      {
+        "date": "20210719",
+        "normalized_ratio_delta_bps": -0.0028500205806469836
+      },
+      {
+        "date": "20210118",
+        "normalized_ratio_delta_bps": -0.0026742004743951497
+      },
+      {
+        "date": "20210208",
+        "normalized_ratio_delta_bps": -0.002575347396449601
+      },
+      {
+        "date": "20210715",
+        "normalized_ratio_delta_bps": -0.002488556244406581
+      },
+      {
+        "date": "20210716",
+        "normalized_ratio_delta_bps": -0.002488556244406581
+      },
+      {
+        "date": "20210727",
+        "normalized_ratio_delta_bps": -0.002488556244406581
+      },
+      {
+        "date": "20210420",
+        "normalized_ratio_delta_bps": -0.002460774328749693
+      }
+    ]
+  }
+}

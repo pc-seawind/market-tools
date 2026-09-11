@@ -1,0 +1,8 @@
+{
+  "bytes": 65,
+  "fetched_at": "2026-09-11T21:21:32.727802+00:00",
+  "name": "tencent_00388_2022",
+  "sha256": "ae0990ffb94e067920a16a95b64bb667ebf705e08205df5c1e9fdc6690bcbd56",
+  "status": 200,
+  "url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk00388,day,2022-01-01,2022-12-31,400"
+}
