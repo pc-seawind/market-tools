@@ -115,6 +115,22 @@ def collect(scope_path, out):
     return {'bundle':str(root/'bundle.json'),'sha256':file_hash(root/'bundle.json'),'errors':errors,'protected_unchanged':result['protected_unchanged']}
 
 
+def card_horizons(card):
+    # Keep immutable past observations visible even if today's input is blocked.
+    saved = (card.get('state') or {}).get('horizon_observations', {})
+    return card.get('horizons') or [saved.get(str(h), {
+        'sessions': h, 'status': 'blocked' if card['status']=='blocked' else 'not_matured',
+        'reference_price_return': None, 'not_personal_pnl': True,
+    }) for h in contract()['horizons_sessions']]
+
+
+def horizon_status(horizons):
+    # archived means the PRICE observation is complete, never strategy validated.
+    if all(h['status']=='observed_price_only' for h in horizons):
+        return 'archived'
+    return 'blocked' if any(h['status']=='blocked' for h in horizons) else 'not_matured'
+
+
 def report(result):
     details=[]
     lines=['**MT-1.2 shadow 技术附表｜不是正式买卖指令**',
@@ -124,12 +140,13 @@ def report(result):
     for r in result['cards']:
         entry='; '.join(k+':'+v['status'] for k,v in r['entry'].items() if isinstance(v,dict)) or r['entry'].get('status')
         lines.append(f"|{r['code']} {r.get('name','')}|{r.get('quote_date','unknown')} / {r.get('close','unknown')}|{r['old_entry']['status']} / {r['old_exit']['status']}|{entry} / {r['risk']['status']}|{r.get('structure_price')} / {r.get('atr20')} / {r.get('atr_stop')}|{'; '.join(r['gaps']) or '入场仍需研究签审'}|")
+        details.append('\n'+r['code']+'：价格观察窗口 '+ '；'.join(str(h['sessions'])+'交易日='+h['status'] for h in card_horizons(r)))
         if r.get('state'):
             m=r['state']['monitor']
-            details.append(f"\n{r['code']}：前向首次观测 {m['observed_at']}（不是买入日期）；风险依据 {m['structure_start']}—{m['structure_known_date']} 已完成结构低点；内部 raw×factor，表中折回当日口径。宽基/行业 RS：{r['rs']}。")
+            details.append(f"\n{r['code']}：前向首次观测 {m['observed_at']}（不是买入日期）；风险依据 {m['structure_start']}—{m['structure_known_date']} 已完成结构低点；内部 raw×factor，表中折回当日口径。宽基/行业 RS：{r.get('rs', 'unknown（当前输入阻断；历史窗口结果保留）')}。")
     lines += details
     lines += ['', '缺历史/复权时风险价阻断；unknown 不当作安全或负分。港股不套沪深300；无美股持仓不宣称美股覆盖。',
-              '20/40/60 交易日窗口尚未成熟；首次监控不回填历史最大浮盈，不改旧计划 EXIT 或期限。']
+              '窗口状态逐只列示；observed_price_only 仅表示参考价格观察完成，不代表策略验证通过。首次监控不回填历史最大浮盈，不改旧计划 EXIT 或期限。']
     return '\n'.join(lines)+'\n'
 
 
@@ -174,14 +191,15 @@ def _observe(bundle_path, scope_path, root, previous=None):
         cards.append(r)
         origin=(r.get('state') or {}).get('monitor',{})
         origin_date=original_events.get(p['code']+':'+cfg['method'],{}).get('original_date',origin.get('origin_date',p.get('expected_date')))
-        events.append({'kind':'mt12-monitor','origin_id':p['code']+':'+cfg['method'], 'status':'blocked' if r['status']=='blocked' else 'not_matured',
+        horizons=card_horizons(r)
+        events.append({'kind':'mt12-monitor','origin_id':p['code']+':'+cfg['method'], 'status':horizon_status(horizons), 'horizons':horizons,
                        'original_judgment':'前向技术观察，不是用户建仓/推荐起点','original_date':origin_date,
                        'reference_price':None, 'verification_target':'20/40/60_completed_sessions_not_personal_pnl',
                        'next_review_date':str(datetime.fromisoformat(now).date()+timedelta(days=1)),
                        'observed_sessions':(r.get('state') or {}).get('observed_sessions',0),'latest_risk':r['risk']})
     result={'status':'partial' if any(r['status']=='blocked' for r in cards) else 'ok', 'scope_epoch':scope['epoch'],'method':cfg,'run_id':run_id,
             'execution_started_at':now,'code_hashes':code_hashes,'cards':cards,'markets':bundle.get('markets',{}),'protected_before':before,'protected_after':protected_hashes(scope_path),
-            'incomplete':['historical_PIT_universe_and_executable_sessions_unknown','20_40_60_not_matured','no_active_promotion_or_VPS_wiring']}
+            'incomplete':['historical_PIT_universe_and_executable_sessions_unknown','no_active_promotion_or_VPS_wiring'] + (['price_horizons_pending_or_blocked'] if any(horizon_status(card_horizons(c))!='archived' for c in cards) else [])}
     result['protected_unchanged']=before==result['protected_after']
     materials=[{'name':'bundle.json','content':raw},{'name':'scope.json','path':str(scope_path)},{'name':'experiment-contract.json','path':str(CONTRACT_PATH)},
                {'name':'report.md','content':report(result)}]

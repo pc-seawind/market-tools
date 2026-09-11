@@ -194,6 +194,39 @@ def step(rows, state, cfg, *, channel, observed_at):
                  'intrabar_order':'unknown_no_intrabar_fill' if intrabar else 'not_used_close_only'}, 'indicators':f, 'events':events}
 
 
+
+def freeze_horizons(state, rows, panel, asof, cfg):
+    """Persist observed horizon prices; a rolling input must not erase outcomes.
+
+    Session age comes from causally continued state, not calendar days. Missing
+    target bars remain blocked; no nearest-price substitution or future fill.
+    """
+    saved = state.setdefault('horizon_observations', {})
+    age = state['observed_sessions'] - 1
+    for h in cfg['horizons_sessions']:
+        key = str(h)
+        if key in saved or age < h:
+            continue
+        target_index = len(rows) - 1 - (age - h)
+        if target_index < 0:
+            continue
+        bar = rows[target_index]
+        raw = next(b for b in panel['bars'] if b['date'] == bar['date'])
+        saved[key] = {
+            'sessions': h, 'status': 'observed_price_only',
+            'reference_price_return': bar['close']/state['monitor']['reference_price']-1,
+            'target_date': bar['date'], 'target_adjusted_close': bar['close'],
+            'reference_adjusted_close': state['monitor']['reference_price'],
+            'basis_id': panel['basis_id'], 'source_bar_sha256': digest(raw),
+            'source_panel_sha256': digest(panel), 'observed_at': asof,
+            'not_personal_pnl': True,
+        }
+    return [copy.deepcopy(saved[str(h)]) if str(h) in saved else {
+        'sessions': h, 'status': 'not_matured' if age < h else 'blocked',
+        'reference_price_return': None, 'not_personal_pnl': True,
+    } for h in cfg['horizons_sessions']]
+
+
 def evaluate(panel, *, asof, previous=None, channel='TREND', cfg=None):
     cfg = cfg or contract()
     out = {'code':panel['code'], 'market':panel['market'], 'method':cfg['method'], 'method_status':'shadow',
@@ -222,6 +255,7 @@ def evaluate(panel, *, asof, previous=None, channel='TREND', cfg=None):
             indexes = [len(rows)-1]  # forward episode starts NOW, no historic user highs/cost.
         for i in indexes:
             state, card = step(rows[:i+1], state, cfg, channel=channel, observed_at=asof)
+            freeze_horizons(state, rows[:i+1], panel, asof, cfg)
         broad = relative_strength(panel, rows, 'broad', asof, cfg)
         industry = relative_strength(panel, rows, 'industry', asof, cfg)
         f = card['indicators']
@@ -234,10 +268,7 @@ def evaluate(panel, *, asof, previous=None, channel='TREND', cfg=None):
                     price_basis='internal OHLC/entry/state = raw * adjustment_factor; close/structure_price/atr20/atr_stop = current raw units',
                     entry_display={k:{'status':v['status'],'level':v.get('level')/rows[-1]['factor'] if v.get('level') is not None else None, 'risk':v.get('risk')/rows[-1]['factor'] if v.get('risk') is not None else None, 'trigger_price':v.get('trigger_price')/rows[-1]['factor'] if v.get('trigger_price') is not None else None} for k,v in card['entry'].items()},
                     explanation='新增入场资格与已有持仓风险独立；结构/ATR风险触发可独立复核，不等财报证伪；shadow不是BUY/SELL。')
-        origin_index = next((i for i,b in enumerate(rows) if b['date']==state['monitor']['origin_date']), None)
-        card['horizons'] = [{'sessions':h, 'status':'blocked' if origin_index is None else 'not_matured' if len(rows)<=origin_index+h else 'observed_price_only',
-                             'reference_price_return':rows[origin_index+h]['close']/state['monitor']['reference_price']-1 if origin_index is not None and len(rows)>origin_index+h else None,
-                             'not_personal_pnl':True} for h in cfg['horizons_sessions']]
+        card['horizons'] = freeze_horizons(state, rows, panel, asof, cfg)
         state.update(code=panel['code'], basis_id=panel['basis_id'], contract_hash=digest(cfg), bar_hashes={b['date']:digest(b) for b in panel['bars']}, last_card=card)
         out.update(card, state=state, status='ok')
         out['gaps'] = (['ATR_stop_nonpositive_unusable'] if card['atr_stop'] is None else []) + [k+'_RS_unknown' for k,v in card['rs'].items() if v['status']=='unknown']

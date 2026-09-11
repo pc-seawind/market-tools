@@ -11,6 +11,19 @@ from mt1.timing_cli import observe
 ASOF='2026-09-11T13:00:00+00:00'
 
 
+@pytest.fixture(autouse=True)
+def fixed_observation_clock(monkeypatch):
+    # Synthetic calendars cover ASOF, not the machine's changing wall date.
+    # Keep production calendar-refresh checks intact and test them explicitly.
+    import mt1.timing_cli as cli
+    from datetime import datetime
+    class Clock(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime.fromisoformat(ASOF).astimezone(tz)
+    monkeypatch.setattr(cli, 'datetime', Clock)
+
+
 def fixture(n=120, market='CN'):
     rows=[];d=date(2024,1,2)
     for i in range(n):
@@ -342,3 +355,89 @@ def test_same_session_auxiliary_can_refresh_without_extra_observation():
     r2=evaluate(p,asof=ASOF,previous=r['state'])
     assert r2['rs']['industry']['status']=='ok'
     assert r2['state']['observed_sessions']==1
+
+
+def window_panel(master, end, width=120):
+    p=copy.deepcopy(master)
+    p['bars']=p['bars'][max(0,end-width):end]
+    p['sessions']=[b['date'] for b in p['bars']]
+    p['expected_date']=p['sessions'][-1]
+    return p
+
+
+def test_horizon_outcomes_survive_rolling_120_and_idempotency():
+    master=fixture(265)
+    result=None; frozen=None
+    for end in range(120,266):
+        p=window_panel(master,end)
+        result=evaluate(p,asof=ASOF,previous=result['state'] if result else None)
+        assert result['status']=='ok'
+        if end==180:
+            frozen=copy.deepcopy(result['horizons'])
+            assert all(h['status']=='observed_price_only' for h in frozen)
+        if end>180:
+            assert result['horizons']==frozen
+    assert result['state']['monitor']['origin_date'] not in p['sessions']
+    assert result['state']['observed_sessions']==146
+    for h in frozen:
+        assert h['target_date']==master['bars'][119+h['sessions']]['date']
+        assert h['source_bar_sha256']==digest(master['bars'][119+h['sessions']])
+        assert h['source_panel_sha256']
+    again=evaluate(p,asof=ASOF,previous=result['state'])
+    assert again['horizons']==frozen and again['state']['observed_sessions']==146
+
+
+def test_partial_and_blocked_horizons_are_not_false_completion():
+    from mt1.timing_cli import card_horizons, horizon_status, report
+    master=fixture(141)
+    a=evaluate(window_panel(master,120),asof=ASOF)
+    b=evaluate(window_panel(master,141,width=141),asof=ASOF,previous=a['state'])
+    assert [h['status'] for h in b['horizons']]==['observed_price_only','not_matured','not_matured']
+    assert horizon_status(card_horizons(b))=='not_matured'
+    assert '20交易日=observed_price_only' in report({'cards':[b]})
+    bad=window_panel(master,141); bad['adjustment']='unknown'
+    c=evaluate(bad,asof=ASOF,previous=b['state'])
+    assert [h['status'] for h in card_horizons(c)]==['observed_price_only','blocked','blocked']
+    assert horizon_status(card_horizons(c))=='blocked'
+    assert '20交易日=observed_price_only' in report({'cards':[c]})
+
+
+def test_archive_to_weekly_maturity_and_rolling_preservation(tmp_path, monkeypatch):
+    import mt1.timing_cli as cli
+    from datetime import datetime
+    from mt1.longitudinal import weekly_index
+    class Clock(datetime):
+        @classmethod
+        def now(cls,tz=None):
+            return datetime.fromisoformat(ASOF).astimezone(tz)
+    monkeypatch.setattr(cli,'datetime',Clock)
+    master=fixture(265)
+    scope=tmp_path/'scope.json'; scope.write_text(json.dumps({'scope_epoch':'test','reset_at':'2024-01-01T00:00:00Z',
+        'confirmed_holdings':[{'code':'TEST'}],'active_candidates':[]}))
+    root=tmp_path/'archive'; prior=None; mature=None
+    # Daily 120-bar rolling inputs, including >120 continuation sessions.
+    for end in range(120,266):
+        bundle={'source_kind':'SYNTHETIC','scope_epoch':'test','scope_codes':['TEST'],'asof':ASOF,
+            'panels':[window_panel(master,end)],'inputs':[],'contract_hash':digest(contract())}
+        path=tmp_path/f'bundle-{end}.json'; path.write_text(json.dumps(bundle))
+        receipt=observe(path,scope,root,prior)
+        prior=receipt['manifest']; m=json.loads(Path(prior).read_text())
+        result=json.loads((Path(prior).parent/m['result']['path']).read_text())
+        event=m['events'][0]
+        if end==140:
+            assert [h['status'] for h in event['horizons']]==['observed_price_only','not_matured','not_matured']
+            assert event['status']=='not_matured'
+        if end>=180:
+            assert event['status']=='archived'
+            assert 'price_horizons_pending_or_blocked' not in result['incomplete']
+            if mature is None: mature=copy.deepcopy(event['horizons'])
+            assert event['horizons']==mature
+    for cutoff in ('2026-09-18','2026-12-01'):
+        w=weekly_index(root,asof=cutoff,current_epoch='test')
+        assert not w['pending'] and not w['integrity_errors']
+        assert w['events'][0]['horizons']==mature
+        assert w['events'][0]['status']=='archived'
+    repeated=observe(path,scope,root,str(Path(prior)))
+    # Same-day new provenance cannot reset the monitor or change matured values.
+    m=json.loads(Path(repeated['manifest']).read_text())
+    assert m['events'][0]['horizons']==mature
