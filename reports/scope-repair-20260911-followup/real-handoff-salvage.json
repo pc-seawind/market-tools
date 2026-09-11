@@ -1,0 +1,267 @@
+{
+  "count": 29,
+  "all_source_bytes_unchanged": true,
+  "receipts": [
+    {
+      "source": "/tmp/evening_recap_2026-08-27.json",
+      "sha256": "080cf7ca6e1519d097bf8e4bdd3e8d553932aa763407b0bd093c1f7da2acd087",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-08-27/evening_recap_2026-08-27/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "4d2a167bf5dfdaac4d0467a6d52c69d175fc4f13fd8ba8c37eedad8b33fe160b"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_2026-08-28.json",
+      "sha256": "7dac176f9cfa8c4a6cea6c8d6b41177ac2cefc9877985681ff81fd32ede5db5c",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-08-28/evening_recap_2026-08-28/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "54143e7aa768d4df017455cd51f83be3e5bd560136be22073aceef0afe497184"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_2026-08-31.json",
+      "sha256": "f62e960d807f849cdb4ac185456c09bb79b9a0239e896c8360ca9dac2f7834ff",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-08-31/evening_recap_2026-08-31/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "986ece7343dcd1b786d7a7515d06b0f5b932842600e24ce7ce020674f30f7f15"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_2026-09-01.json",
+      "sha256": "cd1a4ee3eecbbc37adea49f7c9cd9910fcd27c74d4b73966547fa7573bdb59f8",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-01/evening_recap_2026-09-01/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "0e0ec03613c28925dc9c5f2cbe9101cb1628077ab6504977121f38cebffd233a"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_2026-09-02.json",
+      "sha256": "192e8842f874af59357908643eaadb4bef9d4e778cc8d999c7aad43bd36a69d3",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-02/evening_recap_2026-09-02/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "c139666ab713d8bb5313f7f004a6ac266860c46ba89153cf4f986302e9fee075"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_2026-09-03.json",
+      "sha256": "f21133092fffcb782c2bb79039e6d42d2878a10b83e4b0d976cffd0233740649",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-03/evening_recap_2026-09-03/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "d62db3a27f0a453467cde37a115f04b5fd8678033afc119c407db644596ffc9a"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_2026-09-04.json",
+      "sha256": "c8fd004e4fee4229fec7076c9f91b33c5db9090f34c646c30c854d5d86caa0e7",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-04/evening_recap_2026-09-04/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "f889f37ba562dd2ea9844a88d4e10c7685efdd0247d2b93f4a0155360c984eb5"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_2026-09-07.json",
+      "sha256": "9dbccfe433478d480e61318d18295822166b5c0748ed3ce2ce5886bece7877a2",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-07/evening_recap_2026-09-07/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "bf25f1bdebf9b7880da453e0e0e2fd0ac00adcf8bb94d1dc9a6e8e442598d6ed"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_2026-09-08.json",
+      "sha256": "2a8a627506d95fa28b3a6709242dbdfcfe7d54c3293c929d678324bfce292f30",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-08/evening_recap_2026-09-08/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "60214bc163733611f2223596146ff79e57ef81bc1b5ffe047af297f5705abdb0"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_2026-09-09.json",
+      "sha256": "a9e011132127f72013d1bd3a0a403dc2d0b65435b06411992442e8e18983e2e1",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-09/evening_recap_2026-09-09/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "1911284e3c59e52786a06876031ceb43f62249591cd99e0e539e2b5bc3ad923b"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_2026-09-10.json",
+      "sha256": "87edfc30692480f667072e2d4a890974553f3000817368b0bb20641fa1f87e8f",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-10/evening_recap_2026-09-10/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "f28246dadd2544eecf14ad2225aa7c5e93282c496e96b61d3f300fbb8565fbc4"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_doc_2026-08-31.md",
+      "sha256": "5427ab6f67b4ac63406fbc317e83eb47fa72ba977f945da9f06aa745a0111575",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-08-31/evening_recap_doc_2026-08-31/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "0b175f315ea9b185153decb4c56945f41bed69ca924a47c5d994128ae9242d38"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_doc_2026-09-02.md",
+      "sha256": "cde2db16cd8b6f4a73a53672fc7f0ba8b320a51bc44ed2ca8f8936b63b8062db",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-02/evening_recap_doc_2026-09-02/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "eef7148f10171e6c92e9495b87275a7347ae8bc05c0c95dc43e6672b0b17d54b"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_doc_2026-09-03.md",
+      "sha256": "8422ecd5d81691c209ebd4ad1dd9bc1c5badffd1876b1a27d05588778a8eb03b",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-03/evening_recap_doc_2026-09-03/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "408e5979507393695691334f6cca6c137ab266bff5e9fae507783d7751862d71"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_doc_2026-09-07.md",
+      "sha256": "2e9467862b82e1a544925d29a5c97df9619110a5658e300c74357e53a8106285",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-07/evening_recap_doc_2026-09-07/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "c2ba212fab990f4ccf04873f90596f92f022608c8d3cbb77f2dadcbe735d05ba"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_doc_2026-09-08.md",
+      "sha256": "9bee9ff574db98695cc5de186454d9a1bb374749564eed0357a633afb710636a",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-08/evening_recap_doc_2026-09-08/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "8b4d101a61e94669914f8da8e9e003d8c5c8342f21caf190649e30cc422621ed"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_doc_2026-09-09.md",
+      "sha256": "ec99f6fd61f5f70966c29c705de614cb9b926638eb87a8c5b8205f93b3ada47a",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-09/evening_recap_doc_2026-09-09/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "5dfc5dbb291c13a11069cea32d47653ca8f848a26f34464940eb494de7663be3"
+      }
+    },
+    {
+      "source": "/tmp/evening_recap_doc_2026-09-10.md",
+      "sha256": "15a36a249355815e4f1ffed49598fbf56deb37f06d2c783a23d754752371f3ed",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-10/evening_recap_doc_2026-09-10/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "00fa74d8f005d2d3eae80ca0c245f9c83201d28b4ab95676a5d1a5103f7c6dff"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-08-27.json",
+      "sha256": "96b60b04d028845aeb0bfb2cd9f069320c68f55064374ab83ccea43055a69231",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-08-27/thesis_enrich_2026-08-27/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "11f8898b87add8b44dd3cb4eb45325d9c76611e3df83930aeb42106e66c568ef"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-08-28.json",
+      "sha256": "3b58d8a077e8454007fcb719e258fdeb85d86cb2f1af084534e31640fbe8015b",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-08-28/thesis_enrich_2026-08-28/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "bc1d9b10d8044a7c5b37174dba25a8bda01d4f5b2ac614a381e10d24c3322900"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-08-31.json",
+      "sha256": "a7df1c599ba1f8ff39feb8f1dcfc081cd3b4aaa90aa6e822fda5ab5e56a8312f",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-08-31/thesis_enrich_2026-08-31/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "9a0f92ab1f41d2578a4070125cffe3c0b254f7e79a905978067a297b21441788"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-09-01.json",
+      "sha256": "895ae9d35ab0207c412255a3f8106bc1a22bcb2a4d9c8edb141e3ab783306965",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-01/thesis_enrich_2026-09-01/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "7c823dcc6eba8e9f93afec05678cf9b58eaee4cf7a50d033d97b1aa2de2f7899"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-09-02.json",
+      "sha256": "e0e770a0c9903661c25157c603d035828c74d0d6e400c74e944ec10a25bdc29a",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-02/thesis_enrich_2026-09-02/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "8fa7c913efe8b46250d17496846bb940d5a51b602a664cec4986555fb8bd6d2e"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-09-03.json",
+      "sha256": "b76a05783156c7ab78197daf914aacb5575286cfb110fc836a944accb92caaba",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-03/thesis_enrich_2026-09-03/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "cbc6f2c0de5e14874b080f3298fcb4d33e73ff6dc31d9dc05bc570dd52daf7a1"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-09-04.json",
+      "sha256": "0af16d06a66f1683eb81d3e6cb52101bfc68f9def60fbc936954c77c6583495b",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-04/thesis_enrich_2026-09-04/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "7f37265c4b5d1c2022f67ced2ae6e5ce8de1527fbd54be6d5cf4ef5fe422d496"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-09-07.json",
+      "sha256": "b5749dca9829f044cf67d502c9602f2acf2c5e31b70b3b94effead5abb789e2a",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-07/thesis_enrich_2026-09-07/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "c32d9f2f3326a5f22e1c24c04f5b5a1d225ef79fe5ab94366b5e1d1e61c1d485"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-09-08.json",
+      "sha256": "66080e2a6577ee2d1ad6864348236c973d5591459705d1b5d01dbee573a5ca36",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-08/thesis_enrich_2026-09-08/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "2b4aed5e8e6c72e09d57d494a1b97aeed27ff951c6cb3faf28b0393364592df1"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-09-09.json",
+      "sha256": "1ed06bb966e9a27e62903be73fe3b5ed5bef2e1c20bca883c0a7d5fb2c1c6228",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-09/thesis_enrich_2026-09-09/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "f70ea6d9c165d2a39a9f9ba4ed9fd225497ed8efb20d5cbf287eee21ec3ce0e9"
+      }
+    },
+    {
+      "source": "/tmp/thesis_enrich_2026-09-10.json",
+      "sha256": "31c2340a55413f43987f8370d229802ba772233abbb83d46b086a60a0369b97f",
+      "receipt": {
+        "manifest": ".cron_state/mt1/longitudinal/handoff-salvage/legacy-unclassified/2026-09-10/thesis_enrich_2026-09-10/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "25cc1c8641439d27cca1f2155ff7d4a8fce786f596b4c34161618d4ea27984c0"
+      }
+    }
+  ]
+}

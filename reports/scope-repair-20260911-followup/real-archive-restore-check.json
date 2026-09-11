@@ -1,0 +1,7 @@
+{
+  "snapshot_sha256": "7213fc2bfd46cc2455a93305300b044401a791b4678a99b73ed572dc04c42071",
+  "restored_manifest_count": 32,
+  "restored_pending": 38,
+  "integrity_errors": [],
+  "validation": "actual archive extraction and material/result hash recheck; no fixture"
+}

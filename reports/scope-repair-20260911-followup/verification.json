@@ -1,0 +1,35 @@
+{
+  "code_commit": "d940235eec50f2dd1980d925de0143f248444f38",
+  "previous_commits": [
+    "ffd1c77cf03eb42256ac21ae72324eec2eede3c9",
+    "69c42f0e0cfbe16d7e2f10c788c39b90891c1981"
+  ],
+  "tests": "315 passed in 1.78s",
+  "source_sha256": {
+    "docs/longitudinal-evidence.md": "7fac331aa2f9f4a94174ce00ee18c11934c5d23063ffa363fe530221f7cb6b65",
+    "mt1.py": "1946babb77382005faf1b26e079c5dcb5d510a73b2c318e91a6fa2dcce985c88",
+    "mt1/daily_tracking.py": "28312c621fb4df97ceda739e14761b4c846ffb9cb721dc752e74067e8eb33f68",
+    "mt1/longitudinal.py": "3a8917f41d132039dbdcc765fbdf696c11da89172006c90d4968d5a29617691b",
+    "mt1_deploy_cron.py": "7b8ecbbb666b3d4140873e7309232172ec8cde132faf22f81634b24fb1e45073",
+    "scripts/deploy_mt11_sidecar.py": "631fd5e319f09a25eb8885859c9ab5c1ebc79909f04d80225ef4e612f68a19ca",
+    "tests/test_longitudinal.py": "db6f6fb8d5163c61c947cb4bc377b1774fa675a3d887230919ef9d4e21ec431a",
+    "tests/test_thesis_enrich_daily.py": "8b6d6a21a877988e19158b9d82b6a560e870022e8277663fdbb6873fca4fdddd",
+    "tests/test_tracking_scope.py": "e27e663f9594ce16bf98150dd4e0fd88bfadb834364caa62c8acc2e7f539f72e",
+    "thesis_enrich_daily.py": "ae16fc030cb61f5fb73fd70dbe083f6755eb168499edd78b661cb19285b32506"
+  },
+  "live_probe_provenance": "真实命令在随后提交的工作区执行，运行manifest保留当时HEAD，不回改历史commit字段",
+  "user_data_writes": false,
+  "vps_changes": false,
+  "natural_delivery_verified": false,
+  "archive_snapshot": "daily-evidence-snapshot.tar.gz",
+  "pending_breakdown": {
+    "legacy_material_provenance": 29,
+    "current_holdings": 9
+  },
+  "incomplete": [
+    "其他新闻/forecast/正文/投递回执生产归档接线由原投资topic完成，不能声称所有cron已经自然落档",
+    "旧材料原发布时间/历史epoch尚待追溯，不假称有已验证预测原稿",
+    "原推荐基准、自由文本条件自动判断及复权费用收益尚未实现",
+    "长期成熟窗口结果/完整周报/异地备份未验证；索引是observed coverage而非预定任务应有覆盖率"
+  ]
+}
