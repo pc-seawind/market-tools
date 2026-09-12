@@ -404,6 +404,22 @@ def demo(root):
             expected=read(root/'demo-summary.json')
             for p,h in expected['artifacts'].items():
                 if file_hash(p)!=h:raise ValueError('demo_artifact_tampered')
+            from .candidates import screen
+            # Hash checks are necessary, not sufficient: reconstruct generated engine outputs.
+            for source in (root/'raw').glob('*.json'):
+                record=read(source)
+                if screen(record['snapshot'])!=record['baseline'] or screen(record['snapshot'],{'roe_min':12})!=record['candidate']:
+                    raise ValueError('synthetic_engine_recompute_mismatch')
+            for filename,field in [('forward.json','activation'),('reject-forward.json','rejection')]:
+                saved=expected[field];frames=read(root/filename)
+                recomputed=validate(frames,'fundamental','qv-shadow-1',saved['candidate'],kind='SYNTHETIC_ONLY',asof=saved['asof'])
+                if any(saved.get(k)!=v for k,v in recomputed.items()):raise ValueError('synthetic_evaluation_recompute_mismatch')
+                for f in frames:
+                    source=read(root/'raw'/(f['rows'][0]['date']+'.json'))
+                    price=source['declining_price' if field=='activation' else 'rising_price']
+                    old={c['code'] for c in source['baseline']['candidates']};new={c['code'] for c in source['candidate']['candidates']}
+                    if any(r['price']!=price or r['baseline_selected']!=(r['code'] in old) or r['candidate_selected']!=(r['code'] in new) for r in f['rows']):
+                        raise ValueError('synthetic_frame_source_mismatch')
             return {**expected,'idempotent':True}
         raw=child(root,'raw');raw.mkdir(exist_ok=True)
         frames=[];reject_frames=[];start=date(2026,9,14);dates=[]

@@ -23,6 +23,7 @@ def validate(frames, category, baseline, candidate, *, kind, asof):
         if f['capital_per_code']!=CONTRACT['capital_per_code'] or f['cost_bps']!=CONTRACT['per_side_cost_bps']:
             raise ValueError('unequal_capital_or_cost')
         scope=digest(sorted(f['scope_codes']))
+        frame_hash=digest(f)  # Once per frame, not O(universe^2) serialized bytes.
         for row in f['rows']:
             if row['code'] not in f['scope_codes']:raise ValueError('foreign_code')
             if instant(row['close_at'])>instant(f['observed_at']):raise ValueError('future_price')
@@ -37,7 +38,7 @@ def validate(frames, category, baseline, candidate, *, kind, asof):
                 if seen[key]!=identity:raise ValueError('revised_same_session_evidence')
                 continue
             seen[key]=identity
-            bycode[(scope,row['code'])].append({**row,'observed_at':f['observed_at'], 'frame_hash':digest(f)})
+            bycode[(scope,row['code'])].append({**row,'observed_at':f['observed_at'], 'frame_hash':frame_hash})
     pairs=[]; pending=[]; diagnostics={str(h):0 for h in CONTRACT['horizons']}
     for (scope,code), values in sorted(bycode.items()):
         rows=sorted(values,key=lambda r:r['date']); next_origin=0

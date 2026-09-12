@@ -37,3 +37,15 @@ def test_failed_run_same_command_recollects_without_overwriting(tmp_path,monkeyp
     assert all((p/'failure.json').exists() for p in attempts)
     assert read(attempts[0]/'recovery.json')['superseded_by']==str(attempts[1])
     assert scope.read_text()=='original'
+
+
+def test_synthetic_verify_not_only_self_asserted_hashes(tmp_path):
+    import json
+    from mt1.timing_cli import file_hash
+    r=tmp_path/'demo';summary=demo(r)
+    source=next((r/'raw').glob('*.json'));v=read(source)
+    v['snapshot']['observations'][0]['financials'][0]['roe']=100
+    source.write_text(json.dumps(v))
+    summary['artifacts'][str(source)]=file_hash(source)
+    (r/'demo-summary.json').write_text(json.dumps(summary))
+    with pytest.raises(ValueError,match='synthetic_engine_recompute'):demo(r)
