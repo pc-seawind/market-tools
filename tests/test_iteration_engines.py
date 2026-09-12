@@ -58,5 +58,5 @@ def test_pending_observed_execution_uses_two_quote_capable_watch(tmp_path,monkey
     seen=[]
     def capture(*args,**kwargs):seen.append(kwargs);return {'status':'captured'}
     monkeypatch.setattr(action_worker,'run_worker',capture)
-    technical_engines(root,d,{'bundle':{'source_kind':'real_current_readonly_collection','asof':action_loop.now()}},scope,[])
+    technical_engines(root,d,{'bundle':{'source_kind':'real_current_readonly_collection','asof':action_loop.now(),'scope_codes':[]}},scope,[])
     assert seen==[{'mode':'watch','max_seconds':30}]
