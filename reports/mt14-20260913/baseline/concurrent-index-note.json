@@ -1,0 +1,12 @@
+{
+  "changed_path": "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/latest.json",
+  "latest": {
+    "manifest": "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/thesis-weekly-bootstrap/user-reset-20260911T120928Z/2026-09-13/thesis-weekly-bootstrap-20260913T0530/r000001/manifest.json",
+    "revision": 1,
+    "sha256": "d8740a5485ed8ba8bc1915094566ebd2162fd4e2436cdb5f09e9fc391b207003"
+  },
+  "concurrent_job": "thesis-weekly-bootstrap",
+  "recorded_at": "2026-09-12T21:31:09.295865+00:00",
+  "file_mtime_ns": 1789248669298675190,
+  "classification": "concurrent thesis-weekly-bootstrap index update; no original evidence bytes changed; not restored"
+}

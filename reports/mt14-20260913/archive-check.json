@@ -1,0 +1,8 @@
+{
+  "archive": "reports/mt14-20260913/final-evidence.tar.gz",
+  "sha256": "7956e9faeb4963edf406090998cde5ff741614439ddc3473ceb323bd9698afe5",
+  "bytes": 33432032,
+  "verified_files": 11622,
+  "roundtrip_bytes_match": true,
+  "current_code_matches_run": true
+}

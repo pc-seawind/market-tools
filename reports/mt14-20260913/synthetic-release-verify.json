@@ -1,0 +1,2673 @@
+{
+  "kind": "SYNTHETIC_ONLY",
+  "scheduled": false,
+  "engineering_status": "completed",
+  "activation": {
+    "category": "fundamental",
+    "baseline": "qv-shadow-1",
+    "candidate": "fundamental-e2ceac307e7d",
+    "kind": "SYNTHETIC_ONLY",
+    "contract_hash": "91a7057f880adbc54fdd72f01bd9305b03dd16caf5db35fb095f2d4cda1f1761",
+    "asof": "2026-12-08T18:00:00+00:00",
+    "independent_events": 20,
+    "pairs": [
+      {
+        "code": "SYNTH-0",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "cc7a09239f4f3a2ca35bdc2786a1ac28442c48cd5c12252e677c92d16b1a8450"
+      },
+      {
+        "code": "SYNTH-1",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "1018ad3c791be377bea4bc727df5c93e5c6798ebf25e22c22d3832d1db8a8795"
+      },
+      {
+        "code": "SYNTH-10",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "0a28511992004cb044a2ea7e59f978eda0f927dcda2eb05d0f2e398690f5a56b"
+      },
+      {
+        "code": "SYNTH-11",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "603d63b3889c7280ee274b058a5baf330b7453bd64084c22b286c6d937601e2d"
+      },
+      {
+        "code": "SYNTH-12",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "3010cc7bb74fa7a646252da0fdced0637427861dd031842c58fa5bbcb36dac67"
+      },
+      {
+        "code": "SYNTH-13",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "86abac06887fddc319d9f527cb659b7eefa37d40edbcf1c170da5b6166f65434"
+      },
+      {
+        "code": "SYNTH-14",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "773cdb3fa122a37f81c355eddaef426ba71ef481822e719d2d3b3c6056eddb95"
+      },
+      {
+        "code": "SYNTH-15",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "13e306d67b86920dfe7d12e4a6fd88a24fd8bb076a4b635a1086eb2937c96474"
+      },
+      {
+        "code": "SYNTH-16",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "90d19e64feaa5add4ce04ae6e2355bbc4515c7a2292f263c2e955a297b3d4323"
+      },
+      {
+        "code": "SYNTH-17",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "d814993ccc988a4b86b1b72e51e2499a6d56b2821420cc72ceef1806eb7eda92"
+      },
+      {
+        "code": "SYNTH-18",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "fdaa8294288a1eb2bcb1ba20763cf00bb15c8a7ac0661f4b0ed4629de52ad650"
+      },
+      {
+        "code": "SYNTH-19",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "7c96daaaa47adc529193e6576f2af1737c316d6ee2be73da235939e16b569b12"
+      },
+      {
+        "code": "SYNTH-2",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "d4dc497420e0be4fad4b0494d00597fc35e4b449a9a049f0cc229b4bc6572e51"
+      },
+      {
+        "code": "SYNTH-3",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "b39deaa1ad22018b69d07b911f9f88273f6189c2a962ae8479eac3cf10201a8c"
+      },
+      {
+        "code": "SYNTH-4",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "2df3cb1ce214671aae408ff8c0275a5ac91873a04b400843edf1a12b01f77b6d"
+      },
+      {
+        "code": "SYNTH-5",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "baba7f8ca072cdbb379836864dc50c8071cd84e671e4b57e8887f6ef6c21c235"
+      },
+      {
+        "code": "SYNTH-6",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "4125880eee6dffde8562ec26559a55cb68daf8a885643bceded842897cc9dc29"
+      },
+      {
+        "code": "SYNTH-7",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "ab37428a26c60ed19110110143d17b51ec882efe724858002ea856cc85302721"
+      },
+      {
+        "code": "SYNTH-8",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "05184b1d56a67368d73cdaacec4b04df1fd0b056b3860e735e33f77c21f7ecdf"
+      },
+      {
+        "code": "SYNTH-9",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": -0.303599876567059,
+          "drawdown": -0.303599876567059,
+          "tail": -0.0071428571428571175,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "5145c546e3ad13b43284c955706c4a5cdc36b6d744708b3ac9af505e58324e66"
+      }
+    ],
+    "pending": [],
+    "horizon_counts_diagnostic": {
+      "20": 20,
+      "40": 20,
+      "60": 20
+    },
+    "decision": "experimental_activate",
+    "reason": "matched_signal_forward_improvement_not_production_validation",
+    "metric_type": "matched_forward_signal_cash_slots_not_fill_or_personal_PnL",
+    "execution_evidence_is_separate": true,
+    "input_hash": "c36b1eb586b021860499e92092db15bfbd9039a733de018316f3c871e67118d3",
+    "baseline_metrics": {
+      "net": -0.303599876567059,
+      "drawdown": -0.303599876567059,
+      "tail": -0.0071428571428571175,
+      "turnover": 2.0
+    },
+    "candidate_metrics": {
+      "net": 0.0,
+      "drawdown": 0.0,
+      "tail": 0.0,
+      "turnover": 0.0
+    },
+    "idempotent": true,
+    "pointer": "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/releases/fundamental/active.json"
+  },
+  "rejection": {
+    "category": "fundamental",
+    "baseline": "qv-shadow-1",
+    "candidate": "fundamental-e2ceac307e7d",
+    "kind": "SYNTHETIC_ONLY",
+    "contract_hash": "91a7057f880adbc54fdd72f01bd9305b03dd16caf5db35fb095f2d4cda1f1761",
+    "asof": "2026-12-08T18:00:00+00:00",
+    "independent_events": 20,
+    "pairs": [
+      {
+        "code": "SYNTH-0",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "0808de3e2242a864c165a512b1aa23a7668f0591709c4c2f7cd704126f41750b"
+      },
+      {
+        "code": "SYNTH-1",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "7ef04b02bb31a96957d3bbc09fc33403bfab364756ebc9a850de55cb6711759f"
+      },
+      {
+        "code": "SYNTH-10",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "65f364c4328021d33457103a49c075160e06a2d86132a956372aed1c28bdf552"
+      },
+      {
+        "code": "SYNTH-11",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "fc3bd0099d348628dcfe3f4130580757564d1f9deedcac1bba67a9999055760d"
+      },
+      {
+        "code": "SYNTH-12",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "bc00e7eca9c7979f85c9c1c21c4710c9229b1cf089b2c5d78014696c2b551062"
+      },
+      {
+        "code": "SYNTH-13",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "ddd912723bf26070abfd5295cdf148b9daefe2b39b4bfae140f0a5a5fbce84b6"
+      },
+      {
+        "code": "SYNTH-14",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "af364945b4f697e357a44a9fdb97fb28828364e412f4cb1fb2c4b6c53a966082"
+      },
+      {
+        "code": "SYNTH-15",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "174091a33b86eabdf65c5c02ca2a776021d683cfb64d67dcb0add8cfe5c93814"
+      },
+      {
+        "code": "SYNTH-16",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "7ffe8073a4a2104ec16018a2600eac69461734522fd90ab0a07ff6abe7c5f8a5"
+      },
+      {
+        "code": "SYNTH-17",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "0626cb3bdb59213ae95c915ba223beb669d34efc2160fc76aced73c936b28fef"
+      },
+      {
+        "code": "SYNTH-18",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "2cda23a7a90a0eb75150bafc70b68105a2b46f32c08e27f3bb4e3d07e881321d"
+      },
+      {
+        "code": "SYNTH-19",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "3bf549a6586edf930509f88a5a8b0efb3b00e4207f054e3415c93b3a41cb6cd6"
+      },
+      {
+        "code": "SYNTH-2",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "ded5031571399e8887a7dda0410e1d3b0f21eb1baf2eacfd1a2d7f0293bab1aa"
+      },
+      {
+        "code": "SYNTH-3",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "981dd231403eabf0c68b96d0781e237c67c253ce41097f0e7d4be4a456491f14"
+      },
+      {
+        "code": "SYNTH-4",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "1dca41e3355438c773ab1fce98cea8700d5cc5040b6cf2e7bb3582f5db647f2e"
+      },
+      {
+        "code": "SYNTH-5",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "4c179f27391b906534f385fe752b24960509e5c97003bad88e4a3ef27ff59002"
+      },
+      {
+        "code": "SYNTH-6",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "30994ee1c85ce251e4e070b5cd3f373d4d0199d7a91cbeb8f8e027fe6a9d191b"
+      },
+      {
+        "code": "SYNTH-7",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "53b0963f888f065e458929b9617cdfe43a38bd652c120c2e3c743413c2cdac60"
+      },
+      {
+        "code": "SYNTH-8",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "d82f30c4e8c896db6d5421c88bf237af833a6c3930fb48e7a4c72ad953f2cf50"
+      },
+      {
+        "code": "SYNTH-9",
+        "scope_hash": "936e4c77da2d4212adc0870561dc14473f75d8d5f4de936914d835d8ae4507a6",
+        "origin": "2026-09-14",
+        "start": "2026-09-15",
+        "end": "2026-12-08",
+        "baseline": {
+          "net": 0.29461777483029183,
+          "drawdown": -0.0014977533699450651,
+          "tail": 0.0038461538461538325,
+          "turnover": 2.0
+        },
+        "candidate": {
+          "net": 0.0,
+          "drawdown": 0.0,
+          "tail": 0.0,
+          "turnover": 0.0
+        },
+        "evidence_hash": "fcc0de699d75b667e0e5f66160f87573840dbaf578c4bf6dc470a4fe970c9316"
+      }
+    ],
+    "pending": [],
+    "horizon_counts_diagnostic": {
+      "20": 20,
+      "40": 20,
+      "60": 20
+    },
+    "decision": "reject",
+    "reason": "no_improvement_or_risk_worse",
+    "metric_type": "matched_forward_signal_cash_slots_not_fill_or_personal_PnL",
+    "execution_evidence_is_separate": true,
+    "input_hash": "45f6c52cf6ef216ac8f70e7142a6904c77d41e93a482164806c3ee6f2dad64c7",
+    "baseline_metrics": {
+      "net": 0.29461777483029183,
+      "drawdown": -0.0014977533699450651,
+      "tail": 0.0038461538461538325,
+      "turnover": 2.0
+    },
+    "candidate_metrics": {
+      "net": 0.0,
+      "drawdown": 0.0,
+      "tail": 0.0,
+      "turnover": 0.0
+    }
+  },
+  "immature": {
+    "category": "fundamental",
+    "baseline": "qv-shadow-1",
+    "candidate": "fundamental-e2ceac307e7d",
+    "kind": "SYNTHETIC_ONLY",
+    "contract_hash": "91a7057f880adbc54fdd72f01bd9305b03dd16caf5db35fb095f2d4cda1f1761",
+    "asof": "2026-12-08T18:00:00+00:00",
+    "independent_events": 0,
+    "pairs": [],
+    "pending": [
+      {
+        "code": "SYNTH-0",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-0",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-0",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-0",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-0",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-0",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-0",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-0",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-0",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-0",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-1",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-1",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-1",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-1",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-1",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-1",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-1",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-1",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-1",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-1",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-10",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-10",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-10",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-10",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-10",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-10",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-10",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-10",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-10",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-10",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-11",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-11",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-11",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-11",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-11",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-11",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-11",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-11",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-11",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-11",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-12",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-12",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-12",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-12",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-12",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-12",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-12",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-12",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-12",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-12",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-13",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-13",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-13",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-13",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-13",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-13",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-13",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-13",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-13",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-13",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-14",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-14",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-14",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-14",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-14",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-14",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-14",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-14",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-14",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-14",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-15",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-15",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-15",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-15",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-15",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-15",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-15",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-15",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-15",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-15",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-16",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-16",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-16",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-16",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-16",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-16",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-16",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-16",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-16",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-16",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-17",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-17",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-17",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-17",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-17",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-17",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-17",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-17",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-17",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-17",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-18",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-18",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-18",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-18",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-18",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-18",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-18",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-18",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-18",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-18",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-19",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-19",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-19",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-19",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-19",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-19",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-19",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-19",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-19",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-19",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-2",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-2",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-2",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-2",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-2",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-2",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-2",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-2",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-2",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-2",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-3",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-3",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-3",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-3",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-3",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-3",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-3",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-3",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-3",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-3",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-4",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-4",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-4",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-4",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-4",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-4",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-4",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-4",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-4",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-4",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-5",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-5",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-5",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-5",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-5",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-5",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-5",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-5",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-5",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-5",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-6",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-6",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-6",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-6",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-6",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-6",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-6",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-6",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-6",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-6",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-7",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-7",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-7",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-7",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-7",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-7",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-7",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-7",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-7",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-7",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-8",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-8",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-8",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-8",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-8",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-8",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-8",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-8",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-8",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-8",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-9",
+        "origin": "2026-09-14",
+        "observed_sessions": 9,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-9",
+        "origin": "2026-09-15",
+        "observed_sessions": 8,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-9",
+        "origin": "2026-09-16",
+        "observed_sessions": 7,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-9",
+        "origin": "2026-09-17",
+        "observed_sessions": 6,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-9",
+        "origin": "2026-09-18",
+        "observed_sessions": 5,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-9",
+        "origin": "2026-09-21",
+        "observed_sessions": 4,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-9",
+        "origin": "2026-09-22",
+        "observed_sessions": 3,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-9",
+        "origin": "2026-09-23",
+        "observed_sessions": 2,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-9",
+        "origin": "2026-09-24",
+        "observed_sessions": 1,
+        "reason": "not_matured",
+        "required": 61
+      },
+      {
+        "code": "SYNTH-9",
+        "origin": "2026-09-25",
+        "observed_sessions": 0,
+        "reason": "not_matured",
+        "required": 61
+      }
+    ],
+    "horizon_counts_diagnostic": {
+      "20": 0,
+      "40": 0,
+      "60": 0
+    },
+    "decision": "continue_shadow",
+    "reason": "insufficient_mature_forward_samples",
+    "metric_type": "matched_forward_signal_cash_slots_not_fill_or_personal_PnL",
+    "execution_evidence_is_separate": true,
+    "input_hash": "e8d758148cf3a2961b7c828c951a82d86616a4b1a7d6274570ea89b6864bbc35"
+  },
+  "recovery": [
+    {
+      "category": "fundamental",
+      "action": "resume_prepared",
+      "pointer_hash": "33fe7778a3a33fb76623afc47112f210e3d56d35514c311c85e77ba0e2547cbc"
+    }
+  ],
+  "tamper_rollback": [
+    {
+      "category": "fundamental",
+      "action": "automatic_rollback",
+      "from": "fundamental-e2ceac307e7d",
+      "to": "qv-shadow-1",
+      "reason": "active_evidence_tampered",
+      "retained_ledgers": true
+    }
+  ],
+  "pointer_before": {
+    "version": "fundamental-e2ceac307e7d",
+    "baseline_version": "qv-shadow-1",
+    "category": "fundamental",
+    "kind": "SYNTHETIC_ONLY",
+    "evidence_path": "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/forward.json",
+    "evidence_hash": "b09bb3a7ee866a7195bacf132df7e341259a1d4a5bd376f84cfe83cd3a57a0af",
+    "evaluation_hash": "5c71d549c1462790507b81a986ac3b0b49afdec48de34dafa2dcd4f98dc43749",
+    "asof": "2026-12-08T18:00:00+00:00",
+    "previous": {
+      "version": "qv-shadow-1",
+      "baseline": true
+    },
+    "production": false
+  },
+  "pointer_after": {
+    "version": "qv-shadow-1",
+    "baseline": true
+  },
+  "execution_roundtrip": {
+    "SYNTHETIC_ONLY": true,
+    "actions": [
+      "WAIT",
+      "BUY",
+      "HOLD",
+      "SELL",
+      "WAIT"
+    ],
+    "receipts": [
+      {
+        "manifest": "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "e77954368b090705c44e23c16b05fc24007868038dc3ae29829ba32d6a334954"
+      },
+      {
+        "manifest": "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "a198f0113be935a73a9eef52cb13ea699bb6251211662b08f2ada09921ede65a"
+      },
+      {
+        "manifest": "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "c3243c5866e26b62475fad8aad20d3a3e39fbfd4d7e12722fe0ce1ac6a078c38"
+      },
+      {
+        "manifest": "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "dd39419f66fc304defa60d6e6bcfefcc291454c589bd185ded3b6726c1b8c731"
+      },
+      {
+        "manifest": "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/manifest.json",
+        "revision": 1,
+        "sha256": "370661486c63d6451930bd5715ca5931276cc8da4784a25ac0b5404eaf21211c"
+      }
+    ],
+    "round_trips": 1,
+    "fills": [
+      {
+        "date": "2026-09-16",
+        "at": "2026-09-16T09:30:00+08:00",
+        "raw_price": 108.5,
+        "adjusted_price": 108.5,
+        "source_sha256": "0103b1f8b8634db26bd776923b96e667e53f66c4072400778902e2169ed642e7",
+        "snapshot_sha256": "52d653f18f2afef72144b0e85730beac48a94ea6ececbb0c2669cac6a4a4ec78",
+        "virtual_units": 1,
+        "not_real_trade": true,
+        "cost_bps_scenario": 15.0,
+        "provider_at": null,
+        "execution_assumption": "strict next-open simulation with supplied evidence; not a real trade",
+        "execution_model": "strict-open-v1",
+        "attempt_number": 1
+      },
+      {
+        "date": "2026-09-18",
+        "at": "2026-09-18T09:30:00+08:00",
+        "raw_price": 79,
+        "adjusted_price": 79.0,
+        "source_sha256": "c6ee316a21c6f4b80043884eb50b56e2af5a31e5b82f4656621a190008b37fa8",
+        "snapshot_sha256": "7bcefdb541fff9da54b7a17012b69ed6d74bc811c1477f776b9f2a7415115967",
+        "virtual_units": 1,
+        "not_real_trade": true,
+        "cost_bps_scenario": 15.0,
+        "provider_at": null,
+        "execution_assumption": "strict next-open simulation with supplied evidence; not a real trade",
+        "execution_model": "strict-open-v1",
+        "attempt_number": 1
+      }
+    ],
+    "weekly": "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/weekly.json",
+    "not_real_trade_or_efficacy": true
+  },
+  "paired_technical_versions": [
+    "signal-policy-v1",
+    "technical-bf218f68ebfe"
+  ],
+  "real_sample_count": 0,
+  "no_efficacy_claim": true,
+  "artifacts": {
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/demo-report.md": "784bb7ffbf937a86ae8a2b59928b7c7ab83a5698386c10b1fa57bf1378a30230",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-output-0.json": "e886e086e1fc78db5e2d341af87f837499d44d0e6b91d77cef9c804cc8b9b667",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/reject-forward.json": "23cdb813c9fb48b26977484f7cbb12fec7a538235afb1919c37c20e408c9355a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/synthetic-scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/forward.json": "b09bb3a7ee866a7195bacf132df7e341259a1d4a5bd376f84cfe83cd3a57a0af",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-output-1.json": "e5eb57fbee59a3fd4ce4c6e149925204e34a12decc90fc53f30f248a1081dcef",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/.mt14.json": "a6c706933cc83843faeb1f155f28b79b324c3b003775e948dd85fdca42bdf5c8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-output-2.json": "7968758d9dccafb12d2fa9b35ccab0298881fe621718b974f1de27b7468b3487",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-2/execute-technical-bf218f68ebfe.json": "ab5226a8cbfea8e123815947da0de5509729386f37cc0c22c0e281000c2b0577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-2/bundle-2.json": "8c345e64c157d87f7a1af2a482ac68cce50df58ac0d99f6676429644db09cd1d",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-2/source-2.json": "102a1aa621f38b8c02abc599970dee6feeadc564102cbd93d4e3542fb8e3ac4e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-2/signal-policy-v1.json": "f7f10d8010e1487e462aef8962baba43d75326925dd20589d08c82c4523ab08f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-2/execute-signal-policy-v1.json": "ab5226a8cbfea8e123815947da0de5509729386f37cc0c22c0e281000c2b0577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-2/technical-bf218f68ebfe.json": "19339fe135985e7864aab80aafd44758d9c5fec38574bf7f04361e0ddfabe57c",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-1/execute-technical-bf218f68ebfe.json": "5235a6b5fcdc9437257a549b97e2d52937dd0240e76bff6453b2123cc2618e94",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-1/source-1.json": "8130c19a7bd6c7f050dfaee542024825ed174283075fae98b558b7aea3c70e94",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-1/bundle-1.json": "aa4e1931cd6c47abb4c24f19cede9ef72ba80684c4c68694c277f07b6c9d6062",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-1/signal-policy-v1.json": "f7f10d8010e1487e462aef8962baba43d75326925dd20589d08c82c4523ab08f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-1/execute-signal-policy-v1.json": "5235a6b5fcdc9437257a549b97e2d52937dd0240e76bff6453b2123cc2618e94",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-1/technical-bf218f68ebfe.json": "19339fe135985e7864aab80aafd44758d9c5fec38574bf7f04361e0ddfabe57c",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-0/execute-technical-bf218f68ebfe.json": "146753ba75a2b52f8410c6db956bb1bbf12bb1916e4942943bb291752b189540",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-0/source-0.json": "e0ad4d0cf0d1e928d9aea39d663e5e0632b0fa18d0f856fd90a170eb678035cc",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-0/bundle-0.json": "2528d7ae78605d94764d4dcf9681903fdee46961eea6a55d0c2a61938ff0a2d6",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-0/seed-technical-bf218f68ebfe.json": "685aeedc6facf063edcb86ddb81078d2234f83be0336d261e07536b18af5da6f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-0/signal-policy-v1.json": "f7f10d8010e1487e462aef8962baba43d75326925dd20589d08c82c4523ab08f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-0/execute-signal-policy-v1.json": "685aeedc6facf063edcb86ddb81078d2234f83be0336d261e07536b18af5da6f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/paired-0/technical-bf218f68ebfe.json": "19339fe135985e7864aab80aafd44758d9c5fec38574bf7f04361e0ddfabe57c",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/events/a4841d28c34cfed904d6e0a02a2241702078eec40fb2078072467c9aee786c41.json": "cf01a992b008c8dc328d78e47aa3fcdc45a7ca8beb7bcbb1f7e0d8715d43c118",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/events/a98da565a2008d770e544fd8edd2b9e6b5ebb90ab31af574b62be3afa40c053e.json": "564d027e17aaad2cf2ebf940063fab1e243beedc24ab20b69ad37bd013a135c7",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/events/33b6530e3ae8da567ff990a2327d6399010aef90d163d63c4afbe62f2ead1d04.json": "8135d10fa3691099158f87212308dbbe8afe59297b5bff36abc9c1f1f4111062",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/events/f70cf8f34544d0896af1e5e6db281faf5047f56494109acd065978d5be69c273.json": "7afb47b39613ffaa7ee20c66565452d78a7f4edd81f3468f6633de78fb46aa35",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/events/95b3f61baffb21364aa3a3d7e249d1f62c7ce4528199599b03c8926b97815cbb.json": "82c8f9198c9f31141d73f16dc5ba6c5ea19d8a5b27a2eab0e3614e17b08b18f6",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-12-08.json": "b79f4928ef97b666ba9320f1a43afce1d00e217723c51932c7a2d6fbed527eb5",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-26.json": "57dadbcca9e92154c9cb749b0c2f26fe66b009e7ca54cf19754855a891dbd3da",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-25.json": "644c437bc89bc3d79de987ca4b18f15b462992cfb508ec88b1b18dd6916560f9",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-23.json": "966ddeff532c95686853c263565d1219f0548f847698e7c51f74f07d41cbc21e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-14.json": "75ecc63daa32f2d2be33153e97215aac4dbcc52e680be886cba80eabdb495c22",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-17.json": "11e93a1ac1b70696b245c6c22c9c90775a49f3eb34aa61a696d39412ff759f53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-30.json": "6406b97765d99b73b406773c8ad653f24975621b46a11442e5ae2ac56c79e1f7",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-13.json": "3eb54139936708262164f7e1e23602ec5bf60c92c850aea34173eac6fe7d2036",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-11.json": "10b81ee898426877c0f15d389a4230d99e44498b28aeb8c9606fdc45f2191e30",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-30.json": "0ee50ab3b05472fdd23fb06fd70cd5a6eb39a0bf9634131aae5fec6389a118f7",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-20.json": "dd52ae1a786faf70ae082a6a3c000c6cee250e30acf5e24f84c4b64407c1c6c2",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-21.json": "a4b0968674edbb83600488603ed4e05ada2890730b5b47d3f2fd92be1e71ae30",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-06.json": "616b42c00cd15cfc508461fb65d8e6190233371b4738095cb96971024ae637c1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-08.json": "e35a1bde308e1bcda4a028aa44de342f22ae72ada2654e7675d80c5e12dbfd00",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-24.json": "56991d4783a1b881f2707c3c2278b513b72e908d3305f24c05283a559fd37bd3",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-07.json": "a90714df1827f6e3abfe95b70d089c185fea002fb92762439648ac43497d4697",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-16.json": "6a9aef7314fed8c2950bde195245e802947a937215ff59462b6b6dc883dfc017",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-22.json": "5290ece92c9bf066ae6c69af6efad9aacdfb62a0405d504233239cffa6f6856c",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-18.json": "2a1e6b64d99aa97fe5a4a77ce2504a1e6356298c27c3df4429fc22cd9cf5889c",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-05.json": "457c48d64e541bb6fc46c74ab00fbaf94aaebc628fee7762794ba05d48d39504",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-12-07.json": "39ef9de524811ec55eea58acc428ea6308d2a5c7f92f370a7125e440bf91bf55",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-23.json": "759a7e1b2a3fd6b47b18c4a636f7a3c15bb22b47feee7a72fae55b5aa80aa134",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-27.json": "cf01e0b74529846055aed9fad6ac65132d0a9d5aaa1c748f9bd6a8c8284b0717",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-16.json": "30517160632684391dd512e216f3907cd50274b40c76da3cb5eb78b3a70b26c6",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-17.json": "41a1f6c20a52570140b987f499c4c42ecc3ddcf367e2feac94f674b39b9fa044",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-03.json": "4bc3f9de118502f572736043f757975657fdce9a8363dd6a66c1d2364cb363b8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-09.json": "a7fc560d18113e8d0299f60635962766ccb1dbc8d1cb8b46700aea8bead69909",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-01.json": "013a7dbe241fe58017a308478b30b8de346a5d874e933dac0ffd04d3fdcf202a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-22.json": "e8230c3fc841808307cce6ff6fb3f5a251ec97eb951f8f1e77c0d84e8e8fa78d",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-15.json": "08d2623a5dc0679e1bb25d553e7f0710e532dc60f5551b808b4c4f574d789475",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-02.json": "c50e06d4af309cbfbd7895cce77db1e5f0a1efe7cd3e651cb568fca461dd59cd",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-29.json": "1f26fe8f95b5c683106114276adafb2f23a0b129bd3d6dc4a9a485cf8019337d",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-23.json": "d7b20efc8ce1fdb975a464ee91c67ff5aa171d2fb34414c42fe26238dca5f3ef",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-19.json": "534d98e3fb83c32b88d5884a120f086e21931bbf663d60e6e53ed3ba8364b96e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-06.json": "0075880ecd1e5602f9f461b2368cf3948797f5801c26b46e9048b80d5b3b014c",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-26.json": "4b459d9a35222f26549e6ab71fcb38798e7734203f00bf80058742d970402c1d",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-13.json": "83322f9a21bd2b951ebe9d4dad8299e813bcf1647f9df8975ec1c453c2bf051e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-05.json": "534ad7f5ce95510a1ad9a5c91e6be033ec778a7001fa3dbd5f46769652077434",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-12-03.json": "ffad20f4f473d374df50fa2c9a4ea15220a2c7b621cb98709bb2abd7ad359035",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-18.json": "63056405038846cc95505caa47047fa36a935eaedeb31dd13924dbf26a7fc489",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-16.json": "d31c653f195b853e5fcaf308f9414e1d42a8ced6e8aa45b7f84dae5327a0c1bf",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-10.json": "e078b271c0359ebcb93091d0eb847d368bb18586191c732fd052a3129143fb22",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-28.json": "5e8fddcbd6fd7f3564e651429071453370d1bc85aca8ae9b0e45a694d236492e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-30.json": "28933dd463ee12ed0f34656fb7cde75671d86f4853db2083cf253cef510d8c7a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-21.json": "48d84109669c3383a7a49365cb83f313a8d055f871a2fea65cfc5c6f1b022317",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-29.json": "e97319ca867bcc1626f1ab7e3181ecacc941fe81656a8ec018adadaed8680e92",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-02.json": "fff31ef7dc7e8912ed453028a94222e99c774dcd1c44be681697f22849b0beb8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-20.json": "0de1e67e6ad2edba48feeb51d840ec58662e88a34decb04e4cdac6236441f062",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-04.json": "b73e37f697c82a43b7be5fef025a3ab6ced42d00b03eca3564547f57d93b22ae",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-24.json": "e3ee047a672b4d55cf05275cdcaf97035b8f6c85fc12de4f3c4135c0899f8935",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-12.json": "a1329929a9846c876032c6d9928d1fb4cdd8822429361915a4f06b77784debb4",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-12-04.json": "6fa9b1ccb689c9bc758c55605a49c5710081551eaa643768d86dcf23a6501b17",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-12.json": "4efa46ff87202bf67a6f27fc66e9d66b1a66a8e21fe99a00d34335a551717c25",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-10-15.json": "9efb1b4d2756ea532c204cdad6590f43728d54136547f2a3664d83b02843e0d2",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-09.json": "301042df22b083bbea660b790e604da1660e2c173353d4ef6d9ad50aa9d8ffc8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-12-01.json": "b42462e5918d834dabcfaf0ae4d4a8008bd105e81d86e0f5a20374d442de0c4c",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-14.json": "726e24e791e5495860b518d42d94b003378d624ee2519820482cac2da0da5738",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-25.json": "d471c69fb1c0e009586ed195b85514f477a02e2342bd00bfdae6f8868b08368e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-27.json": "25132e8b53a051c61799e65d9a5c6672aeb51d4873d2cfbc0bfb9fbc456550e9",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-12-02.json": "9a7a30cbbd6d47b54b308f67973d149c66a555bf9b260486cb58b0ba9a1d6237",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-09-28.json": "0ebf9b9aae3c98d6dd9ccc26911a4cc0029c20e9f1a71d268e683e2b10abb747",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/raw/2026-11-19.json": "292c0b93d4de847a7663883e40b4e9d9445b1ef673ae4eac80a1cab27a6729b1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/source-0.json": "e0ad4d0cf0d1e928d9aea39d663e5e0632b0fa18d0f856fd90a170eb678035cc",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/source-3.json": "55d9051ba293c93b03ca38935a7ea46ce3d22ca8311419c41d1fb2cd782810af",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/summary.json": "79f09d1865f9645322c7b70d839c06c0f7ce587f5b153a17b95c64d8f85b0d92",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/bundle-0.json": "30487478e2aaa3f79b7e46bcaa8ba95bb7baa46ea2905316bd5acc5fec18f328",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/source-1.json": "5bc9c9136bbcdac37ca23b3936d6ca57d7b2436760475f07e21c120185747e19",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/open-2.json": "0103b1f8b8634db26bd776923b96e667e53f66c4072400778902e2169ed642e7",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/bundle-2.json": "3fc137f040bb2bb6928be2591c9851225a149cd599ee2e364aab6767c1d27964",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/source-2.json": "af7653fde95e19cbd902c123b9912f7145aca548b28ccb932987ef3fbb373413",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/bundle-3.json": "1ae396c80785973b1ff0cafbfe0bbf7221efaea5480c4da4975f2ee4b8d5b533",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/bundle-1.json": "868e1b8a7e06fdcb9dee6efc46068c3ed0df9d664e7204241e4e884e5fb5f7dc",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/source-4.json": "bfb823a29840f071c7c1561b35b22faf35b4f8643b16d831125c4625d9069b53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/bundle-4.json": "063eeb4be28c36c9333169289ca0dc89901b418e8fcaf0fbbec3422e98a0fdc9",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/open-4.json": "c6ee316a21c6f4b80043884eb50b56e2af5a31e5b82f4656621a190008b37fa8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/weekly.json": "b9422fb9109333957e819381c86089964e3947349530510eb36f56e7e869c02f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/releases/fundamental/active.json": "18132cb04f2cd952d1d863087ba23b251730d75c14ee87178e9414209d4af0ca",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/releases/fundamental/intents/33fe7778a3a33fb76623afc47112f210e3d56d35514c311c85e77ba0e2547cbc.json": "0d70e7a0a7b961e62f94271cb59a7e8d82bb6c456854fe05e63581cabc9fbd57",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/releases/fundamental/intents/33fe7778a3a33fb76623afc47112f210e3d56d35514c311c85e77ba0e2547cbc.json.committed": "b9cf51842b4a2688af75cfdd24bb55c694f18bb843efb670eec54934e20e0e1d",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/.mt13-isolated.json": "9bc57262524752fc0faa4b484b9b6a8ac264f724705918dea8ed56a8ad52a5ff",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/.action.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/.archive.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/latest.json": "046f191968563cd6d04bf39333f7211d02b38d57a1fc7e01d3c78deb49cc02db",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/result.json": "c9467712b8afd3928e5d1c505c0ec66d551bd1ca443bd25445d2b98c85b2b63d",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/manifest.json": "370661486c63d6451930bd5715ca5931276cc8da4784a25ac0b5404eaf21211c",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/materials/policies.json": "b0ba24cd5b15f8ef97186907d48cb42aa9fe4d15ff657e8870863a3a9abe7e53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/materials/source-000.raw": "bfb823a29840f071c7c1561b35b22faf35b4f8643b16d831125c4625d9069b53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/materials/bundle.json": "cbe1cc13fb8fcf7cf613df54c114bfe32a2eb1e25087f29b996dad0044e3cdd1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/materials/daily-third-section.md": "b14946b864381ff24b7d81a90034587d80e212f3929a12eeda821196d584188b",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-18/c0e8e5d6eb109ccd8e0111d7/r000001/materials/source-001.raw": "c6ee316a21c6f4b80043884eb50b56e2af5a31e5b82f4656621a190008b37fa8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/result.json": "aac99e503ce8dbda47ce39f14166e3524bdcadd5ee95ec94157e1c7370908601",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/manifest.json": "a198f0113be935a73a9eef52cb13ea699bb6251211662b08f2ada09921ede65a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/materials/policies.json": "b0ba24cd5b15f8ef97186907d48cb42aa9fe4d15ff657e8870863a3a9abe7e53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/materials/source-000.raw": "5bc9c9136bbcdac37ca23b3936d6ca57d7b2436760475f07e21c120185747e19",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/materials/bundle.json": "69b87e62bc271fd6138c279162c2b443ecfe019c6d50bafcfe41185304eea62d",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/materials/daily-third-section.md": "5bacaa8632621c324cf1085c26493f65efd28d1b9dabe6bb0ac8edebf24f6f28",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-15/341ec2232789f57beb7bd635/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/result.json": "7505f4bf86cdae1eff806c2763eeb0e0140535cdb072f85f345b33ea3148c28d",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/manifest.json": "e77954368b090705c44e23c16b05fc24007868038dc3ae29829ba32d6a334954",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/materials/policies.json": "b0ba24cd5b15f8ef97186907d48cb42aa9fe4d15ff657e8870863a3a9abe7e53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/materials/source-000.raw": "e0ad4d0cf0d1e928d9aea39d663e5e0632b0fa18d0f856fd90a170eb678035cc",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/materials/bundle.json": "719f780e6a5ddcd3c0fe36ede1172aab5dd8516718b57df12e48af8178475c21",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/materials/daily-third-section.md": "47e2c9184c64488f0ddb72c52332cd104a487ea1fd0d5b7c3430c46ef7b79bc4",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-14/867495e20d6a9e2278c0b743/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/result.json": "f5436fc9f295067447d25567c3eaa2ea7676f66dee8f8c8632f35493d060800e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/manifest.json": "dd39419f66fc304defa60d6e6bcfefcc291454c589bd185ded3b6726c1b8c731",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/materials/policies.json": "b0ba24cd5b15f8ef97186907d48cb42aa9fe4d15ff657e8870863a3a9abe7e53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/materials/source-000.raw": "55d9051ba293c93b03ca38935a7ea46ce3d22ca8311419c41d1fb2cd782810af",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/materials/bundle.json": "c4664ef5a3e53a0021de245b68627ddfa0b94e3b0fd3bc8f4727a3fb6a727b46",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/materials/daily-third-section.md": "0b5b81fff6136822b61c34b5fe7f92717b1b16f2279cf57d5a73921132d3d59f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-17/d78eb2a3e0fcfe0832d502e6/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/result.json": "87dfc7fd1d142fb2de32c1c840d8804f90371e4982b42555118a149386f40b56",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/manifest.json": "c3243c5866e26b62475fad8aad20d3a3e39fbfd4d7e12722fe0ce1ac6a078c38",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/materials/policies.json": "b0ba24cd5b15f8ef97186907d48cb42aa9fe4d15ff657e8870863a3a9abe7e53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/materials/source-000.raw": "af7653fde95e19cbd902c123b9912f7145aca548b28ccb932987ef3fbb373413",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/materials/bundle.json": "b59df18c20a7cf6d1a96b58de944b8256eb0161e4c20fa4d10bee63d1f6b50c9",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/materials/daily-third-section.md": "078684e41e53a65514a3d6ce785735250ea54d27c2dcd129890082389a687a8f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/execution-roundtrip/archive/mt13-action/SYNTHETIC-epoch/2026-09-16/e4a950cfbfdb74b4d549ad1d/r000001/materials/source-001.raw": "0103b1f8b8634db26bd776923b96e667e53f66c4072400778902e2169ed642e7",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/.mt13-isolated.json": "9bc57262524752fc0faa4b484b9b6a8ac264f724705918dea8ed56a8ad52a5ff",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/.action.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/.archive.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/latest.json": "1973fe1720b111c85e284966b0c1e4870f34911ab1cbba103f9ec8a732238582",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/.mt13-isolated.json": "9bc57262524752fc0faa4b484b9b6a8ac264f724705918dea8ed56a8ad52a5ff",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/.action.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/.archive.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/latest.json": "8a73e30baee8f386586e6d7a7d99d49fb5f60f3c0beaaf72ba975762aef9f82d",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/result.json": "12c3193b811fbb335033ff98132c292617684d34e428292f621b967d2ac18f4a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/manifest.json": "047927649626223bd0290ad6c0fff8c8c847e8af649635e089b89ada0d375481",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/materials/policies.json": "b0ba24cd5b15f8ef97186907d48cb42aa9fe4d15ff657e8870863a3a9abe7e53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/materials/source-000.raw": "8130c19a7bd6c7f050dfaee542024825ed174283075fae98b558b7aea3c70e94",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/materials/bundle.json": "5235a6b5fcdc9437257a549b97e2d52937dd0240e76bff6453b2123cc2618e94",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/materials/daily-third-section.md": "c20d66e69751682525f34eff5477184e920771dbe5ed8ed422dce248a27ed02b",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-15/a81749ef3f8eed5b6d61e100/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/result.json": "fa8093d6498f8d719dd3977f6f949eee83683ad6d86d7cae0e20f31e43af8b85",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/manifest.json": "8c1c54d74c8cbe3f5ad3ad0b891b9d48f579206ee9a2d8ffa1f8542624d7717b",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/policies.json": "b0ba24cd5b15f8ef97186907d48cb42aa9fe4d15ff657e8870863a3a9abe7e53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/source-000.raw": "e0ad4d0cf0d1e928d9aea39d663e5e0632b0fa18d0f856fd90a170eb678035cc",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/bundle.json": "685aeedc6facf063edcb86ddb81078d2234f83be0336d261e07536b18af5da6f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/daily-third-section.md": "6f7e6d6f5cc3acb845ee2f45a3779af12147a69178a74fff70ce880d770af56e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/result.json": "b61f3ca46bb0f6d1b3592e8c8c6818e4f234636ff271e10989aed0cb42ecf13e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/manifest.json": "fac6204a36fd7a1c97d4cc7e3a92052b89032726573ccd5f55de7dfdec90551e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/materials/policies.json": "b0ba24cd5b15f8ef97186907d48cb42aa9fe4d15ff657e8870863a3a9abe7e53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/materials/source-000.raw": "102a1aa621f38b8c02abc599970dee6feeadc564102cbd93d4e3542fb8e3ac4e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/materials/bundle.json": "ab5226a8cbfea8e123815947da0de5509729386f37cc0c22c0e281000c2b0577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/materials/daily-third-section.md": "eaf0fcab01c0990981b9b769e7de6bab0373d46aa38bc9d3bb41cef3c23ab415",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/signal-policy-v1/mt13-action/SYNTHETIC-epoch/2026-09-16/96357e8c210918b0e54696c7/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/policy-registrations/technical-bf218f68ebfe.json": "25a510709fe53bfb9bb715fd2f82f98f2d45d541d7409024ae386ecd111ca1a5",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/result.json": "7919696ab91a83a0b81d537483a19c0c68e2f936746ed9564211c0bb82260939",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/manifest.json": "9a20bcbd0452cceaee808d5d4991ab4a9c837d0a087431e9a38408975b3b272a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/materials/policies.json": "719c062ca6bd3d3e4a046ce466da26e56af9cb8d5d942e3d0f4fcc68e0851219",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/materials/source-000.raw": "8130c19a7bd6c7f050dfaee542024825ed174283075fae98b558b7aea3c70e94",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/materials/bundle.json": "5235a6b5fcdc9437257a549b97e2d52937dd0240e76bff6453b2123cc2618e94",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/materials/daily-third-section.md": "0a6a75f9df7d7f7723f15349df3fba3cbc1d0cec8515698793dde1b7c290cba1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-15/287a072c316a8ace9ccfdeeb/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/result.json": "fa8093d6498f8d719dd3977f6f949eee83683ad6d86d7cae0e20f31e43af8b85",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/manifest.json": "3844bbe535bef9a98903bdc8026a17fb51b2f28261219660729415b5d95791d3",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/policies.json": "b0ba24cd5b15f8ef97186907d48cb42aa9fe4d15ff657e8870863a3a9abe7e53",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/source-000.raw": "e0ad4d0cf0d1e928d9aea39d663e5e0632b0fa18d0f856fd90a170eb678035cc",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/bundle.json": "685aeedc6facf063edcb86ddb81078d2234f83be0336d261e07536b18af5da6f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/daily-third-section.md": "6f7e6d6f5cc3acb845ee2f45a3779af12147a69178a74fff70ce880d770af56e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/563e2d98e7aded268e4b0074/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/result.json": "f4957d36b294a19f03aaec1f7c2e21b6e836744d556a032dd275b4247c051c60",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/manifest.json": "b3277be0366261a87cf6cedcf3b5de47d2726224ca08f3ecfb7994a56c610034",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/materials/policies.json": "719c062ca6bd3d3e4a046ce466da26e56af9cb8d5d942e3d0f4fcc68e0851219",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/materials/source-000.raw": "e0ad4d0cf0d1e928d9aea39d663e5e0632b0fa18d0f856fd90a170eb678035cc",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/materials/bundle.json": "146753ba75a2b52f8410c6db956bb1bbf12bb1916e4942943bb291752b189540",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/materials/daily-third-section.md": "c5748ba41696cc0fe85adddb29e67bd1f6d2d441e293b7556e60888d3efc13d5",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-14/c1cc5ccb154f5eac156fe11a/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/result.json": "8cc92b71088e4912a6325f930094a7d1be2147ce1eb2073316610a1ec5112dc6",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/manifest.json": "09334dd54fe63f887bbf980d4c42890f76963dcefff3dcd096219734f4c73b05",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/materials/policies.json": "719c062ca6bd3d3e4a046ce466da26e56af9cb8d5d942e3d0f4fcc68e0851219",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/materials/source-000.raw": "102a1aa621f38b8c02abc599970dee6feeadc564102cbd93d4e3542fb8e3ac4e",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/materials/action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/materials/action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/materials/bundle.json": "ab5226a8cbfea8e123815947da0de5509729386f37cc0c22c0e281000c2b0577",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/materials/daily-third-section.md": "bd6edcacb73e3c910a7664fb9573bc98fd1fbf0b8b2fb0d3788f103f92f05ce6",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/materials/timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/materials/scope.json": "c0f7e8df478d967a1bf57e6d61a14e40e6e0293f1010c037fc7a15b9b98c47a8",
+    "/home/emox/work/projects/market-tools/reports/mt14-20260913/synthetic-verified/technical-ledgers/technical-bf218f68ebfe/mt13-action/SYNTHETIC-epoch/2026-09-16/a38726699904f6c6c82502a0/r000001/materials/action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1"
+  },
+  "idempotent": true
+}

@@ -1,0 +1,25 @@
+{
+  "checked_files": 47165,
+  "changed": [
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/latest.json",
+      "before": "00c92b87a8f74062ef9b69f8ffb1df0bab887eb838dbbc1b0bb2ba35b5ca502a",
+      "after": "276ff356fcd78620862fa0864dbf27be6bf9450716e894e9f16212b192e6abae"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/candidates.py",
+      "before": "b0d0bd9642b179e804f9fb37d691559d5ced6c7e5351308a0ab0b1ad85669c52",
+      "after": "1124e4a24f7f00e35bcdbaf3eba03b72c58ea5d26fca0772617a1348aa5e16e5"
+    }
+  ],
+  "missing": [],
+  "allowed_code_edit": "/home/emox/work/projects/market-tools/mt1/candidates.py",
+  "unexpected_changes": [
+    {
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/latest.json",
+      "before": "00c92b87a8f74062ef9b69f8ffb1df0bab887eb838dbbc1b0bb2ba35b5ca502a",
+      "after": "276ff356fcd78620862fa0864dbf27be6bf9450716e894e9f16212b192e6abae"
+    }
+  ],
+  "checked_at": 1789250000.948783
+}
