@@ -192,6 +192,8 @@ def weekly_index(root=DEFAULT_ROOT, *, asof=None, current_epoch=None, expected=N
 
 
 def aware_time(value):
+    if not isinstance(value, str):
+        raise ValueError('timestamp must be a timezone-aware ISO string; null is unverified')
     result=datetime.fromisoformat(value.replace('Z','+00:00'))
     if result.tzinfo is None or result.utcoffset() is None:
         raise ValueError('timezone-required timestamp')

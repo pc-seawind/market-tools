@@ -37,7 +37,7 @@
     "sector_n_members":  47,                             # 实际参与平均的成员数
     "excess_vs_sector":  +1.11,                          # absolute - sector, 行业-adjusted alpha
     "hit_vs_sector":     True,                           # side=+ → excess_vs_sector>0
-    "hit_strict":        True,                           # hit AND hit_vs_sector — 真 alpha (剔除 beta + 行业轮动)
+    "hit_strict":        True,                           # hit AND hit_vs_sector — 双基准相对方向，不证明alpha
   }
 
 baseline 锚定原则:
@@ -61,6 +61,7 @@ import datetime as dt
 import fcntl
 import hashlib
 import json
+import statistics
 import subprocess
 import sys
 from collections import defaultdict
@@ -87,7 +88,7 @@ LIGHT_VERIFY_MILESTONE_TOLERANCE_DAYS = 1
 WINDOW_BUCKETS = [
     ("noise",    0,  7,  "D0-7 噪音区 (机构未消化, 不计入主判定)"),
     ("early",    8, 13,  "D8-13 早期消化 (median 仍可能负)"),
-    ("main",    14, 28,  "D14-28 主信号窗口 (alpha 在此 unlock — 主判定依据)"),
+    ("main",    14, 28,  "D14-28 预设主观察窗口（不是alpha保证）"),
     ("extended",29, 60,  "D29+ 延伸期 (赢家继续放大)"),
 ]
 MAIN_SIGNAL_BUCKET = "main"  # 周报 hit_rate 头条数据来源
@@ -579,7 +580,7 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
         hit_vs_sector = (side == "+" and excess_vs_sector > 0) or \
                         (side == "-" and excess_vs_sector < 0)
 
-    # hit_strict: 同时跑赢大盘 + 板块 = narrative 真有 alpha (剔除 beta + 行业轮动)
+    # hit_strict: 按side满足大盘和行业两个相对方向，不证明稳定alpha
     if hit_vs_sector is not None and excess_pct is not None:
         hit_strict = bool(hit) and bool(hit_vs_sector)
     else:
@@ -866,7 +867,7 @@ def _fixed_horizon_breakdown(by_pair: dict, field: str, milestone: int = 14) -> 
         out[name] = {
             "samples": len(rows),
             "hit_rate": round(sum(bool(r.get("hit")) for r in rows) / len(rows) * 100, 1),
-            "median_excess_pct": round(sorted(ex)[len(ex)//2], 2) if ex else None,
+            "median_excess_pct": round(statistics.median(ex), 2) if ex else None,
             "strict_rate": round(sum(bool(r.get("hit_strict")) for r in strict) / len(strict) * 100, 1) if strict else None,
         }
     return out
@@ -901,6 +902,7 @@ def report(weeks: int = 4) -> dict[str, Any]:
 
     # group by milestone
     out: dict = {
+        "statistics_contract": "standard-median-v1; even=middle-two-mean; rankings-not-hit-lists",
         "since": since.isoformat(),
         "ticker_pairs": len(by_pair),
         "events_covered": len(set(p[0] for p in by_pair)),
@@ -931,7 +933,7 @@ def report(weeks: int = 4) -> dict[str, Any]:
         hits = sum(1 for r in rows if r.get("hit"))
         excesses = [r["excess_pct"] for r in rows if r.get("excess_pct") is not None]
         absolutes = [r["absolute_pct"] for r in rows if r.get("absolute_pct") is not None]
-        # strict (剔除 beta + 行业): 仅纳入有 sector 数据的样本
+        # strict (双基准相对方向): 仅纳入有 sector 数据的样本
         strict_rows = [r for r in rows if r.get("hit_strict") is not None]
         strict_hits = sum(1 for r in strict_rows if r.get("hit_strict"))
         excess_vs_sector = [r["excess_vs_sector"] for r in rows if r.get("excess_vs_sector") is not None]
@@ -939,12 +941,12 @@ def report(weeks: int = 4) -> dict[str, Any]:
             "samples": len(rows),
             "hits": hits,
             "hit_rate": round(hits / len(rows) * 100, 1),
-            "median_excess_pct": round(sorted(excesses)[len(excesses) // 2], 2) if excesses else None,
+            "median_excess_pct": round(statistics.median(excesses), 2) if excesses else None,
             "avg_absolute_pct": round(sum(absolutes) / len(absolutes), 2) if absolutes else None,
             "strict_samples": len(strict_rows),
             "strict_hits": strict_hits,
             "strict_rate": round(strict_hits / len(strict_rows) * 100, 1) if strict_rows else None,
-            "median_excess_vs_sector": round(sorted(excess_vs_sector)[len(excess_vs_sector) // 2], 2) if excess_vs_sector else None,
+            "median_excess_vs_sector": round(statistics.median(excess_vs_sector), 2) if excess_vs_sector else None,
             "is_main_signal": 14 <= ms <= 28,
             "is_noise": ms <= 7,
         }
@@ -979,12 +981,12 @@ def report(weeks: int = 4) -> dict[str, Any]:
             "samples": len(rows),
             "hits": hits,
             "hit_rate": round(hits / len(rows) * 100, 1),
-            "median_excess_pct": round(sorted(excesses)[len(excesses) // 2], 2) if excesses else None,
+            "median_excess_pct": round(statistics.median(excesses), 2) if excesses else None,
             "mean_excess_pct": round(sum(excesses) / len(excesses), 2) if excesses else None,
             "strict_samples": len(strict_rows),
             "strict_hits": strict_hits,
             "strict_rate": round(strict_hits / len(strict_rows) * 100, 1) if strict_rows else None,
-            "median_excess_vs_sector": round(sorted(excess_vs_sector)[len(excess_vs_sector) // 2], 2) if excess_vs_sector else None,
+            "median_excess_vs_sector": round(statistics.median(excess_vs_sector), 2) if excess_vs_sector else None,
             "mean_excess_vs_sector": round(sum(excess_vs_sector) / len(excess_vs_sector), 2) if excess_vs_sector else None,
         }
     out["main_signal_summary"] = out["by_window_bucket"].get(MAIN_SIGNAL_BUCKET)
@@ -1026,9 +1028,9 @@ def report(weeks: int = 4) -> dict[str, Any]:
         for k, d in out[bucket].items():
             d["hit_rate"] = round(d["hits"] / d["samples"] * 100, 1) if d["samples"] else 0
             ex = d.pop("excesses")
-            d["median_excess_pct"] = round(sorted(ex)[len(ex) // 2], 2) if ex else None
+            d["median_excess_pct"] = round(statistics.median(ex), 2) if ex else None
             evs = d.pop("excess_vs_sector_list")
-            d["median_excess_vs_sector"] = round(sorted(evs)[len(evs) // 2], 2) if evs else None
+            d["median_excess_vs_sector"] = round(statistics.median(evs), 2) if evs else None
             d["strict_rate"] = round(d["strict_hits"] / d["strict_samples"] * 100, 1) if d["strict_samples"] else None
 
     # Fixed-horizon score calibration: unlike the legacy latest table, every
@@ -1062,11 +1064,11 @@ def doc_markdown(weeks: int = 4) -> str:
     md.append(f"**覆盖 events**: {rep['events_covered']} 条 · **ticker pair**: {rep['ticker_pairs']} 个")
     md.append("")
     md.append("> **hit 判定 (vs 大盘)**: side=+ → excess_pct > 0; side=- → excess_pct < 0. "
-              "excess_pct = ticker 涨跌% - benchmark 涨跌% (CSI300 / HSI). 剔除 beta.")
+              "excess_pct = ticker 涨跌% - benchmark 涨跌% (CSI300 / HSI)，是价格收益差，不是回归估计的alpha。")
     md.append(">")
-    md.append("> **strict 判定 (vs 大盘 + 板块)**: hit AND ticker 同时跑赢同行业等权均值. "
-              "剔除 beta + 行业轮动 = narrative 真有 alpha. **这是周报最该看的数字** — "
-              "板块涨时再多 hit 也可能只是搭便车. 仅 A 股有 sector 数据, HK/US 不计入 strict.")
+    md.append("> **strict 判定 (vs 大盘 + 板块)**: hit AND hit_vs_sector，按原side方向分别判定。"
+              "这是双基准相对表现观察，不证明因果、稳定alpha或可交易性。"
+              "仅 A 股有 sector 数据，HK/US 不计入 strict；样本数和来源限制必须同时列示。")
     md.append(">")
     md.append("> baseline 锚定: 使用原始发布时间 + session；盘前/盘后取下一可交易开盘，盘中取当日收盘。"
               "旧事件缺发布时间时才回退 trade_date，不能视为严格可交易样本.")
@@ -1085,20 +1087,20 @@ def doc_markdown(weeks: int = 4) -> str:
         if main.get("strict_samples"):
             sr = main.get("strict_rate")
             sr_str = f"**{sr}%**" if sr is not None else "—"
-            md.append(f"- **strict (剔除 beta + 行业)**: n={main['strict_samples']} · "
+            md.append(f"- **strict (双基准相对方向)**: n={main['strict_samples']} · "
                       f"strict_rate: {sr_str} · "
                       f"median excess vs sector: {_fmt_excess(main.get('median_excess_vs_sector'))}")
         else:
             md.append("- **strict**: 暂无 A 股 sector 数据 (HK/US 不计 / 老数据未 backfill)")
         md.append("")
-        md.append("> 优先看 strict_rate — 板块涨时 hit_rate 容易被 beta 抬高, strict 才是真 alpha.")
+        md.append("> strict_rate仅作双基准对照，不能据小样本或单周表现断定策略有效/无效；标准中位数的偶数样本取中间两项均值。")
     else:
         md.append("> 当前回看窗口内无 D14-D28 数据 — 大部分 event 太新还没穿越主信号窗口.")
         md.append("> 等 cron 累积 2+ 周后会自动填充.")
     md.append("")
 
     # ─── 各 window bucket 表 ─────────────────────────────────────
-    md.append("## 窗口分桶汇总 (alpha 累积曲线)")
+    md.append("## 窗口分桶汇总 (相对收益观察，桶内期限可能不同)")
     md.append("")
     md.append("| bucket | 范围 | n | hit_rate | excess vs 大盘 | strict_n | strict_rate | excess vs 板块 | 性质 |")
     md.append("|--------|------|---|----------|----------------|----------|-------------|----------------|------|")
@@ -1291,7 +1293,7 @@ def doc_markdown(weeks: int = 4) -> str:
 
     # winners / losers
     if rep["top_winners"]:
-        md.append("## TOP 5 命中 (latest excess%)")
+        md.append("## TOP 5 相对收益排序：高端 (latest excess%，非命中榜)")
         md.append("")
         md.append("| ticker | name | side | event_score | event 标题 | days | excess% |")
         md.append("|--------|------|------|-------------|-------------|------|---------|")
@@ -1302,7 +1304,7 @@ def doc_markdown(weeks: int = 4) -> str:
         md.append("")
 
     if rep["top_losers"]:
-        md.append("## TOP 5 失败 (latest excess%)")
+        md.append("## TOP 5 相对收益排序：低端 (latest excess%，非失败榜)")
         md.append("")
         md.append("| ticker | name | side | event_score | event 标题 | days | excess% |")
         md.append("|--------|------|------|-------------|-------------|------|---------|")
@@ -1316,16 +1318,11 @@ def doc_markdown(weeks: int = 4) -> str:
     md.append("")
     md.append("**解读 / 决策框架**:")
     md.append("- **看 §🎯 主信号 (D14-D28)** — 周报最该关注的数字. T+5/T+10 是 noise 区, 不当决策依据.")
-    md.append("- **看 §按 sub_domain × 时间线** — 先确认哪个赛道在兑现 (hit_rate ≥60%), 再看里面具体 ticker. "
-              "比『散点 TOP5 涨幅榜』对决策更有用.")
-    md.append("- **末期抱团 vs 正常拆解** — 如果 normal hit_rate >> late_stage, 验证 late_stage_subdomains "
-              "降权策略有效; 否则需要 review universe.yaml.late_stage_subdomains 列表.")
-    md.append("- **event_type 拆解** — confirmed_order / customer_capex 应优于 capacity_plan / financing_capex / "
-              "industry_supply_expansion / trailing_data；否则分类或传导映射仍需重做.")
-    md.append("- score=3 (重磅) 应该 hit_rate 显著高于 score=2 — 否则雷达打分校准有问题")
-    md.append("- 整体 hit_rate < 50% (excess) → 雷达无 alpha, 跟大盘 / 板块 beta 同步, 需要重做筛选")
+    md.append("- 赛道、事件类型、评分和末期抱团分组只作探索；固定同期限、核对独立事件数量后再提出假设，不凭latest混合期限校准。")
+    md.append("- 分组差异不直接证明筛选或降权有效；须保留失败样本并做独立样本外验证。")
+    md.append("- 不设单周50%/60%命中率为有效性结论或自动调参门槛；样本不足与数据缺失单列。")
     md.append("")
-    md.append(f"*narrative_track / cron: 每日 18:45 工作日 · 报告由 `narrative_track.py doc --weeks {weeks}` 生成*")
+    md.append(f"*narrative_track / cron: 每日 19:45 工作日 · 报告由 `narrative_track.py doc --weeks {weeks}` 生成*")
     return "\n".join(md)
 
 
