@@ -207,7 +207,7 @@ def technical_engines(root, run_dir, e, scope_path, choices):
         if bundle.get('source_kind')!='SYNTHETIC_ONLY' and any(o['execution_status'] not in ('filled','cancelled') and not o.get('operator_paused') for o in state['ledger'].values()):
             from .action_worker import run_worker
             dest=run_dir/('execution-capture-'+version)
-            capture=read(dest/'worker-result.json') if (dest/'worker-result.json').exists() else run_worker(scope_path,ar,dest,mode='once',max_seconds=30)
+            capture=read(dest/'worker-result.json') if (dest/'worker-result.json').exists() else run_worker(scope_path,ar,dest,mode='watch',max_seconds=30)
         outputs[version]={'receipt':receipt,'state':state,'state_hash':digest(state),
                           'ledger_root':str(ar),'policy':cfg,'execution_capture':capture}
     return {'versions':outputs,'computed':True,'source_hash':digest(e),
