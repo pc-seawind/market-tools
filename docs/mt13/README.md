@@ -56,7 +56,7 @@ V1 刚开始观察时不回放历史入场：先冻结 setup，再等后续已�
 
 - `signal_id = sha256(epoch, version, code, side, episode)`；发出即永久保留原理由/触发时点/价口径/hash。
 - `execution_status = pending / blocked / filled / cancelled / expired` 独立演进。
-- 同episode风险持续只保留一张SELL，连过期/取消也不自动重开；确需新实验用前向新版本，不改历史。
+- 同episode风险持续只保留一张SELL；expired执行attempt可在有虚拟仓和近期风险复核时审计续期，不要求换版本。人工取消不自动恢复，暂停需显式resume。详见REVISION2.md。
 - 未持仓风险在后续已完成收盘全部解除后，开始新的前向setup观察；不沿用旧触发回填BUY。真实持仓风险episode不因此消失。
 - 未成交订单有效期3个**已验证已完成交易日**。风险优先取消BUY，执行已发生的较早开盘不能被晚收盘倒销。
 - 所有初始真实持仓仅作观察；**不建立虚拟仓、不捏造真实成本/买入日期**。
@@ -66,45 +66,14 @@ V1 刚开始观察时不回放历史入场：先冻结 setup，再等后续已�
 - 执行终态不等于复盘终态：20/40/60个后续收盘继续积累，退出/取消后也继续观察。
   longitudinal 的事件直到执行终态且60日价格观察成熟才 `archived`；此前跨周pending。
 
-## 执行证据接口与尚未补齐的实际自动化
+## 执行采集与模型（revision 2已实现）
 
-**禁止**从日线回填“开盘已成交”，禁止按止损价假成交，禁止把历史回测 `execution=True` 送进实盘观察。
-下一合法开盘的实时执行证据可通过同一个入口注入：
-
-```bash
-python3 -m mt1.action_loop observe --bundle <latest-completed-bundle.json> \
-  --execution-bundle <captured-execution-bundle.json> --root <isolated-root>
-```
-
-`run` 同样支持 `--execution-bundle`。合并写新文件，不改原输入。
-执行bundle schema：
-
-```json
-{
-  "scope_epoch": "与scope相同",
-  "source_kind": "real_current_readonly_collection",
-  "execution_quotes": [{
-    "code": "001309.SZ", "market": "CN", "date": "<next-session>",
-    "open_at": "<next-session>T09:30:00+08:00",
-    "observed_at": "<实际采集时间，不晚于开盘60秒>",
-    "eligibility_known_at": "<真实可成交/结算证据已知时间，不晚于open_at>",
-    "session_verified": true, "halted": false, "settlement_ok": true,
-    "limit_up": false, "limit_down": false,
-    "open": 100, "factor": 1, "basis_id": "<与信号一致>",
-    "source_sha256": "<原样snapshot JSON文件hash>"
-  }],
-  "inputs": [{"path": "<snapshot JSON文件>", "sha256": "<hash>", "fetched_at": "<真实捕获时间>"}]
-}
-```
-
-以上仅**schema示例，不是可用真实数据**。snapshot文件必须与quote去掉source_sha256后内容完全一致。
-CN检查方向特定涨跌停与T+1；HK不套A股涨跌停，另需 `vcm_clear=true`，两市场都需显式结算/停牌证据。
-未满条件只阻断模拟成交，不取消已登记信号。不能人工把unknown填true。
-
-**当前剩余工程缺口：自动采集“开盘前资格证据 + 下一开盘快照”的实时适配器未实现。**
-现有行情采集只产生完成日线，运行时能消费合格执行文件并完成模拟账本迁移，但 `run` 不会自行生成该文件。
-本次周六没有合法下一开盘可做真实成交验证；不能把合成演示冒充补上了这个接口。
-生产闭环自动接线前必须补该采集器并独立复验，否则真实信号会pending/blocked直至过期。
+完整实现、真实接口实测、有限worker命令与故障恢复见 [REVISION2.md](REVISION2.md)。
+`execution-worker --mode watch` 自动预取资格、轮询原响应、生成可重算bundle、消费入隔离账本。
+`consume-execution` 可独立复验；真实输入不接受手工canonical JSON盖hash。
+strict-open-v1的60秒/盘前时刻门禁保留；HK无法证明的venue状态不伪造。
+另有明确隔离的observed-quote-v1估值模拟模型，不冒称可成交证明、不回填open，不在既有root偷偷切换。
+首个合法开盘自然验证仍待运行；这与adapter实现完成是两件事。
 
 ## 日报/周报与接线补丁
 

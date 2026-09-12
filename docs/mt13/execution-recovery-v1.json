@@ -1,0 +1,1 @@
+{"attempt_ttl_completed_sessions": 3, "cancel": "never auto resume explicit cancel", "max_confirmation_age_days": 4, "pause": "explicit operator pause; explicit resume only", "price": "never backfill before attempt confirmation", "renew": "expired SELL + virtual position + recent confirmed persistent risk", "signal_id_unchanged": true, "version": "execution-recovery-v1"}

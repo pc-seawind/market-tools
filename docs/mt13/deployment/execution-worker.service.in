@@ -1,0 +1,12 @@
+# NOT installed. Substitute ROOT / OUTPUT / PROVIDER_ENV only after investment review.
+# Invoke near 09:24 local time. Scheduling is separate and NOT installed here.
+[Unit]
+Description=MT13 bounded read-only execution evidence capture
+[Service]
+Type=oneshot
+WorkingDirectory=/home/emox/work/projects/market-tools
+EnvironmentFile=@PROVIDER_ENV@
+ExecStart=/usr/bin/python3 -m mt1.action_loop execution-worker --root @ROOT@ --out @UNIQUE_OUTPUT@ --mode watch --max-seconds 1200 --poll-seconds 3
+TimeoutStartSec=1230
+RuntimeMaxSec=1230
+KillMode=control-group

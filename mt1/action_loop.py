@@ -162,6 +162,11 @@ def executable(q, order, asof, sources):
     Missing evidence never manufactures a fill at a closing/stop price.
     """
     try:
+        if q.get('provider_adapter')=='tencent-raw-v1':
+            from .action_execution import validate_quote
+            return validate_quote(q,order,asof,sources)
+        if order.get('execution_model','strict-open-v1')!='strict-open-v1':
+            return 'execution_model_requires_provider_adapter'
         if q['code'] != order['code'] or q['market'] != order['market']:
             return 'execution_identity_mismatch'
         opening = timing.instant(q['open_at']); observed = timing.instant(q['observed_at'])
@@ -204,7 +209,7 @@ def executable(q, order, asof, sources):
 
 
 def execute(s, order, quotes, asof, sources, policy):
-    if order['execution_status'] in TERMINAL:
+    if order['execution_status'] in TERMINAL or order.get('operator_paused'):
         return
     key = order['position_key']; position = s['positions'].get(key)
     if order['side']=='SELL' and not position:
@@ -213,14 +218,18 @@ def execute(s, order, quotes, asof, sources, policy):
     matching = sorted([q for q in quotes if q.get('code')==order['code']],key=lambda q:q.get('open_at',''))
     reason = 'next_legal_open_snapshot_not_collected'
     for q in matching:
-        reason = executable(q,order,asof,sources)
+        from .action_recovery import ensure
+        attempt=ensure(order)
+        effective={**order,'triggered_at':max(attempt['opened_at'],order.get('execution_not_before',attempt['opened_at']),key=timing.instant)}
+        reason = executable(q,effective,asof,sources)
         if reason:
             continue
         if position and order['market']=='CN' and q['date'] <= position['entry_date']:
             reason='CN_T_plus_1'; continue
-        price=timing.positive(q['open'])*timing.positive(q['factor'])
+        raw_price=q.get('simulation_price',q.get('open'))
+        price=timing.positive(raw_price)*timing.positive(q['factor'])
         cost=policy['timing']['execution']['per_side_cost_bps'][order['market']]/10000
-        fill={'date':q['date'],'at':q['open_at'],'raw_price':q['open'],'adjusted_price':price,
+        fill={'date':q['date'],'at':q.get('simulation_at',q['open_at']),'raw_price':raw_price,'adjusted_price':price,
               'source_sha256':q['source_sha256'],'snapshot_sha256':timing.digest(q),
               'virtual_units':1,'not_real_trade':True,'cost_bps_scenario':cost*10000}
         if order['side']=='BUY':
@@ -238,6 +247,11 @@ def execute(s, order, quotes, asof, sources, policy):
             del s['positions'][key]
             if not order.get('real_holding_observation'):
                 s['states'].pop(key,None)  # reset only virtual episode, never infer a real sale
+        fill['provider_at']=q.get('provider_at')
+        fill['execution_assumption']=q.get('assumption','strict next-open simulation with supplied evidence; not a real trade')
+        fill['execution_model']=order.get('execution_model','strict-open-v1')
+        fill['attempt_number']=attempt['number']
+        attempt.update(status='filled',ended_at=asof,fill_sha256=timing.digest(fill))
         order['fill']=fill
         transition(s,order,'filled','isolated_simulation_next_observed_open',asof,fill=fill)
         return
@@ -273,6 +287,7 @@ def mark_positions(s, panel, version):
 
 def daily_report(s):
     lines=['**第三段｜技术策略信号（模拟跟踪，非自动实盘）**',
+           '执行模型：'+s.get('execution_model','strict-open-v1')+'（observed-quote-v1仅报价估值模拟，不是可成交证明）。',
            '前两段行情播报与趋势/观点对照由原日报原样保留。公司研究与技术动作独立；不指令真实金额/股数。',
            '合成演示，非真实行情/成交。' if s['synthetic'] else '真实只读数据；虚拟成交不代表真实持仓操作，成本未知不算个人盈亏。',
            '|代码/名称|技术动作/适用对象|公司研究（独立）|信号回执/模拟执行|规则/风险线|硬缺口|',
@@ -303,12 +318,15 @@ def save(root, s, bundle, scope_path, run_id, materials=()):
           {'name':'policies.json','content':dump(s['policies'])},
           {'name':'action_loop.py','path':__file__},
           {'name':'timing.py','path':str(Path(__file__).with_name('timing.py'))}]+list(materials)
+    names={m['name'] for m in mats}
+    for filename in ('action_execution.py','action_recovery.py'):
+        if filename not in names:mats.append({'name':filename,'path':str(Path(__file__).with_name(filename))})
     return archive(root=root,job='mt13-action',run_id=run_id,trade_date=s['asof'][:10],scope_epoch=s['scope_epoch'],
                    result=s,materials=mats,events=events,
                    execution={'status':'isolated_simulation_only','started_at':s['asof'],'completed_at':now()})
 
 
-def observe(bundle_path, scope_path, root, policy_path=POLICY):
+def observe(bundle_path, scope_path, root, policy_path=POLICY, execution_model="strict-open-v1"):
     root=Path(root); root.mkdir(parents=True,exist_ok=True)
     with (root/'.action.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
@@ -319,10 +337,12 @@ def observe(bundle_path, scope_path, root, policy_path=POLICY):
                 if not snapshots(root) or any(m['job']!='mt13-action' for _,_,m in manifests(root)):
                     raise ValueError('nonempty_non_mt13_root_refused')
             write(root/'.mt13-isolated.json',{'schema':1,'purpose':'isolated_simulation_not_real_holdings'})
-        return _observe(bundle_path,scope_path,root,policy_path)
+        return _observe(bundle_path,scope_path,root,policy_path,execution_model)
 
 
-def _observe(bundle_path, scope_path, root, policy_path):
+def _observe(bundle_path, scope_path, root, policy_path, execution_model="strict-open-v1"):
+    from .action_execution import MODELS
+    if execution_model not in MODELS:raise ValueError('unsupported_execution_model')
     bundle=read(bundle_path); scope=load(scope_path); cfg=read(policy_path)
     synthetic=bundle.get('source_kind')=='SYNTHETIC_ONLY'
     asof=bundle['asof']; timing.instant(asof)
@@ -340,12 +360,15 @@ def _observe(bundle_path, scope_path, root, policy_path):
         if file_hash(item['path'])!=item['sha256']:
             raise ValueError('source_bytes_changed')
         sources[item['sha256']]=item
+        if item.get('source_id'):sources[item['source_id']]=item
         materials.append({'name':f'source-{i:03}.raw','path':item['path'],'fetched_at':item['fetched_at']})
+    if not synthetic and any(q.get('provider_adapter')!='tencent-raw-v1' for q in bundle.get('execution_quotes',[])):
+        raise ValueError('real_execution_requires_original_provider_adapter')
     if not synthetic and not sources:
         raise ValueError('real_sources_required')
     prior=snapshots(root); s=copy.deepcopy(prior[-1][1]) if prior else fresh()
     # Same source/policy/scope/code = same transaction, even after later days.
-    run_id=timing.digest([bundle, file_hash(scope_path),cfg,file_hash(__file__),file_hash(Path(__file__).with_name('timing.py'))])[:24]
+    run_id=timing.digest([bundle, execution_model, MODELS[execution_model], file_hash(Path(__file__).with_name('action_execution.py')), file_hash(Path(__file__).with_name('action_recovery.py')), file_hash(scope_path),cfg,file_hash(__file__),file_hash(Path(__file__).with_name('timing.py'))])[:24]
     for path,result in prior:
         if result['run_id']==run_id:
             return {'manifest':path,'idempotent':True}
@@ -355,6 +378,13 @@ def _observe(bundle_path, scope_path, root, policy_path):
         raise ValueError('new_scope_or_synthetic_requires_separate_root')
     if s['asof'] and timing.instant(asof)<timing.instant(s['asof']):
         raise ValueError('out_of_order_no_backfill')
+    if prior and s.get('execution_model','strict-open-v1')!=execution_model:
+        raise ValueError('execution_model_requires_new_isolated_root')
+    contract_hash=timing.digest(MODELS[execution_model])
+    if prior and s.get('execution_contract_sha256',contract_hash)!=contract_hash:
+        raise ValueError('frozen_execution_contract_changed_new_model_required')
+    s['execution_model']=execution_model
+    s['execution_contract_sha256']=contract_hash
     version=cfg['version']; old=s['policies'].get(version)
     if old and old!=cfg:
         raise ValueError('frozen_policy_mutation_forbidden')
@@ -392,13 +422,21 @@ def _observe(bundle_path, scope_path, root, policy_path):
         # A newly known close exit cannot retroactively cancel yesterday's legal
         # open. Process eligible earlier snapshots first, then today's signal.
         for order in s['ledger'].values():
-            if order['position_key']!=key or order['execution_status'] in TERMINAL:
+            if order['position_key']!=key:
                 continue
-            future=[d for d in panel.get('sessions',[]) if d>order['signal_date']]
+            from .action_recovery import ensure,renew,expire
+            if (r['status']=='ok' or (c['risk_active'] and not c['hard_gaps'])) and order['side']=='SELL':
+                order['risk_reconfirmation']={'active':c['risk_active'],'date':panel['expected_date'],
+                                             'known_at':asof,'source_sha256':timing.digest(panel)}
+            renew(s,order,asof)
+            if order['execution_status'] in TERMINAL or order.get('operator_paused'):
+                continue
+            attempt=ensure(order)
+            future=[d for d in panel.get('sessions',[]) if d>attempt['after_session']]
             eligible=[q for q in bundle.get('execution_quotes',[]) if q.get('code')==code and q.get('date') in future[:cfg['order_ttl_sessions']]]
             execute(s,order,eligible,asof,sources,cfg)
             if r['status']=='ok' and order['execution_status'] not in TERMINAL and len(future)>=cfg['order_ttl_sessions']:
-                transition(s,order,'expired','three_completed_sessions_validity_elapsed',asof)
+                expire(s,order,asof,panel['expected_date'])
         if r['status']=='ok':
             mark_positions(s,panel,version)
         held=real_held or key in s['positions']
@@ -426,6 +464,7 @@ def _observe(bundle_path, scope_path, root, policy_path):
                 b=panel['bars'][-1]
                 s['ledger'][sid]={'signal_id':sid,'scope_epoch':scope['epoch'],'version':version,
                                  'policy_sha256':timing.digest(cfg),'code':code,'market':panel['market'],
+                                 'execution_model':execution_model,
                                  'side':side,'episode':episode,'signal_date':date,'triggered_at':asof,
                                  'condition_known_at':b['close_at'],'signal_price':b['close'], 'signal_adjusted_price':b['close']*b['factor'],
                                  'basis_id':panel['basis_id'],'position_key':key,
@@ -495,7 +534,7 @@ def weekly(root, asof):
                     mature.append({'code':p['code'],'return':marks[h-1][1]['price']/p['entry_price']-1,
                                    'source_sha256':marks[h-1][1]['source_sha256']})
             horizons[str(h)]={'effective_samples':len(mature),'observations':mature,'gap':'not_matured_or_position_exited_before_horizon' if len(mature)<len(positions+closed) else None}
-        pending=[{'signal_id':o['signal_id'],'code':o['code'],'side':o['side'],'reason':o['execution_reason']} for o in orders if o['execution_status'] not in TERMINAL]
+        pending=[{'signal_id':o['signal_id'],'code':o['code'],'side':o['side'],'reason':o['execution_reason'],'attempts':o.get('attempts',[]),'operator_paused':o.get('operator_paused',False)} for o in orders if o['execution_status'] not in TERMINAL]
         versions[version]={'policy':cfg,'BUY':sum(o['side']=='BUY' for o in new),'SELL':sum(o['side']=='SELL' for o in new),
                            'total_signals':len(orders),'cross_week_pending':pending,
                            'cancelled':sum(o['execution_status']=='cancelled' for o in orders),
@@ -509,7 +548,7 @@ def weekly(root, asof):
                            'zero_trade_explanation':'see hard_gaps / entry_conditions_not_met / execution pending; confidence never vetoes',
                            'gaps':['small_forward_sample_not_efficacy_proof','costs_are_scenarios','daily_low_close_path_not_intrabar_order'],
                            'automatic_parameter_change':False}
-    return {'asof':asof,'synthetic':s['synthetic'],'scope_epoch':s['scope_epoch'], 'versions':versions,
+    return {'asof':asof,'synthetic':s['synthetic'],'scope_epoch':s['scope_epoch'], 'execution_model':s.get('execution_model','strict-open-v1'),'versions':versions,
             'comparison':'按版本分账向前比较；旧MT12规则每日报并列观察，不虚构旧规则成交收益',
             'next_iteration':'人工提交reason/parent/version/frozen timing/effective_at；保留v1向前并行，禁止回填与自动调参',
             'longitudinal':weekly_index(root,asof=asof,current_epoch=s['scope_epoch'])}
@@ -538,8 +577,9 @@ def cancel(root, scope_path, sid, reason):
         prior=snapshots(root); s=copy.deepcopy(prior[-1][1]); order=s['ledger'][sid]
         if load(scope_path)['epoch']!=s['scope_epoch']:
             raise ValueError('scope_changed')
-        if order['execution_status'] in TERMINAL:
+        if order['execution_status'] in ('filled','cancelled'):
             return {'idempotent':True,'status':order['execution_status']}
+        order['operator_paused']=True
         s['asof']=max(now(),s['asof'],key=timing.instant);s['transitions']=[]
         transition(s,order,'cancelled',reason,s['asof'])
         return save(root,s,{'cancel':sid,'reason':reason},scope_path,timing.digest([sid,reason,'cancel'])[:24])
@@ -567,12 +607,18 @@ def main():
         p=sub.add_parser(name);p.add_argument('--scope',default=DEFAULT);p.add_argument('--policy',default=str(POLICY))
         if name in ('run','observe'):
             p.add_argument('--root',required=True);p.add_argument('--execution-bundle')
+            p.add_argument('--execution-model',choices=['strict-open-v1','observed-quote-v1'],default='strict-open-v1')
         if name=='observe':p.add_argument('--bundle',required=True)
         else:p.add_argument('--out',required=True)
     p=sub.add_parser('weekly');p.add_argument('--root',required=True);p.add_argument('--asof',required=True);p.add_argument('--out',required=True)
     p=sub.add_parser('register-policy');p.add_argument('--root',required=True);p.add_argument('--policy',required=True)
     p=sub.add_parser('cancel');p.add_argument('--root',required=True);p.add_argument('--scope',default=DEFAULT);p.add_argument('--signal-id',required=True);p.add_argument('--reason',required=True)
     p=sub.add_parser('compose');p.add_argument('--section-one',required=True);p.add_argument('--section-two',required=True);p.add_argument('--company-section',required=True);p.add_argument('--manifest',required=True);p.add_argument('--out',required=True)
+    p=sub.add_parser('report-cycle');p.add_argument('--phase',choices=['morning','evening','weekly'],required=True);p.add_argument('--root',required=True);p.add_argument('--out',required=True);p.add_argument('--section-one');p.add_argument('--section-two');p.add_argument('--company-section');p.add_argument('--asof')
+    p=sub.add_parser('execution-worker');p.add_argument('--scope',default=DEFAULT);p.add_argument('--root',required=True);p.add_argument('--out',required=True);p.add_argument('--mode',choices=['probe','once','watch'],default='probe');p.add_argument('--max-seconds',type=int,default=240);p.add_argument('--poll-seconds',type=int,default=3);p.add_argument('--probe-model',choices=['strict-open-v1','observed-quote-v1'])
+    p=sub.add_parser('consume-execution');p.add_argument('--scope',default=DEFAULT);p.add_argument('--root',required=True);p.add_argument('--bundle',required=True)
+    for name in ('pause-signal','resume-signal'):
+        p=sub.add_parser(name);p.add_argument('--scope',default=DEFAULT);p.add_argument('--root',required=True);p.add_argument('--signal-id',required=True);p.add_argument('--reason',required=True)
     p=sub.add_parser('demo');p.add_argument('--out',required=True)
     a=ap.parse_args()
     if a.cmd in ('collect','run'):
@@ -580,15 +626,27 @@ def main():
         result=collect(a.scope,a.out)
         if a.cmd=='run':
             bp=merge_execution(result['bundle'],a.execution_bundle) if a.execution_bundle else result['bundle']
-            result=observe(bp,a.scope,a.root,a.policy)
+            result=observe(bp,a.scope,a.root,a.policy,a.execution_model)
     elif a.cmd=='observe':
         bp=merge_execution(a.bundle,a.execution_bundle) if a.execution_bundle else a.bundle
-        result=observe(bp,a.scope,a.root,a.policy)
+        result=observe(bp,a.scope,a.root,a.policy,a.execution_model)
     elif a.cmd=='weekly':
         from .action_report import publish_weekly
         result=publish_weekly(a.root,a.asof,a.out)
     elif a.cmd=='register-policy':result=register_policy(a.root,a.policy)
     elif a.cmd=='cancel':result=cancel(a.root,a.scope,a.signal_id,a.reason)
+    elif a.cmd=='report-cycle':
+        from .action_integration import cycle
+        result=cycle(a.phase,a.root,a.out,a.section_one,a.section_two,a.company_section,a.asof)
+    elif a.cmd=='execution-worker':
+        from .action_worker import run_worker
+        result=run_worker(a.scope,a.root,a.out,a.mode,a.max_seconds,a.poll_seconds,a.probe_model)
+    elif a.cmd=='consume-execution':
+        from .action_worker import consume
+        result=consume(a.bundle,a.scope,a.root)
+    elif a.cmd in ('pause-signal','resume-signal'):
+        from .action_worker import pause
+        result=pause(a.root,a.scope,a.signal_id,a.reason,a.cmd=='resume-signal')
     elif a.cmd=='compose':
         from .action_report import compose
         result=compose(a.section_one,a.section_two,a.company_section,a.manifest,a.out)
