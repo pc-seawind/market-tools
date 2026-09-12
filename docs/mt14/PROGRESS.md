@@ -36,3 +36,10 @@
 保护清单包含旧仓库、原历史、投资域和本机调度配置。唯一获准旧代码改动为 `mt1/candidates.py` 参数化（默认输出不变）。另观察到生产 longitudinal/latest.json 被同时运行的 thesis-weekly-bootstrap 在 05:31:09 更新；已保留对比及对应 manifest，未擅自恢复该正常更新。原历史材料未丢失/覆盖。
 
 VPS 未执行任何写操作；后补的两次只读调度 hash 快照覆盖 43 项，内容相同。该快照不是开发开始时的远端基线，报告不混淆测量窗口。
+
+## R2 独立验收修复（进行中）
+
+- P1 发布断点：manifest 仅是归档检查点，新增 release-stages/<run>/<category>.json 与 complete.json；原轮同命令补齐发布，完成前 status/verify 保持 incomplete。异常失败回执不删除。
+- P1 只读核验：root 身份、候选白名单/类别、active/intent/committed、证据重算、前序链、发布事件及逐类别终态一致性；verify 不调用 recover。synthetic verify 也拆为无锁、无初始化的只读路径。
+- 新测试只替换采集边界，使用明确标注的缩小真实输入回放；实际 run/两引擎/validate/publish/verify 不 mock。回放不是新增真实样本。激活 prepare/switch 另由 SYNTHETIC_ONLY 实际指针测试覆盖。
+- 原轮材料保留；本次真实采集与测试回执写 reports/mt14-r2。远端开工前基线无法回补，继续披露。

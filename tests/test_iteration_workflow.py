@@ -60,6 +60,6 @@ def test_failure_after_manifest_is_not_reported_as_idempotent_success(tmp_path,m
     calls=[]
     def fail(root,path,*args):calls.append(path);raise OSError('provider_failed')
     monkeypatch.setattr(loop,'collect_inputs',fail)
-    with pytest.raises(OSError):loop.run(root,sweep=None,scope=scope,request_id='test')
-    assert calls[0]!=d and (d/'recovery.json').exists()
+    with pytest.raises((ValueError,KeyError)):loop.run(root,sweep=None,scope=scope,request_id='test')
+    assert not calls and not (d/'recovery.json').exists()
     assert loop.status(root)['runs'][0]['engineering_status']=='incomplete'

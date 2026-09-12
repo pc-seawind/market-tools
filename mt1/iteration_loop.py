@@ -338,13 +338,17 @@ def status(root):
     root=Path(root).resolve();identity=read(child(root,'.mt14.json'))
     runs=[]
     for d in sorted(child(root,'runs').glob('*')):
-        if (d/'failure.json').exists():
+        if (d/'failure.json').exists() and not (root/'release-stages'/d.name/'complete.json').exists():
             failure=read(d/'failure.json')
             if (d/'recovery.json').exists():
                 target=Path(read(d/'recovery.json')['superseded_by'])
                 failure={**failure,'engineering_status':'recovered_attempt' if (target/'manifest.json').exists() else 'incomplete','recovery':read(d/'recovery.json')}
             runs.append(failure)
-        elif (d/'manifest.json').exists():runs.append(read(d/'manifest.json')['summary'])
+        elif (d/'manifest.json').exists():
+            summary=read(d/'manifest.json')['summary']
+            if not (root/'release-stages'/d.name/'complete.json').exists():
+                summary={**summary,'engineering_status':'incomplete','release_status':'pending'}
+            runs.append(summary)
         else:runs.append({'run_id':d.name,'engineering_status':'in_progress'})
     return {'identity':identity,'scheduled':False,'runs':runs,
             'active':{p.parent.name:read(p) for p in child(root,'releases').glob('*/active.json')}}
@@ -352,11 +356,13 @@ def status(root):
 
 def verify(root):
     root=Path(root).resolve();verified=[]
+    from .iteration_release import verify_releases
+    release_audit=verify_releases(root)
     for p in sorted(child(root,'runs').glob('*/manifest.json'), key=lambda p:read(p.parent/'inputs.json')['result']['asof']):
         verified.append({'run':p.parent.name,'hash':file_hash(p),'summary':verify_run(root,p.parent)['summary']})
     for p in child(root,'events').glob('*.json'):
         r=read(p)
-        if digest(r['value'])!=r['sha256']:raise ValueError('event_tampered')
+        if digest(r['value'])!=r['sha256'] or p.stem!=digest(r['key']):raise ValueError('event_tampered')
     # Independently recalculate archived decisions from the corresponding prefix.
     from .iteration_validate import validate
     frames=[]
@@ -366,8 +372,47 @@ def verify(root):
             cat=expected['category'];old=expected['baseline']
             actual=validate(frames,cat,old,expected['candidate'],kind=expected['kind'],asof=expected['asof'])
             if actual!=expected:raise ValueError('evaluation_recompute_mismatch')
-    return {'verified_runs':verified,'scheduled':False,'engineering_verification_only':True,
+    return {'verified_runs':verified,'release_audit':release_audit,'closed_loop_executed':bool(verified),'scheduled':False,'engineering_verification_only':True,
             'incomplete':[r for r in status(root)['runs'] if r.get('engineering_status') not in ('completed','recovered_attempt')]}
+
+
+def finish_release(root, d, fail_at=None):
+    """Manifest is an archive checkpoint, not the transaction's terminal state."""
+    from .iteration_release import publish
+    m=verify_run(root,d)
+    inputs=read(d/'inputs.json')['result']
+    frames=[f for f in load_frames(root,verify=True) if instant_time(f['observed_at'])<=instant_time(inputs['asof'])]
+    base=child(root,'release-stages/'+d.name)
+    def crash(point):
+        if fail_at==point:raise SystemExit('injected_'+point)
+    crash('after_manifest')
+    ep=child(root,'evaluations/'+digest(frames)+'.json')
+    crash('before_release_evidence')
+    if ep.exists():
+        if read(ep)!=frames:raise ValueError('release_evidence_changed')
+    else:atomic_json(ep,frames)
+    crash('after_release_evidence')
+    results=[]
+    for c in read(d/'selection.json')['result']['candidates']:
+        cat=c['category'];receipt=base/(cat+'.json')
+        expected=next(e for e in read(d/'evaluation.json')['result'] if e['candidate']==c['id'])
+        value={'manifest_hash':file_hash(d/'manifest.json'),'evidence_hash':file_hash(ep),
+               'evaluation':expected,'skipped':bool(m['summary']['gaps'])}
+        if receipt.exists():
+            if read(receipt)!=value:raise ValueError('release_stage_changed')
+        else:
+            if not value['skipped']:
+                publish(root,ep,cat,expected['baseline'],c['id'],inputs['asof'],
+                        fail_at=fail_at if fail_at in ('after_prepare','after_switch') else None)
+            atomic_json(receipt,value)
+        results.append(value)
+        crash('after_release_'+cat)
+    terminal={'manifest_hash':file_hash(d/'manifest.json'),'categories_hash':digest(results)}
+    done=base/'complete.json'
+    if done.exists():
+        if read(done)!=terminal:raise ValueError('release_completion_changed')
+    else:atomic_json(done,terminal)
+    return m['summary']
 
 
 def run(root, *, sweep, scope, request_id=None, fail_at=None):
@@ -392,15 +437,15 @@ def run(root, *, sweep, scope, request_id=None, fail_at=None):
         if (d/'inputs.json').exists() and not (d/'technical-engines.json').exists():
             source_time=read(d/'inputs.json')['result']['technical']['bundle']['asof']
             stale=(instant_time(now())-instant_time(source_time)).total_seconds()>1800
-        if (d/'failure.json').exists() or (not (d/'manifest.json').exists() and stale):
+        if not (d/'manifest.json').exists() and ((d/'failure.json').exists() or stale):
             prior=d
             d=child(root,'runs/'+rid.split('-retry-')[0]+'-retry-'+now().replace(':','').replace('.',''))
             rid=d.name
             atomic_json(prior/'recovery.json',{'superseded_by':str(d),'reason':'fresh_collection_retry','at':now()})
         atomic_json(request_path,{'scope_hash':file_hash(scope),'run_path':str(d.relative_to(root))})
         if (d/'manifest.json').exists():
-            verify_run(root,d)
-            return {**read(d/'manifest.json')['summary'],'idempotent':True}
+            summary=finish_release(root,d,fail_at)
+            return {**summary,'idempotent':True}
         d.mkdir(parents=True,exist_ok=True)
         try:
             inputs=stage(root,d,'inputs',lambda:collect_inputs(root,d,sweep,scope))
@@ -432,12 +477,7 @@ def run(root, *, sweep, scope, request_id=None, fail_at=None):
             atomic_json(d/'manifest.json',manifest)
             verify_run(root,d)
             event(root,'run:'+rid,{'manifest_hash':file_hash(d/'manifest.json'),'engineering_status':summary['engineering_status']})
-            # Release only verified completed evidence; no candidate pass field.
-            ep=child(root,'evaluations/'+digest(frames)+'.json');atomic_json(ep,frames)
-            if not gaps:
-                for c in select['candidates']:
-                    publish(root,ep,c['category'],c.get('baseline_version','qv-shadow-1' if c['category']=='fundamental' else 'signal-policy-v1'),c['id'],inputs['asof'])
-            return summary
+            return finish_release(root,d,fail_at)
         except Exception as exc:
             receipt={'run_id':rid,'engineering_status':'incomplete','error':type(exc).__name__+':'+str(exc),
                      'scheduled':False,'resume_command':'same run command','recorded_at':now()}
@@ -453,6 +493,33 @@ def instant_time(value):
     return instant(value)
 
 
+def verify_demo(root):
+    root=Path(root).resolve()
+    from .iteration_release import verify_releases
+    from .iteration_validate import validate
+    verify_releases(root)
+    expected=read(root/'demo-summary.json')
+    for p,h in expected['artifacts'].items():
+        if file_hash(p)!=h:raise ValueError('demo_artifact_tampered')
+    from .candidates import screen
+    # Hash checks are necessary, not sufficient: reconstruct generated engine outputs.
+    for source in (root/'raw').glob('*.json'):
+        record=read(source)
+        if screen(record['snapshot'])!=record['baseline'] or screen(record['snapshot'],{'roe_min':12})!=record['candidate']:
+            raise ValueError('synthetic_engine_recompute_mismatch')
+    for filename,field in [('forward.json','activation'),('reject-forward.json','rejection')]:
+        saved=expected[field];frames=read(root/filename)
+        recomputed=validate(frames,'fundamental','qv-shadow-1',saved['candidate'],kind='SYNTHETIC_ONLY',asof=saved['asof'])
+        if any(saved.get(k)!=v for k,v in recomputed.items()):raise ValueError('synthetic_evaluation_recompute_mismatch')
+        for f in frames:
+            source=read(root/'raw'/(f['rows'][0]['date']+'.json'))
+            price=source['declining_price' if field=='activation' else 'rising_price']
+            old={c['code'] for c in source['baseline']['candidates']};new={c['code'] for c in source['candidate']['candidates']}
+            if any(r['price']!=price or r['baseline_selected']!=(r['code'] in old) or r['candidate_selected']!=(r['code'] in new) for r in f['rows']):
+                raise ValueError('synthetic_frame_source_mismatch')
+    return {**expected,'idempotent':True}
+
+
 def demo(root):
     """Actual synthetic engine runs + pointer mutations; never counted as real."""
     from datetime import date, timedelta
@@ -464,27 +531,7 @@ def demo(root):
     from .iteration_validate import validate
     root=init(root,'SYNTHETIC_ONLY')
     with locked(root):
-        if (root/'demo-summary.json').exists():
-            expected=read(root/'demo-summary.json')
-            for p,h in expected['artifacts'].items():
-                if file_hash(p)!=h:raise ValueError('demo_artifact_tampered')
-            from .candidates import screen
-            # Hash checks are necessary, not sufficient: reconstruct generated engine outputs.
-            for source in (root/'raw').glob('*.json'):
-                record=read(source)
-                if screen(record['snapshot'])!=record['baseline'] or screen(record['snapshot'],{'roe_min':12})!=record['candidate']:
-                    raise ValueError('synthetic_engine_recompute_mismatch')
-            for filename,field in [('forward.json','activation'),('reject-forward.json','rejection')]:
-                saved=expected[field];frames=read(root/filename)
-                recomputed=validate(frames,'fundamental','qv-shadow-1',saved['candidate'],kind='SYNTHETIC_ONLY',asof=saved['asof'])
-                if any(saved.get(k)!=v for k,v in recomputed.items()):raise ValueError('synthetic_evaluation_recompute_mismatch')
-                for f in frames:
-                    source=read(root/'raw'/(f['rows'][0]['date']+'.json'))
-                    price=source['declining_price' if field=='activation' else 'rising_price']
-                    old={c['code'] for c in source['baseline']['candidates']};new={c['code'] for c in source['candidate']['candidates']}
-                    if any(r['price']!=price or r['baseline_selected']!=(r['code'] in old) or r['candidate_selected']!=(r['code'] in new) for r in f['rows']):
-                        raise ValueError('synthetic_frame_source_mismatch')
-            return {**expected,'idempotent':True}
+        if (root/'demo-summary.json').exists():return verify_demo(root)
         raw=child(root,'raw');raw.mkdir(exist_ok=True)
         frames=[];reject_frames=[];start=date(2026,9,14);dates=[]
         while len(dates)<62:
@@ -563,7 +610,7 @@ def main(argv=None):
     try:
         if a.command=='run':r=run(a.root,sweep=a.sweep,scope=a.scope,request_id=a.request_id)
         elif a.command=='demo':r=demo(a.root)
-        elif a.command=='verify' and (Path(a.root)/'demo-summary.json').exists():r=demo(a.root)
+        elif a.command=='verify' and (Path(a.root)/'demo-summary.json').exists():r=verify_demo(a.root)
         else:r=globals()[a.command](a.root)
         print(json.dumps(r,ensure_ascii=False,indent=2))
         return 2 if r.get('engineering_status')=='incomplete' or r.get('incomplete') else 0
