@@ -49,3 +49,17 @@ def test_synthetic_verify_not_only_self_asserted_hashes(tmp_path):
     summary['artifacts'][str(source)]=file_hash(source)
     (r/'demo-summary.json').write_text(json.dumps(summary))
     with pytest.raises(ValueError,match='synthetic_engine_recompute'):demo(r)
+
+def test_failure_after_manifest_is_not_reported_as_idempotent_success(tmp_path,monkeypatch):
+    from mt1 import iteration_loop as loop
+    from mt1.timing import digest
+    scope=tmp_path/'scope';scope.write_text('scope');root=loop.init(tmp_path/'r','REAL_CURRENT')
+    d=root/'runs'/('test-'+digest('test')[:16]);d.mkdir(parents=True)
+    loop.atomic_json(d/'manifest.json',{'summary':{'engineering_status':'completed'}})
+    loop.atomic_json(d/'failure.json',{'engineering_status':'incomplete','error':'release_archive_failed'})
+    calls=[]
+    def fail(root,path,*args):calls.append(path);raise OSError('provider_failed')
+    monkeypatch.setattr(loop,'collect_inputs',fail)
+    with pytest.raises(OSError):loop.run(root,sweep=None,scope=scope,request_id='test')
+    assert calls[0]!=d and (d/'recovery.json').exists()
+    assert loop.status(root)['runs'][0]['engineering_status']=='incomplete'

@@ -338,13 +338,13 @@ def status(root):
     root=Path(root).resolve();identity=read(child(root,'.mt14.json'))
     runs=[]
     for d in sorted(child(root,'runs').glob('*')):
-        if (d/'manifest.json').exists():runs.append(read(d/'manifest.json')['summary'])
-        elif (d/'failure.json').exists():
+        if (d/'failure.json').exists():
             failure=read(d/'failure.json')
             if (d/'recovery.json').exists():
                 target=Path(read(d/'recovery.json')['superseded_by'])
                 failure={**failure,'engineering_status':'recovered_attempt' if (target/'manifest.json').exists() else 'incomplete','recovery':read(d/'recovery.json')}
             runs.append(failure)
+        elif (d/'manifest.json').exists():runs.append(read(d/'manifest.json')['summary'])
         else:runs.append({'run_id':d.name,'engineering_status':'in_progress'})
     return {'identity':identity,'scheduled':False,'runs':runs,
             'active':{p.parent.name:read(p) for p in child(root,'releases').glob('*/active.json')}}
@@ -392,7 +392,7 @@ def run(root, *, sweep, scope, request_id=None, fail_at=None):
         if (d/'inputs.json').exists() and not (d/'technical-engines.json').exists():
             source_time=read(d/'inputs.json')['result']['technical']['bundle']['asof']
             stale=(instant_time(now())-instant_time(source_time)).total_seconds()>1800
-        if not (d/'manifest.json').exists() and ((d/'failure.json').exists() or stale):
+        if (d/'failure.json').exists() or (not (d/'manifest.json').exists() and stale):
             prior=d
             d=child(root,'runs/'+rid.split('-retry-')[0]+'-retry-'+now().replace(':','').replace('.',''))
             rid=d.name
