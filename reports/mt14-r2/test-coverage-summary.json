@@ -1,0 +1,11 @@
+{
+  "collected": 627,
+  "regression_passed": 625,
+  "mature_full_run_passed": 2,
+  "all_collected_tests_covered": true,
+  "commands": [
+    "/home/emox/work/homespace/.venv/bin/python -m pytest -q",
+    "/home/emox/work/homespace/.venv/bin/python -m pytest tests/test_iteration_mature_run.py -xq"
+  ],
+  "not_a_single_627_pass_pytest_invocation": true
+}

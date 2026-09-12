@@ -1,0 +1,2933 @@
+{
+  "verified_runs": [
+    {
+      "run": "synthetic--64b549e3cf56cdca",
+      "hash": "40fb94a09eb8bda7f6ac273e5b26432247a0093a968801d34821a459297462fe",
+      "summary": {
+        "run_id": "synthetic--64b549e3cf56cdca",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-15T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--46051caabdff2937",
+      "hash": "598651a2f955fbb072fed48c525bbe23d5f5d1f4dd7a1720ec8a01e652c182dc",
+      "summary": {
+        "run_id": "synthetic--46051caabdff2937",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-16T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--5c13218a575faad0",
+      "hash": "103fe2bbbf6bd0d873a05256292888fca43006aea4ef200f6d8e32f028f47e44",
+      "summary": {
+        "run_id": "synthetic--5c13218a575faad0",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-17T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--0b21f0433e9b9958",
+      "hash": "afad3a1a777eb9b3f5b44f268b6b9882c13e2b1d2e2e2d7f9b9233e6e19d9f48",
+      "summary": {
+        "run_id": "synthetic--0b21f0433e9b9958",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-18T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--6c78b26d7d20f9c6",
+      "hash": "7910745d0ec7a708a7e61bb3ecf3fa0a6cd9d91075f03fa1322fb4e0874d48d2",
+      "summary": {
+        "run_id": "synthetic--6c78b26d7d20f9c6",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-19T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--ddae1ed22cbb424e",
+      "hash": "335de9af45d15efe8882c2827ac30ff0fca88ca074236dfc17255c98da2eaa6d",
+      "summary": {
+        "run_id": "synthetic--ddae1ed22cbb424e",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-22T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--f6dab263d40222ba",
+      "hash": "046a11649988464e1b556470351b7f93a1d17d723b1891085f78941791f5475f",
+      "summary": {
+        "run_id": "synthetic--f6dab263d40222ba",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-23T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--b7905d79aadae481",
+      "hash": "3211a8b7d6803934447f9b030f4993f992991e9080d77f0de27955cb076fc3f4",
+      "summary": {
+        "run_id": "synthetic--b7905d79aadae481",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-24T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--1ecdbec074c2239f",
+      "hash": "840df2179d7322d3796ce657bcde3032a8ebe47a55427fae281ada37dc924c26",
+      "summary": {
+        "run_id": "synthetic--1ecdbec074c2239f",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-25T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--ad3a488b37386da4",
+      "hash": "a9ead6666219948e96550759a8ce51a800f33000c9cf9842bc245ba2c27d357f",
+      "summary": {
+        "run_id": "synthetic--ad3a488b37386da4",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-26T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--7c9c41626b531396",
+      "hash": "9f754c5fbd22a6e69adbb4806a5f72fd5d3118ffbd044a5a951ee9339580fc67",
+      "summary": {
+        "run_id": "synthetic--7c9c41626b531396",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-29T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--82cbc777a1bfa7c5",
+      "hash": "1701f8f9ceed81df3b1c9678e8a826efbe64de56a23aa250745e191a5ce8ebe9",
+      "summary": {
+        "run_id": "synthetic--82cbc777a1bfa7c5",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-09-30T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--a9ed378cecf397b9",
+      "hash": "b2887e998275c276e83a5f097e9a8c65d26b6c808d30d98b8e892fde3e60be9f",
+      "summary": {
+        "run_id": "synthetic--a9ed378cecf397b9",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-01T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--cf8a3313892ba5b2",
+      "hash": "a631737d615aa2b2a246a9b9be43266c13e70dfad08185abc7393b3ed957a676",
+      "summary": {
+        "run_id": "synthetic--cf8a3313892ba5b2",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-02T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--db345ef581e2d9e9",
+      "hash": "56013e2423d3624539d903a534d107dac67d4c81a4f9739468208088337799d6",
+      "summary": {
+        "run_id": "synthetic--db345ef581e2d9e9",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-03T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--4ee793827120bc86",
+      "hash": "27648d5b83dd0780b32dd28a96a9ca4a0ecdcf483c821f181f28b9e99c6eb247",
+      "summary": {
+        "run_id": "synthetic--4ee793827120bc86",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-06T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--e68c5abf432944d2",
+      "hash": "ef0721bd77fb336a2fcc8153660ff5c75efab1362b8fb0fb569ce913b8757f3d",
+      "summary": {
+        "run_id": "synthetic--e68c5abf432944d2",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-07T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--f3e0a67a10fd2b07",
+      "hash": "6d66621ff87c43e987d62e7095a463073fa39be8550b53bbfc8f74417056d2e2",
+      "summary": {
+        "run_id": "synthetic--f3e0a67a10fd2b07",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-08T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--cada045e280b0c0d",
+      "hash": "79e6722c4a546f4064d4da9fb46424fe90ec85dc9ea658f063057c5d8366f56a",
+      "summary": {
+        "run_id": "synthetic--cada045e280b0c0d",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-09T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--5becfa2656bc2318",
+      "hash": "24043614be12620e813160a1782b4bf5e9b0aec06121f35b7c4e03c057d92627",
+      "summary": {
+        "run_id": "synthetic--5becfa2656bc2318",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-10T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--46df2253478b1b1c",
+      "hash": "e811d33b4c963f504f37a589253003fe3813a2768d0ef4517b1ae3e3ed09e77f",
+      "summary": {
+        "run_id": "synthetic--46df2253478b1b1c",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-13T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--fb5af6b8634ec6c6",
+      "hash": "a616a13d184458d7d02052f04e447e95e0bbf7bd4417c4cb60155649864287e7",
+      "summary": {
+        "run_id": "synthetic--fb5af6b8634ec6c6",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-14T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--f5fc992b10b2895a",
+      "hash": "241f96c6082c5cec0991632bf1f6170c9af44fefcd8d780551d4b54827c3a292",
+      "summary": {
+        "run_id": "synthetic--f5fc992b10b2895a",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-15T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--a55665e6b4eb64a3",
+      "hash": "dddb4ff0a93ca22ff1f3bb1ca46d580258368bcd17881c16727784e4d46d71e8",
+      "summary": {
+        "run_id": "synthetic--a55665e6b4eb64a3",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-16T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--c83ccde297a1c33b",
+      "hash": "f383be303c32ba97080490988f5f54097b86a04ff4c02c57afaf11b00a10b91b",
+      "summary": {
+        "run_id": "synthetic--c83ccde297a1c33b",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-17T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--9d5e1322b2f61ba4",
+      "hash": "0dfc83cc467c35522009f9605cb37c64969810e6aeb2597d47a388f956431972",
+      "summary": {
+        "run_id": "synthetic--9d5e1322b2f61ba4",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-20T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--583878f62a96e218",
+      "hash": "4ba32715004ee2656c4477e78699a5d732f17eccc6e06631e7cb2598fcae8c7e",
+      "summary": {
+        "run_id": "synthetic--583878f62a96e218",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-21T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--cc4c12474d2c0f2c",
+      "hash": "e4fc93cab4e70a6428150273589b62a4edd2bec938a201908511d0ddc3c5816f",
+      "summary": {
+        "run_id": "synthetic--cc4c12474d2c0f2c",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-22T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--4d2d0873476f468b",
+      "hash": "d264756488c5abf34143159569ab481af1a30077b341940929fb709133048d84",
+      "summary": {
+        "run_id": "synthetic--4d2d0873476f468b",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-23T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--d4cde300b64bbd0c",
+      "hash": "21e5be7e0ff1d5478ac7f3b2703f9888b0c254c63dfb481d1b52e6778423ef68",
+      "summary": {
+        "run_id": "synthetic--d4cde300b64bbd0c",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-24T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--dc94abf7dcd68d90",
+      "hash": "293b2fd78f2bd24950b33508ac1f06a10abbd02e332067b503181ee0ab29f1d9",
+      "summary": {
+        "run_id": "synthetic--dc94abf7dcd68d90",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-27T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--63ad4c883d758dc6",
+      "hash": "47bb6b0cb28d6587967b6d8d837f5a09e301831737efeba50348f9a3bf40ca2c",
+      "summary": {
+        "run_id": "synthetic--63ad4c883d758dc6",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-28T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--ac4c39424fe23899",
+      "hash": "c9961d13791e553893040adcc695d06cb49cb491e21c786d387ba1777b68db68",
+      "summary": {
+        "run_id": "synthetic--ac4c39424fe23899",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-29T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--d9ae281763daf8ed",
+      "hash": "dea4852265c3f75b27e48318ac2deedb9187b5b2ab79a6d45277e9d03692e491",
+      "summary": {
+        "run_id": "synthetic--d9ae281763daf8ed",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-30T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--333e9222a978051b",
+      "hash": "fe23f9e8a3e5e4e3e2fe8f81cb60f93baa4e1910a5423fecbd7c8b3ded75ae61",
+      "summary": {
+        "run_id": "synthetic--333e9222a978051b",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-10-31T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--faa20e15a16f56c0",
+      "hash": "6c8a3845c58e49cdb0582927e6881bddcbab0f995e2592ee25ca9b1d205c714d",
+      "summary": {
+        "run_id": "synthetic--faa20e15a16f56c0",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-03T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--eb12cc027c2c4d02",
+      "hash": "7439ed5e271f53c9098315f6555b523457d69fd960c9cb5bf586c4894cceebea",
+      "summary": {
+        "run_id": "synthetic--eb12cc027c2c4d02",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-04T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--997c34ef5707b6de",
+      "hash": "15db4157b75788fbfbd5ba25492fa48d41e283a28b9a362f945c3ee3a597f740",
+      "summary": {
+        "run_id": "synthetic--997c34ef5707b6de",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-05T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--a9852c76aca6b607",
+      "hash": "4f9f97da28b6eb5b929a4e912b89675ef5d51d1c0825ff4d6e7534347993aca0",
+      "summary": {
+        "run_id": "synthetic--a9852c76aca6b607",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-06T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--11d715042fc9c0c2",
+      "hash": "70eecdc78f0dc292c427bad4e0584faa42f616842691a23604a4abfa39bcd4a1",
+      "summary": {
+        "run_id": "synthetic--11d715042fc9c0c2",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-07T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--4af49ca02f02cfea",
+      "hash": "56351bd2a0c46a35ca024bcabc33c07f7068950ac2e14c08b47f932b2a49519a",
+      "summary": {
+        "run_id": "synthetic--4af49ca02f02cfea",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-10T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--fe0b5989c2b54c10",
+      "hash": "eba58c6640918be4760fe96f1cc8d9be32156c6df2c7a887adfd8c0903d83b2e",
+      "summary": {
+        "run_id": "synthetic--fe0b5989c2b54c10",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-11T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--41e8d27f2628443a",
+      "hash": "71f7547cd11cc69476f0344188fe4dbb81d1a670cf146a57885e158006970f20",
+      "summary": {
+        "run_id": "synthetic--41e8d27f2628443a",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-12T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--2d8420be74d5b549",
+      "hash": "17a4c5f3efef456babd07a40b2c580cf21c2124c9ad689664ecf918e7186046a",
+      "summary": {
+        "run_id": "synthetic--2d8420be74d5b549",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-13T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--2349057928649b5f",
+      "hash": "06704a512ec7a939d5045535835f3f806b7d3fb003d9b11c7e8b04d904485ffd",
+      "summary": {
+        "run_id": "synthetic--2349057928649b5f",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-14T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--a3aeb91563d86544",
+      "hash": "3109d16710bb0c7151db2001e551ae8e4de50d4ec29c024d7856294837f361a1",
+      "summary": {
+        "run_id": "synthetic--a3aeb91563d86544",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-17T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--a26d4b17f56a13c2",
+      "hash": "d40837b2b1527e42b91464bb172ced5d8ad9d798e6d3896bf4ef2e560a10027d",
+      "summary": {
+        "run_id": "synthetic--a26d4b17f56a13c2",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-18T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--cdd379f3e0f5f4e9",
+      "hash": "d602b90e0231c1989c110a5eb44c655e006f23fcf3091d8bd51975406f9854bd",
+      "summary": {
+        "run_id": "synthetic--cdd379f3e0f5f4e9",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-19T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--f61748e6670bd912",
+      "hash": "cbd1aab9de4cc3f78e776a239d7dfa2344066ceafbece5fea8cb026b3efb27b1",
+      "summary": {
+        "run_id": "synthetic--f61748e6670bd912",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-20T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--7264b6debb295a60",
+      "hash": "2261cc72282bcc760be9df63cd885254b4ec1440e0cc0620cf613cc178db0acb",
+      "summary": {
+        "run_id": "synthetic--7264b6debb295a60",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-21T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--19f333dd30a1c6de",
+      "hash": "dd2e299d75006d50249533df10c5f5650876b77e26421e9334c90dd93a37835c",
+      "summary": {
+        "run_id": "synthetic--19f333dd30a1c6de",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-24T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--900f75e679b937f4",
+      "hash": "92b7f0791284aacf20214e14e71ab02cf37d519d1ece8e89343985f90a63ee2d",
+      "summary": {
+        "run_id": "synthetic--900f75e679b937f4",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-25T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--72efa3188810bf13",
+      "hash": "83495058336b58a0fd50bc7696fe16f9954cb98f3523658146c35078600e2eb2",
+      "summary": {
+        "run_id": "synthetic--72efa3188810bf13",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-26T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--b8bdf3edfdb12bce",
+      "hash": "7150d91b95572e9ad6c34861a15cd95df5dcd1cef4fa81e608a35c63cd18f3ee",
+      "summary": {
+        "run_id": "synthetic--b8bdf3edfdb12bce",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-27T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--7ccfbc4e086a2864",
+      "hash": "8720ee5d223c2625b11301d9446c95c9b20d9229cbba2c64c327871bdfebbdac",
+      "summary": {
+        "run_id": "synthetic--7ccfbc4e086a2864",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-11-28T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--f9372d06886ede94",
+      "hash": "143cb65c05532403b9f48e9473a0dea94643aa763bd43cd8b902897b58122224",
+      "summary": {
+        "run_id": "synthetic--f9372d06886ede94",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-12-01T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--42881d8b2561b1fd",
+      "hash": "b398d95d910ab4a45aebae6f1cadc7af1f381f1a21b7a358fc3fcc66522b04a7",
+      "summary": {
+        "run_id": "synthetic--42881d8b2561b1fd",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-12-02T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--8865c33ddbaac6af",
+      "hash": "f54d5458aded9e7d7e8f4f33e9261573ff89a076501c5c853bae2f533acec600",
+      "summary": {
+        "run_id": "synthetic--8865c33ddbaac6af",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-12-03T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--3592afd8d0c58d4b",
+      "hash": "4875cb86005fd1049a4b73edafd696c13c6f9ec6421687d2483e6786ef715d35",
+      "summary": {
+        "run_id": "synthetic--3592afd8d0c58d4b",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-12-04T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--885f79cc9edc3d6f",
+      "hash": "0ac2c4233aebd13b44e5d4d8767ffd89f5c6bc2b5bf3c59ef28488bfe1c01563",
+      "summary": {
+        "run_id": "synthetic--885f79cc9edc3d6f",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-12-05T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--295a16dc72f0da6a",
+      "hash": "46a1b647306fe2ec8e4b8b8fe7358a1c1e568a8f255658b8b6910a57154efba6",
+      "summary": {
+        "run_id": "synthetic--295a16dc72f0da6a",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-12-08T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    },
+    {
+      "run": "synthetic--2037465d72496a38",
+      "hash": "24c8753e0f005a3c6dcc8a22679e323e23959d2af62f4f428c8330bce4cb9b4e",
+      "summary": {
+        "run_id": "synthetic--2037465d72496a38",
+        "engineering_status": "completed",
+        "round_execution_status": "completed",
+        "implementation_status": "completed",
+        "strategy_decisions": [
+          {
+            "category": "fundamental",
+            "candidate": "fundamental-e2ceac307e7d",
+            "decision": "experimental_activate",
+            "reason": "matched_signal_forward_improvement_not_production_validation",
+            "independent_events": 20
+          },
+          {
+            "category": "technical",
+            "candidate": "technical-bf218f68ebfe",
+            "decision": "continue_shadow",
+            "reason": "insufficient_mature_forward_samples",
+            "independent_events": 0
+          }
+        ],
+        "candidate_count": 2,
+        "fundamental_selected_counts": {
+          "qv-shadow-1": 20,
+          "fundamental-e2ceac307e7d": 0
+        },
+        "fundamental_scope_count": 20,
+        "technical_scope_count": 1,
+        "technical_actions": {
+          "signal-policy-v1": {
+            "SYNTH": "WAIT"
+          },
+          "technical-bf218f68ebfe": {
+            "SYNTH": "WAIT"
+          }
+        },
+        "kind": "SYNTHETIC_ONLY",
+        "gaps": [],
+        "scheduled": false,
+        "next_check_at": "2026-12-09T18:00:00.000001+08:00",
+        "production_activated": false,
+        "no_efficacy_claim": true
+      }
+    }
+  ],
+  "release_audit": {
+    "identity": {
+      "schema": "mt14-v1",
+      "kind": "SYNTHETIC_ONLY",
+      "production": false
+    },
+    "active_categories": [
+      "fundamental"
+    ],
+    "read_only": true
+  },
+  "closed_loop_executed": true,
+  "scheduled": false,
+  "engineering_verification_only": true,
+  "incomplete": []
+}

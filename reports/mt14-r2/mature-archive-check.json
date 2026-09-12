@@ -1,0 +1,12 @@
+{
+  "path": "reports/mt14-r2/mature-full-run-fixtures.tar.gz",
+  "sha256": "bc6f516cf21ea3c8b5e882df6426e046032d8302cab827193a016a321ecd6b01",
+  "bytes": 26899762,
+  "verified_files": 17918,
+  "roundtrip_bytes_match": true,
+  "original_roots": [
+    "/tmp/pytest-of-emox/pytest-1450/test_full_mature_run_pointer_c0/SYNTHETIC_ONLY",
+    "/tmp/pytest-of-emox/pytest-1450/test_full_mature_run_pointer_c1/SYNTHETIC_ONLY"
+  ],
+  "note": "Members preserve tmp/... original paths; restore to original /tmp paths for CLI verification, or regenerate by running test_iteration_mature_run.py. Never count as real samples."
+}

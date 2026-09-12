@@ -1,0 +1,70 @@
+[
+  {
+    "root": "/tmp/pytest-of-emox/pytest-1450/test_full_mature_run_pointer_c0/SYNTHETIC_ONLY",
+    "kind": "SYNTHETIC_ONLY",
+    "runs": 62,
+    "active": {
+      "version": "fundamental-e2ceac307e7d",
+      "baseline_version": "qv-shadow-1",
+      "category": "fundamental",
+      "kind": "SYNTHETIC_ONLY",
+      "evidence_path": "/tmp/pytest-of-emox/pytest-1450/test_full_mature_run_pointer_c0/SYNTHETIC_ONLY/evaluations/18c590315b3f919081debc66d169fd8426f58bdbb4fd8d89d78a382b5ca5cd33.json",
+      "evidence_hash": "40a18ba40e4960ad6303c0a806360fba917c67c337ef24a6712fffef59556cfd",
+      "evaluation_hash": "c898a666556e7b575c55e016a508059e4f0405cabdbfa5dbb3e476151e8280cb",
+      "asof": "2026-12-08T18:00:00.000001+08:00",
+      "previous": {
+        "version": "qv-shadow-1",
+        "baseline": true
+      },
+      "production": false
+    },
+    "committed_count": 1,
+    "failure_receipts": [
+      {
+        "path": "/tmp/pytest-of-emox/pytest-1450/test_full_mature_run_pointer_c0/SYNTHETIC_ONLY/runs/synthetic--2037465d72496a38/failure.json",
+        "receipt": {
+          "run_id": "synthetic--2037465d72496a38",
+          "engineering_status": "incomplete",
+          "error": "RuntimeError:injected_after_prepare",
+          "scheduled": false,
+          "resume_command": "same run command",
+          "recorded_at": "2026-09-12T22:44:02.469232+00:00"
+        }
+      }
+    ]
+  },
+  {
+    "root": "/tmp/pytest-of-emox/pytest-1450/test_full_mature_run_pointer_c1/SYNTHETIC_ONLY",
+    "kind": "SYNTHETIC_ONLY",
+    "runs": 62,
+    "active": {
+      "version": "fundamental-e2ceac307e7d",
+      "baseline_version": "qv-shadow-1",
+      "category": "fundamental",
+      "kind": "SYNTHETIC_ONLY",
+      "evidence_path": "/tmp/pytest-of-emox/pytest-1450/test_full_mature_run_pointer_c1/SYNTHETIC_ONLY/evaluations/e0999a41359ee5e54933e7cf8fb14a7a78974e663659932ca43e45ef6eb57589.json",
+      "evidence_hash": "aaf99c08b6dc187dc6b8ed9e49f1462e313a4ce259824ad5a073ffddd48093b9",
+      "evaluation_hash": "fa8d268acadb40ab1806a02b44411a23a0d57d6e4d029e37e8877aedcccb38dc",
+      "asof": "2026-12-08T18:00:00.000001+08:00",
+      "previous": {
+        "version": "qv-shadow-1",
+        "baseline": true
+      },
+      "production": false
+    },
+    "committed_count": 1,
+    "failure_receipts": [
+      {
+        "path": "/tmp/pytest-of-emox/pytest-1450/test_full_mature_run_pointer_c1/SYNTHETIC_ONLY/runs/synthetic--2037465d72496a38/failure.json",
+        "receipt": {
+          "run_id": "synthetic--2037465d72496a38",
+          "engineering_status": "incomplete",
+          "error": "RuntimeError:injected_after_switch",
+          "scheduled": false,
+          "resume_command": "same run command",
+          "recorded_at": "2026-09-12T22:53:10.983081+00:00"
+        }
+      }
+    ]
+  }
+]

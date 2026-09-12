@@ -38,8 +38,8 @@ python3 -m mt1.iteration_loop verify --root reports/mt14-r2/synthetic
 
 ## 核验材料
 
-- `reports/mt14-r2/pytest-final.txt`：625 项全量回归日志。
-- `reports/mt14-r2/mature-tests-forward.txt`：新增完整成熟 run prepare/switch 测试日志（完成结果见最终结构化交付）。
+- `reports/mt14-r2/pytest-final.txt`：625 项全量回归日志（227.12s）。
+- `reports/mt14-r2/mature-tests-forward.txt`：新增完整成熟 run prepare/switch 测试：2 passed in 1189.02s。与前述回归覆盖当前收集的全部 627 项测试；不是声称单次 pytest 输出 627。
 - `reports/mt14-r2/reviewer-repro.txt`：原无 mock 伪造 production active 复现现明确拒绝。
 - `reports/mt14-r2/real-release-{cli,verify,repeat}.json`、`repeat-verification.json`。
 - `reports/mt14-r2/synthetic-{cli,verify}.json`。
@@ -47,3 +47,7 @@ python3 -m mt1.iteration_loop verify --root reports/mt14-r2/synthetic
 - `reports/mt14-r2/code-version.json` 与代码快照；旧版本证据仍按旧 commit 核验，不绕过版本检查。
 
 测试回放读取 R1 已交付 real-release 的归档输入。独立重跑测试需保留原目录，或从 R1 final-evidence.tar.gz 恢复；该夹具仅为测试回放，不是新增真实采集。
+
+完整合成故障夹具归档：`reports/mt14-r2/mature-full-run-fixtures.tar.gz`；两根各 62 个共同 run 观测轮、各一次晋级提交。`mature-full-run-summary.json` 保留实际指针及失败回执，`mature-archive-check.json` 记录原 /tmp 根和逐字节归档校验。可按原路径恢复后用统一 verify 核验，或运行 `pytest tests/test_iteration_mature_run.py` 从头重建；不得把合成未来日期当成真实观察。
+
+**工程 incomplete：[]。** 已批准范围限制与测量限制按上文单列；仅提交开发交付，不自行判定投资验收通过。

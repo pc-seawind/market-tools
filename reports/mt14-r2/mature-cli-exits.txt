@@ -1,0 +1,2 @@
+/tmp/pytest-of-emox/pytest-1450/test_full_mature_run_pointer_c0/SYNTHETIC_ONLY 0
+/tmp/pytest-of-emox/pytest-1450/test_full_mature_run_pointer_c1/SYNTHETIC_ONLY 0
