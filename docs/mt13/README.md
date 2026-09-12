@@ -57,6 +57,7 @@ V1 刚开始观察时不回放历史入场：先冻结 setup，再等后续已�
 - `signal_id = sha256(epoch, version, code, side, episode)`；发出即永久保留原理由/触发时点/价口径/hash。
 - `execution_status = pending / blocked / filled / cancelled / expired` 独立演进。
 - 同episode风险持续只保留一张SELL，连过期/取消也不自动重开；确需新实验用前向新版本，不改历史。
+- 未持仓风险在后续已完成收盘全部解除后，开始新的前向setup观察；不沿用旧触发回填BUY。真实持仓风险episode不因此消失。
 - 未成交订单有效期3个**已验证已完成交易日**。风险优先取消BUY，执行已发生的较早开盘不能被晚收盘倒销。
 - 所有初始真实持仓仅作观察；**不建立虚拟仓、不捏造真实成本/买入日期**。
   真实持仓SELL可明确发出，但无模拟仓时执行标记 `no_virtual_position_real_holding_not_seeded`。

@@ -379,6 +379,14 @@ def _observe(bundle_path, scope_path, root, policy_path):
             panel['market']=expected_market
             panel['adjustment']='identity_market_mismatch'
         r,c=decide(panel,asof,prev,held,cfg)
+        if (not held and prev and r['status']=='ok' and c['risk_active']
+                and not r['risk']['reasons'] and panel['expected_date']>prev['last_date']):
+            # The unheld episode ended without a short sale. A later completed
+            # non-breach starts a fresh setup, not a trigger backfill. Real held
+            # risk episodes remain latched until the user changes scope.
+            r,c=decide(panel,asof,None,False,cfg)
+            if r['status']=='ok':
+                r['state']['episode_reset_reason']='unheld_prior_risk_cleared_new_forward_setup'
         if r['status']=='ok':
             s['states'][key]=r['state']
         # A newly known close exit cannot retroactively cancel yesterday's legal

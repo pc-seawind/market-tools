@@ -355,3 +355,11 @@ def test_simulated_exit_does_not_close_real_holding_episode(tmp_path):
     assert not s['positions'] and len(s['closed'])==1
     assert s['cards'][0]['action']=='SELL'  # actual holding was never mutated
     assert sum(o['side']=='SELL' for o in s['ledger'].values())==1
+
+
+def test_unheld_cancelled_risk_can_start_later_new_episode(tmp_path):
+    h=Run(tmp_path);p=fixture();h.run(p);p=append(p,108,200);h.run(p)
+    p=append(p,80);h.run(p);p=append(p,108);s=h.run(p)
+    assert not s['cards'][0]['risk_active'] and s['cards'][0]['action']=='WAIT'
+    assert s['states']['signal-policy-v1|SYNTH']['episode_reset_reason']=='unheld_prior_risk_cleared_new_forward_setup'
+    assert next(iter(s['ledger'].values()))['execution_status']=='cancelled'
