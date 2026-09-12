@@ -1,0 +1,102 @@
+{
+  "version": "signal-policy-v1",
+  "effective_at": "2026-09-12T00:00:00+08:00",
+  "approval": "experimental_signal_use_not_validated",
+  "reason": "用户批准按冻结MT12规则明确发信号，置信度仅注释",
+  "timing": {
+    "method": "mt12-timing-shadow-1",
+    "status": "shadow",
+    "parameters_status": "exploratory_not_optimized",
+    "trial": 1,
+    "grid": [],
+    "selection": "one prespecified engineering baseline; no performance-based parameter choice or automatic promotion",
+    "warmup": 120,
+    "structure_window": 20,
+    "compression_range_max": 0.12,
+    "compression_recent_to_prior": 0.8,
+    "setup_ttl_sessions": 10,
+    "breakout_volume_min": 1.2,
+    "failure_closes": 2,
+    "failure_window_sessions": 10,
+    "pullback_volume_max": 1.1,
+    "pullback_ma20_band": 0.02,
+    "atr_window": 20,
+    "atr_smoothing": "TR_simple_mean_matches_mt11_not_Wilder",
+    "atr_multiple": 3.0,
+    "extension_atr_diagnostic": 2.5,
+    "horizons_sessions": [
+      20,
+      40,
+      60
+    ],
+    "execution": {
+      "signal": "completed_close; never same-bar fill or stop-price fill",
+      "fill": "first later session open with explicit side-specific executable evidence and settlement eligibility; otherwise pending/unknown",
+      "intrabar": "daily OHLC cannot establish event ordering; close-only rule, intrabar breach diagnostic not a fill",
+      "per_side_cost_bps": {
+        "CN": 15,
+        "HK": 25,
+        "US": 10
+      },
+      "cost_status": "exploratory all-in commission/tax/slippage scenario, not verified broker tariff",
+      "min_holding_sessions": {
+        "CN": 1,
+        "HK": 0,
+        "US": 0
+      },
+      "missing_suspension_limit_delisting_settlement": "unknown_no_fill"
+    },
+    "benchmarks": {
+      "CN": "000300.SH",
+      "HK": "HSI",
+      "US": "SP500"
+    },
+    "industry": "explicit market-matched benchmark + membership known_at required; unknown is not zero or veto",
+    "group_A": {
+      "entry": "same frozen episode list",
+      "exits": [
+        "old_ma60_5",
+        "structure_failure",
+        "structure_failure_atr"
+      ]
+    },
+    "group_B": {
+      "entries": [
+        "old_trigger",
+        "breakout",
+        "pullback"
+      ],
+      "exit": "structure_failure_atr",
+      "candidate_set": "same audited frozen scope; no discovery expansion"
+    },
+    "evaluation": {
+      "mode": "current_vintage_diagnostic_replay_unless_PIT_certified",
+      "oos_train_sessions": 120,
+      "oos_test_sessions": 60,
+      "purge_sessions": 60,
+      "parameter_refit": false,
+      "strata": [
+        "market",
+        "industry",
+        "volatility",
+        "regime"
+      ],
+      "metrics": [
+        "net_price_return",
+        "max_drawdown",
+        "tail_loss",
+        "round_trips",
+        "turnover",
+        "false_breakout",
+        "post_exit_rally",
+        "sample_count",
+        "unknown",
+        "not_matured"
+      ]
+    },
+    "promotion": "candidate -> shadow -> validated -> active requires independent research signoff; development approval is not efficacy approval"
+  },
+  "order_ttl_sessions": 3,
+  "simulation": "one_virtual_unit_per_episode_no_real_order_no_initial_holdings_seed",
+  "execution_evidence": "contemporaneous_next_session_open_snapshot_only; no historical_backfill"
+}

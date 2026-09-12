@@ -1,0 +1,18 @@
+--- a/evening_recap_data.sh
++++ b/evening_recap_data.sh
+@@ -275,3 +275,15 @@
+ rc=$?
++# MT13 opt-in: investment topic must independently verify before enabling.
++# Failure is isolated: never suppress the existing market/report sections.
++if [[ "${MT13_ACTION_ENABLED:-0}" == "1" ]]; then
++  MT13_RUN_DIR="${MT13_OUTPUT_ROOT:-$HERE/.cron_state/mt13/runs}/$(date -u +%Y%m%dT%H%M%S)-$$"
++  mkdir -p "$(dirname "$MT13_RUN_DIR")"
++  timeout 240 python3 -m mt1.action_loop run \
++    --scope "${MT13_SCOPE:-/home/emox/work/investment/reference/tracking-scope.json}" \
++    --root "${MT13_LEDGER_ROOT:-$HERE/.cron_state/mt13/action}" \
++    --out "$MT13_RUN_DIR" >"${MT13_RUN_DIR}.receipt.json" \
++    && echo "MT13_RECEIPT_JSON=${MT13_RUN_DIR}.receipt.json" \
++    || echo "MT13_ACTION_INCOMPLETE=collection_or_archive_failed" >&2
++fi
+ echo "[evening_recap_data] done rc=$rc out=$OUT" >&2
+ exit $rc
