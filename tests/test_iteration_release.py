@@ -20,3 +20,10 @@ def test_reject_forged_caller_pass(tmp_path):
     r=init(tmp_path/'synthetic','SYNTHETIC_ONLY');p=r/'evidence.json';p.write_text('[]')
     assert publish(r,p,'fundamental','old','new','2026-09-13T00:00:00+00:00')['decision']=='continue_shadow'
     assert not (r/'releases/fundamental/active.json').exists()
+
+def test_new_risk_evidence_rolls_back_not_only_hash_corruption(tmp_path):
+    r=init(tmp_path/'synthetic','SYNTHETIC_ONLY');p=r/'pass.json';p.write_text(json.dumps(frames()))
+    publish(r,p,'fundamental','old','new','2026-09-13T00:00:00+00:00')
+    q=r/'reject.json';q.write_text(json.dumps(frames(True)))
+    assert publish(r,q,'fundamental','old','new','2026-09-13T00:00:00+00:00')['decision']=='reject'
+    assert json.loads((r/'releases/fundamental/active.json').read_text())['version']=='old'
