@@ -10,6 +10,8 @@ from .timing import digest
 from .timing_cli import file_hash
 from .iteration_policy import SCHEMA, KINDS, CONTRACT
 
+IMPLEMENTATION_GAPS = ['successor_generation_and_active_as_next_baseline_not_yet_wired']
+
 
 def atomic_json(path, value):
     _atomic_json(path, value)
@@ -134,8 +136,13 @@ def technical_engines(root, run_dir, e, scope_path, choices):
         bp=run_dir/('execute-'+version+'.json');atomic_json(bp,b)
         receipt=observe(bp,scope_path,ar,policy if c else POLICY,execution_model='observed-quote-v1')
         state=snapshots(ar)[-1][1]
+        capture={'status':'no_pending_signal','not_deployed':True}
+        if bundle.get('source_kind')!='SYNTHETIC_ONLY' and any(o['execution_status'] not in ('filled','cancelled') and not o.get('operator_paused') for o in state['ledger'].values()):
+            from .action_worker import run_worker
+            dest=run_dir/('execution-capture-'+version)
+            capture=read(dest/'worker-result.json') if (dest/'worker-result.json').exists() else run_worker(scope_path,ar,dest,mode='once',max_seconds=30)
         outputs[version]={'receipt':receipt,'state':state,'state_hash':digest(state),
-                          'ledger_root':str(ar),'policy':cfg}
+                          'ledger_root':str(ar),'policy':cfg,'execution_capture':capture}
     return {'versions':outputs,'computed':True,'source_hash':digest(e),
             'scope_codes':sorted(bundle['scope_codes']),'execution_model':'observed-quote-v1'}
 
@@ -351,8 +358,9 @@ def run(root, *, sweep, scope, request_id=None, fail_at=None):
                 return [validate(frames,c['category'],'qv-shadow-1' if c['category']=='fundamental' else 'signal-policy-v1',
                                  c['id'],kind='REAL_CURRENT',asof=inputs['asof']) for c in select['candidates']]
             evaluations=stage(root,d,'evaluation',evaluate)
-            gaps=current['gaps']+inputs['technical']['missing']
+            gaps=current['gaps']+inputs['technical']['missing']+IMPLEMENTATION_GAPS
             summary={'run_id':rid,'engineering_status':'incomplete' if gaps else 'completed',
+                     'round_execution_status':'completed','implementation_status':'incomplete' if IMPLEMENTATION_GAPS else 'completed',
                      'strategy_decisions':[{k:r[k] for k in ('category','candidate','decision','reason','independent_events')} for r in evaluations],
                      'candidate_count':len(select['candidates']),'fundamental_selected_counts':f['selected_counts'],
                      'fundamental_scope_count':len(f['scope_codes']),'technical_scope_count':len(t['scope_codes']),
