@@ -17,3 +17,14 @@ def test_real_engine_parameters_and_default_unchanged():
     result=fundamental_engines(e,c)
     assert result['selected_counts']=={'qv-shadow-1':1,c[0]['id']:0}
     assert len(c)<=2
+
+def test_low_confidence_never_vetoes_real_engine_buy_sell():
+    from mt1.action_demo import fixture, append
+    from mt1.action_loop import decide, read, POLICY
+    p=fixture();r,_=decide(p,p['fetched_at'],None,False,read(POLICY))
+    p=append(p,108,200);p['confidence']=0
+    r,c=decide(p,p['fetched_at'],r['state'],False,read(POLICY))
+    assert c['action']=='BUY' and not c['soft_annotations']['confidence_is_veto']
+    p=append(p,80,100);p['confidence']=0
+    _,c=decide(p,p['fetched_at'],r['state'],True,read(POLICY))
+    assert c['action']=='SELL'
