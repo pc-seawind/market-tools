@@ -416,12 +416,12 @@ def finish_release(root, d, fail_at=None):
     return m['summary']
 
 
-def run(root, *, sweep, scope, request_id=None, fail_at=None):
+def run(root, *, sweep, scope, request_id=None, fail_at=None, _kind='REAL_CURRENT'):
     from datetime import timedelta
     from .iteration_policy import code_hashes
     from .iteration_validate import validate
     from .iteration_release import recover, publish
-    root=init(root,'REAL_CURRENT');key=request_id or now()[:10]
+    root=init(root,_kind);key=request_id or now()[:10]
     # User key never becomes an unsafe path; date prefix gives chronological order.
     rid=key[:10].replace('/','_')+'-'+digest(key)[:16]
     d=child(root,'runs/'+rid)
@@ -454,11 +454,11 @@ def run(root, *, sweep, scope, request_id=None, fail_at=None):
             f=stage(root,d,'fundamental-engines',lambda:fundamental_engines(inputs['fundamental'],select['candidates'],select.get('active_baselines',{}).get('fundamental')))
             t=stage(root,d,'technical-engines',lambda:technical_engines(root,d,inputs['technical'],inputs['scope_path'],select['candidates']))
             if fail_at=='after_engines':raise RuntimeError('injected_after_engines')
-            current=stage(root,d,'frames',lambda:build_frames(inputs,select,f,t,'REAL_CURRENT'))
+            current=stage(root,d,'frames',lambda:build_frames(inputs,select,f,t,_kind))
             frames=load_frames(root,verify=True)+current['frames']
             def evaluate():
                 return [validate(frames,c['category'],c.get('baseline_version','qv-shadow-1' if c['category']=='fundamental' else 'signal-policy-v1'),
-                                 c['id'],kind='REAL_CURRENT',asof=inputs['asof']) for c in select['candidates']]
+                                 c['id'],kind=_kind,asof=inputs['asof']) for c in select['candidates']]
             evaluations=stage(root,d,'evaluation',evaluate)
             gaps=current['gaps']+inputs['technical']['missing']+IMPLEMENTATION_GAPS
             summary={'run_id':rid,'engineering_status':'incomplete' if gaps else 'completed',
@@ -467,13 +467,13 @@ def run(root, *, sweep, scope, request_id=None, fail_at=None):
                      'candidate_count':len(select['candidates']),'fundamental_selected_counts':f['selected_counts'],
                      'fundamental_scope_count':len(f['scope_codes']),'technical_scope_count':len(t['scope_codes']),
                      'technical_actions':{v:{c['code']:c['action'] for c in x['state']['cards']} for v,x in t['versions'].items()},
-                     'kind':'REAL_CURRENT','gaps':gaps,'scheduled':False,
+                     'kind':_kind,'gaps':gaps,'scheduled':False,
                      'next_check_at':(instant_time(inputs['asof'])+timedelta(days=1)).isoformat(),
                      'production_activated':False,'no_efficacy_claim':True}
             atomic_json(d/'summary.json',summary)
             (d/'report.md').write_text('**MT14 真实首轮/续轮｜非投资验收**\n\n'+json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
             if fail_at=='before_archive':raise OSError('injected_archive_failure')
-            manifest={'schema':SCHEMA,'kind':'REAL_CURRENT','contract_hash':digest(CONTRACT),
+            manifest={'schema':SCHEMA,'kind':_kind,'contract_hash':digest(CONTRACT),
                       'code_hashes':code_hashes(),'files':run_files(d),'summary':summary}
             atomic_json(d/'manifest.json',manifest)
             verify_run(root,d)
