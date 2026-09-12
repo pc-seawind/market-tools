@@ -1,0 +1,20 @@
+{
+  "git_head": "2effaa1032a491247db9b5321dc765bd274bc5d0",
+  "baseline": "fc0a8a7cab43cb18b451c9ea529fb083ef408c87",
+  "source_hashes": {
+    "action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "candidates.py": "1124e4a24f7f00e35bcdbaf3eba03b72c58ea5d26fca0772617a1348aa5e16e5",
+    "iteration_evidence.py": "8d614ee77b518d84fb612aef40234926e014a14df96700408d70896b4181b2d8",
+    "iteration_loop.py": "6a41df4d2f056e5671e45d8d324dd4392b1d8e9c960c3803758dca7a5581710c",
+    "iteration_policy.py": "0bbc50f4ad75e636eab63d8fe3cb04a0afdeb676d0c18aae3a363652ad600ca8",
+    "iteration_release.py": "5d6e32ee63b57deaded4b48083968f5db6cf8bfa36e9911435601cff0006a120",
+    "iteration_validate.py": "af3840c148ce6bb14938d263083d6e5f7d98a8e3e0007986e8e88a6a414d74c0",
+    "timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a"
+  },
+  "contract_hash": "91a7057f880adbc54fdd72f01bd9305b03dd16caf5db35fb095f2d4cda1f1761",
+  "production_policy_hash": "bab9b6b81efd1000176145d8dae63c14611501c3f821c705c2d1c8937a14bb2e",
+  "pushed": false,
+  "deployed": false
+}

@@ -1,0 +1,198 @@
+{
+  "failure": {
+    "run_id": "2026-09-12-966e72cc301b962a",
+    "engineering_status": "incomplete",
+    "error": "ValueError:CN_completed_calendar_missing_actual_collection_attempted",
+    "scheduled": false,
+    "resume_command": "same run command",
+    "recorded_at": "2026-09-12T21:45:25.882635+00:00"
+  },
+  "collection_errors": [
+    {
+      "calendar": "trade_cal_failed_exit_3",
+      "market": "CN"
+    },
+    {
+      "calendar": "hk_tradecal_failed_exit_3",
+      "market": "HK"
+    },
+    {
+      "calendar": "us_tradecal_failed_exit_3",
+      "market": "US"
+    },
+    {
+      "broad_CN": "index_daily_failed_exit_3"
+    },
+    {
+      "code": "001309.SZ",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "603986.SH",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "688195.SH",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "301511.SZ",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "300750.SZ",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "601138.SH",
+      "error": "daily_failed_exit_3"
+    },
+    {
+      "code": "01810.HK",
+      "field": "HK_raw_factor_anchor",
+      "reason": "HK_no_calendar_aligned_raw_bars",
+      "remedy_status": "attempted_failed",
+      "source_sha256": [
+        "fe8f935b285f376088a5c41d5bccdc6d2e45d877dc3f21a1c11b99daa0b479ef",
+        "dd0d20eb2913663f483260b733f6fc832c0c215504b0258e0ec2aa43d9545cf4"
+      ]
+    },
+    {
+      "code": "03690.HK",
+      "field": "HK_raw_factor_anchor",
+      "reason": "HK_no_calendar_aligned_raw_bars",
+      "remedy_status": "attempted_failed",
+      "source_sha256": [
+        "63fe29d36ddac8f9ab12ed6819456e4cc8cce12b49ea6fc35e2b12e62ee94337",
+        "72be46b606c0a704e1061c39d64a5658b7fbc9d912249bcf28edf6c5d772e949"
+      ]
+    },
+    {
+      "code": "00700.HK",
+      "field": "HK_raw_factor_anchor",
+      "reason": "HK_no_calendar_aligned_raw_bars",
+      "remedy_status": "attempted_failed",
+      "source_sha256": [
+        "bf466847e0a14422d28380a2302730310d3e7419c822fda677fdd750a1d4b369",
+        "918929676efe12810c416f5f9ccadbb6201fd25da9ca701293b9bcfb84f3447c"
+      ]
+    }
+  ],
+  "input_returncodes": [
+    {
+      "api": "trade_cal",
+      "returncode": 3,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fetched_at": "2026-09-12T21:45:23.789879+00:00"
+    },
+    {
+      "api": "hk_tradecal",
+      "returncode": 3,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fetched_at": "2026-09-12T21:45:23.858734+00:00"
+    },
+    {
+      "api": "us_tradecal",
+      "returncode": 3,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fetched_at": "2026-09-12T21:45:23.928614+00:00"
+    },
+    {
+      "api": "index_daily",
+      "returncode": 3,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fetched_at": "2026-09-12T21:45:23.999122+00:00"
+    },
+    {
+      "api": "daily",
+      "returncode": 3,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fetched_at": "2026-09-12T21:45:24.068031+00:00"
+    },
+    {
+      "api": "daily",
+      "returncode": 3,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fetched_at": "2026-09-12T21:45:24.138642+00:00"
+    },
+    {
+      "api": "daily",
+      "returncode": 3,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fetched_at": "2026-09-12T21:45:24.209994+00:00"
+    },
+    {
+      "api": "daily",
+      "returncode": 3,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fetched_at": "2026-09-12T21:45:24.286351+00:00"
+    },
+    {
+      "api": "daily",
+      "returncode": 3,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fetched_at": "2026-09-12T21:45:24.357439+00:00"
+    },
+    {
+      "api": "daily",
+      "returncode": 3,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fetched_at": "2026-09-12T21:45:24.431481+00:00"
+    },
+    {
+      "api": null,
+      "returncode": null,
+      "sha256": "be0d7aac1c257d069a2a9b5b7a7666fda6aac22f10d288334c1a769d7257cd27",
+      "fetched_at": "2026-09-12T21:45:24.636175+00:00"
+    },
+    {
+      "api": null,
+      "returncode": null,
+      "sha256": "779e7362b4aa4e48bbc75c64e2c2d67701ec136042fa7a29e9efdc0c140fd126",
+      "fetched_at": "2026-09-12T21:45:24.747226+00:00"
+    },
+    {
+      "api": null,
+      "returncode": null,
+      "sha256": "48682ba2299444f4704dcc1a79e81495d9506bbfb4f27c642cc987301cb6c4e0",
+      "fetched_at": "2026-09-12T21:45:24.900157+00:00"
+    },
+    {
+      "api": null,
+      "returncode": null,
+      "sha256": "fe8f935b285f376088a5c41d5bccdc6d2e45d877dc3f21a1c11b99daa0b479ef",
+      "fetched_at": "2026-09-12T21:45:25.138401+00:00"
+    },
+    {
+      "api": null,
+      "returncode": null,
+      "sha256": "dd0d20eb2913663f483260b733f6fc832c0c215504b0258e0ec2aa43d9545cf4",
+      "fetched_at": "2026-09-12T21:45:25.266824+00:00"
+    },
+    {
+      "api": null,
+      "returncode": null,
+      "sha256": "63fe29d36ddac8f9ab12ed6819456e4cc8cce12b49ea6fc35e2b12e62ee94337",
+      "fetched_at": "2026-09-12T21:45:25.425668+00:00"
+    },
+    {
+      "api": null,
+      "returncode": null,
+      "sha256": "72be46b606c0a704e1061c39d64a5658b7fbc9d912249bcf28edf6c5d772e949",
+      "fetched_at": "2026-09-12T21:45:25.598722+00:00"
+    },
+    {
+      "api": null,
+      "returncode": null,
+      "sha256": "bf466847e0a14422d28380a2302730310d3e7419c822fda677fdd750a1d4b369",
+      "fetched_at": "2026-09-12T21:45:25.761515+00:00"
+    },
+    {
+      "api": null,
+      "returncode": null,
+      "sha256": "918929676efe12810c416f5f9ccadbb6201fd25da9ca701293b9bcfb84f3447c",
+      "fetched_at": "2026-09-12T21:45:25.860605+00:00"
+    }
+  ],
+  "resolution": "same-command retry using inherited credentials via stdin; original files retained"
+}
