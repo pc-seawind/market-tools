@@ -81,6 +81,7 @@ def recover(root):
                 r=recompute(root,p['evidence_path'],category,p['baseline_version'],p['version'],p['asof'])
                 if file_hash(p['evidence_path'])!=p['evidence_hash'] or digest(r)!=p['evaluation_hash'] or r['decision']!='experimental_activate':
                     raise ValueError('prepared_evidence_changed')
+                event(root,'release:'+digest(r),{'decision':'prepared','pointer_hash':digest(p)})
                 atomic_json(target,p)
                 receipt={'category':category,'action':'resume_prepared','pointer_hash':digest(p)}
                 event(root,'recover:'+digest(p),receipt)

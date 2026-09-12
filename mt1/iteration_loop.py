@@ -380,6 +380,7 @@ def finish_release(root, d, fail_at=None):
     """Manifest is an archive checkpoint, not the transaction's terminal state."""
     from .iteration_release import publish
     m=verify_run(root,d)
+    event(root,'run:'+d.name,{'manifest_hash':file_hash(d/'manifest.json'),'engineering_status':m['summary']['engineering_status']})
     inputs=read(d/'inputs.json')['result']
     frames=[f for f in load_frames(root,verify=True) if instant_time(f['observed_at'])<=instant_time(inputs['asof'])]
     base=child(root,'release-stages/'+d.name)
