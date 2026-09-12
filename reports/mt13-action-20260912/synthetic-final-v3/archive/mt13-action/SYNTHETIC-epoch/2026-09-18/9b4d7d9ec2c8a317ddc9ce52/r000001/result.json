@@ -1,0 +1,405 @@
+{
+  "sequence": 5,
+  "ledger": {
+    "5077b9c6d7e5b3a8736fb39735f0f3dc029ea77d44c09ab8e619a5e79cd50a54": {
+      "signal_id": "5077b9c6d7e5b3a8736fb39735f0f3dc029ea77d44c09ab8e619a5e79cd50a54",
+      "scope_epoch": "SYNTHETIC-epoch",
+      "version": "signal-policy-v1",
+      "policy_sha256": "ea379a8faf818c032aa4533c658ad31f42a73ee05860bc9761b95cd79c631c06",
+      "code": "SYNTH",
+      "market": "CN",
+      "side": "BUY",
+      "episode": "2026-09-15",
+      "signal_date": "2026-09-15",
+      "triggered_at": "2026-09-15T18:00:00+08:00",
+      "condition_known_at": "2026-09-15T17:00:00+08:00",
+      "signal_price": 108,
+      "signal_adjusted_price": 108,
+      "basis_id": "SYNTHETIC_CONSTANT_UNIT",
+      "position_key": "signal-policy-v1|SYNTH",
+      "original_reasons": [
+        "frozen_breakout_trigger"
+      ],
+      "risk_lines": {
+        "structure": 103.95,
+        "atr_stop": 103.2975
+      },
+      "source_sha256": "ad27e13c710dfee867f2cb788b25ae34d82d7758b5b9262475085e64057d06c9",
+      "synthetic": true,
+      "real_holding_observation": false,
+      "execution_status": "filled",
+      "execution_reason": "isolated_simulation_next_observed_open",
+      "history": [
+        {
+          "signal_id": "5077b9c6d7e5b3a8736fb39735f0f3dc029ea77d44c09ab8e619a5e79cd50a54",
+          "from": "pending",
+          "to": "filled",
+          "reason": "isolated_simulation_next_observed_open",
+          "at": "2026-09-16T18:00:00+08:00",
+          "fill": {
+            "date": "2026-09-16",
+            "at": "2026-09-16T09:30:00+08:00",
+            "raw_price": 108.5,
+            "adjusted_price": 108.5,
+            "source_sha256": "0103b1f8b8634db26bd776923b96e667e53f66c4072400778902e2169ed642e7",
+            "snapshot_sha256": "52d653f18f2afef72144b0e85730beac48a94ea6ececbb0c2669cac6a4a4ec78",
+            "virtual_units": 1,
+            "not_real_trade": true,
+            "cost_bps_scenario": 15.0
+          }
+        }
+      ],
+      "not_real_order": true,
+      "ttl_sessions": 3,
+      "fill": {
+        "date": "2026-09-16",
+        "at": "2026-09-16T09:30:00+08:00",
+        "raw_price": 108.5,
+        "adjusted_price": 108.5,
+        "source_sha256": "0103b1f8b8634db26bd776923b96e667e53f66c4072400778902e2169ed642e7",
+        "snapshot_sha256": "52d653f18f2afef72144b0e85730beac48a94ea6ececbb0c2669cac6a4a4ec78",
+        "virtual_units": 1,
+        "not_real_trade": true,
+        "cost_bps_scenario": 15.0
+      },
+      "review_prices": {
+        "2026-09-16": {
+          "adjusted_close": 109,
+          "source_sha256": "14ec9b168d3ed1a8ef2bfca8d19d69477012fe45c8f76f757702eb73ca1271bb"
+        },
+        "2026-09-17": {
+          "adjusted_close": 80,
+          "source_sha256": "236858c068af7d19eab0406d051386aebcfb013ffac5d8a285b9d3cf6b9f4e25"
+        },
+        "2026-09-18": {
+          "adjusted_close": 80,
+          "source_sha256": "d8d8adcba1556b8950e9ce62225303170f06cfbf2c138aeb3adbb129b2f25f13"
+        }
+      }
+    },
+    "30b58e1d605e798af49f3b51a6df12f830564b5d3819e055dab14bafaa25cea4": {
+      "signal_id": "30b58e1d605e798af49f3b51a6df12f830564b5d3819e055dab14bafaa25cea4",
+      "scope_epoch": "SYNTHETIC-epoch",
+      "version": "signal-policy-v1",
+      "policy_sha256": "ea379a8faf818c032aa4533c658ad31f42a73ee05860bc9761b95cd79c631c06",
+      "code": "SYNTH",
+      "market": "CN",
+      "side": "SELL",
+      "episode": "2026-09-17",
+      "signal_date": "2026-09-17",
+      "triggered_at": "2026-09-17T18:00:00+08:00",
+      "condition_known_at": "2026-09-17T17:00:00+08:00",
+      "signal_price": 80,
+      "signal_adjusted_price": 80,
+      "basis_id": "SYNTHETIC_CONSTANT_UNIT",
+      "position_key": "signal-policy-v1|SYNTH",
+      "original_reasons": [
+        "initial_structure_invalidated",
+        "ATR_trailing_close_breach"
+      ],
+      "risk_lines": {
+        "structure": 103.95,
+        "atr_stop": 104.4025
+      },
+      "source_sha256": "214d3cafc6f861d2dea437fc3e0e5b8ef90fab226745d075ddd59f8d78f1e9bd",
+      "synthetic": true,
+      "real_holding_observation": false,
+      "execution_status": "filled",
+      "execution_reason": "isolated_simulation_next_observed_open",
+      "history": [
+        {
+          "signal_id": "30b58e1d605e798af49f3b51a6df12f830564b5d3819e055dab14bafaa25cea4",
+          "from": "pending",
+          "to": "filled",
+          "reason": "isolated_simulation_next_observed_open",
+          "at": "2026-09-18T18:00:00+08:00",
+          "fill": {
+            "date": "2026-09-18",
+            "at": "2026-09-18T09:30:00+08:00",
+            "raw_price": 79,
+            "adjusted_price": 79.0,
+            "source_sha256": "c6ee316a21c6f4b80043884eb50b56e2af5a31e5b82f4656621a190008b37fa8",
+            "snapshot_sha256": "7bcefdb541fff9da54b7a17012b69ed6d74bc811c1477f776b9f2a7415115967",
+            "virtual_units": 1,
+            "not_real_trade": true,
+            "cost_bps_scenario": 15.0
+          }
+        }
+      ],
+      "not_real_order": true,
+      "ttl_sessions": 3,
+      "fill": {
+        "date": "2026-09-18",
+        "at": "2026-09-18T09:30:00+08:00",
+        "raw_price": 79,
+        "adjusted_price": 79.0,
+        "source_sha256": "c6ee316a21c6f4b80043884eb50b56e2af5a31e5b82f4656621a190008b37fa8",
+        "snapshot_sha256": "7bcefdb541fff9da54b7a17012b69ed6d74bc811c1477f776b9f2a7415115967",
+        "virtual_units": 1,
+        "not_real_trade": true,
+        "cost_bps_scenario": 15.0
+      },
+      "review_prices": {
+        "2026-09-18": {
+          "adjusted_close": 80,
+          "source_sha256": "d8d8adcba1556b8950e9ce62225303170f06cfbf2c138aeb3adbb129b2f25f13"
+        }
+      }
+    }
+  },
+  "positions": {},
+  "states": {},
+  "cards": [
+    {
+      "action": "WAIT",
+      "reasons": [
+        "initial_structure_invalidated",
+        "ATR_trailing_close_breach"
+      ],
+      "risk_active": true,
+      "risk_lines": {
+        "structure": 103.95,
+        "atr_stop": 104.4025
+      },
+      "hard_gaps": [],
+      "soft_annotations": {
+        "confidence": 0.01,
+        "efficacy": "experimental_not_validated",
+        "RS": {
+          "broad": {
+            "status": "unknown",
+            "value": null,
+            "reason": "benchmark_missing_or_incompatible_market_dates_membership",
+            "RS_not_RSI": true
+          },
+          "industry": {
+            "status": "unknown",
+            "value": null,
+            "reason": "benchmark_missing_or_incompatible_market_dates_membership",
+            "RS_not_RSI": true
+          }
+        },
+        "confidence_is_veto": false
+      },
+      "old_rules": {
+        "entry": {
+          "status": "unknown",
+          "reasons": [
+            "market_benchmark_unavailable_no_CSI300_fallback"
+          ]
+        },
+        "exit": {
+          "status": "monitor",
+          "rule": "5_completed_closes_below_each_MA60"
+        }
+      },
+      "horizons": [
+        {
+          "sessions": 20,
+          "status": "not_matured",
+          "reference_price_return": null,
+          "not_personal_pnl": true
+        },
+        {
+          "sessions": 40,
+          "status": "not_matured",
+          "reference_price_return": null,
+          "not_personal_pnl": true
+        },
+        {
+          "sessions": 60,
+          "status": "not_matured",
+          "reference_price_return": null,
+          "not_personal_pnl": true
+        }
+      ],
+      "code": "SYNTH",
+      "name": "合成样本",
+      "version": "signal-policy-v1",
+      "signal_ids": [
+        "30b58e1d605e798af49f3b51a6df12f830564b5d3819e055dab14bafaa25cea4"
+      ],
+      "applies_to": "已准入候选",
+      "company_research_status": "未提供/不由技术信号推断",
+      "triggered_at": "2026-09-18T18:00:00+08:00",
+      "price_basis": "completed_raw_close; internal=raw*vendor_factor",
+      "validity": "signal immutable; unfilled order 3 completed sessions; next legal observed open only",
+      "next_review": "next_completed_market_session; pending execution requires contemporaneous open collector",
+      "source_sha256": "661a1cd96df4116f2a7ad415484009dfc2f28474fc6b60301722fcb00be30be4",
+      "source_files": [
+        "bfb823a29840f071c7c1561b35b22faf35b4f8643b16d831125c4625d9069b53",
+        "c6ee316a21c6f4b80043884eb50b56e2af5a31e5b82f4656621a190008b37fa8"
+      ],
+      "quote_date": "2026-09-18",
+      "close": 80,
+      "change": {
+        "from": "SELL",
+        "to": "WAIT"
+      },
+      "remediation": [],
+      "personal_pnl": null
+    }
+  ],
+  "policies": {
+    "signal-policy-v1": {
+      "version": "signal-policy-v1",
+      "effective_at": "2026-09-12T00:00:00+08:00",
+      "approval": "experimental_signal_use_not_validated",
+      "reason": "用户批准按冻结MT12规则明确发信号，置信度仅注释",
+      "timing": {
+        "method": "mt12-timing-shadow-1",
+        "status": "shadow",
+        "parameters_status": "exploratory_not_optimized",
+        "trial": 1,
+        "grid": [],
+        "selection": "one prespecified engineering baseline; no performance-based parameter choice or automatic promotion",
+        "warmup": 120,
+        "structure_window": 20,
+        "compression_range_max": 0.12,
+        "compression_recent_to_prior": 0.8,
+        "setup_ttl_sessions": 10,
+        "breakout_volume_min": 1.2,
+        "failure_closes": 2,
+        "failure_window_sessions": 10,
+        "pullback_volume_max": 1.1,
+        "pullback_ma20_band": 0.02,
+        "atr_window": 20,
+        "atr_smoothing": "TR_simple_mean_matches_mt11_not_Wilder",
+        "atr_multiple": 3.0,
+        "extension_atr_diagnostic": 2.5,
+        "horizons_sessions": [
+          20,
+          40,
+          60
+        ],
+        "execution": {
+          "signal": "completed_close; never same-bar fill or stop-price fill",
+          "fill": "first later session open with explicit side-specific executable evidence and settlement eligibility; otherwise pending/unknown",
+          "intrabar": "daily OHLC cannot establish event ordering; close-only rule, intrabar breach diagnostic not a fill",
+          "per_side_cost_bps": {
+            "CN": 15,
+            "HK": 25,
+            "US": 10
+          },
+          "cost_status": "exploratory all-in commission/tax/slippage scenario, not verified broker tariff",
+          "min_holding_sessions": {
+            "CN": 1,
+            "HK": 0,
+            "US": 0
+          },
+          "missing_suspension_limit_delisting_settlement": "unknown_no_fill"
+        },
+        "benchmarks": {
+          "CN": "000300.SH",
+          "HK": "HSI",
+          "US": "SP500"
+        },
+        "industry": "explicit market-matched benchmark + membership known_at required; unknown is not zero or veto",
+        "group_A": {
+          "entry": "same frozen episode list",
+          "exits": [
+            "old_ma60_5",
+            "structure_failure",
+            "structure_failure_atr"
+          ]
+        },
+        "group_B": {
+          "entries": [
+            "old_trigger",
+            "breakout",
+            "pullback"
+          ],
+          "exit": "structure_failure_atr",
+          "candidate_set": "same audited frozen scope; no discovery expansion"
+        },
+        "evaluation": {
+          "mode": "current_vintage_diagnostic_replay_unless_PIT_certified",
+          "oos_train_sessions": 120,
+          "oos_test_sessions": 60,
+          "purge_sessions": 60,
+          "parameter_refit": false,
+          "strata": [
+            "market",
+            "industry",
+            "volatility",
+            "regime"
+          ],
+          "metrics": [
+            "net_price_return",
+            "max_drawdown",
+            "tail_loss",
+            "round_trips",
+            "turnover",
+            "false_breakout",
+            "post_exit_rally",
+            "sample_count",
+            "unknown",
+            "not_matured"
+          ]
+        },
+        "promotion": "candidate -> shadow -> validated -> active requires independent research signoff; development approval is not efficacy approval"
+      },
+      "order_ttl_sessions": 3,
+      "simulation": "one_virtual_unit_per_episode_no_real_order_no_initial_holdings_seed",
+      "execution_evidence": "contemporaneous_next_session_open_snapshot_only; no historical_backfill"
+    }
+  },
+  "asof": "2026-09-18T18:00:00+08:00",
+  "closed": [
+    {
+      "code": "SYNTH",
+      "version": "signal-policy-v1",
+      "entry_signal": "5077b9c6d7e5b3a8736fb39735f0f3dc029ea77d44c09ab8e619a5e79cd50a54",
+      "entry_date": "2026-09-16",
+      "entry_price": 108.5,
+      "cost": 0.0015,
+      "peak": 109,
+      "max_drawdown": -0.2697247706422018,
+      "marks": {
+        "2026-09-16": {
+          "price": 109,
+          "source_sha256": "14ec9b168d3ed1a8ef2bfca8d19d69477012fe45c8f76f757702eb73ca1271bb"
+        },
+        "2026-09-17": {
+          "price": 80,
+          "source_sha256": "236858c068af7d19eab0406d051386aebcfb013ffac5d8a285b9d3cf6b9f4e25"
+        }
+      },
+      "basis_id": "SYNTHETIC_CONSTANT_UNIT",
+      "synthetic": true,
+      "scope_epoch": "SYNTHETIC-epoch",
+      "exit_signal": "30b58e1d605e798af49f3b51a6df12f830564b5d3819e055dab14bafaa25cea4",
+      "exit_date": "2026-09-18",
+      "exit_price": 79.0,
+      "net_return": -0.2740704611285836,
+      "post_exit": {},
+      "false_breakout": false,
+      "personal_pnl": null
+    }
+  ],
+  "transitions": [
+    {
+      "signal_id": "30b58e1d605e798af49f3b51a6df12f830564b5d3819e055dab14bafaa25cea4",
+      "from": "pending",
+      "to": "filled",
+      "reason": "isolated_simulation_next_observed_open",
+      "at": "2026-09-18T18:00:00+08:00",
+      "fill": {
+        "date": "2026-09-18",
+        "at": "2026-09-18T09:30:00+08:00",
+        "raw_price": 79,
+        "adjusted_price": 79.0,
+        "source_sha256": "c6ee316a21c6f4b80043884eb50b56e2af5a31e5b82f4656621a190008b37fa8",
+        "snapshot_sha256": "7bcefdb541fff9da54b7a17012b69ed6d74bc811c1477f776b9f2a7415115967",
+        "virtual_units": 1,
+        "not_real_trade": true,
+        "cost_bps_scenario": 15.0
+      }
+    }
+  ],
+  "scope_epoch": "SYNTHETIC-epoch",
+  "synthetic": true,
+  "protected_unchanged": true,
+  "run_id": "9b4d7d9ec2c8a317ddc9ce52",
+  "status": "recorded"
+}
