@@ -1,0 +1,17 @@
+{
+  "git_head": "5b6679815efa43a6d02db9d505f0e7d2f97f971e",
+  "source_hashes": {
+    "action_execution.py": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+    "action_loop.py": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+    "action_recovery.py": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+    "candidates.py": "1124e4a24f7f00e35bcdbaf3eba03b72c58ea5d26fca0772617a1348aa5e16e5",
+    "iteration_evidence.py": "8d614ee77b518d84fb612aef40234926e014a14df96700408d70896b4181b2d8",
+    "iteration_loop.py": "fc8d2c15604ac162d7a6b093ee8901c81766702f0ec8ecf43e1cd3def2929e9c",
+    "iteration_policy.py": "0bbc50f4ad75e636eab63d8fe3cb04a0afdeb676d0c18aae3a363652ad600ca8",
+    "iteration_release.py": "bd2ca314d4a3fb7d2868af67852814d25b9342a98a82aff4a0e58e0d4d5aea0d",
+    "iteration_validate.py": "af3840c148ce6bb14938d263083d6e5f7d98a8e3e0007986e8e88a6a414d74c0",
+    "timing.py": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a"
+  },
+  "production_changed": false,
+  "scheduled": false
+}

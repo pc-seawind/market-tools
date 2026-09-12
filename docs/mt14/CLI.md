@@ -33,3 +33,11 @@ run 自动采集技术数据、确定最新完成交易日，复用相同日期 
 遇到真实未终结信号，run 对对应隔离账本调用原 run_worker 的30 秒有界 watch 模式（observed-quote-v1 必须取得递增时间/成交量的两次报价，不能用单次 once）采集和消费真实执行证据。非合法窗口、休市或证据不全保留回执，不伪造 fill；没有信号不空跑执行采集。未部署定时器，错过窗口不会补造历史报价。
 
 真实首个完整原型轮位于 real/（代码 7bb7bee）；后续改进线性校验和后继代切换后，最终核验轮另存 real-final/，不改写原型证据。最终验收命令以交付记录中的 real-release 和 synthetic-verified 为准。
+
+## R2 发布事务与只读核验
+
+manifest 只标记归档检查点，不再代表发布已结束。`release-stages/<run>/` 保存每类别绑定 manifest/evidence/evaluation 的完成回执及 complete.json。manifest 后中断或发布失败，原 request-id 同命令恢复原轮，不补采替代已冻结的评估；旧 failure.json 保留。只有归档前失败/过期才另建 retry。终态之前 status/verify 显示 incomplete。
+
+verify 对 root 身份、归档候选类别与白名单、active/intent/committed、证据重算、前序链和发布事件交叉核验；发现异常只读报错，不执行 recover、不改指针。空 root 的 closed_loop_executed=false，不混同已执行闭环。正常 run 仍在互斥锁内执行恢复。
+
+测试使用明确 SYNTHETIC_ONLY 的完整共同 run 状态机积累成熟窗口并注入 prepare/switch 中断；内部 `_kind` 用于此隔离测试，CLI run 固定 REAL_CURRENT，不允许命令行覆盖为合成后冒充真实。合成测试数据不计入真实首轮样本。

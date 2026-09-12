@@ -1,0 +1,10 @@
+{
+  "source_baseline": "original R1 opening baseline, not backfilled R2 or remote baseline",
+  "files": 47165,
+  "missing": [],
+  "changed": [
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/latest.json",
+    "/home/emox/work/projects/market-tools/.cron_state/mt13/observed-production-v1/latest.json",
+    "/home/emox/work/projects/market-tools/mt1/candidates.py"
+  ]
+}

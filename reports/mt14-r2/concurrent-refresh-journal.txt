@@ -1,0 +1,4 @@
+Sep 13 06:40:00 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: Starting mt13-observed-refresh.service - MT13 isolated observed simulation refresh...
+Sep 13 06:40:00 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: Started mt13-observed-refresh.service - MT13 isolated observed simulation refresh.
+Sep 13 06:40:07 emox-OMEN-30L-Desktop-GT13-0xxx bash[2108755]: MT13_RUN_DIR=/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755
+Sep 13 06:40:07 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: mt13-observed-refresh.service: Consumed 1.811s CPU time.

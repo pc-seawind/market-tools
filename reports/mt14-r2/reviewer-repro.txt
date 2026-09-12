@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/emox/work/investment/reference/technical-research/reviews/mt14-r1/repro.py", line 10, in <module>
+    print('FORGED_ACTIVE_VERIFY',json.dumps(L.verify(r)))
+                                            ^^^^^^^^^^^
+  File "/home/emox/work/projects/market-tools/mt1/iteration_loop.py", line 360, in verify
+    release_audit=verify_releases(root)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/emox/work/projects/market-tools/mt1/iteration_release.py", line 178, in verify_releases
+    p=read(active);pointer(p,category,set())
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/emox/work/projects/market-tools/mt1/iteration_release.py", line 141, in pointer
+    if p.get('production') is not False:raise ValueError('release_production_forbidden')
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: release_production_forbidden
+exit=1

@@ -43,3 +43,5 @@ VPS 未执行任何写操作；后补的两次只读调度 hash 快照覆盖 43 
 - P1 只读核验：root 身份、候选白名单/类别、active/intent/committed、证据重算、前序链、发布事件及逐类别终态一致性；verify 不调用 recover。synthetic verify 也拆为无锁、无初始化的只读路径。
 - 新测试只替换采集边界，使用明确标注的缩小真实输入回放；实际 run/两引擎/validate/publish/verify 不 mock。回放不是新增真实样本。激活 prepare/switch 另由 SYNTHETIC_ONLY 实际指针测试覆盖。
 - 原轮材料保留；本次真实采集与测试回执写 reports/mt14-r2。远端开工前基线无法回补，继续披露。
+
+R2 测试进度：原全量加只读/逐类别恢复 tripwire 共 625 项已实测通过（227.12s）；另补 62 个合成前向观测轮的完整 run prepare/switch 激活故障测试进行中，不以低层 publish 单测替代。真实 release 版新采集完成，5562→50/26，技术9只两版HOLD，成熟0；独立 verify/同命令幂等正在复核。开发中两次旧代码采集尝试因边开发边核验触发 engine_or_contract_version_changed，拒绝行为与失败目录完整保留，没有改写旧 manifest 的版本 hash 来强行放行。

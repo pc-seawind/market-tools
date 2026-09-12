@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "job": "mt13-action",
+  "run_id": "42f63a8ba87ca6d1d67dd193",
+  "trade_date": "2026-09-12",
+  "scope_epoch": "user-reset-20260911T120928Z",
+  "revision": 1,
+  "recorded_at": "2026-09-12T22:40:07.046527+00:00",
+  "git_head": "5b6679815efa43a6d02db9d505f0e7d2f97f971e",
+  "execution": {
+    "status": "isolated_simulation_only",
+    "started_at": "2026-09-12T22:40:06.785361+00:00",
+    "completed_at": "2026-09-12T22:40:07.002037+00:00"
+  },
+  "materials": [
+    {
+      "name": "bundle.json",
+      "status": "archived",
+      "sha256": "e1208b005fe5842e5ee266488fec8d908c7e527812c84e1af429fe8d4ef0e7f1",
+      "bytes": 280109,
+      "blob": "materials/bundle.json"
+    },
+    {
+      "name": "scope.json",
+      "path": "/home/emox/work/investment/reference/tracking-scope.json",
+      "status": "archived",
+      "sha256": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+      "bytes": 2632,
+      "blob": "materials/scope.json"
+    },
+    {
+      "name": "daily-third-section.md",
+      "status": "archived",
+      "sha256": "fe9451b19878ba6ccd8ff5adbc3ad7eb1a5691d25f22eb4d765fb21d83d21012",
+      "bytes": 11896,
+      "blob": "materials/daily-third-section.md"
+    },
+    {
+      "name": "policies.json",
+      "status": "archived",
+      "sha256": "b0ba24cd5b15f8ef97186907d48cb42aa9fe4d15ff657e8870863a3a9abe7e53",
+      "bytes": 2750,
+      "blob": "materials/policies.json"
+    },
+    {
+      "name": "action_loop.py",
+      "path": "/home/emox/work/projects/market-tools/mt1/action_loop.py",
+      "status": "archived",
+      "sha256": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577",
+      "bytes": 41503,
+      "blob": "materials/action_loop.py"
+    },
+    {
+      "name": "timing.py",
+      "path": "/home/emox/work/projects/market-tools/mt1/timing.py",
+      "status": "archived",
+      "sha256": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a",
+      "bytes": 17306,
+      "blob": "materials/timing.py"
+    },
+    {
+      "name": "source-000.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/trade_cal-6fdf6418c92c.csv",
+      "fetched_at": "2026-09-12T22:40:00.540976+00:00",
+      "status": "archived",
+      "sha256": "1f4c903c96268e60ba35891c122e9c45787907fe67570d117f2f8c10792183c6",
+      "bytes": 6304,
+      "blob": "materials/source-000.raw"
+    },
+    {
+      "name": "source-001.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/hk_tradecal-004c25db4d59.csv",
+      "fetched_at": "2026-09-12T22:40:00.621820+00:00",
+      "status": "archived",
+      "sha256": "1ff2475c06c3c84832acf517ef18c9e7c28958e62ba5534ccc09bd666673dc13",
+      "bytes": 5251,
+      "blob": "materials/source-001.raw"
+    },
+    {
+      "name": "source-002.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/us_tradecal-004c25db4d59.csv",
+      "fetched_at": "2026-09-12T22:40:00.701756+00:00",
+      "status": "archived",
+      "sha256": "cdd59b5b351c70dad806578053a1f3894ed0cb3b1e81039fefdc55e8be234ea6",
+      "bytes": 5251,
+      "blob": "materials/source-002.raw"
+    },
+    {
+      "name": "source-003.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/index_daily-1cf99ce1d05e.csv",
+      "fetched_at": "2026-09-12T22:40:00.778697+00:00",
+      "status": "archived",
+      "sha256": "a5d794601c3674b14002fc655ab05d3f11eeb6c13734dafdaefe6ead1e35d480",
+      "bytes": 19292,
+      "blob": "materials/source-003.raw"
+    },
+    {
+      "name": "source-004.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/daily-78a54efe2430.csv",
+      "fetched_at": "2026-09-12T22:40:00.856154+00:00",
+      "status": "archived",
+      "sha256": "bc98fad72a830bde905c835132b20059428c9ab0a285d3fd3725fda25c98cbde",
+      "bytes": 15113,
+      "blob": "materials/source-004.raw"
+    },
+    {
+      "name": "source-005.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/adj_factor-78a54efe2430.csv",
+      "fetched_at": "2026-09-12T22:40:00.934458+00:00",
+      "status": "archived",
+      "sha256": "ab6e57e83c5c9ae51418c591d11204ee05093bc894d235325e5ed623aa5b2fa7",
+      "bytes": 4502,
+      "blob": "materials/source-005.raw"
+    },
+    {
+      "name": "source-006.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/daily-426eeac3c858.csv",
+      "fetched_at": "2026-09-12T22:40:01.016911+00:00",
+      "status": "archived",
+      "sha256": "9d04f7abfa33663933467cd85a55e2804da695ddcbf17c83b7211a827eee195a",
+      "bytes": 15155,
+      "blob": "materials/source-006.raw"
+    },
+    {
+      "name": "source-007.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/adj_factor-426eeac3c858.csv",
+      "fetched_at": "2026-09-12T22:40:01.093678+00:00",
+      "status": "archived",
+      "sha256": "a28e366382e454e8bc04b528a0936c72b9ef00f92ea93e18d86dab1d33aa0bb9",
+      "bytes": 4502,
+      "blob": "materials/source-007.raw"
+    },
+    {
+      "name": "source-008.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/daily-7ef421ec5855.csv",
+      "fetched_at": "2026-09-12T22:40:01.172946+00:00",
+      "status": "archived",
+      "sha256": "8f221354d41e2752e54666a777775b0c667474a2b79445c8b723065987bf8415",
+      "bytes": 14850,
+      "blob": "materials/source-008.raw"
+    },
+    {
+      "name": "source-009.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/adj_factor-7ef421ec5855.csv",
+      "fetched_at": "2026-09-12T22:40:01.250798+00:00",
+      "status": "archived",
+      "sha256": "9406c22831c66715b73f629b2660d91072288574d4b7da9bcd6a0cbb9aa38995",
+      "bytes": 4502,
+      "blob": "materials/source-009.raw"
+    },
+    {
+      "name": "source-010.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/daily-10ac781ab605.csv",
+      "fetched_at": "2026-09-12T22:40:01.334762+00:00",
+      "status": "archived",
+      "sha256": "0a7921e38fc78095af601721161164a26973f35541aecf64ace0c8f11e1578ad",
+      "bytes": 14553,
+      "blob": "materials/source-010.raw"
+    },
+    {
+      "name": "source-011.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/adj_factor-10ac781ab605.csv",
+      "fetched_at": "2026-09-12T22:40:01.412548+00:00",
+      "status": "archived",
+      "sha256": "38a981378ef4b48297e651ac519eb257128fd77691249ee7f47e8472db602318",
+      "bytes": 4408,
+      "blob": "materials/source-011.raw"
+    },
+    {
+      "name": "source-012.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/daily-c87580407a03.csv",
+      "fetched_at": "2026-09-12T22:40:01.494164+00:00",
+      "status": "archived",
+      "sha256": "c360781e2930cbf0b5a0fcb5aa04908d6f44d765a2c932773ba6cf23215a8209",
+      "bytes": 15196,
+      "blob": "materials/source-012.raw"
+    },
+    {
+      "name": "source-013.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/adj_factor-c87580407a03.csv",
+      "fetched_at": "2026-09-12T22:40:01.591756+00:00",
+      "status": "archived",
+      "sha256": "df9b2f68692b3bf3c98ceee01e471bbce1dc9dfe81dbc5b1509a58b7adeca360",
+      "bytes": 4502,
+      "blob": "materials/source-013.raw"
+    },
+    {
+      "name": "source-014.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/daily-40846fbae378.csv",
+      "fetched_at": "2026-09-12T22:40:01.674654+00:00",
+      "status": "archived",
+      "sha256": "c65f3008f13db8d2b3d0e181347242586233e81ebbd388a6537bc7e8f0318155",
+      "bytes": 14415,
+      "blob": "materials/source-014.raw"
+    },
+    {
+      "name": "source-015.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/adj_factor-40846fbae378.csv",
+      "fetched_at": "2026-09-12T22:40:01.750784+00:00",
+      "status": "archived",
+      "sha256": "0c3d1195385d6ca5d2d517ae48fad02c4aba7a7ecdfeb4783e5715aa6c9dffc8",
+      "bytes": 4502,
+      "blob": "materials/source-015.raw"
+    },
+    {
+      "name": "source-016.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/01810.HK.http.json",
+      "fetched_at": "2026-09-12T22:40:02.360004+00:00",
+      "status": "archived",
+      "sha256": "878c99f8e8f74dcc8161e2aa460fe13c7ba887dea7a1d7935db3f3d645a90202",
+      "bytes": 24925,
+      "blob": "materials/source-016.raw"
+    },
+    {
+      "name": "source-017.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/03690.HK.http.json",
+      "fetched_at": "2026-09-12T22:40:02.905661+00:00",
+      "status": "archived",
+      "sha256": "7442c2e54559a36005ba22b8cf9457f9d9955080979acea55147162c25116c34",
+      "bytes": 11671,
+      "blob": "materials/source-017.raw"
+    },
+    {
+      "name": "source-018.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/initial/00700.HK.http.json",
+      "fetched_at": "2026-09-12T22:40:03.509153+00:00",
+      "status": "archived",
+      "sha256": "f8598667b576b465d90997afd783bc18958966252fe4638605dfa4ff051b0228",
+      "bytes": 22335,
+      "blob": "materials/source-018.raw"
+    },
+    {
+      "name": "source-019.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/supplement/01810-raw.raw",
+      "fetched_at": "2026-09-12T22:40:04.212720+00:00",
+      "status": "archived",
+      "sha256": "4b1957d11f481df23d5ca8c49e6b93a38d0d7d0edf2bc3cdf09a487119ea26a2",
+      "bytes": 34267,
+      "blob": "materials/source-019.raw"
+    },
+    {
+      "name": "source-020.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/supplement/01810-factors.raw",
+      "fetched_at": "2026-09-12T22:40:04.868307+00:00",
+      "status": "archived",
+      "sha256": "dd0d20eb2913663f483260b733f6fc832c0c215504b0258e0ec2aa43d9545cf4",
+      "bytes": 287,
+      "blob": "materials/source-020.raw"
+    },
+    {
+      "name": "source-021.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/supplement/03690-raw.raw",
+      "fetched_at": "2026-09-12T22:40:05.468407+00:00",
+      "status": "archived",
+      "sha256": "cc1268d822f83357b4a42f9d73af41d60ef185eaab7b81db8d6640bb1d5a2d6a",
+      "bytes": 15077,
+      "blob": "materials/source-021.raw"
+    },
+    {
+      "name": "source-022.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/supplement/03690-factors.raw",
+      "fetched_at": "2026-09-12T22:40:05.826041+00:00",
+      "status": "archived",
+      "sha256": "72be46b606c0a704e1061c39d64a5658b7fbc9d912249bcf28edf6c5d772e949",
+      "bytes": 287,
+      "blob": "materials/source-022.raw"
+    },
+    {
+      "name": "source-023.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/supplement/00700-raw.raw",
+      "fetched_at": "2026-09-12T22:40:06.449504+00:00",
+      "status": "archived",
+      "sha256": "1fd5b441342243fa7d9897586e4f7d8109512f5e39075be8a49643803df69595",
+      "bytes": 32191,
+      "blob": "materials/source-023.raw"
+    },
+    {
+      "name": "source-024.raw",
+      "path": "/home/emox/work/projects/market-tools/.cron_state/mt13/live-runs/20260912T224000-refresh-2108755/data/supplement/00700-factors.raw",
+      "fetched_at": "2026-09-12T22:40:06.784220+00:00",
+      "status": "archived",
+      "sha256": "918929676efe12810c416f5f9ccadbb6201fd25da9ca701293b9bcfb84f3447c",
+      "bytes": 1338,
+      "blob": "materials/source-024.raw"
+    },
+    {
+      "name": "action_execution.py",
+      "path": "/home/emox/work/projects/market-tools/mt1/action_execution.py",
+      "status": "archived",
+      "sha256": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1",
+      "bytes": 11693,
+      "blob": "materials/action_execution.py"
+    },
+    {
+      "name": "action_recovery.py",
+      "path": "/home/emox/work/projects/market-tools/mt1/action_recovery.py",
+      "status": "archived",
+      "sha256": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f",
+      "bytes": 2181,
+      "blob": "materials/action_recovery.py"
+    }
+  ],
+  "events": [],
+  "result": {
+    "path": "result.json",
+    "sha256": "655efb081aaf71fbf37340635a5cbd66dd28844754006e0ff47cca037574d921"
+  },
+  "status": "recorded",
+  "missing_materials": [],
+  "strategy_evaluation": "weekly_only; daily_collection_not_verdict"
+}

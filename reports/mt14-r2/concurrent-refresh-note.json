@@ -1,0 +1,44 @@
+{
+  "classification": "pre-existing mt13-observed-refresh.timer fired concurrently; no restore/write attempted",
+  "recorded_at": "2026-09-12T22:40:07.046527+00:00",
+  "latest": {
+    "manifest": "/home/emox/work/projects/market-tools/.cron_state/mt13/observed-production-v1/mt13-action/user-reset-20260911T120928Z/2026-09-12/42f63a8ba87ca6d1d67dd193/r000001/manifest.json",
+    "revision": 1,
+    "sha256": "7c4c07a7369730dc7aec8cb323adef480e3c7e816705d64815d1664b8ce4ec28"
+  },
+  "mtime_ns": 1789252807049847597,
+  "unit_hashes": {
+    "/home/emox/.config/systemd/user/mt13-observed-hk.service": {
+      "current_sha256": "51603601fcf0389c2925b3ecb52bd6c0a70bcfb61300ec7e87615c223073f2cc",
+      "in_original_baseline": true,
+      "matches_original_baseline": true
+    },
+    "/home/emox/.config/systemd/user/mt13-observed-cn.timer": {
+      "current_sha256": "0f80372162ade1b73830cfc16a6d8fe6903bdd19abe15af1d8cb4773547b516a",
+      "in_original_baseline": true,
+      "matches_original_baseline": true
+    },
+    "/home/emox/.config/systemd/user/mt13-observed-refresh.timer": {
+      "current_sha256": "21b9e555a08e94851eacab9c4717568dba345e4833950f770ad0f0d07dbdea81",
+      "in_original_baseline": true,
+      "matches_original_baseline": true
+    },
+    "/home/emox/.config/systemd/user/mt13-observed-cn.service": {
+      "current_sha256": "ecebc5d10e3b341be59d7e0d0b5b99fa4a2b82ad49ccc678110a1ae53c7ad337",
+      "in_original_baseline": true,
+      "matches_original_baseline": true
+    },
+    "/home/emox/.config/systemd/user/mt13-observed-refresh.service": {
+      "current_sha256": "b5e24ceb05441f4f758291d5af5e54a3002bdef8690e6328b88b0464d0a8ef19",
+      "in_original_baseline": true,
+      "matches_original_baseline": true
+    },
+    "/home/emox/.config/systemd/user/mt13-observed-hk.timer": {
+      "current_sha256": "7e28004195e44d0f750b7132c85ed9470fedc8a09ad66c8476878597b8781b95",
+      "in_original_baseline": true,
+      "matches_original_baseline": true
+    }
+  },
+  "evidence": "concurrent-refresh-journal.txt",
+  "measurement_limit": "R2 opening hash set excluded .cron_state; comparison uses original R1 opening baseline, not fabricated R2 snapshot"
+}

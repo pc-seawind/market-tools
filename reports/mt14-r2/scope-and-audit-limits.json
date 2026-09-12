@@ -1,0 +1,14 @@
+{
+  "engineering_incomplete": [],
+  "approved_scope_limits": [
+    "real mature independent samples 0; continue_shadow",
+    "no natural fill or real activation",
+    "MT14 scheduled=false; no deployment",
+    "no efficacy or investment acceptance claim"
+  ],
+  "audit_limits": [
+    "No opening remote baseline; no backfill",
+    "R2 .cron_state not separately resnapshotted; original R1 baseline retained and compared",
+    "Existing MT13 refresh timer concurrently advanced production simulation latest index at 06:40; unit hashes unchanged; journal/manifest retained"
+  ]
+}
