@@ -884,6 +884,7 @@ def main():
     if Path(result_file).exists():
         input_materials.append({"name":"previous-handoff.json","path":result_file})
     result["archive"] = archive(root=args.archive_root,job="thesis-enrich",run_id=args.run_id or date_str,trade_date=date_str,scope_epoch=scope["epoch"],result=result,materials=input_materials,execution={"execution_id":args.execution_id or "thesis-enrich:"+(args.run_id or date_str),"started_at":started_at,"completed_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"status":result["status"],"source":"local_process_clock; not_scheduler_attestation"})
+    Path(result_file).parent.mkdir(parents=True, exist_ok=True)
     with open(result_file, "w") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 

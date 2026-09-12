@@ -112,6 +112,19 @@ class ThesisEnrichDailyTests(unittest.TestCase):
             finally:
                 result_path.unlink(missing_ok=True)
 
+    def test_main_creates_nested_output_parent(self):
+        with tempfile.TemporaryDirectory() as d:
+            thesis_dir = Path(d) / "thesis"
+            thesis_dir.mkdir()
+            write_thesis(thesis_dir / "000001.SZ.yaml", [{"date": "2026-08-25"}])
+            output = Path(d) / "new" / "nested" / "result.json"
+            with mock.patch.object(sys, "argv", [
+                "thesis_enrich_daily.py", "--thesis-dir", str(thesis_dir),
+                "--date", "2026-08-25", "--out", str(output), "--dry-run",
+            ]), contextlib.redirect_stdout(io.StringIO()):
+                ted.main()
+            self.assertEqual(json.loads(output.read_text())["skipped_existing"], 1)
+
     def test_main_does_not_write_when_history_is_insufficient(self):
         with tempfile.TemporaryDirectory() as d:
             target = Path(d) / "000001.SZ.yaml"
