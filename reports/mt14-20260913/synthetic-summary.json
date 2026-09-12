@@ -1,0 +1,30 @@
+{
+  "kind": "SYNTHETIC_ONLY",
+  "activation": "experimental_activate",
+  "mature_synthetic_events": 20,
+  "rejection": "reject",
+  "rollback": [
+    {
+      "category": "fundamental",
+      "action": "automatic_rollback",
+      "from": "fundamental-e2ceac307e7d",
+      "to": "qv-shadow-1",
+      "reason": "active_evidence_tampered",
+      "retained_ledgers": true
+    }
+  ],
+  "restore": [
+    {
+      "category": "fundamental",
+      "action": "resume_prepared"
+    }
+  ],
+  "old_pointer": "qv-shadow-1",
+  "paired_versions": [
+    "signal-policy-v1",
+    "technical-bf218f68ebfe"
+  ],
+  "synthetic_roundtrips": 1,
+  "real_samples": 0,
+  "verify_and_repeat_exit": 0
+}
