@@ -27,3 +27,24 @@ def test_new_risk_evidence_rolls_back_not_only_hash_corruption(tmp_path):
     q=r/'reject.json';q.write_text(json.dumps(frames(True)))
     assert publish(r,q,'fundamental','old','new','2026-09-13T00:00:00+00:00')['decision']=='reject'
     assert json.loads((r/'releases/fundamental/active.json').read_text())['version']=='old'
+
+def test_recover_prepare_over_existing_active_pointer(tmp_path):
+    r=init(tmp_path/'r','SYNTHETIC_ONLY');p=r/'v1.json';p.write_text(json.dumps(frames()))
+    publish(r,p,'fundamental','old','new','2026-09-13T00:00:00+00:00')
+    f=frames()
+    for x in f:x['candidate']='new2'
+    q=r/'v2.json';q.write_text(json.dumps(f))
+    with pytest.raises(RuntimeError):publish(r,q,'fundamental','old','new2','2026-09-14T00:00:00+00:00',fail_at='after_prepare')
+    assert recover(r)[0]['action']=='resume_prepared'
+    assert json.loads((r/'releases/fundamental/active.json').read_text())['version']=='new2'
+    assert not recover(r)
+
+def test_real_release_binds_historical_prefix_not_later_frames(tmp_path,monkeypatch):
+    from mt1 import iteration_loop as loop
+    from mt1.iteration_release import recompute
+    r=init(tmp_path/'r','REAL_CURRENT');f=frames()
+    for x in f:x['kind']='REAL_CURRENT'
+    p=r/'evidence.json';p.write_text(json.dumps(f))
+    later={**f[-1],'observed_at':'2026-09-14T00:00:00+00:00'}
+    monkeypatch.setattr(loop,'load_frames',lambda *a,**kw:f+[later])
+    assert recompute(r,p,'fundamental','old','new','2026-09-13T00:00:00+00:00')['decision']=='experimental_activate'

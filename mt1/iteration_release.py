@@ -2,7 +2,7 @@
 from pathlib import Path
 from .action_loop import read
 from .iteration_loop import atomic_json
-from .timing import digest
+from .timing import digest, instant
 from .timing_cli import file_hash
 from .iteration_loop import child, event
 from .iteration_validate import validate
@@ -14,7 +14,7 @@ def recompute(root, evidence, category, baseline, candidate, asof):
     if kind=='REAL_CURRENT':
         # Arbitrary caller-authored frames/flags are not accepted for real release.
         from .iteration_loop import load_frames
-        frames=load_frames(root,verify=True)
+        frames=[f for f in load_frames(root,verify=True) if instant(f['observed_at'])<=instant(asof)]
         if read(evidence)!=frames:raise ValueError('real_evidence_not_from_committed_runs')
     else:frames=read(evidence)
     return validate(frames,category,baseline,candidate,kind=kind,asof=asof)
@@ -61,6 +61,7 @@ def publish(root, evidence, category, baseline, candidate, asof, *, fail_at=None
     atomic_json(target,pointer)
     if fail_at=='after_switch':raise RuntimeError('injected_after_switch')
     event(root,key+':commit',{'decision':'experimental_activate','pointer_hash':digest(pointer)})
+    atomic_json(Path(str(intent)+'.committed'),{'pointer_hash':digest(pointer)})
     return {**result,'pointer':str(target),'pointer_hash':digest(pointer)}
 
 
@@ -68,17 +69,24 @@ def recover(root):
     root=Path(root).resolve(); receipts=[]
     for category in ('fundamental','technical'):
         target=child(root,'releases/'+category+'/active.json')
-        if not target.exists():
-            intents=sorted(child(root,'releases/'+category+'/intents').glob('*.json'),key=lambda p:p.stat().st_mtime_ns)
-            if intents:
-                p=read(intents[-1])
-                try:
-                    r=recompute(root,p['evidence_path'],category,p['baseline_version'],p['version'],p['asof'])
-                    if file_hash(p['evidence_path'])!=p['evidence_hash'] or digest(r)!=p['evaluation_hash']:
-                        raise ValueError('prepared_evidence_changed')
-                    atomic_json(target,p);receipts.append({'category':category,'action':'resume_prepared'})
-                except (ValueError,OSError,KeyError):
-                    receipts.append({'category':category,'action':'discard_invalid_prepared'})
+        intents=sorted(child(root,'releases/'+category+'/intents').glob('*.json'),key=lambda p:read(p)['asof'])
+        for intent in intents:
+            committed=Path(str(intent)+'.committed')
+            if committed.exists():continue
+            p=read(intent)
+            current=read(target) if target.exists() else {'version':p['baseline_version'],'baseline':True}
+            # Compare-and-swap also protects a later rollback/cancellation from replay.
+            if current not in (p,p['previous']):continue
+            try:
+                r=recompute(root,p['evidence_path'],category,p['baseline_version'],p['version'],p['asof'])
+                if file_hash(p['evidence_path'])!=p['evidence_hash'] or digest(r)!=p['evaluation_hash'] or r['decision']!='experimental_activate':
+                    raise ValueError('prepared_evidence_changed')
+                atomic_json(target,p)
+                atomic_json(committed,{'pointer_hash':digest(p)})
+                receipt={'category':category,'action':'resume_prepared','pointer_hash':digest(p)}
+                event(root,'recover:'+digest(p),receipt);receipts.append(receipt)
+            except (ValueError,OSError,KeyError):
+                receipts.append({'category':category,'action':'discard_invalid_prepared'})
         if not target.exists():continue
         p=read(target)
         if p.get('baseline'):continue
