@@ -1,3 +1,5 @@
+> **revision3时窗更新**：投资域已选择observed-quote-v1。部署以 [REVISION3.md](REVISION3.md) 为准；下文09:24+1200秒通用示例已废弃，不覆盖HK延迟报价。
+
 # MT-1.3 明确行动信号闭环
 
 基线 `a17635a`；实施 handoff：`investment/reference/technical-research/MT-1.3-action-signal-loop.md`。

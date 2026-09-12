@@ -1,3 +1,5 @@
+> **revision3时窗更新**：投资域已选择observed-quote-v1。部署以 [REVISION3.md](REVISION3.md) 为准；下文09:24+1200秒通用示例已废弃，不覆盖HK延迟报价。
+
 # MT13 revision 2：执行采集、SELL恢复、三类消费
 
 本轮针对拒收 P0/P1/P2，信号条件及收益研究不重做。MT12 数值参数、已有516测试、全部A/H/MT13证据保留。

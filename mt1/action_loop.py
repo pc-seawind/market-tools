@@ -614,8 +614,9 @@ def main():
     p=sub.add_parser('register-policy');p.add_argument('--root',required=True);p.add_argument('--policy',required=True)
     p=sub.add_parser('cancel');p.add_argument('--root',required=True);p.add_argument('--scope',default=DEFAULT);p.add_argument('--signal-id',required=True);p.add_argument('--reason',required=True)
     p=sub.add_parser('compose');p.add_argument('--section-one',required=True);p.add_argument('--section-two',required=True);p.add_argument('--company-section',required=True);p.add_argument('--manifest',required=True);p.add_argument('--out',required=True)
+    p=sub.add_parser('verify-run');p.add_argument('--root',required=True);p.add_argument('--capture-dir',required=True);p.add_argument('--report-dir',action='append',default=[])
     p=sub.add_parser('report-cycle');p.add_argument('--phase',choices=['morning','evening','weekly'],required=True);p.add_argument('--root',required=True);p.add_argument('--out',required=True);p.add_argument('--section-one');p.add_argument('--section-two');p.add_argument('--company-section');p.add_argument('--asof')
-    p=sub.add_parser('execution-worker');p.add_argument('--scope',default=DEFAULT);p.add_argument('--root',required=True);p.add_argument('--out',required=True);p.add_argument('--mode',choices=['probe','once','watch'],default='probe');p.add_argument('--max-seconds',type=int,default=240);p.add_argument('--poll-seconds',type=int,default=3);p.add_argument('--probe-model',choices=['strict-open-v1','observed-quote-v1'])
+    p=sub.add_parser('execution-worker');p.add_argument('--scope',default=DEFAULT);p.add_argument('--root',required=True);p.add_argument('--out',required=True);p.add_argument('--mode',choices=['probe','once','watch'],default='probe');p.add_argument('--max-seconds',type=int,default=2700);p.add_argument('--market',choices=['all','CN','HK'],default='all');p.add_argument('--poll-seconds',type=int,default=3);p.add_argument('--probe-model',choices=['strict-open-v1','observed-quote-v1'])
     p=sub.add_parser('consume-execution');p.add_argument('--scope',default=DEFAULT);p.add_argument('--root',required=True);p.add_argument('--bundle',required=True)
     for name in ('pause-signal','resume-signal'):
         p=sub.add_parser(name);p.add_argument('--scope',default=DEFAULT);p.add_argument('--root',required=True);p.add_argument('--signal-id',required=True);p.add_argument('--reason',required=True)
@@ -635,12 +636,15 @@ def main():
         result=publish_weekly(a.root,a.asof,a.out)
     elif a.cmd=='register-policy':result=register_policy(a.root,a.policy)
     elif a.cmd=='cancel':result=cancel(a.root,a.scope,a.signal_id,a.reason)
+    elif a.cmd=='verify-run':
+        from .action_integration import verify_run
+        result=verify_run(a.root,a.capture_dir,a.report_dir)
     elif a.cmd=='report-cycle':
         from .action_integration import cycle
         result=cycle(a.phase,a.root,a.out,a.section_one,a.section_two,a.company_section,a.asof)
     elif a.cmd=='execution-worker':
         from .action_worker import run_worker
-        result=run_worker(a.scope,a.root,a.out,a.mode,a.max_seconds,a.poll_seconds,a.probe_model)
+        result=run_worker(a.scope,a.root,a.out,a.mode,a.max_seconds,a.poll_seconds,a.probe_model,a.market)
     elif a.cmd=='consume-execution':
         from .action_worker import consume
         result=consume(a.bundle,a.scope,a.root)

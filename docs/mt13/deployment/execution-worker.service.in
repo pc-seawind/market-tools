@@ -1,12 +1,14 @@
-# NOT installed. Substitute ROOT / OUTPUT / PROVIDER_ENV only after investment review.
-# Invoke near 09:24 local time. Scheduling is separate and NOT installed here.
+# NOT installed. Investment substitutes ROOT, OUTPUT, PROVIDER_ENV, MARKET, BUDGET, HARD.
+# observed CN: MARKET=CN BUDGET=960 HARD=990; observed HK: HK 2460 2490.
+# strict diagnostic CN/HK: BUDGET=421 HARD=451. Start 09:24 Asia/Shanghai.
+# Worker also clips to absolute model/market end; late starts never backfill open.
 [Unit]
-Description=MT13 bounded read-only execution evidence capture
+Description=MT13 bounded per-market read-only valuation evidence capture
 [Service]
 Type=oneshot
 WorkingDirectory=/home/emox/work/projects/market-tools
 EnvironmentFile=@PROVIDER_ENV@
-ExecStart=/usr/bin/python3 -m mt1.action_loop execution-worker --root @ROOT@ --out @UNIQUE_OUTPUT@ --mode watch --max-seconds 1200 --poll-seconds 3
-TimeoutStartSec=1230
-RuntimeMaxSec=1230
+ExecStart=/usr/bin/python3 -m mt1.action_loop execution-worker --root @ROOT@ --out @UNIQUE_OUTPUT@ --market @MARKET@ --mode watch --max-seconds @BUDGET@ --poll-seconds 3
+TimeoutStartSec=@HARD@
+RuntimeMaxSec=@HARD@
 KillMode=control-group

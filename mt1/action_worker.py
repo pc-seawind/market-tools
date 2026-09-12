@@ -153,6 +153,7 @@ def consume(bundle_path,scope_path,root):
         s['execution_contract_sha256']=contract_hash
         s.update(asof=asof,transitions=[])
         for o in s['ledger'].values():
+            if o['market'] not in b.get('capture_markets',b['calendars']):continue
             renew(s,o,asof)
             if o['execution_status'] in TERMINAL or o.get('operator_paused'):continue
             a=ensure(o);cfg=s['policies'][o['version']]
@@ -184,8 +185,14 @@ def consume(bundle_path,scope_path,root):
         return save(root,s,b,scope_path,rid,materials)
 
 
-def run_worker(scope_path,root,out,mode='probe',max_seconds=240,poll_seconds=3,probe_model=None):
-    if not 1<=max_seconds<=1800 or not 1<=poll_seconds<=60:raise ValueError('bounded_worker_limits_required')
+WINDOWS={'strict-open-v1':{'CN':'09:31:01','HK':'09:31:01'},
+         'observed-quote-v1':{'CN':'09:40:00','HK':'10:05:00'}}
+
+
+def run_worker(scope_path,root,out,mode='probe',max_seconds=2700,poll_seconds=3,probe_model=None,market='all'):
+    if market not in ('all','CN','HK'):raise ValueError('unsupported_capture_market')
+    if not 1<=max_seconds<=2700 or not 1<=poll_seconds<=60:raise ValueError('bounded_worker_limits_required')
+    selected_market=market
     out=Path(out);out.mkdir(parents=True,exist_ok=False)
     started=now();t=time.monotonic();deadline=t+max_seconds;collector=Collector(out/'sources',deadline)
     scope=load(scope_path);panels=latest_panels(root);anchors=anchors_for(scope,panels)
@@ -193,23 +200,38 @@ def run_worker(scope_path,root,out,mode='probe',max_seconds=240,poll_seconds=3,p
     for code,item in items.items():
         item.setdefault('market','HK' if code.endswith('.HK') else 'CN')
         if item['market'] not in ('CN','HK'):raise ValueError('unsupported_capture_market')
+    if market!='all':
+        items={c:i for c,i in items.items() if i['market']==market}
+        anchors={c:o for c,o in anchors.items() if c in items}
+    if not items:raise ValueError('no_scope_items_in_market')
     prior=snapshots(root);model=prior[-1][1].get('execution_model','strict-open-v1')
     if probe_model:
         if mode!='probe' or probe_model not in ex.MODELS:raise ValueError('model_override_probe_only')
         model=probe_model
     if prior[-1][1]['synthetic']:raise ValueError('live_worker_refuses_synthetic_ledger')
-    day=str(instant(started).astimezone(ZoneInfo('Asia/Shanghai')).date())
+    local_start=instant(started).astimezone(ZoneInfo('Asia/Shanghai'))
+    day=str(local_start.date())
+    window_end=max(instant(day+'T'+WINDOWS[model][m]+'+08:00') for m in {i['market'] for i in items.values()})
+    # probe/once remain bounded diagnostic modes; watch is additionally session-window bounded.
+    if mode=='watch':
+        deadline=min(deadline,t+max(0,(window_end-instant(started)).total_seconds()))
+        collector.deadline=deadline
+    if mode=='watch' and deadline<=t:
+        result={'status':'capture_window_finished_retry_next_session','execution_model':model,'market':market,
+                'started_at':started,'finished_at':now(),'duration_seconds':0,'bundles':[],'receipts':[],
+                'window_end':window_end.isoformat(),'natural_live_open_validation':'pending_first_legal_window'}
+        write(out/'worker-result.json',result);return result
     pre=preflight(collector,items,anchors,day);records=list(pre.values());sources=mapping(records)
     opened={};next_sessions={};errors={}
     for market in {i['market'] for i in items.values()}:
         try:opened[market],next_sessions[market],_=ex.calendar(pre['calendar_'+market]['source_id'],sources,market,day)
         except Exception as e:opened[market]=None;errors[market]=type(e).__name__+':'+str(e)
     symbol=','.join(code.split('.')[1].lower()+code.split('.')[0] for code in sorted(items))
-    previous=None;receipts=[];outputs=[];i=0;current_status='initializing'
+    previous=None;receipts=[];outputs=[];i=0;current_status='initializing';last_consumed=-float('inf')
     while time.monotonic()<deadline:
         qm=collector.fetch(f'quote-{i:03}','https://qt.gtimg.cn/q='+symbol);records.append(qm);sources=mapping(records)
         latest=snapshots(root)[-1][1]
-        orders=[o for o in latest['ledger'].values() if o['execution_status'] not in ('filled','cancelled') and not o.get('operator_paused')]
+        orders=[o for o in latest['ledger'].values() if o['execution_status'] not in ('filled','cancelled') and not o.get('operator_paused') and o['code'] in items]
         normalized=[];probes=[]
         for order in orders+list(anchors.values()):
             refs={'quote':qm['source_id'],'calendar':pre['calendar_'+order['market']]['source_id'],
@@ -231,11 +253,18 @@ def run_worker(scope_path,root,out,mode='probe',max_seconds=240,poll_seconds=3,p
         elif normalized and all(q.get('reason') for q in normalized):current_status='captured_with_hard_execution_gaps'
         else:current_status='captured' if normalized else 'no_natural_signal_probe_only'
         b={'source_kind':'real_current_readonly_collection','scope_epoch':scope['epoch'],'scope_codes':sorted(codes(scope)),
-           'asof':at,'execution_model':model,'capture_status':current_status,'inputs':records.copy(),
-           'calendars':{m:pre['calendar_'+m]['source_id'] for m in opened},'execution_quotes':normalized,
+           'asof':at,'execution_model':model,'capture_status':current_status,'inputs':list(pre.values())+([previous] if previous else [])+[qm],
+           'capture_markets':sorted(opened),'calendars':{m:pre['calendar_'+m]['source_id'] for m in opened},'execution_quotes':normalized,
            'probe_only_not_signals':probes,'next_sessions':next_sessions,'errors':errors}
         path=out/f'execution-{i:03}.json';write(path,b);outputs.append(str(path))
-        if mode!='probe':receipts.append(consume(path,scope_path,root))
+        # Poll every few seconds, but don't rewrite unchanged blocked/no-signal ledger every poll.
+        ready=any(not q.get('reason') for q in normalized)
+        if mode!='probe' and (mode=='once' or ready or time.monotonic()-last_consumed>=60):
+            try:receipts.append(consume(path,scope_path,root))
+            except ValueError as e:
+                if str(e)!='execution_capture_before_last_transaction':raise
+                receipts.append({'status':'concurrent_newer_capture_committed_retry_next_poll','asof':at})
+            last_consumed=time.monotonic()
         previous=qm;i+=1
         stop_status=current_status in ('market_closed_next_verified_session','calendar_unavailable_retry_next_run','strict_window_missed_retry_next_session','morning_window_finished_retry_next_session')
         if mode=='once' or (mode!='probe' and stop_status) or (mode=='probe' and i>=3):break
@@ -243,7 +272,9 @@ def run_worker(scope_path,root,out,mode='probe',max_seconds=240,poll_seconds=3,p
         if remaining<=0:break
         # Wait in small bounded steps; never inherit daily collector's latency.
         time.sleep(min(poll_seconds,remaining))
-    result={'started_at':started,'finished_at':now(),'duration_seconds':time.monotonic()-t,'max_seconds':max_seconds,
+    if mode=='watch' and time.monotonic()>=deadline:
+        current_status='bounded_window_complete_retry_next_session'
+    result={'market':selected_market,'window_end':window_end.isoformat(),'started_at':started,'finished_at':now(),'duration_seconds':time.monotonic()-t,'max_seconds':max_seconds,
             'mode':mode,'execution_model':model,'status':current_status,'bundles':outputs,'receipts':receipts,
             'preflight_wall_seconds':(max(instant(m['fetched_at']) for m in pre.values())-min(instant(m['started_at']) for m in pre.values())).total_seconds(),
             'preflight_max_single_request_seconds':max((m['duration_seconds'] for m in pre.values()),default=0),
