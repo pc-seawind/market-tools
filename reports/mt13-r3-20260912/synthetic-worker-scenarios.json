@@ -1,0 +1,70 @@
+[
+  {
+    "SYNTHETIC_ONLY": true,
+    "failure": null,
+    "started_at": "2026-09-16T09:24:00+08:00",
+    "finished_at": "2026-09-16T10:05:00+08:00",
+    "duration_seconds": 2460.0,
+    "status": "bounded_window_complete_retry_next_session",
+    "window_end": "2026-09-16T10:05:00+08:00",
+    "poll_count": 82,
+    "receipt_count": 42,
+    "asserted_first_fill_at": "2026-09-16T09:50:30+08:00",
+    "final_receipt": {
+      "SYNTHETIC_ONLY": true,
+      "status": "filled"
+    },
+    "reproduce": "pytest tests/test_mt13_worker_windows.py::test_hk_twenty_minute_delay_worker_from_0924"
+  },
+  {
+    "SYNTHETIC_ONLY": true,
+    "failure": "stale",
+    "started_at": "2026-09-16T09:24:00+08:00",
+    "finished_at": "2026-09-16T10:05:00+08:00",
+    "duration_seconds": 2460.0,
+    "status": "bounded_window_complete_retry_next_session",
+    "window_end": "2026-09-16T10:05:00+08:00",
+    "poll_count": 82,
+    "receipt_count": 41,
+    "asserted_first_fill_at": null,
+    "final_receipt": {
+      "SYNTHETIC_ONLY": true,
+      "status": "blocked"
+    },
+    "reproduce": "pytest tests/test_mt13_worker_windows.py::test_hk_twenty_minute_delay_worker_from_0924"
+  },
+  {
+    "SYNTHETIC_ONLY": true,
+    "failure": "unchanged",
+    "started_at": "2026-09-16T09:24:00+08:00",
+    "finished_at": "2026-09-16T10:05:00+08:00",
+    "duration_seconds": 2460.0,
+    "status": "bounded_window_complete_retry_next_session",
+    "window_end": "2026-09-16T10:05:00+08:00",
+    "poll_count": 82,
+    "receipt_count": 41,
+    "asserted_first_fill_at": null,
+    "final_receipt": {
+      "SYNTHETIC_ONLY": true,
+      "status": "blocked"
+    },
+    "reproduce": "pytest tests/test_mt13_worker_windows.py::test_hk_twenty_minute_delay_worker_from_0924"
+  },
+  {
+    "SYNTHETIC_ONLY": true,
+    "failure": "rate_limit",
+    "started_at": "2026-09-16T09:24:00+08:00",
+    "finished_at": "2026-09-16T10:05:00+08:00",
+    "duration_seconds": 2460.0,
+    "status": "bounded_window_complete_retry_next_session",
+    "window_end": "2026-09-16T10:05:00+08:00",
+    "poll_count": 82,
+    "receipt_count": 41,
+    "asserted_first_fill_at": null,
+    "final_receipt": {
+      "SYNTHETIC_ONLY": true,
+      "status": "pending"
+    },
+    "reproduce": "pytest tests/test_mt13_worker_windows.py::test_hk_twenty_minute_delay_worker_from_0924"
+  }
+]

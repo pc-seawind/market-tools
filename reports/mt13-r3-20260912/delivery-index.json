@@ -1,0 +1,13 @@
+{
+  "work_id": "work_c04ee4237f5a367a1ed9",
+  "code_commit": "a74335cd4d6386a453754611cef562d4c3ab261e",
+  "tests": "556 passed in 48.96s",
+  "selected_model": "observed-quote-v1 new isolated root; no repeated choice required",
+  "docs": "docs/mt13/REVISION3.md",
+  "natural_validation": "NOT RUN; pending first legal open and investment deployment",
+  "synthetic_scenarios": "synthetic-worker-scenarios.json",
+  "existing_evidence_audit": "existing-evidence-readonly-audit.json",
+  "no_new_real_capture": true,
+  "not_deployed": true,
+  "not_validated": true
+}
