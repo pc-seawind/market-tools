@@ -4,11 +4,18 @@ import json
 import os
 from contextlib import contextmanager
 from pathlib import Path
-from .data import atomic_json
+from .data import atomic_json as _atomic_json
 from .action_loop import now, read
 from .timing import digest
 from .timing_cli import file_hash
 from .iteration_policy import SCHEMA, KINDS, CONTRACT
+
+
+def atomic_json(path, value):
+    _atomic_json(path, value)
+    fd = os.open(str(Path(path).parent), os.O_RDONLY | os.O_DIRECTORY)
+    try: os.fsync(fd)
+    finally: os.close(fd)
 
 
 def init(root, kind):
@@ -131,3 +138,331 @@ def technical_engines(root, run_dir, e, scope_path, choices):
                           'ledger_root':str(ar),'policy':cfg}
     return {'versions':outputs,'computed':True,'source_hash':digest(e),
             'scope_codes':sorted(bundle['scope_codes']),'execution_model':'observed-quote-v1'}
+
+
+def collect_inputs(root, run_dir, sweep, scope):
+    from .iteration_evidence import fundamental, technical, collect_marks
+    from .action_collect import collect
+    from .timing import instant
+    import shutil
+    gaps=[]
+    scope_copy=run_dir/'scope.json';scope_copy.parent.mkdir(parents=True,exist_ok=True)
+    if not scope_copy.exists():shutil.copyfile(scope,scope_copy)
+    elif file_hash(scope_copy)!=file_hash(scope):raise ValueError('scope_changed_mid_run')
+    # Collector's own bundle is its completion receipt; never consume partial output.
+    target=run_dir/'technical-collection'
+    def technical_collect():
+        completed=target/'supplement/bundle.json'
+        if completed.exists():return str(completed)
+        attempt=target if not target.exists() else run_dir/('technical-retry-'+digest(now())[:10])
+        return collect(scope_copy,attempt)['bundle']
+    bp=stage(root,run_dir,'technical-collection',technical_collect)
+    tech=stage(root,run_dir,'technical-input',lambda:technical(bp,run_dir/'technical',now()))
+    calendar=tech['bundle'].get('markets',{}).get('CN',{}).get('sessions',[])
+    if not calendar:raise ValueError('CN_completed_calendar_missing_actual_collection_attempted')
+    completed=calendar[-1]
+    if sweep is None:
+        sweep=Path(__file__).resolve().parents[1]/'.cron_state/mt1/sweeps'/completed
+    if not (Path(sweep)/'summary.json').exists() or read(Path(sweep)/'summary.json')['asof']!=completed:
+        from .sweep import sweep as collect_sweep
+        # Bounded supplement into experiment-owned paths; no production sweep mutation.
+        receipt=stage(root,run_dir,'sweep-remedy',lambda:collect_sweep(run_dir/'recollection',completed,
+                      batch_size=100,workers=2,max_batches=1,max_seconds=180))
+        sweep=run_dir/'recollection/sweeps'/completed
+    fund=stage(root,run_dir,'fundamental-input',lambda:fundamental(sweep,run_dir/'fundamental',now()))
+    marks=stage(root,run_dir,'supplement',lambda:collect_marks(run_dir/'supplement',fund['snapshot']['asof']))
+    return {'fundamental':fund,'technical':tech,'marks':marks,'scope_path':str(scope_copy),
+            'source_scope_hash':file_hash(scope),'asof':now(),'gaps':gaps}
+
+
+def build_frames(inputs, selection, fundamentals, technicals, kind):
+    from .iteration_evidence import mark_rows
+    frames=[];gaps=[]
+    tech=inputs['technical']['bundle']; calendar=tech.get('markets',{}).get('CN',{}).get('sessions',[])
+    # Supplement retains markets for current real collection. Synthetic uses panels.
+    if not calendar:
+        calendar=next((p['sessions'] for p in tech['panels'] if p['market']=='CN'),[])
+    previous=calendar[-2] if len(calendar)>1 else None
+    for c in selection['candidates']:
+        cat=c['category']; baseline='qv-shadow-1' if cat=='fundamental' else 'signal-policy-v1'
+        if cat=='fundamental':
+            rows,missing=mark_rows(inputs['marks'],inputs['asof']);gaps+=missing
+            scopes=fundamentals['scope_codes'];v=fundamentals['versions']
+            old={x['code'] for x in v[baseline]['candidates']};new={x['code'] for x in v[c['id']]['candidates']}
+            rows=[{**r,'previous_session':previous,'baseline_selected':r['code'] in old,
+                   'candidate_selected':r['code'] in new} for r in rows if r['code'] in scopes]
+        else:
+            scopes=technicals['scope_codes'];v=technicals['versions'];rows=[]
+            old={x['code']:x for x in v[baseline]['state']['cards']};new={x['code']:x for x in v[c['id']]['state']['cards']}
+            for p in tech['panels']:
+                code=p['code']
+                if old[code]['action']=='DATA_BLOCKED' or new[code]['action']=='DATA_BLOCKED':continue
+                if not p.get('bars') or p.get('adjustment')!='vendor_factor_verified':continue
+                b=p['bars'][-1]
+                rows.append({'code':code,'price':b['close']*b['factor'],'market':p['market'],
+                             'basis':p['basis_id'],'date':b['date'],'close_at':b['close_at'],
+                             'previous_session':p['sessions'][-2] if len(p['sessions'])>1 else None,
+                             'baseline_selected':old[code]['action']=='BUY','candidate_selected':new[code]['action']=='BUY'})
+        frames.append({'kind':kind,'category':cat,'baseline':baseline,'candidate':c['id'],
+                       'contract_hash':digest(CONTRACT),'observed_at':inputs['asof'],'scope_codes':sorted(scopes),
+                       'capital_per_code':CONTRACT['capital_per_code'],'cost_bps':CONTRACT['per_side_cost_bps'],
+                       'rows':rows,'sources_hash':digest(inputs)})
+    return {'frames':frames,'gaps':gaps}
+
+
+def run_files(run_dir):
+    return {str(p.relative_to(run_dir)):file_hash(p) for p in sorted(run_dir.rglob('*'))
+            if p.is_file() and p.name not in ('manifest.json','failure.json')}
+
+
+def verify_run(root, run_dir):
+    from .iteration_evidence import verify_fundamental, verify_technical
+    from .action_loop import decide
+    from .scope import load
+    from .iteration_policy import code_hashes
+    m=read(run_dir/'manifest.json')
+    if m['files']!=run_files(run_dir):raise ValueError('run_manifest_hash_mismatch')
+    if m['contract_hash']!=digest(CONTRACT) or m['code_hashes']!=code_hashes():raise ValueError('engine_or_contract_version_changed')
+    def result(name):
+        r=read(run_dir/(name+'.json'))
+        if digest(r['result'])!=r['sha256']:raise ValueError('stage_hash_changed')
+        return r['result']
+    inputs=result('inputs');select=result('selection');fund=result('fundamental-engines');tech=result('technical-engines')
+    verify_fundamental(inputs['fundamental'])
+    verify_technical(inputs['technical'])
+    if fundamental_engines(inputs['fundamental'],select['candidates'])!=fund:
+        raise ValueError('fundamental_engine_recompute_mismatch')
+    from .action_loop import snapshots
+    for version,value in tech['versions'].items():
+        history=snapshots(value['ledger_root']);path=value['receipt']['manifest']
+        idx=next(i for i,(p,s) in enumerate(history) if str(p)==str(path))
+        state=history[idx][1]
+        if digest(state)!=value['state_hash'] or state!=value['state']:raise ValueError('action_ledger_changed')
+        # Re-run the actual pure action decision using its previous frozen state.
+        prior=history[idx-1][1] if idx else {'states':{},'positions':{}}
+        scope=load(inputs['scope_path']);bundle=read(run_dir/('execute-'+version+'.json'))
+        for panel in bundle['panels']:
+            key=version+'|'+panel['code'];held=panel['code'] in scope['holdings'] or key in prior['positions']
+            _,card=decide(panel,bundle['asof'],prior['states'].get(key),held,value['policy'])
+            actual=next(c for c in state['cards'] if c['code']==panel['code'])
+            if card['action']!=actual['action']:
+                raise ValueError('technical_action_recompute_mismatch:'+panel['code'])
+    if build_frames(inputs,select,fund,tech,m['kind'])!=result('frames'):
+        raise ValueError('forward_frame_recompute_mismatch')
+    return m
+
+
+def load_frames(root, verify=False):
+    root=Path(root);frames=[]
+    for p in sorted(child(root,'runs').glob('*/manifest.json')):
+        if verify:verify_run(root,p.parent)
+        frames+=read(p.parent/'frames.json')['result']['frames']
+    return frames
+
+
+def status(root):
+    root=Path(root).resolve();identity=read(child(root,'.mt14.json'))
+    runs=[]
+    for d in sorted(child(root,'runs').glob('*')):
+        if (d/'manifest.json').exists():runs.append(read(d/'manifest.json')['summary'])
+        elif (d/'failure.json').exists():runs.append(read(d/'failure.json'))
+        else:runs.append({'run_id':d.name,'engineering_status':'in_progress'})
+    return {'identity':identity,'scheduled':False,'runs':runs,
+            'active':{p.parent.name:read(p) for p in child(root,'releases').glob('*/active.json')}}
+
+
+def verify(root):
+    root=Path(root).resolve();verified=[]
+    for p in sorted(child(root,'runs').glob('*/manifest.json')):
+        verified.append({'run':p.parent.name,'hash':file_hash(p),'summary':verify_run(root,p.parent)['summary']})
+    for p in child(root,'events').glob('*.json'):
+        r=read(p)
+        if digest(r['value'])!=r['sha256']:raise ValueError('event_tampered')
+    # Independently recalculate archived decisions from the corresponding prefix.
+    from .iteration_validate import validate
+    frames=[]
+    for p in sorted(child(root,'runs').glob('*/manifest.json')):
+        frames+=read(p.parent/'frames.json')['result']['frames'];stored=read(p.parent/'evaluation.json')['result']
+        for expected in stored:
+            cat=expected['category'];old='qv-shadow-1' if cat=='fundamental' else 'signal-policy-v1'
+            actual=validate(frames,cat,old,expected['candidate'],kind=expected['kind'],asof=expected['asof'])
+            if actual!=expected:raise ValueError('evaluation_recompute_mismatch')
+    return {'verified_runs':verified,'scheduled':False,'engineering_verification_only':True,
+            'incomplete':[r for r in status(root)['runs'] if r.get('engineering_status')!='completed']}
+
+
+def run(root, *, sweep, scope, request_id=None, fail_at=None):
+    from datetime import timedelta
+    from .iteration_policy import code_hashes
+    from .iteration_validate import validate
+    from .iteration_release import recover, publish
+    root=init(root,'REAL_CURRENT');key=request_id or now()[:10]
+    # User key never becomes an unsafe path; date prefix gives chronological order.
+    rid=key[:10].replace('/','_')+'-'+digest(key)[:16]
+    d=child(root,'runs/'+rid)
+    with locked(root):
+        recover(root)
+        if (d/'manifest.json').exists():
+            verify_run(root,d)
+            return {**read(d/'manifest.json')['summary'],'idempotent':True}
+        d.mkdir(parents=True,exist_ok=True)
+        try:
+            inputs=stage(root,d,'inputs',lambda:collect_inputs(root,d,sweep,scope))
+            registry=child(root,'candidates.json')
+            def selection():
+                if registry.exists():return read(registry)
+                value=propose(inputs['fundamental'],inputs['technical'],inputs['asof'])
+                atomic_json(registry,value);return value
+            select=stage(root,d,'selection',selection)
+            f=stage(root,d,'fundamental-engines',lambda:fundamental_engines(inputs['fundamental'],select['candidates']))
+            t=stage(root,d,'technical-engines',lambda:technical_engines(root,d,inputs['technical'],inputs['scope_path'],select['candidates']))
+            if fail_at=='after_engines':raise RuntimeError('injected_after_engines')
+            current=stage(root,d,'frames',lambda:build_frames(inputs,select,f,t,'REAL_CURRENT'))
+            frames=load_frames(root,verify=True)+current['frames']
+            def evaluate():
+                return [validate(frames,c['category'],'qv-shadow-1' if c['category']=='fundamental' else 'signal-policy-v1',
+                                 c['id'],kind='REAL_CURRENT',asof=inputs['asof']) for c in select['candidates']]
+            evaluations=stage(root,d,'evaluation',evaluate)
+            gaps=current['gaps']+inputs['technical']['missing']
+            summary={'run_id':rid,'engineering_status':'incomplete' if gaps else 'completed',
+                     'strategy_decisions':[{k:r[k] for k in ('category','candidate','decision','reason','independent_events')} for r in evaluations],
+                     'candidate_count':len(select['candidates']),'fundamental_selected_counts':f['selected_counts'],
+                     'fundamental_scope_count':len(f['scope_codes']),'technical_scope_count':len(t['scope_codes']),
+                     'technical_actions':{v:{c['code']:c['action'] for c in x['state']['cards']} for v,x in t['versions'].items()},
+                     'kind':'REAL_CURRENT','gaps':gaps,'scheduled':False,
+                     'next_check_at':(instant_time(inputs['asof'])+timedelta(days=1)).isoformat(),
+                     'production_activated':False,'no_efficacy_claim':True}
+            atomic_json(d/'summary.json',summary)
+            (d/'report.md').write_text('**MT14 真实首轮/续轮｜非投资验收**\n\n'+json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+            if fail_at=='before_archive':raise OSError('injected_archive_failure')
+            manifest={'schema':SCHEMA,'kind':'REAL_CURRENT','contract_hash':digest(CONTRACT),
+                      'code_hashes':code_hashes(),'files':run_files(d),'summary':summary}
+            atomic_json(d/'manifest.json',manifest)
+            verify_run(root,d)
+            event(root,'run:'+rid,{'manifest_hash':file_hash(d/'manifest.json'),'engineering_status':summary['engineering_status']})
+            # Release only verified completed evidence; no candidate pass field.
+            ep=child(root,'evaluations/'+digest(frames)+'.json');atomic_json(ep,frames)
+            if not gaps:
+                for c in select['candidates']:
+                    publish(root,ep,c['category'],'qv-shadow-1' if c['category']=='fundamental' else 'signal-policy-v1',c['id'],inputs['asof'])
+            return summary
+        except Exception as exc:
+            receipt={'run_id':rid,'engineering_status':'incomplete','error':type(exc).__name__+':'+str(exc),
+                     'scheduled':False,'resume_command':'same run command','recorded_at':now()}
+            try:atomic_json(d/'failure.json',receipt)
+            except OSError:
+                # Last-resort local receipt outside failed run archive; CLI also prints error.
+                atomic_json(child(root,'last-failure.json'),receipt)
+            raise
+
+
+def instant_time(value):
+    from .timing import instant
+    return instant(value)
+
+
+def demo(root):
+    """Actual synthetic engine runs + pointer mutations; never counted as real."""
+    from datetime import date, timedelta
+    from .iteration_release import publish, recover
+    from .iteration_policy import candidate
+    from .candidates import screen
+    from .action_demo import demo as action_demo, fixture, bundle, make_scope, append
+    from .action_loop import snapshots
+    from .iteration_validate import validate
+    root=init(root,'SYNTHETIC_ONLY')
+    with locked(root):
+        if (root/'demo-summary.json').exists():
+            expected=read(root/'demo-summary.json')
+            for p,h in expected['artifacts'].items():
+                if file_hash(p)!=h:raise ValueError('demo_artifact_tampered')
+            return {**expected,'idempotent':True}
+        raw=child(root,'raw');raw.mkdir(exist_ok=True)
+        frames=[];reject_frames=[];start=date(2026,9,14);dates=[]
+        while len(dates)<62:
+            if start.weekday()<5:dates.append(str(start))
+            start+=timedelta(days=1)
+        c=candidate('fundamental',{'roe_min':12},'SYNTHETIC ROE boundary','SYNTHETIC',dates[0]+'T18:00:00+00:00')
+        codes=['SYNTH-'+str(n) for n in range(20)]
+        for i,day in enumerate(dates):
+            snap={'asof':day,'data_version':'SYNTHETIC','universe_size':len(codes),
+                  'observations':[{'stock':{'ts_code':code,'name':'SYNTHETIC_ONLY'},
+                                   'daily':{'trade_date':day.replace('-',''),'pe_ttm':15,'pb':2,'turnover_rate':1},
+                                   'financials':[{'ann_date':'20260801','end_date':'20260630','roe':11,'ocfps':1,'eps':1,'debt_to_assets':30}]} for code in codes]}
+            old=screen(snap);new=screen(snap,c['parameters'])
+            selected_old={x['code'] for x in old['candidates']};selected_new={x['code'] for x in new['candidates']}
+            atomic_json(raw/(day+'.json'),{'SYNTHETIC_ONLY':True,'snapshot':snap,'baseline':old,'candidate':new,
+                                           'declining_price':100-i*.5,'rising_price':100+i*.5})
+            f={'kind':'SYNTHETIC_ONLY','category':'fundamental','baseline':'qv-shadow-1','candidate':c['id'],
+               'contract_hash':digest(CONTRACT),'observed_at':day+'T18:00:00+00:00','scope_codes':codes,
+               'capital_per_code':CONTRACT['capital_per_code'],'cost_bps':CONTRACT['per_side_cost_bps'],
+               'rows':[{'code':code,'date':day,'close_at':day+'T15:00:00+00:00','market':'CN','basis':'SYNTHETIC',
+                        'previous_session':dates[i-1] if i else None,'price':100-i*.5,
+                        'baseline_selected':code in selected_old,'candidate_selected':code in selected_new} for code in codes]}
+            frames.append(f);reject_frames.append({**f,'rows':[{**r,'price':100+i*.5} for r in f['rows']]})
+        ep=child(root,'forward.json');atomic_json(ep,frames);asof=frames[-1]['observed_at']
+        args=(root,ep,'fundamental','qv-shadow-1',c['id'],asof)
+        try:publish(*args,fail_at='after_prepare')
+        except RuntimeError as exc:event(root,'demo-interruption',{'error':str(exc)})
+        recovered=recover(root)
+        activated=publish(*args)
+        active_before=read(root/'releases/fundamental/active.json')
+        # Tamper actual bound evidence; health check must restore baseline pointer.
+        original=ep.read_bytes();ep.write_text('[]')
+        rolled=recover(root);active_after=read(root/'releases/fundamental/active.json')
+        ep.write_bytes(original)
+        reject_path=root/'reject-forward.json';atomic_json(reject_path,reject_frames)
+        rejected=publish(root,reject_path,'fundamental','qv-shadow-1',c['id'],asof)
+        unfinished=validate(frames[:10],'fundamental','qv-shadow-1',c['id'],kind='SYNTHETIC_ONLY',asof=asof)
+        assert recovered[0]['action']=='resume_prepared'
+        assert activated['decision']=='experimental_activate' and activated['idempotent']
+        assert active_before['version']==c['id'] and active_after['version']=='qv-shadow-1'
+        assert rolled[0]['action']=='automatic_rollback' and rejected['decision']=='reject'
+        assert unfinished['decision']=='continue_shadow'
+        # Original execution engine performs actual SYNTHETIC buy/exit/fills.
+        trade=action_demo(root/'execution-roundtrip')
+        # Paired original/candidate technical engine calculation, including registration.
+        scope=root/'synthetic-scope.json';make_scope(scope)
+        p=fixture();c2=candidate('technical',{'breakout_volume_min':1.4},'SYNTHETIC volume boundary','SYNTHETIC',p['fetched_at'][:-6]+'.000001+08:00')
+        paired=[]
+        for i in range(3):
+            if i:p=append(p,108 if i==1 else 109,130 if i==1 else 160)
+            d=root/('paired-'+str(i));d.mkdir()
+            bp=bundle(p,d,i)
+            e={'bundle':read(bp)}
+            paired.append(technical_engines(root,d,e,scope,[c2]))
+        for i,x in enumerate(paired):atomic_json(root/('paired-output-'+str(i)+'.json'),x)
+        result={'kind':'SYNTHETIC_ONLY','scheduled':False,'engineering_status':'completed',
+                'activation':activated,'rejection':rejected,'immature':unfinished,'recovery':recovered,
+                'tamper_rollback':rolled,'pointer_before':active_before,'pointer_after':active_after,
+                'execution_roundtrip':trade,'paired_technical_versions':list(paired[-1]['versions']),
+                'real_sample_count':0,'no_efficacy_claim':True}
+        (root/'demo-report.md').write_text('**SYNTHETIC_ONLY｜不是行情/收益证据**\n'+json.dumps(result,ensure_ascii=False,indent=2))
+        result['artifacts']={str(p):file_hash(p) for p in root.rglob('*') if p.is_file() and p.name not in ('.iteration.lock','demo-summary.json')}
+        atomic_json(root/'demo-summary.json',result)
+        return result
+
+
+def main(argv=None):
+    import argparse
+    p=argparse.ArgumentParser(description='MT14 isolated iteration; no production/cron/trades')
+    p.add_argument('command',choices=['run','status','verify','demo'])
+    p.add_argument('--root',required=True)
+    p.add_argument('--sweep', help='可选指定 sweep；默认自动选择最新快照，过期实际补采')
+    p.add_argument('--scope',default='/home/emox/work/investment/reference/tracking-scope.json')
+    p.add_argument('--request-id')
+    a=p.parse_args(argv)
+    try:
+        if a.command=='run':r=run(a.root,sweep=a.sweep,scope=a.scope,request_id=a.request_id)
+        elif a.command=='demo':r=demo(a.root)
+        elif a.command=='verify' and (Path(a.root)/'demo-summary.json').exists():r=demo(a.root)
+        else:r=globals()[a.command](a.root)
+        print(json.dumps(r,ensure_ascii=False,indent=2))
+        return 2 if r.get('engineering_status')=='incomplete' or r.get('incomplete') else 0
+    except Exception as e:
+        print(json.dumps({'engineering_status':'incomplete','error':type(e).__name__+':'+str(e),'scheduled':False},ensure_ascii=False))
+        return 2
+
+
+if __name__=='__main__':
+    raise SystemExit(main())

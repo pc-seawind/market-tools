@@ -1,0 +1,27 @@
+# MT14 唯一 CLI
+
+在 market-tools 仓库运行，Python stdlib。没有定时器、VPS 部署或生产写入。
+
+```bash
+python3 -m mt1.iteration_loop demo --root reports/mt14-20260913/synthetic
+python3 -m mt1.iteration_loop run --root reports/mt14-20260913/real
+python3 -m mt1.iteration_loop status --root reports/mt14-20260913/real
+python3 -m mt1.iteration_loop verify --root reports/mt14-20260913/real
+```
+
+run 自动采集技术数据、确定最新完成交易日，复用相同日期 sweep；缺失时在实验目录实际尝试有界补采（100 股一批，其余披露不足）。同时实际补采日价格/复权因子，以当前存续股票池进行前向信号评价，不把现持仓当成全部选股池。原 sweep、scope 均只读。
+
+默认幂等键为 UTC 日期；同一天重复相同命令恢复已有阶段，完成后只做核验不重复执行。次日同一命令创建新观察轮。`--request-id` 用于显式新轮，不能覆盖原轮。若中断超过原 MT13 live freshness 时限，不能绕过旧引擎的 30 分钟门槛；须新的 request-id 重新采集，旧失败回执保留（当前已知恢复限制）。
+
+`--sweep` 可只读指定源目录；日期与新采技术完成日不一致时实际补采，不改写指定目录。`--scope` 可指定只读 tracking-scope。
+
+每轮：inputs → selection → 两类 engines → frames → evaluation → manifest → 隔离 release。
+阶段结果 hash 固化，互斥锁覆盖全部运行；失败写 failure.json，总状态 incomplete，CLI exit 2。归档验证不会信任调用者通过字段或计数。
+
+基本面前向收益、技术前向 BUY 信号及 MT13 报价模拟分别留账。前向主指标为固定资金槽、次个观测交易日收盘起的 60 日净价格收益（成本为合同场景），不是历史成交回测；真实模拟执行仍由原 MT13 observed-quote-v1 独立管理，不用日 K 伪造执行报价。当前 CLI 采集日行情，不替代开盘/实时执行采集器。
+
+候选参数只允许白名单。基线/候选账本不同目录；晋级/回退只改变 releases/<category>/active.json。现有虚拟仓保留原版本退出，人工取消由原 MT13 cancel 保留，不复制真实持仓。原生产 validated/active 不变。
+
+独立核验会读取归档原字节，重算基本面、技术动作、frames 与决策，并核对源 hash 和当前引擎 hash。代码版本改变后旧轮按原 commit checkout 在独立 worktree 中核验；不静默把新引擎当成原版。
+
+尚未部署调度，所有 scheduled=false。next_check_at 仅为下次建议检查，不保证执行。开发测试与合成晋级证明工程分支，不证明投资策略有效。

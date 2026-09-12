@@ -1,7 +1,7 @@
 """Atomic experiment pointer only; frozen MT13 ledgers never migrated/revived."""
 from pathlib import Path
 from .action_loop import read
-from .data import atomic_json
+from .iteration_loop import atomic_json
 from .timing import digest
 from .timing_cli import file_hash
 from .iteration_loop import child, event
