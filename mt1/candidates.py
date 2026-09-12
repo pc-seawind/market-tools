@@ -15,7 +15,11 @@ def number(value):
     except (ValueError,TypeError): return None
 
 
-def screen(snapshot):
+def screen(snapshot, parameters=None):
+    cfg = {"roe_min": 10, "pe_max": 25, "pb_max": 3}
+    if parameters is not None:
+        from .iteration_policy import parameters as checked_parameters
+        cfg = checked_parameters("fundamental", parameters)
     asof=day(snapshot['asof']); candidates=[]; excluded=[]; covered=0
     for r in snapshot.get('observations',[]):
         code=r['stock']['ts_code']; reasons=[]
@@ -40,8 +44,8 @@ def screen(snapshot):
             covered+=1
             # Exploratory parameters, versioned and not promoted to production.
             if 'ST' in r['stock'].get('name','').upper(): reasons.append('special_treatment')
-            if not (vals['roe']>=10 and vals['ocfps']>0 and vals['eps']>0): reasons.append('quality_filter')
-            if not (0<vals['pe_ttm']<=25 and 0<vals['pb']<=3): reasons.append('value_filter')
+            if not (vals['roe']>=cfg['roe_min'] and vals['ocfps']>0 and vals['eps']>0): reasons.append('quality_filter')
+            if not (0<vals['pe_ttm']<=cfg['pe_max'] and 0<vals['pb']<=cfg['pb_max']): reasons.append('value_filter')
             if vals['turnover_rate']<=0: reasons.append('liquidity_filter')
             if vals['debt_to_assets']>70: reasons.append('leverage_filter')
         if reasons:

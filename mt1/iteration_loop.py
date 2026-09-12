@@ -64,3 +64,70 @@ def stage(root, run_dir, name, compute):
     atomic_json(p, {'result':result, 'sha256':digest(result)})
     event(root, str(p.relative_to(root)), {'stage':name,'sha256':digest(result)})
     return result
+
+
+def propose(fund, tech, effective_at):
+    """One prespecified tightening per engine; no cherry-picked parameter grid."""
+    from .candidates import screen
+    from .action_loop import decide, POLICY
+    from .iteration_policy import candidate
+    choices=[]; reasons=[]
+    if fund:
+        old=screen(fund['snapshot'])
+        marginal=[r['code'] for r in old['candidates'] if r['metrics']['roe']<12]
+        if marginal:
+            choices.append(candidate('fundamental', {'roe_min':12},
+                '原版通过但 ROE<12 的 '+str(len(marginal))+' 个样本；检验收紧质量因子是否减少下行，不声称已改善收益',
+                digest(fund),effective_at))
+        else:reasons.append('fundamental_no_marginal_quality_evidence_keep')
+    if tech:
+        usable=[]
+        for p in tech['bundle']['panels']:
+            r,c=decide(p,tech['bundle']['asof'],None,False,read(POLICY))
+            if r['status']=='ok':usable.append({'code':p['code'],'action':c['action'],'entry':r.get('entry')})
+        if usable:
+            choices.append(candidate('technical', {'breakout_volume_min':1.4},
+                '原引擎可计算 '+str(len(usable))+' 个面板；检验更严格放量确认，风险退出完全不变；尚无收益证据',
+                digest(tech),effective_at))
+        else:reasons.append('technical_no_usable_panel_keep')
+    return {'candidates':choices,'keep_reasons':reasons}
+
+
+def fundamental_engines(e, choices):
+    from .candidates import screen
+    baseline=screen(e['snapshot']); versions={'qv-shadow-1':baseline}
+    for c in choices:
+        if c['category']=='fundamental':
+            r=screen(e['snapshot'], parameters=c['parameters']);r['method_version']=c['id']
+            versions[c['id']]=r
+    return {'versions':versions,'source_hash':digest(e),'scope_codes':e['scope_codes'],
+            'computed':True,'selected_counts':{k:len(v['candidates']) for k,v in versions.items()}}
+
+
+def technical_engines(root, run_dir, e, scope_path, choices):
+    from datetime import timedelta
+    from .action_loop import observe, snapshots, register_policy, POLICY
+    from .iteration_policy import action_policy
+    from .timing import instant
+    bundle=e['bundle']; outputs={}
+    variants=[None]+[c for c in choices if c['category']=='technical']
+    for c in variants:
+        version=c['id'] if c else 'signal-policy-v1'
+        ar=child(root,'technical-ledgers/'+version)
+        # Register with original MT13 function, never bypass production promotion.
+        if c and not (ar/'policy-registrations'/(version+'.json')).exists():
+            seed=run_dir/('seed-'+version+'.json');atomic_json(seed,bundle)
+            observe(seed,scope_path,ar,execution_model='observed-quote-v1')
+            cfg=action_policy(c);policy=run_dir/(version+'.json');atomic_json(policy,cfg)
+            register_policy(ar,policy)
+        else:
+            cfg=action_policy(c);policy=run_dir/(version+'.json');atomic_json(policy,cfg)
+        # Only decision timestamp advances; provider fetched_at/bar times unchanged.
+        b={**bundle,'asof':max(bundle['asof'],c['effective_at'],key=instant)} if c else bundle
+        bp=run_dir/('execute-'+version+'.json');atomic_json(bp,b)
+        receipt=observe(bp,scope_path,ar,policy if c else POLICY,execution_model='observed-quote-v1')
+        state=snapshots(ar)[-1][1]
+        outputs[version]={'receipt':receipt,'state':state,'state_hash':digest(state),
+                          'ledger_root':str(ar),'policy':cfg}
+    return {'versions':outputs,'computed':True,'source_hash':digest(e),
+            'scope_codes':sorted(bundle['scope_codes']),'execution_model':'observed-quote-v1'}
