@@ -75,7 +75,7 @@ def validate(frames, category, baseline, candidate, *, kind, asof):
                           'evidence_hash':digest([origin,path])})
             # Disjoint per-stock events. Identical frames cannot inflate N.
             next_origin=rows.index(path[-1])+1
-    result={'category':category,'candidate':candidate,'kind':kind,'contract_hash':digest(CONTRACT),
+    result={'category':category,'baseline':baseline,'candidate':candidate,'kind':kind,'contract_hash':digest(CONTRACT),
             'asof':asof,'independent_events':len(pairs),'pairs':pairs,'pending':pending,
             'horizon_counts_diagnostic':diagnostics,'decision':'continue_shadow',
             'reason':'insufficient_mature_forward_samples','metric_type':CONTRACT['evaluation'],

@@ -10,7 +10,7 @@ from .timing import digest
 from .timing_cli import file_hash
 from .iteration_policy import SCHEMA, KINDS, CONTRACT
 
-IMPLEMENTATION_GAPS = ['successor_generation_and_active_as_next_baseline_not_yet_wired']
+IMPLEMENTATION_GAPS = []
 
 
 def atomic_json(path, value):
@@ -99,14 +99,67 @@ def propose(fund, tech, effective_at):
                 '原引擎可计算 '+str(len(usable))+' 个面板；检验更严格放量确认，风险退出完全不变；尚无收益证据',
                 digest(tech),effective_at))
         else:reasons.append('technical_no_usable_panel_keep')
+    for c in choices:
+        c['scope_codes']=list(fund['scope_codes'] if c['category']=='fundamental' else tech['bundle']['scope_codes'])
     return {'candidates':choices,'keep_reasons':reasons}
 
 
-def fundamental_engines(e, choices):
+def select_generation(root, inputs):
+    """Keep pending cohorts fixed; only mature terminal reviews permit a successor."""
+    from .iteration_policy import candidate, BASE, BOUNDS
+    registry=child(root,'candidates.json')
+    old=read(registry) if registry.exists() else None
+    reviews={}
+    for p in sorted(child(root,'runs').glob('*/evaluation.json')):
+        if not (p.parent/'manifest.json').exists():continue
+        for r in read(p)['result']:reviews[r['candidate']]=r
+    if old and old['candidates'] and any(reviews.get(c['id'],{}).get('decision') in ('reject','experimental_activate') for c in old['candidates']):
+        choices=[];reasons=[]
+        for c in old['candidates']:
+            if reviews.get(c['id'],{}).get('decision') not in ('reject','experimental_activate'):
+                choices.append(c);continue
+            cat=c['category'];key='roe_min' if cat=='fundamental' else 'breakout_volume_min'
+            value=round(c['parameters'][key]+(1 if cat=='fundamental' else .1),8)
+            if value>BOUNDS[cat][key][1]:
+                reasons.append(cat+'_whitelist_budget_exhausted_keep');continue
+            active=child(root,'releases/'+cat+'/active.json')
+            baseline=read(active)['version'] if active.exists() else ('qv-shadow-1' if cat=='fundamental' else 'signal-policy-v1')
+            basefile=child(root,'candidate-descriptors/'+baseline+'.json')
+            descriptor=read(basefile) if basefile.exists() else None
+            n=candidate(cat,{**c['parameters'],key:value},
+                '前代 '+c['id']+' 经成熟前向复算为 '+reviews[c['id']]['decision']+'；按预注册步长继续收紧，不回看择优',
+                digest(reviews[c['id']]),inputs['asof'])
+            n['scope_codes']=list(inputs.get('fundamental',{}).get('scope_codes',c.get('scope_codes',[])) if cat=='fundamental' else inputs.get('technical',{}).get('bundle',{}).get('scope_codes',c.get('scope_codes',[])))
+            n.update(generation_from=c['id'],baseline_version=baseline,
+                     baseline_parameters=descriptor['parameters'] if descriptor else BASE[cat],baseline_candidate=descriptor)
+            choices.append(n)
+        value={'candidates':choices,'keep_reasons':reasons}
+    elif old is not None:value=old
+    else:value=propose(inputs['fundamental'],inputs['technical'],inputs['asof'])
+    value['active_baselines']={}
+    for category in ('fundamental','technical'):
+        pointer=child(root,'releases/'+category+'/active.json')
+        if pointer.exists():
+            desc=child(root,'candidate-descriptors/'+read(pointer)['version']+'.json')
+            if desc.exists():value['active_baselines'][category]=read(desc)
+    for c in value['candidates']:
+        if c['category']=='technical' and not child(root,'technical-ledgers/'+c['id']+'/policy-registrations/'+c['id']+'.json').exists():
+            c['effective_at']=inputs['asof']
+        atomic_json(child(root,'candidate-descriptors/'+c['id']+'.json'),c)
+    atomic_json(registry,value)
+    return value
+
+
+def fundamental_engines(e, choices, active=None):
     from .candidates import screen
     baseline=screen(e['snapshot']); versions={'qv-shadow-1':baseline}
+    if active:
+        r=screen(e['snapshot'],parameters=active['parameters']);r['method_version']=active['id'];versions[active['id']]=r
     for c in choices:
         if c['category']=='fundamental':
+            if c.get('baseline_version') and c['baseline_version'] not in versions:
+                base=screen(e['snapshot'], parameters=c['baseline_parameters']);base['method_version']=c['baseline_version']
+                versions[c['baseline_version']]=base
             r=screen(e['snapshot'], parameters=c['parameters']);r['method_version']=c['id']
             versions[c['id']]=r
     return {'versions':versions,'source_hash':digest(e),'scope_codes':e['scope_codes'],
@@ -120,6 +173,20 @@ def technical_engines(root, run_dir, e, scope_path, choices):
     from .timing import instant
     bundle=e['bundle']; outputs={}
     variants=[None]+[c for c in choices if c['category']=='technical']
+    # Continue old virtual positions and explicit active baseline under THEIR policy.
+    active_path=child(root,'releases/technical/active.json')
+    active_version=read(active_path)['version'] if active_path.exists() else 'signal-policy-v1'
+    tracked={c['id'] for c in variants if c}
+    for p in child(root,'candidate-descriptors').glob('technical-*.json'):
+        prior_candidate=read(p);version=prior_candidate['id'];ar=child(root,'technical-ledgers/'+version)
+        history=snapshots(ar) if ar.exists() else []
+        oldstate=history[-1][1] if history else {}
+        needs_exit=bool(oldstate.get('positions')) or any(o['execution_status'] not in ('filled','cancelled') and not o.get('operator_paused') for o in oldstate.get('ledger',{}).values())
+        if version not in tracked and (version==active_version or needs_exit):variants.append(prior_candidate);tracked.add(version)
+    for c in choices:
+        base=c.get('baseline_candidate')
+        if c['category']=='technical' and base and base['id'] not in tracked:
+            variants.append(base);tracked.add(base['id'])
     for c in variants:
         version=c['id'] if c else 'signal-policy-v1'
         ar=child(root,'technical-ledgers/'+version)
@@ -191,15 +258,15 @@ def build_frames(inputs, selection, fundamentals, technicals, kind):
         calendar=next((p['sessions'] for p in tech['panels'] if p['market']=='CN'),[])
     previous=calendar[-2] if len(calendar)>1 else None
     for c in selection['candidates']:
-        cat=c['category']; baseline='qv-shadow-1' if cat=='fundamental' else 'signal-policy-v1'
+        cat=c['category']; baseline=c.get('baseline_version', 'qv-shadow-1' if cat=='fundamental' else 'signal-policy-v1')
         if cat=='fundamental':
             rows,missing=mark_rows(inputs['marks'],inputs['asof']);gaps+=missing
-            scopes=fundamentals['scope_codes'];v=fundamentals['versions']
+            scopes=c.get('scope_codes',fundamentals['scope_codes']);v=fundamentals['versions']
             old={x['code'] for x in v[baseline]['candidates']};new={x['code'] for x in v[c['id']]['candidates']}
             rows=[{**r,'previous_session':previous,'baseline_selected':r['code'] in old,
                    'candidate_selected':r['code'] in new} for r in rows if r['code'] in scopes]
         else:
-            scopes=technicals['scope_codes'];v=technicals['versions'];rows=[]
+            scopes=c.get('scope_codes',technicals['scope_codes']);v=technicals['versions'];rows=[]
             old={x['code']:x for x in v[baseline]['state']['cards']};new={x['code']:x for x in v[c['id']]['state']['cards']}
             for p in tech['panels']:
                 code=p['code']
@@ -237,7 +304,7 @@ def verify_run(root, run_dir):
     inputs=result('inputs');select=result('selection');fund=result('fundamental-engines');tech=result('technical-engines')
     verify_fundamental(inputs['fundamental'])
     verify_technical(inputs['technical'])
-    if fundamental_engines(inputs['fundamental'],select['candidates'])!=fund:
+    if fundamental_engines(inputs['fundamental'],select['candidates'],select.get('active_baselines',{}).get('fundamental'))!=fund:
         raise ValueError('fundamental_engine_recompute_mismatch')
     from .action_loop import snapshots
     for version,value in tech['versions'].items():
@@ -261,7 +328,7 @@ def verify_run(root, run_dir):
 
 def load_frames(root, verify=False):
     root=Path(root);frames=[]
-    for p in sorted(child(root,'runs').glob('*/manifest.json')):
+    for p in sorted(child(root,'runs').glob('*/manifest.json'), key=lambda p:read(p.parent/'inputs.json')['result']['asof']):
         if verify:verify_run(root,p.parent)
         frames+=read(p.parent/'frames.json')['result']['frames']
     return frames
@@ -285,7 +352,7 @@ def status(root):
 
 def verify(root):
     root=Path(root).resolve();verified=[]
-    for p in sorted(child(root,'runs').glob('*/manifest.json')):
+    for p in sorted(child(root,'runs').glob('*/manifest.json'), key=lambda p:read(p.parent/'inputs.json')['result']['asof']):
         verified.append({'run':p.parent.name,'hash':file_hash(p),'summary':verify_run(root,p.parent)['summary']})
     for p in child(root,'events').glob('*.json'):
         r=read(p)
@@ -293,10 +360,10 @@ def verify(root):
     # Independently recalculate archived decisions from the corresponding prefix.
     from .iteration_validate import validate
     frames=[]
-    for p in sorted(child(root,'runs').glob('*/manifest.json')):
+    for p in sorted(child(root,'runs').glob('*/manifest.json'), key=lambda p:read(p.parent/'inputs.json')['result']['asof']):
         frames+=read(p.parent/'frames.json')['result']['frames'];stored=read(p.parent/'evaluation.json')['result']
         for expected in stored:
-            cat=expected['category'];old='qv-shadow-1' if cat=='fundamental' else 'signal-policy-v1'
+            cat=expected['category'];old=expected['baseline']
             actual=validate(frames,cat,old,expected['candidate'],kind=expected['kind'],asof=expected['asof'])
             if actual!=expected:raise ValueError('evaluation_recompute_mismatch')
     return {'verified_runs':verified,'scheduled':False,'engineering_verification_only':True,
@@ -337,25 +404,14 @@ def run(root, *, sweep, scope, request_id=None, fail_at=None):
         d.mkdir(parents=True,exist_ok=True)
         try:
             inputs=stage(root,d,'inputs',lambda:collect_inputs(root,d,sweep,scope))
-            registry=child(root,'candidates.json')
-            def selection():
-                if registry.exists():
-                    value=read(registry)
-                    for c in value['candidates']:
-                        if c['category']=='technical' and not child(root,'technical-ledgers/'+c['id']+'/policy-registrations/'+c['id']+'.json').exists():
-                            c['effective_at']=inputs['asof']
-                    atomic_json(registry,value)
-                    return value
-                value=propose(inputs['fundamental'],inputs['technical'],inputs['asof'])
-                atomic_json(registry,value);return value
-            select=stage(root,d,'selection',selection)
-            f=stage(root,d,'fundamental-engines',lambda:fundamental_engines(inputs['fundamental'],select['candidates']))
+            select=stage(root,d,'selection',lambda:select_generation(root,inputs))
+            f=stage(root,d,'fundamental-engines',lambda:fundamental_engines(inputs['fundamental'],select['candidates'],select.get('active_baselines',{}).get('fundamental')))
             t=stage(root,d,'technical-engines',lambda:technical_engines(root,d,inputs['technical'],inputs['scope_path'],select['candidates']))
             if fail_at=='after_engines':raise RuntimeError('injected_after_engines')
             current=stage(root,d,'frames',lambda:build_frames(inputs,select,f,t,'REAL_CURRENT'))
             frames=load_frames(root,verify=True)+current['frames']
             def evaluate():
-                return [validate(frames,c['category'],'qv-shadow-1' if c['category']=='fundamental' else 'signal-policy-v1',
+                return [validate(frames,c['category'],c.get('baseline_version','qv-shadow-1' if c['category']=='fundamental' else 'signal-policy-v1'),
                                  c['id'],kind='REAL_CURRENT',asof=inputs['asof']) for c in select['candidates']]
             evaluations=stage(root,d,'evaluation',evaluate)
             gaps=current['gaps']+inputs['technical']['missing']+IMPLEMENTATION_GAPS
@@ -380,7 +436,7 @@ def run(root, *, sweep, scope, request_id=None, fail_at=None):
             ep=child(root,'evaluations/'+digest(frames)+'.json');atomic_json(ep,frames)
             if not gaps:
                 for c in select['candidates']:
-                    publish(root,ep,c['category'],'qv-shadow-1' if c['category']=='fundamental' else 'signal-policy-v1',c['id'],inputs['asof'])
+                    publish(root,ep,c['category'],c.get('baseline_version','qv-shadow-1' if c['category']=='fundamental' else 'signal-policy-v1'),c['id'],inputs['asof'])
             return summary
         except Exception as exc:
             receipt={'run_id':rid,'engineering_status':'incomplete','error':type(exc).__name__+':'+str(exc),

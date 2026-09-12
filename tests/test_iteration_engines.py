@@ -28,3 +28,22 @@ def test_low_confidence_never_vetoes_real_engine_buy_sell():
     p=append(p,80,100);p['confidence']=0
     _,c=decide(p,p['fetched_at'],r['state'],True,read(POLICY))
     assert c['action']=='SELL'
+
+def test_successor_uses_active_baseline_and_does_not_wait_for_other_category(tmp_path):
+    from mt1.iteration_loop import init,select_generation,atomic_json
+    from mt1.iteration_policy import candidate
+    at='2026-09-13T00:00:00+00:00';r=init(tmp_path/'r','SYNTHETIC_ONLY')
+    f=candidate('fundamental',{'roe_min':12},'prior','source',at)
+    t=candidate('technical',{'breakout_volume_min':1.4},'prior','source',at)
+    atomic_json(r/'candidates.json',{'candidates':[f,t],'keep_reasons':[]})
+    atomic_json(r/'candidate-descriptors'/ (f['id']+'.json'),f)
+    atomic_json(r/'releases/fundamental/active.json',{'version':f['id']})
+    atomic_json(r/'runs/a/manifest.json',{})
+    atomic_json(r/'runs/a/evaluation.json',{'result':[{'candidate':f['id'],'decision':'experimental_activate'}]})
+    new=select_generation(r,{'asof':at})
+    c=new['candidates'][0]
+    assert c['parameters']['roe_min']==13 and c['baseline_version']==f['id']
+    assert new['candidates'][1]['id']==t['id'] and len(new['candidates'])==2
+    s=snapshot();s['observations'][0]['financials'][0]['roe']=12.5
+    out=fundamental_engines({'snapshot':s,'scope_codes':['SYNTH']},[c],new['active_baselines']['fundamental'])
+    assert out['selected_counts'][f['id']]==1 and out['selected_counts'][c['id']]==0

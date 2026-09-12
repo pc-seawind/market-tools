@@ -20,6 +20,18 @@ def recompute(root, evidence, category, baseline, candidate, asof):
     return validate(frames,category,baseline,candidate,kind=kind,asof=asof)
 
 
+def rollback_target(root, pointer):
+    previous=pointer.get('previous',{'version':pointer['baseline_version'],'baseline':True,'production':False})
+    while not previous.get('baseline'):
+        try:
+            result=recompute(root,previous['evidence_path'],previous['category'],previous['baseline_version'],previous['version'],previous['asof'])
+            if file_hash(previous['evidence_path'])==previous['evidence_hash'] and digest(result)==previous['evaluation_hash'] and result['decision']=='experimental_activate':
+                return previous
+        except (ValueError,OSError,KeyError):pass
+        previous=previous.get('previous',{'version':previous['baseline_version'],'baseline':True,'production':False})
+    return previous
+
+
 def publish(root, evidence, category, baseline, candidate, asof, *, fail_at=None):
     root=Path(root).resolve()
     if category not in ('fundamental','technical'):raise ValueError('invalid_release_category')
@@ -29,9 +41,10 @@ def publish(root, evidence, category, baseline, candidate, asof, *, fail_at=None
         event(root,key,{'decision':result['decision'],'evaluation':result})
         target=child(root,'releases/'+category+'/active.json')
         if result['decision']=='reject' and target.exists() and read(target).get('version')==candidate:
-            atomic_json(target,{'version':baseline,'baseline':True,'production':False})
+            fallback=rollback_target(root,read(target))
+            atomic_json(target,fallback)
             event(root,key+':risk-rollback',{'decision':'automatic_rollback','reason':'new_forward_evidence_rejected',
-                                           'from':candidate,'to':baseline,'retained_ledgers':True})
+                                           'from':candidate,'to':fallback['version'],'retained_ledgers':True})
         return result
     target=child(root,'releases/'+category+'/active.json')
     previous=read(target) if target.exists() else {'version':baseline,'baseline':True}
@@ -75,7 +88,7 @@ def recover(root):
             if digest(r)!=p['evaluation_hash'] or r['decision']!='experimental_activate':raise ValueError('active_recompute_failed')
         except (ValueError,OSError,KeyError) as exc:
             # Conservative baseline rollback; do not select another unverified candidate.
-            fallback={'version':p['baseline_version'],'baseline':True,'production':False}
+            fallback=rollback_target(root,p)
             atomic_json(target,fallback)
             receipt={'category':category,'action':'automatic_rollback','from':p['version'],'to':fallback['version'],
                      'reason':str(exc),'retained_ledgers':True}
