@@ -1,0 +1,18 @@
+[
+  {
+    "path": "reports/mt14-r3/full-test-fixtures/test_stale_real_run_same_reque0/recovery/runs/same-reque-85aceba678c441a6/failure.json",
+    "failure": {
+      "run_id": "same-reque-85aceba678c441a6",
+      "engineering_status": "incomplete",
+      "error": "ValueError:live_bundle_stale_recollect_no_historic_order_backfill",
+      "scheduled": false,
+      "resume_command": "same run command",
+      "recorded_at": "2026-09-12T22:44:42.874303+00:00"
+    },
+    "recovery": {
+      "superseded_by": "/home/emox/work/projects/market-tools/reports/mt14-r3/full-test-fixtures/test_stale_real_run_same_reque0/recovery/runs/same-reque-85aceba678c441a6-retry-2026-09-12T224442874303+0000",
+      "reason": "fresh_collection_retry",
+      "at": "2026-09-12T22:44:42.874303+00:00"
+    }
+  }
+]

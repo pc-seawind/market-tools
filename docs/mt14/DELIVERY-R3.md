@@ -21,7 +21,7 @@
 python3 -m mt1.iteration_loop verify --root reports/mt14-r2/real-release
 ```
 
-最终实际结果见 `reports/mt14-r3/targeted-first.txt`、`pytest-full.txt`、`real-verify.json` 及结构化交付。全量命令不排除两个完整成熟合成测试。
+本次实际结果：针对性 **17 passed in 147.94s**；单次全量 **631 passed in 1303.54s**（exit 0，未排除两个完整成熟合成测试）；真实 verify exit 0、incomplete=[]。原始结果见 `reports/mt14-r3/targeted-first.txt`、`pytest-full.txt`、`real-verify.json` 及结构化交付。全量命令不排除两个完整成熟合成测试。
 
 ## 版本与保护
 
@@ -32,3 +32,5 @@ python3 -m mt1.iteration_loop verify --root reports/mt14-r2/real-release
 ## 范围与测量限制（不冒充工程失败或投资成功）
 
 真实成熟样本仍为 0、无自然 fill 或真实晋级，MT14 scheduled=false；不声称收益提升。开工前远端基线缺失继续披露，未回补；R2 已记录的并发既有 MT13 索引刷新不撤销或覆盖。开发交付不等于投资验收通过。
+
+工程 incomplete：[]。四份新时钟/过期/恢复夹具保存在 `clock-fixtures.tar.gz`，逐字节校验见 `clock-fixtures-check.json`；仅测试回放，依赖保持原字节的 R1/R2 归档，不是新真实样本。

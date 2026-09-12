@@ -1,0 +1,14 @@
+{
+  "baseline": "df370b663164e6282c6e4631732a131ba9575bec",
+  "head": "ccc5c7a1a0185e8bf78206a3a38bde545036625d",
+  "changed_files": [
+    "docs/mt14/DELIVERY-R3.md",
+    "docs/mt14/PROGRESS.md",
+    "tests/test_iteration_revision.py"
+  ],
+  "only_test_and_docs_changed": true,
+  "production_freshness_seconds": 1800,
+  "system_clock_changed": false,
+  "provider_timestamps_rewritten": false,
+  "network_recollection_performed": false
+}

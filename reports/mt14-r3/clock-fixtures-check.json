@@ -1,0 +1,15 @@
+{
+  "path": "reports/mt14-r3/clock-fixtures.tar.gz",
+  "sha256": "eac4fb46ee0d4e6dc4ec2f6c42559179becd79c8c25f2ee36d1b217c1d1f1fa8",
+  "bytes": 2942237,
+  "verified_files": 389,
+  "roundtrip_bytes_match": true,
+  "roots": [
+    "reports/mt14-r3/full-test-fixtures/test_original_real_engine_age_0",
+    "reports/mt14-r3/full-test-fixtures/test_original_real_engine_age_1",
+    "reports/mt14-r3/full-test-fixtures/test_replay_after_far_future_w0",
+    "reports/mt14-r3/full-test-fixtures/test_stale_real_run_same_reque0"
+  ],
+  "test_replay_only": true,
+  "depends_on_unchanged_r1_r2_archives": true
+}
