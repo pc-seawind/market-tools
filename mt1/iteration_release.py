@@ -26,7 +26,13 @@ def publish(root, evidence, category, baseline, candidate, asof, *, fail_at=None
     result=recompute(root,evidence,category,baseline,candidate,asof)
     key='release:'+digest(result)
     if result['decision']!='experimental_activate':
-        event(root,key,{'decision':result['decision'],'evaluation':result});return result
+        event(root,key,{'decision':result['decision'],'evaluation':result})
+        target=child(root,'releases/'+category+'/active.json')
+        if result['decision']=='reject' and target.exists() and read(target).get('version')==candidate:
+            atomic_json(target,{'version':baseline,'baseline':True,'production':False})
+            event(root,key+':risk-rollback',{'decision':'automatic_rollback','reason':'new_forward_evidence_rejected',
+                                           'from':candidate,'to':baseline,'retained_ledgers':True})
+        return result
     target=child(root,'releases/'+category+'/active.json')
     previous=read(target) if target.exists() else {'version':baseline,'baseline':True}
     h=file_hash(evidence)

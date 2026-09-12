@@ -265,7 +265,12 @@ def status(root):
     runs=[]
     for d in sorted(child(root,'runs').glob('*')):
         if (d/'manifest.json').exists():runs.append(read(d/'manifest.json')['summary'])
-        elif (d/'failure.json').exists():runs.append(read(d/'failure.json'))
+        elif (d/'failure.json').exists():
+            failure=read(d/'failure.json')
+            if (d/'recovery.json').exists():
+                target=Path(read(d/'recovery.json')['superseded_by'])
+                failure={**failure,'engineering_status':'recovered_attempt' if (target/'manifest.json').exists() else 'incomplete','recovery':read(d/'recovery.json')}
+            runs.append(failure)
         else:runs.append({'run_id':d.name,'engineering_status':'in_progress'})
     return {'identity':identity,'scheduled':False,'runs':runs,
             'active':{p.parent.name:read(p) for p in child(root,'releases').glob('*/active.json')}}
@@ -288,7 +293,7 @@ def verify(root):
             actual=validate(frames,cat,old,expected['candidate'],kind=expected['kind'],asof=expected['asof'])
             if actual!=expected:raise ValueError('evaluation_recompute_mismatch')
     return {'verified_runs':verified,'scheduled':False,'engineering_verification_only':True,
-            'incomplete':[r for r in status(root)['runs'] if r.get('engineering_status')!='completed']}
+            'incomplete':[r for r in status(root)['runs'] if r.get('engineering_status') not in ('completed','recovered_attempt')]}
 
 
 def run(root, *, sweep, scope, request_id=None, fail_at=None):
@@ -301,7 +306,24 @@ def run(root, *, sweep, scope, request_id=None, fail_at=None):
     rid=key[:10].replace('/','_')+'-'+digest(key)[:16]
     d=child(root,'runs/'+rid)
     with locked(root):
+        request_path=child(root,'requests/'+digest(key)+'.json')
+        if request_path.exists():
+            request=read(request_path)
+            if request['scope_hash']!=file_hash(scope):raise ValueError('request_scope_changed')
+            d=child(root,request['run_path']);rid=d.name
         recover(root)
+        # A failed or expired attempt is retained, not overwritten or backdated.
+        # Same user command automatically starts a fresh current-time attempt.
+        stale=False
+        if (d/'inputs.json').exists() and not (d/'technical-engines.json').exists():
+            source_time=read(d/'inputs.json')['result']['technical']['bundle']['asof']
+            stale=(instant_time(now())-instant_time(source_time)).total_seconds()>1800
+        if not (d/'manifest.json').exists() and ((d/'failure.json').exists() or stale):
+            prior=d
+            d=child(root,'runs/'+rid.split('-retry-')[0]+'-retry-'+now().replace(':','').replace('.',''))
+            rid=d.name
+            atomic_json(prior/'recovery.json',{'superseded_by':str(d),'reason':'fresh_collection_retry','at':now()})
+        atomic_json(request_path,{'scope_hash':file_hash(scope),'run_path':str(d.relative_to(root))})
         if (d/'manifest.json').exists():
             verify_run(root,d)
             return {**read(d/'manifest.json')['summary'],'idempotent':True}
@@ -310,7 +332,13 @@ def run(root, *, sweep, scope, request_id=None, fail_at=None):
             inputs=stage(root,d,'inputs',lambda:collect_inputs(root,d,sweep,scope))
             registry=child(root,'candidates.json')
             def selection():
-                if registry.exists():return read(registry)
+                if registry.exists():
+                    value=read(registry)
+                    for c in value['candidates']:
+                        if c['category']=='technical' and not child(root,'technical-ledgers/'+c['id']+'/policy-registrations/'+c['id']+'.json').exists():
+                            c['effective_at']=inputs['asof']
+                    atomic_json(registry,value)
+                    return value
                 value=propose(inputs['fundamental'],inputs['technical'],inputs['asof'])
                 atomic_json(registry,value);return value
             select=stage(root,d,'selection',selection)
