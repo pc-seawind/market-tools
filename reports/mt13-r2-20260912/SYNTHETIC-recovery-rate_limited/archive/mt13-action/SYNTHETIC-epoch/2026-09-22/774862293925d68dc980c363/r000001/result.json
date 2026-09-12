@@ -1,0 +1,986 @@
+{
+  "sequence": 8,
+  "ledger": {
+    "129cf03929898600ed052b09173e6267ab22fe75cf2cd6584610f61fec08b434": {
+      "signal_id": "129cf03929898600ed052b09173e6267ab22fe75cf2cd6584610f61fec08b434",
+      "scope_epoch": "SYNTHETIC-epoch",
+      "version": "signal-policy-v1",
+      "policy_sha256": "ea379a8faf818c032aa4533c658ad31f42a73ee05860bc9761b95cd79c631c06",
+      "code": "001309.SZ",
+      "market": "CN",
+      "execution_model": "strict-open-v1",
+      "side": "BUY",
+      "episode": "2026-09-15",
+      "signal_date": "2026-09-15",
+      "triggered_at": "2026-09-15T18:00:00+08:00",
+      "condition_known_at": "2026-09-15T17:00:00+08:00",
+      "signal_price": 108,
+      "signal_adjusted_price": 108,
+      "basis_id": "SYNTHETIC_CONSTANT_UNIT",
+      "position_key": "signal-policy-v1|001309.SZ",
+      "original_reasons": [
+        "frozen_breakout_trigger"
+      ],
+      "risk_lines": {
+        "structure": 103.95,
+        "atr_stop": 103.2975
+      },
+      "source_sha256": "9d512b95f49c4f308431d5f937260a77c98f7f4b1829164a87604457248f329d",
+      "synthetic": true,
+      "real_holding_observation": false,
+      "execution_status": "filled",
+      "execution_reason": "isolated_simulation_next_observed_open",
+      "history": [
+        {
+          "signal_id": "129cf03929898600ed052b09173e6267ab22fe75cf2cd6584610f61fec08b434",
+          "from": "pending",
+          "to": "filled",
+          "reason": "isolated_simulation_next_observed_open",
+          "at": "2026-09-16T09:30:10+08:00",
+          "fill": {
+            "date": "2026-09-16",
+            "at": "2026-09-16T09:30:00+08:00",
+            "raw_price": 108.5,
+            "adjusted_price": 108.5,
+            "source_sha256": "f35b7fb992061263953934d00035b3cf24b7619211b3adee46a423e3ce090f9b",
+            "snapshot_sha256": "7d46b59b4e66f69ad907c7dad82c57aa60c45315ebca70903f8ceb42a87b6cc9",
+            "virtual_units": 1,
+            "not_real_trade": true,
+            "cost_bps_scenario": 15.0,
+            "provider_at": "2026-09-16T09:30:03+08:00",
+            "execution_assumption": "CN vendor-listed preopen status; not broker fill guarantee",
+            "execution_model": "strict-open-v1",
+            "attempt_number": 1
+          }
+        }
+      ],
+      "not_real_order": true,
+      "ttl_sessions": 3,
+      "attempts": [
+        {
+          "number": 1,
+          "opened_at": "2026-09-15T18:00:00+08:00",
+          "after_session": "2026-09-15",
+          "status": "filled",
+          "reason": "original_signal",
+          "recovery_policy": "execution-recovery-v1",
+          "ended_at": "2026-09-16T09:30:10+08:00",
+          "fill_sha256": "59181f6d7f3b7954b05b49d6e2b45c7fc5b8f6c428149b1b6929acce88aefc13"
+        }
+      ],
+      "fill": {
+        "date": "2026-09-16",
+        "at": "2026-09-16T09:30:00+08:00",
+        "raw_price": 108.5,
+        "adjusted_price": 108.5,
+        "source_sha256": "f35b7fb992061263953934d00035b3cf24b7619211b3adee46a423e3ce090f9b",
+        "snapshot_sha256": "7d46b59b4e66f69ad907c7dad82c57aa60c45315ebca70903f8ceb42a87b6cc9",
+        "virtual_units": 1,
+        "not_real_trade": true,
+        "cost_bps_scenario": 15.0,
+        "provider_at": "2026-09-16T09:30:03+08:00",
+        "execution_assumption": "CN vendor-listed preopen status; not broker fill guarantee",
+        "execution_model": "strict-open-v1",
+        "attempt_number": 1
+      },
+      "next_recovery": "next bounded capture; expired SELL requires recent risk reconfirmation; operator pause/cancel never auto resumes",
+      "review_prices": {
+        "2026-09-16": {
+          "adjusted_close": 109,
+          "source_sha256": "5923df5e206ee6a9902b6826ed5864ea55deba6dc061e1beef1855e256df3358"
+        },
+        "2026-09-17": {
+          "adjusted_close": 80,
+          "source_sha256": "236858c068af7d19eab0406d051386aebcfb013ffac5d8a285b9d3cf6b9f4e25"
+        }
+      }
+    },
+    "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6": {
+      "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+      "scope_epoch": "SYNTHETIC-epoch",
+      "version": "signal-policy-v1",
+      "policy_sha256": "ea379a8faf818c032aa4533c658ad31f42a73ee05860bc9761b95cd79c631c06",
+      "code": "001309.SZ",
+      "market": "CN",
+      "execution_model": "strict-open-v1",
+      "side": "SELL",
+      "episode": "2026-09-17",
+      "signal_date": "2026-09-17",
+      "triggered_at": "2026-09-17T18:00:00+08:00",
+      "condition_known_at": "2026-09-17T17:00:00+08:00",
+      "signal_price": 80,
+      "signal_adjusted_price": 80,
+      "basis_id": "SYNTHETIC_CONSTANT_UNIT",
+      "position_key": "signal-policy-v1|001309.SZ",
+      "original_reasons": [
+        "initial_structure_invalidated",
+        "ATR_trailing_close_breach"
+      ],
+      "risk_lines": {
+        "structure": 103.95,
+        "atr_stop": 104.4025
+      },
+      "source_sha256": "3b5596d4e1395f976594fbad5f9f7a65f12bdfb40c46e0f33b2ae86575652898",
+      "synthetic": true,
+      "real_holding_observation": false,
+      "execution_status": "expired",
+      "execution_reason": "three_completed_sessions_validity_elapsed",
+      "history": [
+        {
+          "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+          "from": "pending",
+          "to": "blocked",
+          "reason": "provider_code_40203_permission_or_rate_retry",
+          "at": "2026-09-18T18:00:00+08:00"
+        },
+        {
+          "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+          "from": "blocked",
+          "to": "expired",
+          "reason": "three_completed_sessions_validity_elapsed",
+          "at": "2026-09-22T18:00:00+08:00",
+          "attempt": 1
+        }
+      ],
+      "not_real_order": true,
+      "ttl_sessions": 3,
+      "attempts": [
+        {
+          "number": 1,
+          "opened_at": "2026-09-17T18:00:00+08:00",
+          "after_session": "2026-09-17",
+          "status": "expired",
+          "reason": "original_signal",
+          "recovery_policy": "execution-recovery-v1",
+          "ended_at": "2026-09-22T18:00:00+08:00",
+          "ended_session": "2026-09-22"
+        }
+      ],
+      "next_recovery": "next bounded capture; expired SELL requires recent risk reconfirmation; operator pause/cancel never auto resumes"
+    }
+  },
+  "positions": {
+    "signal-policy-v1|001309.SZ": {
+      "code": "001309.SZ",
+      "version": "signal-policy-v1",
+      "entry_signal": "129cf03929898600ed052b09173e6267ab22fe75cf2cd6584610f61fec08b434",
+      "entry_date": "2026-09-16",
+      "entry_price": 108.5,
+      "cost": 0.0015,
+      "peak": 109,
+      "max_drawdown": -0.2697247706422018,
+      "marks": {
+        "2026-09-16": {
+          "price": 109,
+          "source_sha256": "5923df5e206ee6a9902b6826ed5864ea55deba6dc061e1beef1855e256df3358"
+        },
+        "2026-09-17": {
+          "price": 80,
+          "source_sha256": "236858c068af7d19eab0406d051386aebcfb013ffac5d8a285b9d3cf6b9f4e25"
+        }
+      },
+      "basis_id": "SYNTHETIC_CONSTANT_UNIT",
+      "synthetic": true,
+      "scope_epoch": "SYNTHETIC-epoch"
+    }
+  },
+  "states": {
+    "signal-policy-v1|001309.SZ": {
+      "entries": {
+        "breakout": {
+          "status": "cancel",
+          "reason": "frozen_structure_invalidated",
+          "formed_date": "2026-09-16",
+          "formed_session": 3,
+          "known_at": "2026-09-16T18:00:00+08:00",
+          "risk": 104.1,
+          "level": 109.3,
+          "structure_start": "2026-08-20",
+          "expires_after_sessions": 10,
+          "cancel_date": "2026-09-17"
+        },
+        "pullback": {
+          "status": "watch_structure",
+          "reason": "await_completed_structure"
+        }
+      },
+      "observed_sessions": 4,
+      "condition_history": [
+        {
+          "date": "2026-09-14",
+          "observed_at": "2026-09-14T18:00:00+08:00",
+          "entry": {
+            "breakout": {
+              "status": "setup",
+              "reason": "range_and_range_contraction_frozen",
+              "formed_date": "2026-09-14",
+              "formed_session": 1,
+              "known_at": "2026-09-14T18:00:00+08:00",
+              "risk": 104.0,
+              "level": 106.7,
+              "structure_start": "2026-08-18",
+              "expires_after_sessions": 10
+            },
+            "pullback": {
+              "status": "setup",
+              "reason": "MA20_low_volume_observation_NOT_support_confirmation",
+              "formed_date": "2026-09-14",
+              "formed_session": 1,
+              "known_at": "2026-09-14T18:00:00+08:00",
+              "risk": 104.0,
+              "level": 106.25,
+              "structure_start": "2026-08-18",
+              "expires_after_sessions": 10
+            }
+          },
+          "risk_reasons": [],
+          "events": []
+        },
+        {
+          "date": "2026-09-15",
+          "observed_at": "2026-09-15T18:00:00+08:00",
+          "entry": {
+            "breakout": {
+              "status": "trigger",
+              "reason": "later_close_price_volume_confirmation",
+              "formed_date": "2026-09-14",
+              "formed_session": 1,
+              "known_at": "2026-09-14T18:00:00+08:00",
+              "risk": 104.0,
+              "level": 106.7,
+              "structure_start": "2026-08-18",
+              "expires_after_sessions": 10,
+              "trigger_date": "2026-09-15",
+              "trigger_price": 108.0
+            },
+            "pullback": {
+              "status": "trigger",
+              "reason": "later_close_reclaims_MA20_and_prior_high",
+              "formed_date": "2026-09-14",
+              "formed_session": 1,
+              "known_at": "2026-09-14T18:00:00+08:00",
+              "risk": 104.0,
+              "level": 106.25,
+              "structure_start": "2026-08-18",
+              "expires_after_sessions": 10,
+              "trigger_date": "2026-09-15",
+              "trigger_price": 108.0
+            }
+          },
+          "risk_reasons": [],
+          "events": [
+            {
+              "kind": "breakout_trigger",
+              "date": "2026-09-15",
+              "price": 108.0
+            },
+            {
+              "kind": "pullback_trigger",
+              "date": "2026-09-15",
+              "price": 108.0
+            }
+          ]
+        },
+        {
+          "date": "2026-09-16",
+          "observed_at": "2026-09-16T18:00:00+08:00",
+          "entry": {
+            "breakout": {
+              "status": "setup",
+              "reason": "range_and_range_contraction_frozen",
+              "formed_date": "2026-09-16",
+              "formed_session": 3,
+              "known_at": "2026-09-16T18:00:00+08:00",
+              "risk": 104.1,
+              "level": 109.3,
+              "structure_start": "2026-08-20",
+              "expires_after_sessions": 10
+            },
+            "pullback": {
+              "status": "watch_structure",
+              "reason": "await_completed_structure"
+            }
+          },
+          "risk_reasons": [],
+          "events": []
+        },
+        {
+          "date": "2026-09-17",
+          "observed_at": "2026-09-17T18:00:00+08:00",
+          "entry": {
+            "breakout": {
+              "status": "cancel",
+              "reason": "frozen_structure_invalidated",
+              "formed_date": "2026-09-16",
+              "formed_session": 3,
+              "known_at": "2026-09-16T18:00:00+08:00",
+              "risk": 104.1,
+              "level": 109.3,
+              "structure_start": "2026-08-20",
+              "expires_after_sessions": 10,
+              "cancel_date": "2026-09-17"
+            },
+            "pullback": {
+              "status": "watch_structure",
+              "reason": "await_completed_structure"
+            }
+          },
+          "risk_reasons": [
+            "initial_structure_invalidated",
+            "ATR_trailing_close_breach"
+          ],
+          "events": [
+            {
+              "kind": "risk_exit_trigger",
+              "date": "2026-09-17",
+              "known_at": "2026-09-17T18:00:00+08:00",
+              "reasons": [
+                "initial_structure_invalidated",
+                "ATR_trailing_close_breach"
+              ],
+              "signal_close": 80.0,
+              "execution": "pending_next_executable_session_not_SELL"
+            }
+          ]
+        }
+      ],
+      "monitor": {
+        "origin_date": "2026-09-14",
+        "observed_at": "2026-09-14T18:00:00+08:00",
+        "reference_price": 105.95,
+        "reference_is_user_cost": false,
+        "highest": 109.3,
+        "structure_low": 103.95,
+        "structure_start": "2026-08-17",
+        "structure_known_date": "2026-09-11",
+        "structure_basis": "prior_completed_20_session_low_not_pivot",
+        "atr_stop": 104.4025,
+        "risk_trigger": {
+          "date": "2026-09-17",
+          "known_at": "2026-09-17T18:00:00+08:00",
+          "reasons": [
+            "initial_structure_invalidated",
+            "ATR_trailing_close_breach"
+          ],
+          "signal_close": 80.0,
+          "execution": "pending_next_executable_session_not_SELL"
+        }
+      },
+      "last_date": "2026-09-17",
+      "method": "mt12-timing-shadow-1",
+      "channel": "TREND",
+      "horizon_observations": {},
+      "code": "001309.SZ",
+      "basis_id": "SYNTHETIC_CONSTANT_UNIT",
+      "contract_hash": "6b2fce1c4bd4ec8a65ccd77e7c7070a039a78e69c1230c71a19a347658bfbc4f",
+      "bar_hashes": {
+        "2026-03-31": "fa7a460c1a2e5dd4bb217dfb03bbe419ef52059ef3389edfd5bce0c76e71384d",
+        "2026-04-01": "f19e7b7d92d8d93741e0981b61d257c5af63ea0ca336a10539249f2ef0335025",
+        "2026-04-02": "e60ac43173f8549b9834cf325d638f792d8fdc213182d6e6d9a2fb506e0b8f46",
+        "2026-04-03": "da58cedab08a9a4a6fbf32fa5d12794a6a25933a971bfcdf647e362d7ad7d227",
+        "2026-04-06": "eb336889316842f61bd833107d3cc3786869047649a0991c69430e13240ab40f",
+        "2026-04-07": "9e06e951f5e2d2254bc2b67efb8147f16b80ae9a1da21e91bd183e6dd30d63c8",
+        "2026-04-08": "0ebf51fc32370a9f403e4b0a07333cd672dfc95b5363578054410ae63882e817",
+        "2026-04-09": "0d7c0bcc26c964c12e036b695a04a9569746b41c229e5ac9d316a004d687144c",
+        "2026-04-10": "9082560e15ef309367877034fb7266a845c4e226e71948aa317602f1e41ac05e",
+        "2026-04-13": "863ac28d7e32a5a763b506e0f824e2742ac0903df891f9d00bbfa348c64dc880",
+        "2026-04-14": "797fec99e4e335e37af431f516b52a86e7ab69d239a8aab0229f659c6feebc50",
+        "2026-04-15": "6c6ce13fec55acc7507084dba3841208b3aa8c286bd44b34a538bc4d6c4936a9",
+        "2026-04-16": "9368110142ca94100b3f529038819c327698133f11897d420c42cffd5e413110",
+        "2026-04-17": "3557780ff346f987aa85e95f04ea5201369e1bdf777f074aed0715e760e6ccd5",
+        "2026-04-20": "e734ed198a4d066f797b9a2183c9aca62fd383688a9373885bcedf412311fb00",
+        "2026-04-21": "27b4283ae28f73cff32aef59a780b4998ba1656330c8f42bd44c79df7c65f51f",
+        "2026-04-22": "c8054beba2928704c04c9d6970dfbbf874546b21f0c5a295377aa3933efef43b",
+        "2026-04-23": "68ab6b2c498e54b01823b48d67fa82e97f04c8ab5fd9f7d7740c58d9043316ab",
+        "2026-04-24": "302812bd95ca28fbeff0fb543dc1b749bce6876cf5a6501e77e634ca95a1bcf6",
+        "2026-04-27": "0b56b469d743db7142de2e44625997da73a9df875c3aa6b40dbf5ba343c1cd76",
+        "2026-04-28": "1f8cea0bd52f42dd0f1698b37c46651c757789ba0995a3298d86c9a4a875ee68",
+        "2026-04-29": "9a8c069a51d6402f24c4eed55cc9ff7731f9dec4976f585172619ff6b08306ef",
+        "2026-04-30": "7acc97b6ae2179c942ad757fceb960263ea1e0906b63b49c85345ccd9f2c5c2c",
+        "2026-05-01": "f4e5e62a167a810097b64c5114c38831d630cf628fa53807bdde7b855c1b012f",
+        "2026-05-04": "150115d6bf30a2f47fc617dc5e8fe74447ab24fb45770663711b64e8ae0ffe8c",
+        "2026-05-05": "c553074f3deea0aced9cd20377738e5ed82a5a1d5a9dc11192e1033529ac9229",
+        "2026-05-06": "734c584d69b68f540b021ede84a8f77a58c15952fab997b0366fde2e9ca50c5d",
+        "2026-05-07": "a713b39a496d93dfcabe2699997496f22e86f7042a2b2da30d060a2a31accee7",
+        "2026-05-08": "905e7b37ff021f020e74b5765e3daff1eb5d4be10c24711b4e8a0d5ecc7adf07",
+        "2026-05-11": "0fe02710036b8ad40f8e031f9bd3b99239d0b9c87f88309e0a6485e480f69ea7",
+        "2026-05-12": "8e78d7b34dfaa460bf8433ca9ec7318f901c282ce221ebd63721c17de0373e94",
+        "2026-05-13": "5489d13a0a2fd2cb0c50874966f1d430d1388d665e03c672b86f78495b7ec2ad",
+        "2026-05-14": "7f384b053af0c12bbbf862896b8506a62b7c508f74737e6b2cf3532b196f97de",
+        "2026-05-15": "dd0a8b8a6e07e38f0070a85e941f0b89a9b78324526e157b5323ca8736e51d39",
+        "2026-05-18": "1f185ba479de2d07cd8a61805e99f99edaa0fc684c6492f176aec3fd76d3cbef",
+        "2026-05-19": "2065c58b83fd3e01f27954c89b63e5bc9c07113f3e3d1a60640f903b1ab485c0",
+        "2026-05-20": "d9bbe9b5b9778798b234e56690b8b5dca44cdb713d3234e696a5225e19ca9cd6",
+        "2026-05-21": "d77b9040746640e1731dba043b5479ddf53bad357a927a9a391d72d0eff0ad5a",
+        "2026-05-22": "f57677205673f4207ca5b73284bac15888b875de7f875e3ef0f543639b6100ac",
+        "2026-05-25": "acc2c11d3b24063097f1fd79b547560ad2e3538ee5d9cef2cc71f2b4cd917031",
+        "2026-05-26": "ad69d89423504345c0d26fce5d78880e09c65bdc9ff676a7681310912d2336c2",
+        "2026-05-27": "e441d1b0af40af78c2a3a2eddf12b4506370bca958d477c0a85d1f0ebd565750",
+        "2026-05-28": "e9617bcbfe02f949601cea9c2ab9e4e6c17a73039c4fe38145f589e05df5fa65",
+        "2026-05-29": "88bdf9ae1a450d78d0f6ffe2cae8a653c11e4699fe718c836010f9a936f5d1d5",
+        "2026-06-01": "ca2b18e74ba9be102d0cbcc0a8310fc1f49cb704bae3506ab2b27db1f87cfe11",
+        "2026-06-02": "d9cb8629caa19471bc8f825a332dfc8ea5646e52dc47138cb91f836230103813",
+        "2026-06-03": "a20263fe52e60ada64efe3fc1f52a6fd6d1b5b69b03a1b9c74c3e034a7a18768",
+        "2026-06-04": "415be24ece863ceb043dd66a51ca14a1d26053602335f2c98b6ffce9844d97c7",
+        "2026-06-05": "beb127d271f30d55aa396d80debcf4824cdf5cf607f39a4afa0ddeca440f9543",
+        "2026-06-08": "63e51475ed599855c3f4dcc8a9fe5abfb4db67df9d5c1ade85f06921e2996036",
+        "2026-06-09": "d27045d905ec575a9143bca6b8071465a699a5be5a66eb4098e455ff0d4650ec",
+        "2026-06-10": "b06e9e8fbaedb4e7a25b30fdc71671f9b4d5220a641af03106f9bc28afa5be21",
+        "2026-06-11": "3eeabf70c5617342c1a7f019eaffbf39dd61ddf27aa2fb23de51c9b2bb991bed",
+        "2026-06-12": "07d56516a216f46ee82f843ed763849bf4dd2e8e0546108f26d553c409237f9a",
+        "2026-06-15": "98669c6641bf180a7fd80cf1007853841ff6fdbb16d62ac7d1a227480042fb43",
+        "2026-06-16": "86a5c286e08ad10be031ff280cfc2b7d998dac9162bc8019f9ea857a720ecc30",
+        "2026-06-17": "cf7e24e06776b68ce96350c4a860b670dff4fb12fa8d5696929d449124c12cf4",
+        "2026-06-18": "4995c173b062ea94cb4707a7b2cb590e1f95dd68bf9b56006658b08d3100a2b7",
+        "2026-06-19": "b37597c5b48b3861adbd510eff2fe5d21cbe8f69243d367d5c0d753c1ad64f47",
+        "2026-06-22": "99aebc99474aca397a9933f3e4a8cdcc08aeac6a753ac389b75361e6067a5e9a",
+        "2026-06-23": "9f8517138ad2bd5f14dc0291ec977f862fa3c53c58273e173e183e2702a47168",
+        "2026-06-24": "1c2c67aabb9d9e61976a2e7087e6c234bedb4c9e13316f2f52f402205c0dc5ba",
+        "2026-06-25": "95714d69933d8107f0c7d0c94473ccfeaff1fa8bbc8234fb2545de25e569d449",
+        "2026-06-26": "d35951ab287b887d42deae81a69bd2873a4879291b13f1f8f48d7d98bb0b5c8c",
+        "2026-06-29": "32e69ea6babd5657ee218f23e5403e0826a86859e0b0a76ba0ec26b47883f978",
+        "2026-06-30": "ebdcc4d7eaf86dc832f83ef79df1d3d6a59912f9d8c7b4f02a474792eef641a4",
+        "2026-07-01": "6269e84097202fbaa1eceb1f0c87f5b122eee293c9574aa0929b3271a86490de",
+        "2026-07-02": "1c8e3db933bdd7906f3c910fd8d036bb0e8906b976027df4c662d2d9f39c2a9b",
+        "2026-07-03": "02ab08e6db9940e772d20f2d0a6baa142e4a68c0150e72865a20c4da8af13484",
+        "2026-07-06": "9eba8d08321cd682b0ca5e460f4bc5bc11432339cdc3e605f7866cf631a4c9ca",
+        "2026-07-07": "1fe6a4211a6dc2d89d263f4d0c4fe8b92393c5af9417b291dd5333c361eaec29",
+        "2026-07-08": "e543e809b24cbbccb98721fc052a80095a5e7ea4cf59c9d5686b753c0272e691",
+        "2026-07-09": "99a7a957ab04fbb2f51d7d613d876dbfb3745dc176a92dc615e477ebff536dba",
+        "2026-07-10": "931020ec26ba09c61fcc249750c33bf3dbd14364308ace47515b747830ac8def",
+        "2026-07-13": "f825126a46f10018b02754ebb644c993222f0c77b443b98299ba8bfe358f552e",
+        "2026-07-14": "aab2279ad335c4d32b511577fb9b838d2fde7899fff69daaccaa7da4166fbc6b",
+        "2026-07-15": "614e5478807337af6d52b8cc8e106eb29f0a2642166ace08186e6508ca7936fb",
+        "2026-07-16": "629cfd5b0c517ab5e17d6fe5bad119dd16efdad44b66294d9856c7d5ed1a19a3",
+        "2026-07-17": "6c740e16ace78b38deea1d89b6e3654dfa56e3a5cd190c869c6dc51edd6c3055",
+        "2026-07-20": "7b4c44921fd7bfcc23efaf381325a56171ea9bab638b8073662f4d5a64604a64",
+        "2026-07-21": "101e960278d35dcb2f68595667ae6e88ea464fb5dc18a4083587403c9f6ab06a",
+        "2026-07-22": "c8e6c20c870aabdc1409b16a88667938d196bf3b97109e03d2b6981eafa7a4da",
+        "2026-07-23": "1115831ff9d626bfa32609547b55bc7da9d9c95b4a96715ac7c6c74661bd3469",
+        "2026-07-24": "edc44c141f00f795203c45c6bf416e1ea7f3e3907a65fb01cbbd5bfa0f21b71e",
+        "2026-07-27": "6d36e938b93a69dfb77dc12c820344273455bfaeaba8d511d0f891b903b00970",
+        "2026-07-28": "6d66ede3848b4d0a4905d2361934737d786c458cd88e69ab5be73d2344dd2c78",
+        "2026-07-29": "bbc9ca46851980c0f8f924c777b507c77ff8c154ec8fb40df0a66eb7b179aa66",
+        "2026-07-30": "38f120bd666c8c4fb8bf82a97841dc34b7deb48d38c1f5d9cfd0abd5e33e445f",
+        "2026-07-31": "ed0f7768b8de575551ee23b60f609bebc80f6ecb6398ed5c15b8d92aebb931c5",
+        "2026-08-03": "44ca5ae13b3b62d6243d0c30ef3467695e92c25d0aa62c7d986f8b66d1f783c0",
+        "2026-08-04": "6351e96731e03ef1044eaf179f7e37bb9d9bc8067be7c14aa3866f42f995637c",
+        "2026-08-05": "668c4390808aaccb153df5bc6660d14a94442c5af20f85cbf8368c9f20827da6",
+        "2026-08-06": "b2470f27c6019590c20771f053bf284fa9c60925379283d5421652812f87fb96",
+        "2026-08-07": "f32c23f14608c365623b7975c59322688ce3da23e5ffb4122227800d436dbca1",
+        "2026-08-10": "23af6d9faef7cc8062082773e9efc7439788ed823272ccadfda49538e4e50b5f",
+        "2026-08-11": "6a34a22073135b70b7269da5f029d47e335b3a76d476e34ec31fa37be2e8ca16",
+        "2026-08-12": "e37fc6d46ddd93a12ce0c5d3b93370dd4eb8ca2c26b183dab30f6f7aba5238ee",
+        "2026-08-13": "141de4d447fd1ecf8d2e066a2ae51dfee26c2f0a58a82d34e6cd24881647c33d",
+        "2026-08-14": "1398f8b0ada1e914a1974a4ad4da4020eea9170cdb332ea0ae153d5afe976297",
+        "2026-08-17": "229962bacea3b1b10242e39083ddc0f00ddbd0acad2d3be2e722f12a5559dbb4",
+        "2026-08-18": "8f8f2ff10845927dfde0f81cf6f971a6d6077074b17fe174902e1aaccf64573d",
+        "2026-08-19": "bc5286dea16f13ac86d4de4bdf7e10b25d3f2b747deb0a09bcec3325acfbaac6",
+        "2026-08-20": "3f7ae9282c9770593c13e2a7fde377020385a7994b4f0b4bf644ee73570f66d8",
+        "2026-08-21": "79df1cea5ca51aa043eeedd3afd48ae717a62a1b84a8da227bbf93bccd190bd8",
+        "2026-08-24": "c02a112c90c55da6407968ea3a0d198574738176aadf29abdf2e76c28643afc9",
+        "2026-08-25": "e2acaff58d1e266345c9f008609cd35c7d45235be10542b37633942993348a55",
+        "2026-08-26": "0bb907052aeec88616fbc8893d775bc6cdbfab48f8acab81c2ce0aa75cfac780",
+        "2026-08-27": "460f46282e08c85e3ef7498b42f6aa79fd2750ea33d90f75cb3736143d641548",
+        "2026-08-28": "cb38b9f81d2433b85181eda093d65b1e7764b84388fde2c0b4245bf492f76c27",
+        "2026-08-31": "3c8a65d3f7c4e6458e0f8b01c94044184cee5edf67fda74f2a59451cad9e14a3",
+        "2026-09-01": "476d0821e548365ad0061eda778ebea55aa6c0ddba766466cc82eb9e5c398aaf",
+        "2026-09-02": "00b06b2465400f1fc231344ef6f401777b113e759283645e1dfe001f69af2649",
+        "2026-09-03": "f3ae402ed6dfe4ab437509c296f30d60bd7b27f656ebf7f16a8e88e922aa2903",
+        "2026-09-04": "0e3ea61cfa2cbe1d42c0282295e1cc68d8515173179a0da4a94700554bc645a9",
+        "2026-09-07": "79315b5c9b8c898448ac38d5735c370d64b2ca8fb1135f4599df51095de404d1",
+        "2026-09-08": "af11357603ccb33d0a9bc45a714eb3f1e88d50ef99f37eb80a711ac94a961a67",
+        "2026-09-09": "2e02864bdd1706123dcab0bf3d4b166971784c1dcb3306b4f381259f05bbf06d",
+        "2026-09-10": "ef5987ba891f33b20f2438280babb8f1495a92f98b47a34924983acb257ead94",
+        "2026-09-11": "6428d923a11ae09008af3ca1b17d326508aaeefe1d76cf6969900bcbc7b60515",
+        "2026-09-14": "1308ce77efc8bff36344fd2daf7b2565203b7884116469ae84d0cb0519cd3580",
+        "2026-09-15": "994119f869b729b4e4510d704c311477df64a654e6827938039adc2effb0fc5c",
+        "2026-09-16": "5923df5e206ee6a9902b6826ed5864ea55deba6dc061e1beef1855e256df3358",
+        "2026-09-17": "236858c068af7d19eab0406d051386aebcfb013ffac5d8a285b9d3cf6b9f4e25"
+      },
+      "last_card": {
+        "entry": {
+          "breakout": {
+            "status": "cancel",
+            "reason": "frozen_structure_invalidated",
+            "formed_date": "2026-09-16",
+            "formed_session": 3,
+            "known_at": "2026-09-16T18:00:00+08:00",
+            "risk": 104.1,
+            "level": 109.3,
+            "structure_start": "2026-08-20",
+            "expires_after_sessions": 10,
+            "cancel_date": "2026-09-17"
+          },
+          "pullback": {
+            "status": "watch_structure",
+            "reason": "await_completed_structure"
+          }
+        },
+        "risk": {
+          "status": "risk_exit_trigger",
+          "reasons": [
+            "initial_structure_invalidated",
+            "ATR_trailing_close_breach"
+          ],
+          "original_trigger": {
+            "date": "2026-09-17",
+            "known_at": "2026-09-17T18:00:00+08:00",
+            "reasons": [
+              "initial_structure_invalidated",
+              "ATR_trailing_close_breach"
+            ],
+            "signal_close": 80.0,
+            "execution": "pending_next_executable_session_not_SELL"
+          },
+          "intrabar_order": "not_used_close_only"
+        },
+        "indicators": {
+          "asof": "20260917",
+          "close": 80.0,
+          "ma20": 104.5675,
+          "ma60": 104.2725,
+          "ma60_5ago": 104.375,
+          "extension20": -0.2349439357352906,
+          "atr20": 3.0024999999999977,
+          "extension_atr": -8.182348043297257,
+          "previous_high20": 109.3,
+          "volume_ratio": 0.9523809523809523,
+          "today_low": 79.60000000000001,
+          "below_ma60_5sessions": false
+        },
+        "events": [
+          {
+            "kind": "risk_exit_trigger",
+            "date": "2026-09-17",
+            "known_at": "2026-09-17T18:00:00+08:00",
+            "reasons": [
+              "initial_structure_invalidated",
+              "ATR_trailing_close_breach"
+            ],
+            "signal_close": 80.0,
+            "execution": "pending_next_executable_session_not_SELL"
+          }
+        ],
+        "old_entry": {
+          "status": "unknown",
+          "reasons": [
+            "market_benchmark_unavailable_no_CSI300_fallback"
+          ]
+        },
+        "old_exit": {
+          "status": "monitor",
+          "rule": "5_completed_closes_below_each_MA60"
+        },
+        "rs": {
+          "broad": {
+            "status": "unknown",
+            "value": null,
+            "reason": "benchmark_missing_or_incompatible_market_dates_membership",
+            "RS_not_RSI": true
+          },
+          "industry": {
+            "status": "unknown",
+            "value": null,
+            "reason": "benchmark_missing_or_incompatible_market_dates_membership",
+            "RS_not_RSI": true
+          }
+        },
+        "display_factor": 1.0,
+        "quote_date": "2026-09-17",
+        "close": 80.0,
+        "structure_price": 103.95,
+        "atr20": 3.0024999999999977,
+        "atr_stop": 104.4025,
+        "extension": {
+          "old_fixed_10pct": false,
+          "ATR_multiple": -8.182348043297257,
+          "exploratory_extended": false,
+          "veto": false
+        },
+        "price_basis": "internal OHLC/entry/state = raw * adjustment_factor; close/structure_price/atr20/atr_stop = current raw units",
+        "entry_display": {
+          "breakout": {
+            "status": "cancel",
+            "level": 109.3,
+            "risk": 104.1,
+            "trigger_price": null
+          },
+          "pullback": {
+            "status": "watch_structure",
+            "level": null,
+            "risk": null,
+            "trigger_price": null
+          }
+        },
+        "explanation": "新增入场资格与已有持仓风险独立；结构/ATR风险触发可独立复核，不等财报证伪；shadow不是BUY/SELL。",
+        "horizons": [
+          {
+            "sessions": 20,
+            "status": "not_matured",
+            "reference_price_return": null,
+            "not_personal_pnl": true
+          },
+          {
+            "sessions": 40,
+            "status": "not_matured",
+            "reference_price_return": null,
+            "not_personal_pnl": true
+          },
+          {
+            "sessions": 60,
+            "status": "not_matured",
+            "reference_price_return": null,
+            "not_personal_pnl": true
+          }
+        ]
+      },
+      "exit_price_hashes": {
+        "2026-03-31": "ad2ddba23d0ec6ccecb8bfbb3a007c8f0a950ce7e35573bf48aa8dda9c581893",
+        "2026-04-01": "6a03e7c4744a68491dd101737ba83bbc3eddf67610cb8e9c82a703042f4b1b45",
+        "2026-04-02": "4ec0725647a30e2348fedc51b46f3afdd3af5a2d7b4e3a69699e42bc94cac6fc",
+        "2026-04-03": "c7c384eff23573529ac834a781133a2a37bda8795e22818ced34dda2947e1eb8",
+        "2026-04-06": "a98a5b031e92b44bdb17af54ef6de5d5e72a9f46dbc9ba7766f3958bbd6f2c62",
+        "2026-04-07": "4d3e22cf44190469d8411d42b98b247e35b64a6210b783d2352722834539f8c8",
+        "2026-04-08": "4d84afaabc1f88c6e1da92b09d5f689bc7eee0b15d3389161900dccca6a5c53a",
+        "2026-04-09": "6dcc981de4e2333a3916645d7505f41eb88e00f28f573b300b08428b2c005983",
+        "2026-04-10": "b4b730f5575661bb7249e5eaf0feed012a08d35f5a4e4a0c9863e4cd17837ae5",
+        "2026-04-13": "9e24b5b364352fc2b342f8e0e4df78f90d007914cb3dc5bbb681d3dbb3457d2f",
+        "2026-04-14": "8b8647891545bb484e3efb62566b9566717ad1ee2f3b638c7c1a6db64f5f5016",
+        "2026-04-15": "1ae05f28186687eeaf92a69b52d77cbb62335b118654801c81fa0d6e2389575c",
+        "2026-04-16": "e540f415e0197acd37b79cc24cd442172dde2a7512ff837f6c58a18649dce5cc",
+        "2026-04-17": "a0e1cda9624a14a94a115d735d4fa91030d487a345b48ce604516f02e42b8f2d",
+        "2026-04-20": "e7364a2c119144fd6b9f40c96aa9b391884e7d1c95518c4c44ba93752e7803d7",
+        "2026-04-21": "3e027050ce31637d37235b5246797607ac8f50ad8e6ef1915f53831869d9727d",
+        "2026-04-22": "0389e8b18e1f41c23998218db36aa785bc4358964bfe5cc8af470ac81a3dd4b9",
+        "2026-04-23": "468d4d3bda1cf900d68d4121b785d1c0ac571683407c5f56b2fe29c6a0c0a1a0",
+        "2026-04-24": "03e5f5b9b9cede06f18a0d82dae5b2c68bf25a60ef52adefe083a5f9b2741cc4",
+        "2026-04-27": "94b662f0c5fc4451bbc0a98aa34322209346d30c3a60537c34bd02e515aade41",
+        "2026-04-28": "36ad6aa83a129b4eefd6b3d5dce7f8b3e76292515bcfc0074200c4a71d8c5e5b",
+        "2026-04-29": "125a275182c35b61ea350e6b3cc04959bc572cb2cf0694e6752e9f5b2e8ee3fe",
+        "2026-04-30": "9625899070f2cba7a5a4c458bdf04dee16f9f8e1b0bc7404fe5b3bcb4c68665c",
+        "2026-05-01": "e16f886c0e132ef1468addbb40c242c87244e1453331d3a81b8b7ad1ffc9b071",
+        "2026-05-04": "8a96670cb09a7054bc6e80caf413057b866f30e4806ced830b90a4f8dac0b75d",
+        "2026-05-05": "32b25664d9b706012a53c31892c9e232943dca4049b85036ae20b0e0ad5e03d4",
+        "2026-05-06": "342588857bbca6e6b1c13371542f633784059dbc34e8194286eb0e9b92cd4f30",
+        "2026-05-07": "2f3210ecbbe835aae5f4f532235aee74645d63554c0c448dd5694cd18075ce05",
+        "2026-05-08": "a031371d736171ed3c4bd55cf1c1e2cab4f1225071b9925c8778463b34f49222",
+        "2026-05-11": "55c11c30b6f060993ab6a53f4eb8306ddbaaf388ca37a232b7f31608316c7bd0",
+        "2026-05-12": "3c1581fb95008e1f416830b655fd09dd23ac3dc167456e83d2e096b747908dcc",
+        "2026-05-13": "acb1b40315ddd1dfe6238f29205d85324f62d21ceefe4ecd5c9fe6f20ee75f06",
+        "2026-05-14": "c933ab0fa7db13a038c963fa9b4f9e7cb492fff8e113051f2d6d72c493da0161",
+        "2026-05-15": "8c26b9d5c2c153fb97d6668221daa182b4016a29e703cf4186bd2c81ae4d2997",
+        "2026-05-18": "0b873407f859332680cb0c44cea3f49f4e9f68480a34290e628f8e7e418c5eef",
+        "2026-05-19": "fc2f84e4375a7f7f175a0f7c42920b582522fe76a8135c8e01e960dd23fdc5d3",
+        "2026-05-20": "b1c466b9b02ac703bc48c79565eb153f520fed8618736f6aaff81c0272531ad6",
+        "2026-05-21": "6cb49a16d916a5726fac8aeefef76bba26ba21589bd002ff16e8181fecaa1348",
+        "2026-05-22": "978133d34dfc3d0db872a346e543ea9af6176fe5df237cd615067f80bb555b6a",
+        "2026-05-25": "5dc00d57cf050648fc58775130a6b6ffa482182e9b2d090e0c60ac9fec8b2609",
+        "2026-05-26": "4d3c20ccccede6c939fa20aeff814900a35ac0a3918c80eda473c05518037e9b",
+        "2026-05-27": "d63eb55ca12b9dc1343acc464a2e71df5a69f8b96233279de89e70f60bccb7fd",
+        "2026-05-28": "e8de7682528c5f7b2daa62f3c55c49727db672851e70b4b451fc3469cd0a1e72",
+        "2026-05-29": "2b3d42d66ee6570af41c1285382c6d9662af9a3f1ae7fc191e94ec0233a10640",
+        "2026-06-01": "a51e148933c4b1a2e2d3e53be22e0e35aa0ed1baf27aa13936ddee2b5eb6c58c",
+        "2026-06-02": "246e10e58fdc1daa4b9919fab8acfb0a8c0fbf8e2fc6f88f155544181e042b53",
+        "2026-06-03": "f10f8c8d2da217e51adef31bfe2d09e66d765ab1194caabd93e21cf584efef83",
+        "2026-06-04": "4614f7b194a58278c7bc6355cd765a3165272ea10ad115929e65ff45dc729621",
+        "2026-06-05": "52c5dd759ffcf05bceff349ac28b7b9ff318eb7ee6de4a818c8bfbddd24f16e7",
+        "2026-06-08": "220617cbfa4f6ce7606ca2336a08e58329a9cf3fa19625770c1131235f9ebfcd",
+        "2026-06-09": "1404dd9d57caa684bb9e4b3c945c6372a46c185e9855ba32f2ae58fd563f98c2",
+        "2026-06-10": "657c597fc3c5967bdbe449f93dcdc47d1139fd61c3105d6fae1e068e4cdea3ff",
+        "2026-06-11": "e29a6ad874af6485933254d1615fe9d5ca16e391862fc5fbc408b122e260c74e",
+        "2026-06-12": "9f1870f37f38a7d1ee35220151705f788ed1da41eae432958bcd867a1a037743",
+        "2026-06-15": "a40fdc17799108b1f907cb612f5642f9889d6cf0dc4625071b47971c2bdbbf75",
+        "2026-06-16": "ac696bce4d21df0e0f01b888169f09a22fc61521e9cefdfb14ac3aaf06aabc3f",
+        "2026-06-17": "d6aff2c5c9e6fbbde5286a4e38d3015a0da39b25ee762b43548b59407ccd8afc",
+        "2026-06-18": "3454b76e64881fae468a342549d43e98ae29c3b2ead482f7c910d4853b1623f2",
+        "2026-06-19": "1b568e401279e052a68d00dedf3a555caf0af985e7871cf735b448362bd4bf47",
+        "2026-06-22": "e06b2294fdb5153a37613dd57bf80e6917eb455d6065b0a12ae93bc908cf406b",
+        "2026-06-23": "6d38080f0cd01959bb1e0e704661f97ccd8cf3b787bd51cc362e3cc2c5936c72",
+        "2026-06-24": "cc226c71d598e0e12332a18bb7d9e04d46a9208df8cc02e7bf54203e4773c38f",
+        "2026-06-25": "7a87edc77865e6ee3c4267601cf0ca6e3c90aec91efcdaa74534e7c684dc8c6d",
+        "2026-06-26": "a68474dc4df113f5cad2fab5495c41bb8f78690c888df1381f1d0b22f823052e",
+        "2026-06-29": "f1c6b4ecce5e4f1bd230d7be50187e705964a2fc4811cc5a10aaa27b4dbb1bce",
+        "2026-06-30": "1206c9e2a1734086954ab65880702d54e272c66d2776dd251b4624201c46115a",
+        "2026-07-01": "b42a9cfbdc1ef0e8d0e965ad95ef8780bb9a12e1e968f3fd3688acce1d8f237a",
+        "2026-07-02": "71118b9c74b8385e6316d74476e6517b192cce1ee8ec9fbd55a9a1c06e435750",
+        "2026-07-03": "edf9d9c85448d2db6e9818b27e4720aa26176faa74d209eb1f050f7e9feb6a11",
+        "2026-07-06": "9099ed50c004dbab82efb6a2f5e160ec0aec25d0c744f4bee1a46a7cf5e126f9",
+        "2026-07-07": "054197d8f411e9393ac91359da26d2540053a4f97257c7a1140f7da62dd54740",
+        "2026-07-08": "49710a6aaad36cd89eef76b39fa84c4904abc9a1596b2bd01f25cc4ed8e8c32e",
+        "2026-07-09": "e2602066ac096a4acd593d0d629f38bc3aa7afae4daaae41d3beb11350069cf4",
+        "2026-07-10": "6e920b7caa9bb3d796c796b5f0322f4d7323d9f9f7c78036351978c753c85840",
+        "2026-07-13": "7e15f1f0b9780e109db5a0f5ac47c149bff4638e5cc0f14d07333f344f3dc665",
+        "2026-07-14": "50747bb1f245b193cfc81ffe9fcf3b285dd4ae8aef36b2c6bd4e7e357d7afc5f",
+        "2026-07-15": "bd4055bb14d70a7ca767f2be308fa204f0797fc1acd5fd1d34a63285407f3b8c",
+        "2026-07-16": "1d350ca8072d0734149d9743b87575de20cff2ea4dbaf8a3d51805eaddc78c3b",
+        "2026-07-17": "9f7386a9c7856977ff9c9507f6dbdf7530fe8997179c2a3ca240ba2944d9a7c9",
+        "2026-07-20": "873df1cf52399e067baa36c3115a499ae4071305890074a3367454a7abd4a86b",
+        "2026-07-21": "0b370de5c3ba10fcf51057b98dc588f832bb6f77150ed9580db6fafb2e1eca1f",
+        "2026-07-22": "b3a6ac32567c3af6fb1fbc2bddee82bb5271586cdca8eb672c47b2aff02acc97",
+        "2026-07-23": "b5a2b90600f66b7d2338f2183f0b2f5d08cd966b29df5a6a8e93093a14070a88",
+        "2026-07-24": "b7601732ee642719a8af2b5d853cf85f01e4e8179650d09d4566dec87e679ff5",
+        "2026-07-27": "9f84c5f14ed75950a6c141704f7db6535628654bf6c582024710cf26111dc637",
+        "2026-07-28": "ff05fbfe08c4e52600ef3b279a04b62d202cfe56ebfd0db0bae6a7dd769a7556",
+        "2026-07-29": "8a30aebd078c3845b0cc24ea2409645052ed81c2738743af370cb929f08367ef",
+        "2026-07-30": "f9300af35683cdc9326838a0000fd8152bcef72eb30fb11f3f0f975d2f1b0271",
+        "2026-07-31": "592cf35686869cf77ce7f70e1d25e868d63fd97593cf7a14230f6632c90f2139",
+        "2026-08-03": "8a69baf6c9871b4e33bb75c3d1de66165f467390e80503c39c9a59cab3815be6",
+        "2026-08-04": "86d20528946df50e32e7691d717bda59541fc512410bba1b03b45c2b2a6d7a6a",
+        "2026-08-05": "a115f637ccf0df4c31e1d985125dc737734d603ddea0c4128da161cc5d207260",
+        "2026-08-06": "f91d4642b7e72d59286268619fa54d373c585defdb2d702e4e5d6cfd450333f5",
+        "2026-08-07": "8eb8239d7a97f786aa63fa2917d8e15d6376404886a0bc5c4568ca9b5b6d6aea",
+        "2026-08-10": "93881bd4ce637da3483d670dcd5a54ed84086eaf278f8535afd189dd31732bb8",
+        "2026-08-11": "36480ff00737c087ce547f7f2e7f7f9979470ecd73d3911beda4c07c27bbcf2a",
+        "2026-08-12": "90cb895a4d95269131fd7cbf6f7d98d5c5e62d7eb6312df0bfbbff7ae1889767",
+        "2026-08-13": "2eaabb4a977d8cda827d6a9f5f7e7e00438a0ef1441435f79154fa4c5d5ac5d3",
+        "2026-08-14": "50c57a6efc0aaa0060968ee68c48aca0bf7b3b4dd1f97e5170944d9c6046f45b",
+        "2026-08-17": "35f82ece7d6e70e45514e65c3cdbac887dc2f66b6fe39d90e87e59c1507ab0d2",
+        "2026-08-18": "4f9a754acbfb97cf72590335ea4a564868eb1ff4237e875f13fb423d601cc930",
+        "2026-08-19": "5dda2f53d838bff4e9ecfab0952bcceb315e533f6607d451e3ea869fec4ddab5",
+        "2026-08-20": "2eb6c94c20cd0ed58c21cbbe953dd3e49a93c5889a720b78b92033ae54747cb5",
+        "2026-08-21": "ec9a9f3ed0828cd47f755dc5a3cac5edbe066db45d1ddab5356f75f08ebcb9a2",
+        "2026-08-24": "285e406198265de41e2504e809b66ec748bd2729cfe9524c0bbeaee143b89a8e",
+        "2026-08-25": "f142ff1b859ae29600c855e53a5f0c26141523013a72415f66847cadf56e5568",
+        "2026-08-26": "b62de5b233b65b4a91c1ee2428cd4f4b4c74d4273c27322c244207a0fa3e189a",
+        "2026-08-27": "17e4e6633d55a30111ed0b325598ffbd4ebaa7b94d9a8d3cc8e4e213d5f3505b",
+        "2026-08-28": "453b52544005e7d9a26160b130e95251c1411f238cb19b47f2122ed7bfa43da1",
+        "2026-08-31": "7a40edf0e965311fa3d64f13c6c037e849a618f6f27dbdc27a4ae5e755b3aed2",
+        "2026-09-01": "eb75058b21ef962a2cbcf99d1344540cea504ec96d115f431997a865a951fe48",
+        "2026-09-02": "43e0114cb4c7280b88c95994e7e40bc057965f099daf8ecefaa42953a8ee72f6",
+        "2026-09-03": "9efda163b1d66a3694981028624f912695a8ce5c6b074c4682cfb176342c1abe",
+        "2026-09-04": "01873113eae6ea29cd60b6251751061cf8af0f5009b6c5ab2559902956b95f3f",
+        "2026-09-07": "750cf83c16f0ca8799c33a38b7a1c4257f5cd7089c27a4faa792ca7cc6a65f77",
+        "2026-09-08": "119aea992426b39350957f8da55b310acc083f32809736e3778430860d6a3645",
+        "2026-09-09": "a07eee1bdc0176ab6251dc2cb6e406e17fa7d9c81d95a2f8b45a9064f1b88f62",
+        "2026-09-10": "953a6bca13c1f29c74c4d70a6393068483ce9382902b186717a550128ee22114",
+        "2026-09-11": "a2abe4140dc4408863c248472be047f9ba90eb57734e0df01a72eccac25d4aa4",
+        "2026-09-14": "25012a1ad40e891829921a2701b47eed9851299c18f7c3bc84962fb408f454c3",
+        "2026-09-15": "dfbc55f7bd352ca4d52cdfc9ab16682aebe26c481f9776b91940bf0eef0f6ce7",
+        "2026-09-16": "f5676ac82f20be2b551291fa92040e540a928de17c2a0998003896766ee1da3f",
+        "2026-09-17": "c5e03f88d98ef90adcaef4c80d2d7478b10b6a73fc1a09d973eff5b7c23e8dc2"
+      },
+      "breakout_episode": {
+        "date": "2026-09-15",
+        "session": 2,
+        "level": 106.7,
+        "risk": 104.0,
+        "failed_closes": 1
+      },
+      "action_exit_episode": "2026-09-17"
+    }
+  },
+  "cards": [
+    {
+      "action": "SELL",
+      "reasons": [
+        "initial_structure_invalidated",
+        "ATR_trailing_close_breach"
+      ],
+      "risk_active": true,
+      "risk_lines": {
+        "structure": 103.95,
+        "atr_stop": 104.4025
+      },
+      "hard_gaps": [],
+      "soft_annotations": {
+        "confidence": 0.01,
+        "efficacy": "experimental_not_validated",
+        "RS": {
+          "broad": {
+            "status": "unknown",
+            "value": null,
+            "reason": "benchmark_missing_or_incompatible_market_dates_membership",
+            "RS_not_RSI": true
+          },
+          "industry": {
+            "status": "unknown",
+            "value": null,
+            "reason": "benchmark_missing_or_incompatible_market_dates_membership",
+            "RS_not_RSI": true
+          }
+        },
+        "confidence_is_veto": false
+      },
+      "old_rules": {
+        "entry": {
+          "status": "unknown",
+          "reasons": [
+            "market_benchmark_unavailable_no_CSI300_fallback"
+          ]
+        },
+        "exit": {
+          "status": "monitor",
+          "rule": "5_completed_closes_below_each_MA60"
+        }
+      },
+      "horizons": [
+        {
+          "sessions": 20,
+          "status": "not_matured",
+          "reference_price_return": null,
+          "not_personal_pnl": true
+        },
+        {
+          "sessions": 40,
+          "status": "not_matured",
+          "reference_price_return": null,
+          "not_personal_pnl": true
+        },
+        {
+          "sessions": 60,
+          "status": "not_matured",
+          "reference_price_return": null,
+          "not_personal_pnl": true
+        }
+      ],
+      "code": "001309.SZ",
+      "name": "",
+      "version": "signal-policy-v1",
+      "signal_ids": [
+        "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6"
+      ],
+      "applies_to": "隔离模拟仓",
+      "company_research_status": "未提供/不由技术信号推断",
+      "triggered_at": "2026-09-17T18:00:00+08:00",
+      "price_basis": "completed_raw_close; internal=raw*vendor_factor",
+      "validity": "signal immutable; unfilled order 3 completed sessions; next legal observed open only",
+      "next_review": "next_completed_market_session; pending execution requires contemporaneous open collector",
+      "source_sha256": "3b5596d4e1395f976594fbad5f9f7a65f12bdfb40c46e0f33b2ae86575652898",
+      "source_files": [
+        "1ddb12e370385625499337785b1efbe257721eb6ac71a0abd005636c811a3c37"
+      ],
+      "quote_date": "2026-09-17",
+      "close": 80,
+      "change": {
+        "from": "HOLD",
+        "to": "SELL"
+      },
+      "remediation": [],
+      "personal_pnl": null
+    }
+  ],
+  "policies": {
+    "signal-policy-v1": {
+      "version": "signal-policy-v1",
+      "effective_at": "2026-09-12T00:00:00+08:00",
+      "approval": "experimental_signal_use_not_validated",
+      "reason": "用户批准按冻结MT12规则明确发信号，置信度仅注释",
+      "timing": {
+        "method": "mt12-timing-shadow-1",
+        "status": "shadow",
+        "parameters_status": "exploratory_not_optimized",
+        "trial": 1,
+        "grid": [],
+        "selection": "one prespecified engineering baseline; no performance-based parameter choice or automatic promotion",
+        "warmup": 120,
+        "structure_window": 20,
+        "compression_range_max": 0.12,
+        "compression_recent_to_prior": 0.8,
+        "setup_ttl_sessions": 10,
+        "breakout_volume_min": 1.2,
+        "failure_closes": 2,
+        "failure_window_sessions": 10,
+        "pullback_volume_max": 1.1,
+        "pullback_ma20_band": 0.02,
+        "atr_window": 20,
+        "atr_smoothing": "TR_simple_mean_matches_mt11_not_Wilder",
+        "atr_multiple": 3.0,
+        "extension_atr_diagnostic": 2.5,
+        "horizons_sessions": [
+          20,
+          40,
+          60
+        ],
+        "execution": {
+          "signal": "completed_close; never same-bar fill or stop-price fill",
+          "fill": "first later session open with explicit side-specific executable evidence and settlement eligibility; otherwise pending/unknown",
+          "intrabar": "daily OHLC cannot establish event ordering; close-only rule, intrabar breach diagnostic not a fill",
+          "per_side_cost_bps": {
+            "CN": 15,
+            "HK": 25,
+            "US": 10
+          },
+          "cost_status": "exploratory all-in commission/tax/slippage scenario, not verified broker tariff",
+          "min_holding_sessions": {
+            "CN": 1,
+            "HK": 0,
+            "US": 0
+          },
+          "missing_suspension_limit_delisting_settlement": "unknown_no_fill"
+        },
+        "benchmarks": {
+          "CN": "000300.SH",
+          "HK": "HSI",
+          "US": "SP500"
+        },
+        "industry": "explicit market-matched benchmark + membership known_at required; unknown is not zero or veto",
+        "group_A": {
+          "entry": "same frozen episode list",
+          "exits": [
+            "old_ma60_5",
+            "structure_failure",
+            "structure_failure_atr"
+          ]
+        },
+        "group_B": {
+          "entries": [
+            "old_trigger",
+            "breakout",
+            "pullback"
+          ],
+          "exit": "structure_failure_atr",
+          "candidate_set": "same audited frozen scope; no discovery expansion"
+        },
+        "evaluation": {
+          "mode": "current_vintage_diagnostic_replay_unless_PIT_certified",
+          "oos_train_sessions": 120,
+          "oos_test_sessions": 60,
+          "purge_sessions": 60,
+          "parameter_refit": false,
+          "strata": [
+            "market",
+            "industry",
+            "volatility",
+            "regime"
+          ],
+          "metrics": [
+            "net_price_return",
+            "max_drawdown",
+            "tail_loss",
+            "round_trips",
+            "turnover",
+            "false_breakout",
+            "post_exit_rally",
+            "sample_count",
+            "unknown",
+            "not_matured"
+          ]
+        },
+        "promotion": "candidate -> shadow -> validated -> active requires independent research signoff; development approval is not efficacy approval"
+      },
+      "order_ttl_sessions": 3,
+      "simulation": "one_virtual_unit_per_episode_no_real_order_no_initial_holdings_seed",
+      "execution_evidence": "contemporaneous_next_session_open_snapshot_only; no historical_backfill"
+    }
+  },
+  "asof": "2026-09-22T18:00:00+08:00",
+  "closed": [],
+  "transitions": [
+    {
+      "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+      "from": "blocked",
+      "to": "expired",
+      "reason": "three_completed_sessions_validity_elapsed",
+      "at": "2026-09-22T18:00:00+08:00",
+      "attempt": 1
+    }
+  ],
+  "execution_model": "strict-open-v1",
+  "execution_contract_sha256": "cefed5c9ec86ab5adbb7e051ed38bd8b912ea883cfcbba7c9ec8d604f69b1827",
+  "scope_epoch": "SYNTHETIC-epoch",
+  "synthetic": true,
+  "protected_unchanged": true,
+  "run_id": "774862293925d68dc980c363",
+  "status": "recorded"
+}

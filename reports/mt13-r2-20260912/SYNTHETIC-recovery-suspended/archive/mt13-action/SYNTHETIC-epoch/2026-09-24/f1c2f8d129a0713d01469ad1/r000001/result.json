@@ -1,0 +1,548 @@
+{
+  "sequence": 10,
+  "ledger": {
+    "129cf03929898600ed052b09173e6267ab22fe75cf2cd6584610f61fec08b434": {
+      "signal_id": "129cf03929898600ed052b09173e6267ab22fe75cf2cd6584610f61fec08b434",
+      "scope_epoch": "SYNTHETIC-epoch",
+      "version": "signal-policy-v1",
+      "policy_sha256": "ea379a8faf818c032aa4533c658ad31f42a73ee05860bc9761b95cd79c631c06",
+      "code": "001309.SZ",
+      "market": "CN",
+      "execution_model": "strict-open-v1",
+      "side": "BUY",
+      "episode": "2026-09-15",
+      "signal_date": "2026-09-15",
+      "triggered_at": "2026-09-15T18:00:00+08:00",
+      "condition_known_at": "2026-09-15T17:00:00+08:00",
+      "signal_price": 108,
+      "signal_adjusted_price": 108,
+      "basis_id": "SYNTHETIC_CONSTANT_UNIT",
+      "position_key": "signal-policy-v1|001309.SZ",
+      "original_reasons": [
+        "frozen_breakout_trigger"
+      ],
+      "risk_lines": {
+        "structure": 103.95,
+        "atr_stop": 103.2975
+      },
+      "source_sha256": "9d512b95f49c4f308431d5f937260a77c98f7f4b1829164a87604457248f329d",
+      "synthetic": true,
+      "real_holding_observation": false,
+      "execution_status": "filled",
+      "execution_reason": "isolated_simulation_next_observed_open",
+      "history": [
+        {
+          "signal_id": "129cf03929898600ed052b09173e6267ab22fe75cf2cd6584610f61fec08b434",
+          "from": "pending",
+          "to": "filled",
+          "reason": "isolated_simulation_next_observed_open",
+          "at": "2026-09-16T09:30:10+08:00",
+          "fill": {
+            "date": "2026-09-16",
+            "at": "2026-09-16T09:30:00+08:00",
+            "raw_price": 108.5,
+            "adjusted_price": 108.5,
+            "source_sha256": "f35b7fb992061263953934d00035b3cf24b7619211b3adee46a423e3ce090f9b",
+            "snapshot_sha256": "7d46b59b4e66f69ad907c7dad82c57aa60c45315ebca70903f8ceb42a87b6cc9",
+            "virtual_units": 1,
+            "not_real_trade": true,
+            "cost_bps_scenario": 15.0,
+            "provider_at": "2026-09-16T09:30:03+08:00",
+            "execution_assumption": "CN vendor-listed preopen status; not broker fill guarantee",
+            "execution_model": "strict-open-v1",
+            "attempt_number": 1
+          }
+        }
+      ],
+      "not_real_order": true,
+      "ttl_sessions": 3,
+      "attempts": [
+        {
+          "number": 1,
+          "opened_at": "2026-09-15T18:00:00+08:00",
+          "after_session": "2026-09-15",
+          "status": "filled",
+          "reason": "original_signal",
+          "recovery_policy": "execution-recovery-v1",
+          "ended_at": "2026-09-16T09:30:10+08:00",
+          "fill_sha256": "59181f6d7f3b7954b05b49d6e2b45c7fc5b8f6c428149b1b6929acce88aefc13"
+        }
+      ],
+      "fill": {
+        "date": "2026-09-16",
+        "at": "2026-09-16T09:30:00+08:00",
+        "raw_price": 108.5,
+        "adjusted_price": 108.5,
+        "source_sha256": "f35b7fb992061263953934d00035b3cf24b7619211b3adee46a423e3ce090f9b",
+        "snapshot_sha256": "7d46b59b4e66f69ad907c7dad82c57aa60c45315ebca70903f8ceb42a87b6cc9",
+        "virtual_units": 1,
+        "not_real_trade": true,
+        "cost_bps_scenario": 15.0,
+        "provider_at": "2026-09-16T09:30:03+08:00",
+        "execution_assumption": "CN vendor-listed preopen status; not broker fill guarantee",
+        "execution_model": "strict-open-v1",
+        "attempt_number": 1
+      },
+      "next_recovery": "next bounded capture; expired SELL requires recent risk reconfirmation; operator pause/cancel never auto resumes",
+      "review_prices": {
+        "2026-09-16": {
+          "adjusted_close": 109,
+          "source_sha256": "5923df5e206ee6a9902b6826ed5864ea55deba6dc061e1beef1855e256df3358"
+        },
+        "2026-09-17": {
+          "adjusted_close": 80,
+          "source_sha256": "236858c068af7d19eab0406d051386aebcfb013ffac5d8a285b9d3cf6b9f4e25"
+        },
+        "2026-09-18": {
+          "adjusted_close": 80,
+          "source_sha256": "b9103f8f2ba88fbcd72714664df0911e528a8c630af8936d2a5ba63a2a9c70e0"
+        },
+        "2026-09-21": {
+          "adjusted_close": 80,
+          "source_sha256": "00e4e571e41acfe1e4db410db1410adbdfcf25d26ee8581716550d166507bf6a"
+        },
+        "2026-09-22": {
+          "adjusted_close": 80,
+          "source_sha256": "0b031acb47eb1a233f58742599d23828a5450f75e45ef8b71126bebd415b94b2"
+        },
+        "2026-09-23": {
+          "adjusted_close": 79,
+          "source_sha256": "796d8b103d72ea1efdae2cc16580b0d7f7f132fa8ac0b3ba16de5013da9457d8"
+        }
+      }
+    },
+    "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6": {
+      "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+      "scope_epoch": "SYNTHETIC-epoch",
+      "version": "signal-policy-v1",
+      "policy_sha256": "ea379a8faf818c032aa4533c658ad31f42a73ee05860bc9761b95cd79c631c06",
+      "code": "001309.SZ",
+      "market": "CN",
+      "execution_model": "strict-open-v1",
+      "side": "SELL",
+      "episode": "2026-09-17",
+      "signal_date": "2026-09-17",
+      "triggered_at": "2026-09-17T18:00:00+08:00",
+      "condition_known_at": "2026-09-17T17:00:00+08:00",
+      "signal_price": 80,
+      "signal_adjusted_price": 80,
+      "basis_id": "SYNTHETIC_CONSTANT_UNIT",
+      "position_key": "signal-policy-v1|001309.SZ",
+      "original_reasons": [
+        "initial_structure_invalidated",
+        "ATR_trailing_close_breach"
+      ],
+      "risk_lines": {
+        "structure": 103.95,
+        "atr_stop": 104.4025
+      },
+      "source_sha256": "3b5596d4e1395f976594fbad5f9f7a65f12bdfb40c46e0f33b2ae86575652898",
+      "synthetic": true,
+      "real_holding_observation": false,
+      "execution_status": "filled",
+      "execution_reason": "isolated_simulation_next_observed_open",
+      "history": [
+        {
+          "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+          "from": "pending",
+          "to": "blocked",
+          "reason": "CN_listed_suspended_retry_next_session",
+          "at": "2026-09-18T18:00:00+08:00"
+        },
+        {
+          "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+          "from": "blocked",
+          "to": "expired",
+          "reason": "three_completed_sessions_validity_elapsed",
+          "at": "2026-09-22T18:00:00+08:00",
+          "attempt": 1
+        },
+        {
+          "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+          "from": "expired",
+          "to": "pending",
+          "reason": "persistent_SELL_new_execution_attempt_same_signal",
+          "at": "2026-09-23T18:00:00+08:00",
+          "attempt": 2,
+          "confirmation": {
+            "active": true,
+            "date": "2026-09-23",
+            "known_at": "2026-09-23T18:00:00+08:00",
+            "source_sha256": "ae542b8455cc3bd06a37c7c789913f071a026472d946936b7f0d29bb8701f4bd"
+          }
+        },
+        {
+          "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+          "from": "pending",
+          "to": "pending",
+          "reason": "next_legal_open_snapshot_not_collected",
+          "at": "2026-09-23T18:00:00+08:00"
+        },
+        {
+          "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+          "from": "pending",
+          "to": "filled",
+          "reason": "isolated_simulation_next_observed_open",
+          "at": "2026-09-24T09:30:10+08:00",
+          "fill": {
+            "date": "2026-09-24",
+            "at": "2026-09-24T09:30:00+08:00",
+            "raw_price": 108.5,
+            "adjusted_price": 108.5,
+            "source_sha256": "6d21a24ea8e65de47698444f45344dc518d17cd2ad41d57efeea29ba48fcd4ba",
+            "snapshot_sha256": "05c6c831906a0f047d5ab7c5b36c2a99c089e337fb434675ac1249ca1cafd6c5",
+            "virtual_units": 1,
+            "not_real_trade": true,
+            "cost_bps_scenario": 15.0,
+            "provider_at": "2026-09-24T09:30:03+08:00",
+            "execution_assumption": "CN vendor-listed preopen status; not broker fill guarantee",
+            "execution_model": "strict-open-v1",
+            "attempt_number": 2
+          }
+        }
+      ],
+      "not_real_order": true,
+      "ttl_sessions": 3,
+      "attempts": [
+        {
+          "number": 1,
+          "opened_at": "2026-09-17T18:00:00+08:00",
+          "after_session": "2026-09-17",
+          "status": "expired",
+          "reason": "original_signal",
+          "recovery_policy": "execution-recovery-v1",
+          "ended_at": "2026-09-22T18:00:00+08:00",
+          "ended_session": "2026-09-22"
+        },
+        {
+          "number": 2,
+          "opened_at": "2026-09-23T18:00:00+08:00",
+          "after_session": "2026-09-23",
+          "status": "filled",
+          "reason": "persistent_SELL_reconfirmed",
+          "confirmation_sha256": "452fefd2f61390057f9784a8a4838513c594e77189ecadcec948f4dcc4352594",
+          "recovery_policy": "execution-recovery-v1",
+          "ended_at": "2026-09-24T09:30:10+08:00",
+          "fill_sha256": "d511e9c10d95b30818d4b58ab2d8bb56f94590a2aa62a4091119acdab2bdf16e"
+        }
+      ],
+      "next_recovery": "next bounded capture; expired SELL requires recent risk reconfirmation; operator pause/cancel never auto resumes",
+      "risk_reconfirmation": {
+        "active": true,
+        "date": "2026-09-23",
+        "known_at": "2026-09-23T18:00:00+08:00",
+        "source_sha256": "ae542b8455cc3bd06a37c7c789913f071a026472d946936b7f0d29bb8701f4bd"
+      },
+      "review_prices": {
+        "2026-09-18": {
+          "adjusted_close": 80,
+          "source_sha256": "b9103f8f2ba88fbcd72714664df0911e528a8c630af8936d2a5ba63a2a9c70e0"
+        },
+        "2026-09-21": {
+          "adjusted_close": 80,
+          "source_sha256": "00e4e571e41acfe1e4db410db1410adbdfcf25d26ee8581716550d166507bf6a"
+        },
+        "2026-09-22": {
+          "adjusted_close": 80,
+          "source_sha256": "0b031acb47eb1a233f58742599d23828a5450f75e45ef8b71126bebd415b94b2"
+        },
+        "2026-09-23": {
+          "adjusted_close": 79,
+          "source_sha256": "796d8b103d72ea1efdae2cc16580b0d7f7f132fa8ac0b3ba16de5013da9457d8"
+        }
+      },
+      "fill": {
+        "date": "2026-09-24",
+        "at": "2026-09-24T09:30:00+08:00",
+        "raw_price": 108.5,
+        "adjusted_price": 108.5,
+        "source_sha256": "6d21a24ea8e65de47698444f45344dc518d17cd2ad41d57efeea29ba48fcd4ba",
+        "snapshot_sha256": "05c6c831906a0f047d5ab7c5b36c2a99c089e337fb434675ac1249ca1cafd6c5",
+        "virtual_units": 1,
+        "not_real_trade": true,
+        "cost_bps_scenario": 15.0,
+        "provider_at": "2026-09-24T09:30:03+08:00",
+        "execution_assumption": "CN vendor-listed preopen status; not broker fill guarantee",
+        "execution_model": "strict-open-v1",
+        "attempt_number": 2
+      }
+    }
+  },
+  "positions": {},
+  "states": {},
+  "cards": [
+    {
+      "action": "WAIT",
+      "reasons": [
+        "initial_structure_invalidated",
+        "ATR_trailing_close_breach"
+      ],
+      "risk_active": true,
+      "risk_lines": {
+        "structure": 103.95,
+        "atr_stop": 104.4025
+      },
+      "hard_gaps": [],
+      "soft_annotations": {
+        "confidence": 0.01,
+        "efficacy": "experimental_not_validated",
+        "RS": {
+          "broad": {
+            "status": "unknown",
+            "value": null,
+            "reason": "benchmark_missing_or_incompatible_market_dates_membership",
+            "RS_not_RSI": true
+          },
+          "industry": {
+            "status": "unknown",
+            "value": null,
+            "reason": "benchmark_missing_or_incompatible_market_dates_membership",
+            "RS_not_RSI": true
+          }
+        },
+        "confidence_is_veto": false
+      },
+      "old_rules": {
+        "entry": {
+          "status": "unknown",
+          "reasons": [
+            "market_benchmark_unavailable_no_CSI300_fallback"
+          ]
+        },
+        "exit": {
+          "status": "exit_review",
+          "rule": "5_completed_closes_below_each_MA60"
+        }
+      },
+      "horizons": [
+        {
+          "sessions": 20,
+          "status": "not_matured",
+          "reference_price_return": null,
+          "not_personal_pnl": true
+        },
+        {
+          "sessions": 40,
+          "status": "not_matured",
+          "reference_price_return": null,
+          "not_personal_pnl": true
+        },
+        {
+          "sessions": 60,
+          "status": "not_matured",
+          "reference_price_return": null,
+          "not_personal_pnl": true
+        }
+      ],
+      "code": "001309.SZ",
+      "name": "",
+      "version": "signal-policy-v1",
+      "signal_ids": [
+        "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6"
+      ],
+      "applies_to": "隔离模拟仓",
+      "company_research_status": "未提供/不由技术信号推断",
+      "triggered_at": "2026-09-23T18:00:00+08:00",
+      "price_basis": "completed_raw_close; internal=raw*vendor_factor",
+      "validity": "signal immutable; unfilled order 3 completed sessions; next legal observed open only",
+      "next_review": "next_completed_market_session; pending execution requires contemporaneous open collector",
+      "source_sha256": "ae542b8455cc3bd06a37c7c789913f071a026472d946936b7f0d29bb8701f4bd",
+      "source_files": [
+        "7e2a1cb1158c36fa94d4ee1cd4d09b4049e4bcc748c14e559bb95963971370df"
+      ],
+      "quote_date": "2026-09-23",
+      "close": 79,
+      "change": {
+        "from": "SELL",
+        "to": "SELL"
+      },
+      "remediation": [],
+      "personal_pnl": null,
+      "execution_only_update": true
+    }
+  ],
+  "policies": {
+    "signal-policy-v1": {
+      "version": "signal-policy-v1",
+      "effective_at": "2026-09-12T00:00:00+08:00",
+      "approval": "experimental_signal_use_not_validated",
+      "reason": "用户批准按冻结MT12规则明确发信号，置信度仅注释",
+      "timing": {
+        "method": "mt12-timing-shadow-1",
+        "status": "shadow",
+        "parameters_status": "exploratory_not_optimized",
+        "trial": 1,
+        "grid": [],
+        "selection": "one prespecified engineering baseline; no performance-based parameter choice or automatic promotion",
+        "warmup": 120,
+        "structure_window": 20,
+        "compression_range_max": 0.12,
+        "compression_recent_to_prior": 0.8,
+        "setup_ttl_sessions": 10,
+        "breakout_volume_min": 1.2,
+        "failure_closes": 2,
+        "failure_window_sessions": 10,
+        "pullback_volume_max": 1.1,
+        "pullback_ma20_band": 0.02,
+        "atr_window": 20,
+        "atr_smoothing": "TR_simple_mean_matches_mt11_not_Wilder",
+        "atr_multiple": 3.0,
+        "extension_atr_diagnostic": 2.5,
+        "horizons_sessions": [
+          20,
+          40,
+          60
+        ],
+        "execution": {
+          "signal": "completed_close; never same-bar fill or stop-price fill",
+          "fill": "first later session open with explicit side-specific executable evidence and settlement eligibility; otherwise pending/unknown",
+          "intrabar": "daily OHLC cannot establish event ordering; close-only rule, intrabar breach diagnostic not a fill",
+          "per_side_cost_bps": {
+            "CN": 15,
+            "HK": 25,
+            "US": 10
+          },
+          "cost_status": "exploratory all-in commission/tax/slippage scenario, not verified broker tariff",
+          "min_holding_sessions": {
+            "CN": 1,
+            "HK": 0,
+            "US": 0
+          },
+          "missing_suspension_limit_delisting_settlement": "unknown_no_fill"
+        },
+        "benchmarks": {
+          "CN": "000300.SH",
+          "HK": "HSI",
+          "US": "SP500"
+        },
+        "industry": "explicit market-matched benchmark + membership known_at required; unknown is not zero or veto",
+        "group_A": {
+          "entry": "same frozen episode list",
+          "exits": [
+            "old_ma60_5",
+            "structure_failure",
+            "structure_failure_atr"
+          ]
+        },
+        "group_B": {
+          "entries": [
+            "old_trigger",
+            "breakout",
+            "pullback"
+          ],
+          "exit": "structure_failure_atr",
+          "candidate_set": "same audited frozen scope; no discovery expansion"
+        },
+        "evaluation": {
+          "mode": "current_vintage_diagnostic_replay_unless_PIT_certified",
+          "oos_train_sessions": 120,
+          "oos_test_sessions": 60,
+          "purge_sessions": 60,
+          "parameter_refit": false,
+          "strata": [
+            "market",
+            "industry",
+            "volatility",
+            "regime"
+          ],
+          "metrics": [
+            "net_price_return",
+            "max_drawdown",
+            "tail_loss",
+            "round_trips",
+            "turnover",
+            "false_breakout",
+            "post_exit_rally",
+            "sample_count",
+            "unknown",
+            "not_matured"
+          ]
+        },
+        "promotion": "candidate -> shadow -> validated -> active requires independent research signoff; development approval is not efficacy approval"
+      },
+      "order_ttl_sessions": 3,
+      "simulation": "one_virtual_unit_per_episode_no_real_order_no_initial_holdings_seed",
+      "execution_evidence": "contemporaneous_next_session_open_snapshot_only; no historical_backfill"
+    }
+  },
+  "asof": "2026-09-24T09:30:10+08:00",
+  "closed": [
+    {
+      "code": "001309.SZ",
+      "version": "signal-policy-v1",
+      "entry_signal": "129cf03929898600ed052b09173e6267ab22fe75cf2cd6584610f61fec08b434",
+      "entry_date": "2026-09-16",
+      "entry_price": 108.5,
+      "cost": 0.0015,
+      "peak": 109,
+      "max_drawdown": -0.27889908256880724,
+      "marks": {
+        "2026-09-16": {
+          "price": 109,
+          "source_sha256": "5923df5e206ee6a9902b6826ed5864ea55deba6dc061e1beef1855e256df3358"
+        },
+        "2026-09-17": {
+          "price": 80,
+          "source_sha256": "236858c068af7d19eab0406d051386aebcfb013ffac5d8a285b9d3cf6b9f4e25"
+        },
+        "2026-09-18": {
+          "price": 80,
+          "source_sha256": "b9103f8f2ba88fbcd72714664df0911e528a8c630af8936d2a5ba63a2a9c70e0"
+        },
+        "2026-09-21": {
+          "price": 80,
+          "source_sha256": "00e4e571e41acfe1e4db410db1410adbdfcf25d26ee8581716550d166507bf6a"
+        },
+        "2026-09-22": {
+          "price": 80,
+          "source_sha256": "0b031acb47eb1a233f58742599d23828a5450f75e45ef8b71126bebd415b94b2"
+        },
+        "2026-09-23": {
+          "price": 79,
+          "source_sha256": "796d8b103d72ea1efdae2cc16580b0d7f7f132fa8ac0b3ba16de5013da9457d8"
+        }
+      },
+      "basis_id": "SYNTHETIC_CONSTANT_UNIT",
+      "synthetic": true,
+      "scope_epoch": "SYNTHETIC-epoch",
+      "exit_signal": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+      "exit_date": "2026-09-24",
+      "exit_price": 108.5,
+      "net_return": -0.0029955067398901303,
+      "post_exit": {},
+      "false_breakout": false,
+      "personal_pnl": null
+    }
+  ],
+  "transitions": [
+    {
+      "signal_id": "b75333cdad5cfbc4614f82047e1770f2c0c558ca734f3ab685c2f3faa33a31c6",
+      "from": "pending",
+      "to": "filled",
+      "reason": "isolated_simulation_next_observed_open",
+      "at": "2026-09-24T09:30:10+08:00",
+      "fill": {
+        "date": "2026-09-24",
+        "at": "2026-09-24T09:30:00+08:00",
+        "raw_price": 108.5,
+        "adjusted_price": 108.5,
+        "source_sha256": "6d21a24ea8e65de47698444f45344dc518d17cd2ad41d57efeea29ba48fcd4ba",
+        "snapshot_sha256": "05c6c831906a0f047d5ab7c5b36c2a99c089e337fb434675ac1249ca1cafd6c5",
+        "virtual_units": 1,
+        "not_real_trade": true,
+        "cost_bps_scenario": 15.0,
+        "provider_at": "2026-09-24T09:30:03+08:00",
+        "execution_assumption": "CN vendor-listed preopen status; not broker fill guarantee",
+        "execution_model": "strict-open-v1",
+        "attempt_number": 2
+      }
+    }
+  ],
+  "execution_model": "strict-open-v1",
+  "execution_contract_sha256": "cefed5c9ec86ab5adbb7e051ed38bd8b912ea883cfcbba7c9ec8d604f69b1827",
+  "scope_epoch": "SYNTHETIC-epoch",
+  "synthetic": true,
+  "protected_unchanged": true,
+  "run_id": "f1c2f8d129a0713d01469ad1",
+  "status": "recorded"
+}

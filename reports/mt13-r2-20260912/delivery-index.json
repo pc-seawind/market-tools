@@ -1,0 +1,13 @@
+{
+  "work_id": "work_c04ee4237f5a367a1ed9",
+  "code_commit": "ad2bf3d343241f3a33b7bdb53e03ce9b88797568",
+  "tests": "546 passed in 46.59s",
+  "report": "DELIVERY.md",
+  "instructions": "docs/mt13/REVISION2.md",
+  "audit": "audit.json",
+  "pending": [
+    "natural 2026-09-14 opening",
+    "HK strict venue eligibility unsupported by current public source; separate observed valuation model only",
+    "investment approval and production wiring"
+  ]
+}
