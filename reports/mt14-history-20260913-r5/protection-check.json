@@ -1,0 +1,25 @@
+{
+  "original": {
+    "checked": 112205,
+    "changes": [
+      {
+        "path": "/home/emox/work/investment/reference/technical-research/MT14-historical-comparison-plan.md",
+        "before": "a6dadb579f635cf0ab9c7d81fd9afe43714e22bd4e0769340af2bd39051e417c",
+        "after": "8f2489a4ec12489f2c2c52913777e226ad9d208c8cd95fdceb7b28fe1570e6e1"
+      },
+      {
+        "path": "/home/emox/work/investment/reference/technical-research/MT14-historical-comparison-tasks.md",
+        "before": "a9028423d26a39c6bf6a848eb88631f5c3e340919c33148130066f1d99e6f506",
+        "after": "d2f337cc397506593f0d6274bb041e6e2f53810bbb68cf636a47af30a60af159"
+      }
+    ]
+  },
+  "this_work": {
+    "checked": 112205,
+    "changes": []
+  },
+  "final_this_work": {
+    "checked": 112205,
+    "changes": []
+  }
+}

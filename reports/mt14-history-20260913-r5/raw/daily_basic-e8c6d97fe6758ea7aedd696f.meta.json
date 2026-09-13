@@ -1,0 +1,18 @@
+{
+  "acquired_at": "2026-09-13T07:16:57.452418+00:00",
+  "attempts": 1,
+  "body": "raw/daily_basic-e8c6d97fe6758ea7aedd696f.raw",
+  "endpoint": "https://api.tushare.pro",
+  "request": {
+    "api_name": "daily_basic",
+    "fields": "",
+    "params": {
+      "end_date": "20221231",
+      "start_date": "20220101",
+      "ts_code": "600009.SH"
+    }
+  },
+  "rows": 241,
+  "sha256": "e9a32cfd6b4c1799065d2d98bfab6c7f1ccbc6b9d6c286e4fcc8bc0656c90500",
+  "status": "ok"
+}

@@ -1,0 +1,37 @@
+{
+  "samples.json.gz": {
+    "r4": "13cb0d3fb06b0d8f02c63690142d58dcf921002906613b3ccd8846754c1451e1",
+    "r5": "13cb0d3fb06b0d8f02c63690142d58dcf921002906613b3ccd8846754c1451e1",
+    "equal": true
+  },
+  "results.json": {
+    "r4": "6b537844e510255dfbff0abd0bc1b15f391874fe72b3dd840dfbbca3baf406db",
+    "r5": "6b537844e510255dfbff0abd0bc1b15f391874fe72b3dd840dfbbca3baf406db",
+    "equal": true
+  },
+  "RESULTS.md": {
+    "r4": "fd8e9979ac1336a644a13ad8b6d79d85ee2c7d4e0b91321e9f106910fa8f94fe",
+    "r5": "fd8e9979ac1336a644a13ad8b6d79d85ee2c7d4e0b91321e9f106910fa8f94fe",
+    "equal": true
+  },
+  "frozen-contract.json": {
+    "r4": "0e2756b5519bc6083d1abe042f98d95c0760e9d657a56722410967c626789e0a",
+    "r5": "0e2756b5519bc6083d1abe042f98d95c0760e9d657a56722410967c626789e0a",
+    "equal": true
+  },
+  "input-manifest.json": {
+    "r4": "15814366615b8f4dbdb9e5f18da7bd74f58f5a0e5a540bf051cb7f5203c27bc3",
+    "r5": "15814366615b8f4dbdb9e5f18da7bd74f58f5a0e5a540bf051cb7f5203c27bc3",
+    "equal": true
+  },
+  "source-index.json": {
+    "r4": "90262baf25df3863b249ba2f0ef5590564db8daf91b96f17d66c2ce69a56ca35",
+    "r5": "90262baf25df3863b249ba2f0ef5590564db8daf91b96f17d66c2ce69a56ca35",
+    "equal": true
+  },
+  "collection-receipt.json": {
+    "r4": "faa2b8f89aff943d09d07600bc2cab1d5f215a5e3f1819bcfaf3d792d80f7945",
+    "r5": "faa2b8f89aff943d09d07600bc2cab1d5f215a5e3f1819bcfaf3d792d80f7945",
+    "equal": true
+  }
+}

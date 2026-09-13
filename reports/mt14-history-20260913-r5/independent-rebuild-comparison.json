@@ -1,0 +1,27 @@
+{
+  "samples.json.gz": {
+    "r5": "13cb0d3fb06b0d8f02c63690142d58dcf921002906613b3ccd8846754c1451e1",
+    "independent": "13cb0d3fb06b0d8f02c63690142d58dcf921002906613b3ccd8846754c1451e1",
+    "equal": true
+  },
+  "results.json": {
+    "r5": "6b537844e510255dfbff0abd0bc1b15f391874fe72b3dd840dfbbca3baf406db",
+    "independent": "6b537844e510255dfbff0abd0bc1b15f391874fe72b3dd840dfbbca3baf406db",
+    "equal": true
+  },
+  "RESULTS.md": {
+    "r5": "fd8e9979ac1336a644a13ad8b6d79d85ee2c7d4e0b91321e9f106910fa8f94fe",
+    "independent": "fd8e9979ac1336a644a13ad8b6d79d85ee2c7d4e0b91321e9f106910fa8f94fe",
+    "equal": true
+  },
+  "run-receipt.json": {
+    "r5": "6ee76cbabde9690c1fe24e3baae6399a0e8f66401b8a023b587b66ef6381e55b",
+    "independent": "6ee76cbabde9690c1fe24e3baae6399a0e8f66401b8a023b587b66ef6381e55b",
+    "equal": true
+  },
+  "input-manifest.json": {
+    "r5": "15814366615b8f4dbdb9e5f18da7bd74f58f5a0e5a540bf051cb7f5203c27bc3",
+    "independent": "15814366615b8f4dbdb9e5f18da7bd74f58f5a0e5a540bf051cb7f5203c27bc3",
+    "equal": true
+  }
+}

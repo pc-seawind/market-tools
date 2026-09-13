@@ -1,0 +1,18 @@
+{
+  "acquired_at": "2026-09-13T07:16:55.255534+00:00",
+  "attempts": 1,
+  "body": "raw/fina_indicator-a3dc761fd17ab337704c8166.raw",
+  "endpoint": "https://api.tushare.pro",
+  "request": {
+    "api_name": "fina_indicator",
+    "fields": "",
+    "params": {
+      "end_date": "20221231",
+      "start_date": "20220101",
+      "ts_code": "000651.SZ"
+    }
+  },
+  "rows": 8,
+  "sha256": "c5949115ad1e6a1dea05fd8b50d428b6dee967dd40ca34748db2fc57d3815bb3",
+  "status": "ok"
+}

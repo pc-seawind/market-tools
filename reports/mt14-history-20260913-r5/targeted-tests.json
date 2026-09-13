@@ -1,0 +1,7 @@
+{
+  "command": "/home/emox/work/homespace/.venv/bin/python -m pytest tests/test_iteration_history_core.py -q",
+  "exit": 0,
+  "passed": 28,
+  "seconds": 0.21,
+  "phase": "before_full_tests"
+}
