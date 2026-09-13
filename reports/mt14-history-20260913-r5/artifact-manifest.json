@@ -1053,6 +1053,7 @@
   "samples.json.gz": "13cb0d3fb06b0d8f02c63690142d58dcf921002906613b3ccd8846754c1451e1",
   "source-index.json": "90262baf25df3863b249ba2f0ef5590564db8daf91b96f17d66c2ce69a56ca35",
   "targeted-tests.json": "f9b01bde675ff2cd48997bb6db61edbb4f6c66f7598f0db7218548931f639d67",
+  "task-status.json": "1421669efac4e4f94c6b4f5f984eec70b091d818e35c7f6edda078a99b257121",
   "verify-exit.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
   "verify-log.txt": "2f28610566d552e465458ef343f5274c200d8c37c867f67fbcd9585fe4d2bd75",
   "verify-receipt.json": "e231bb175ab9bb1697873043d79b1fa68b959dee021d1d7530dfaa688b7fe47c",
