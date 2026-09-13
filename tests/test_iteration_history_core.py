@@ -2,8 +2,8 @@
 import copy
 import pytest
 from mt1.iteration_history import price_value,cash,unknown,historical_action,execution_value
-from mt1.iteration_history_report import stats,summarize
-from mt1.iteration_history_data import write,read,sha,verify_inputs
+from mt1.iteration_history.report import stats,summarize
+from mt1.iteration_history.data import write,read,sha,verify_inputs
 from mt1.action_loop import decide,read as policy_read,POLICY
 from mt1.action_demo import fixture,append
 from mt1.timing import normalize
@@ -181,3 +181,34 @@ def test_funded_capital_fees_cash_and_no_double_allocation():
     assert path[0]['cash']==10000 and path[2]['cash']==0
     assert path[5]['wealth']==pytest.approx(10000*104*.9975/(101*1.0025))
     with pytest.raises(ValueError):account_path(p,trades+[dict(entry=dict(index=2,price=102),exit=None)],[],.0025,10000)
+
+
+def test_history_package_excluded_from_legacy_fingerprint():
+    from pathlib import Path
+    from mt1.iteration_policy import code_hashes
+    assert not any('history' in name for name in code_hashes())
+    assert not list(Path('mt1').glob('iteration_history*.py'))
+    manifest = next(Path('reports/mt14-r2/real-release/runs').glob('*/manifest.json'))
+    assert read(manifest)['code_hashes'] == code_hashes()
+
+
+def test_history_fingerprint_includes_package_and_original_dependencies():
+    from mt1.iteration_history import history_code_hashes
+    hashes = history_code_hashes()
+    for name in ('__init__', '__main__', 'data', 'report'):
+        assert 'mt1/iteration_history/'+name+'.py' in hashes
+    for name in ('candidates', 'timing', 'action_loop', 'action_recovery'):
+        assert 'mt1/'+name+'.py' in hashes
+
+
+def test_history_verify_rejects_missing_fingerprint_before_computation(tmp_path):
+    from mt1.iteration_history import verify
+    write(tmp_path/'run-receipt.json', dict(code_hashes={}, core_hashes={}))
+    with pytest.raises(ValueError, match='history_code_changed'):
+        verify(tmp_path)
+
+
+def test_history_module_cli_is_preserved():
+    import subprocess, sys
+    result = subprocess.run([sys.executable, '-m', 'mt1.iteration_history', '--help'], capture_output=True, text=True)
+    assert result.returncode == 0 and '{collect,run,verify}' in result.stdout

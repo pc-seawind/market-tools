@@ -10,12 +10,12 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
-from .iteration_history_data import collect, read, write, sha, verify_inputs, panels, seal_bytes
-from .iteration_history_report import summarize, render
-from .candidates import screen
-from .timing import step, digest
-from .history_research import next_open as cn_open
-from .hk_history import next_open as hk_open
+from .data import collect, read, write, sha, verify_inputs, panels, seal_bytes
+from .report import summarize, render
+from ..candidates import screen
+from ..timing import step, digest
+from ..history_research import next_open as cn_open
+from ..hk_history import next_open as hk_open
 
 
 def close_at(d,market='CN'):
@@ -190,8 +190,8 @@ def account_window(path,i,h):
 
 def technical(ps,warm,cfg):
     # Original MT13 transition/recovery functions are reused, not mocked.
-    from .action_loop import transition, TERMINAL
-    from .action_recovery import ensure,renew,expire
+    from ..action_loop import transition, TERMINAL
+    from ..action_recovery import ensure,renew,expire
     outcomes=[];decisions=[];trades=[];ledgers=[];accounts=[]
     for code in cfg['technical_codes']:
         p=warm_panel(ps[code],warm);bars=p['bars'];dates=p['dates'];index={d:i for i,d in enumerate(dates)}
@@ -324,17 +324,25 @@ def build(out):
 def encode(value):return (json.dumps(value,ensure_ascii=False,sort_keys=True,allow_nan=False)+'\n').encode()
 
 
+def history_code_hashes():
+    """Independent history fingerprint; also seal all original direct/transitive modules."""
+    root = Path(__file__).resolve().parents[2]
+    paths = list((root/'mt1').glob('*.py')) + list(Path(__file__).parent.glob('*.py'))
+    return {str(p.relative_to(root)):sha(p) for p in sorted(paths)}
+
+
 def run(out):
     result,detail=build(out)
     seal_bytes(out/'samples.json.gz',gzip.compress(encode(detail),mtime=0));write(out/'results.json',result)
     seal_bytes(out/'RESULTS.md',render(result).encode())
-    code={str(p.relative_to(Path(__file__).resolve().parents[1])):sha(p) for p in sorted(Path(__file__).parent.glob('*.py'))}
+    code=history_code_hashes()
     write(out/'run-receipt.json',dict(code_hashes=code,core_hashes={n:sha(out/n) for n in ('samples.json.gz','results.json','RESULTS.md')}))
     return result['counts']
 
 
 def verify(out):
-    receipt=read(out/'run-receipt.json');root=Path(__file__).resolve().parents[1]
+    receipt=read(out/'run-receipt.json');root=Path(__file__).resolve().parents[2]
+    if receipt['code_hashes'] != history_code_hashes():raise ValueError('history_code_changed')
     for p,h in receipt['code_hashes'].items():
         if sha(root/p)!=h:raise ValueError('code_changed:'+p)
     result,detail=build(out)

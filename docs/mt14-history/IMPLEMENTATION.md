@@ -33,3 +33,11 @@
 - 资本路径记录每一天的cash/units/wealth/unknown；资金未知不填0。事件净收益与资本窗口收益分表。
 - 已增加完整合成BUY→下一开盘→SELL→下一开盘，以及SELL到期重试同signal和禁止重复资金占用测试；不mock核心引擎和恢复函数。
 - r2/r3初版结果保留，不覆盖；仅r4作为本轮最终诊断，原始输入manifest完全相同。
+
+## r5 收尾隔离（本次授权范围）
+
+旧全量测试 PID4131481 在改源码前自然结束，655 passed / exit0，原日志保留。
+新增模块迁入独立子包，不留旧 glob 可见 stub；history_code_hashes 单独验证本功能及原依赖。
+不改旧引擎/指纹函数/manifest。当前仓库直接验证旧R2成功；新目录和独立源码目录均离线run/verify成功，三核心文件与r4完全一致。
+新增4项子包/指纹/CLI tripwire，共28项；完整回归终态见r5/DELIVERY.md。
+仅收尾工单待原投资域独立验收，不宣称旧工单已accepted。

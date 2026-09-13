@@ -7,7 +7,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 import urllib.request
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def sha(path):
