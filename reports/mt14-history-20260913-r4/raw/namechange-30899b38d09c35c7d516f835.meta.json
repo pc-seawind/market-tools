@@ -1,0 +1,18 @@
+{
+  "acquired_at": "2026-09-13T07:16:56.748650+00:00",
+  "attempts": 1,
+  "body": "raw/namechange-30899b38d09c35c7d516f835.raw",
+  "endpoint": "https://api.tushare.pro",
+  "request": {
+    "api_name": "namechange",
+    "fields": "",
+    "params": {
+      "end_date": "20251231",
+      "start_date": "20190101",
+      "ts_code": "600000.SH"
+    }
+  },
+  "rows": 0,
+  "sha256": "d46ba128faf0df65345dd49252d90cdfcc9749159f0a68d5fbf564f031450adc",
+  "status": "ok"
+}

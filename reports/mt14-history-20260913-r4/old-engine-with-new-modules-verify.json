@@ -1,0 +1,5 @@
+{
+  "exit": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/home/emox/work/projects/market-tools/mt1/iteration_loop.py\", line 362, in verify\n    verified.append({'run':p.parent.name,'hash':file_hash(p),'summary':verify_run(root,p.parent)['summary']})\n                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/emox/work/projects/market-tools/mt1/iteration_loop.py\", line 299, in verify_run\n    if m['contract_hash']!=digest(CONTRACT) or m['code_hashes']!=code_hashes():raise ValueError('engine_or_contract_version_changed')\n                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: engine_or_contract_version_changed\n"
+}

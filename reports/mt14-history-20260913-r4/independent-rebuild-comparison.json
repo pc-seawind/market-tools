@@ -1,0 +1,10 @@
+{
+  "all_equal": true,
+  "files": {
+    "samples.json.gz": true,
+    "results.json": true,
+    "RESULTS.md": true
+  },
+  "workspace": "/tmp/mt14-independent-hm0kevog/report",
+  "no_original_report_tree_required": true
+}

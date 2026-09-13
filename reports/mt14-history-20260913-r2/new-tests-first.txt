@@ -1,0 +1,68 @@
+F...............FF.                                                      [100%]
+=================================== FAILURES ===================================
+________________ test_screen_default_and_single_roe_difference _________________
+
+    def test_screen_default_and_single_roe_difference():
+        s=snapshot();assert screen(s)==screen(s,dict(roe_min=10,pe_max=25,pb_max=3))
+>       assert len(screen(s)['candidates'])==1 and not screen(s,{'roe_min':12})['candidates']
+E       assert (0 == 1)
+E        +  where 0 = len([])
+
+tests/test_iteration_history_core.py:23: AssertionError
+________ test_pure_historical_actions_equal_unmodified_live_decide[1.2] ________
+
+ratio = 1.2
+
+    @pytest.mark.parametrize('ratio',[1.2,1.4])
+    def test_pure_historical_actions_equal_unmodified_live_decide(ratio):
+        cfg=policy_read(POLICY);cfg['timing']['breakout_volume_min']=ratio
+        p=fixture();hist=None;live=None;held=False
+        for price,vol in [(None,None),(108,200),(110,160),(80,100),(82,90),(115,200)]:
+            if price is not None:p=append(p,price,vol)
+            rows=normalize(p,p['fetched_at'])
+            hist,r,action=historical_action(rows,hist,held,cfg['timing'])
+            rr,card=decide(p,p['fetched_at'],live,held,cfg)
+            # Unheld episode reset belongs to MT13 observe, rather than decide.
+            if not held and live and card['risk_active'] and not rr['risk']['reasons'] and p['expected_date']>live['last_date']:
+                rr,card=decide(p,p['fetched_at'],None,False,cfg)
+            assert rr['status']=='ok' and action==card['action']
+>           assert r['entry']==rr['entry'] and r['risk']==rr['risk']
+E           AssertionError: assert ({'breakout': ...+08:00', ...}} == {'breakout': ...+08:00', ...}}
+E             
+E             Differing items:
+E             {'pullback': {'expires_after_sessions': 10, 'formed_date': '2026-09-14', 'formed_session': 1, 'known_at': '2026-09-14T17:00:00+08:00', ...}} != {'pullback': {'expires_after_sessions': 10, 'formed_date': '2026-09-14', 'formed_session': 1, 'known_at': '2026-09-14T18:00:00+08:00', ...}}
+E             {'breakout': {'expires_after_sessions': 10, 'formed_date': '2026-09-14', 'formed_session': 1, 'known_at': '2026-09-14T17:00:00+08:00', ...}} != {'breakout': {'expires_after_sessions': 10, 'formed_date': '2026-09-14', 'formed_session': 1, 'known_at': '2026-09-14T18:00:00+08:00', ...}}
+E             Use -v to get more diff)
+
+tests/test_iteration_history_core.py:108: AssertionError
+________ test_pure_historical_actions_equal_unmodified_live_decide[1.4] ________
+
+ratio = 1.4
+
+    @pytest.mark.parametrize('ratio',[1.2,1.4])
+    def test_pure_historical_actions_equal_unmodified_live_decide(ratio):
+        cfg=policy_read(POLICY);cfg['timing']['breakout_volume_min']=ratio
+        p=fixture();hist=None;live=None;held=False
+        for price,vol in [(None,None),(108,200),(110,160),(80,100),(82,90),(115,200)]:
+            if price is not None:p=append(p,price,vol)
+            rows=normalize(p,p['fetched_at'])
+            hist,r,action=historical_action(rows,hist,held,cfg['timing'])
+            rr,card=decide(p,p['fetched_at'],live,held,cfg)
+            # Unheld episode reset belongs to MT13 observe, rather than decide.
+            if not held and live and card['risk_active'] and not rr['risk']['reasons'] and p['expected_date']>live['last_date']:
+                rr,card=decide(p,p['fetched_at'],None,False,cfg)
+            assert rr['status']=='ok' and action==card['action']
+>           assert r['entry']==rr['entry'] and r['risk']==rr['risk']
+E           AssertionError: assert ({'breakout': ...+08:00', ...}} == {'breakout': ...+08:00', ...}}
+E             
+E             Differing items:
+E             {'pullback': {'expires_after_sessions': 10, 'formed_date': '2026-09-14', 'formed_session': 1, 'known_at': '2026-09-14T17:00:00+08:00', ...}} != {'pullback': {'expires_after_sessions': 10, 'formed_date': '2026-09-14', 'formed_session': 1, 'known_at': '2026-09-14T18:00:00+08:00', ...}}
+E             {'breakout': {'expires_after_sessions': 10, 'formed_date': '2026-09-14', 'formed_session': 1, 'known_at': '2026-09-14T17:00:00+08:00', ...}} != {'breakout': {'expires_after_sessions': 10, 'formed_date': '2026-09-14', 'formed_session': 1, 'known_at': '2026-09-14T18:00:00+08:00', ...}}
+E             Use -v to get more diff)
+
+tests/test_iteration_history_core.py:108: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_iteration_history_core.py::test_screen_default_and_single_roe_difference
+FAILED tests/test_iteration_history_core.py::test_pure_historical_actions_equal_unmodified_live_decide[1.2]
+FAILED tests/test_iteration_history_core.py::test_pure_historical_actions_equal_unmodified_live_decide[1.4]
+3 failed, 16 passed in 0.09s

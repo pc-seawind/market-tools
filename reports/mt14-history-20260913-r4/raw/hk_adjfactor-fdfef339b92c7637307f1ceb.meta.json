@@ -1,0 +1,18 @@
+{
+  "acquired_at": "2026-09-13T07:17:05.517318+00:00",
+  "attempts": 1,
+  "body": "raw/hk_adjfactor-fdfef339b92c7637307f1ceb.raw",
+  "endpoint": "https://api.tushare.pro",
+  "error": "provider_error:40203:抱歉，您没有接口(hk_adjfactor)访问权限，权限的具体详情访问：https://tushare.pro/document/1?doc_id=108。",
+  "request": {
+    "api_name": "hk_adjfactor",
+    "fields": "",
+    "params": {
+      "end_date": "20201231",
+      "start_date": "20200601",
+      "ts_code": "00005.HK"
+    }
+  },
+  "sha256": "c8c40bf5a5ca44a4dd0e719e360dfdfa2318eac17d5c2e343450ea40700d3467",
+  "status": "failed"
+}

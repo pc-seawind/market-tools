@@ -1,0 +1,1235 @@
+{
+  "capital": [
+    {
+      "arm": "old",
+      "cash_days": 1329,
+      "code": "000001.SZ",
+      "cost_multiplier": 1,
+      "end": 8388.503441885416,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 29,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1329,
+      "code": "000001.SZ",
+      "cost_multiplier": 2,
+      "end": 8338.322850103626,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 29,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1329,
+      "code": "000001.SZ",
+      "cost_multiplier": 3,
+      "end": 8288.441994411967,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 29,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1329,
+      "code": "000001.SZ",
+      "cost_multiplier": 1,
+      "end": 8388.503441885416,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 29,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1329,
+      "code": "000001.SZ",
+      "cost_multiplier": 2,
+      "end": 8338.322850103626,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 29,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1329,
+      "code": "000001.SZ",
+      "cost_multiplier": 3,
+      "end": 8288.441994411967,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 29,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1325,
+      "code": "000333.SZ",
+      "cost_multiplier": 1,
+      "end": 8739.866683028442,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 33,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1325,
+      "code": "000333.SZ",
+      "cost_multiplier": 2,
+      "end": 8687.584212706211,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 33,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1325,
+      "code": "000333.SZ",
+      "cost_multiplier": 3,
+      "end": 8635.614033305234,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 33,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1325,
+      "code": "000333.SZ",
+      "cost_multiplier": 1,
+      "end": 8739.866683028442,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 33,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1325,
+      "code": "000333.SZ",
+      "cost_multiplier": 2,
+      "end": 8687.584212706211,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 33,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1325,
+      "code": "000333.SZ",
+      "cost_multiplier": 3,
+      "end": 8635.614033305234,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 33,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1240,
+      "code": "000651.SZ",
+      "cost_multiplier": 1,
+      "end": 6767.576005047446,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 118,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1240,
+      "code": "000651.SZ",
+      "cost_multiplier": 2,
+      "end": 6577.443859921725,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 118,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1240,
+      "code": "000651.SZ",
+      "cost_multiplier": 3,
+      "end": 6392.666140000766,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 118,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1240,
+      "code": "000651.SZ",
+      "cost_multiplier": 1,
+      "end": 6767.576005047446,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 118,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1240,
+      "code": "000651.SZ",
+      "cost_multiplier": 2,
+      "end": 6577.443859921725,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 118,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1240,
+      "code": "000651.SZ",
+      "cost_multiplier": 3,
+      "end": 6392.666140000766,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 118,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1154,
+      "code": "600000.SH",
+      "cost_multiplier": 1,
+      "end": 11844.044434983114,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 204,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1154,
+      "code": "600000.SH",
+      "cost_multiplier": 2,
+      "end": 11528.532161725265,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 204,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1154,
+      "code": "600000.SH",
+      "cost_multiplier": 3,
+      "end": 11221.422060382463,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 204,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1162,
+      "code": "600000.SH",
+      "cost_multiplier": 1,
+      "end": 11992.446945098207,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 196,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1162,
+      "code": "600000.SH",
+      "cost_multiplier": 2,
+      "end": 11708.05310230568,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 196,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1162,
+      "code": "600000.SH",
+      "cost_multiplier": 3,
+      "end": 11430.401023611375,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 196,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1358,
+      "code": "600009.SH",
+      "cost_multiplier": 1,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1358,
+      "code": "600009.SH",
+      "cost_multiplier": 2,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1358,
+      "code": "600009.SH",
+      "cost_multiplier": 3,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1358,
+      "code": "600009.SH",
+      "cost_multiplier": 1,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1358,
+      "code": "600009.SH",
+      "cost_multiplier": 2,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1358,
+      "code": "600009.SH",
+      "cost_multiplier": 3,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1013,
+      "code": "600028.SH",
+      "cost_multiplier": 1,
+      "end": 9727.775363096758,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 345,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1013,
+      "code": "600028.SH",
+      "cost_multiplier": 2,
+      "end": 9161.27094182113,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 345,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1013,
+      "code": "600028.SH",
+      "cost_multiplier": 3,
+      "end": 8627.75267872082,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 345,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1013,
+      "code": "600028.SH",
+      "cost_multiplier": 1,
+      "end": 9727.775363096758,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 345,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1013,
+      "code": "600028.SH",
+      "cost_multiplier": 2,
+      "end": 9161.27094182113,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 345,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1013,
+      "code": "600028.SH",
+      "cost_multiplier": 3,
+      "end": 8627.75267872082,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 345,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1358,
+      "code": "600030.SH",
+      "cost_multiplier": 1,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1358,
+      "code": "600030.SH",
+      "cost_multiplier": 2,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1358,
+      "code": "600030.SH",
+      "cost_multiplier": 3,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1358,
+      "code": "600030.SH",
+      "cost_multiplier": 1,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1358,
+      "code": "600030.SH",
+      "cost_multiplier": 2,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1358,
+      "code": "600030.SH",
+      "cost_multiplier": 3,
+      "end": 10000.0,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 0,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1139,
+      "code": "600036.SH",
+      "cost_multiplier": 1,
+      "end": 8379.97136746809,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 219,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1139,
+      "code": "600036.SH",
+      "cost_multiplier": 2,
+      "end": 8132.304503978083,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 219,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1139,
+      "code": "600036.SH",
+      "cost_multiplier": 3,
+      "end": 7891.955209479792,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 219,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1139,
+      "code": "600036.SH",
+      "cost_multiplier": 1,
+      "end": 8379.97136746809,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 219,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1139,
+      "code": "600036.SH",
+      "cost_multiplier": 2,
+      "end": 8132.304503978083,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 219,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1139,
+      "code": "600036.SH",
+      "cost_multiplier": 3,
+      "end": 7891.955209479792,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 219,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1225,
+      "code": "600050.SH",
+      "cost_multiplier": 1,
+      "end": 7312.591451794834,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 133,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1225,
+      "code": "600050.SH",
+      "cost_multiplier": 2,
+      "end": 7117.792085326153,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 133,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1225,
+      "code": "600050.SH",
+      "cost_multiplier": 3,
+      "end": 6928.180275427321,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 133,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1225,
+      "code": "600050.SH",
+      "cost_multiplier": 1,
+      "end": 7312.591451794834,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 133,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1225,
+      "code": "600050.SH",
+      "cost_multiplier": 2,
+      "end": 7117.792085326153,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 133,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1225,
+      "code": "600050.SH",
+      "cost_multiplier": 3,
+      "end": 6928.180275427321,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 133,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1299,
+      "code": "600104.SH",
+      "cost_multiplier": 1,
+      "end": 9055.006210147993,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 59,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1299,
+      "code": "600104.SH",
+      "cost_multiplier": 2,
+      "end": 8920.194028327163,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 59,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1299,
+      "code": "600104.SH",
+      "cost_multiplier": 3,
+      "end": 8787.387762548533,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 59,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1299,
+      "code": "600104.SH",
+      "cost_multiplier": 1,
+      "end": 9055.006210147993,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 59,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1299,
+      "code": "600104.SH",
+      "cost_multiplier": 2,
+      "end": 8920.194028327163,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 59,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1299,
+      "code": "600104.SH",
+      "cost_multiplier": 3,
+      "end": 8787.387762548533,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 59,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1354,
+      "code": "600276.SH",
+      "cost_multiplier": 1,
+      "end": 9215.970776943292,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 4,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1354,
+      "code": "600276.SH",
+      "cost_multiplier": 2,
+      "end": 9188.364150322574,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 4,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1354,
+      "code": "600276.SH",
+      "cost_multiplier": 3,
+      "end": 9160.839972561847,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 4,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1354,
+      "code": "600276.SH",
+      "cost_multiplier": 1,
+      "end": 9215.970776943292,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 4,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1354,
+      "code": "600276.SH",
+      "cost_multiplier": 2,
+      "end": 9188.364150322574,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 4,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1354,
+      "code": "600276.SH",
+      "cost_multiplier": 3,
+      "end": 9160.839972561847,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 4,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1238,
+      "code": "600519.SH",
+      "cost_multiplier": 1,
+      "end": 7498.34435024572,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 120,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1238,
+      "code": "600519.SH",
+      "cost_multiplier": 2,
+      "end": 7276.7336376121675,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 120,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1238,
+      "code": "600519.SH",
+      "cost_multiplier": 3,
+      "end": 7061.6706385328125,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 120,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1238,
+      "code": "600519.SH",
+      "cost_multiplier": 1,
+      "end": 7498.34435024572,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 120,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1238,
+      "code": "600519.SH",
+      "cost_multiplier": 2,
+      "end": 7276.7336376121675,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 120,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1238,
+      "code": "600519.SH",
+      "cost_multiplier": 3,
+      "end": 7061.6706385328125,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 120,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 742,
+      "code": "00005",
+      "cost_multiplier": 1,
+      "end": 9899.483339253045,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 486,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 742,
+      "code": "00005",
+      "cost_multiplier": 2,
+      "end": 8671.051039842816,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 486,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 742,
+      "code": "00005",
+      "cost_multiplier": 3,
+      "end": 7595.077888826855,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 486,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 739,
+      "code": "00005",
+      "cost_multiplier": 1,
+      "end": 10737.15982489646,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 489,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 739,
+      "code": "00005",
+      "cost_multiplier": 2,
+      "end": 9499.300786083828,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 489,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 739,
+      "code": "00005",
+      "cost_multiplier": 3,
+      "end": 8404.178065205379,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 489,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1168,
+      "code": "00388",
+      "cost_multiplier": 1,
+      "end": 7267.598797679531,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 60,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1168,
+      "code": "00388",
+      "cost_multiplier": 2,
+      "end": 7052.805707176198,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 60,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 1168,
+      "code": "00388",
+      "cost_multiplier": 3,
+      "end": 6844.355669498887,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 60,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1168,
+      "code": "00388",
+      "cost_multiplier": 1,
+      "end": 7267.598797679531,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 60,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1168,
+      "code": "00388",
+      "cost_multiplier": 2,
+      "end": 7052.805707176198,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 60,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 1168,
+      "code": "00388",
+      "cost_multiplier": 3,
+      "end": 6844.355669498887,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 60,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 654,
+      "code": "00941",
+      "cost_multiplier": 1,
+      "end": 12300.883897351474,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 574,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 654,
+      "code": "00941",
+      "cost_multiplier": 2,
+      "end": 11074.770463735165,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 574,
+      "unknown": 0
+    },
+    {
+      "arm": "old",
+      "cash_days": 654,
+      "code": "00941",
+      "cost_multiplier": 3,
+      "end": 9970.84598737415,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 574,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 645,
+      "code": "00941",
+      "cost_multiplier": 1,
+      "end": 12178.580808704877,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 583,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 645,
+      "code": "00941",
+      "cost_multiplier": 2,
+      "end": 11019.619543733703,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 583,
+      "unknown": 0
+    },
+    {
+      "arm": "new",
+      "cash_days": 645,
+      "code": "00941",
+      "cost_multiplier": 3,
+      "end": 9970.924625725422,
+      "initial": 10000.0,
+      "no_cash_and_units_together": true,
+      "occupied_days": 583,
+      "unknown": 0
+    }
+  ],
+  "events_overlapping_not_independent": true,
+  "fundamental_changed": [
+    {
+      "identity": "000651.SZ|20250930",
+      "new": false,
+      "old": true,
+      "old_candidate": [
+        {
+          "asof": "20250930",
+          "channel": "VALUE",
+          "code": "000651.SZ",
+          "data_version": "1dd5f8abf83075062c95a8f05e64305d2d7113db550e3cea661ce979758434d0",
+          "financial_period": "20250630",
+          "financial_public_date": "20250829",
+          "method_status": "shadow",
+          "metrics": {
+            "debt_to_assets": 65.2055,
+            "eps": 2.6,
+            "ocfps": 5.0574,
+            "pb": 1.791,
+            "pe_ttm": 6.854,
+            "roe": 10.5658,
+            "turnover_rate": 0.7169
+          },
+          "name": "格力电器",
+          "origin": "quality_value_shadow",
+          "qualification": "candidate"
+        }
+      ]
+    },
+    {
+      "identity": "000651.SZ|20251031",
+      "new": false,
+      "old": true,
+      "old_candidate": [
+        {
+          "asof": "20251031",
+          "channel": "VALUE",
+          "code": "000651.SZ",
+          "data_version": "343de6ab55247081abcf51e24e07d53c0881e14371b32ded1b8a2456a84194c5",
+          "financial_period": "20250630",
+          "financial_public_date": "20250829",
+          "method_status": "shadow",
+          "metrics": {
+            "debt_to_assets": 65.2055,
+            "eps": 2.6,
+            "ocfps": 5.0574,
+            "pb": 1.5417,
+            "pe_ttm": 7.0272,
+            "roe": 10.5658,
+            "turnover_rate": 1.671
+          },
+          "name": "格力电器",
+          "origin": "quality_value_shadow",
+          "qualification": "candidate"
+        }
+      ]
+    }
+  ],
+  "fundamental_missing_historical_name": 720,
+  "fundamental_old_filter_counts": {
+    "leverage_filter": 254,
+    "missing_pe_ttm": 36,
+    "quality_filter": 505,
+    "value_filter": 178
+  },
+  "ledger_order_status": {
+    "cancelled": 422,
+    "filled": 516
+  },
+  "strict_OOS": false,
+  "technical_coverage": {
+    "000001.SZ": {
+      "actions": {
+        "BUY": 4,
+        "HOLD": 25,
+        "SELL": 2,
+        "WAIT": 1181
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "00005": {
+      "actions": {
+        "BUY": 75,
+        "DATA_BLOCKED": 120,
+        "HOLD": 412,
+        "SELL": 26,
+        "WAIT": 595
+      },
+      "first_nonblocked": "20210630",
+      "last_date": "20251231",
+      "total": 1228
+    },
+    "000333.SZ": {
+      "actions": {
+        "BUY": 4,
+        "HOLD": 29,
+        "SELL": 2,
+        "WAIT": 1177
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "000651.SZ": {
+      "actions": {
+        "BUY": 16,
+        "HOLD": 103,
+        "SELL": 9,
+        "WAIT": 1084
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "00388": {
+      "actions": {
+        "BUY": 11,
+        "DATA_BLOCKED": 120,
+        "HOLD": 49,
+        "SELL": 6,
+        "WAIT": 1042
+      },
+      "first_nonblocked": "20210630",
+      "last_date": "20251231",
+      "total": 1228
+    },
+    "00941": {
+      "actions": {
+        "BUY": 85,
+        "DATA_BLOCKED": 120,
+        "HOLD": 489,
+        "SELL": 21,
+        "WAIT": 513
+      },
+      "first_nonblocked": "20210630",
+      "last_date": "20251231",
+      "total": 1228
+    },
+    "600000.SH": {
+      "actions": {
+        "BUY": 22,
+        "HOLD": 182,
+        "SELL": 9,
+        "WAIT": 999
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "600009.SH": {
+      "actions": {
+        "DATA_BLOCKED": 11,
+        "WAIT": 1201
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "600028.SH": {
+      "actions": {
+        "BUY": 50,
+        "HOLD": 295,
+        "SELL": 20,
+        "WAIT": 847
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "600030.SH": {
+      "actions": {
+        "DATA_BLOCKED": 6,
+        "WAIT": 1206
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "600036.SH": {
+      "actions": {
+        "BUY": 35,
+        "HOLD": 184,
+        "SELL": 10,
+        "WAIT": 983
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "600050.SH": {
+      "actions": {
+        "BUY": 16,
+        "HOLD": 117,
+        "SELL": 9,
+        "WAIT": 1070
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "600104.SH": {
+      "actions": {
+        "BUY": 9,
+        "HOLD": 50,
+        "SELL": 5,
+        "WAIT": 1148
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "600276.SH": {
+      "actions": {
+        "BUY": 1,
+        "HOLD": 3,
+        "SELL": 1,
+        "WAIT": 1207
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    },
+    "600519.SH": {
+      "actions": {
+        "BUY": 15,
+        "HOLD": 105,
+        "SELL": 10,
+        "WAIT": 1082
+      },
+      "first_nonblocked": "20210104",
+      "last_date": "20251231",
+      "total": 1212
+    }
+  },
+  "trades_status": {
+    "closed": 256,
+    "open": 4
+  }
+}

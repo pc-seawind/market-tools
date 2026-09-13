@@ -1,0 +1,456 @@
+{
+  "schema": "mt14-historical-comparison-v1",
+  "work_id": "work_9ad289b0ff80eb2f74c8",
+  "frozen_at": "2026-09-13T07:13:35.670333+00:00",
+  "evaluation_start": "20210101",
+  "evaluation_end": "20251231",
+  "diagnostic": [
+    "20210101",
+    "20231231"
+  ],
+  "later_check": [
+    "20240101",
+    "20251231"
+  ],
+  "strict_unseen_OOS": false,
+  "panels": [
+    {
+      "code": "000001.SZ",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-000001.SZ.json",
+      "sha256": "bcb0dd18c68ab99c1f60296c1f39d959c38b76f522aa1f7514b933591d4d5fcf",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1212,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "000333.SZ",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-000333.SZ.json",
+      "sha256": "db0ffb0af17df71a6dda69342be7c3979d1f7fd418ff0343bb07c2685900aff2",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1212,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "000651.SZ",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-000651.SZ.json",
+      "sha256": "85c2fa1ea6f3bfc6f40391e66940462c17a9ee2e63404c00bcb0f715b780c426",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1212,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "600000.SH",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-600000.SH.json",
+      "sha256": "67fc40827147df276ec3d86526c264d525bd97e5afd3f3739b9906d76954b116",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1212,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "600009.SH",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-600009.SH.json",
+      "sha256": "e2e7a924dce8437a9b66c27cd9018cc5b90f044524e6aa392b304866ce95937c",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1201,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "600028.SH",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-600028.SH.json",
+      "sha256": "42c232b3064ae829b3af08a46b8b00f16562fa756e9b4a718f0fbbae4b3eb5f3",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1212,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "600030.SH",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-600030.SH.json",
+      "sha256": "fb219fe5f0d84c115c2958100b5b2f4f6d7b9a4deb1de91bf162597d201f33bb",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1206,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "600036.SH",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-600036.SH.json",
+      "sha256": "3c02531d9f71e81814680e1f74761b7526c8c51aa657481982dbe4cee40f0abf",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1212,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "600050.SH",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-600050.SH.json",
+      "sha256": "43aa0b9edc859d014ac70b82b439d01b68f41a7ed64cbed0960e86f976a43687",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1212,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "600104.SH",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-600104.SH.json",
+      "sha256": "1d7511b89472d42bfe98ca6a79eae666923be40c00834dfe5b9ea0d92e8d07af",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1212,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "600276.SH",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-600276.SH.json",
+      "sha256": "8ed9d5dcbe2acdafd5e59c4ef1698a70ccef5040fb6952a920c117c872d2643a",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1212,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "600519.SH",
+      "market": "CN",
+      "source": "reports/mt12-history-20260912/panel-600519.SH.json",
+      "sha256": "3b168340505817050eaea8e5caf64f2e8652201f65db19564bd82778a262dc0e",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1212,
+      "bars": 1212,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "00005",
+      "market": "HK",
+      "source": "reports/mt12-history-20260912-r3/panel-00005.json",
+      "sha256": "9ce18e53b2233c9d86c921e775de0fa50b9291c9ff7f9937d47a503b6adb2f43",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1228,
+      "bars": 1228,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "00388",
+      "market": "HK",
+      "source": "reports/mt12-history-20260912-r3/panel-00388.json",
+      "sha256": "669f08e45e638f020ae4d67e3796057bdbd0b1cea300d7664380220aeba5b4b8",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1228,
+      "bars": 1228,
+      "warmup_before_2021": 0
+    },
+    {
+      "code": "00941",
+      "market": "HK",
+      "source": "reports/mt12-history-20260912-r3/panel-00941.json",
+      "sha256": "dcf39d1cfee359759b473a4b80af303ff82b0f58bfeb3c6f68dd1bb186a82215",
+      "start": "20210104",
+      "end": "20251231",
+      "sessions": 1228,
+      "bars": 1228,
+      "warmup_before_2021": 0
+    }
+  ],
+  "fundamental_codes": [
+    "000001.SZ",
+    "000333.SZ",
+    "000651.SZ",
+    "600000.SH",
+    "600009.SH",
+    "600028.SH",
+    "600030.SH",
+    "600036.SH",
+    "600050.SH",
+    "600104.SH",
+    "600276.SH",
+    "600519.SH"
+  ],
+  "technical_codes": [
+    "000001.SZ",
+    "000333.SZ",
+    "000651.SZ",
+    "600000.SH",
+    "600009.SH",
+    "600028.SH",
+    "600030.SH",
+    "600036.SH",
+    "600050.SH",
+    "600104.SH",
+    "600276.SH",
+    "600519.SH",
+    "00005",
+    "00388",
+    "00941"
+  ],
+  "fundamental": {
+    "old": {
+      "roe_min": 10,
+      "pe_max": 25,
+      "pb_max": 3
+    },
+    "new": {
+      "roe_min": 12,
+      "pe_max": 25,
+      "pb_max": 3
+    }
+  },
+  "technical": {
+    "old": {
+      "version": "signal-policy-v1",
+      "effective_at": "2026-09-12T00:00:00+08:00",
+      "approval": "experimental_signal_use_not_validated",
+      "reason": "用户批准按冻结MT12规则明确发信号，置信度仅注释",
+      "timing": {
+        "method": "mt12-timing-shadow-1",
+        "status": "shadow",
+        "parameters_status": "exploratory_not_optimized",
+        "trial": 1,
+        "grid": [],
+        "selection": "one prespecified engineering baseline; no performance-based parameter choice or automatic promotion",
+        "warmup": 120,
+        "structure_window": 20,
+        "compression_range_max": 0.12,
+        "compression_recent_to_prior": 0.8,
+        "setup_ttl_sessions": 10,
+        "breakout_volume_min": 1.2,
+        "failure_closes": 2,
+        "failure_window_sessions": 10,
+        "pullback_volume_max": 1.1,
+        "pullback_ma20_band": 0.02,
+        "atr_window": 20,
+        "atr_smoothing": "TR_simple_mean_matches_mt11_not_Wilder",
+        "atr_multiple": 3.0,
+        "extension_atr_diagnostic": 2.5,
+        "horizons_sessions": [
+          20,
+          40,
+          60
+        ],
+        "execution": {
+          "signal": "completed_close; never same-bar fill or stop-price fill",
+          "fill": "first later session open with explicit side-specific executable evidence and settlement eligibility; otherwise pending/unknown",
+          "intrabar": "daily OHLC cannot establish event ordering; close-only rule, intrabar breach diagnostic not a fill",
+          "per_side_cost_bps": {
+            "CN": 15,
+            "HK": 25,
+            "US": 10
+          },
+          "cost_status": "exploratory all-in commission/tax/slippage scenario, not verified broker tariff",
+          "min_holding_sessions": {
+            "CN": 1,
+            "HK": 0,
+            "US": 0
+          },
+          "missing_suspension_limit_delisting_settlement": "unknown_no_fill"
+        },
+        "benchmarks": {
+          "CN": "000300.SH",
+          "HK": "HSI",
+          "US": "SP500"
+        },
+        "industry": "explicit market-matched benchmark + membership known_at required; unknown is not zero or veto",
+        "group_A": {
+          "entry": "same frozen episode list",
+          "exits": [
+            "old_ma60_5",
+            "structure_failure",
+            "structure_failure_atr"
+          ]
+        },
+        "group_B": {
+          "entries": [
+            "old_trigger",
+            "breakout",
+            "pullback"
+          ],
+          "exit": "structure_failure_atr",
+          "candidate_set": "same audited frozen scope; no discovery expansion"
+        },
+        "evaluation": {
+          "mode": "current_vintage_diagnostic_replay_unless_PIT_certified",
+          "oos_train_sessions": 120,
+          "oos_test_sessions": 60,
+          "purge_sessions": 60,
+          "parameter_refit": false,
+          "strata": [
+            "market",
+            "industry",
+            "volatility",
+            "regime"
+          ],
+          "metrics": [
+            "net_price_return",
+            "max_drawdown",
+            "tail_loss",
+            "round_trips",
+            "turnover",
+            "false_breakout",
+            "post_exit_rally",
+            "sample_count",
+            "unknown",
+            "not_matured"
+          ]
+        },
+        "promotion": "candidate -> shadow -> validated -> active requires independent research signoff; development approval is not efficacy approval"
+      },
+      "order_ttl_sessions": 3,
+      "simulation": "one_virtual_unit_per_episode_no_real_order_no_initial_holdings_seed",
+      "execution_evidence": "contemporaneous_next_session_open_snapshot_only; no historical_backfill"
+    },
+    "new": {
+      "version": "signal-policy-v1",
+      "effective_at": "2026-09-12T00:00:00+08:00",
+      "approval": "experimental_signal_use_not_validated",
+      "reason": "用户批准按冻结MT12规则明确发信号，置信度仅注释",
+      "timing": {
+        "method": "mt12-timing-shadow-1",
+        "status": "shadow",
+        "parameters_status": "exploratory_not_optimized",
+        "trial": 1,
+        "grid": [],
+        "selection": "one prespecified engineering baseline; no performance-based parameter choice or automatic promotion",
+        "warmup": 120,
+        "structure_window": 20,
+        "compression_range_max": 0.12,
+        "compression_recent_to_prior": 0.8,
+        "setup_ttl_sessions": 10,
+        "breakout_volume_min": 1.4,
+        "failure_closes": 2,
+        "failure_window_sessions": 10,
+        "pullback_volume_max": 1.1,
+        "pullback_ma20_band": 0.02,
+        "atr_window": 20,
+        "atr_smoothing": "TR_simple_mean_matches_mt11_not_Wilder",
+        "atr_multiple": 3.0,
+        "extension_atr_diagnostic": 2.5,
+        "horizons_sessions": [
+          20,
+          40,
+          60
+        ],
+        "execution": {
+          "signal": "completed_close; never same-bar fill or stop-price fill",
+          "fill": "first later session open with explicit side-specific executable evidence and settlement eligibility; otherwise pending/unknown",
+          "intrabar": "daily OHLC cannot establish event ordering; close-only rule, intrabar breach diagnostic not a fill",
+          "per_side_cost_bps": {
+            "CN": 15,
+            "HK": 25,
+            "US": 10
+          },
+          "cost_status": "exploratory all-in commission/tax/slippage scenario, not verified broker tariff",
+          "min_holding_sessions": {
+            "CN": 1,
+            "HK": 0,
+            "US": 0
+          },
+          "missing_suspension_limit_delisting_settlement": "unknown_no_fill"
+        },
+        "benchmarks": {
+          "CN": "000300.SH",
+          "HK": "HSI",
+          "US": "SP500"
+        },
+        "industry": "explicit market-matched benchmark + membership known_at required; unknown is not zero or veto",
+        "group_A": {
+          "entry": "same frozen episode list",
+          "exits": [
+            "old_ma60_5",
+            "structure_failure",
+            "structure_failure_atr"
+          ]
+        },
+        "group_B": {
+          "entries": [
+            "old_trigger",
+            "breakout",
+            "pullback"
+          ],
+          "exit": "structure_failure_atr",
+          "candidate_set": "same audited frozen scope; no discovery expansion"
+        },
+        "evaluation": {
+          "mode": "current_vintage_diagnostic_replay_unless_PIT_certified",
+          "oos_train_sessions": 120,
+          "oos_test_sessions": 60,
+          "purge_sessions": 60,
+          "parameter_refit": false,
+          "strata": [
+            "market",
+            "industry",
+            "volatility",
+            "regime"
+          ],
+          "metrics": [
+            "net_price_return",
+            "max_drawdown",
+            "tail_loss",
+            "round_trips",
+            "turnover",
+            "false_breakout",
+            "post_exit_rally",
+            "sample_count",
+            "unknown",
+            "not_matured"
+          ]
+        },
+        "promotion": "candidate -> shadow -> validated -> active requires independent research signoff; development approval is not efficacy approval"
+      },
+      "order_ttl_sessions": 3,
+      "simulation": "one_virtual_unit_per_episode_no_real_order_no_initial_holdings_seed",
+      "execution_evidence": "contemporaneous_next_session_open_snapshot_only; no historical_backfill"
+    }
+  },
+  "horizons": [
+    20,
+    40,
+    60
+  ],
+  "primary": 60,
+  "per_side_bps": {
+    "CN": 15,
+    "HK": 25
+  },
+  "cost_multipliers": [
+    1,
+    2,
+    3
+  ],
+  "capital_slot": 10000,
+  "cash_interest": 0,
+  "fundamental_opportunities": "code x exchange month-end; overlapping events not independent; unselected cash, missing inputs unknown",
+  "technical_opportunities": "code x day fixed-window slots AND one funded hypothetical lot per code for daily open estimates; not portfolio annualized",
+  "price_entry": "next exchange session close, endpoint entry index + h, unknown if any path missing; forward beyond 2025 unavailable retained immature",
+  "warmup": "120 immediately preceding complete sessions, no scoring warmup; collect 2020 CN; HK insufficient prefix retained unknown",
+  "financial_vintage": "latest available vendor revision, strict ann_date < decision_date, no complete historical PIT claim",
+  "historical_action": "original timing.step, same MT13 risk priority + unheld episode reset; current fetch timestamp separate from historical close decision",
+  "execution": "original CN/HK historical next_open estimator, TTL 3; no observed_quote fabricated; unknown no fill; exits retained; no real holdings seeded"
+}

@@ -1,0 +1,18 @@
+{
+  "acquired_at": "2026-09-13T07:16:55.952232+00:00",
+  "attempts": 1,
+  "body": "raw/adj_factor-0401a0e609a299ea8cc034b3.raw",
+  "endpoint": "https://api.tushare.pro",
+  "request": {
+    "api_name": "adj_factor",
+    "fields": "",
+    "params": {
+      "end_date": "20201231",
+      "start_date": "20200601",
+      "ts_code": "000651.SZ"
+    }
+  },
+  "rows": 146,
+  "sha256": "664cef0be417e0f79207d5f79b7c154f3f91a14de8a967b0295a461f3f7a15c7",
+  "status": "ok"
+}

@@ -1,0 +1,90 @@
+{
+  "all_checked_pass": true,
+  "checks": {
+    "000001.SZ": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "000333.SZ": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "000651.SZ": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "600000.SH": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "600009.SH": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "600028.SH": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "600030.SH": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "600036.SH": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "600050.SH": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "600104.SH": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "600276.SH": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    },
+    "600519.SH": {
+      "daily_identity": true,
+      "finance_identity": true,
+      "positive_factors": true,
+      "warm_daily_identity": true,
+      "warm_factor_identity": true
+    }
+  },
+  "note": "实际原响应字段审计；不是PIT原始公告认证"
+}

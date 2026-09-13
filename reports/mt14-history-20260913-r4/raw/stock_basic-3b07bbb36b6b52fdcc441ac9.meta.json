@@ -1,0 +1,17 @@
+{
+  "acquired_at": "2026-09-13T07:17:06.172948+00:00",
+  "attempts": 1,
+  "body": "raw/stock_basic-3b07bbb36b6b52fdcc441ac9.raw",
+  "endpoint": "https://api.tushare.pro",
+  "request": {
+    "api_name": "stock_basic",
+    "fields": "",
+    "params": {
+      "list_status": "L",
+      "ts_code": "001309.SZ"
+    }
+  },
+  "rows": 1,
+  "sha256": "1ab0a1d2bb368f4478f42e258922e612ab8a511cd53ef86637e035d1141806a7",
+  "status": "ok"
+}
