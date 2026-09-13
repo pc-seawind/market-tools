@@ -1,0 +1,9 @@
+{
+  "attempt": "dev_work(action=deliver)",
+  "error": "delivery requires running work",
+  "status": "failed",
+  "acceptance": "delivery_missing",
+  "work_revision": 25,
+  "gateway_error": "dispatch 900s no events",
+  "no_delivery_accepted": true
+}

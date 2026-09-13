@@ -1,0 +1,25 @@
+{
+  "work_id": "work_9ad289b0ff80eb2f74c8",
+  "summary": "阶段交付，未全部完成不可accepted。r4真实两类20/40/60计算及90资本账户完成，三核心hash在同目录和独立空目录重建一致。60日事件净均值基本面4.3908%/4.3908%，技术价格1.2533%/1.1061%，技术日级执行-1.0257%/-1.0464%；同资金滚动60日-0.4113%/-0.3815%。全量测试仍运行；旧账本指纹兼容性隔离待批准。",
+  "commits": [
+    "4fb5729",
+    "5a84ca4",
+    "7ac2903"
+  ],
+  "tests": [
+    "24项新增测试通过，核心引擎/恢复函数未mock",
+    "r4 run/verify和独立空目录run exit0，核心hash一致",
+    "原dd8a5f8验证原R2 exit0；当前新增模块触发engine_or_contract_version_changed exit1",
+    "全量service mt14-history-finaltests-20260913仍运行，先核对full-tests-exit.txt，不重复启动"
+  ],
+  "artifacts": [
+    "/home/emox/work/projects/market-tools/reports/mt14-history-20260913-r4",
+    "/home/emox/work/projects/market-tools/docs/mt14-history/REPRODUCE.md"
+  ],
+  "incomplete": [
+    "任务15/16：原iteration_policy.code_hashes扫描新顶层iteration_*.py造成旧账本不兼容。仅移动本次三个新增模块到mt1/iteration_history/子包，保留python -m mt1.iteration_history CLI，不改旧代码/manifest/门禁的布局方案已提出，等待批准。",
+    "全量测试终态未取得；源码布局若获批变化须保存本轮测试结果再重新稳定回归。",
+    "HK2020复权权限拒绝，早段预热unknown；历史财报修订/ST/历史成分不完整；基本面两个受ROE改动影响事件60日未成熟，不能说60日效应为0。",
+    "dev_work deliver被拒delivery requires running work；status证实该工单被900s无事件watchdog标为failed/delivery_missing，revision25。需原topic恢复同单running后重传本payload，不自行review/accepted，不创建重复单。"
+  ]
+}
