@@ -520,6 +520,7 @@ def cmd_picker_doc(args):
 
     if not top3:
         md.append("> 本周无 score≥2 事件. 信号面较弱, 跳过深度推演.")
+        print("\n".join(md))
         return
 
     for i, e in enumerate(top3, 1):
