@@ -10,6 +10,10 @@ def cycle(phase,root,out,first=None,second=None,company=None,asof=None):
     out=Path(out);out.mkdir(parents=True,exist_ok=False)
     result={'phase':phase,'not_published':True,'collection_role':'separate run/execution-worker',
             'production_schedule_unchanged':True,'started_at':now()}
+    # Research refresh is bounded and asynchronous; failure cannot block MT13.
+    if phase!='weekly' and company:
+        from .ta_pipeline import request_refresh
+        result['research_refresh']=request_refresh(Path(company).parent,phase)
     try:
         if phase=='weekly':
             result['report']=publish_weekly(root,asof or now(),out/'weekly.json')
