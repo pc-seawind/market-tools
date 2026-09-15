@@ -22,8 +22,12 @@ def compose(first,second,company,manifest,out):
     # Preserve each of the caller's three sections byte-for-byte, append only
     # the independent technical sub-section to section 3. Never regenerate 1/2.
     text='\n\n'.join(Path(p).read_text() for p in (first,second,company))+'\n\n'+tech.read_text()
+    from .ta_consumer import consume
+    from .action_loop import now
+    research=consume(now())
+    text+='\n\n'+research['markdown']
     idempotent_write(out,text)
-    receipt={'out':str(out),'sha256':file_hash(out),'technical_manifest':str(manifest),
+    receipt={'research':{k:v for k,v in research.items() if k!='markdown'},'out':str(out),'sha256':file_hash(out),'technical_manifest':str(manifest),
              'manifest_sha256':file_hash(manifest),'source_sections':{str(p):file_hash(p) for p in (first,second,company)},
              'source_kind':'SYNTHETIC_ONLY' if r['synthetic'] else 'real_current_readonly_collection',
              'not_published':True}
@@ -53,5 +57,9 @@ def weekly_markdown(w):
 def publish_weekly(root,asof,out):
     from .action_loop import dump
     w=weekly(root,asof);idempotent_write(out,dump(w)+'\n')
-    md=str(out)+'.md';idempotent_write(md,weekly_markdown(w))
+    from .ta_consumer import consume
+    research=consume(asof)
+    from .action_loop import dump
+    idempotent_write(str(out)+'.research-receipt.json',dump({k:v for k,v in research.items() if k!='markdown'})+'\n')
+    md=str(out)+'.md';idempotent_write(md,weekly_markdown(w)+'\n'+research['markdown'])
     return {'json':str(out),'json_sha256':file_hash(out),'markdown':md,'markdown_sha256':file_hash(md),'not_published':True}

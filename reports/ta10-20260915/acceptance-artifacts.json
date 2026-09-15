@@ -1,0 +1,91 @@
+{
+  "work_id": "work_854551e568a8903434de",
+  "run_id": "ta10-23e64253e78e242fde269736",
+  "files": [
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/final/audit.json",
+      "sha256": "1424cdaabc515ffdcecad47d978728d578d7e946c38499e540f2b6a6fe49d670"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/final/first-followup.json",
+      "sha256": "007a92c7d731b81459771a04ec52f0b0f645649d928feb25becc13837a42d337"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/final/nine-stock-report.md",
+      "sha256": "ffd3310adfc670e4bf0b341d5f46587d33d62b147623b130e13c88d7ba3ac5e8"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/MANUAL_REVIEW.md",
+      "sha256": "421075c92c398ea872e77fea9e276a8f538fecf230e8857d8fc1d9ceb473ce5d"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/all-model-costs.json",
+      "sha256": "88d12f745cdab3bbe34249d3ea34f8957671c93b5acd8fcf23965f070e41fe22"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/base-report-preservation.json",
+      "sha256": "ca24e081b82e01af67ee59befc5b3ec8cd969551523faec7f479a0c830196160"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/idempotence-receipt.json",
+      "sha256": "b375ab13164c0fb157fea690d93a98287485cf651f8a1e2afe3a0ee3ab2241e3"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/protection-comparison.json",
+      "sha256": "8d19aca4e165726c1a42e48968ddfd397b6cd86980ba869fbc229f5f53bd5822"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/weekly-index-receipt.json",
+      "sha256": "1f3bb00fffd204715d6e911716bfbe589b19a8a980cd446731259f1c01833ad3"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/evening-consumer-final/daily.md",
+      "sha256": "594941772bf1d22c584580064e1e1eed161bb9176a2be42f060ccef7a3df652b"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/evening-consumer-final/daily.md.receipt.json",
+      "sha256": "bd71efddd811a0f068516527b3e2256adef9c11f744859ca45349b5d3a714064"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/weekly-consumer-final/weekly.json.research-receipt.json",
+      "sha256": "31e89ae2bbdae1baafc5ad9bcb456616030b2f0c7d40592b610784fe532f6186"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/full-regression.txt",
+      "sha256": "8a5343b8bcef58c20fad03ad23c0a56d54e49679015abbdcf71ebc8f1c1a6150"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/full-regression-exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/regression-final.txt",
+      "sha256": "7cd743f29451004054b55e03c7bc91c071c03f1da7e725f960185d61b049a8a8"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/regression-final-exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/targeted-final.txt",
+      "sha256": "4b921a2cc1b3406bde2315ea5c134ce435ef18931053e0632346fd4f634dd1f2"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/ta_research-r3.py",
+      "sha256": "cf314fcf6c3f00ba1b2d2571f1adc04a521197988980b03724f7f844aab11b78"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/ta_research-r4.py",
+      "sha256": "883976b1d98c44ddacf6675cf3d478f3cbd861d271532b1fdb90e256e2ce4071"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/ta10-20260915/secret-scan.json",
+      "sha256": "96553311c0315a53a0002d57e8ed6332780a72e0694cd15ef957ab7a17aee172"
+    }
+  ],
+  "raw_archives": [
+    "/home/emox/work/projects/market-tools/.cron_state/ta10-r3",
+    "/home/emox/work/projects/market-tools/.cron_state/ta10-r4"
+  ],
+  "notes": "raw manifest及引用路径可由原topic同host独立核验；不以本索引替代原始内容。"
+}

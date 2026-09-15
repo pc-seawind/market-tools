@@ -1,0 +1,14 @@
+{
+  "successful_responses": 114,
+  "prompt_tokens": 396407,
+  "completion_tokens": 137835,
+  "completed_request_seconds": 2486.3245151524898,
+  "errors": 18,
+  "request_without_attempt_receipt": [
+    ".cron_state/ta10-r2/runs/ta10-945d83eae52c4d100e1615e1/688195.SH/bull.request.json",
+    ".cron_state/ta10-r2/runs/ta10-945d83eae52c4d100e1615e1/603986.SH/bull.request.json",
+    ".cron_state/ta10-r2/runs/ta10-945d83eae52c4d100e1615e1/001309.SZ/bull.request.json"
+  ],
+  "USD_cost": null,
+  "note": "包含探针、被截断的成功HTTP响应与两轮九股；中断在途调用可能已计费，实际额外token未知，非账单全量。"
+}

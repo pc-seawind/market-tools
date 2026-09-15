@@ -1,0 +1,11 @@
+{
+  "run": {
+    "run_id": "ta10-23e64253e78e242fde269736",
+    "manifest": ".cron_state/ta10-r4/runs/ta10-23e64253e78e242fde269736/manifest.json",
+    "manifest_hash": "c2a236bc24adceb27279fb7032addbf6493977f0a7cd7a54aba90c409f460222"
+  },
+  "files_before": 228,
+  "files_after": 228,
+  "unchanged": true,
+  "new_model_calls": 0
+}
