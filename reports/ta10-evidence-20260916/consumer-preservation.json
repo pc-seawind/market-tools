@@ -1,0 +1,11 @@
+{
+  "ledger_checked": 4945,
+  "ledger_changed": [],
+  "ledger_added": [],
+  "three_sections_verbatim_in_output": {
+    "first.md": true,
+    "second.md": true,
+    "company.md": true
+  },
+  "scope": "verified consumer replay interval; not claimed task-start ledger snapshot"
+}
