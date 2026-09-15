@@ -80,3 +80,13 @@ def research_snapshot(snapshot, next_calendar, market):
             out['days'].append({'date':d,'is_open':str(r['is_open'])=='1','close_at':d+'T15:00:00+08:00'})
             known.add(d)
     return out
+
+
+def next_research_session(next_calendar, expected_date):
+    """No valid completed date means unknown target, never abort other stocks."""
+    if not expected_date:return None
+    data=next_calendar['data']
+    rows=[dict(zip(data['fields'],r)) for r in data['items']]
+    dates=sorted(datetime.strptime(r['cal_date'],'%Y%m%d').date().isoformat()
+                 for r in rows if str(r['is_open'])=='1' and r['cal_date']>expected_date.replace('-',''))
+    return dates[0] if dates else None

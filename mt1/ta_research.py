@@ -19,7 +19,7 @@ from pathlib import Path
 from .data import atomic_json
 from .timing import instant
 from .timing_cli import file_hash
-from .calendar import gate, review_deadline, research_snapshot
+from .calendar import gate, review_deadline, research_snapshot, next_research_session
 from .action_execution import qt
 
 HERE = Path(__file__).resolve().parents[1]
@@ -164,9 +164,7 @@ def freeze(root, report_dir, scope_path, company_sources=None, research_collecti
         target=None
         try:
             calnext=read(raw/('inputs/calendar-next-'+item['market']+'.json'))
-            rows=[dict(zip(calnext['data']['fields'],r)) for r in calnext['data']['items']]
-            ds=sorted(datetime.strptime(r['cal_date'],'%Y%m%d').date().isoformat() for r in rows if str(r['is_open'])=='1' and r['cal_date']>g['expected_date'].replace('-',''))
-            target=ds[0] if ds else None
+            target=next_research_session(calnext,g.get('expected_date'))
         except (ValueError,KeyError,OSError):pass
         stocks.append({**item,**({'research_coverage':research_row['coverage'],'research_tasks':research_row['tasks']} if research_row else {}),'target_session':target,'evidence':es,'collection_errors':errors,'A':baseline})
     cutoff=now()

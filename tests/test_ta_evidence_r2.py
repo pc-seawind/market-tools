@@ -118,3 +118,10 @@ def test_pending_worker_does_not_replace_default_pointer(tmp_path,monkeypatch):
  assert p.worker(root,'key')['status']=='completed_pending_analyst_review'
  assert (root/'latest.json').read_bytes()==before
  assert (root/'pending.json').exists()
+
+
+def test_missing_calendar_expected_date_does_not_abort_cohort():
+ from mt1.calendar import next_research_session
+ n={'data':{'fields':['cal_date','is_open'],'items':[['20260916',1]]}}
+ assert next_research_session(n,None) is None
+ assert next_research_session(n,'2026-09-15')=='2026-09-16'
