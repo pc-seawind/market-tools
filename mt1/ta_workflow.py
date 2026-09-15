@@ -104,6 +104,42 @@ def apply(batch_path,root=DEFAULT_ROOT):
     return receipt
 
 
+def evidence_inbox(root):
+    """Read immutable evidence-only supplements without replacing model inputs.
+
+    These records are source review, never model/quality approval. A bad record
+    is quarantined locally so it cannot suppress other daily/weekly work.
+    """
+    from .ta_evidence import verify_collection
+    rows = []
+    for path in sorted((Path(root) / 'evidence-supplements').glob('*.json')):
+        try:
+            pointer = read(path)
+            collection = Path(pointer['collection'])
+            parent = Path(pointer['parent_collection'])
+            if file_hash(collection) != pointer['sha256'] or file_hash(parent) != pointer['parent_sha256']:
+                raise ValueError('supplement_hash_mismatch')
+            data = verify_collection(read(collection))
+            old = read(parent)
+            if data.get('parent_collection_hash') != pointer['parent_sha256']:
+                raise ValueError('supplement_parent_mismatch')
+            codes = [s['code'] for s in data['stocks']]
+            if len(codes) != len(set(codes)) or set(codes) != {s['code'] for s in old['stocks']}:
+                raise ValueError('supplement_scope_mismatch')
+            rows.append({'status': 'pending_independent_source_review',
+                         'collection': str(collection), 'sha256': pointer['sha256'],
+                         'parent_collection': str(parent), 'parent_sha256': pointer['parent_sha256'],
+                         'work_id': pointer['work_id'], 'not_published': True,
+                         'does_not_replace_frozen_model_evidence': True,
+                         'stocks': [{'code': s['code'], 'research_coverage': s['coverage'],
+                                     'evidence_ids': [e['evidence_id'] for e in s['evidence']],
+                                     'terminal': s.get('terminal', {})} for s in data['stocks']]})
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            rows.append({'status': 'blocked_invalid_supplement', 'pointer': str(path),
+                         'error': str(exc), 'not_published': True})
+    return rows
+
+
 def inbox(root=DEFAULT_ROOT,asof=None):
     root=Path(root);at=asof or now();rows=[]
     for ptr in pointers(root):
@@ -125,7 +161,9 @@ def inbox(root=DEFAULT_ROOT,asof=None):
         launch=read(p);state=read(p.parent/'status.json') if (p.parent/'status.json').exists() else {}
         if not state.get('status','').startswith('completed'):
             failed.append({'request_id':p.parent.name,'launch':launch,'worker':state,'owner':OWNER,'next_check_at':launch.get('next_retry_at',at),'recovery_entry':'python3 -m mt1.ta_workflow recover --request ID --reason REASON'})
-    return {'as_of':at,'owner':OWNER,'items':rows,'requests':failed,'writeback_contract':'docs/ta10/R3-WORKFLOW.md','not_published':True}
+    return {'as_of':at,'owner':OWNER,'items':rows,'requests':failed,
+            'evidence_supplements':evidence_inbox(root),
+            'writeback_contract':'docs/ta10/R3-WORKFLOW.md','not_published':True}
 
 
 def report_inbox(out,asof=None,root=DEFAULT_ROOT):

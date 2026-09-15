@@ -14,6 +14,23 @@
 
 ## 批次最小格式
 
+### 只补证据、不重跑模型（2026-09-16）
+
+`research-work-inbox.json.evidence_supplements` 是独立于旧 `items` 的补充证据待审区。
+消费者读取默认研究根目录 `evidence-supplements/*.json` 的不可变描述符：
+`collection/sha256/parent_collection/parent_sha256/work_id`。校验父子 collection hash、
+逐正文 hash 及九股 scope 集合；错误描述符就地隔离，不阻断其他报告。
+
+读取其逐股 `research_coverage`、`evidence_ids` 和 `terminal.findings`，再回 collection
+审核原文。`pending_independent_source_review` **不代表质量签审通过**，也不替代旧冻结
+模型输入、六角色或默认方向。补充资料不得追写旧 manifest，不能声称旧模型已引用新来源。
+本次终态里的“有界工作完成”与“研究 unknown/blocked”必须分开解释。
+
+当前真实样例：`reports/ta10-closeout-20260916/supplement-pointer.json`。
+正常消费者会自动读取，无须新 cron、重启 worker 或额外模型推理。
+
+### 原质量/到期审核批次
+
 ```
 {
  "owner":"investment-agent:existing-daily-and-weekend",
