@@ -132,7 +132,9 @@ def test_recomputed_quality_retains_immutable_old_snapshot(tmp_path,monkeypatch)
     save(req/'input.json',{'identity':{'report':'report'},'scope':'scope','catalog':'cat'})
     monkeypatch.setattr(p,'identity',lambda *a:ident);monkeypatch.setattr(p,'digest',lambda _: 'key')
     mp=tmp_path/'run/manifest.json';save(mp,{'SYNTHETIC':True});old=mp.parent/'automatic-quality.json';save(old,{'old':True})
-    monkeypatch.setattr(p,'run',lambda *a:{'manifest':str(mp),'run_id':'SYNTHETIC'})
+    from mt1 import ta_evidence
+    monkeypatch.setattr(ta_evidence,'collect',lambda *a,**kw: {})
+    monkeypatch.setattr(p,'run',lambda *a,**kw:{'manifest':str(mp),'run_id':'SYNTHETIC'})
     monkeypatch.setattr(ta_quality,'automatic',lambda *a:{'new':True});monkeypatch.setattr(p,'due_queue',lambda *a:{'count':0})
     assert p.worker(root,'key')['status']=='completed_pending_analyst_review'
     assert read(old)=={'old':True} and read(root/'quality-history/key.json')=={'new':True}

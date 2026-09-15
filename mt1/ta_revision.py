@@ -29,6 +29,10 @@ def revise(parent_manifest,feedback_path,root):
         for stock in frozen['stocks']:
             code=stock['code'];src=parent.parent/code;dest=out/code;dest.mkdir(exist_ok=True);calls={}
             changes=dict(feedback['stocks'].get(code,{}));dependency_records={}
+            old=next(s for s in original['stocks'] if s['code']==code)
+            if old.get('status')=='not_run':
+                if changes:raise ValueError('unrun_stock_requires_first_inference_not_revision')
+                save(dest/'result.json',old);stocks.append(old);continue
             if any(r not in ROLES for r in changes):raise ValueError('invalid_repair_role')
             for role in ROLES:
                 import json
@@ -60,6 +64,7 @@ def revise(parent_manifest,feedback_path,root):
                 calls[role]=call_model(dest,role,payload,stock['evidence'])
             old=next(s for s in original['stocks'] if s['code']==code)
             errors=[role+':'+e for role,c in calls.items() for e in sorted(set(c['errors']+strict_output(c.get('output'),stock['evidence'])+semantic_errors(c.get('output'),stock)))]
+            errors += [e for e in old.get('blockers',[]) if e in ('quote_missing','current_company_evidence_missing')]
             result={**old,'calls':calls,'status':'blocked' if errors else 'pass','blockers':errors,'parent_manifest_hash':file_hash(parent),'changed_roles':list(changes),'parent_dependency_comparison':dependency_records,'unchanged_roles':'byte_reused_same_frozen_input_NOT_new_model_calls'}
             save(dest/'result.json',result);stocks.append(result)
         save(out/'results.json',{**original,'run_id':rid,'stocks':stocks,'available_at':now(),'parent_manifest_hash':file_hash(parent),'revision_policy':'same_frozen_nine_stock_cohort_selective_real_model_repair','not_published':True})

@@ -10,6 +10,9 @@ from .timing_cli import file_hash
 def semantic_errors(output, stock):
     if not isinstance(output,dict):return ['missing_output']
     errors=[];short=output.get('short_term') or {}
+    invalidation=str((output.get('thesis') or {}).get('invalidation',''))
+    if re.search(r'命题(?:获得支持|得到支持|得到证实|被证实|获证实)',invalidation):
+        errors.append('thesis_invalidation_supports_proposition')
     text='；'.join(str(short.get(k,'')) for k in ('scenario','trigger','invalidation'))
     if re.search(r'下季|下一季|后续季度|後續季度|下季度|季报|季報|年报|年報|半年报|半年報|月度|一至三个月|数月|數月',text):
         errors.append('cross_horizon_short_term')
@@ -42,6 +45,8 @@ def automatic(manifest):
     for s in result['stocks']:
         role_errors={role:semantic_errors(c.get('output'),by[s['code']]) for role,c in s.get('calls',{}).items()}
         errors=[role+':'+e for role,es in role_errors.items() for e in es]
+        coverage=by[s['code']].get('research_coverage')
+        if coverage and coverage.get('status')!='pass':errors.append('research_coverage_blocked')
         rows.append({'code':s['code'],'errors':errors,'status':'blocked' if errors else 'review_required','roles':role_errors,
                      'result_hash':file_hash(mp.parent/s['code']/'result.json')})
     return {'run_id':result['run_id'],'manifest_hash':file_hash(mp),'input_hash':digest(frozen),'stocks':rows,'review_kind':'automatic_tripwire_not_semantic_certification'}

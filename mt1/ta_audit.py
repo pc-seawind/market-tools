@@ -31,11 +31,13 @@ def audit(manifest):
     if digest(frozen)!=m['input_hash']:raise ValueError('frozen_hash_mismatch')
     if results['run_id']!=m['run_id']:raise ValueError('run_identity_mismatch')
     stocks={s['code']:s for s in frozen['stocks']}
-    outputs={code:{r:read(root/code/(r+'.json')).get('output') for r in ROLES} for code in stocks}
+    outputs={code:{r:read(root/code/(r+'.json')).get('output') for r in ROLES if (root/code/(r+'.json')).exists()} for code in stocks}
     if len(stocks)!=len(frozen['stocks']) or set(stocks)!={s['code'] for s in results['stocks']}:raise ValueError('coverage_identity')
     report={'run_id':m['run_id'],'input_hash':m['input_hash'],'manifest_hash':file_hash(mp),'stocks':[],
             'semantic_fact_verification':'not_fully_automated; independent_human_review_required','A_comparability':'non_strict_prior_real_report','usage':{'prompt_tokens':0,'completion_tokens':0,'calls':0,'elapsed_seconds_sum':0},'USD_cost':None}
     for code,stock in stocks.items():
+        if not outputs[code]:
+            report['stocks'].append({'code':code,'status':'blocked','target_session':stock.get('target_session'),'errors':['model_not_run'],'roles':{}});continue
         row={'code':code,'target_session':stock['target_session'],'target_session_owner':'frozen_exchange_calendar_not_LLM','roles':{},'errors':[],'company_original':any(e['kind']=='company_primary' for e in stock['evidence'])}
         for e in stock['evidence']:
             row['errors']+=evidence_errors(e,frozen['as_of'])
@@ -92,4 +94,32 @@ def audit(manifest):
             except (KeyError,ValueError,TypeError,OSError) as e:row['errors'].append(role+':'+type(e).__name__)
         row['status']='blocked' if row['errors'] else 'pass'
         report['stocks'].append(row)
+    report['usage']=model_usage(mp)
     return report
+
+
+def model_usage(manifest):
+    """Count failed/invalid-JSON inferences too, before semantic parsing can fail.
+    Candidate receipts are canonical cost owners; canonical file copies never
+    double count. A targeted revision separates inherited from new calls.
+    """
+    mp=Path(manifest);result=read(mp.parent/'results.json')
+    out={'prompt_tokens':0,'completion_tokens':0,'calls':0,'elapsed_seconds_sum':0,
+         'network_failed_attempts':0,'new_elapsed_seconds_sum':0,'new_calls':0,'new_prompt_tokens':0,'new_completion_tokens':0,
+         'cost_amount':None,'cost_reason':'no_verified_billing_rate_not_inferred'}
+    for stock in result['stocks']:
+        for role,canonical in stock.get('calls',{}).items():
+            dirs=canonical.get('inference_candidates')
+            receipts=[read(mp.parent/stock['code']/d/(role+'.json')) for d in dirs] if dirs else [canonical]
+            inherited=stock.get('unchanged_roles') and role not in stock.get('changed_roles',[])
+            for receipt in receipts:
+                u=receipt.get('usage',{});attempts=receipt.get('attempts',[])
+                calls=sum(a.get('status')==200 for a in attempts)
+                for key in ('prompt_tokens','completion_tokens'):out[key]+=u.get(key,0)
+                out['calls']+=calls;out['elapsed_seconds_sum']+=sum(a.get('elapsed_seconds',0) for a in attempts)
+                out['network_failed_attempts']+=sum(a.get('status')!=200 for a in attempts)
+                if not inherited:
+                    out['new_calls']+=calls
+                    out['new_elapsed_seconds_sum']+=sum(a.get('elapsed_seconds',0) for a in attempts)
+                    for key in ('prompt_tokens','completion_tokens'):out['new_'+key]+=u.get(key,0)
+    return out

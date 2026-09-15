@@ -48,3 +48,7 @@
 - queued_inputs_changed：恢复入口重新计算当前identity，返回新request_id，旧失败留存。不能复用旧input伪称恢复成功。
 
 自然调度实际完成与线上投递仍待后续回执，不因上述操作规约已接入就宣称未来事件完成。
+
+## 主动取证修订（2026-09-16）
+
+新 worker 在 freeze 前执行 `ta_evidence.collect`；配置与验收边界见 [ACTIVE-EVIDENCE.md](ACTIVE-EVIDENCE.md)。原财报 catalog 仍保留，但不再作为研究覆盖完整的证明。研究协议与实质覆盖分别返回；补证须另开 revision，保留实际发现时间。

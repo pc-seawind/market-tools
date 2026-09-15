@@ -23,6 +23,8 @@ def identity(report,scope=SCOPE,catalog=CATALOG):
     sources={str(p.relative_to(report)):file_hash(p) for p in sorted(report.rglob('*')) if p.is_file() and (p.parent==report or p.suffix in ('.json','.yaml'))}
     code={p.name:file_hash(p) for p in (HERE/'mt1').glob('ta_*.py')}
     documents={p.name:file_hash(p) for p in sorted(Path(catalog).glob('*.meta.json'))}
+    from .ta_evidence import CONFIG
+    documents['research_plan']=file_hash(CONFIG)
     return {'report':str(report.resolve()),'source_hashes':sources,'scope_hash':file_hash(scope),'code_hashes':code,'catalog_hashes':documents}
 
 
@@ -143,7 +145,10 @@ def _worker(root,key):
     try:
         if digest(identity(task['identity']['report'],task['scope'],task['catalog']))[:24]!=key:raise ValueError('queued_inputs_changed_new_revision_required')
         atomic_json(status,{'status':'running','started_at':now()})
-        result=run(root/'revisions'/key,task['identity']['report'],task['scope'],task['catalog'])
+        from .ta_evidence import collect
+        collection=root/'revisions'/key/'public-evidence'
+        collect(collection,task['scope'])
+        result=run(root/'revisions'/key,task['identity']['report'],task['scope'],task['catalog'],research_collection=collection/'collection.json')
         from .ta_quality import automatic
         mp=Path(result['manifest']);quality=automatic(mp)
         # Recomputed QA is versioned outside immutable inference files.
