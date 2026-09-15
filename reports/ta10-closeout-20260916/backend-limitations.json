@@ -1,0 +1,1 @@
+{"exa": {"attempt": "timeout 35 mcporter call exa.web_search_exa", "error": "mcporter: No such file or directory", "installed": false}, "fallback": "web search discovery + existing HTTP/Jina body fetch", "model_calls": 0}

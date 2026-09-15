@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<!--published at 2026/9/16 5:44:03 by finance.eastmoney.com server-xml PJ NEWS 246-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-agent" content="format=html5; url=https://wap.eastmoney.com/a/202608313860225892.html">
+        <title>万亿AI巨头的难题：工业富联半年赚237亿，仍难挣脱代工宿命与财务杠杆双重枷锁 _ 东方财富网</title>
+        <meta name="keywords" content="工业富联,算力,AI,增长,同比,财务,杠杆,枷锁,同比增长,挣脱" />
+        <meta name="description" content="8月11日，工业富联（601138.SH）发布2026年半年度报告。根据公告，工业富联上半年实现营业收入5578.61亿元，同比增长54.63%；归母净利润为237.40亿元，同比增长95.99%；扣非归母净利润为229.84亿元，同比增长96.99%。在五千亿级营收体量下仍能实现近乎翻倍的利润增长，这份成绩单不可谓不亮眼。" />
+            <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="always">
+    <style type="text/css">
+        .em_xuangu{display:block !important;}
+    </style>
+    <script type="text/javascript">
+        var __allow_likes_state= "0";
+        var __IsBeforeLoad = false;
+        var __WAPURL = "https://wap.eastmoney.com/a/202608313860225892.html";
+        var _NewsId = '202608313860225892';
+        var _us_zixun_Id = '202608313860225892';
+        var __VideoAdvSwitch = '1';
+        var _HideAdID = "202211302575026175,202211302575032853,202211302575017963,202212012576416386";
+        var _CMSHJ = 'prod';
+        var _YM = 'finance';
+        var _NewsTag = '';
+        var _ISComment = true;
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        function isMobile() {
+            try {
+                if(getQueryString("has_jump_to_web") == "true"){
+                    return false;//需要展示web，不做后面的wap端验证
+                }
+            } catch (err) { }
+
+            var ua = navigator.userAgent.toLowerCase();
+            var res = false;
+            var ipad = ua.match(/(ipad).*os\s([\d_]+)/),
+                isIphone = !ipad && ua.match(/(iphone)/),
+                isAndroid = ua.match(/(android)/) && ua.match(/(mobile)/),
+                isAndroidHarmonyOS = ua.match(/(android)/) && ua.match(/(harmonyos)/),
+                isOpenHarmony = ua.match(/(openharmony)/) && ua.match(/(mobile)/),
+                isHuaWeiWeChat = navigator.userAgent.indexOf('MicroMessenger') > -1 && navigator.userAgent.indexOf('HUAWEI') > -1 && screen.width < screen.height,
+                isMobile = isIphone || isAndroid || isAndroidHarmonyOS || isOpenHarmony || isHuaWeiWeChat;
+            if (isMobile) {
+                res = true;
+            } else {
+                res = false;
+            }
+            return res;
+        }
+        if (isMobile()) {
+            location.href = __WAPURL;
+        }
+    </script>
+    <link rel="stylesheet" href="emres/css/unitynews.css?v=2026.09.16.05.15.53">
+    <style type="text/css">.hotbox .hotnewsbox {width: calc(100% - 80px) !important;}.emshare2020_weixin_popup {display: none !important;}
+    </style>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <base target="_blank" />
+</head>
+<body style="background-color:#fff;width:1000px;margin:33px auto 0;">
+    <div class="main">
+        <!-- 头部 -->
+        <div class="headwrap">
+            
+
+<!-- 全局导航 -->
+<div class="globalNav">
+    <ul>
+                            <li class="first ">
+                                <a target="_blank" href="http://finance.eastmoney.com/">财经</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://finance.eastmoney.com/yaowen.html">焦点</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://stock.eastmoney.com/">股票</a>
+                            </li>
+                            <li class="red">
+                                <a target="_blank" href="http://stock.eastmoney.com/newstock.html">新股</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://stock.eastmoney.com/gzqh.html">期指</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://option.eastmoney.com/">期权</a>
+                            </li>
+                            <li class="red">
+                                <a target="_blank" href="http://quote.eastmoney.com/flash/sz300059.html">行情</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://data.eastmoney.com/">数据</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://stock.eastmoney.com/global.html">全球</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://stock.eastmoney.com/america.html">美股</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://hk.eastmoney.com/">港股</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://futures.eastmoney.com/">期货</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://forex.eastmoney.com/">外汇</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://bank.eastmoney.com/">银行</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://www.1234567.com.cn/">基金</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://money.eastmoney.com/">理财</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://bond.eastmoney.com/">债券</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href=" https://roadshow.eastmoney.com/">直播</a>
+                            </li>
+                            <li class="red">
+                                <a target="_blank" href="http://guba.eastmoney.com/">股吧</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://guba.eastmoney.com/jj.html">基金吧</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://blog.eastmoney.com/">博客</a>
+                            </li>
+                            <li class="red">
+                                <a target="_blank" href="http://caifuhao.eastmoney.com/">财富号</a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://so.eastmoney.com/">搜索</a>
+                            </li>
+
+    </ul>
+</div>
+<!-- 广告 -->
+<!-- AdSame ShowCode: 东方财富网 / 正文 / 新正文大通栏 Begin -->
+<iframe width="1000" height="90" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="//same.eastmoney.com/s?z=eastmoney&c=1337&op=1"></iframe>
+<!-- AdSame ShowCode: 东方财富网 / 正文 / 新正文大通栏 End -->
+<!-- 导航 -->
+<div class="navbox">
+                <div class="nav hqnav">
+                    <div class="lab">
+                        <span class="navicon icon_hq"></span>
+                        <span class="title">行情中心</span>
+                    </div>
+                    <div class="items">
+                                <a target="_blank" href="http://quote.eastmoney.com/center/hszs.html" class="">指数</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/gridlist.html#futures_cffex" class="">期指</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/qqsc.html" class="">期权</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/" class="">个股</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/hsbk.html" class="">板块</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/gridlist.html#hs_a_board" class="">排行</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/gridlist.html#newshares" class="">新股</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/jjsc.html" class="">基金</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/ggsc.html" class="">港股</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/mgsc.html" class="">美股</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/futures.html" class="">期货</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/whsc.html" class="">外汇</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/center/hjsc.html" class="">黄金</a>
+                                <a target="_blank" href="http://quote.eastmoney.com/zixuan/" class="">自选股</a>
+                                <a target="_blank" href="http://favor.fund.eastmoney.com/" class="">自选基金</a>
+                    </div>
+
+                    <div class="searchbox">
+                        <form action="">
+                            <input type="text" id="StockCode_bar" class="iptbox">
+                            <input type="submit" class="subbtn" value="">
+                        </form>
+                    </div>
+                </div>
+                <div class="nav datanav">
+                    <div class="lab">
+                        <span class="navicon icon_data"></span>
+                        <span class="title">数据中心</span>
+                    </div>
+                    <div class="items">
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_01_0" class="">资金流向</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_02_0" class="">主力排名</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_03_0" class="">板块资金</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_04_0" class="">个股研报</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_05_0" class="red">新股申购</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_06_0" class="">转债申购</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_07_0" class="red">北交所申购</a>
+                            <a target="_blank" href="http://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_08_0" class="">AH股比价</a>
+                            <a target="_blank" href="https://data.eastmoney.com/bbsj/" class="">年报大全</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_10_0" class="">融资融券</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_11_0" class="">龙虎榜</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_12_0" class="">限售解禁</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_13_0" class="">IPO审核</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_14_0" class="">大宗交易</a>
+                            <a target="_blank" href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_dhl_03_01_15_0" class="red">估值分析</a>
+                    </div>
+                </div>
+
+</div>
+
+
+            <!-- 面包屑 -->
+            <div class="levelsnav">
+                <a href="https://www.eastmoney.com/" target="_blank" class="emlogo"></a>
+                <div class="navitem">
+                    <a href="https://www.eastmoney.com/" target="_blank">首页</a> >
+                    <a href="https://finance.eastmoney.com/" target="_blank">财经频道</a> >
+                    <span>正文</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 正文及右侧 -->
+        <div class="contentwrap">
+            <div class="newstitledown"></div>
+            <!-- 头部 -->
+            <div id="topboxbak"></div>
+            <div id="topbox" class="topbox">
+                    <div class="title">万亿AI巨头的难题：工业富联半年赚237亿，仍难挣脱代工宿命与财务杠杆双重枷锁</div>
+                <div class="newstitleup"></div>
+                <div class="tipbox">
+                    <div class="infos">
+                            <div class=" item">2026年08月31日 18:46</div>
+                                <div class="item">
+                                    作者：
+特约研究员黄腾飞、韩迅                                </div>
+                                <div class="item">
+                                    来源：
+时代周报                                </div>
+                            <a href="#gubaComment" target="_self" class="gopinluntxt" id="gopinluntxt1">
+                                <div class="item">
+
+                                </div>
+                            </a>
+                    </div>
+
+                    <div class="aboutctrl">
+                        <!-- 字体控制 -->
+                        <div class="fsctrl bgmid" id="fsctrl">
+                            <div class="fsctrlbox">
+                                <span class="fs14" data-type="s">小</span>
+                                <span class="fs16 on" data-type="m">中</span>
+                                <span class="fs18" data-type="l">大</span>
+                            </div>
+                        </div>
+
+                        <!-- 分享收藏等 -->
+                        <div class="sharebox" id="sharebox">
+                            <div class="child">
+                                <span class="icon zan articlezan" title="点赞"></span>
+                                <span id="post_like_count" class="num orange"></span>
+                            </div>
+                            <div class="child">
+                                <span class="icon shoucang articlesc" title="收藏"></span>
+                                <!-- <span class="num orange"></span> -->
+                            </div>
+                            <div class="child">
+                                <a href="#gubaComment" target="_self" class="gopinluntxt">
+                                    <span class="icon comment" title="评论"></span>
+                                    <span id="post_comment_count" class="num orange"></span>
+                                </a>
+                            </div>
+                            <!-- 分享 -->
+                            <div class="child" id="emsharewrap">
+                                <span class="icon shares" title="分享"></span>
+                                <span id="post_forward_count" class="num orange"></span>
+
+                                <div class="sharewrap">
+                                    <!-- <span class="toparrow"></span> -->
+                                    <div id="shareitems" class="share pull-right emshare2020"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- 二维码 -->
+                        <div id="qrcode" class="qrcode">
+                            <div class="qricon icon"></div>
+                            <div class="qrimgbox">
+                                <span class="arrowtop"></span>
+                                <div class="item qrapp">
+                                    <div class="tit">东方财富APP</div>
+                                    <div class="bot">
+                                        <a class="qrimg" id="wapqrcode" href="http://acttg.eastmoney.com/pub/web_app_dcsy_zccpl_01_01_01_1" target="_blank"></a>
+                                        <div class="txt">
+                                            <p>方便，快捷  </p>
+                                            <p>手机查看财经快讯</p>
+                                            <p>专业，丰富</p>
+                                            <p>一手掌握市场脉搏</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item qrwechat">
+                                    <div class="tit">手机上阅读文章</div>
+                                    <div class="bot">
+                                        <a class="qrimg" id="wapqrcode2" href="http://acttg.eastmoney.com/pub/web_app_dcsy_zccpl_01_01_01_1" target="_blank"></a>
+                                        <div class="txt">
+                                            <p>提示： </p>
+                                            <p>微信扫一扫</p>
+                                            <p>分享到您的</p>
+                                            <p>朋友圈</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="contentbox">
+                <!-- 左侧 -->
+                <div class="mainleft">
+                    <!-- 标题下方 AI 妙想模块 -->
+                    <div class="ad_context1" id="ad_context1" style="position:relative;top:-15px;"></div>
+                    <div class="zwinfos">
+                        <!-- 文本区域 -->
+                        <div class="txtinfos" id="ContentBody" style="margin-top:0;">
+                            
+                                <!--文章主体-->
+<!-- EM_StockImg_Start --><p style="text-align:center;"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/1.601138" data-code="601138|1|1" data-code2="601138|1|2|" class="EmImageRemark" target="_blank"><img src="https://webquoteklinepic.eastmoney.com/GetPic.aspx?nid=1.601138&imageType=k&token=28dfeb41d35cc81d84b4664d7c23c49f&at=1" border="0" alt="K图 601138_0" data-code="K 601138|1|1" data-code2="K 601138|1|2|" style="border:#d1d1d1 1px solid;" width="578" height="276" /></a></p><!-- EM_StockImg_End --><p>　　8月11日，<span id="stock_1.601138"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/1.601138" class="keytip" data-code="1,601138">工业富联</a></span><span id="quote_1.601138"></span>（601138.SH）发布2026年半年度报告。</p><p>　　根据公告，<span web="1"  target="_blank" href="http://quote.eastmoney.com/unify/r/1.601138" class="em_stock_key_common" data-code="1,601138">工业富联</span>上半年实现营业收入5578.61亿元，同比增长54.63%；归母净利润为237.40亿元，同比增长95.99%；扣非归母净利润为229.84亿元，同比增长96.99%。</p> <center><img src="https://np-newspic.dfcfw.com/download/D25456621195397749329_w1238h532.jpg" /></center><p>　　在五千亿级营收体量下仍能实现近乎翻倍的利润增长，这份成绩单不可谓不亮眼。营收、净利润双双创下同期<span id="bk_90.BK1675"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK1675" class="keytip" data-code="90,BK1675">历史新高</a></span><span id="bkquote_90.BK1675"></span>，<span web="1"  target="_blank" href="http://quote.eastmoney.com/unify/r/1.601138" class="em_stock_key_common" data-code="1,601138">工业富联</span>再次向市场证明了其在AI算力产业链中的“卖铲人”地位。</p><p>　　但资本市场的反应却耐人寻味。半年报发布当日，工业富联股价高开低走，当日跌幅达4.58%。此后的两个交易日，股价依然下跌。</p><p>　　亮眼的业绩为何换不来市场的热情？上半年，工业富联<span id="bk_90.BK1217"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK1217" class="keytip" data-code="90,BK1217">综合</a></span><span id="bkquote_90.BK1217"></span>毛利率约为7.15%，在AI服务器营收暴增2.3倍的背景下，盈利能力的提升幅度似乎相形见绌。与此同时，该公司资产负债率已攀升至65.66%，较去年同期增加5.33个百分点。经营活动现金流净额为73.91亿元，仅为同期净利润的三分之一左右。</p><p>　　一边是AI算力需求的持续井喷，另一边是代工模式固有的盈利天花板和日益沉重的财务杠杆。工业富联究竟站在一个怎样的十字路口？</p><p>　　一、AI服务器：增长的绝对引擎，是盈利的“放大器”也是“限制器”</p><p>　　工业富联的业务版图由<span id="bk_90.BK0579"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK0579" class="keytip" data-code="90,BK0579">云计算</a></span><span id="bkquote_90.BK0579"></span>、<span id="bk_90.BK1215"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK1215" class="keytip" data-code="90,BK1215">通信</a></span><span id="bkquote_90.BK1215"></span>网络及移动网络设备、<span id="bk_90.BK0832"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK0832" class="keytip" data-code="90,BK0832">工业互联网</a></span><span id="bkquote_90.BK0832"></span>三大板块构成。2026年上半年，这三者的分化前所未有的剧烈，而分化的根源都指向同一件事——AI基础设施建设的资本开支周期。</p><p>　　<span web="1"  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK0579" class="em_stock_key_common" data-code="90,BK0579">云计算</span>板块是绝对的增长引擎。上半年，该板块营业收入同比增长75.7%，AI相关业务的贡献持续扩大，稳居公司业绩增长的核心引擎地位。具体来看，云服务商AI服务器营业收入同比增长2.3倍，GPU AI机柜出货量同比增长3.2倍，ASIC AI机柜出货量同比增长3倍，ASIC CPU服务器出货量同比增长2.5倍。</p><p>　　从行业层面看，工业富联的增长并非孤例。<span id="bk_90.BK1127"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK1127" class="keytip" data-code="90,BK1127">AI芯片</a></span><span id="bkquote_90.BK1127"></span>龙头<span id="stock_1.688256"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/1.688256" class="keytip" data-code="1,688256">寒武纪</a></span><span id="quote_1.688256"></span>上半年实现营业收入59.96亿元，同比增长108.13%，净利润为23.11亿元。存储龙头<span id="stock_0.301308"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/0.301308" class="keytip" data-code="0,301308">江波龙</a></span><span id="quote_0.301308"></span>上半年营收为240.88亿元，同比增长136.26%，净利润为105.77亿元。</p><p>　　IDC数据显示，2026年第一季度，全球服务器市场收入同比增长30.4%，达到1226亿美元；集邦咨询于8月3日进一步上调2026年全球AI服务器出货量同比增幅预期至近31%。</p><p>　　工业富联无疑站在了行业风口的最前沿。但问题不在于业绩增长不够快，而在于赚钱的方式没有变。</p><p>　　<span web="1"  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK1217" class="em_stock_key_common" data-code="90,BK1217">综合</span>毛利率仅7.15%的事实揭示了一个残酷的行业规律，AI服务器的内部构造决定了利润分配的格局。一台AI服务器中，GPU芯片成本占比通常超过60%，CPU、内存、存储等核心元器件再占据相当比例，剩余的机箱、散热、主板、组装、测试等环节合计仅占成本的百分之十几。</p><p>　　工业富联扮演的仍然是制造代工的角色。GPU从<span id="stock_105.NVDA"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/105.NVDA" class="keytip" data-code="105,NVDA">英伟达</a></span><span id="quote_105.NVDA"></span>采购，CPU从<span id="stock_105.INTC"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/105.INTC" class="keytip" data-code="105,INTC">英特尔</a></span><span id="quote_105.INTC"></span>、AMD采购，工业富联的价值创造是系统集成、组装和测试。在这个过程中，最昂贵的芯片环节的利润被上游拿走，而工业富联赚取的是加工环节的薄利。</p><p>　　当AI服务器单价因芯片涨价而上涨时，工业富联的营收会被动放大，但利润并不会同比增长，这正是毛利率难以大幅提升的根本原因。换言之，工业富联的盈利增长，本质上是“量的增长”而非“质的提升”。</p><p>　　二、高增长背后，财务杠杆或成隐忧</p><p>　　工业富联2026年上半年归母净利润为237.40亿元，同比增长近一倍。经营活动现金流净额为73.91亿元，同比增长425.32%。从表面看，公司的“造血”能力正在显著改善。</p><p>　　值得注意的是，工业富联上半年利润与现金流的背离依然存在。237亿元的净利润，对应的经营活动现金流净额仅为73.91亿元，现金转化率仅约为31%，大量利润仍以应收账款、存货等形式沉淀在资产负债表中，并未真正转化为可自由支配的现金。对于一家营收体量超过5500亿元的企业而言，这种利润质量算不上优秀。</p><p>　　与此同时，截至2026年6月末，工业富联应付账款高达1784.59亿元，占总资产的比重达34.80%，较上年期末增长29.36%。</p><p>　　结合来看，背后是<span id="bk_90.BK1201"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK1201" class="keytip" data-code="90,BK1201">电子</a></span><span id="bkquote_90.BK1201"></span>制造服务行业普遍采用的经营逻辑。代工厂商凭借规模优势和产业链地位，向上游供应商争取更长的付款账期，用“应付养应收”的方式对冲下游回款慢、备货多带来的资金占用，形成产业链资金的缓冲垫。</p><p>　　短期来看，工业富联利用行业话语权获取无息资金降低融资成本、优化现金流，但这并不能完全消解财务压力。</p><p>　　经营性应付账款是伴随业务扩张自然形成的产业链信用，而工业富联短期借款及一年内到期的非流动负债总计逾1000亿元，属于必须按期偿还本息的刚性负债，无法用供应商账期来替代或抵消。考虑到经营周转对流动资金的刚性需求，其真实的财务弹性并不如表面数字那样乐观。</p> <center><img src="https://np-newspic.dfcfw.com/download/D25368757181062273545_w1222h702.jpg" /></center><p>　　资产负债率的快速攀升同样值得警惕。半年报显示，截至2026年上半年末，工业富联的资产负债率已达65.66%，较第一季度末增加4.28个百分点，较去年同期末增加5.33个百分点。杠杆的加速抬升，意味着公司在快速扩张的过程中正在积累更多的财务风险。</p><p>　　另一方面，工业富联正面临资本开支与研发投入的双重压力。2026年上半年，该公司再投近50亿元用于研发，以巩固AI基础设施领先地位。与此同时，资本开支重点投向产线智能化改造与<span id="bk_90.BK0428"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK0428" class="keytip" data-code="90,BK0428">电力</a></span><span id="bkquote_90.BK0428"></span>基础设施升级。在AI服务器需求持续旺盛的背景下，产能扩张的需求只会越来越大，资本开支短期内难以回落。</p> <center><img src="https://np-newspic.dfcfw.com/download/D25051969877328714829_w1228h540.jpg" /></center><p>　　工业富联当前的财务状况呈现出一个矛盾图景，公司业务端景气度极高，但财务端的安全边际正在收窄。在营收和利润高速增长的光环之下，资产负债率的攀升和现金转化效率的偏低，构成了不可忽视的隐忧。</p><p>　　三、AI从生成式向代理式迭代，算力需求有没有天花板？</p><p>　　尽管盈利模式存在固有约束，但工业富联所处的行业赛道仍在持续扩容，这为其增长提供了最基本的需求支撑。</p><p>　　眼下全球AI基础设施投资正步入新一轮扩容周期，资本开支的扩张动能已从传统大型云服务商向新云、主权AI等多元主体持续外溢。与此同时，AI产业正由生成式AI向代理式AI迭代迈进，代理式AI进一步推高Token使用量，持续放大整体算力市场需求。</p><p>　　<span id="Info.116.00992"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/116.00992" class="keytip" data-code="116,00992">联想集团</a></span>财报显示，其AI服务器项目储备按季增长157%至540亿美元。中国信通院数据显示，2026年第一季度国内AI算力需求同比暴涨417%，而供给端相对滞后，同期算力供给增速仅为128%。供需失衡之下，算力资源稀缺性凸显，算力市场正步入量价齐升期，同样推动了交付周期的延长。</p><p>　　从客户结构看，全球主要云服务商及企业客户持续加大AI基础设施投入，资本开支保持强劲扩张态势，GPU、ASIC等多元算力路线协同演进。工业富联的订单排产节奏紧凑，全球多地产线与关键工序已按计划建制，厂区持续扩产。</p><p>　　然而，行业的高景气也正在吸引更多竞争者涌入。AI服务器制造环节的技术壁垒并不算高，随着越来越多的EMS（<span web="1"  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK1201" class="em_stock_key_common" data-code="90,BK1201">电子</span>制造服务）厂商切入这一赛道，工业富联的市场份额和议价能力将面临挑战。</p><p>　　此外，部分云服务商正在自研芯片并寻求更直接的供应链合作，这也在一定程度上削弱了工业富联作为中间环节的不可替代性。</p><p>　　四、结语：方向对、赛道对，但盈利模式是最大的长期约束</p><p>　　从产业角度看，工业富联踩准了AI算力基础设施爆发的<span id="bk_90.BK1617"><a  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK1617" class="keytip" data-code="90,BK1617">黄金</a></span><span id="bkquote_90.BK1617"></span>窗口。全球云服务商资本开支的持续扩张、AI从生成式向代理式的演进、多元算力路线的协同发展，都为其提供了广阔的市场空间。</p><p>　　从竞争角度看，工业富联在AI服务器领域的龙头地位短期内难以被撼动。该公司在GPU及ASIC业务上的同步放量、在全球客户中的深度绑定、在高速交换机等配套产品上的全面布局，构成了较强的<span web="1"  target="_blank" href="http://quote.eastmoney.com/unify/r/90.BK1217" class="em_stock_key_common" data-code="90,BK1217">综合</span>竞争优势。</p><p>　　但放眼中长期，全球AI竞争将进入深水区。工业富联这份半年报的真正意义，并不在于237亿元净利润这个数字本身。对于一家市值超过1.3万亿元、营收超过5500亿元的企业而言，产业趋势固然重要，但盈利模式的升级空间才是决定工业富联估值天花板的关键因素。公司能否突破代工模式的宿命，向更高附加值的设计、解决方案等环节延伸将决定利润弹性的上限。</p><p>　　如果始终停留在“组装工厂”的定位上，即便AI算力需求再旺盛，7%的毛利率和65%的资产负债率最终都会成为制约工业富联向前迈进的刚性约束。</p><p>　　这份半年报，既是一份成绩单，也是一份警示函。</p><p class="em_media">（文章来源：时代周报）</p>                            <!-- 正文中部 内嵌广告 -->
+                            <div class="ad_context3" id="ad_context3"></div></div>
+                        <!-- 文尾部其它信息 -->
+                        <div class="zwothers">
+                            <div class="sourcebox">
+                                        <span>文章来源：时代周报</span>
+                                        <span class="flr">责任编辑：10</span>
+                            </div>
+                                    <div class="sublab">原标题：万亿AI巨头的难题：工业富联半年赚237亿，仍难挣脱代工宿命与财务杠杆双重枷锁</div>
+                            <div class="sm">
+                                    <div class="sublab fll">
+                                        <strong style="color:#666;">郑重声明：</strong>东方财富发布此内容旨在传播更多信息，与本站立场无关，不构成投资建议。据此操作，风险自担。
+                                    </div>
+                                                                    <a href="https://help.eastmoney.com/report_center.html?reportType=3&title=%e4%b8%87%e4%ba%bfAI%e5%b7%a8%e5%a4%b4%e7%9a%84%e9%9a%be%e9%a2%98%ef%bc%9a%e5%b7%a5%e4%b8%9a%e5%af%8c%e8%81%94%e5%8d%8a%e5%b9%b4%e8%b5%9a237%e4%ba%bf%ef%bc%8c%e4%bb%8d%e9%9a%be%e6%8c%a3%e8%84%b1%e4%bb%a3%e5%b7%a5%e5%ae%bf%e5%91%bd%e4%b8%8e%e8%b4%a2%e5%8a%a1%e6%9d%a0%e6%9d%86%e5%8f%8c%e9%87%8d%e6%9e%b7%e9%94%81&systype=3&id=202608313860225892" target="_blank" class="flr jubao">举报</a>
+                            </div>
+
+                            <div id="zwctrls" class="zwctrls">
+                                <div class="left">
+                                    <div class="child">
+                                        <a href="https://weibo.com/dfcfw" target="_blank" class="">东方财富网<span class="jiav"></span></a>
+                                    </div>
+                                    <!-- 分享 -->
+                                    <div id="sharebottom" class="child">
+                                        <div id="" class=" share pull-right emshare2020"></div>
+                                        <div class="wxshare">
+                                            <span class="arrowdown"></span>
+                                            <div class="tit">分享到微信朋友圈</div>
+                                            <div class="bot">
+                                                <div class="qrimg" id="wapqrcode3"></div>
+                                                <div class="txt">
+                                                    <p>打开微信，  </p>
+                                                    <p>点击底部的“发现” </p>
+                                                    <p>使用“扫一扫” </p>
+                                                    <p>即可将网页分享至朋友圈</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="guanzhu" class="right">
+                                    <a href="https://weibo.com/dfcfw" target="_blank" class="icon gz-wb"></a>
+                                    <div class="icon gz-wx">
+                                        <div class="wxgzbox">
+                                            <span class="arrowdown"></span>
+                                            <img class="qrimg" id="wapqrcode4" src="//g1.dfcfw.com/g4/202106/20210618093603.png" alt="" />
+                                            <p>扫描二维码关注</p>
+                                            <p>东方财富官网微信</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- 评论相关 -->
+                    <div class="pinglunbox">
+                        <div id="gubaComment" class="gubaComment"></div>
+                    </div>
+                </div>
+                <!-- 右侧 -->
+                <div class="mainright">
+                    <!-- 热搜 -->
+                    <div class="hotbox">
+                        <div class="lab"></div>
+                        <div id="hotnews" class="hotnewsbox">
+
+                        </div>
+                    </div>
+                    <!-- 沪深股市 -->
+                    <div class="rmodel quotemodel">
+                        <div class="mtitle">
+                            <a class="tit" href="http://quote.eastmoney.com/center/" target="_blank"></a>
+                            <a class="flr more" href="http://quote.eastmoney.com/center/" target="_blank"></a>
+                        </div>
+                        <div class="zsitems">
+                            <div class="quotedom" id="quotedom"></div>
+                            <div class="quotedom" id="quotedom2"></div>
+                            <div class="quotedom" id="quotedom3"></div>
+                            <div id="quotedomzjl">
+                                <ul>
+                                    <li class="inflowname"><a href="http://quote.eastmoney.com/center/gridlist.html#sh_hk_board" target="_blank">沪股通</a></li>
+                                    <li class="status hgtstatus"> </li>
+                                    <li class="inflow"><span></span><a href="http://quote.eastmoney.com/center/gridlist.html#sh_hk_board" id="hgtInflow" target="_blank"></a></li>
+                                </ul>
+                                <ul>
+                                    <li class="inflowname"><a href="http://quote.eastmoney.com/center/gridlist.html#sz_hk_board" target="_blank">深股通</a></li>
+                                    <li class="status sgtstatus"> </li>
+                                    <li class="inflow"><span></span><a href="http://quote.eastmoney.com/center/gridlist.html#sz_hk_board" id="sgtInflow" target="_blank"></a></li>
+                                </ul>
+                                <ul>
+                                    <li class="inflowname"><a href="http://quote.eastmoney.com/center/gridlist.html#hk_sh_stocks" target="_blank">港股通(沪)</a></li>
+                                    <li class="status ggthstatus"> </li>
+                                    <li class="inflow"><span></span><a href="http://quote.eastmoney.com/center/gridlist.html#hk_sh_stocks" id="ggthInflow" target="_blank"></a></li>
+                                </ul>
+                                <ul>
+                                    <li class="inflowname"><a href="http://quote.eastmoney.com/center/gridlist.html#hk_sz_stocks" target="_blank">港股通(深)</a></li>
+                                    <li class="status ggtsstatus"> </li>
+                                    <li class="inflow"><span></span><a href="http://quote.eastmoney.com/center/gridlist.html#hk_sz_stocks" id="ggtsInflow" target="_blank"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 热门资讯 -->
+
+
+<div class="rmodel newsmodel rmzxmodel">
+    <div class="mtitle">
+        <a class="tit">热门资讯</a>
+    </div>
+    <ul>
+                        <li><a href="https://finance.eastmoney.com/a/202609153873899254.html" target="_blank">特朗普大怒 AI“刹车”风暴如何演绎</a></li>
+                        <li><a href="https://finance.eastmoney.com/a/202609153873950378.html" target="_blank">全球首个AI脑机接口标准发布</a></li>
+                        <li><a href="https://fund.eastmoney.com/a/202609153874411640.html" target="_blank">30万亿利好！两部门重磅发布</a></li>
+                        <li><a href="https://finance.eastmoney.com/a/202609153874179459.html" target="_blank">宁德时代收购“吉利系”电池厂</a></li>
+    </ul>
+</div>
+
+                    <!-- AdSame ShowCode: 东方财富网 / 正文 / 正文画中画一 Begin -->
+                    <iframe width="300" height="250" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="//same.eastmoney.com/s?z=eastmoney&c=8&op=1"></iframe>
+                    <!-- AdSame ShowCode: 东方财富网 / 正文 / 正文画中画一 End -->
+                    <!-- 焦点专题 -->
+                    <div class="rmodel newsmodel jdztmodel">
+                        <div class="mtitle">
+                            <a href="https://topic.eastmoney.com/" class="tit">焦点专题</a>
+                            <a href="https://topic.eastmoney.com/" class="flr more"></a>
+                        </div>
+                        <ul><li><a href="https://hy.eastmoney.com/zhuanti/2026lianghui/?code=2026nianlh" >2026年全国两会</a></li><li><a href="https://topic.eastmoney.com/detail/esjszqh2025.html" >党的二十届四中全会</a></li><li><a href="https://choicew2z.eastmoney.com/activity/analysts/#/pc?tab=3&amp;opensource=web_dfcfsy_dbtg_02_02_02_02_0" >第十二届Choice最佳分析师</a></li></ul>
+                        <div class="jiaodianbox">
+                            <div style="width: 400px;">
+                                        <a class="item" href="https://topic.eastmoney.com/detail/gjdzcgp2026.html" target="_blank">
+                                            <img src="https://np-newspic.dfcfw.com/download/D25494593576433525844_w145h95.jpg" alt="">
+                                            <span class="tit">“国家队”增持股票</span>
+                                        </a>
+                                        <a class="item" href="https://topic.eastmoney.com/detail/sjrgzndh2026.html" target="_blank">
+                                            <img src="https://np-newspic.dfcfw.com/download/D25402459232210034641_w145h95.jpg" alt="">
+                                            <span class="tit">世界人工智能大会</span>
+                                        </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AdSame ShowCode: 东方财富网 / 正文 / 正文画中画二 Begin -->
+                    <iframe width="300" height="250" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="//same.eastmoney.com/s?z=eastmoney&c=14&op=1"></iframe>
+                    <!-- AdSame ShowCode: 东方财富网 / 正文 / 正文画中画二 End -->
+                    <!-- 视频推荐 -->
+                    <div class="rmodel newsmodel sptjmodel">
+                        <div class="mtitle">
+                            <a href="https://video.eastmoney.com/" class="tit">视频</a>
+                            <a href="https://video.eastmoney.com/" class="flr more"></a>
+                        </div>
+
+                        <div class="newsrightlangkevideo">
+                            <div class="content pic_swiper">
+                                <div class="bd" id="scrollvides">
+                                    <ul>
+                                        
+                                    </ul>
+                                </div>
+                                <div class="swiper_right next"><i class="icon icon_scroll_btn_right"></i></div>
+                                <div class="swiper_left prev"><i class="icon icon_scroll_btn_left"></i></div>
+                                <div class="hd"><ul></ul></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- 热点广告位 -->
+                                <div class="rdggwmodel">
+                                    <ul>
+                                        <li>
+                                                    <a target="_blank" href="http://acttg.eastmoney.com/pub/web_nr_zxzwy_rdtjx_01_01_01_0">一键关注财经大咖</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                    <!-- 热点推荐 -->
+                            <div class="hotsuggest">
+                                <div class="lab">热点推荐</div>
+                                <a class="txt" href="http://finance.eastmoney.com/a/202609153874981350.html">标普500指数创8月份以来收盘新低 加密货币概念股普跌 国际油价上涨</a>
+                                <div class="tags">
+                                    
+                                    <span>东方财富Choice数据</span>
+                                </div>
+                                <div class="others">
+                                        <a href="http://finance.eastmoney.com/a/202609153874981350.html">
+                                            <span class="orange">284</span>
+                                            <span>人评论</span>
+                                        </a>
+                                    <span class="flr">2026-09-16</span>
+                                </div>
+                            </div>
+                    <div class="ad_context4" id="ad_context4" style="width:300px;margin:16px 0;"></div>
+                </div>
+
+            </div>
+
+        </div>
+        
+        <!-- 左侧悬浮广告 -->
+        <div class="ad_context2" id="ad_context2" style="position:fixed;bottom:100px;z-index:999;display:none;"></div>
+
+        <!-- 右侧悬浮工具栏 -->
+        <div class="ad_context5" id="ad_context5" style="position:fixed;z-index:999;display:none;flex-direction:column;"></div>
+    </div>
+
+    <!--添加页脚-->
+    <!-- footer-2016 -->
+<style>
+    .footer2016 ul {list-style: none;margin: 0;padding: 0;}
+    .footer2016 a:hover{color:#ff4901 !important;text-decoration: underline !important;}
+    .footer2016 .icon, .footer2016 .navlist li a {display: inline-block;}
+    .footer2016 .icon {background-image: url(//g1.dfcfw.com/g4/202005/20200513165332.png);background-repeat: no-repeat;}
+    .footer2016 {margin: 0 auto;clear: both;width: 1000px;line-height: 1.1;_line-height: 1.2;font-family: simsun;font-size: 12px;border-top: 2px solid #2F5895;}
+    .footer2016 .footertg {background-color: #F3F3F3;float: left;width: 100%;padding: 12px 0 0;height: 140px;}
+    .footer2016 .footertg a:link, .footer2016 .footertg a:visited {color: #676767;text-decoration: none;}
+    .footer2016 .qr {float: left;width: 80px;height: 140px;line-height: 150%;padding: 0 10px 0 8px;}
+    .footer2016 .qr .t {font-weight: 700;font-size: 14px;padding-bottom: 10px;}
+    .footer2016 .icon_qrem80, .footer2016 .icon_qrjj80 {background-image: url(//g1.dfcfw.com/g2/201607/20160728133707.png);width: 80px;height: 80px;}
+    .footer2016 .icon_qrem80 {background-position: 0 -330px;}
+    .footer2016 .icon_emwxqr, .footer2016 .icon_jjwxqr {background-image: url(//g1.dfcfw.com/g2/201607/20160728133707.png);width: 86px;height: 106px;}
+    .footer2016 .icon_emwxqr {background-position: -90px 0;}
+    .footer2016 .ftglist ul li.qrli {position: relative;}
+    .footer2016 .ftglist ul li.qrli:hover .icon_qr, .footer2016 .scl-news .name a {display: block;}
+    .footer2016 .icon_emwxqr, .footer2016 .icon_jjwxqr {display: none;position: absolute;left: 0;top: 24px;}
+    .footer2016 .ftglist {float: left;height: 140px;padding: 0px 10px;}
+    .footer2016 .ftglistt {font-size: 14px;font-weight: 700;line-height: 130%;padding-bottom: 6px;text-align: left;}
+    .footer2016 .ftglist ul li {padding: 5px 0;color: #676767;text-align: left;}
+    .footer2016 .icon_wb {background-position: -24px 0;width: 14px;height: 12px;}
+    .footer2016 .icon_wx {background-position: 0 0;width: 14px;height: 11px;}
+    .footer2016 .icon_note {background-position: -47px 0;width: 13px;height: 11px;}
+    .footer2016 .ftglist .icon {vertical-align: -1px;margin-right: 2px;}
+    .footer2016 .footertg a:link, .footer2016 .footertg a:visited {color: #676767;text-decoration: none;}
+    .footer2016 .qrl {border-left: 1px solid #ddd;margin-left: 10px;padding-left: 20px;}
+    .footer2016 .icon_qrjj80 {background-position: -90px -330px;}
+    .footer2016 .footercr {clear: both;text-align: center;line-height: 26px;font-size: 12px;width:1000px;margin: 0 auto;height:26px;overflow:hidden;}
+    .footer2016 .icon_icp {background-position: -24px -21px;width: 15px;height: 17px;}
+    .footer2016 .footercr .icon {vertical-align: -3px;margin-right: 2px;}
+    .footer2016 .icon_pol {background-position: 0 -22px;width: 18px;height: 20px;}
+    .footer2016 .footerlinks {background-color: #2F5895;height: 30px;text-align: center;line-height: 30px;}
+    .footer2016 .footerlinks a:link, .footer2016 .footerlinks a:visited, .footer2016 .footerlinks a:hover {color: #fff !important;text-decoration: none;margin: 0 14px;}
+    .footer2016 .footerbz {text-align: center;padding: 12px 0;}
+    .footer2016 .footerbz a {margin: 0 4px;}
+    .footer2016 .footer-police {background-position: 0 -112px;width: 110px;height: 40px;}
+    .footer2016 .footer-zx110 {background-position: -120px -113px;width: 110px;height: 40px;}
+    .footer2016 .footer-shjubao {background-position: 0 -172px;width: 110px;height: 40px;}
+    .footer2016 .footer-cxzx {background-position: -120px -174px;width: 40px;height: 40px;}
+    .footer2016 .footer-shgs {background-position: -180px -174px;width: 47px;height: 40px;}
+    .footer2016 .footer-12377 {background-position: 0 -54px;width: 186px;height: 40px;}
+    .footer2016 .footer-yhjb {background-position: 0 -229px;width: 123px;height: 40px;}
+    .footer2016 .footer-qrlast {width: 90px;}
+    .footer2016 .footer-icon-qihuoqr { background: url(https://g1.dfcfw.com/g4/202303/20230324150231.png);width: 80px;height: 80px;display: inline-block;background-repeat: no-repeat;vertical-align: -5px;}
+</style>
+
+<div class="footer2016">
+    <div class="footertg">
+        <div class="qr">
+            <div class="t"><a href="http://acttg.eastmoney.com/pub/web_dfcfsy_dbtg_wzl_01_01_01_1" style="color:#000" target="_blank">东方财富</a></div>
+            <a href="http://acttg.eastmoney.com/pub/web_app_dcsy_2wm_01_01_01_0" target="_blank"><em class="icon icon_qrem80"></em></a><br />扫一扫下载APP
+        </div>
+
+        <div class="ftglist">
+            <div class="ftglistt">东方财富产品</div>
+            <ul>
+                <li><a href="https://acttg.eastmoney.com/pub/pctg_hskh_act_dfcfwmfb_01_01_01_0" target="_blank">东方财富免费版</a></li>
+                <li><a href="https://acttg.eastmoney.com/pub/pctg_hskh_act_dfcfwl2_01_01_01_0" target="_blank">东方财富Level-2</a></li>
+                <li><a href="https://www.dfcfw.com/CLB/" target="_blank">东方财富策略版</a></li>
+                <li><a href="https://acttg.eastmoney.com/pub/web_dfcfsy_wzl_bottom_02_02_04_1" target="_blank">妙想投研助理</a></li>
+                <li><a href="https://choice.eastmoney.com/terminal?adid=web_choice_dcsy_website_02_01_01_0" target="_blank">Choice金融终端</a></li>
+            </ul>
+        </div>
+        <div class="ftglist">
+            <div class="ftglistt">证券交易</div>
+            <ul>
+                <li><a href="https://acttg.eastmoney.com/pub/web_kh_dcsy_dbtkwzl_01_01_01_0" target="_blank">东方财富证券开户</a></li>
+                <li><a href="https://jywg.18.cn/Trade/Buy" target="_blank">东方财富在线交易</a></li>
+				<li><a href="https://acttg.eastmoney.com/pub/pctg_hskh_act_dfcfzqjy_01_01_01_0"  target="_blank">东方财富证券交易</a></li>
+            </ul>
+        </div>
+        <div class="ftglist">
+            <div class="ftglistt">关注东方财富</div>
+            <ul>
+                <li><a href="http://weibo.com/dfcfw" target="_blank"><em class="icon icon_wb"></em>东方财富网微博</a></li>
+                <li class="qrli"><a href="javascript:;" target="_self"><em class="icon icon_wx"></em>东方财富网微信</a><em class="icon icon_qr icon_emwxqr"></em></li>
+                <li><a href="http://corp.eastmoney.com/Lianxi_liuyan.asp" target="_blank"><em class="icon icon_note"></em>意见与建议</a></li>
+            </ul>
+        </div>
+        <div class="qr qrl">
+            <div class="t"><a href="http://acttg.eastmoney.com/pub/web_ttjjsy_dbtg_wzl_01_01_01_1" style="color:#000" target="_blank">天天基金</a></div>
+            <a href="http://js1.eastmoney.com/tg.aspx?ID=4672" target="_blank"><em class="icon icon_qrjj80"></em></a><br />扫一扫下载APP
+        </div>
+        <div class="ftglist">
+            <div class="ftglistt">基金交易</div>
+            <ul>
+                <li><a href="https://trade6.1234567.com.cn/reg/step1" target="_blank">基金开户</a></li>
+                <li><a href="https://trade.1234567.com.cn/login" target="_blank">基金交易</a></li>
+                <li><a href="http://huoqibao.1234567.com.cn/" target="_blank">活期宝</a></li>
+                <li><a href="http://fund.eastmoney.com/trade/default.html" target="_blank">基金产品</a></li>
+                <li><a href="http://fund.eastmoney.com/gslc/" target="_blank">稳健理财</a></li>
+            </ul>
+        </div>
+        <div class="ftglist">
+            <div class="ftglistt">关注天天基金</div>
+            <ul>
+                <li><a href="http://weibo.com/ttfund" target="_blank"><em class="icon icon_wb"></em>天天基金网微博</a></li>
+                <li class="qrli"><a href="javascript:;" target="_self"><em class="icon icon_wx"></em>天天基金网微信<em class="icon icon_qr icon_jjwxqr"></em></a></li>
+            </ul>
+        </div>
+        <div class="qr qrl footer-qrlast">
+            <div class="t"><a href="https://qs.dfcfw.com/1605" style="color:#000" target="_blank">东方财富期货</a></div>
+            <a href="http://acttg.eastmoney.com/pub/web_kh_dcsy_dibudfcfqh_01_01_01_1" target="_blank"><em class="footer-icon-qihuoqr"></em></a><br>扫一扫下载APP
+        </div>
+        <div class="ftglist">
+            <div class="ftglistt">期货交易</div>
+            <ul>
+                <li><a href="https://qs.dfcfw.com/1606" target="_blank">期货手机开户</a></li>
+                <li><a href="https://qs.dfcfw.com/1607" target="_blank">期货电脑开户</a></li>
+                <li><a href="https://qs.dfcfw.com/1608" target="_blank">期货官方网站</a></li>
+            </ul>
+        </div>
+    </div>
+        <div class="footercr" style="padding-top:8px;">信息网络传播视听节目许可证：0908328号 经营证券期货业务许可证编号：913101046312860336 违法和不良信息举报:021-61278686 举报邮箱：<a target="_self" href="mailto:jubao@eastmoney.com">jubao@eastmoney.com</a></div>
+        <div class="footercr" style="padding-bottom:8px;">
+            <em class="icon icon_icp"></em>沪ICP证:沪B2-20070217 <a target="_blank" rel="nofollow" href="https://beian.miit.gov.cn/" style="color: #3F3F3F;text-decoration:none;">网站备案号:沪ICP备05006054号-11 </a> <a target="_blank" rel="nofollow" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402000120" target="_blank" style="color: #3F3F3F;text-decoration:none;"><em class="icon icon_pol"></em>沪公网安备 31010402000120号</a> 版权所有:东方财富网 <span class="yjyfk">意见与建议:4000300059/952500</span>
+        </div>
+    <div class="footerlinks">
+			<a href="http://about.eastmoney.com" target="_blank" rel="nofollow">关于我们</a>
+            <a href="https://about.eastmoney.com/about/sdindex" target="_blank" rel="nofollow">可持续发展</a>
+			<a href="http://emhd2.eastmoney.com/market" target="_blank" rel="nofollow">广告服务</a>
+            <a href="https://srm-official.eastmoney.com/" target="_blank" rel="nofollow">供应商平台</a>
+			<a href="http://about.eastmoney.com/home/contact" target="_blank" rel="nofollow">联系我们</a>
+			<a href="https://zhaopin.eastmoney.com/" target="_blank" rel="nofollow">诚聘英才</a>
+			<a href="http://about.eastmoney.com/home/legal" target="_blank" rel="nofollow">法律声明</a>
+            <a href="http://about.eastmoney.com/home/conceal" target="_blank" rel="nofollow">隐私保护</a>
+			<a href="http://about.eastmoney.com/home/parper" target="_blank" rel="nofollow">征稿启事</a>
+			<a href="http://about.eastmoney.com/home/links" target="_blank" rel="nofollow">友情链接</a>
+    </div>
+    <div class="footerbz">
+        <img src="//g1.dfcfw.com/g3/201905/20190531140719.png" title="亲爱的市民朋友，上海警方反诈劝阻电
+话“962110”系专门针对避免您财产被
+骗受损而设，请您一旦收到来电，立即
+接听。" style="vertical-align: bottom;">
+        <span class="icon footer-police" title="上海网警网络110" style="position: relative; margin: 0 4px;"></span>
+        <span class="icon footer-zx110" title="网络社会征信网" style="position: relative;margin: 0 4px;"></span>
+        <a rel="nofollow" href="http://www.shjbzx.cn/" class="icon footer-shjubao" title="上海违法和违规信息举报中心" target="_blank"></a>
+        <a rel="nofollow" href="http://www.12377.cn" class="icon footer-12377" title="中国互联网违法和不良信息举报中心" target="_blank"></a>
+	</div>
+</div>
+
+<script>
+    if(document.all && !window.XMLHttpRequest){
+        $(".qrli").hover(function(){
+            $(".icon_qr",this).show();
+        },function(){
+            $(".icon_qr",this).hide();
+        });
+    }
+</script>
+    <img style="display: none;" src='https://np-metadata.eastmoney.com/api/metadata.jpg?event=1&source=3&mode=2&type=1&id=202608313860225892' />
+</body>
+</html>
+<script src="//emres.dfcfw.com/public/js/websitecommand.js" charset="utf-8"></script>
+<script src="emres/js/jquery.1.8.3.min.js"></script>
+<!--搜索需要的基础js-->
+<script src="//emcharts.dfcfw.com/suggest/stocksuggest2017.min.js" charset="utf-8"></script>
+<script src="//emres.dfcfw.com/public/js/topnav.js" type="text/javascript"></script>
+<!--股吧评论-->
+<script type="text/javascript" src="//cfgpassport2.eastmoney.com/captcha/scripts/em_capt.js"></script>
+<script type="text/javascript" src="//gbfek.dfcfw.com/deploy/guba_module_comment_list_new/work/editor_and_list.js"></script>
+<!--[if lte IE 9 ]>
+<link href="https://avsdk.lvb.eastmoney.com/emav-flash/0.0.2-rc-7/emav.flash.min.css" rel="stylesheet">
+<script src="https://avsdk.lvb.eastmoney.com/emav-flash/0.0.2-rc-7/emav.flash.min.js"></script>
+<!--[if (gt IE 9)|!(IE)]><!-->
+<script src="https://avsdk.lvb.eastmoney.com/emav/1.1.4/emav.ie.min.js"></script>
+<link href="https://avsdk.lvb.eastmoney.com/emav/1.1.4/emav.min.css" rel="stylesheet" />
+<!--<![endif]-->
+<script type="text/javascript">
+    var _b1516 = '';
+    var _b1517 = '';
+    if(_HideAdID.indexOf(_NewsId) >= 0 || "1" == "0"){//不显示广告
+        _b1516 = '';
+        _b1517 = '';
+    }else{
+        try{
+            _b1516 = '<ul><li><span>1</span></li><li><a href="https://ai.eastmoney.com/miaoxiang/?adid=web_mx_dcsy_activity_01_01_01_1" >全新妙想投研助理，立即体验</a></li><li><a href="https://acttg.eastmoney.com/pub/webtg_hskh_act_zixun_01_01_01_0" >在东方财富看资讯行情，选东方财富证券一站式开户交易&gt;&gt;</a></li><li><a href="https://acttg.eastmoney.com/pub/webtg_hskh_act_zixun_01_01_01_0" >炒股第一步，先开个股票账户</a></li><li><a href="https://choice.eastmoney.com/terminal" >专业金融数据，下一代智能终端</a></li></ul>';
+            _b1517 = '<ul><li><span>1</span></li><li><a href="https://ai.eastmoney.com/miaoxiang/?adid=web_mx_dcsy_activity_01_01_01_1">全新妙想投研助理，立即体验</a></li><li><a href="https://acttg.eastmoney.com/pub/webtg_hskh_act_zixun_01_01_01_0">想炒股，先开户！选东方财富证券，行情交易一个APP搞定&gt;&gt;</a></li><li><a href="https://ai.eastmoney.com/miaoxiang/?adid=web_mx_dcsy_activity_01_01_01_1">全新妙想投研助理，立即体验</a></li></ul>';
+        } catch (err) { }
+    }
+    var _j606img = {};
+    try {
+        var _b606img = '{"information":{"imgBullentin_Id":606,"imgBullentin_Name":"正文内模块推广2026","imgBullentin_Show":6,"imgBullentin_Height":1000,"imgBullentin_Width":1000,"imgBullentin_MaxLength":10,"imgBullentin_SmallHeight":0,"imgBullentin_SmallWidth":0,"imgBullentin_ChannelId":2,"imgBullentin_Type":2,"imgBullentin_Lock":0},"element":[{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D24839884682981179711_w996h828.jpg","IRContent_Title":"","IRContent_Alt":"","IR_TitleIsShow":false,"IR_More":"","IRContent_Refer":"https://dl.dfcfs.com/m/xjB0","IR_MoreUrl":""},{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D24818021888859801539_w996h828.jpg","IRContent_Title":"","IRContent_Alt":"","IR_TitleIsShow":false,"IR_More":"","IRContent_Refer":"https://dl.dfcfs.com/m/t5p1","IR_MoreUrl":""},{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D25256212244151107655_w996h828.jpg","IRContent_Title":"","IRContent_Alt":"","IR_TitleIsShow":false,"IR_More":"","IRContent_Refer":"https://dl.dfcfs.com/m/cdL8","IR_MoreUrl":""},{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D25292173286737658708_w996h828.jpg","IRContent_Title":"","IRContent_Alt":"","IR_TitleIsShow":false,"IR_More":"","IRContent_Refer":"https://dl.dfcfs.com/m/lf35","IR_MoreUrl":""},{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D25595612347724755216_w996h828.jpg","IRContent_Title":"","IRContent_Alt":"","IR_TitleIsShow":false,"IR_More":"","IRContent_Refer":"https://dl.dfcfs.com/m/tioi","IR_MoreUrl":""},{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D25639595182799855073_w996h828.jpg","IRContent_Title":"","IRContent_Alt":"","IR_TitleIsShow":false,"IR_More":"","IRContent_Refer":"https://dl.dfcfs.com/m/wyak","IR_MoreUrl":""}]}';
+        _j606img = JSON.parse(_b606img);
+    } catch (e) {
+
+    }
+    var _jimg1 = {};
+    try {
+        var _bimg1 = '{"information":{"imgBullentin_Height":600,"imgBullentin_Width":900,"imgBullentin_Type":2,"imgBullentin_Lock":0,"imgBullentin_SmallWidth":0,"imgBullentin_ChannelId":2,"imgBullentin_Name":"正文标题AI文字链转app","imgBullentin_Show":1,"imgBullentin_MaxLength":100,"imgBullentin_SmallHeight":0,"imgBullentin_Id":608},"element":[{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D25647034673633093626_w706h1063.jpg","IRContent_Title":"AI妙想为你解读全文 APP内免费阅读","IRContent_Alt":"","IR_TitleIsShow":true,"IR_More":"","IRContent_Refer":"","IR_MoreUrl":""}]}';
+        _jimg1 = JSON.parse(_bimg1);
+    } catch (e) {
+
+    }
+    var _jimg2 = {};
+    try {
+        var _bimg2 = '{"information":{"imgBullentin_Id":610,"imgBullentin_Name":"正文左侧带二维码图片","imgBullentin_Show":1,"imgBullentin_Height":600,"imgBullentin_Width":900,"imgBullentin_MaxLength":100,"imgBullentin_SmallHeight":0,"imgBullentin_SmallWidth":0,"imgBullentin_ChannelId":2,"imgBullentin_Type":2,"imgBullentin_Lock":0},"element":[{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D24613184893499970513_w136h213.jpg","IRContent_Title":"","IRContent_Alt":"","IR_TitleIsShow":false,"IR_More":"","IRContent_Refer":"","IR_MoreUrl":""}]}';
+        _jimg2 = JSON.parse(_bimg2);
+    } catch (e) {
+
+    }
+    var _jimg3 = {};
+    try {
+        var _bimg3 = '{"information":{"imgBullentin_Id":609,"imgBullentin_Name":"正文末文字链推广转app","imgBullentin_Show":1,"imgBullentin_Height":600,"imgBullentin_Width":900,"imgBullentin_MaxLength":100,"imgBullentin_SmallHeight":0,"imgBullentin_SmallWidth":0,"imgBullentin_ChannelId":2,"imgBullentin_Type":2,"imgBullentin_Lock":0},"element":[{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D24655189880543160314_w706h988.jpg","IRContent_Title":"暗盘资金榜已更新!这些个股/板块可以关注>","IRContent_Alt":"","IR_TitleIsShow":true,"IR_More":"","IRContent_Refer":"","IR_MoreUrl":""}]}';
+        _jimg3 = JSON.parse(_bimg3);
+    } catch (e) {
+
+    }
+    var _jimg4 = {};
+    try {
+        var _bimg4 = '{"information":{"imgBullentin_Height":600,"imgBullentin_Width":900,"imgBullentin_Type":2,"imgBullentin_Lock":0,"imgBullentin_SmallWidth":0,"imgBullentin_ChannelId":2,"imgBullentin_Name":"正文右侧图片广告转app","imgBullentin_Show":2,"imgBullentin_MaxLength":100,"imgBullentin_SmallHeight":0,"imgBullentin_Id":612},"element":[{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D24615491904587110431_w300h300.jpg","IRContent_Title":"","IRContent_Alt":"","IR_TitleIsShow":false,"IR_More":"","IRContent_Refer":"","IR_MoreUrl":""},{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D24951305233513245753_w1044h753.jpg","IRContent_Title":"","IRContent_Alt":"","IR_TitleIsShow":false,"IR_More":"","IRContent_Refer":"","IR_MoreUrl":""}]}';
+        _jimg4 = JSON.parse(_bimg4);
+    } catch (e) {
+
+    }
+    var _jimg5 = {};
+    try {
+        var _bimg5 = '{"information":{"imgBullentin_Id":611,"imgBullentin_Name":"正文右侧功能模块转app","imgBullentin_Show":1,"imgBullentin_Height":600,"imgBullentin_Width":900,"imgBullentin_MaxLength":100,"imgBullentin_SmallHeight":0,"imgBullentin_SmallWidth":0,"imgBullentin_ChannelId":2,"imgBullentin_Type":2,"imgBullentin_Lock":0},"element":[{"IRContent_Url":"https://np-newspic.dfcfw.com/download/D25477223857458777474_w706h1069.jpg","IRContent_Title":"1","IRContent_Alt":"","IR_TitleIsShow":false,"IR_More":"","IRContent_Refer":"","IR_MoreUrl":""}]}';
+        _jimg5 = JSON.parse(_bimg5);
+    } catch (e) {
+
+    }
+
+</script>
+<script src="emres/js/jquery.SuperSlide.2.1.1.source.js"></script>
+<script src="emres/js/unitynews.js?v=2026.09.16.05.15.53"></script>
+
+<!-- 分享 -->
+<script src="//emcharts.dfcfw.com/share/share.js"></script>
+<script type="text/javascript">
+</script>
+<script type="text/javascript">
+    if(_HideAdID.indexOf(_NewsId) >= 0){//不显示广告
+        try{
+            setInterval(function(){
+                $(".sharebox .articlezan").parent(".child").hide();
+            },1000);
+        }catch(e){
+
+        }
+    }
+
+    if(_CMSHJ != "test"){
+        $.ajax({
+            url: "https://newsinfo.eastmoney.com/kuaixun/v2/api/content/state?newsid="+_NewsId+"&source=web&guid="+(new Date()).getTime(),
+            dataType: 'jsonp',
+            success: function(_jsondata){
+                if(_jsondata.success === 1 && _jsondata.data && _jsondata.data.state === 0){
+                    location.href = "//finance.eastmoney.com/404.html";
+                }
+            }
+        });
+    }
+</script>
+    <script type="text/javascript">
+        var emshareFun = new emshare2020({
+            title: "万亿AI巨头的难题：工业富联半年赚237亿，仍难挣脱代工宿命与财务杠杆双重枷锁",
+            desc: "8月11日，工业富联（601138.SH）发布2026年半年度报告。根据公告，工业富联上半年实现营业收入5578.61亿元，同比增长54.63%；归母净利润为237.40亿元，同比增长95.99%；扣非归母净利润为229.84亿元，同比增长96.99%。在五千亿级营收体量下仍能实现近乎翻倍的利润增长，这份成绩单不可谓不亮眼。",
+            summary: '',
+            imgUrl: "https://cmsjs.eastmoney.com/common/weixin-share.png"
+        });
+
+        if (typeof emshareFun != "undefined") {
+
+            emshareFun.qrcode({
+                width: 100,// 二维码宽度 可选 默认135
+                colorDark: "#000000", //二维码颜色 可选 默认黑
+                colorLight: "#ffffff",//背景色 可选 默认白
+                logosrc: "https://g1.dfcfw.com/g4/202003/20200318140436.gif",// 二维码logo信息 可选[不建议加此参数] 默认有logo 值为"none"时无logo
+                link: "http://dl.dfcfs.com/m/ozih",
+                domid: "wapqrcode"
+            });
+
+            emshareFun.qrcode({
+                width: 100,// 二维码宽度 可选 默认135
+                colorDark: "#000000", //二维码颜色 可选 默认黑
+                colorLight: "#ffffff",//背景色 可选 默认白
+                logosrc: "https://g1.dfcfw.com/g4/202003/20200318140436.gif",// 二维码logo信息 可选[不建议加此参数] 默认有logo 值为"none"时无logo
+                link: __WAPURL,
+                domid: "wapqrcode2"
+            });
+
+            emshareFun.qrcode({
+                width: 100,// 二维码宽度 可选 默认135
+                colorDark: "#000000", //二维码颜色 可选 默认黑
+                colorLight: "#ffffff",//背景色 可选 默认白
+                logosrc: "https://g1.dfcfw.com/g4/202003/20200318140436.gif",// 二维码logo信息 可选[不建议加此参数] 默认有logo 值为"none"时无logo
+                link: __WAPURL,
+                domid: "wapqrcode3"
+            });
+
+            //emshareFun.qrcode({
+            //    width: 100,// 二维码宽度 可选 默认135
+            //    colorDark: "#000000", //二维码颜色 可选 默认黑
+            //    colorLight: "#ffffff",//背景色 可选 默认白
+            //    logosrc: "https://g1.dfcfw.com/g4/202003/20200318140436.gif",// 二维码logo信息 可选[不建议加此参数] 默认有logo 值为"none"时无logo
+            //    link: __WAPURL,
+            //    domid: "wapqrcode5"
+            //});
+        }
+    </script>
+
+<script type="text/javascript" src="//emcharts.dfcfw.com/newsts/newsts.min.js" charset="utf-8"></script>
+<script src="//emcharts.dfcfw.com/pr3/prod/personalrecommend3.min.js"></script>
+<script src="//emcharts.dfcfw.com/emsider/prod/emsider.min.js"></script>
+<script type="text/javascript">
+    EMSider()
+</script>
+<script type="text/javascript" src="//emcharts.dfcfw.com/usercollect/usercollect.min.js" charset="utf-8"></script>
+<script type="text/javascript" charset="UTF-8">
+    var emtj_isUpload = 1;
+    var emtj_pageId = 113104312931;//112101300783
+    var emtj_logSet = "1111111111";
+    switch (_YM) {
+        case "forex": emtj_pageId = 112305312908; break;//外汇
+        case "finance": //财经
+        case "stock": emtj_pageId = 113104312931; break;//股票
+        case "futures": emtj_pageId = 112303312994; break;//期货
+        case "global": emtj_pageId = 119003312995; break;//全球
+        case "gold": emtj_pageId = 112306312996; break;//黄金
+        case "hk": emtj_pageId = 112102312997; break;//港股
+        case "option": emtj_pageId = 112302312998; break;//期权
+        case "bank":
+        case "insurance":
+        case "trust":
+        case "bond":
+        case "money":
+        case "biz":
+        case "enterprise":
+        case "auto":
+        case "xianhuo": emtj_pageId = 112301312999; break;//其他
+        default: emtj_pageId = 113104312931; break;//默认
+    }
+    var emtj_sampleRate = 1;
+    var emtj_otherinfo = { infoCode: _NewsId };
+    var __guba = { __postid: _NewsId, __type: 1 };
+</script>
+<script type="text/javascript" src="//cmsjs.eastmoney.com/js/getrefer.js?code=202608313860225892&type=2&m=1"></script>
+<script type="text/javascript" src="https://bdstatics.eastmoney.com/web/prd/jump_tracker.js" charset="UTF-8"></script>

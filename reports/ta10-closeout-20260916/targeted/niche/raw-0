@@ -1,0 +1,2417 @@
+<!DOCTYPE html>
+<!--[if lt IE 10]> <html  lang="en" class="iex"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="OLs0G2Apq3TkDpywKqMqdCpPK1PtKK7VL1RGChMR">
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WPH2ZNH3');</script>
+<!-- End Google Tag Manager -->
+
+
+    
+<title>TrendForce: 上半年合約價漲幅皆破100%，2H26結構性缺貨將帶動NOR Flash、SLC NAND價格持續上漲</title>
+<meta name="description" content="根據TrendForce最新記憶體產業研究，由於記憶體大廠的產能規劃持續傾向HBM、高層數3D NAND等高附加價值產品，排擠NOR Flash、SLC NAND依賴的成熟製程產能，然因需求穩定，已激勵2026上半年NOR Flash、SLC NAND累積合約價漲幅分別突破100%。由於供應商未有大規模擴產計畫，預估下半年兩項產品的價格將隨供需緊張而繼續調升。">
+<meta property="og:site_name" content="TrendForce">
+<meta property="og:title" content="TrendForce: 上半年合約價漲幅皆破100%，2H26結構性缺貨將帶動NOR Flash、SLC NAND價格持續上漲">
+<meta property="og:description" content="根據TrendForce最新記憶體產業研究，由於記憶體大廠的產能規劃持續傾向HBM、高層數3D NAND等高附加價值產品，排擠NOR Flash、SLC NAND依賴的成熟製程產能，然因需求穩定，已激勵2026上半年NOR Flash、SLC NAND累積合約價漲幅分別突破100%。由於供應商未有大規模擴產計畫，預估下半年兩項產品的價格將隨供需緊張而繼續調升。">
+<meta property="og:url" content="https://www.trendforce.com.tw/presscenter/news/20260616-13100.html">
+<meta property="og:image" content="https://img.trendforce.com.tw/EDM/2026/06/20260616_134256_1.jpg">
+<meta property="og:type" content="article">
+<meta property="fb:app_id" content="235503964049783">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@trendforce">
+<meta name="twitter:title" content="TrendForce: 上半年合約價漲幅皆破100%，2H26結構性缺貨將帶動NOR Flash、SLC NAND價格持續上漲">
+<meta name="twitter:description" content="根據TrendForce最新記憶體產業研究，由於記憶體大廠的產能規劃持續傾向HBM、高層數3D NAND等高附加價值產品，排擠NOR Flash、SLC NAND依賴的成熟製程產能，然因需求穩定，已激勵2026上半年NOR Flash、SLC NAND累積合約價漲幅分別突破100%。由於供應商未有大規模擴產計畫，預估下半年兩項產品的價格將隨供需緊張而繼續調升。">
+<meta name="twitter:image" content="https://img.trendforce.com.tw/EDM/2026/06/20260616_134256_1.jpg">
+<link rel="canonical" href="https://www.trendforce.com.tw/presscenter/news/20260616-13100.html">
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "url": "https://www.trendforce.com.tw",
+    "sameAs": [
+        "https://www.facebook.com/TrendForce.tw",
+        "https://www.linkedin.com/company/trendforce-集邦科技/"
+    ],
+    "logo": "https://www.trendforce.com.tw/images/apple-touch-icon-152x152.png",
+    "name": "集邦科技",
+    "description": "集邦科技(TrendForce)為專業的市場研究機構，專注於全球高科技產業，提供深入的分析報告與顧問服務，涵蓋半導體、顯示技術、消費性電子、綠能產業，以及車用電子、人工智慧、5G 等新興科技領域。",
+    "email": "service@trendforce.com"
+}
+</script>
+
+    <script src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap/css/bootstrap.css">
+    <script src="/js/script.js?v=1789508681"></script>
+    <link rel="stylesheet" href="/css/style.css?v=1789508681">
+    <link rel="stylesheet" href="/css/content-box.css">
+    <link rel="stylesheet" href="/css/image-box.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/js/flexslider/flexslider.css">
+    <link rel="stylesheet" href="/js/magnific-popup.css">
+
+    <link rel="stylesheet" href="/js/social.stream.css">
+    <link rel="stylesheet" href="/js/jquery.flipster.min.css">
+    <link rel="stylesheet" href="/css/skin.css?v=1789508681">
+    <link rel="stylesheet" href="/css/ad.css?v=26091605">
+    <link rel="stylesheet" href="/js/font-awesome/css/font-awesome.min.css">
+            <link rel="stylesheet" href="/css/header-v3-next.css?v=1789508681">
+            <link rel="stylesheet" href="/js/plot/plotComponents.css?v=26091605">
+    <!-- Favicon  -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"/>
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/images/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
+    <!-- google adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1991057826427406" crossorigin="anonymous"></script>
+        <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+<script>
+    window.googletag = window.googletag || {cmd: []};
+    googletag.cmd.push(function() {
+                googletag.defineSlot('/23101350658/TF_TW_PC_PressDTL_ContentBottom01_750x90', [750,90], 'div-gpt-ad-1747878554205-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+        googletag.pubads().collapseEmptyDivs();
+        googletag.enableServices();
+    });
+</script>
+                <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "TrendForce: 上半年合約價漲幅皆破100%，2H26結構性缺貨將帶動NOR Flash、SLC NAND價格持續上漲",
+    "image": [
+        "https://img.trendforce.com.tw/EDM/2026/06/20260616_134256_1.jpg"
+    ],
+    "datePublished": "2026-06-16T14:18:32+08:00",
+    "author": {
+        "@type": "Organization",
+        "name": "TrendForce",
+        "url": "https://www.trendforce.com.tw"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "TrendForce",
+        "url": "https://www.trendforce.com.tw"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.trendforce.com.tw/presscenter/news/20260616-13100.html"
+    }
+}
+</script>
+        </head>    <body class="contacts" data-tf-page="inner">
+        <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPH2ZNH3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+        <div id="preloader" style="display: none;"></div>
+        <header class="fixed-top scroll-change  tf-hd2 " data-menu-anima="fade-in">
+    <div class="navbar navbar-default mega-menu-fullwidth navbar-fixed-top" role="navigation">
+        
+                            <div class="tf-hd2-header-top">
+    <div class="container-fluid">
+        <div class="site-header-top">
+
+            <div class="d-flex align-items-center">
+                <div class="margin-r-10">
+                    <a class="header_mobile-display-none" href="/">
+                                                    <img class="header_logo-pc logo-default" src="/images/TF_logo.svg" alt="TrendForce">
+                                            </a>
+                    <a class="pc-display-none" href="/">
+                        <img class="header_logo-mobile" src="/images/TF-logo-mobile.png" alt="logo">
+                    </a>
+                </div>
+            </div>
+
+            
+            <div class="navbar-main site-navbar">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse">
+
+                        <div class="tf-hd2-menu-header">
+                            <a class="tf-hd2-menu-header-logo" href="/">
+                                <img src="/images/TF-logo-mobile.png" alt="logo">
+                            </a>
+                            <div class="tf-hd2-menu-header-actions">
+                                <button type="button" class="tf-hd2-menu-search-toggle" aria-label="Toggle search"
+                                    aria-expanded="false">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                                                                    <a class="cart-button tf-hd2-menu-cart has-items" href="https://www.trendforce.com.tw/api/cart/toList"
+                                        target="_blank" rel="nofollow" aria-label="Cart">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    </a>
+                                                                <button type="button" class="navbar-collapse-close tf-hd2-menu-header-close"
+                                    aria-label="Close menu">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="tf-hd2-menu-search">
+                            <div class="header_search-container">
+                                <input type="text" class="header_search-input" data-search-bar="menu"
+                                    placeholder="搜尋更多...">
+                                <button type="button" class="header_search-clear" aria-label="Clear search">
+                                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="header_search-submit" data-search-button="menu"
+                                    aria-label="Search">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="tf-hd2-nav-scroll">
+                            <ul class="nav navbar-nav header_navbar">
+
+                                
+                                <li class="dropdown tf-hd2-has-children">
+                                    <a class="dropdown-toggle header_navbar-link-text" data-toggle="dropdown"
+                                        href="javascript:void(0)" role="button" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        研究報告
+                                        <i class="fa fa-chevron-down tf-hd2-caret" aria-hidden="true"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu tf-hd2-mega tf-hd2-mega--research fade-in">
+                                        <div class="tf-hd2-panel-mobile-head">
+                                            <button type="button" class="tf-hd2-panel-back">
+                                                <i class="fa fa-chevron-left" aria-hidden="true"></i> Back
+                                            </button>
+                                        </div>
+
+                                        <a class="tf-hd2-toplink" href="/research">
+                                            研究報告 <i class="fa fa-arrow-right"
+                                                aria-hidden="true"></i>
+                                        </a>
+
+                                        <div class="tf-hd2-mega-grid">
+                                                                                            <div class="tf-hd2-mega-cat">
+                                                    <button type="button" class="tf-hd2-mega-cat-head">
+                                                                                                                    半導體
+                                                                                                                <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                            aria-hidden="true"></i>
+                                                    </button>
+                                                    <ul class="tf-hd2-mega-cat-list">
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Semiconductors/AI%20Server_HBM_Server"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            AI/HBM/Server
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Semiconductors/DRAM"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            DRAM
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Semiconductors/NAND%20Flash"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            NAND Flash
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Semiconductors/Wafer%20Foundries"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            晶圓製造/代工
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Semiconductors/MLCC"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            MLCC
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Semiconductors/IC%20Design"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            IC設計
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Semiconductors/IC%20Manufacturing,%20Package&amp;Test"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            IC製造與封測
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Semiconductors/Compound%20Semiconductor"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            化合物半導體
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </ul>
+                                                </div>
+                                                                                            <div class="tf-hd2-mega-cat">
+                                                    <button type="button" class="tf-hd2-mega-cat-head">
+                                                                                                                    顯示器
+                                                                                                                <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                            aria-hidden="true"></i>
+                                                    </button>
+                                                    <ul class="tf-hd2-mega-cat-list">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Display/LCD"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            LCD
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Display/OLED"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            OLED
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Display/Upstream%20Components"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            零組件
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Display/Panel%20Industry"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            面板
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Display/Display%20Supply%20Chain"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            供應鏈
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Display/Display%20Technologies"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            技術
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+                                                </div>
+                                                                                            <div class="tf-hd2-mega-cat">
+                                                    <button type="button" class="tf-hd2-mega-cat-head">
+                                                                                                                    LED
+                                                                                                                <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                            aria-hidden="true"></i>
+                                                    </button>
+                                                    <ul class="tf-hd2-mega-cat-list">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/LED/LED%20Demand%20_%20Supply%20Data%20Base"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            LED供需資料庫
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/LED/Micro%20LED%20_%20Mini%20LED"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            Micro/Mini LED
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/LED/near-eye_display"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            近眼顯示
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/LED/LED%20Display"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            LED顯示屏
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/LED/automotive_led"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            車用LED - 照明與顯示
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/LED/LED%20Lighting"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            通用/農業照明
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/LED/UV%20LED%20_%20UV%20Laser"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            紫外線LED
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/LED/IR%20LED%20_%20VCSEL%20_%20LiDAR%20Laser"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            紅外線感測- IR LED / VCSEL / EEL
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/LED/Sapphire%20Market"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            藍寶石市場
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+                                                </div>
+                                                                                            <div class="tf-hd2-mega-cat">
+                                                    <button type="button" class="tf-hd2-mega-cat-head">
+                                                                                                                    能源
+                                                                                                                <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                            aria-hidden="true"></i>
+                                                    </button>
+                                                    <ul class="tf-hd2-mega-cat-list">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Energy/Solar%20PV"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            太陽能
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Energy/Lithium%20Battery%20and%20Energy%20Storage"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            電池與儲能
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+                                                </div>
+                                                                                            <div class="tf-hd2-mega-cat">
+                                                    <button type="button" class="tf-hd2-mega-cat-head">
+                                                                                                                    消費性電子
+                                                                                                                <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                            aria-hidden="true"></i>
+                                                    </button>
+                                                    <ul class="tf-hd2-mega-cat-list">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Consumer%20Electronics/Notebook%20Computers"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            筆記型電腦
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Consumer%20Electronics/TVs"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            電視
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Consumer%20Electronics/Smartphones"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            智慧手機
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Consumer%20Electronics/Tablets"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            平板電腦
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Consumer%20Electronics/Wearable%20Devices"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            穿戴裝置
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Consumer%20Electronics/Monitors%20_%20AIO"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            桌上型監視器/AIO
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Consumer%20Electronics/Others"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            其他
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </ul>
+                                                </div>
+                                                                                            <div class="tf-hd2-mega-cat">
+                                                    <button type="button" class="tf-hd2-mega-cat-head">
+                                                                                                                    通訊
+                                                                                                                <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                            aria-hidden="true"></i>
+                                                    </button>
+                                                    <ul class="tf-hd2-mega-cat-list">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Telecommunications/5G%20Technologies"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            5G通訊技術
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Telecommunications/5G%20Spectrum%20&amp;%20Policies"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            5G頻譜與法規
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Telecommunications/Broadband%20&amp;%20Home%20Network"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            寬頻網路通訊
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+                                                </div>
+                                                                                            <div class="tf-hd2-mega-cat">
+                                                    <button type="button" class="tf-hd2-mega-cat-head">
+                                                                                                                    新興科技
+                                                                                                                <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                            aria-hidden="true"></i>
+                                                    </button>
+                                                    <ul class="tf-hd2-mega-cat-list">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Emerging%20Technologies/Cloud%20_%20Edge%20Computing"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            雲端 / 邊緣運算
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Emerging%20Technologies/IoT"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            物聯網
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Emerging%20Technologies/Artificial%20Intelligence"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            AI人工智慧
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Emerging%20Technologies/Automotive%20Technologies"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            汽車科技
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Emerging%20Technologies/AR%20_%20VR"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            AR / VR
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Emerging%20Technologies/Industry%204.0"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            工業4.0
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Emerging%20Technologies/robot"
+                                                                    rel=""
+                                                                    target="">
+                                                                                                                                            機器人
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                                                                                                                                                        </ul>
+                                                </div>
+                                                                                            <div class="tf-hd2-mega-cat">
+                                                    <button type="button" class="tf-hd2-mega-cat-head">
+                                                                                                                    總體經濟
+                                                                                                                <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                            aria-hidden="true"></i>
+                                                    </button>
+                                                    <ul class="tf-hd2-mega-cat-list">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li>
+                                                                <a href="https://www.trendforce.com.tw/research/category/Economics/Major%20Economic%20Indicators"
+                                                                    rel="nofollow"
+                                                                    target="_blank">
+                                                                                                                                            經濟指標
+                                                                                                                                    </a>
+                                                            </li>
+                                                                                                            </ul>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+                                </li>
+
+                                
+                                
+                                
+                                <li class="dropdown tf-hd2-has-children">
+                                                                        <a class="dropdown-toggle header_navbar-link-text"
+                                        data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <span class="membership-new-badge-dot">會員方案</span>
+                                        <i class="fa fa-chevron-down tf-hd2-caret" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="dropdown-menu membership-menu multi-level fade-in tf-hd2-mega">
+                                        <div class="tf-hd2-panel-mobile-head">
+                                            <button type="button" class="tf-hd2-panel-back">
+                                                <i class="fa fa-chevron-left" aria-hidden="true"></i> Back
+                                            </button>
+                                        </div>
+                                        <ul class="tf-hd2-mega-cat-list">
+                                            <li><a href="/membership/DRAMeXchange">半導體
+                                                    <span class="membership-badge-n">N</span></a></li>
+                                            <li><a href="/membership/WitsView">顯示器
+                                                    </a></li>
+                                            <li><a href="/membership/LEDinside">光電
+                                                    </a></li>
+                                            <li><a href="/membership/EnergyTrend">新能源
+                                                    </a></li>
+                                                                                            
+                                                <li><a href="https://www.topology.com.tw/Member/MemberIntro" target="_blank"
+                                                        rel="nofollow">通訊暨應用科技</a></li>
+                                                                                                                                </ul>
+                                    </div>
+                                </li>
+
+                                
+                                <li class="dropdown tf-hd2-has-children">
+                                    <a class="dropdown-toggle header_navbar-link-text" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        價格趨勢
+                                        <i class="fa fa-chevron-down tf-hd2-caret" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="dropdown-menu tf-hd2-mega tf-hd2-mega--price fade-in">
+                                        <div class="tf-hd2-panel-mobile-head">
+                                            <button type="button" class="tf-hd2-panel-back">
+                                                <i class="fa fa-chevron-left" aria-hidden="true"></i> Back
+                                            </button>
+                                        </div>
+                                                                                <div class="tf-hd2-mega-grid">
+                                                                                                                                            <div class="tf-hd2-mega-cat">
+                                                                                                            <button type="button" class="tf-hd2-mega-cat-head">
+                                                            DRAM
+                                                            <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                                aria-hidden="true"></i>
+                                                        </button>
+                                                        <ul class="tf-hd2-mega-cat-list">
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/dram/dram_spot">DRAM Spot Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/dram/dram_contract">DRAM Contract Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/dram/module_spot">Module Spot Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/dram/gddr_spot">GDDR Spot Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/dram/lpddr_spot">LPDDR Spot Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/dram/mobileDram_contract">Mobile DRAM Contract Price</a>
+                                                                </li>
+                                                                                                                    </ul>
+                                                                                                    </div>
+                                                                                                                                            <div class="tf-hd2-mega-cat">
+                                                                                                            <button type="button" class="tf-hd2-mega-cat-head">
+                                                            NAND Flash
+                                                            <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                                aria-hidden="true"></i>
+                                                        </button>
+                                                        <ul class="tf-hd2-mega-cat-list">
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/flash/flash_spot">NAND Flash Spot Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/flash/flash_contract">NAND Flash Contract Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/flash/wafer_spot">Wafer Spot Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/flash/memCard_spot">Memory Card Spot Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/flash/pcc_oem_ssd_contract">PC-Client OEM SSD Contract Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/flash/ssd_street">SSD Street Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/flash/wafer_contract">NAND Flash Wafer Contract Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/flash/emmc_spot">eMMC Spot Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/flash/emmc_contract">eMMC/UFS Contract Price</a>
+                                                                </li>
+                                                                                                                    </ul>
+                                                                                                    </div>
+                                                                                                                                                                                                                                                <div class="tf-hd2-mega-cat">
+                                                                                                            <button type="button" class="tf-hd2-mega-cat-head">
+                                                            TFT-LCD
+                                                            <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                                aria-hidden="true"></i>
+                                                        </button>
+                                                        <ul class="tf-hd2-mega-cat-list">
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/lcd/panel">Large Size Panel Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/lcd/smartphone">LCD Smartphone Panel Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/lcd/street">Street Price</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/lcd/shipment">Large Size Panel Shipment</a>
+                                                                </li>
+                                                                                                                    </ul>
+                                                                                                    </div>
+                                                                                                                                                                                                                                                <div class="tf-hd2-mega-cat">
+                                                                                                            <button type="button" class="tf-hd2-mega-cat-head">
+                                                            PV
+                                                            <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                                aria-hidden="true"></i>
+                                                        </button>
+                                                        <ul class="tf-hd2-mega-cat-list">
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/pv/polysilicon">多晶矽</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/pv/wafer">矽晶圓</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/pv/cell">電池片</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/pv/module">模組</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/pv/pv_glass">光伏玻璃</a>
+                                                                </li>
+                                                                                                                    </ul>
+                                                                                                    </div>
+                                                                                                                                            <div class="tf-hd2-mega-cat">
+                                                                                                            <button type="button" class="tf-hd2-mega-cat-head">
+                                                            Li-Ion Battery
+                                                            <i class="fa fa-chevron-down tf-hd2-acc-caret"
+                                                                aria-hidden="true"></i>
+                                                        </button>
+                                                        <ul class="tf-hd2-mega-cat-list">
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/battery-price/battery_cell_and_pack">電池芯及電池包</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/battery-price/precursor_and_cathode_material">前驅體及正極材料</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/battery-price/anode_material">負極材料</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/battery-price/separator">隔離膜</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/battery-price/electrolyte">電解液</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/battery-price/li_co_ni">鋰、鈷、鎳</a>
+                                                                </li>
+                                                                                                                            <li><a
+                                                                        href="https://www.trendforce.com.tw/price/battery-price/other">其他</a>
+                                                                </li>
+                                                                                                                    </ul>
+                                                                                                    </div>
+                                                                                    </div>
+                                    </div>
+                                </li>
+
+                                
+                                <li class="dropdown tf-hd2-has-children">
+                                    <a class="dropdown-toggle header_navbar-link-text" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        洞察
+                                        <i class="fa fa-chevron-down tf-hd2-caret" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="dropdown-menu multi-level fade-in tf-hd2-mega">
+                                        <div class="tf-hd2-panel-mobile-head">
+                                            <button type="button" class="tf-hd2-panel-back">
+                                                <i class="fa fa-chevron-left" aria-hidden="true"></i> Back
+                                            </button>
+                                        </div>
+                                        <ul class="tf-hd2-mega-cat-list">
+                                            <li><a href="/insights">產業洞察</a></li>
+                                                                                        <li><a href="/presscenter">新聞中心</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                
+                                <li class="dropdown">
+                                    <a class="header_navbar-link-text" href="/seminar"
+                                        data-toggle="dropdown" role="button">活動專區</a>
+                                </li>
+
+                                
+                                                                    <li class="dropdown tf-hd2-has-children">
+                                        <a class="dropdown-toggle header_navbar-link-text" data-toggle="dropdown"
+                                            role="button" aria-haspopup="true" aria-expanded="false">
+                                            探索
+                                            <i class="fa fa-chevron-down tf-hd2-caret" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="dropdown-menu multi-level fade-in tf-hd2-mega">
+                                            <div class="tf-hd2-panel-mobile-head">
+                                                <button type="button" class="tf-hd2-panel-back">
+                                                    <i class="fa fa-chevron-left" aria-hidden="true"></i> Back
+                                                </button>
+                                            </div>
+                                            <ul class="tf-hd2-mega-cat-list">
+                                                                                                    <li><a href="https://datatrack.trendforce.com.tw/#login_check" target="_blank"
+                                                            rel="noopener">DataTrack <i class="fa fa-external-link"
+                                                                aria-hidden="true"></i></a></li>
+                                                                                                                                                    <li>
+                                                                                                                <a
+                                                            href="/login?sso=intellectnet" rel="nofollow" target="_blank" data-act-pos="header-menu" data-act-type="enter-intellectnet">AI Agent</a>
+                                                                                                            </li>
+                                                                                            </ul>
+                                        </div>
+                                    </li>
+                                
+                                
+                                                                <li class="tf-hd2-menu-signin-item">
+                                    <a class="tf-hd2-menu-signin" href="/login"
+                                        rel="nofollow">會員登入</a>
+                                </li>
+                                                                <li class="tf-hd2-menu-getsupport-item">
+                                    
+                                    <a class="tf-hd2-menu-getsupport lightbox" href="#contact-sales" rel="nofollow"
+                                        data-act-pos="header-contact">
+                                        取得協助
+                                    </a>
+                                </li>
+                                <li class="tf-hd2-menu-social-item">
+                                    <div class="tf-hd2-social-links">
+                                        <a href="https://x.com/trendforce" target="_blank" rel="noopener"
+                                            aria-label="X">
+                                            <img src="/images/icon-x-square.svg" alt="X">
+                                        </a>
+                                        <a href="https://www.linkedin.com/company/trendforce-集邦科技/" target="_blank" rel="noopener"
+                                            aria-label="LinkedIn">
+                                            <img src="/images/icon-linkedin.svg" alt="LinkedIn">
+                                        </a>
+                                        <a href="https://insights.trendforce.com/" target="_blank" rel="noopener"
+                                            aria-label="Substack">
+                                            <img src="/images/icon-substack.svg" alt="Substack">
+                                        </a>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="header_icon-group">
+                <div class="d-flex gap-2 align-items-center">
+
+                    <div class="header_search-container">
+                        <input type="text" class="header_search-input" data-search-bar="navbar"
+                            placeholder="搜尋更多...">
+                        <button type="button" class="header_search-clear" aria-label="Clear search">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="header_search-submit" data-search-button="navbar"
+                            aria-label="Search">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        <div class="header_search-recommand-box">
+                            <h4>熱門關鍵字</h4>
+                            <div class="header_search-recommand-keyword">
+                                                                    <a href="/search?query=DRAM&src=navbar"
+                                        rel="nofollow">#DRAM</a>
+                                                                    <a href="/search?query=Foundry&src=navbar"
+                                        rel="nofollow">#Foundry</a>
+                                                                    <a href="/search?query=AI+Server&src=navbar"
+                                        rel="nofollow">#AI Server</a>
+                                                                    <a href="/search?query=HBM&src=navbar"
+                                        rel="nofollow">#HBM</a>
+                                                                    <a href="/search?query=FOPLP&src=navbar"
+                                        rel="nofollow">#FOPLP</a>
+                                                                    <a href="/search?query=CoWoS&src=navbar"
+                                        rel="nofollow">#CoWoS</a>
+                                                                    <a href="/search?query=NAND+Flash&src=navbar"
+                                        rel="nofollow">#NAND Flash</a>
+                                                                    <a href="/search?query=Automotive&src=navbar"
+                                        rel="nofollow">#Automotive</a>
+                                                                    <a href="/search?query=MLCC&src=navbar"
+                                        rel="nofollow">#MLCC</a>
+                                                                    <a href="/search?query=Server&src=navbar"
+                                        rel="nofollow">#Server</a>
+                                                                    <a href="/search?query=Micro+LED&src=navbar"
+                                        rel="nofollow">#Micro LED</a>
+                                                                    <a href="/search?query=IC+Design&src=navbar"
+                                        rel="nofollow">#IC Design</a>
+                                                            </div>
+                        </div>
+                    </div>
+                    <div class="header_search-overlay"></div>
+
+                    <button type="button" class="tf-hd2-search-toggle" aria-label="Open search">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+
+                    <span class="tf-hd2-icon-divider" aria-hidden="true"></span>
+
+                                            <div class="cart-button-wrapper">
+                            <a class="cart-button has-items" href="https://www.trendforce.com.tw/api/cart/toList" target="_blank"
+                                rel="nofollow">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </a>
+                            <div class="cart-dropdown">
+                                <div class="cart-dropdown-header">
+                                    <h4>購物清單</h4>
+                                                                            <span class="cart-count-badge">0個品項</span>
+                                                                    </div>
+                                <div class="cart-dropdown-items">
+                                    <div class="text-center" style="padding: 40px 0; color: #999; font-size: 14px;">
+                                        購物車是空的
+                                    </div>
+                                </div>
+                                <div class="cart-dropdown-footer">
+                                    <div class="cart-total-row">
+                                                                                    <span class="cart-total-label">項目總額 (未稅)</span>
+                                            <span class="cart-total-amount">TWD 0</span>
+                                                                            </div>
+                                    <a href="https://www.trendforce.com.tw/api/cart/toList" class="view-cart-link">
+                                        <span>查看購物車</span>
+                                        <i class="fa fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <a class="tf-hd2-get-support lightbox" href="#contact-sales" rel="nofollow"
+                        aria-label="聯絡我們" data-act-pos="header-contact">
+                        <img src="/images/icon-customer-service.svg" alt="">
+                    </a>
+
+                                        <a class="sign-in-button tf-hd2-topbar-signin hidden-sm" href="/login" rel="nofollow">
+                        會員登入
+                    </a>
+                    
+                    <span class="tf-hd2-icon-divider hidden-sm" aria-hidden="true"></span>
+
+                    <div class="tf-hd2-social-links hidden-sm">
+                        <a href="https://insights.trendforce.com/" target="_blank" rel="noopener" aria-label="Substack">
+                            <img class="tf-hd2-social-icon-default" src="/images/icon-substack.svg" alt="Substack">
+                            <img class="tf-hd2-social-icon-white" src="/images/icon-substack-w.svg" alt="Substack">
+                        </a>
+                        <a href="https://x.com/trendforce" target="_blank" rel="noopener" aria-label="X">
+                            <img class="tf-hd2-social-icon-default" src="/images/icon-x-square.svg" alt="X">
+                            <img class="tf-hd2-social-icon-white" src="/images/icon-x-square-w.svg" alt="X">
+                        </a>
+                        <a href="https://www.linkedin.com/company/trendforce-集邦科技/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <img class="tf-hd2-social-icon-default" src="/images/icon-linkedin.svg" alt="LinkedIn">
+                            <img class="tf-hd2-social-icon-white" src="/images/icon-linkedin-w.svg" alt="LinkedIn">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="hidden-md hidden-lg">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" aria-label="Open menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // 遊客訪問必要取得的cookie，會在未登入購買時傳給cart那端
+    (function () {
+        function getCookie(name) {
+            const value = '; ' + document.cookie;
+            const parts = value.split('; ' + name + '=');
+            if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
+            return null;
+        }
+
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + expires.toUTCString() + ';path=/';
+        }
+
+        try {
+            if (!getCookie('guest_id')) {
+                const ts = Date.now();
+                const rnd = Math.floor(1000 + Math.random() * 9000);
+                const guestId = '' + ts + rnd;
+                setCookie('guest_id', guestId, 30);
+            }
+        } catch (e) {
+            console.error('guest_id cookie setup failed', e);
+        }
+    })();
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const socialIcon = document.querySelector('.social-icon.active');
+        const accountContent = document.querySelector('.header_account-content');
+        if (!socialIcon || !accountContent) return;
+
+        socialIcon.addEventListener('mouseover', function () {
+            accountContent.style.display = 'flex';
+        });
+
+        accountContent.addEventListener('mouseleave', function () {
+            accountContent.style.display = 'none';
+        });
+    });
+</script>
+
+<script>
+    // 搜尋列（輸入框 → X 清除 → 放大鏡按鈕送出），沿用 header_v3_prototype.html 的互動邏輯
+    document.addEventListener('DOMContentLoaded', function () {
+        const executeSearch = (query, src) => {
+            if (!query) return;
+            window.location.href = `/search?query=${encodeURIComponent(query)}&src=${encodeURIComponent(src)}`;
+        };
+
+        document.querySelectorAll('.header_search-container').forEach(function (container) {
+            const input = container.querySelector('.header_search-input');
+            const clearBtn = container.querySelector('.header_search-clear');
+            const submitBtn = container.querySelector('.header_search-submit');
+            if (!input || !clearBtn || !submitBtn) return;
+
+            function syncHasValue() {
+                container.classList.toggle('has-value', input.value.trim().length > 0);
+            }
+            syncHasValue();
+            input.addEventListener('input', syncHasValue);
+
+            clearBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                input.value = '';
+                syncHasValue();
+                input.focus();
+            });
+
+            submitBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                executeSearch(input.value.trim(), input.getAttribute('data-search-bar') || 'navbar');
+            });
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    executeSearch(input.value.trim(), input.getAttribute('data-search-bar') || 'navbar');
+                }
+            });
+        });
+
+        // 手機/平板：Menu 內搜尋匡預設收合，由 Menu Header 放大鏡展開/收合；
+        // 外部搜尋圖示開 Menu 時直接以展開狀態呈現
+        const searchToggle = document.querySelector('.tf-hd2-search-toggle');
+        const navbarToggle = document.querySelector('.navbar-toggle');
+        const menuSearch = document.querySelector('.tf-hd2-menu-search');
+        const menuSearchToggle = document.querySelector('.tf-hd2-menu-search-toggle');
+        const menuInput = menuSearch ? menuSearch.querySelector('.header_search-input') : null;
+
+        function openMenuSearch(instant) {
+            if (!menuSearch) return;
+            if (instant) menuSearch.classList.add('tf-hd2-no-anim');
+            menuSearch.classList.add('is-open');
+            if (menuSearchToggle) {
+                menuSearchToggle.classList.add('is-active');
+                menuSearchToggle.setAttribute('aria-expanded', 'true');
+            }
+            if (instant) {
+                requestAnimationFrame(function () { menuSearch.classList.remove('tf-hd2-no-anim'); });
+            }
+        }
+
+        function closeMenuSearch() {
+            if (!menuSearch) return;
+            menuSearch.classList.remove('is-open');
+            if (menuSearchToggle) {
+                menuSearchToggle.classList.remove('is-active');
+                menuSearchToggle.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        if (menuSearchToggle && menuSearch) {
+            menuSearchToggle.addEventListener('click', function () {
+                if (menuSearch.classList.contains('is-open')) {
+                    closeMenuSearch();
+                } else {
+                    openMenuSearch(false);
+                    if (menuInput) menuInput.focus();
+                }
+            });
+        }
+
+        if (searchToggle && navbarToggle) {
+            searchToggle.addEventListener('click', function () {
+                navbarToggle.click();
+                openMenuSearch(true);
+                setTimeout(function () { if (menuInput) menuInput.focus(); }, 350);
+            });
+        }
+
+        if (navbarToggle) {
+            let mobileMenuOpen = false;
+            navbarToggle.addEventListener('click', function () {
+                mobileMenuOpen = !mobileMenuOpen;
+                if (!mobileMenuOpen) closeMenuSearch();
+            });
+        }
+    });
+</script>
+
+<script>
+    // 一級導覽：桌機 hover 展開／手機平板點擊右滑；沿用 header_v3_prototype.html 的互動邏輯
+    document.addEventListener('DOMContentLoaded', function () {
+        const isMobile = function () { return window.matchMedia('(max-width: 991px)').matches; };
+        const items = document.querySelectorAll('.tf-hd2-has-children');
+
+        function closeAll(except) {
+            items.forEach(function (li) {
+                if (li !== except) {
+                    li.classList.remove('tf-hd2-open');
+                    const a = li.querySelector(':scope > a');
+                    if (a) a.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        items.forEach(function (li) {
+            const toggle = li.querySelector(':scope > a.dropdown-toggle');
+            let closeTimer = null;
+
+            li.addEventListener('mouseenter', function () {
+                if (isMobile()) return;
+                clearTimeout(closeTimer);
+                closeAll(li);
+                li.classList.add('tf-hd2-open');
+                if (toggle) toggle.setAttribute('aria-expanded', 'true');
+            });
+            li.addEventListener('mouseleave', function () {
+                if (isMobile()) return;
+                clearTimeout(closeTimer);
+                closeTimer = setTimeout(function () {
+                    li.classList.remove('tf-hd2-open');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                }, 250);
+            });
+
+            if (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    if (!isMobile()) return;
+                    e.preventDefault();
+                    closeAll(li);
+                    li.classList.add('tf-hd2-open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                });
+            }
+
+            const backBtn = li.querySelector('.tf-hd2-panel-back');
+            if (backBtn) {
+                backBtn.addEventListener('click', function () {
+                    li.classList.remove('tf-hd2-open');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.querySelectorAll('.tf-hd2-mega-grid').forEach(function (grid) {
+            const cats = grid.querySelectorAll(':scope > .tf-hd2-mega-cat');
+            cats.forEach(function (cat) {
+                const head = cat.querySelector('.tf-hd2-mega-cat-head');
+                if (!head) return;
+                head.addEventListener('click', function () {
+                    if (!isMobile()) return;
+                    const wasOpen = cat.classList.contains('tf-hd2-acc-open');
+                    cats.forEach(function (c) { c.classList.remove('tf-hd2-acc-open'); });
+                    if (!wasOpen) cat.classList.add('tf-hd2-acc-open');
+                });
+            });
+        });
+    });
+</script>
+
+<script>
+    /**
+     * Cart Dropdown Interaction Logic（沿用既有 v2 購物車邏輯，class 名稱未變）
+     */
+    window.getCartCookieName = function () {
+        const locale = 'zh-tw';
+        const languageMap = { 'zh-tw': 'tw', 'zh-cn': 'en', 'en': 'en' };
+        const langSuffix = languageMap[locale] || 'en';
+        return 'cart_' + langSuffix;
+    };
+
+    window.getCookie = function (name) {
+        const value = '; ' + document.cookie;
+        const parts = value.split('; ' + name + '=');
+        if (parts.length === 2) {
+            return decodeURIComponent(parts.pop().split(';').shift());
+        }
+        return null;
+    };
+
+    window.isInCart = function (packageId) {
+                    const cartCookieName = window.getCartCookieName();
+            const guestCart = window.getCookie(cartCookieName);
+            if (guestCart) {
+                try {
+                    const cartData = JSON.parse(guestCart);
+                    return cartData.some(function (item) { return item.package_id == packageId; });
+                } catch (e) {
+                    console.error('檢查購物車失敗:', e);
+                    return false;
+                }
+            }
+            return false;
+            };
+
+    function getCookie(name) {
+        const value = '; ' + document.cookie;
+        const parts = value.split('; ' + name + '=');
+        if (parts.length === 2) {
+            return decodeURIComponent(parts.pop().split(';').shift());
+        }
+        return null;
+    }
+
+    function setCookie(name, value, minutes) {
+        if (minutes === 0) {
+            document.cookie = name + '=' + encodeURIComponent(value) + ';path=/';
+        } else {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + minutes * 60 * 1000);
+            document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + expires.toUTCString() + ';path=/';
+        }
+    }
+
+    function mergeCartData(existingItems, newItems) {
+        const cartMap = new Map();
+        existingItems.forEach(function (item) {
+            if (item.package_id) cartMap.set(String(item.package_id), item);
+        });
+        newItems.forEach(function (item) {
+            if (item.package_id && !cartMap.has(String(item.package_id))) {
+                cartMap.set(String(item.package_id), item);
+            }
+        });
+        return Array.from(cartMap.values());
+    }
+
+    function updateCartDisplay(cartData) {
+        const itemsContainer = document.querySelector('.cart-dropdown-items');
+        const countBadge = document.querySelector('.cart-count-badge');
+        const totalAmount = document.querySelector('.cart-total-amount');
+        // 桌機/手機選單各有一顆 .cart-button，querySelector 只會抓到第一顆，另一顆紅燈狀態永遠不會更新
+        const cartButtons = document.querySelectorAll('.cart-button');
+
+        if (!cartData || cartData.length === 0) {
+            cartButtons.forEach(function (btn) { btn.classList.remove('has-items'); });
+            if (itemsContainer) itemsContainer.innerHTML = '<div class="text-center" style="padding: 40px 0; color: #999; font-size: 14px;">購物車是空的</div>';
+                            if (countBadge) countBadge.textContent = '0個品項';
+                if (totalAmount) totalAmount.textContent = 'TWD 0';
+                        return;
+        }
+        cartButtons.forEach(function (btn) { btn.classList.add('has-items'); });
+                    if (countBadge) countBadge.textContent = cartData.length + '個品項';
+        
+        let total = 0;
+        let html = '';
+        cartData.forEach(function (item) {
+            const price = parseFloat(item.product_price || item.price) || 0;
+            total += price;
+
+            html += '<div class="cart-item" data-package-id="' + item.package_id + '">';
+            html += '<div class="cart-item-info">';
+            html += '<div class="cart-item-name">' + (item.brand_product_name || item.package_name || item.name || '') + '</div>';
+                            html += '<div class="cart-item-price">TWD ' + price.toLocaleString('en-US') + '</div>';
+                        html += '</div>';
+            html += '<i class="fa fa-times cart-item-remove"></i>';
+            html += '</div>';
+        });
+
+        if (itemsContainer) itemsContainer.innerHTML = html;
+                    if (totalAmount) totalAmount.textContent = 'TWD ' + total.toLocaleString('en-US');
+            }
+
+    window.loadCartData = function () {
+                    const cartCookieName = getCartCookieName();
+            const guestCart = getCookie(cartCookieName);
+
+            if (guestCart) {
+                try {
+                    const cartData = JSON.parse(guestCart);
+                    updateCartDisplay(cartData);
+                } catch (e) {
+                    console.error('解析 Cookie 購物車失敗（可能是舊的加密格式）:', e);
+                    document.cookie = cartCookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                    updateCartDisplay([]);
+                }
+            } else {
+                updateCartDisplay([]);
+            }
+            };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const cartDropdown = document.querySelector('.cart-dropdown');
+        if (!cartDropdown) return;
+
+        setTimeout(function () {
+            document.querySelectorAll('[data-cart-package]').forEach(function (button) {
+                const packageId = button.getAttribute('data-cart-package');
+                if (packageId && typeof window.isInCart === 'function' && window.isInCart(packageId)) {
+                    const cartAction = (button.getAttribute('data-cart') || '').toLowerCase();
+                    button.classList.add('added');
+                    if (cartAction === 'add_to_cart' || cartAction === 'add_cart') {
+                        const img = button.querySelector('img');
+                        const span = button.querySelector('span');
+                        if (img) {
+                            img.src = '/images/addedcart.svg';
+                            if (span) span.textContent = '已加入購物車';
+                        } else if (span) {
+                            span.textContent = '已加入購物車';
+                        } else if (button.tagName && (button.tagName.toLowerCase() === 'button' || button.tagName.toLowerCase() === 'a')) {
+                            button.innerHTML = '<span>已加入購物車</span>';
+                        } else {
+                            button.textContent = '已加入購物車';
+                        }
+                        try { button.disabled = true; } catch (e) { }
+                    }
+                }
+            });
+        }, 100);
+
+                    loadCartData();
+        
+                fetch('/api/cart/checkGuestCartSync', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            }
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+            if (data.error === 0 && data.need_sync && data.cart_data) {
+                const cartData = data.cart_data;
+                const currentCookieName = getCartCookieName();
+                const currentLang = 'tw';
+                const targetCurrency = currentLang === 'tw' ? 1 : 2;
+
+                const langItems = [];
+                cartData.forEach(function(item) {
+                    if (item.currency == targetCurrency) {
+                        langItems.push({
+                            package_id: item.brand_product_id,
+                            brand_product_name: item.brand_product_name || item.title || '',
+                            product_price: item.brand_product_price || item.price || 0,
+                            currency: item.currency == 1 ? 'TWD' : (currentLang === 'en' ? 'USD' : 'RMB'),
+                            checked: item.checked == 1,
+                            brand: item.brand || 1,
+                            product_url: item.product_url || '',
+                            report_number: item.report_number || ''
+                        });
+                    }
+                });
+
+                setCookie(currentCookieName, JSON.stringify(langItems), 525600);
+                updateCartDisplay(langItems);
+            }
+        })
+        .catch(function(error) {});
+
+        cartDropdown.addEventListener('click', function(e) {
+            if (e.target.classList.contains('cart-item-remove')) {
+                const item = e.target.closest('.cart-item');
+                if (item) {
+                    const packageId = item.dataset.packageId;
+
+                    const confirmMessage = '確認從購物車刪除此商品嗎？';
+                    if (!confirm(confirmMessage)) {
+                        return;
+                    }
+
+                    item.style.transition = 'all 0.3s ease';
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateX(20px)';
+
+                    setTimeout(function() {
+                                                    removeCookieItem(packageId);
+                                            }, 300);
+                }
+            }
+        });
+
+    function removeCookieItem(packageId) {
+        fetch('/api/cart/removePackage', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({ package_id: packageId })
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+            if (data.error === 0) {
+                const cartCookieName = getCartCookieName();
+                const guestCart = getCookie(cartCookieName);
+                if (guestCart) {
+                    try {
+                        let cartData = JSON.parse(guestCart);
+                        cartData = cartData.filter(function(item) { return item.package_id != packageId; });
+                        setCookie(cartCookieName, JSON.stringify(cartData), 525600);
+                        updateCartDisplay(cartData);
+                        restoreCartButton(packageId);
+                    } catch (e) {
+                        console.error('更新 Cookie 失敗:', e);
+                    }
+                }
+            }
+        })
+        .catch(function(error) {
+            console.error('移除失敗:', error);
+        });
+    }
+
+    function removeFromCart(packageId) {
+        fetch('/api/cart/removePackage', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({ package_id: packageId })
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+            if (data.error === 0) {
+                const userId = '';
+                if (userId) {
+                    document.cookie = 'user_cart_' + userId + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
+                loadCartData();
+                restoreCartButton(packageId);
+            }
+        })
+        .catch(function(error) {
+            console.error('移除失敗:', error);
+        });
+    }
+
+    function restoreCartButton(packageId) {
+        if (!packageId) return;
+
+        document.querySelectorAll('[data-cart-package="' + packageId + '"]').forEach(function(button) {
+            const cartAction = (button.getAttribute('data-cart') || '').toLowerCase();
+            button.classList.remove('added');
+
+            if (cartAction !== 'add_to_cart' && cartAction !== 'add_cart') return;
+
+            button.disabled = false;
+            const img = button.querySelector('img');
+            const span = button.querySelector('span');
+            const addToCartText = '加入購物車';
+
+            if (img) {
+                img.src = button.classList.contains('cart-icon-btn') ? '/images/addcart-g.svg' : '/images/addcart.svg';
+                img.alt = 'addcart';
+                if (span) span.textContent = addToCartText;
+            } else if (span) {
+                span.textContent = addToCartText;
+            } else if (button.tagName.toLowerCase() === 'button' || button.tagName.toLowerCase() === 'a') {
+                if (button.id === 'btnAddToCart') {
+                    button.innerHTML = '<i class="fa fa-shopping-cart" aria-hidden="true"></i><span>' + addToCartText + '</span>';
+                } else if (button.classList.contains('add-cart-btn')) {
+                    button.innerHTML = '<img src="/images/addcart.svg" alt="addcart"><span>' + addToCartText + '</span>';
+                } else {
+                    button.innerHTML = '<span>' + addToCartText + '</span>';
+                }
+            } else {
+                button.textContent = addToCartText;
+            }
+        });
+    }
+
+    function mergeGuestCartOnLogin() {
+        const cartCookieName = getCartCookieName();
+        const guestCart = getCookie(cartCookieName);
+        if (!guestCart) {
+            return;
+        }
+
+        try {
+            const cartData = JSON.parse(guestCart);
+            if (cartData.length === 0) {
+                document.cookie = cartCookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                return;
+            }
+
+            let mergePromises = cartData.map(function(item) {
+                return fetch('/api/cart/addPackage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': 'OLs0G2Apq3TkDpywKqMqdCpPK1PtKK7VL1RGChMR'
+                    },
+                    body: JSON.stringify({
+                        package_id: item.package_id,
+                        report_number: item.report_number,
+                        checked: 'true'
+                    })
+                })
+                .then(function(response) { return response.json(); })
+                .then(function(json) {
+                    if (json.error === 0) {
+                        return { success: true, item: item };
+                    } else if (json.error === 2) {
+                        return { success: true, item: item, duplicate: true };
+                    } else {
+                        return { success: false, item: item };
+                    }
+                })
+                .catch(function(error) {
+                    console.error('合併商品錯誤:', item.package_name, error);
+                    return { success: false, item: item };
+                });
+            });
+
+            Promise.all(mergePromises).then(function(results) {
+                document.cookie = cartCookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+                const userId = '';
+                if (userId) {
+                    document.cookie = 'user_cart_' + userId + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
+
+                loadCartData();
+            });
+
+        } catch (e) {
+            console.error('合併訪客購物車失敗:', e);
+            document.cookie = cartCookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        }
+    }
+    });
+
+    (function () {
+        var _lastCartRefresh = 0;
+        var CART_REFRESH_INTERVAL = 10000;
+
+        function syncGuestCartFromExternal() {
+            var csrfMeta = document.querySelector('meta[name="csrf-token"]');
+            fetch('/api/cart/checkGuestCartSync', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfMeta ? csrfMeta.getAttribute('content') : ''
+                }
+            })
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                if (data.error === 0 && data.cart_data) {
+                    var currentCookieName = getCartCookieName();
+                    var currentLang = 'tw';
+                    var targetCurrency = currentLang === 'tw' ? 1 : 2;
+                    var langItems = [];
+                    data.cart_data.forEach(function(item) {
+                        if (item.currency == targetCurrency) {
+                            langItems.push({
+                                package_id: item.brand_product_id,
+                                brand_product_name: item.brand_product_name || item.title || '',
+                                product_price: item.brand_product_price || item.price || 0,
+                                currency: item.currency == 1 ? 'TWD' : (currentLang === 'en' ? 'USD' : 'RMB'),
+                                checked: item.checked == 1,
+                                brand: item.brand || 1,
+                                product_url: item.product_url || '',
+                                report_number: item.report_number || ''
+                            });
+                        }
+                    });
+                    setCookie(currentCookieName, JSON.stringify(langItems), 525600);
+                    updateCartDisplay(langItems);
+                } else {
+                    window.loadCartData();
+                }
+            })
+            .catch(function() {
+                window.loadCartData();
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var wrapper = document.querySelector('.cart-button-wrapper');
+            if (!wrapper) return;
+
+            wrapper.addEventListener('mouseenter', function() {
+                var now = Date.now();
+                if (now - _lastCartRefresh < CART_REFRESH_INTERVAL) return;
+                _lastCartRefresh = now;
+
+                                    syncGuestCartFromExternal();
+                            });
+        });
+    })();
+
+    window.clearUserCartCookie = function() {
+        try {
+            document.cookie = 'cart_tw=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = 'cart_en=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = 'guest_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        } catch (e) {
+            try { document.cookie = 'cart_tw=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; } catch (e) {}
+            try { document.cookie = 'cart_en=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; } catch (e) {}
+            try { document.cookie = 'guest_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; } catch (e) {}
+        }
+    };
+</script>
+
+<script>
+    // 自動為指向 /api/cart/toList 的連結與 window.open/location.assign 附加 guest_id
+    (function () {
+        function safeGetCookie(name) {
+            try {
+                if (typeof window.getCookie === 'function') return window.getCookie(name);
+                var v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+                return v ? decodeURIComponent(v.pop()) : null;
+            } catch (e) { return null; }
+        }
+
+        function appendGuestIdToUrl(url) {
+            try {
+                if (!url || url.indexOf('/api/cart/toList') === -1) return url;
+                var guest = safeGetCookie('guest_id');
+                if (!guest) return url;
+                if (url.indexOf('guest_id=') !== -1) return url;
+                var sep = url.indexOf('?') === -1 ? '?' : '&';
+                return url + sep + 'guest_id=' + encodeURIComponent(guest);
+            } catch (e) { return url; }
+        }
+
+        document.addEventListener('click', function(e){
+            var a = e.target.closest && e.target.closest('a[href]');
+            if (!a) return;
+            var href = a.getAttribute('href');
+            if (!href) return;
+            if (href.indexOf('/api/cart/toList') === -1) return;
+
+            var newHref = appendGuestIdToUrl(href);
+            if (newHref === href) return;
+
+            e.preventDefault();
+            if (e.ctrlKey || e.metaKey || a.target === '_blank' || e.button === 1) {
+                window.open(newHref, '_blank');
+                return;
+            }
+
+            window.location.href = newHref;
+        }, true);
+
+        (function () {
+            var origOpen = window.open;
+            window.open = function(url, name, specs){
+                try { if (typeof url === 'string') url = appendGuestIdToUrl(url); } catch (e) {}
+                return origOpen.call(window, url, name, specs);
+            };
+        })();
+
+        try {
+            var origAssign = window.location.assign;
+            window.location.assign = function(url){
+                try { if (typeof url === 'string') url = appendGuestIdToUrl(url); } catch (e) {}
+                return origAssign.call(window.location, url);
+            };
+        } catch (e) {}
+    })();
+</script>
+    <!-- guest_id cookie already set by shared script at top of file -->
+                                        </div>
+</header>
+
+                        <div class="header-title ken-burn-center white" data-parallax="scroll" data-position="top" data-natural-height="650" data-natural-width="1920"
+    data-image-src="https://www.trendforce.com.tw/images/bg07.gif">
+
+    <div class="header-title-bg">
+        
+        
+        <div class="title-base text-left">
+                                        <h1>新聞中心</h1>
+                    </div>
+        
+    </div>
+</div>
+            
+
+
+    
+            <div class="section-bg-color">
+            <div class="content breadcrumb-text">
+                <ul>
+                    <li><a href="/">首頁</a></li>
+                                            <li class="active">新聞中心</li>
+                                    </ul>
+            </div>
+        </div>
+    
+        <div class="section-empty section-item">
+                <div class="container content">
+        <div class="row presscenter-row">
+            <article class="col-md-8 col-sm-12 presscenter">
+
+     
+            
+                            <h1>TrendForce: 上半年合約價漲幅皆破100%，2H26結構性缺貨將帶動NOR Flash、SLC NAND價格持續上漲</h1>
+    <hr class="space xs">
+    <div class="tag-row">
+        <span><i class="fa fa-calendar"></i>16 June 2026</span>
+        <span><i class="fa fa-bookmark"></i>
+                    <a href="/presscenter/news/Semiconductors">半導體</a>
+                            </span>
+        <span><i class="fa fa-user"></i>
+                <a href="https://www.trendforce.com.tw/search?resource=news&amp;query=TrendForce&amp;column=author" >TrendForce</a>
+                            </span>
+
+                <span>
+            <div class="btn-group social-group press-share">
+                <a target="_blank" href="#" data-social="share-facebook"><i class="fa fa-facebook"></i></a>
+                <a target="_blank" href="#" data-social="share-linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+        </span>
+            </div>
+    <hr class="space m">
+    <p>根據TrendForce最新記憶體產業研究，由於記憶體大廠的產能規劃持續傾向HBM、高層數3D NAND等高附加價值產品，排擠NOR Flash、SLC NAND依賴的成熟製程產能，然因需求穩定，已激勵2026上半年NOR Flash、SLC NAND累積合約價漲幅分別突破100%。由於供應商未有大規模擴產計畫，預估下半年兩項產品的價格將隨供需緊張而繼續調升。</p>
+
+<p>TrendForce說明，NOR Flash的核心價值為即時執行(XIP)能力與高穩定性。在汽車電子領域，隨著自動駕駛輔助系統、智慧座艙等功能升級，車載韌體容量快速膨脹，高密度NOR Flash已成關鍵元件。邊緣AI裝置部分，過去容量僅需數十MB的系統程式，因AI模型本地化運算需求增加，需求往往倍數成長，帶動256Mb以上高容量NOR Flash需求快速提升。此外，在工控、衛星通訊及航太設備等領域，NOR Flash的高可靠特性難以由其他技術取代，形成穩定且高毛利的需求基礎。</p>
+
+<p>SLC NAND則因高P/E壽命、極低錯誤率、長期資料保存能力、寬溫運作特性，成為許多高可靠度系統的唯一選擇。近年智慧工廠、機器人、自主移動設備以及高階網通交換器等產品大量導入即時推論(Inference AI)功能，推升對高可靠度儲存系統需求。企業級server與資料中心則持續使用SLC NAND作為作業系統開機碟(Boot Drive)及高頻寫入緩衝區(Write-intensive Buffer)。在醫療影像設備、軍工電子、航太系統等對資料錯誤幾乎零容忍的環境，SLC NAND更有不可替代的市場地位。</p>
+
+<p>TrendForce表示，2026上半年終端對記憶體產品需求逐步恢復，加上AI相關應用快速成長，大幅消耗市場有限的供給，NOR Flash率先出現交期延長與配貨(Allocation)現象，合約價平均累積漲幅將達100-120%，高容量產品漲勢更顯著。SLC NAND則因部分國際大廠陸續退出小容量及成熟製程產品，供給明顯萎縮，而工控、車用及網通客戶又開始建立長期安全庫存，導致第二季出現明顯的恐慌性備貨潮，上半年價格平均累積漲幅將達130-150%。</p>
+
+<p>分析2026下半年價格走勢，由於全球主要供應商目前皆以製程微縮、提高良率及優化單位晶圓產出為主，無新增產能計畫，預期下半年開始，高度依賴長生命週期產品的車用與工控市場將形成長期缺貨風險。其中，高容量NOR Flash有車用電子與邊緣AI需求支撐，預計下半年價格仍有60-65%以上的調漲空間。而中低容量NOR Flash則可能受中國供應商產能逐步釋放影響，價格漲勢趨緩，部分產品甚至進入高檔盤整階段。</p>
+
+<p>SLC NAND雖然多數產品需求未明顯增加，供應來源卻持續減少，預估2026下半年價格漲勢雖將收斂，但仍有70-75%的上漲空間，工業、車規級產品漲勢可能更強。</p>
+
+<p>TrendForce指出，為避免價格失控衝擊合作關係或促使客戶尋求替代技術，主要供應商未來更可能透過長期供貨合約(LTA)與選擇性接單策略管理供需，意味未來市場競爭的核心將不再只是價格，而是供貨穩定性與客戶關係管理能力。</p>
+
+<p><img alt="" src="https://img.trendforce.com.tw/EDM/2026/06/20260616_134256_1.jpg" /></p>
+
+<div class="highlight-frame">若有興趣進一步了解並購買 TrendForce 半導體相關研究報告與產業數據，請至 <a href="https://www.trendforce.com.tw/research/dram">報告頁面</a> 查閱，也能 <a class="lightbox" href="#contact-sales">留言</a> 或 <a href="mailto:SR_MI@trendforce.com">Email</a> (SR_MI@trendforce.com) 洽詢業務。</div>
+    <hr class="space l">
+    <div class="text-center press-choose-post">
+                <a href="/presscenter/news/20260617-13103.html">
+            <div class="col-md-6 col-sm-6 col-xs-12 border-right-green m-width">
+                <div class="col-md-12 text-left padding-l-0"><i class="fa fa-arrow-left" aria-hidden="true"></i> 上一則</div>
+                <div class="col-md-12 padding-l-0 text-left"><strong>TrendForce: CSP自研ASIC浪潮加速MLCC規格集中，2H26高階特規品恐面臨結構性短缺</strong></div>
+            </div>
+        </a>
+                 <a href="/presscenter/news/20260615-13097.html">
+            <div class="col-md-6 col-sm-6 col-xs-12 m-width">
+                <div class="col-md-12 text-right padding-r-0">下一則 <i class="fa fa-arrow-right" aria-hidden="true"></i></div>
+                <div class="col-md-12 padding-r-0 text-right"><strong>TrendForce: 光互連成AI Factory擴張關鍵，預估2030年CPO/NPO市場規模將破390億美元</strong></div>
+            </div>
+        </a>
+            </div>
+            
+            
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr class="space m">
+                        <div id="ad-presscenter-dtl" class="text-center ad-box">
+                            <!-- /23101350658/TF_TW_PC_PressDTL_ContentBottom01_750x90 -->
+<div id='div-gpt-ad-1747878554205-0' style='min-width: 750px; min-height: 90px;'>
+    <script>
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1747878554205-0'); });
+    </script>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <div class="col-md-4 col-sm-12 boxed-inverse shadow-2">
+                <div class="list-group latest-post-list list-blog">
+                    <div class="list-group list-blog list-group-pc">
+    <p class="list-group-item active"><strong>類別</strong></p>
+    <div class="list-group accordion-list" data-time="1000" data-type="accordion">
+        <div class="list-group-item border-top-none">
+            <a class="" href="/presscenter/news">  新聞稿 </a>
+            <div class="open">
+                <div class="inner">
+                    <ul>
+                        <li><a href="/presscenter/subscribe.html" class="title-link">訂閱新聞稿</a></li>
+                        <li><a href="/presscenter/attribution.html" class="title-link">新聞引用指南</a></li>
+                        <li><a href="/presscenter/rss.html" class="title-link">RSS訂閱中心</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <a href="/presscenter/analysis">  分析評論 </a>
+        </div>
+        <div class="list-group-item">
+            <a href="/presscenter/chart">  資訊圖表 </a>
+        </div>
+        <div class="list-group-item">
+            <a href="/presscenter/video">  影音專區 </a>
+        </div>
+    </div>
+</div>                    <hr class="space l">
+                    <p class="list-group-item active"><strong>相關文章</strong></p>
+        <div class="list-group-item">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 width-87 m-display-none m-width-100">
+                <a class="img-box circle">
+                <img src="/images/news-02.jpg"
+                    alt="">
+                </a>
+            </div>
+            <div class="col-md-8 col-sm-12 ">
+                <a href="/presscenter/news/20260914-13233.html">
+                    <h5 class="font-size-15 text-ellipsis-1">TrendForce: 2H26 NOR Flash價格走勢分化，高容量產品漲幅上看90-110%</h5>
+                </a>
+                <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.09.14</span></div>
+            </div>
+        </div>
+    </div>
+        <div class="list-group-item">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 width-87 m-display-none m-width-100">
+                <a class="img-box circle">
+                <img src="/images/news-01.jpg"
+                    alt="">
+                </a>
+            </div>
+            <div class="col-md-8 col-sm-12 ">
+                <a href="/presscenter/news/20260911-13230.html">
+                    <h5 class="font-size-15 text-ellipsis-1">TrendForce: 2Q26全球前十大IC設計廠營收年增73%，AMD擠進前三名</h5>
+                </a>
+                <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.09.11</span></div>
+            </div>
+        </div>
+    </div>
+        <div class="list-group-item">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 width-87 m-display-none m-width-100">
+                <a class="img-box circle">
+                <img src="/images/news-01.jpg"
+                    alt="">
+                </a>
+            </div>
+            <div class="col-md-8 col-sm-12 ">
+                <a href="/presscenter/news/20260909-13224.html">
+                    <h5 class="font-size-15 text-ellipsis-1">TrendForce: 2Q26晶圓代工營收逼近534.9億美元，SMIC與Samsung市占差距縮小</h5>
+                </a>
+                <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.09.09</span></div>
+            </div>
+        </div>
+    </div>
+                        <hr class="space l">
+                    <p class="list-group-item active"><strong>相關報告</strong></p>
+<div class="list-group-item">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="https://www.trendforce.com.tw/research/download/RP131217YA">
+                <h5 class="font-size-15 text-ellipsis-1">全球SSD終端價格 - 2026年9月11日</h5>
+            </a>
+            <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.09.11</span></div>
+        </div>
+    </div>
+</div>
+<div class="list-group-item">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="https://www.trendforce.com.tw/research/download/RP210601IZ">
+                <h5 class="font-size-15 text-ellipsis-1">2026年9月MLCC每月數據</h5>
+            </a>
+            <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.09.01</span></div>
+        </div>
+    </div>
+</div>
+<div class="list-group-item">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="https://www.trendforce.com.tw/research/download/RP140917HL">
+                <h5 class="font-size-15 text-ellipsis-1">2026年第三季伺服器DRAM產業數據</h5>
+            </a>
+            <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.08.31</span></div>
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+
+
+
+            <script>
+            //手機板圖片放大鏡功能
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('DOMContentLoaded fired');
+
+                // 自動將文章內的外部連結設為開啟新分頁
+                try {
+                    const links = document.querySelectorAll('article a');
+                    links.forEach(link => {
+                        // 檢查是否有 hostname 且與當前網站不同
+                        if (link.hostname && link.hostname !== window.location.hostname) {
+                            link.target = '_blank';
+                            // 安全性最佳實踐：加上 noopener noreferrer
+                            link.rel = 'noopener noreferrer';
+                        }
+                    });
+                } catch (e) {
+                    console.error('Error handling external links:', e);
+                }
+
+                
+                if (window.matchMedia("(max-width: 768px)").matches) {
+                    console.log('Mobile view detected');
+                    
+                    // 遍歷<article>內的<p>，尋找圖片
+                    const articleParagraphs = document.querySelectorAll("article p");
+                    console.log('Found paragraphs:', articleParagraphs.length);
+                    
+                    articleParagraphs.forEach(p => {
+                        const img = p.querySelector("img");
+                        if (!img) return; 
+
+                        console.log('Found image in paragraph:', img.src);
+                        
+                        // 給放大鏡圖示CSS定位用 class
+                        p.classList.add("has-img-zoom");
+                        console.log('Added has-img-zoom class to paragraph');
+
+                        // 防止重複綁定事件
+                        if (p.dataset.zoomBound) return;
+                        p.dataset.zoomBound = "true";
+
+                        // 監聽圖片區塊的點擊事件
+                        p.addEventListener("click", function (e) {
+                            const rect = p.getBoundingClientRect();
+                            const iconSize = 40; // 放大鏡圖示的觸控範圍
+                            
+                            // 計算滑鼠/手指點擊位置相對於圖片元素的座標
+                            const x = e.clientX - rect.left;
+                            const y = e.clientY - rect.top;
+                            
+                            // 判定是否點擊在右上角的放大鏡圖示範圍內
+                            const clickedInIcon = (x >= rect.width - iconSize) && (y <= iconSize + 10);
+                            
+                            console.log('Click detected:', {x, y, clickedInIcon});
+                            
+                            if (!clickedInIcon) return;
+
+                            e.preventDefault();
+                            e.stopPropagation();
+                            openLightbox(img.src, img.alt || ""); // 開啟燈箱
+                        });
+                    });
+
+                    // 開啟燈箱
+                    function openLightbox(src, alt) {
+                        let lightbox = document.getElementById("img-lightbox");
+                        const hostname = window.location.hostname;
+                        const isTwSite = hostname.includes(".com.tw"); //中文站
+                        let txtZoomIn, txtZoomOut;
+
+                        if (isTwSite) {
+                            // 台灣站 (.com.tw) -> 使用中文
+                            txtZoomIn = "點圖放大";
+                            txtZoomOut = "點圖縮小";
+                        } else {
+                            // 全球站 (.com) 或其他 -> 使用英文 (強調點擊圖片)
+                            txtZoomIn = "Tap Image to Zoom";
+                            txtZoomOut = "Tap Image to Reset";
+                        }
+
+                        // --- 2. 如果燈箱 DOM 不存在，則動態建立 (只執行一次) ---
+                        if (!lightbox) {
+                            lightbox = document.createElement("div");
+                            lightbox.id = "img-lightbox";
+
+                            // 建立頂部提示文字框
+                            const hint = document.createElement("div");
+                            hint.className = "hint-text";
+                            hint.innerText = txtZoomIn; // 預設顯示放大提示
+                            lightbox.appendChild(hint);
+
+                            // 建立圖片容器 (負責 CSS Grid 置中與捲動功能)
+                            const container = document.createElement("div");
+                            container.className = "img-container"; 
+                            
+                            const enlargedImg = document.createElement("img");
+                            container.appendChild(enlargedImg);
+                            lightbox.appendChild(container);
+
+                            // 建立右上角關閉按鈕 (X)
+                            const closeBtn = document.createElement("div");
+                            closeBtn.className = "close-btn";
+                            closeBtn.innerHTML = "&times;";
+                            
+                            // 定義關閉行為函式
+                            const closeAction = () => {
+                                lightbox.style.display = "none";
+                                document.body.style.overflow = ""; // 恢復背景網頁捲動
+                                
+                                // 重置所有狀態：移除放大 class、捲動軸歸零、清空圖片來源
+                                container.classList.remove("zoomed");
+                                container.scrollTop = 0;
+                                container.scrollLeft = 0;
+                                enlargedImg.src = ""; 
+                                
+                                // 文字重置回初始狀態
+                                hint.innerText = txtZoomIn;
+                            };
+
+                            closeBtn.addEventListener("click", closeAction);
+                            lightbox.appendChild(closeBtn);
+                            document.body.appendChild(lightbox);
+                            
+                            // --- 3. 圖片點擊互動：切換放大/縮小 ---
+                            // 使用單一事件監聽器處理 lightbox 內的所有點擊
+                            lightbox.addEventListener("click", (e) => {
+                                // 判斷點擊的是否為圖片
+                                if (e.target === enlargedImg) {
+                                    e.stopPropagation(); 
+                                    
+                                    // 圖片點擊邏輯：切換放大/縮小
+                                    if (container.classList.contains("zoomed")) {
+                                        // 當前是放大 -> 執行縮小
+                                        container.classList.remove("zoomed");
+                                        hint.innerText = txtZoomIn;
+                                        
+                                        // 強制重置樣式，確保圖片縮回適合螢幕的大小且不佔用額外空間
+                                        enlargedImg.style.width = "auto";
+                                        enlargedImg.style.height = "auto";
+                                        enlargedImg.style.maxWidth = "100%";
+                                        enlargedImg.style.maxHeight = "100%";
+                                    } else {
+                                        // 當前是縮小 -> 執行放大
+                                        container.classList.add("zoomed");
+                                        hint.innerText = txtZoomOut;
+                                        
+                                        // 清除 inline 樣式，讓 CSS 類別 (.zoomed img) 控制放大效果
+                                        enlargedImg.style.width = "";
+                                        enlargedImg.style.height = "";
+                                        enlargedImg.style.maxWidth = "";
+                                        enlargedImg.style.maxHeight = "";
+                                    }
+                                } else {
+                                    // 點擊圖片以外的任何區域（Lightbox 背景、Container 空白處） -> 執行關閉
+                                    closeAction();
+                                }
+                            });
+                        }
+
+                        // --- 4. 每次開啟燈箱時的初始化設定 ---
+                        const hint = lightbox.querySelector(".hint-text");
+                        if(hint) hint.innerText = txtZoomIn;
+
+                        const enlargedImg = lightbox.querySelector("img");
+                        const container = lightbox.querySelector(".img-container");
+                        
+                        // 設定圖片來源與替代文字
+                        enlargedImg.src = src;
+                        enlargedImg.alt = alt || "";
+
+                        // 確保初始狀態樣式正確：僅佔用內容大小
+                        enlargedImg.style.width = "auto";
+                        enlargedImg.style.height = "auto";
+                        enlargedImg.style.maxWidth = "100%";
+                        enlargedImg.style.maxHeight = "100%";
+
+                        // 強制重置為「未放大」狀態
+                        container.classList.remove("zoomed");
+                        container.scrollTop = 0;
+                        container.scrollLeft = 0;
+
+                        // 顯示燈箱並鎖定背景滾動
+                        lightbox.style.display = "block";
+                        document.body.style.overflow = "hidden";
+                    }
+                } else {
+                    console.log('Desktop view - script not running');
+                }
+            });
+            </script>
+        </div>
+    </div>
+
+
+        </div>
+        
+                    <!-- Footer -->
+<footer class="site-footer">
+  <nav class="footer-nav">
+    <ul>
+      <li><a href="/about">關於我們</a></li>
+      <li><a href="/research">研究報告</a></li>
+      <li><a href="/research-tags">Tags</a></li>
+      <li><a href="/insights">Industry Insights</a></li>
+      <li><a href="/about/terms" rel="nofollow">使用條款</a></li>
+      <li><a href="/about/privacy" rel="nofollow">隱私權政策</a></li>
+      <li><a href="/about/MImember_agreement" rel="nofollow">會員服務條款</a></li>
+              <li><a href="https://www.104.com.tw/company/wf1r2j4" target="_blank" rel="nofollow">人才招募</a></li>
+            <li><a href="/contact/reporting">聯絡我們</a></li>
+    </ul>
+  </nav>
+
+  <!-- <div class="footer-subscribe-wrap">
+          <h2>訂閱最新產業洞察</h2>
+      <iframe src="https://insights.trendforce.com/embed?transparent=1&light=1&no_wrapper=1" width="100%" height="120" style="border: 0; background: transparent; margin: 15px" frameborder="0" scrolling="no" loading="lazy"></iframe>
+      </div> -->
+
+  <div class="footer-subscribe-wrap">
+    <!-- DEBUG lang=zh-tw | env=3 | host=www.trendforce.com.tw -->
+    <div>
+      <h2>訂閱最新產業洞察</h2>
+      <form id="footer-subscribe-form" action="https://insights.trendforce.com/api/v1/free" method="POST"
+        target="subscribe-frame" class="custom-subscribe-form">
+        <input type="hidden" name="source" value="embed">
+        <div class="subscribe-input-group">
+          <input type="email" name="email" placeholder="請輸入您的 Email" required
+            class="subscribe-input">
+          <button type="submit" class="subscribe-btn" data-act-pos="footer"
+            data-act-type="substack">訂閱</button>
+        </div>
+        <div id="footer-subscribe-msg" style="display:none; margin-top: 8px; font-size: 14px;"></div>
+      </form>
+      <iframe id="subscribe-frame" name="subscribe-frame" style="display:none" aria-hidden="true"></iframe>
+    </div>
+
+    <div>
+      <div class="social-icon-wrap d-flex gap-3">
+        <a class="social-icon" href="https://insights.trendforce.com/" target="_blank">
+          <img src="/images/icon-substack-w.svg" alt="substack">
+        </a>
+
+        <a class="social-icon" href="https://x.com/trendforce" target="_blank">
+          <img src="/images/icon-x-w.svg" alt="x">
+        </a>
+
+        <a class="social-icon" href="https://www.linkedin.com/company/trendforce-集邦科技/" target="_blank">
+          <img src="/images/icon-linkedin-w.svg" alt="linkedin">
+        </a>
+
+        <a class="social-icon" href="https://www.facebook.com/TrendForce.tw" target="_blank">
+          <img src="/images/icon-facebook-w.svg" alt="facebook">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <ul class="footer-logo-wrap">
+    <li class="footer-logo">
+      <a href="/"><img src="/images/TF_logo_w.svg" loading="lazy" alt="TrendForce"></a>
+    </li>
+
+
+
+    <li class="footer-lang-social-row d-flex align-items-center justify-content-between">
+      <div class="header_language-wrap">
+        <a class="language-button active" href="javascript:void(0)">
+          繁體中文 <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <ul class="header_language-content">
+                      <li><a href="https://www.trendforce.com/">English</a></li>
+                      <li><a href="https://www.trendforce.cn/">简体中文</a></li>
+                  </ul>
+      </div>
+
+    </li>
+    <li class="footer-copyright">© 2026 TrendForce Corp. All rights reserved</li>
+  </ul>
+</footer>
+
+<!-- Footer Contact Us Popup -->
+<div id="contact-sales" class="box-lightbox ">
+  <h3 class="text-color fw-bold text-center">聯絡我們</h3>
+  <hr>
+  <form id="contact-us-popup-form">
+    <div class="form-group">
+      <label for="contactFromEmail">您的Email</label>
+      <input type="email" class="form-control" id="contactFromEmail" placeholder="Email" name="from"
+        value=" ">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">留言</label>
+      <textarea class="form-control" rows="5" id="contactMessage" name="message" maxlength="300"
+        placeholder="請留下您的需求, 我們將盡快與您聯繫"
+        style="resize: none;"></textarea>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-default w-100 margin-b-10 font-size-16" type="button" id="btn-contact-inquery">
+        送出
+      </button>
+      <button style="background: none; border: none;" type="button" id="btn-contact-close">
+        取消
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Membership Contact Us Popup (使用 simple-inquiry) -->
+<div id="contact-sales-membership" class="box-lightbox ">
+  <h3 class="text-color fw-bold text-center">聯絡我們</h3>
+  <hr>
+  <form id="contact-us-membership-form">
+    <input type="hidden" id="contactPackageIdMembership" name="package_id" value="">
+    <div class="form-group">
+      <label for="contactFromEmailMembership">您的Email</label>
+      <input type="email" class="form-control" id="contactFromEmailMembership" placeholder="Email" name="email"
+        value=" ">
+    </div>
+    <div class="form-group">
+      <label for="contactMessageMembership">留言</label>
+      <textarea class="form-control" rows="5" id="contactMessageMembership" name="message" maxlength="300"
+        placeholder="請留下您的需求, 我們將盡快與您聯繫"
+        style="resize: none;"></textarea>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-default w-100 margin-b-10 font-size-16" type="button" id="btn-contact-membership-inquery">
+        送出
+      </button>
+      <button style="background: none; border: none;" type="button" id="btn-contact-membership-close">
+        取消
+      </button>
+    </div>
+  </form>
+</div>
+
+<script src="/js/imagesloaded.min.js"></script>
+  <script src="/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tab-accordion.js"></script>
+<script src="/js/parallax.min.js"></script>
+<script src="/js/flexslider/jquery.flexslider-min.js"></script>
+<script async src="/js/isotope.min.js"></script>
+
+<script async src="/js/jquery.progress-counter.js"></script>
+<script async src="/js/bootstrap/js/bootstrap.popover.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/social.stream.min.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script src="/js/jquery.flipster.min.js"></script>
+<script
+  src="https://www.google.com/recaptcha/api.js?render=6LeXsBYmAAAAACtiRX4fJHLQYceYn-RyZWrUcURv"></script>
+<script>
+  $(document).ready(function () {
+    $('#btn-contact-inquery').on("click", function () {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      const transError = {
+        email: '信箱 必須是有效的 E-mail。',
+        message: '留言不可為空！',
+      };
+
+      const form = document.getElementById('contact-us-popup-form');
+      let fromMail = form.from.value;
+      let emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fromMail);
+      if (!emailValid) {
+        alert(transError.email);
+        return false;
+      }
+      if (form.message.value.trim() === '' || /^\s*$/.test(form.message.value)) {
+        alert(transError.message);
+        return false;
+      }
+
+      $(this).attr('disabled', true);
+
+      grecaptcha.ready(function () {
+        grecaptcha.execute('6LeXsBYmAAAAACtiRX4fJHLQYceYn-RyZWrUcURv', { action: 'contactSales' }).then(function (token) {
+          fetch('/api/contact/inquiry', {
+            method: 'POST',
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': csrfToken,
+            },
+            body: JSON.stringify({
+              from: document.getElementById('contactFromEmail').value,
+              message: document.getElementById('contactMessage').value,
+              recaptcha: token,
+              url: window.location.href
+            }),
+          })
+            .then(res => res.json())
+            .then(data => {
+              console.log('json', data);
+              $('#btn-contact-inquery').attr('disabled', false);
+              if (data.error == 0) {
+                $.magnificPopup.close();
+              }
+              alert(data.message);
+            })
+            .catch((error) => {
+              console.log('error', error);
+              alert('Error: sent failed');
+              $('#btn-contact-inquery').attr('disabled', false);
+            });
+        });
+      });
+    });
+
+    $('#btn-contact-close').on("click", function () {
+      $.magnificPopup.close();
+    });
+
+    // 會員方案專用的 simple-inquiry 邏輯
+    $('#btn-contact-membership-inquery').on("click", function () {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      const transError = {
+        email: '信箱 必須是有效的 E-mail。',
+        message: '留言不可為空！',
+      };
+
+      const form = document.getElementById('contact-us-membership-form');
+      let emailVal = form.email.value;
+      let emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+      if (!emailValid) {
+        alert(transError.email);
+        return false;
+      }
+      if (form.message.value.trim() === '' || /^\s*$/.test(form.message.value)) {
+        alert(transError.message);
+        return false;
+      }
+
+      $(this).attr('disabled', true);
+
+      fetch('/api/contact/simple-inquiry', {
+        method: 'POST',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': csrfToken,
+        },
+        body: JSON.stringify({
+          email: document.getElementById('contactFromEmailMembership').value,
+          message: document.getElementById('contactMessageMembership').value,
+          package_id: document.getElementById('contactPackageIdMembership').value || null
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log('json', data);
+          $('#btn-contact-membership-inquery').attr('disabled', false);
+          if (data.error == 0) {
+            $.magnificPopup.close();
+          }
+          alert(data.message);
+        })
+        .catch((error) => {
+          console.log('error', error);
+          alert('Error: sent failed');
+          $('#btn-contact-membership-inquery').attr('disabled', false);
+        });
+    });
+
+    $('#btn-contact-membership-close').on("click", function () {
+      $.magnificPopup.close();
+      $('#contactPackageIdMembership').val('');
+    });
+
+    // 會員方案頁面：從按鈕取得 package_id 並填入隱藏欄位
+    $(document).on('mousedown touchstart click', '[href="#contact-sales-membership"], .membership-contactus-btn', function (e) {
+      var $el = $(this);
+      var pkg = $el.data('package-id') || $el.attr('data-package-id') || $el.data('cart-package') || $el.attr('data-cart-package');
+      if (!pkg) {
+        var $a = $el.closest('a[href="#contact-sales-membership"]');
+        pkg = $a.data('package-id') || $a.attr('data-package-id') || $a.data('cart-package') || $a.attr('data-cart-package');
+      }
+      $('#contactPackageIdMembership').val(pkg ? pkg : '');
+    });
+
+    // Footer 電子報訂閱：用原生 form submit + hidden iframe 避免 CORS 問題
+    $('#footer-subscribe-form').on('submit', function () {
+      var $form = $(this);
+      var $btn = $form.find('.subscribe-btn');
+      var $msg = $('#footer-subscribe-msg');
+
+      $btn.prop('disabled', true).text('送出中...');
+      $msg.hide();
+
+      $('#subscribe-frame').off('load').one('load', function () {
+        $msg.text('感謝您的訂閱！請檢查 Email 信箱以確認訂閱。')
+          .css('color', '#81B743').show();
+        $form.find('input[name="email"]').val('');
+        $btn.prop('disabled', false).text('訂閱');
+      });
+    });
+
+    // Footer 語系切換下拉（跟 Header 那組是各自獨立的 DOM，Header 的
+    // document.querySelector('.language-button.active') 只會抓到第一個，
+    // 這裡另外綁一份、限定在 .site-footer 範圍內）
+    var $footerLanguageIcon = $('.site-footer .language-button');
+    var $footerLanguageContent = $('.site-footer .header_language-content');
+
+    $footerLanguageIcon.on('click', function () {
+      $footerLanguageContent.css('display', 'flex');
+    });
+
+    $footerLanguageContent.on('mouseleave', function () {
+      $footerLanguageContent.css('display', 'none');
+    });
+
+  });
+</script>
+
+                    </body>
+</html>

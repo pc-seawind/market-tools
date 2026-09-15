@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<!--[if lt IE 10]> <html lang="zh-cn" class="iex"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html lang="zh-cn">
+<!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> TrendForce集邦咨询：3Q26存储器价格受AI服务器支撑，但消费端压力扩大使得涨幅收敛-集邦咨询 </title>
+    <meta name="keywords" content=" ">
+    <meta name="description" content=" 根据TrendForce集邦咨询最新存储器价格调查，2026年第三季整体DRAM格局持续极度紧缺，但因消费级应用需求下修及高基期作用，合约价涨幅收敛，预计将季增13-18%。NAND Flash主要需求仍由AI推理与大型数据中心建设支撑，但因合约价格已达历史高点，消费端客户在需求放缓的情况下，对价格承受力已达极限，预估整体NAND Flash合约价将季增10-15%，幅度较前几季明显缩减。 ">
+    <script src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap/css/bootstrap.css">
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/content-box.css">
+    <link rel="stylesheet" href="/css/image-box.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/js/flexslider/flexslider.css">
+    <link rel="stylesheet" href="/js/magnific-popup.css">
+    <link rel="stylesheet" href="/js/php/contact-form.css">
+    <link rel="stylesheet" href="/js/social.stream.css">
+    <link rel="stylesheet" href="/js/jquery.flipster.min.css">
+    <link rel="stylesheet" href="/css/skin.css">
+    <!-- Favicon  -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"/>
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/images/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
+    
+    <meta property="og:site_name" content="TrendForce"><meta property="og:title" content="产业洞察 - TrendForce集邦咨询：3Q26存储器价格受AI服务器支撑，但消费端压力扩大使得涨幅收敛 | 集邦TrendForce - 提供内存闪存、LED照明、显示器面板、新能源太阳能光伏产业的市场报告、价格趋势 "><meta property="og:url" content="https://www.trendforce.cn/presscenter/news/20260703-13133.html"><meta property="og:image" content="https://img.trendforce.cn/EDM/2026/07/20260703_110839_2.jpg"><meta property="og:type" content="article"><meta property="og:description" content="根据TrendForce集邦咨询最新存储器价格调查，2026年第三季整体DRAM格局持续极度紧缺，但因消费级应用需求下修及高基期作用，合约价涨幅收敛，预计将季增13-18%。NAND Flash主要需求仍由AI推理与大型数据中心建设支撑，但因合约价格已达历史高点，消费端客户在需求放缓的情况下，对价格承受力已达极限，预估整体NAND Flash合约价将季增10-15%，幅度较前几季明显缩减。"><meta property="article:author" content="TrendForce"><meta property="fb:app_id" content="1197663130580574"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:site" content="@trendforce"><meta property="twitter:title" content="产业洞察 - TrendForce集邦咨询：3Q26存储器价格受AI服务器支撑，但消费端压力扩大使得涨幅收敛 | 集邦TrendForce - 提供内存闪存、LED照明、显示器面板、新能源太阳能光伏产业的市场报告、价格趋势 "><meta property="twitter:description" content="根据TrendForce集邦咨询最新存储器价格调查，2026年第三季整体DRAM格局持续极度紧缺，但因消费级应用需求下修及高基期作用，合约价涨幅收敛，预计将季增13-18%。NAND Flash主要需求仍由AI推理与大型数据中心建设支撑，但因合约价格已达历史高点，消费端客户在需求放缓的情况下，对价格承受力已达极限，预估整体NAND Flash合约价将季增10-15%，幅度较前几季明显缩减。"><meta property="twitter:image" content="https://img.trendforce.cn/EDM/2026/07/20260703_110839_2.jpg"><meta property="twitter:creator" content="TrendForce">
+    <script defer src="//dup.baidustatic.com/js/ds.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DCEPVW5SBN"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DCEPVW5SBN');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4a2d4ba6a17942dd57bbd82da76b7dc9";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+</head>    <body class="contacts">
+        <div id="preloader" style="display: none;"></div>
+        <header class="fixed-top scroll-change" data-menu-anima="fade-in">
+    <div class="navbar navbar-default mega-menu-fullwidth navbar-fixed-top" role="navigation">
+                    <div class="navbar-mini scroll-hide">
+    <div class="container">
+        <div class="nav navbar-nav navbar-left navbar-margin-left padding-t-0 top-header-mail">
+						        </div>
+		
+		<!--trendforce brands-PC-->
+		<div class="nav navbar-nav navbar-left navbar-margin-left top-header-brand">
+			<div id="right-button" class="border_transparent"><a><i class="fa fa-angle-left" aria-hidden="true"></i></a></div>
+			<div class="top-header-brand-wrapper hide-scrollbar"> 
+				<div class="top-header-brand-content">
+					<span><a href="https://www.trendforce.cn/">TrendForce：</a></span>
+					<span><a href="https://www.dramx.com/" rel="nofollow">半导体</a></span>
+					<span><a href="/research/wv" rel="nofollow">显示器</a></span>
+					<span><a href="https://www.ledinside.cn/" rel="nofollow">光电</a></span>
+					<span><a href="https://www.energytrend.cn/" rel="nofollow">新能源</a></span>
+					<span><a href="https://www.topology.com.cn/" rel="nofollow">通讯暨应用科技研究处</a></span>
+				</div>
+			</div>
+			<div id="left-button" class="border_transparent"><a><i class="fa fa-angle-right" aria-hidden="true"></i></a></div>	
+        </div>
+		
+		<!--top-header-brand-Mobile-->
+        <div class="nav navbar-nav navbar-right top-header-brand-Mobile">
+          <ul class="nav navbar-nav brand-Mobile-menu">
+            <li class="dropdown current-active"> 
+			  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true"> 
+				<img src="/images/top-header-brand-Mobile-icon.svg" alt="">
+			  </a>
+              <ul class="dropdown-menu fade-in" style="transition-duration: 300ms; animation-duration: 300ms; transition-timing-function: ease; transition-delay: 0ms;">
+                <li><a href="https://www.dramx.com/" rel="nofollow">半导体</a></li>
+				<li><a href="/research/wv" rel="nofollow">显示器</a></li>
+				<li><a href="https://www.ledinside.cn/" rel="nofollow">光电</a></li>
+				<li><a href="https://www.energytrend.cn/" rel="nofollow">新能源</a></li>
+				<li><a href="https://www.topology.com.cn/" rel="nofollow">通讯暨应用科技研究处</a></li>
+			   </ul>
+            </li>
+          </ul>
+        </div>
+		
+		<!--language-->
+		
+		<!--social-->
+		    </div>
+</div>
+
+
+<!--trendforce brands PC width-->
+<script>
+	// top-header-brand real width
+	var topTFbrands = $('.top-header-brand-content span');
+	var topTFbrandsSum = 0;
+	for ( i = 0 ; i < topTFbrands.length ; i++ ){
+
+		topTFbrandsSum += topTFbrands.eq(i).outerWidth(true) + 4 ;
+	}
+	$(".top-header-brand-content").width(topTFbrandsSum);	
+	
+	
+	// top-header-brand remain width
+	function topTFbrandsRemainWidth(){
+		let socialExist = $('.top-header-social').length;
+		let languageExist = $('.top-header-social').length;
+		let linkWidthFix = (socialExist) ? 35 : 0;
+		var topHeadermailtop = $('.top-header-mail').outerWidth();
+		var topTFsocal = (socialExist) ? $('.top-header-social').outerWidth() : 0;
+		var topTFlan = (languageExist) ? $('.top-header-lan').outerWidth() : 0;
+		var container = $('.navbar-mini .container').outerWidth() - 40;
+		var topTFlinksWidth = container - topHeadermailtop - topTFsocal -topTFlan -linkWidthFix;
+
+		if (socialExist) {
+			$('.top-header-social').width(topTFsocal);
+			$('.top-header-lan').width(topTFlan);
+		}
+		$(".top-header-brand").width(topTFlinksWidth);
+		if(window.screen.width <= 992){
+			var container = $('.navbar-mini .container').outerWidth();
+		   $('.top-header-mail').width(container - topTFsocal - topTFlan - $('.top-header-brand-Mobile').outerWidth());
+		}else{
+			$('.top-header-mail').width(topHeadermailtop);
+		}
+	}
+	topTFbrandsRemainWidth();
+	
+	$(window).resize(function() {
+		topTFbrandsRemainWidth();
+	});
+</script>
+	
+	
+<!--trendforce brands PC right-button& left-button-->	
+<script>
+	
+   var outer = $('.top-header-brand-wrapper');
+   var setInvisible = function(obj) {
+	 obj.removeClass('show');
+   };
+   var setVisible = function(obj) {
+	 obj.addClass('show');
+   };
+	
+	//判斷視窗大小是否出現scrollbar，是否顯示右側透明漸層
+	function resizeWindow() {
+			$('.top-header-brand-wrapper').each(function () {
+				//有scrollbar時，增加 show class
+				if ($(this)[0].scrollWidth > $(this)[0].clientWidth 
+				    && ( Math.ceil($('.top-header-brand').width()) + outer.scrollLeft()) < outer[0].scrollWidth
+				   ){
+					setVisible($('#left-button'));
+				}
+				//沒有scrollbar時，移除 show class
+				else{
+					setInvisible($('#left-button')); 
+				}
+			});
+		}
+	resizeWindow();
+	$(window).resize(function() {
+		resizeWindow();
+	});	
+	
+	//horizontal scroll arrow function
+	$(function () {		
+
+	   //左側按鈕 click function #right-button-click
+       $('#right-button').click(function() {
+         var leftPos = outer.scrollLeft();
+         outer.animate({
+           scrollLeft: leftPos - $('.top-header-brand').outerWidth()/2
+         }, 800
+		);
+       });
+
+	   //右側按鈕 click function #left-button-click
+       $('#left-button').click(function() {
+         var leftPos = outer.scrollLeft();
+         outer.animate({
+           scrollLeft: leftPos + $('.top-header-brand').outerWidth()/2
+         }, 800
+		 );
+       });
+		
+		
+		//左右按鈕顯示function(滑到最右邊，右側按鈕消失；到最左邊，左側按鈕消失)
+		$('.top-header-brand-wrapper').scroll(function () {
+			function scrollLeftWindow() {
+				if (( Math.ceil($('.top-header-brand').width()) + outer.scrollLeft()) >= outer[0].scrollWidth) { 
+				 	setInvisible($('#left-button'));
+				}
+			   else {
+				    setVisible($('#left-button')); 
+				}	
+			}
+			function scrollRightWindow() {
+				if (outer.scrollLeft() <= 0) { 
+				 	setInvisible($('#right-button'));
+				}
+			   else {
+				    setVisible($('#right-button')); 
+				}	
+			}
+			scrollLeftWindow();
+			scrollRightWindow();
+		});
+     });
+</script>            <div class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle">
+            <i class="fa fa-bars"></i>
+            </button>
+            <div>
+                                    <a class="navbar-brand navbar-brand-cn" href="/" style="">
+                        <img class="logo-default" src="/images/TF_logo_cn.svg" alt="logo">
+                    </a>
+                            </div>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <!--
+                    <li class="dropdown">
+                        <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button">首頁</a>
+                    </li>
+                    -->
+                                    <li class="dropdown mega-dropdown">
+                        <a data-toggle="dropdown" href="/about"
+                            aria-expanded="true">关于我们</a>
+                    </li>
+                                <li class="dropdown mega-dropdown mega-tabs">
+                    <a href="/research/dram" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">研究报告</a>
+                    <div class="mega-menu dropdown-menu multi-level row bg-menu fade-in nav-report-box">
+                        <div class="col-md-3 col-sm-12 nav-report-left">
+                            <div class="title-base text-left">
+                                <hr>
+                                <h2 class="font-size-18"><strong>会员快搜</strong></h2>
+                            </div>
+                            <div class="advs-box advs-box-top-icon boxed-inverse margin-b-40" data-anima="rotate-20"
+                                data-trigger="hover">
+                                <i class="fa fa-microchip icon circle anima"></i>
+                                <h3 class="font-size-16"><a href="/research/dram"
+                                    class="title-link"><strong>半导体</strong></a></h3>
+                            </div>
+                            <div class="advs-box advs-box-top-icon boxed-inverse margin-b-40" data-anima="rotate-20"
+                                data-trigger="hover">
+                                <i class="fa fa-television icon circle anima"></i>
+                                <h3 class="font-size-16"><a href="/research/wv"
+                                    class="title-link"><strong>显示器</strong></a></h3>
+                            </div>
+                            <div class="advs-box advs-box-top-icon boxed-inverse margin-b-40" data-anima="rotate-20"
+                                data-trigger="hover">
+
+                                <img src="/images/icon-research-led.svg" class="icon circle anima"/>
+                                <h3 class="font-size-16"><a href="/research/led"
+                                    class="title-link"><strong>光电</strong></a></h3>
+                            </div>
+                            <div class="advs-box advs-box-top-icon boxed-inverse margin-b-40" data-anima="rotate-20"
+                                data-trigger="hover">
+                                <i class="fa fa-leaf icon circle anima"></i>
+                                <h3 class="font-size-16"><a href="/research/et"
+                                    class="title-link"><strong>新能源</strong></a></h3>
+                            </div>
+                            <div class="advs-box advs-box-top-icon boxed-inverse margin-b-10" data-anima="rotate-20"
+                                data-trigger="hover">
+                                <i class="fa fa-book icon circle anima"></i>
+                                <h3 class="font-size-16"><a href="/research/tri"
+                                    class="title-link"><strong>通讯暨应用科技</strong></a></h3>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-12 nav-report-right">
+                                                        <div class="row margin-b-20 nav-flex">
+                                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="title-base text-left">
+                                        <hr>
+                                        <h2 class="font-size-18">
+                                            <strong>
+                                                                                        半导体
+                                                                                        </strong>
+                                        </h2>
+                                    </div>
+                                    <ul class="ul-dots text-s">
+                                                                                                                        <li>
+                                            <a href="https://www.trendforce.cn/research/category/Semiconductors/DRAM"  rel="" target="">
+                                                                                        内存
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Semiconductors/NAND%20Flash"  rel="" target="">
+                                                                                        闪存
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Semiconductors/MLCC"  rel="" target="">
+                                                                                        MLCC
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Semiconductors/Wafer%20Foundries"  rel="" target="">
+                                                                                        晶圆制造/代工
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Semiconductors/IC%20Design"  rel="nofollow" target="_blank">
+                                                                                        IC设计
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Semiconductors/IC%20Manufacturing,%20Package&amp;Test"  rel="nofollow" target="_blank">
+                                                                                        IC制造与封测
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Semiconductors/Compound%20Semiconductor"  rel="" target="">
+                                                                                        化合物半导体
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Semiconductors/AI%20Server_HBM_Server"  rel="" target="">
+                                                                                        AI/HBM/服务器
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+                                </div>
+                                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="title-base text-left">
+                                        <hr>
+                                        <h2 class="font-size-18">
+                                            <strong>
+                                                                                        显示器
+                                                                                        </strong>
+                                        </h2>
+                                    </div>
+                                    <ul class="ul-dots text-s">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li>
+                                            <a href="https://www.trendforce.cn/research/category/Display/LCD"  rel="" target="">
+                                                                                        LCD
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Display/OLED"  rel="" target="">
+                                                                                        OLED
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Display/Upstream%20Components"  rel="" target="">
+                                                                                        零组件
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Display/Panel%20Industry"  rel="" target="">
+                                                                                        面板
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Display/Display%20Supply%20Chain"  rel="" target="">
+                                                                                        供应链
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Display/Display%20Technologies"  rel="" target="">
+                                                                                        技术
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Display/display-near-eye_display"  rel="" target="">
+                                                                                        近眼显示
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+                                </div>
+                                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="title-base text-left">
+                                        <hr>
+                                        <h2 class="font-size-18">
+                                            <strong>
+                                                                                        LED
+                                                                                        </strong>
+                                        </h2>
+                                    </div>
+                                    <ul class="ul-dots text-s">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li>
+                                            <a href="https://www.trendforce.cn/research/category/LED/LED%20Demand%20_%20Supply%20Data%20Base"  rel="" target="">
+                                                                                        LED供需资料库
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/LED/Sapphire%20Market"  rel="" target="">
+                                                                                        蓝宝石市场
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/LED/LED%20Chip%20&amp;%20Package"  rel="" target="">
+                                                                                        LED芯片与封装
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/LED/LED%20Backlight"  rel="" target="">
+                                                                                        LED背光
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/LED/LED%20Lighting"  rel="" target="">
+                                                                                        LED照明
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/LED/LED%20Display"  rel="" target="">
+                                                                                        LED显示
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/LED/IR%20LED%20_%20VCSEL%20_%20LiDAR%20Laser"  rel="" target="">
+                                                                                        红外线LED / VCSEL / 光达雷射
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/LED/UV%20LED%20_%20UV%20Laser"  rel="" target="">
+                                                                                        紫外线LED / 紫外线雷射
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/LED/Micro%20LED%20_%20Mini%20LED"  rel="" target="">
+                                                                                        MicroLED / Mini LED
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+                                </div>
+                                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="title-base text-left">
+                                        <hr>
+                                        <h2 class="font-size-18">
+                                            <strong>
+                                                                                        能源
+                                                                                        </strong>
+                                        </h2>
+                                    </div>
+                                    <ul class="ul-dots text-s">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li>
+                                            <a href="https://www.trendforce.cn/research/category/Energy/Solar%20PV"  rel="" target="">
+                                                                                        光伏
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Energy/Lithium%20Battery%20and%20Energy%20Storage"  rel="" target="">
+                                                                                        电池与储能
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Energy/solid-state_battery"  rel="" target="">
+                                                                                        固态电池
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+                                </div>
+                                                            </div>
+                                                        <div class="row margin-b-20 nav-flex">
+                                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="title-base text-left">
+                                        <hr>
+                                        <h2 class="font-size-18">
+                                            <strong>
+                                                                                        消费性电子
+                                                                                        </strong>
+                                        </h2>
+                                    </div>
+                                    <ul class="ul-dots text-s">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li>
+                                            <a href="https://www.trendforce.cn/research/category/Consumer%20Electronics/Notebook%20Computers"  rel="" target="">
+                                                                                        笔记型电脑
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Consumer%20Electronics/TVs"  rel="" target="">
+                                                                                        电视
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Consumer%20Electronics/Smartphones"  rel="" target="">
+                                                                                        智能手机
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Consumer%20Electronics/Tablets"  rel="" target="">
+                                                                                        平板电脑
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Consumer%20Electronics/Wearable%20Devices"  rel="nofollow" target="_blank">
+                                                                                        穿戴装置
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Consumer%20Electronics/Monitors%20_%20AIO"  rel="" target="">
+                                                                                        桌上型监视器 / AIO
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Consumer%20Electronics/Others"  rel="nofollow" target="_blank">
+                                                                                        其他
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+                                </div>
+                                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="title-base text-left">
+                                        <hr>
+                                        <h2 class="font-size-18">
+                                            <strong>
+                                                                                        通讯
+                                                                                        </strong>
+                                        </h2>
+                                    </div>
+                                    <ul class="ul-dots text-s">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li>
+                                            <a href="https://www.trendforce.cn/research/category/Telecommunications/5G%20Technologies"  rel="nofollow" target="_blank">
+                                                                                        5G通讯技术
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Telecommunications/5G%20Spectrum%20&amp;%20Policies"  rel="nofollow" target="_blank">
+                                                                                        5G频谱与法规
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Telecommunications/Broadband%20&amp;%20Home%20Network"  rel="nofollow" target="_blank">
+                                                                                        宽带网络通讯
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+                                </div>
+                                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="title-base text-left">
+                                        <hr>
+                                        <h2 class="font-size-18">
+                                            <strong>
+                                                                                        新兴科技
+                                                                                        </strong>
+                                        </h2>
+                                    </div>
+                                    <ul class="ul-dots text-s">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li>
+                                            <a href="https://www.trendforce.cn/research/category/Emerging%20Technologies/Cloud%20_%20Edge%20Computing"  rel="" target="">
+                                                                                        云端 / 边缘运算
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Emerging%20Technologies/IoT"  rel="nofollow" target="_blank">
+                                                                                        物联网
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Emerging%20Technologies/Artificial%20Intelligence"  rel="" target="">
+                                                                                        AI人工智能
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Emerging%20Technologies/Automotive%20Technologies"  rel="" target="">
+                                                                                        汽车科技
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Emerging%20Technologies/AR%20_%20VR"  rel="nofollow" target="_blank">
+                                                                                        AR / VR
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Emerging%20Technologies/Industry%204.0"  rel="nofollow" target="_blank">
+                                                                                        工业4.0
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                <li>
+                                            <a href="https://www.trendforce.cn/research/category/Emerging%20Technologies/robot"  rel="" target="">
+                                                                                        机器人
+                                                                                        </a>
+                                        </li>
+                                                                                                                                                                                                    </ul>
+                                </div>
+                                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="title-base text-left">
+                                        <hr>
+                                        <h2 class="font-size-18">
+                                            <strong>
+                                                                                        宏观经济
+                                                                                        </strong>
+                                        </h2>
+                                    </div>
+                                    <ul class="ul-dots text-s">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li>
+                                            <a href="https://www.trendforce.cn/research/category/Economics/Major%20Economic%20Indicators"  rel="nofollow" target="_blank">
+                                                                                        经济指标
+                                                                                        </a>
+                                        </li>
+                                                                                                                    </ul>
+                                </div>
+                                                            </div>
+                                                    </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">会员方案</a>
+                    <ul class="dropdown-menu multi-level fade-in">
+                        <li><a href="/membership/DRAMeXchange">半导体</a></li>
+                        <li><a href="/membership/WitsView">显示器</a></li>
+                        <li><a href="/membership/LEDinside">光电</a></li>
+                        <li><a href="/membership/EnergyTrend">新能源</a></li>
+                        <li><a href="https://www.topology.com.cn/Member/MemberIntro" target="_blank" rel="nofollow">通讯暨应用科技</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown
+                    ;
+                    ">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">价格趋势</a>
+                    <ul class="dropdown-menu multi-level fade-in">
+                                                                                                                <li>
+                                    <a class="dropdown-has-child" href="#">DRAM</a>
+                                    <ul class="dropdown-menu-next">
+                                                                                    <li><a href="https://www.trendforce.cn/price/dram/dram_spot">DRAM 现货价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/dram/dram_contract">DRAM 合约价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/dram/module_spot">Module现货价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/dram/gddr_spot">GDDR现货价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/dram/lpddr_spot">LPDDR现货价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/dram/mobileDram_contract">Mobile DRAM合约价</a></li>
+                                                                            </ul>
+                                </li>
+                                                                                                                                            <li>
+                                    <a class="dropdown-has-child" href="#">NAND Flash</a>
+                                    <ul class="dropdown-menu-next">
+                                                                                    <li><a href="https://www.trendforce.cn/price/flash/flash_spot">NAND Flash现货价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/flash/flash_contract">NAND Flash合约价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/flash/wafer_spot">Wafer 现货价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/flash/memCard_spot">Memory Card现货价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/flash/pcc_oem_ssd_contract">PC-Client OEM SSD合约价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/flash/ssd_street">SSD市场价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/flash/wafer_contract">NAND Flash Wafer合约价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/flash/emmc_spot">eMMC现货价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/flash/emmc_contract">eMMC/UFS合约价</a></li>
+                                                                            </ul>
+                                </li>
+                                                                                                                                            <li>
+                                    <a class="dropdown-has-child" href="#">TFT-LCD</a>
+                                    <ul class="dropdown-menu-next">
+                                                                                    <li><a href="https://www.trendforce.cn/price/lcd/panel">Large Size Panel价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/lcd/smartphone">LCD Smartphone Panel价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/lcd/street">市场价</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/lcd/shipment">Large Size Panel出货量</a></li>
+                                                                            </ul>
+                                </li>
+                                                                                                                                                                                                        <li>
+                                    <a class="dropdown-has-child" href="#">PV</a>
+                                    <ul class="dropdown-menu-next">
+                                                                                    <li><a href="https://www.trendforce.cn/price/pv/polysilicon">多晶硅价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/pv/wafer">硅片价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/pv/cell">电池片价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/pv/module">组件价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/pv/pv_glass">光伏玻璃价格</a></li>
+                                                                            </ul>
+                                </li>
+                                                                                                                                            <li>
+                                    <a class="dropdown-has-child" href="#">Li-Ion Battery</a>
+                                    <ul class="dropdown-menu-next">
+                                                                                    <li><a href="https://www.trendforce.cn/price/battery-price/battery_cell_and_pack">电芯及电池包价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/battery-price/precursor_and_cathode_material">前驱体及正极材料价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/battery-price/anode_material">负极材料价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/battery-price/separator">隔膜价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/battery-price/electrolyte">电解液价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/battery-price/li_co_ni">锂&amp;钴&amp;镍价格</a></li>
+                                                                                    <li><a href="https://www.trendforce.cn/price/battery-price/other">其他价格</a></li>
+                                                                            </ul>
+                                </li>
+                                                                        </ul>
+                </li>
+                                <li class="dropdown">
+                    <a href="/industry-news" data-toggle="dropdown"
+                        role="button">资讯中心</a>
+                </li>
+                                <li class="dropdown">
+                    <a href="/presscenter" data-toggle="dropdown"
+                        role="button">产业洞察</a>
+                </li>
+                                <li class="dropdown">
+                    <a data-toggle="dropdown" href="/seminar.html"
+                        aria-expanded="true">活动专区</a>
+                </li>
+                <li class="dropdown mega-dropdown">
+                    <a data-toggle="dropdown" href="/contact/reporting"
+                        aria-expanded="true">联系我们</a>
+                </li>
+            </ul>
+<!--            <hr class="pc-display-none">-->
+            
+            <div class="nav navbar-nav navbar-right">
+                
+
+                <!-- nav-tooltip QRcode-->
+                <div class="nav navbar-nav nav-tooltip">
+                    <button class="btn btn-lg header-login-button nav-tooltip-button" type="button" data-toggle="tooltip" data-html="true" data-placement="bottom" 
+                    title="<img src='/images/QRcode.jpg' class='tooltip-img'>">
+                        <i class="fa fa-weixin" aria-hidden="true"></i>
+                    </button>
+                </div>            
+                
+
+
+                <!--登入前_會員選單-->
+                <div class="nav navbar-nav login-b-menu">
+                                        <a href="https://www.trendforce.cn/login"  title="sign in">
+                    <button class="btn btn-lg header-login-button" type="button">
+                    <i class="fa fa-user" aria-hidden="true"></i> <span>会员登录</span>
+                    </button>
+                    </a>
+					                </div>
+                
+            <!--登入後_會員選單-->
+               <div class="nav navbar-nav login-a-menu">
+                    <div class="collapse-box header-member-box" >
+                                                                        
+                  </div>
+             </div>  
+                
+            <!--search選單-->
+                <div class="search-box-menu">
+                    <div class="search-box scrolldown nav-mobile-search">
+                        <form method="get" action="/search">
+                            <input type="text" class="form-control" name="query" placeholder="此为全站搜索(报告/活动/资讯)" required>
+                        </form>
+                    </div>
+                    <button type="button" class="btn btn-lg btn-search">
+                    <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); // 初始化 Tooltip
+    });
+</script>            </div>
+</header>
+
+            <div class="header-title ken-burn-center white" data-parallax="scroll" data-position="top" data-natural-height="650" data-natural-width="1920"
+    data-image-src="https://www.trendforce.cn/images/bg07.gif">
+
+    <div class="container">
+        <div class="col-md-9">
+            <div class="title-base text-left">
+                                    
+                    <h1>产业洞察</h1>
+                            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+    
+        <div class="section-bg-color">
+        <div class="container content breadcrumb-text">
+            <ul>
+                <li><a href="/">首页</a></li>
+                                    
+                    <li class="active">
+                                                    产业洞察
+                                            </li>
+                            </ul>
+        </div>
+    </div>
+    
+        <div class="section-empty section-item">
+                <div class="container content">
+        <div class="row">
+            
+                            <div class="col-md-8 col-sm-12 presscenter">
+    <h1>TrendForce集邦咨询：3Q26存储器价格受AI服务器支撑，但消费端压力扩大使得涨幅收敛</h1>
+    <hr class="space xs">
+    <div class="tag-row">
+        <span><i class="fa fa-calendar"></i>3 July 2026</span>
+        <span><i class="fa fa-bookmark"></i>
+                    <a href="/presscenter/news/Semiconductors">半导体</a>
+                            </span>
+        <span><i class="fa fa-user"></i>
+                <a href="https://www.trendforce.cn/search?resource=news&amp;query=TrendForce&amp;column=author" >TrendForce</a>
+                            </span>
+
+            </div>
+    <hr class="space m">
+    <ul>
+	<li>预估3Q26一般型DRAM合约价将季增13-18%，NAND Flash合约价季增10-15%</li>
+	<li>在合约价攀至新高的情况下，PC、智能手机等消费端客户承受力达到极限，促使3Q26整体价格涨幅缩减</li>
+</ul>
+
+<p>根据TrendForce集邦咨询最新存储器价格调查，2026年第三季整体DRAM格局持续极度紧缺，但因消费级应用需求下修及高基期作用，合约价涨幅收敛，预计将季增13-18%。NAND Flash主要需求仍由AI推理与大型数据中心建设支撑，但因合约价格已达历史高点，消费端客户在需求放缓的情况下，对价格承受力已达极限，预估整体NAND Flash合约价将季增10-15%，幅度较前几季明显缩减。</p>
+
+<p>观察第三季PC DRAM市场，PC OEM库存回补需求将支撑采购动能，但随着笔记本整机库存进一步滚动至高成本原料，将带动整机渠道价格全面上涨、影响全年出货量。原厂供给虽依照与PC OEM、模组厂约定的2026年供应量逐季交付，不过因原厂持续转移产能给Server应用，压缩PC DRAM供应规模。</p>
+
+<p>Server DRAM部分，搭配x86 CPU及RDIMM方案的通用型Server聚焦于多任务计算，持续作为Agentic AI应用场景的主要存储器配置。在CPU供给逐步改善下，预估Server整机出货至2027年将保持强劲，支撑2026年下半年RDIMM消耗、库存建设需求。第三季Server DRAM供不应求态势延续，不过部分买方采购价受限于长约（LTA）规定，整体价格涨幅缩减。</p>
+
+<p>第三季智能手机品牌需通过调涨终端售价平衡高昂的LPDRAM成本，但不利整机销售。在生产计划、采购策略更趋保守的前提下，LPDRAM需求可能进一步下滑。然而，由于原厂考量AI需求重新调配产出比重，预期LPDRAM供给将维持紧绷，继续支撑合约价上行。</p>
+
+<p>Graphics DRAM部分，NVIDIA（英伟达）RTX PRO 6000 Blackwell未如预期创造新一波GDDR7拉货动能，加上笔记本整体出货量下修，相应的GDDR6/7需求皆偏弱。另一方面，原厂灵活转换产能至其他主流产品，因此Graphics DRAM整体维持供给紧缺，GDDR6/7报价随主流DRAM产品同步走扬。</p>
+
+<p>第三季电视、机顶盒等传统消费级Consumer DRAM需求维持低迷，但车用、Server SSD、网通等利基型应用表现相对稳健，且大厂加速退出Consumer DRAM引发的转单效应仍在发酵，实质需求未明显萎缩。此外，大厂贯彻减产策略，台系业者扩产DDR4的规模又无法补足大厂退出留下的缺口，合约价维持上行。</p>
+
+<p>观察Client SSD市场，因PC OEM厂上半年已提前备货，且终端市场仅由商业机型支撑，OEM整机库存偏高，接受新一轮涨价的意愿大幅降低。在此情况下，原厂为维持出货顺畅，开始策略性调整对Client SSD的报价态度，买卖方拉锯压缩合约价涨幅。</p>
+
+<p>Enterprise SSD部分，买方受CPU缺货，但原厂扩大Enterprise SSD产能供应影响，逐渐累积库存。原厂因NVIDIA Vera Rubin平台逐步出货和消费级需求不振，加强Enterprise SSD供给。不过受到内部DRAM产能短缺影响，小容量、高速Enterprise SSD产品供应仍吃紧，整体价格维持上涨。</p>
+
+<p>智能手机品牌厂于2026年上半年提前完成大部分新机生产与拉货，下半年除了旗舰机型的UFS 4.0仍有刚性升级需求，中低端产品的备货动能相当低迷。由于整体需求转弱，过去产能被严重压缩的eMMC/UFS，第三季供给显得相对充足，且卖方议价能力受限于OEM追价能力减弱、需求疲软，导致eMMC/UFS合约价涨势将趋于平缓。</p>
+
+<p>在NAND Flash Wafer领域，零售市场、U盘、存储卡等消费级外设需求持续不振，模组厂客户也因上游成本高、下游终端市场无法承受价格高涨，需求保持在低点。尽管原厂产能配置依旧以高毛利的AI、Server产品线优先，释出至市场的Wafer总量仍然受限，但在Wafer买气极度低迷的情况下，合约价涨幅将明显收敛。</p>
+
+<p><img alt="" src="https://img.trendforce.cn/EDM/2026/07/20260703_110839_2.jpg" /></p>
+
+<p><em>若有兴趣进一步了解并购买 TrendForce 集邦咨询半导体相关研究报告与产业数据，请至 <a href="https://www.trendforce.cn/research/dram">报告页面</a> 查阅，或 <a href="mailto:SR_MI@trendforce.cn">Email</a> (SR_MI@trendforce.cn) 洽询业务。</em></p>
+    <hr class="space l">
+    <div class="text-center press-choose-post">
+                <a href="/presscenter/news/20260706-13137.html">
+            <div class="col-md-6 col-sm-6 col-xs-12 border-right-green m-width">
+                <div class="col-md-12 text-left padding-l-0"><i class="fa fa-arrow-left" aria-hidden="true"></i> 上一则</div>
+                <div class="col-md-12 padding-l-0 text-left"><strong>TrendForce集邦咨询: AI高端MLCC激励日韩大厂订单出货比创新高，2H26缺货风险提升</strong></div>
+            </div>
+        </a>
+                 <a href="/presscenter/news/20260701-13131.html">
+            <div class="col-md-6 col-sm-6 col-xs-12 m-width">
+                <div class="col-md-12 text-right padding-r-0">下一则 <i class="fa fa-arrow-right" aria-hidden="true"></i></div>
+                <div class="col-md-12 padding-r-0 text-right"><strong>TrendForce集邦咨询: 苹果全面调价带来消费端需求变量，预估2026年全球笔记本出货将减少13.6%</strong></div>
+            </div>
+        </a>
+            </div>
+</div>            
+            <div class="col-md-4 col-sm-12 boxed-inverse shadow-2">
+                <div class="list-group latest-post-list list-blog">
+                    <div class="list-group list-blog list-group-pc">
+    <p class="list-group-item active"><strong>类别</strong></p>
+    <div class="list-group accordion-list" data-time="1000" data-type="accordion">
+        <div class="list-group-item border-top-none">
+            <a class="" href="/presscenter/news">  产业洞察 </a>
+            <div class="open">
+                <div class="inner">
+                    <ul>
+                        <li><a href="/presscenter/subscribe.html" class="title-link">订阅产业洞察</a></li>
+                        <li><a href="/presscenter/attribution.html" class="title-link">产业洞察引用指南</a></li>
+                        <li><a href="/presscenter/rss.html" class="title-link">RSS订阅中心</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <a href="/analysis">  分析评论 </a>
+        </div>
+        <div class="list-group-item">
+            <a href="/presscenter/chart">  资讯图表 </a>
+        </div>
+        <div class="list-group-item">
+            <a href="/presscenter/video">  影音专区 </a>
+        </div>
+    </div>
+</div>                    <hr class="space l">
+                    <p class="list-group-item active"><strong>相关文章</strong></p>
+        <div class="list-group-item">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 width-87 m-display-none m-width-100">
+                <a class="img-box circle">
+                <img src="/images/news-01.jpg"
+                    alt="">
+                </a>
+            </div>
+            <div class="col-md-8 col-sm-12 ">
+                <a href="/presscenter/news/20260914-13234.html">
+                    <h5 class="font-size-15 text-ellipsis-1">TrendForce集邦咨询：2H26 NOR Flash价格走势分化，高容量产品涨幅预估达90-110%</h5>
+                </a>
+                <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.09.14</span></div>
+            </div>
+        </div>
+    </div>
+        <div class="list-group-item">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 width-87 m-display-none m-width-100">
+                <a class="img-box circle">
+                <img src="/images/news-02.jpg"
+                    alt="">
+                </a>
+            </div>
+            <div class="col-md-8 col-sm-12 ">
+                <a href="/presscenter/news/20260911-13232.html">
+                    <h5 class="font-size-15 text-ellipsis-1">TrendForce集邦咨询：2Q26全球前十大IC设计厂营收年增73%，AI需求持续强劲</h5>
+                </a>
+                <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.09.11</span></div>
+            </div>
+        </div>
+    </div>
+        <div class="list-group-item">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 width-87 m-display-none m-width-100">
+                <a class="img-box circle">
+                <img src="/images/news-01.jpg"
+                    alt="">
+                </a>
+            </div>
+            <div class="col-md-8 col-sm-12 ">
+                <a href="/presscenter/news/20260909-13226.html">
+                    <h5 class="font-size-15 text-ellipsis-1">TrendForce集邦咨询: 2Q26晶圆代工营收接近534.9亿美元，先进制程与AI需求持续强劲</h5>
+                </a>
+                <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.09.09</span></div>
+            </div>
+        </div>
+    </div>
+                        <hr class="space l">
+                    <p class="list-group-item active"><strong>相关报告</strong></p>
+<div class="list-group-item">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="https://www.trendforce.cn/research/download/RP131217MV">
+                <h5 class="font-size-15 text-ellipsis-1">全球SSD终端价格 - 2026年9月11日</h5>
+            </a>
+            <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.09.11</span></div>
+        </div>
+    </div>
+</div>
+<div class="list-group-item">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="https://www.trendforce.cn/research/download/RP210601PQ">
+                <h5 class="font-size-15 text-ellipsis-1">2026年9月MLCC每月数据</h5>
+            </a>
+            <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.09.01</span></div>
+        </div>
+    </div>
+</div>
+<div class="list-group-item">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="https://www.trendforce.cn/research/download/RP140917PK">
+                <h5 class="font-size-15 text-ellipsis-1">2026年第三季服务器DRAM产业数据</h5>
+            </a>
+            <div class="tag-row icon-row"><span><i class="fa fa-calendar"></i>2026.08.31</span></div>
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+        <footer class="footer-base">
+    <div class="content container">
+        <div class="row copy-row">
+
+            <div class="col-md-12 footer-flex">
+                <div class="footer-map">
+                    <div class="col-md-12 copy-text m-width">
+                        <div class="tag-row text-s">
+                            <span><a class="font-size-15" href="/index.php">首页</a></span>
+                            <span><a class="font-size-15" href="/sitemap">网站地图</a></span>
+                            <span><a class="font-size-15" href="/about">关于我们</a></span>
+                            <span><a class="font-size-15" href="/research/dram">研究报告</a></span>
+                            <span><a class="font-size-15" href="/about/terms">使用条款</a></span>
+                            <span><a class="font-size-15" href="/about/privacy">隐私政策</a></span>
+                            <span><a class="font-size-15" href="/about/MImember_agreement">会员服务条款</a></span>
+                            <span><a class="font-size-15" href="https://www.zhipin.com/gongsi/00921c0465e1e25d1nF839y5Elc~.html?ka=company-intro" target="_blank" rel="nofollow">人才招聘</a></span>
+                            <span><a class="font-size-15" href="/contact/reporting">联系我们</a></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 copy-text m-width">
+                        
+                        © 2026 集邦咨询顾问（深圳）有限公司 版权所有 不得转载
+                    </div>
+                </div>
+                <div class="footer-qrcode-weixin">
+                    <div class="footer-qrcode-weixin-img">
+                        <img src="/images/QRcode.jpg" alt="">
+                        <span>微信公众平台</span>
+                    </div>
+                </div>
+            </div>
+
+
+            
+                            <div class="col-md-12 copy-text m-width">
+    <div style="width:300px;margin:0 auto;">
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030402006464" rel="nofollow"
+           style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+            <img src="/images/cn/beian_icon.png" style="float:left;"/>
+            <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">粤公网安备 44030402006464号</p>
+        </a>
+    </div>
+
+    <div style="display: !important; text-align: center !important; padding: 10px 0 !important;">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">粤ICP备12036366号</a>
+    </div>
+</div>                    </div>
+    </div>
+    <link rel="stylesheet" href="/js/font-awesome/css/font-awesome.min.css">
+    <script src="/js/imagesloaded.min.js"></script>
+            <script src="/js/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.tab-accordion.js"></script>
+    <script src="/js/parallax.min.js"></script>
+    <script src="/js/flexslider/jquery.flexslider-min.js"></script>
+    <link rel="stylesheet" href="/css/animations.css">
+    <script async src="/js/isotope.min.js"></script>
+    
+    <script async src="/js/jquery.progress-counter.js"></script>
+    <script async src="/js/bootstrap/js/bootstrap.popover.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/social.stream.min.js"></script>
+    <script src="/js/jquery.slimscroll.min.js"></script>
+    <script src="/js/jquery.flipster.min.js"></script>
+</footer>
+
+
+    </body>
+</html>

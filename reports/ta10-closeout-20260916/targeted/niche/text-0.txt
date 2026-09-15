@@ -1,0 +1,189 @@
+TrendForce: 上半年合約價漲幅皆破100%，2H26結構性缺貨將帶動NOR Flash、SLC NAND價格持續上漲
+研究報告
+Back
+研究報告
+半導體
+AI/HBM/Server
+DRAM
+NAND Flash
+晶圓製造/代工
+MLCC
+IC設計
+IC製造與封測
+化合物半導體
+顯示器
+LCD
+OLED
+零組件
+面板
+供應鏈
+技術
+LED
+LED供需資料庫
+Micro/Mini LED
+近眼顯示
+LED顯示屏
+車用LED - 照明與顯示
+通用/農業照明
+紫外線LED
+紅外線感測- IR LED / VCSEL / EEL
+藍寶石市場
+能源
+太陽能
+電池與儲能
+消費性電子
+筆記型電腦
+電視
+智慧手機
+平板電腦
+穿戴裝置
+桌上型監視器/AIO
+其他
+通訊
+5G通訊技術
+5G頻譜與法規
+寬頻網路通訊
+新興科技
+雲端 / 邊緣運算
+物聯網
+AI人工智慧
+汽車科技
+AR / VR
+工業4.0
+機器人
+總體經濟
+經濟指標
+會員方案
+Back
+半導體
+N
+顯示器
+光電
+新能源
+通訊暨應用科技
+價格趨勢
+Back
+DRAM
+DRAM Spot Price
+DRAM Contract Price
+Module Spot Price
+GDDR Spot Price
+LPDDR Spot Price
+Mobile DRAM Contract Price
+NAND Flash
+NAND Flash Spot Price
+NAND Flash Contract Price
+Wafer Spot Price
+Memory Card Spot Price
+PC-Client OEM SSD Contract Price
+SSD Street Price
+NAND Flash Wafer Contract Price
+eMMC Spot Price
+eMMC/UFS Contract Price
+TFT-LCD
+Large Size Panel Price
+LCD Smartphone Panel Price
+Street Price
+Large Size Panel Shipment
+PV
+多晶矽
+矽晶圓
+電池片
+模組
+光伏玻璃
+Li-Ion Battery
+電池芯及電池包
+前驅體及正極材料
+負極材料
+隔離膜
+電解液
+鋰、鈷、鎳
+其他
+洞察
+Back
+產業洞察
+新聞中心
+活動專區
+探索
+Back
+DataTrack
+AI Agent
+會員登入
+取得協助
+熱門關鍵字
+#DRAM
+#Foundry
+#AI Server
+#HBM
+#FOPLP
+#CoWoS
+#NAND Flash
+#Automotive
+#MLCC
+#Server
+#Micro LED
+#IC Design
+購物清單
+0個品項
+購物車是空的
+項目總額 (未稅)
+TWD 0
+查看購物車
+會員登入
+新聞中心
+首頁
+新聞中心
+TrendForce: 上半年合約價漲幅皆破100%，2H26結構性缺貨將帶動NOR Flash、SLC NAND價格持續上漲
+16 June 2026
+半導體
+TrendForce
+根據TrendForce最新記憶體產業研究，由於記憶體大廠的產能規劃持續傾向HBM、高層數3D NAND等高附加價值產品，排擠NOR Flash、SLC NAND依賴的成熟製程產能，然因需求穩定，已激勵2026上半年NOR Flash、SLC NAND累積合約價漲幅分別突破100%。由於供應商未有大規模擴產計畫，預估下半年兩項產品的價格將隨供需緊張而繼續調升。
+TrendForce說明，NOR Flash的核心價值為即時執行(XIP)能力與高穩定性。在汽車電子領域，隨著自動駕駛輔助系統、智慧座艙等功能升級，車載韌體容量快速膨脹，高密度NOR Flash已成關鍵元件。邊緣AI裝置部分，過去容量僅需數十MB的系統程式，因AI模型本地化運算需求增加，需求往往倍數成長，帶動256Mb以上高容量NOR Flash需求快速提升。此外，在工控、衛星通訊及航太設備等領域，NOR Flash的高可靠特性難以由其他技術取代，形成穩定且高毛利的需求基礎。
+SLC NAND則因高P/E壽命、極低錯誤率、長期資料保存能力、寬溫運作特性，成為許多高可靠度系統的唯一選擇。近年智慧工廠、機器人、自主移動設備以及高階網通交換器等產品大量導入即時推論(Inference AI)功能，推升對高可靠度儲存系統需求。企業級server與資料中心則持續使用SLC NAND作為作業系統開機碟(Boot Drive)及高頻寫入緩衝區(Write-intensive Buffer)。在醫療影像設備、軍工電子、航太系統等對資料錯誤幾乎零容忍的環境，SLC NAND更有不可替代的市場地位。
+TrendForce表示，2026上半年終端對記憶體產品需求逐步恢復，加上AI相關應用快速成長，大幅消耗市場有限的供給，NOR Flash率先出現交期延長與配貨(Allocation)現象，合約價平均累積漲幅將達100-120%，高容量產品漲勢更顯著。SLC NAND則因部分國際大廠陸續退出小容量及成熟製程產品，供給明顯萎縮，而工控、車用及網通客戶又開始建立長期安全庫存，導致第二季出現明顯的恐慌性備貨潮，上半年價格平均累積漲幅將達130-150%。
+分析2026下半年價格走勢，由於全球主要供應商目前皆以製程微縮、提高良率及優化單位晶圓產出為主，無新增產能計畫，預期下半年開始，高度依賴長生命週期產品的車用與工控市場將形成長期缺貨風險。其中，高容量NOR Flash有車用電子與邊緣AI需求支撐，預計下半年價格仍有60-65%以上的調漲空間。而中低容量NOR Flash則可能受中國供應商產能逐步釋放影響，價格漲勢趨緩，部分產品甚至進入高檔盤整階段。
+SLC NAND雖然多數產品需求未明顯增加，供應來源卻持續減少，預估2026下半年價格漲勢雖將收斂，但仍有70-75%的上漲空間，工業、車規級產品漲勢可能更強。
+TrendForce指出，為避免價格失控衝擊合作關係或促使客戶尋求替代技術，主要供應商未來更可能透過長期供貨合約(LTA)與選擇性接單策略管理供需，意味未來市場競爭的核心將不再只是價格，而是供貨穩定性與客戶關係管理能力。
+若有興趣進一步了解並購買 TrendForce 半導體相關研究報告與產業數據，請至
+報告頁面
+查閱，也能
+留言
+或
+Email
+(SR_MI@trendforce.com) 洽詢業務。
+上一則
+TrendForce: CSP自研ASIC浪潮加速MLCC規格集中，2H26高階特規品恐面臨結構性短缺
+下一則
+TrendForce: 光互連成AI Factory擴張關鍵，預估2030年CPO/NPO市場規模將破390億美元
+類別
+新聞稿
+訂閱新聞稿
+新聞引用指南
+RSS訂閱中心
+分析評論
+資訊圖表
+影音專區
+相關文章
+TrendForce: 2H26 NOR Flash價格走勢分化，高容量產品漲幅上看90-110%
+2026.09.14
+TrendForce: 2Q26全球前十大IC設計廠營收年增73%，AMD擠進前三名
+2026.09.11
+TrendForce: 2Q26晶圓代工營收逼近534.9億美元，SMIC與Samsung市占差距縮小
+2026.09.09
+相關報告
+全球SSD終端價格 - 2026年9月11日
+2026.09.11
+2026年9月MLCC每月數據
+2026.09.01
+2026年第三季伺服器DRAM產業數據
+2026.08.31
+聯絡我們
+您的Email
+留言
+送出
+取消
+聯絡我們
+您的Email
+留言
+送出
+取消
