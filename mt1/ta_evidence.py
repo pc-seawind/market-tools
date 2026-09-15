@@ -269,13 +269,32 @@ def admit(code, spec, receipt, asof):
     if not pub:return None,'publication_unknown'
     if instant(pub)>instant(asof):return None,'future_publication'
     if kind not in KINDS:return None,'unclassified_source'
+    full_body=body; start=0
+    window=spec.get('source_window')
+    if window is not None:
+        # Opt-in reviewed article boundary, not a general HTML heuristic. Bind
+        # to archived text and fail closed rather than falling back to the page.
+        try:
+            start,end=window['char_start'],window['char_end']
+            if (type(start) is not int or type(end) is not int or
+                not 0<=start<end<=len(body) or not window.get('reviewer') or
+                file_hash(receipt['text_path'])!=window['text_sha256']):
+                return None,'invalid_source_window'
+            body=body[start:end]
+        except (KeyError,TypeError):return None,'invalid_source_window'
     if not all(re.search(p,body,re.I) for p in spec.get('verify',[])):return None,'identity_or_publication_not_verified'
     # Explicit curated metadata requires a verifiable publication date token.
     if spec.get('date_token') and spec['date_token'] not in body:return None,'publication_not_in_original'
     nums=numeric_extract(body,spec.get('numbers',[]),kind,pub)
-    content={'sections':sections(body,spec.get('terms',['客户','成本','风险','预测'])),
-             'excerpt_scope':'topic_driven_verbatim_full_source_archived','full_text_chars':len(body),
+    spans=sections(body,spec.get('terms',['客户','成本','风险','预测']))
+    for span in [*spans,*nums.values()]:
+        span['char_start']+=start;span['char_end']+=start
+        span['page']=full_body[:span['char_start']].count('\f')+1
+        span['paragraph']=full_body[:span['char_start']].count('\n')+1
+    content={'sections':spans,
+             'excerpt_scope':'reviewed_article_window_full_source_archived' if window else 'topic_driven_verbatim_full_source_archived','full_text_chars':len(full_body),
              'numeric_metrics':nums,'source_title':spec.get('title'),'interpretation_rule':'预测及媒体因果解释不是公司事实；未披露采购份额保持未知'}
+    if window:content['source_window']=dict(window)
     e=evidence(code,kind,content,spec['url'],pub,receipt['fetched_at'],receipt['raw_path'],
                text_path=receipt['text_path'],text_sha256=receipt['text_sha256'],discovered_at=receipt['discovered_at'],
                original_institution=spec.get('institution','unknown'),author=spec.get('author','unknown'),

@@ -61,3 +61,17 @@ def test_broken_pointer_does_not_hide_good_supplement(tmp_path):
     write(tmp_path / 'evidence-supplements' / 'broken.json', {})
     assert {r['status'] for r in evidence_inbox(tmp_path)} == {
         'blocked_invalid_supplement', 'pending_independent_source_review'}
+
+
+@pytest.mark.parametrize('valid',[True,False])
+def test_only_valid_child_supersedes_old_review(tmp_path,valid):
+    pointer,current,*_=fixture(tmp_path)
+    p=json.loads(pointer.read_text());child=tmp_path/'child.json'
+    data=json.loads(current.read_text());data['parent_collection_hash']=file_hash(current)
+    write(child,data)
+    write(tmp_path/'evidence-supplements'/'child.json',{
+        **p,'collection':str(child),'sha256':file_hash(child) if valid else 'bad',
+        'parent_collection':str(current),'parent_sha256':file_hash(current)})
+    rows=evidence_inbox(tmp_path)
+    old=next(r for r in rows if r.get('sha256')==file_hash(current))
+    assert old['status']==('superseded_by_source_revision' if valid else 'pending_independent_source_review')

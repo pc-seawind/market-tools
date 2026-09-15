@@ -29,6 +29,14 @@
 当前真实样例：`reports/ta10-closeout-20260916/supplement-pointer.json`。
 正常消费者会自动读取，无须新 cron、重启 worker 或额外模型推理。
 
+源文类型/边界返修另建子 collection，不覆盖上述归档；同 work_id 且父 hash
+匹配的有效子 revision 会使旧补充区记录显示 `superseded_by_source_revision`。
+当前修正样例：`reports/ta10-closeout-r2-20260916/supplement-pointer.json`。
+`admit` 可使用人工审核的 `source_window={char_start,char_end,text_sha256,reviewer}`，
+只在该正文窗口验证元数据、抽取段落和数值；offset 是原 text 的 Unicode 字符下标，
+左闭右开。边界/hash 无效直接拒绝，不能回退整页。原 raw/text 继续完整归档。
+预测材料须归 `institution_forecast`，备注“预测”不能替代类型门禁。
+
 ### 原质量/到期审核批次
 
 ```

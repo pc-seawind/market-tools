@@ -137,6 +137,14 @@ def evidence_inbox(root):
         except (OSError, ValueError, KeyError, TypeError) as exc:
             rows.append({'status': 'blocked_invalid_supplement', 'pointer': str(path),
                          'error': str(exc), 'not_published': True})
+    # Only a validated direct child of the same work supersedes old source
+    # review. Keep the old immutable record visible but not pending/current.
+    for row in rows:
+        if 'sha256' not in row:continue
+        successors=[r['sha256'] for r in rows if r.get('work_id')==row['work_id']
+                    and r.get('parent_sha256')==row['sha256'] and r.get('sha256')!=row['sha256']]
+        if successors:
+            row.update(status='superseded_by_source_revision',superseded_by=successors)
     return rows
 
 
