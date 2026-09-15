@@ -1,0 +1,963 @@
+{
+  "status": "research_consumed",
+  "not_published": true,
+  "coverage": [
+    {
+      "code": "001309.SZ",
+      "target_session": "2026-09-16",
+      "status": "pass",
+      "audit_errors": [],
+      "result_hash": "2f5d3b643ff7a205085bb4ea85497c3c91db925e0faec56848589f6541927ec6",
+      "original_gate_errors": [],
+      "recomputed_gate_note": "original errors retained; numeric/date and explicit volume-negation false positives only resolved by fresh audit + automatic semantic gate + hash-bound analyst review",
+      "blockers": [],
+      "semantic_quality": {
+        "code": "001309.SZ",
+        "name": "德明利",
+        "status": "pass",
+        "result_hash": "2f5d3b643ff7a205085bb4ea85497c3c91db925e0faec56848589f6541927ec6",
+        "checks": {
+          "facts": {
+            "status": "pass",
+            "rationale": "半年报收入利润转正、经营现金流为负、存货应收扩张与风险章节互证；日跌使用昨收而非开盘。修复后的bear字段完整，C明确ROE口径未调和。",
+            "evidence_ids": [
+              "e_9bf6894186829580bf57",
+              "e_b5e7771ab1e2f1929bbc",
+              "e_327f49d5322ae7b1b90b",
+              "e_96433762e409cbd89148"
+            ]
+          },
+          "short_term": {
+            "status": "pass",
+            "rationale": "下一交易日为冻结日历核定的 2026-09-16；B/C均明确方向未知；宁德仅已公告事件和盘中/收盘条件观察。未用后续季报作次日验证。",
+            "evidence_ids": [
+              "e_9bf6894186829580bf57",
+              "e_b5e7771ab1e2f1929bbc",
+              "e_327f49d5322ae7b1b90b",
+              "e_96433762e409cbd89148"
+            ]
+          },
+          "thesis": {
+            "status": "pass",
+            "rationale": "高增长能否转化为现金，观察未来存货去化、回款与经营现金流；不在当日核下一季收入。 新披露日程未确认保持未知。",
+            "evidence_ids": [
+              "e_9bf6894186829580bf57",
+              "e_b5e7771ab1e2f1929bbc",
+              "e_327f49d5322ae7b1b90b",
+              "e_96433762e409cbd89148"
+            ]
+          },
+          "gaps": {
+            "status": "pass",
+            "rationale": "同业估值、未披露的下一期经营数据及部分明细仍缺；没有把缺失写成零、没有收益或成本假设。",
+            "evidence_ids": [
+              "e_9bf6894186829580bf57",
+              "e_b5e7771ab1e2f1929bbc",
+              "e_327f49d5322ae7b1b90b",
+              "e_96433762e409cbd89148"
+            ]
+          },
+          "B_vs_C": {
+            "status": "pass",
+            "rationale": "逐读B/C与所引原文；C保留反方风险和未决缺口。比较只针对同一冻结证据B/C，不给A/B/C提升百分比。",
+            "evidence_ids": [
+              "e_9bf6894186829580bf57",
+              "e_b5e7771ab1e2f1929bbc",
+              "e_327f49d5322ae7b1b90b",
+              "e_96433762e409cbd89148"
+            ]
+          }
+        },
+        "findings": [],
+        "review_scope": "manual_source_readback_by_primary_agent_NOT_independent_acceptance",
+        "source_readback": [
+          {
+            "evidence_id": "e_9bf6894186829580bf57",
+            "raw_sha256": "37f7f86ae8b8f25c1758d66d9293bca4f46a5a02a21354c03dded02ad61072f8",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_b5e7771ab1e2f1929bbc",
+            "raw_sha256": "d0b07347901820cda4b55525bef14d4ad94aa86dd1c98346c24ed9857ed76788",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_327f49d5322ae7b1b90b",
+            "raw_sha256": "585906e234be26ad879b5529a7012259f53baa4bb5f0b66700db61813214e684",
+            "text_sha256": "9bd4e79d71da823468045bde6ede9a98126aa133939b846622f4ce883ff9fd6f"
+          },
+          {
+            "evidence_id": "e_96433762e409cbd89148",
+            "raw_sha256": "f1b4ef62ded1ccf37a6694e243f3b211291233a3076cdec2a096e7b245757712",
+            "text_sha256": "32f5624cb6abc8e2a1ac3a156c19aed28d8ce0c084f08fa9b31895ee7a603ca1"
+          },
+          {
+            "evidence_id": "e_5a60756c08946316007f",
+            "raw_sha256": "163e1ca8815929dedaf193dd64895a94e833efd417cdc35b37c5653155f5d104",
+            "text_sha256": null
+          }
+        ],
+        "remediation_applied": [
+          "bear",
+          "C"
+        ],
+        "warnings": [
+          "首次研究质量复核，不是收益有效性结论；不是审计师对财务报表的鉴证。"
+        ]
+      },
+      "automatic_quality": {
+        "code": "001309.SZ",
+        "errors": [],
+        "status": "review_required",
+        "roles": {
+          "B": [],
+          "bull": [],
+          "bear": [],
+          "bull_cross": [],
+          "bear_cross": [],
+          "C": []
+        },
+        "result_hash": "2f5d3b643ff7a205085bb4ea85497c3c91db925e0faec56848589f6541927ec6"
+      }
+    },
+    {
+      "code": "603986.SH",
+      "target_session": "2026-09-16",
+      "status": "pass",
+      "audit_errors": [],
+      "result_hash": "c09ca36a9fdd68beb5b1f5ea6fdf734fcee2e78c9d8ca250b9e68f280dc386f7",
+      "original_gate_errors": [],
+      "recomputed_gate_note": "original errors retained; numeric/date and explicit volume-negation false positives only resolved by fresh audit + automatic semantic gate + hash-bound analyst review",
+      "blockers": [],
+      "semantic_quality": {
+        "code": "603986.SH",
+        "name": "兆易创新",
+        "status": "pass",
+        "result_hash": "c09ca36a9fdd68beb5b1f5ea6fdf734fcee2e78c9d8ca250b9e68f280dc386f7",
+        "checks": {
+          "facts": {
+            "status": "pass",
+            "rationale": "半年报存储量价齐升、公允价值收益、扣非与归母增速差、存货备货均有原文；股价上涨不替代经营证据。",
+            "evidence_ids": [
+              "e_7b09f305de9996eff756",
+              "e_5c0285d954bbd1929149",
+              "e_93fa093efe5df789b269"
+            ]
+          },
+          "short_term": {
+            "status": "pass",
+            "rationale": "下一交易日为冻结日历核定的 2026-09-16；B/C均明确方向未知；宁德仅已公告事件和盘中/收盘条件观察。未用后续季报作次日验证。",
+            "evidence_ids": [
+              "e_7b09f305de9996eff756",
+              "e_5c0285d954bbd1929149",
+              "e_93fa093efe5df789b269"
+            ]
+          },
+          "thesis": {
+            "status": "pass",
+            "rationale": "后续季度核扣非盈利与备货质量；现有风险是基线，不把它当已发生的未来预测失败。 新披露日程未确认保持未知。",
+            "evidence_ids": [
+              "e_7b09f305de9996eff756",
+              "e_5c0285d954bbd1929149",
+              "e_93fa093efe5df789b269"
+            ]
+          },
+          "gaps": {
+            "status": "pass",
+            "rationale": "同业估值、未披露的下一期经营数据及部分明细仍缺；没有把缺失写成零、没有收益或成本假设。",
+            "evidence_ids": [
+              "e_7b09f305de9996eff756",
+              "e_5c0285d954bbd1929149",
+              "e_93fa093efe5df789b269"
+            ]
+          },
+          "B_vs_C": {
+            "status": "pass",
+            "rationale": "逐读B/C与所引原文；C保留反方风险和未决缺口。比较只针对同一冻结证据B/C，不给A/B/C提升百分比。",
+            "evidence_ids": [
+              "e_7b09f305de9996eff756",
+              "e_5c0285d954bbd1929149",
+              "e_93fa093efe5df789b269"
+            ]
+          }
+        },
+        "findings": [],
+        "review_scope": "manual_source_readback_by_primary_agent_NOT_independent_acceptance",
+        "source_readback": [
+          {
+            "evidence_id": "e_7b09f305de9996eff756",
+            "raw_sha256": "3ed59555ab6a7e7c690ceb317265710526aff917d56c2aa0465a08d1a8a62f5f",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_5c0285d954bbd1929149",
+            "raw_sha256": "16b5dbf86b33708fb54821b32380f7dc73cd0c0b725ddc6163540e0ce2e7498f",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_93fa093efe5df789b269",
+            "raw_sha256": "8d559a90a9ddc41e667f630afb620004549d31d43de06f9ddb0ab4c2dc84f25f",
+            "text_sha256": "f99a7d335d8210250f4122c0ced3aff2931b9eef5296f0131ce76f8bcaa13fd9"
+          },
+          {
+            "evidence_id": "e_5357f29171cb85d94283",
+            "raw_sha256": "96ff9f9d4020da5d35ccb969f1842aa14f866e113ca4ccde025caaec8a002f16",
+            "text_sha256": null
+          }
+        ],
+        "remediation_applied": [],
+        "warnings": [
+          "首次研究质量复核，不是收益有效性结论；不是审计师对财务报表的鉴证。"
+        ]
+      },
+      "automatic_quality": {
+        "code": "603986.SH",
+        "errors": [],
+        "status": "review_required",
+        "roles": {
+          "B": [],
+          "bull": [],
+          "bear": [],
+          "bull_cross": [],
+          "bear_cross": [],
+          "C": []
+        },
+        "result_hash": "c09ca36a9fdd68beb5b1f5ea6fdf734fcee2e78c9d8ca250b9e68f280dc386f7"
+      }
+    },
+    {
+      "code": "688195.SH",
+      "target_session": "2026-09-16",
+      "status": "pass",
+      "audit_errors": [],
+      "result_hash": "75246d3843f36c36d26e74cecec87bd03168e03e3d03f7d61f79e49d0fa98ae7",
+      "original_gate_errors": [],
+      "recomputed_gate_note": "original errors retained; numeric/date and explicit volume-negation false positives only resolved by fresh audit + automatic semantic gate + hash-bound analyst review",
+      "blockers": [],
+      "semantic_quality": {
+        "code": "688195.SH",
+        "name": "腾景科技",
+        "status": "pass",
+        "result_hash": "75246d3843f36c36d26e74cecec87bd03168e03e3d03f7d61f79e49d0fa98ae7",
+        "checks": {
+          "facts": {
+            "status": "pass",
+            "rationale": "半年报公司原文镜像含光通信收入、OCS晶体订单、股份支付与资本开支；客户供应链层级仍是未验证假设。",
+            "evidence_ids": [
+              "e_4c54157fe0801bb14678",
+              "e_2d4637e3b954fbe95b4f",
+              "e_ea7f0f278387e740ef3a"
+            ]
+          },
+          "short_term": {
+            "status": "pass",
+            "rationale": "下一交易日为冻结日历核定的 2026-09-16；B/C均明确方向未知；宁德仅已公告事件和盘中/收盘条件观察。未用后续季报作次日验证。",
+            "evidence_ids": [
+              "e_4c54157fe0801bb14678",
+              "e_2d4637e3b954fbe95b4f",
+              "e_ea7f0f278387e740ef3a"
+            ]
+          },
+          "thesis": {
+            "status": "pass",
+            "rationale": "扩产与光通信增长能否转化为净利率；不以当日收跌否定经营改善，不将未知客户卡位写成事实。 新披露日程未确认保持未知。",
+            "evidence_ids": [
+              "e_4c54157fe0801bb14678",
+              "e_2d4637e3b954fbe95b4f",
+              "e_ea7f0f278387e740ef3a"
+            ]
+          },
+          "gaps": {
+            "status": "pass",
+            "rationale": "同业估值、未披露的下一期经营数据及部分明细仍缺；没有把缺失写成零、没有收益或成本假设。",
+            "evidence_ids": [
+              "e_4c54157fe0801bb14678",
+              "e_2d4637e3b954fbe95b4f",
+              "e_ea7f0f278387e740ef3a"
+            ]
+          },
+          "B_vs_C": {
+            "status": "pass",
+            "rationale": "逐读B/C与所引原文；C保留反方风险和未决缺口。比较只针对同一冻结证据B/C，不给A/B/C提升百分比。",
+            "evidence_ids": [
+              "e_4c54157fe0801bb14678",
+              "e_2d4637e3b954fbe95b4f",
+              "e_ea7f0f278387e740ef3a"
+            ]
+          }
+        },
+        "findings": [],
+        "review_scope": "manual_source_readback_by_primary_agent_NOT_independent_acceptance",
+        "source_readback": [
+          {
+            "evidence_id": "e_4c54157fe0801bb14678",
+            "raw_sha256": "e8b14867fe07f0ade03ab6795a50be61089bd8f61ec2c9d3ed429ebc90204b63",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_2d4637e3b954fbe95b4f",
+            "raw_sha256": "e30f616a2bbfa75d2c783d3455e97bd7874d681fcc273977389cec82cc39b458",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_ea7f0f278387e740ef3a",
+            "raw_sha256": "288006086a20c4ef775036ddd79fa0258222406f5416b0aed0517992b5f87fe5",
+            "text_sha256": "a2895e3bd25f002fb7eab1f2a9892e9651b9f4119e301c3cc6644ad61198cd7e"
+          },
+          {
+            "evidence_id": "e_5653c6c505e55179c0b2",
+            "raw_sha256": "add1f2df8f93576179ffee49b2e7adfc18bac5d882d1d2cf6c2cb87d02040041",
+            "text_sha256": null
+          }
+        ],
+        "remediation_applied": [],
+        "warnings": [
+          "首次研究质量复核，不是收益有效性结论；不是审计师对财务报表的鉴证。"
+        ]
+      },
+      "automatic_quality": {
+        "code": "688195.SH",
+        "errors": [],
+        "status": "review_required",
+        "roles": {
+          "B": [],
+          "bull": [],
+          "bear": [],
+          "bull_cross": [],
+          "bear_cross": [],
+          "C": []
+        },
+        "result_hash": "75246d3843f36c36d26e74cecec87bd03168e03e3d03f7d61f79e49d0fa98ae7"
+      }
+    },
+    {
+      "code": "301511.SZ",
+      "target_session": "2026-09-16",
+      "status": "pass",
+      "audit_errors": [],
+      "result_hash": "3678b6e1337b94afa1467fd7c823870b3bbac068911218dfc5131cc3ed0cf604",
+      "original_gate_errors": [],
+      "recomputed_gate_note": "original errors retained; numeric/date and explicit volume-negation false positives only resolved by fresh audit + automatic semantic gate + hash-bound analyst review",
+      "blockers": [],
+      "semantic_quality": {
+        "code": "301511.SZ",
+        "name": "德福科技",
+        "status": "pass",
+        "result_hash": "3678b6e1337b94afa1467fd7c823870b3bbac068911218dfc5131cc3ed0cf604",
+        "checks": {
+          "facts": {
+            "status": "pass",
+            "rationale": "半年报收入利润增长同时现金净流出，分产品毛利率与融资现金流可核；高杠杆为风险判断而非真实卖出命令。",
+            "evidence_ids": [
+              "e_edd14c221e6def68ad4d",
+              "e_cfeef62f03e7af32c785",
+              "e_770f301d666c045c1642"
+            ]
+          },
+          "short_term": {
+            "status": "pass",
+            "rationale": "下一交易日为冻结日历核定的 2026-09-16；B/C均明确方向未知；宁德仅已公告事件和盘中/收盘条件观察。未用后续季报作次日验证。",
+            "evidence_ids": [
+              "e_edd14c221e6def68ad4d",
+              "e_cfeef62f03e7af32c785",
+              "e_770f301d666c045c1642"
+            ]
+          },
+          "thesis": {
+            "status": "pass",
+            "rationale": "下一期经营现金流、毛利率与杠杆验证，当前增长不等于质量改善。 新披露日程未确认保持未知。",
+            "evidence_ids": [
+              "e_edd14c221e6def68ad4d",
+              "e_cfeef62f03e7af32c785",
+              "e_770f301d666c045c1642"
+            ]
+          },
+          "gaps": {
+            "status": "pass",
+            "rationale": "同业估值、未披露的下一期经营数据及部分明细仍缺；没有把缺失写成零、没有收益或成本假设。",
+            "evidence_ids": [
+              "e_edd14c221e6def68ad4d",
+              "e_cfeef62f03e7af32c785",
+              "e_770f301d666c045c1642"
+            ]
+          },
+          "B_vs_C": {
+            "status": "pass",
+            "rationale": "逐读B/C与所引原文；C保留反方风险和未决缺口。比较只针对同一冻结证据B/C，不给A/B/C提升百分比。",
+            "evidence_ids": [
+              "e_edd14c221e6def68ad4d",
+              "e_cfeef62f03e7af32c785",
+              "e_770f301d666c045c1642"
+            ]
+          }
+        },
+        "findings": [],
+        "review_scope": "manual_source_readback_by_primary_agent_NOT_independent_acceptance",
+        "source_readback": [
+          {
+            "evidence_id": "e_edd14c221e6def68ad4d",
+            "raw_sha256": "75814a80e45471c8377090e6f5311f1f7d89f2a613092e45728789fb6318c005",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_cfeef62f03e7af32c785",
+            "raw_sha256": "7da56e4e1f428ab36546872d1f712bbcebc145c243b59a6a9d7d5be74a6e8a66",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_770f301d666c045c1642",
+            "raw_sha256": "e7b994f10f0bc83377e6c6e58d4d7056c574445d0fff240ca8b18e03abbd45eb",
+            "text_sha256": "a43356d1296c66a13cd4c9aadbbeb98b2bdb4f461c1c8ef4b060aaaf424a98f9"
+          },
+          {
+            "evidence_id": "e_79badd6f8253060fef0b",
+            "raw_sha256": "417d16ea1e5c32500d80cebaae6b36d3ece89d0e059e0a97125638d2d4dcc728",
+            "text_sha256": null
+          }
+        ],
+        "remediation_applied": [],
+        "warnings": [
+          "首次研究质量复核，不是收益有效性结论；不是审计师对财务报表的鉴证。"
+        ]
+      },
+      "automatic_quality": {
+        "code": "301511.SZ",
+        "errors": [],
+        "status": "review_required",
+        "roles": {
+          "B": [],
+          "bull": [],
+          "bear": [],
+          "bull_cross": [],
+          "bear_cross": [],
+          "C": []
+        },
+        "result_hash": "3678b6e1337b94afa1467fd7c823870b3bbac068911218dfc5131cc3ed0cf604"
+      }
+    },
+    {
+      "code": "300750.SZ",
+      "target_session": "2026-09-16",
+      "status": "pass",
+      "audit_errors": [],
+      "result_hash": "7d02776a0901eef83d633f332eafeba4a8112b479e08e1a16461616b94c46572",
+      "original_gate_errors": [],
+      "recomputed_gate_note": "original errors retained; numeric/date and explicit volume-negation false positives only resolved by fresh audit + automatic semantic gate + hash-bound analyst review",
+      "blockers": [],
+      "semantic_quality": {
+        "code": "300750.SZ",
+        "name": "宁德时代",
+        "status": "pass",
+        "result_hash": "7d02776a0901eef83d633f332eafeba4a8112b479e08e1a16461616b94c46572",
+        "checks": {
+          "facts": {
+            "status": "pass",
+            "rationale": "半年报动力/储能收入及毛利率、现金流；已公告归属股份上市流通日可核。没有以单日下跌反驳低估值。",
+            "evidence_ids": [
+              "e_c65fdfb0d2432582886c",
+              "e_3b93b1acafbf13f83cfe",
+              "e_5eae0254abb04adf5b67",
+              "e_b0cebe042c4514ecd670"
+            ]
+          },
+          "short_term": {
+            "status": "pass",
+            "rationale": "下一交易日为冻结日历核定的 2026-09-16；B/C均明确方向未知；宁德仅已公告事件和盘中/收盘条件观察。未用后续季报作次日验证。",
+            "evidence_ids": [
+              "e_c65fdfb0d2432582886c",
+              "e_3b93b1acafbf13f83cfe",
+              "e_5eae0254abb04adf5b67",
+              "e_b0cebe042c4514ecd670"
+            ]
+          },
+          "thesis": {
+            "status": "pass",
+            "rationale": "短期只保留已公告事件及当日价格观察，明确未知方向；季度盈利质量移中期。 新披露日程未确认保持未知。",
+            "evidence_ids": [
+              "e_c65fdfb0d2432582886c",
+              "e_3b93b1acafbf13f83cfe",
+              "e_5eae0254abb04adf5b67",
+              "e_b0cebe042c4514ecd670"
+            ]
+          },
+          "gaps": {
+            "status": "pass",
+            "rationale": "同业估值、未披露的下一期经营数据及部分明细仍缺；没有把缺失写成零、没有收益或成本假设。",
+            "evidence_ids": [
+              "e_c65fdfb0d2432582886c",
+              "e_3b93b1acafbf13f83cfe",
+              "e_5eae0254abb04adf5b67",
+              "e_b0cebe042c4514ecd670"
+            ]
+          },
+          "B_vs_C": {
+            "status": "pass",
+            "rationale": "逐读B/C与所引原文；C保留反方风险和未决缺口。比较只针对同一冻结证据B/C，不给A/B/C提升百分比。",
+            "evidence_ids": [
+              "e_c65fdfb0d2432582886c",
+              "e_3b93b1acafbf13f83cfe",
+              "e_5eae0254abb04adf5b67",
+              "e_b0cebe042c4514ecd670"
+            ]
+          }
+        },
+        "findings": [],
+        "review_scope": "manual_source_readback_by_primary_agent_NOT_independent_acceptance",
+        "source_readback": [
+          {
+            "evidence_id": "e_c65fdfb0d2432582886c",
+            "raw_sha256": "238a7d0e9efd8800fe880967f10e63f20d51e037cfd5cbb40e1ad59cf018d082",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_3b93b1acafbf13f83cfe",
+            "raw_sha256": "dbefe9c917c974b24c763b7651e951af97055847a4456697a31ba8bc1536d333",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_5eae0254abb04adf5b67",
+            "raw_sha256": "d96b5d49ae75bec5913d032de781873565f5405bf99fd8b011eab152549862b9",
+            "text_sha256": "825f4b9689df33329f7d92fc8dfd7b283a9c4fea3a59d9ec41adf84657c52e1c"
+          },
+          {
+            "evidence_id": "e_b0cebe042c4514ecd670",
+            "raw_sha256": "5ba8f107656a158ee8b7ca187322fff39b1a7baffb99f125ec8e6f200a95d783",
+            "text_sha256": "36c13f268527ce4d9daa03748fbff544b896cc05eb7bf186f82a77905dbec814"
+          },
+          {
+            "evidence_id": "e_0a25d7bdd2d057b76694",
+            "raw_sha256": "f4e49472c07980196768b57a94af18bf2b983c0afb3519215509f8c1e6c22b27",
+            "text_sha256": null
+          }
+        ],
+        "remediation_applied": [],
+        "warnings": [
+          "首次研究质量复核，不是收益有效性结论；不是审计师对财务报表的鉴证。"
+        ]
+      },
+      "automatic_quality": {
+        "code": "300750.SZ",
+        "errors": [],
+        "status": "review_required",
+        "roles": {
+          "B": [],
+          "bull": [],
+          "bear": [],
+          "bull_cross": [],
+          "bear_cross": [],
+          "C": []
+        },
+        "result_hash": "7d02776a0901eef83d633f332eafeba4a8112b479e08e1a16461616b94c46572"
+      }
+    },
+    {
+      "code": "601138.SH",
+      "target_session": "2026-09-16",
+      "status": "pass",
+      "audit_errors": [],
+      "result_hash": "4d3c5dddc669fd21966ff720801a63bc6da741b65886c3344db16ccfb47f4666",
+      "original_gate_errors": [],
+      "recomputed_gate_note": "original errors retained; numeric/date and explicit volume-negation false positives only resolved by fresh audit + automatic semantic gate + hash-bound analyst review",
+      "blockers": [],
+      "semantic_quality": {
+        "code": "601138.SH",
+        "name": "工业富联",
+        "status": "pass",
+        "result_hash": "4d3c5dddc669fd21966ff720801a63bc6da741b65886c3344db16ccfb47f4666",
+        "checks": {
+          "facts": {
+            "status": "pass",
+            "rationale": "半年报AI服务器扩张、利润现金流增长及存货应收/海外资产可核；没有把期末库存环比与收入同比直接比高低。",
+            "evidence_ids": [
+              "e_e79552d6bea2b91f6ed0",
+              "e_da50e2dac1237ccd9cad",
+              "e_ef21a21dafa11c917480"
+            ]
+          },
+          "short_term": {
+            "status": "pass",
+            "rationale": "下一交易日为冻结日历核定的 2026-09-16；B/C均明确方向未知；宁德仅已公告事件和盘中/收盘条件观察。未用后续季报作次日验证。",
+            "evidence_ids": [
+              "e_e79552d6bea2b91f6ed0",
+              "e_da50e2dac1237ccd9cad",
+              "e_ef21a21dafa11c917480"
+            ]
+          },
+          "thesis": {
+            "status": "pass",
+            "rationale": "未来季度验证AI收入持续性和营运资金，不把订单平台身份推测当公司确认。 新披露日程未确认保持未知。",
+            "evidence_ids": [
+              "e_e79552d6bea2b91f6ed0",
+              "e_da50e2dac1237ccd9cad",
+              "e_ef21a21dafa11c917480"
+            ]
+          },
+          "gaps": {
+            "status": "pass",
+            "rationale": "同业估值、未披露的下一期经营数据及部分明细仍缺；没有把缺失写成零、没有收益或成本假设。",
+            "evidence_ids": [
+              "e_e79552d6bea2b91f6ed0",
+              "e_da50e2dac1237ccd9cad",
+              "e_ef21a21dafa11c917480"
+            ]
+          },
+          "B_vs_C": {
+            "status": "pass",
+            "rationale": "逐读B/C与所引原文；C保留反方风险和未决缺口。比较只针对同一冻结证据B/C，不给A/B/C提升百分比。",
+            "evidence_ids": [
+              "e_e79552d6bea2b91f6ed0",
+              "e_da50e2dac1237ccd9cad",
+              "e_ef21a21dafa11c917480"
+            ]
+          }
+        },
+        "findings": [],
+        "review_scope": "manual_source_readback_by_primary_agent_NOT_independent_acceptance",
+        "source_readback": [
+          {
+            "evidence_id": "e_e79552d6bea2b91f6ed0",
+            "raw_sha256": "738fe9c5b775400d6d7792b96b8eb602c1ee69f0a471336b8399a5540543eb61",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_da50e2dac1237ccd9cad",
+            "raw_sha256": "5d5e1f1fa697acb378f4604f1cc422abac44f2ada4e6e6c11fc5ac4e51aa3894",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_ef21a21dafa11c917480",
+            "raw_sha256": "34d02741f6651eba443de0b3ec16562a43d22b31c12d548e4f17004ed618ba2d",
+            "text_sha256": "801e015b89f912784c0b4300431fd30ebad23e51e858c3a6c610f8e0ac017178"
+          },
+          {
+            "evidence_id": "e_f61346006e6ad93ab73c",
+            "raw_sha256": "de05152cee68a2c7238cbe900754e001a9bdcadf18c375711cd9a96865edf51d",
+            "text_sha256": null
+          }
+        ],
+        "remediation_applied": [],
+        "warnings": [
+          "首次研究质量复核，不是收益有效性结论；不是审计师对财务报表的鉴证。"
+        ]
+      },
+      "automatic_quality": {
+        "code": "601138.SH",
+        "errors": [],
+        "status": "review_required",
+        "roles": {
+          "B": [],
+          "bull": [],
+          "bear": [],
+          "bull_cross": [],
+          "bear_cross": [],
+          "C": []
+        },
+        "result_hash": "4d3c5dddc669fd21966ff720801a63bc6da741b65886c3344db16ccfb47f4666"
+      }
+    },
+    {
+      "code": "01810.HK",
+      "target_session": "2026-09-16",
+      "status": "pass",
+      "audit_errors": [],
+      "result_hash": "d88654813af00f4e5167a03543a6ec5c2f9cdd57e9e86431078e42f64ecec5ea",
+      "original_gate_errors": [
+        "B:volume_comparison_without_baseline"
+      ],
+      "recomputed_gate_note": "original errors retained; numeric/date and explicit volume-negation false positives only resolved by fresh audit + automatic semantic gate + hash-bound analyst review",
+      "blockers": [],
+      "semantic_quality": {
+        "code": "01810.HK",
+        "name": "小米集团",
+        "status": "pass",
+        "result_hash": "d88654813af00f4e5167a03543a6ec5c2f9cdd57e9e86431078e42f64ecec5ea",
+        "checks": {
+          "facts": {
+            "status": "pass",
+            "rationale": "完整同hash原文首页复核季度经调整净利同比下降；现金流页核季度由负转正。B已改为无基准不能判断放量，且中期由维持改为恢复增长。",
+            "evidence_ids": [
+              "e_b046e353cc3e572bb6b2",
+              "e_d5107551534414c3ab26"
+            ]
+          },
+          "short_term": {
+            "status": "pass",
+            "rationale": "下一交易日为冻结日历核定的 2026-09-16；B/C均明确方向未知；宁德仅已公告事件和盘中/收盘条件观察。未用后续季报作次日验证。",
+            "evidence_ids": [
+              "e_b046e353cc3e572bb6b2",
+              "e_d5107551534414c3ab26"
+            ]
+          },
+          "thesis": {
+            "status": "pass",
+            "rationale": "成本与竞争压力是否缓解、利润恢复与现金流质量分开核验；不再把利润为正等同增长。 新披露日程未确认保持未知。",
+            "evidence_ids": [
+              "e_b046e353cc3e572bb6b2",
+              "e_d5107551534414c3ab26"
+            ]
+          },
+          "gaps": {
+            "status": "pass",
+            "rationale": "同业估值、未披露的下一期经营数据及部分明细仍缺；没有把缺失写成零、没有收益或成本假设。",
+            "evidence_ids": [
+              "e_b046e353cc3e572bb6b2",
+              "e_d5107551534414c3ab26"
+            ]
+          },
+          "B_vs_C": {
+            "status": "pass",
+            "rationale": "逐读B/C与所引原文；C保留反方风险和未决缺口。比较只针对同一冻结证据B/C，不给A/B/C提升百分比。",
+            "evidence_ids": [
+              "e_b046e353cc3e572bb6b2",
+              "e_d5107551534414c3ab26"
+            ]
+          }
+        },
+        "findings": [],
+        "review_scope": "manual_source_readback_by_primary_agent_NOT_independent_acceptance",
+        "source_readback": [
+          {
+            "evidence_id": "e_b046e353cc3e572bb6b2",
+            "raw_sha256": "6ccd84d15536a67f793175590c4bc884db9a3589e63de1af3171221ee07d8aa9",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_d5107551534414c3ab26",
+            "raw_sha256": "b3270bb2e3e8e5a1c4aac485bb686b9ae97fc520414455e8fa557c3c9062ef45",
+            "text_sha256": "3ba87adf7e03e0637c6a4e314300bcf2c3212efb2222720c9c1886f72627cd80"
+          },
+          {
+            "evidence_id": "e_a5d4006adc9e9306f920",
+            "raw_sha256": "dd162c24b466532332e8ba1da7fc7f93480b0e1534ba8c7e6be5e432e4684c9d",
+            "text_sha256": null
+          }
+        ],
+        "remediation_applied": [
+          "B"
+        ],
+        "warnings": [
+          "首次研究质量复核，不是收益有效性结论；不是审计师对财务报表的鉴证。",
+          "保留原始volume门禁误报：否定句不能判断放量不应被当作放量断言；正反例已覆盖。"
+        ]
+      },
+      "automatic_quality": {
+        "code": "01810.HK",
+        "errors": [],
+        "status": "review_required",
+        "roles": {
+          "B": [],
+          "bull": [],
+          "bear": [],
+          "bull_cross": [],
+          "bear_cross": [],
+          "C": []
+        },
+        "result_hash": "d88654813af00f4e5167a03543a6ec5c2f9cdd57e9e86431078e42f64ecec5ea"
+      }
+    },
+    {
+      "code": "03690.HK",
+      "target_session": "2026-09-16",
+      "status": "pass",
+      "audit_errors": [],
+      "result_hash": "41378d6b10e6f70c118b1d1a71f2f4c6ccb8ae006d2bdd02cbca297343f6e04b",
+      "original_gate_errors": [],
+      "recomputed_gate_note": "original errors retained; numeric/date and explicit volume-negation false positives only resolved by fresh audit + automatic semantic gate + hash-bound analyst review",
+      "blockers": [],
+      "semantic_quality": {
+        "code": "03690.HK",
+        "name": "美团",
+        "status": "pass",
+        "result_hash": "41378d6b10e6f70c118b1d1a71f2f4c6ccb8ae006d2bdd02cbca297343f6e04b",
+        "checks": {
+          "facts": {
+            "status": "pass",
+            "rationale": "原文分部段、半年现金流表和资产负债表分别核验；C已用短期理财类投资，不臆断国债，季度利润与半年现金流不直接互证。",
+            "evidence_ids": [
+              "e_33f69d22e359d1c6f2f5",
+              "e_9957dc7f3d836ccfb3f4"
+            ]
+          },
+          "short_term": {
+            "status": "pass",
+            "rationale": "下一交易日为冻结日历核定的 2026-09-16；B/C均明确方向未知；宁德仅已公告事件和盘中/收盘条件观察。未用后续季报作次日验证。",
+            "evidence_ids": [
+              "e_33f69d22e359d1c6f2f5",
+              "e_9957dc7f3d836ccfb3f4"
+            ]
+          },
+          "thesis": {
+            "status": "pass",
+            "rationale": "盈利持续性要求后续同口径披露；下一交易日未知，不把季度利润放进短期失效。 新披露日程未确认保持未知。",
+            "evidence_ids": [
+              "e_33f69d22e359d1c6f2f5",
+              "e_9957dc7f3d836ccfb3f4"
+            ]
+          },
+          "gaps": {
+            "status": "pass",
+            "rationale": "同业估值、未披露的下一期经营数据及部分明细仍缺；没有把缺失写成零、没有收益或成本假设。",
+            "evidence_ids": [
+              "e_33f69d22e359d1c6f2f5",
+              "e_9957dc7f3d836ccfb3f4"
+            ]
+          },
+          "B_vs_C": {
+            "status": "pass",
+            "rationale": "逐读B/C与所引原文；C保留反方风险和未决缺口。比较只针对同一冻结证据B/C，不给A/B/C提升百分比。",
+            "evidence_ids": [
+              "e_33f69d22e359d1c6f2f5",
+              "e_9957dc7f3d836ccfb3f4"
+            ]
+          }
+        },
+        "findings": [],
+        "review_scope": "manual_source_readback_by_primary_agent_NOT_independent_acceptance",
+        "source_readback": [
+          {
+            "evidence_id": "e_33f69d22e359d1c6f2f5",
+            "raw_sha256": "0ef7762679604cf4eb6f786d342cf2991fca430053bf3b7b8e0febf4c81eb322",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_9957dc7f3d836ccfb3f4",
+            "raw_sha256": "7ce5fad275ba07f815774eb6ce7364e05318fdbc96263a610a560ed29a3c9504",
+            "text_sha256": "e45a0f7c782fdb91508193e86ab3ea36cbbba2d9ab1eeda4e191f5d5afdd0569"
+          },
+          {
+            "evidence_id": "e_4da4945023eb80318e7e",
+            "raw_sha256": "f5b8f82b10f910ef896398b88b665dfaae383877984007ee5ff3fce550156554",
+            "text_sha256": null
+          }
+        ],
+        "remediation_applied": [
+          "C"
+        ],
+        "warnings": [
+          "首次研究质量复核，不是收益有效性结论；不是审计师对财务报表的鉴证。"
+        ]
+      },
+      "automatic_quality": {
+        "code": "03690.HK",
+        "errors": [],
+        "status": "review_required",
+        "roles": {
+          "B": [],
+          "bull": [],
+          "bear": [],
+          "bull_cross": [],
+          "bear_cross": [],
+          "C": []
+        },
+        "result_hash": "41378d6b10e6f70c118b1d1a71f2f4c6ccb8ae006d2bdd02cbca297343f6e04b"
+      }
+    },
+    {
+      "code": "00700.HK",
+      "target_session": "2026-09-16",
+      "status": "pass",
+      "audit_errors": [],
+      "result_hash": "5a2d3410deb362b2c4d53082eff520b60eafef3b16c313eff3cd506e5a01f241",
+      "original_gate_errors": [],
+      "recomputed_gate_note": "original errors retained; numeric/date and explicit volume-negation false positives only resolved by fresh audit + automatic semantic gate + hash-bound analyst review",
+      "blockers": [],
+      "semantic_quality": {
+        "code": "00700.HK",
+        "name": "腾讯控股",
+        "status": "pass",
+        "result_hash": "5a2d3410deb362b2c4d53082eff520b60eafef3b16c313eff3cd506e5a01f241",
+        "checks": {
+          "facts": {
+            "status": "pass",
+            "rationale": "原文季度经营段与现金流桥核验：算力预付款属于经营现金流。部分分部收入已提供；净现金列头不完整不猜比较期。",
+            "evidence_ids": [
+              "e_b54a75006dc2886a6566",
+              "e_51e19b0e1b1ad6139c22"
+            ]
+          },
+          "short_term": {
+            "status": "pass",
+            "rationale": "下一交易日为冻结日历核定的 2026-09-16；B/C均明确方向未知；宁德仅已公告事件和盘中/收盘条件观察。未用后续季报作次日验证。",
+            "evidence_ids": [
+              "e_b54a75006dc2886a6566",
+              "e_51e19b0e1b1ad6139c22"
+            ]
+          },
+          "thesis": {
+            "status": "pass",
+            "rationale": "AI投入/自由现金流及分部盈利放中期；次日无方向依据，未用下季度资本开支作短期触发。 新披露日程未确认保持未知。",
+            "evidence_ids": [
+              "e_b54a75006dc2886a6566",
+              "e_51e19b0e1b1ad6139c22"
+            ]
+          },
+          "gaps": {
+            "status": "pass",
+            "rationale": "同业估值、未披露的下一期经营数据及部分明细仍缺；没有把缺失写成零、没有收益或成本假设。",
+            "evidence_ids": [
+              "e_b54a75006dc2886a6566",
+              "e_51e19b0e1b1ad6139c22"
+            ]
+          },
+          "B_vs_C": {
+            "status": "pass",
+            "rationale": "逐读B/C与所引原文；C保留反方风险和未决缺口。比较只针对同一冻结证据B/C，不给A/B/C提升百分比。",
+            "evidence_ids": [
+              "e_b54a75006dc2886a6566",
+              "e_51e19b0e1b1ad6139c22"
+            ]
+          }
+        },
+        "findings": [],
+        "review_scope": "manual_source_readback_by_primary_agent_NOT_independent_acceptance",
+        "source_readback": [
+          {
+            "evidence_id": "e_b54a75006dc2886a6566",
+            "raw_sha256": "e94e53da0bf9086d3472fcc2486cd3734c59a515c5372704bf522e51f56b3552",
+            "text_sha256": null
+          },
+          {
+            "evidence_id": "e_51e19b0e1b1ad6139c22",
+            "raw_sha256": "64d8d2038eeef993571b96bb3361b6f1a567d6e84157eb16af20d2fd9a095f0a",
+            "text_sha256": "7c7c6e424dc7f4e3149e154f272636c530806f6a4ea4854d8414732d01750587"
+          },
+          {
+            "evidence_id": "e_83bdf796179d1ff123d9",
+            "raw_sha256": "aea3d0502aa30ea9a83eb0a8d4a8a718f1483591baa8d7e106abd835e58430ff",
+            "text_sha256": null
+          }
+        ],
+        "remediation_applied": [
+          "B",
+          "C"
+        ],
+        "warnings": [
+          "首次研究质量复核，不是收益有效性结论；不是审计师对财务报表的鉴证。"
+        ]
+      },
+      "automatic_quality": {
+        "code": "00700.HK",
+        "errors": [],
+        "status": "review_required",
+        "roles": {
+          "B": [],
+          "bull": [],
+          "bear": [],
+          "bull_cross": [],
+          "bear_cross": [],
+          "C": []
+        },
+        "result_hash": "5a2d3410deb362b2c4d53082eff520b60eafef3b16c313eff3cd506e5a01f241"
+      }
+    }
+  ],
+  "technical_actions_unchanged": true,
+  "semantic_acceptance": false,
+  "run_id": "ta10-revision-d3947a666b4113873caa5ed1",
+  "manifest_hash": "b978de19609345994e5ad20504ddcdbd572c4b946e4a1cd21f252217b2acb2dd",
+  "input_hash": "908361f5eda4227ea16877493e1ae765114913a9e812b9d70a2c5a96d5724a06",
+  "scope_epoch": "user-reset-20260911T120928Z",
+  "quality_review_hash": "2fb14e838ecb6455b5fdf16340858e4883cee3528378b2a7e0a659e746293929",
+  "quality_review_kind": "primary_agent_manual_source_readback_not_independent_acceptance",
+  "markdown": "🧪 **公司研究复核｜TA-1.0，独立于技术动作**\n首轮仅为研究机制验证，不是公司签审或收益认证；短期目标交易日见冻结输入，短期及长期观察均未成熟。\n|标的|协议检查|持仓研究方向|未持有研究方向|分歧/缺口|\n|---|---|---|---|---|\n|德明利 001309.SZ|pass|核查经营现金流改善、存货去化与应收回款，验证高增长能否转化为现金。|研究存储行业景气拐点信号与存货跌价计提对利润的潜在冲击。|缺少下一期经营现金流、存货去化与回款数据，新披露日程未知；净资产收益率供应商口径与半年报加权口径差异待核。；缺少估值对比与同业财务质量材料，无法评估安全边际。|\n|兆易创新 603986.SH|pass|核验存储量价齐升与扣非盈利质量在后续季度报告中的持续性，重点关注存货与公允价值收益变化。|研究利基存储供给恢复情景下的盈利弹性回撤及估值周期顶部风险。|缺少估值水平、分产品毛利率及存储价格后续走势证据，无法判断当前价格是否已反映高增业绩。；历史假设文件仅为用户确认持仓，无可核验的投资逻辑支柱；三季报披露日程未知。|\n|腾景科技 688195.SH|pass|验证光通信收入增长持续性及股份支付消退后净利率走势|核查完整公告中客户结构、直供进展与产能项目披露，补充估值证据|OCS及谷歌、英伟达供应链关系的公司披露原文未在选段出现，需查完整公告；缺少估值水平与同业比较证据，无法判断当前价格是否高估|\n|德福科技 301511.SZ|pass|核验持仓逻辑：跟踪经营现金流改善、毛利率走势与杠杆约束，验证高增长可持续性。|研究锂电铜箔供需与加工费周期对盈利质量的影响。|缺少铜箔加工费、铜价及同业毛利率对比数据，无法判断毛利率趋势。；缺少下一期定期报告披露日程及管理层现金流指引，新披露日未知。|\n|宁德时代 300750.SZ|pass|验证储能与动力电池收入增速及毛利率、现金流趋势能否延续，跟踪后续定期报告|补充同业估值与月度装机数据，检验估值安全边际命题|缺少同业估值比较与行业渗透率的可引用原文证据；缺少次日盘前消息与下一季度业绩披露日程|\n|工业富联 601138.SH|pass|跟踪AI服务器收入占比、ASIC新案进展与存货周转，验证增长持续性。|补充同业估值对比与大客户资本开支指引，检验估值合理性与集中度风险。|缺少同业估值对比数据，无法评估安全边际。；下一季度披露日程与订单指引未知，业绩持续性验证时点待确认。|\n|小米集团 01810.HK|pass|核查成本压力与竞争对毛利率的边际影响及回购执行进度|补充同业估值对比与行业景气数据，检验回购与现金流改善能否对冲利润下滑|缺同业估值对比、市盈率与行业景气数据，估值合理性无法判断；下一季度披露日程未知，成本压力缓解路径无证据|\n|美团 03690.HK|pass|验证盈利转正的现金流含量与分部利润率走势，跟踪后续定期报告|收集同业估值对比、行业竞争强度与板块资金流向数据以检验估值合理性|缺少同业估值对比与行业景气数据，估值合理性命题无证据；缺少下一季度披露日程，盈利持续性与现金流收敛验证时点未知|\n|腾讯控股 00700.HK|pass|验证业绩增长持续性：跟踪后续季度营收与净利同比、毛利率趋势及剔除算力预付款后的自由现金流。|研究人工智能资本开支强度对现金流与利润率的持续影响，以及回购节奏与估值安全边际的同业对比。|选段已含部分分部收入信息，但缺完整分部利润明细与估值同业对比，安全边际无法判断。；下一季度业绩披露日程未知，行业景气度与板块资金数据缺失，净现金表格列头缺失。|\n\n研究run_id：ta10-revision-d3947a666b4113873caa5ed1\n归档hash：b978de19609345994e5ad20504ddcdbd572c4b946e4a1cd21f252217b2acb2dd\n逐股语义复核见结构化quality回执，最终仍待独立验收；不计算个人盈亏，不将本轮计入正式荐股成功率。\n"
+}

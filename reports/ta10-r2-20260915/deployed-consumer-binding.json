@@ -1,0 +1,26 @@
+{
+  "read_only": true,
+  "changed_crons": false,
+  "rows": [
+    {
+      "name": "morning-market-brief",
+      "sha256": "124e14c0899aab691f748046d10514f9d45f6e05acc6ae114e5f84e88858aa28",
+      "cron": "15 7 * * 1-5",
+      "delivery": "feishu:oc_cb4beff850c29f8c89b19ee87003bb18",
+      "matches": [
+        "MT13固定root=/home/emox/work/projects/market-tools/.cron_state/mt13/observed-production-v1；读reference/operations/mt13-production-20260912/REPORT-CONTRACT.md并运行真实consumer命令，核对回执/实际正文/日期，不仅检查exit0。技术BUY/SELL满足规则即展示，置信度只注释；公司研究独立签审，不能改真实持仓或自动交易/自选。SELL无模拟仓不得补造历史买入。",
+        "必须先交付原三部分：三地指数和关注股行情、趋势预测与外部观点对照、公司研究与逐只走势跟踪；工程状态只能末尾注记。先保存真实first.md/second.md/company.md再调用MT13 report-consumers.sh morning拼接，不用占位文本。晚报复核早盘原稿并预测下一交易日A/H及当晚美股；早报更新隔夜美股和周末冻结后的新证据。"
+      ]
+    },
+    {
+      "name": "evening-market-recap",
+      "sha256": "a6c227536f400dcc0a06e1d19fbda0b12ca4e54cb0803da50005664ffce96237",
+      "cron": "30 18 * * 1-5",
+      "delivery": "feishu:oc_cb4beff850c29f8c89b19ee87003bb18",
+      "matches": [
+        "MT13固定root=/home/emox/work/projects/market-tools/.cron_state/mt13/observed-production-v1；读reference/operations/mt13-production-20260912/REPORT-CONTRACT.md并运行真实consumer命令，核对回执/实际正文/日期，不仅检查exit0。技术BUY/SELL满足规则即展示，置信度只注释；公司研究独立签审，不能改真实持仓或自动交易/自选。SELL无模拟仓不得补造历史买入。",
+        "必须先交付原三部分：三地指数和关注股行情、趋势预测与外部观点对照、公司研究与逐只走势跟踪；工程状态只能末尾注记。先保存真实first.md/second.md/company.md再调用MT13 report-consumers.sh evening拼接，不用占位文本。晚报复核早盘原稿并预测下一交易日A/H及当晚美股；早报更新隔夜美股和周末冻结后的新证据。"
+      ]
+    }
+  ]
+}

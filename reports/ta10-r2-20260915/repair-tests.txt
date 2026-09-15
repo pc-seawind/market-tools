@@ -1,0 +1,53 @@
+python=/home/emox/work/homespace/.venv/bin/python
+pytest=9.0.3 requests=2.31.0 yaml=6.0.1
+.......................FF...............................                 [100%]
+=================================== FAILURES ===================================
+_______________________ test_model_checkpoint_no_network _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-emox/pytest-1802/test_model_checkpoint_no_netwo0')
+quote = {'adjustment': 'unadjusted_spot', 'calendar_gate': {'allowed': True, 'expected_date': '2026-09-15'}, 'code': '001309.SZ', 'content': {'code': '001309.SZ', 'high': 11.0, 'last': 10.0, 'low': 9.0, ...}, ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x703ca6286fc0>
+
+    def test_model_checkpoint_no_network(tmp_path,quote,monkeypatch):
+        import requests
+        calls=[]
+        class R:
+            status_code=200
+            def json(self):return {'id':'synthetic','model':ta.MODEL['model'],'stop_reason':'end_turn','usage':{'input_tokens':1,'output_tokens':1},'content':[{'type':'text','text':json.dumps(output(quote))}]}
+        monkeypatch.setenv('ANTHROPIC_HUOSHAN_URL','https://ark.cn-beijing.volces.com/api/coding');monkeypatch.setenv('HUOSHAN_API_KEY','SYNTHETIC')
+        monkeypatch.setattr(requests,'post',lambda *a,**kw:(calls.append(1) or R()))
+        payload={'as_of':ASOF,'short_target_session':None}
+        a=ta.call_model(tmp_path,'B',payload,[quote]);b=ta.call_model(tmp_path,'B',payload,[quote])
+>       assert a==b and len(calls)==1 and not a['errors']
+E       AssertionError: assert ({'attempts': ...ors': [], ...} == {'attempts': ...ors': [], ...}
+E         
+E         Omitting 14 identical items, use -vv to show
+E         Use -v to get more diff and 2 == 1)
+E        +  where 2 = len([1, 1])
+
+tests/test_ta_research.py:71: AssertionError
+_____________________ test_retry_bound_and_partial_failure _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-emox/pytest-1802/test_retry_bound_and_partial_f0')
+quote = {'adjustment': 'unadjusted_spot', 'calendar_gate': {'allowed': True, 'expected_date': '2026-09-15'}, 'code': '001309.SZ', 'content': {'code': '001309.SZ', 'high': 11.0, 'last': 10.0, 'low': 9.0, ...}, ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x703ca5b7ab40>
+
+    def test_retry_bound_and_partial_failure(tmp_path,quote,monkeypatch):
+        import requests
+        calls=[]
+        monkeypatch.setenv('ANTHROPIC_HUOSHAN_URL','https://ark.cn-beijing.volces.com/api/coding');monkeypatch.setenv('HUOSHAN_API_KEY','SYNTHETIC')
+        def fail(*a,**kw):calls.append(1);raise requests.Timeout()
+        monkeypatch.setattr(requests,'post',fail)
+>       r=ta.call_model(tmp_path,'B',{},[quote]);assert r['errors']==['model_call_failed'] and len(calls)==2
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert (['missing_out... 'not_object'] == ['model_call_failed']
+E         
+E         At index 0 diff: 'missing_output' != 'model_call_failed'
+E         Left contains 2 more items, first extra item: 'model_call_failed'
+E         Use -v to get more diff)
+
+tests/test_ta_research.py:80: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_ta_research.py::test_model_checkpoint_no_network - Assertio...
+FAILED tests/test_ta_research.py::test_retry_bound_and_partial_failure - Asse...
+2 failed, 54 passed in 0.21s

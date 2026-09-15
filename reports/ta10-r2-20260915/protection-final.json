@@ -1,0 +1,42 @@
+{
+  "r2_tracked_initial_hashes": 4662,
+  "changes": [
+    {
+      "path": "mt1/action_integration.py",
+      "before": "3d770b2c4fed76790c78a3da41340a5a9465d8c91fc52f0e0ec5d1872c92c496",
+      "after": "0e59abd9338725c81f998a58996ecd4024c59461891954bcad26bf8e4f4a8dc0"
+    },
+    {
+      "path": "mt1/ta_audit.py",
+      "before": "84efcb0a20ddcf68f8e494501d6c15a2eec81def8957631e366b0aea6bece22b",
+      "after": "d549fdd60c4e26f63c86cb3f5f619b9c3a5dc49715a3b4849557e0bac50351e3"
+    },
+    {
+      "path": "mt1/ta_consumer.py",
+      "before": "fec850f4b8750f99cd23e60d113e9e6c76fc9fc5c9d3d55cf8d33b1083cadee6",
+      "after": "df80be98d4bb20e6e4d3d6e810339eff9d98b7df4476f3d8d99442931a0feb1f"
+    },
+    {
+      "path": "mt1/ta_research.py",
+      "before": "f95e7980a865f272d1a7625406ed65b4d0134bf709115a1e0df07051e70f8806",
+      "after": "5978e54be5cf8ac98793d46f65e2277ce43777edb2eb59d697c1f58b81d1fe61"
+    }
+  ],
+  "old_protected_count": 156,
+  "old_protected_changes": [
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/action_report.py",
+      "before": "03c920856255d1e7e4d6119d926a4f8083283414e5c7af83686052a5b045159e",
+      "after": "3206f3b2415e1b53f8733db345444125cc484277efda8bbed2d8bcf4a5b9bc34",
+      "reason": "authorized_R1_consumer"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/action_integration.py",
+      "before": "3d770b2c4fed76790c78a3da41340a5a9465d8c91fc52f0e0ec5d1872c92c496",
+      "after": "0e59abd9338725c81f998a58996ecd4024c59461891954bcad26bf8e4f4a8dc0",
+      "reason": "authorized_R2_existing_report_producer_hook"
+    }
+  ],
+  "scope_unchanged": true,
+  "caveat": "R1起点动态脏文件hash没有历史记录，不能补造；R2新起点已逐文件hash核对。"
+}

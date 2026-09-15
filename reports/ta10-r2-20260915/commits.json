@@ -1,0 +1,9 @@
+{
+  "R1_retained": [
+    "5c50a79",
+    "aae5cea"
+  ],
+  "R2_code": "f7b868f",
+  "R2_evidence_commit": "contains_this_file; resolve git log -1 -- reports/ta10-r2-20260915/DELIVERY.md",
+  "pushed": false
+}

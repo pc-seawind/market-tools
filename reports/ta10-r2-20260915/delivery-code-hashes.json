@@ -1,0 +1,15 @@
+{
+  "mt1/ta_review.py": "f595e113ee3aa5a2bb1fbce9b0ed507f240971bde575d038f1841ec095c79dc2",
+  "mt1/ta_pipeline.py": "a59254d81f606cd4bffc26ccfb5066cea9dcd936cd051b5c154156d71ec301f0",
+  "mt1/ta_quality.py": "68972c8e852985d82317b73e0bfbf6c52c5483aa5f2b128661f9cfbaef592685",
+  "mt1/ta_consumer.py": "df80be98d4bb20e6e4d3d6e810339eff9d98b7df4476f3d8d99442931a0feb1f",
+  "mt1/ta_sources.py": "b90cda667bd4167463aac27497e7522aa361af3603cc45f8dc2d25618c679130",
+  "mt1/ta_research.py": "5978e54be5cf8ac98793d46f65e2277ce43777edb2eb59d697c1f58b81d1fe61",
+  "mt1/ta_revision.py": "b1a1e6557f00435c6786095985385482a57005053deae2cdbfe7ff3f59222d8d",
+  "mt1/ta_audit.py": "d549fdd60c4e26f63c86cb3f5f619b9c3a5dc49715a3b4849557e0bac50351e3",
+  "mt1/ta_forward.py": "921143d67431d6b5bf8575bad60f787047053c5a70fda76936039657faf23caa",
+  "mt1/ta_report.py": "04e7b131d8f8b733240d6e5d6c7b9369a7aff8e0ed383581e60028dc96e61bf3",
+  "mt1/action_integration.py": "0e59abd9338725c81f998a58996ecd4024c59461891954bcad26bf8e4f4a8dc0",
+  "tests/test_ta_r2.py": "dc2567b04ddb4c5936b03c968c01525f624867a68e657c3db589003f31f2032c",
+  "scripts/test-ta10.sh": "209ad41926ffd667ef96493d6fe9efc05433ff306aa6794bde9a9bd8c930c80b"
+}
