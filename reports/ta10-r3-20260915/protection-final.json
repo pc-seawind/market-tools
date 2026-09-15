@@ -1,0 +1,45 @@
+{
+  "tracked_changes": {
+    "/home/emox/work/projects/market-tools": [
+      {
+        "path": "docs/mt13/deployment/report-consumers.sh",
+        "before": "78af7599c26573eae225bf88c41c473a31e06115300193ec1a89b3fe745405e7",
+        "after": "b5742d732ff7658d0ec9af9ebad0f0e6ad01025b5aaf45335770893f4ddabb64"
+      },
+      {
+        "path": "mt1/action_integration.py",
+        "before": "0e59abd9338725c81f998a58996ecd4024c59461891954bcad26bf8e4f4a8dc0",
+        "after": "5a33342f65c6d8338574bba3964d5fe99af7921f175473d5c5231181fc1bc90b"
+      },
+      {
+        "path": "mt1/ta_audit.py",
+        "before": "d549fdd60c4e26f63c86cb3f5f619b9c3a5dc49715a3b4849557e0bac50351e3",
+        "after": "356f758729ed1acdd4b5ed34778de14e880198bb2d05ca3169765cf4c7df04dd"
+      },
+      {
+        "path": "mt1/ta_pipeline.py",
+        "before": "a59254d81f606cd4bffc26ccfb5066cea9dcd936cd051b5c154156d71ec301f0",
+        "after": "30e755fbad624373c4587158b52b326d0c016d3cb42409378994e5ab55190574"
+      },
+      {
+        "path": "mt1/ta_revision.py",
+        "before": "b1a1e6557f00435c6786095985385482a57005053deae2cdbfe7ff3f59222d8d",
+        "after": "08585837c1d3125a150ed65d711f8306e623df2594446b6605f4f9cf59b457c8"
+      },
+      {
+        "path": "scripts/test-ta10.sh",
+        "before": "209ad41926ffd667ef96493d6fe9efc05433ff306aa6794bde9a9bd8c930c80b",
+        "after": "b1c5205fa3b5c68a1248dc5e1ead0c5c35fc0f1a68a014692adbe9708f6d3854"
+      },
+      {
+        "path": "tests/test_ta_r2.py",
+        "before": "dc2567b04ddb4c5936b03c968c01525f624867a68e657c3db589003f31f2032c",
+        "after": "8dbdbbc2ceacb85301159324b5456488ce489f274777f7b194c3d69c49bac59c"
+      }
+    ],
+    "/home/emox/work/investment": []
+  },
+  "newly_tracked_investment_file": "reference/operations/mt13-production-20260912/REPORT-CONTRACT.md",
+  "investment_contract_note": "此前为未跟踪既有文件，仅追加R3职责块；本次单独提交此文件，不包含其他并发脏文件",
+  "scope_holdings_watchlists_parameters_unchanged": true
+}

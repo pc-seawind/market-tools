@@ -1,0 +1,89 @@
+python=/home/emox/work/homespace/.venv/bin/python
+pytest=9.0.3 requests=2.31.0 yaml=6.0.1
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 135 items
+
+tests/test_ta_research.py .....................................          [ 27%]
+tests/test_ta_r2.py ........................                             [ 45%]
+tests/test_ta_r3.py ...................F                                 [ 60%]
+tests/test_mt13_action_loop.py ......................................... [ 90%]
+.............                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________ test_business_confirmation_cannot_use_price_evidence _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-emox/pytest-1818/test_business_confirmation_can0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x72e111ff2e40>
+
+    def test_business_confirmation_cannot_use_price_evidence(tmp_path,monkeypatch):
+        from mt1.ta_research import evidence
+        w,root,b=workflow_fixture(tmp_path,monkeypatch);raw=tmp_path/'quote';raw.write_text('SYNTHETIC')
+        e=evidence('001309.SZ','quote',{'last':100},'https://test.invalid','2026-09-15T20:30:00+08:00','2026-09-15T20:31:00+08:00',raw)
+        b['items'][0]['post_evidence']=[e];c=b['items'][0]['proposition_checks'][0];c.update(status='confirmed',evidence_ids=[e['evidence_id']])
+        f=tmp_path/'batch';save(f,b)
+>       with pytest.raises(ValueError,match='price_cannot_prove_business'):w.apply(f,root)
+                                                                           ^^^^^^^^^^^^^^^
+
+tests/test_ta_r3.py:147: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+batch_path = PosixPath('/tmp/pytest-of-emox/pytest-1818/test_business_confirmation_can0/batch')
+root = PosixPath('/tmp/pytest-of-emox/pytest-1818/test_business_confirmation_can0/root')
+
+    def apply(batch_path,root=DEFAULT_ROOT):
+        """Validate whole batch BEFORE writes. Persist per-item immutable envelopes.
+        Confirm/refute needs post-prediction original business evidence, never price.
+        """
+        root=Path(root);batch=read(batch_path);at=batch['reviewed_at'];next_at=batch['next_check_at']
+        if not batch.get('reviewer') or batch.get('owner')!=OWNER:raise ValueError('review_responsibility_required')
+        if instant(at)>instant(now()) or instant(next_at)<=instant(at):raise ValueError('invalid_review_clock')
+        known={p['sha256']:p for p in pointers(root)};pending=[]
+        for item in batch['items']:
+            mh=item['manifest_hash']
+            if mh not in known:raise ValueError('unknown_review_manifest')
+            ptr=known[mh];mp=Path(ptr['manifest']);frozen=read(mp.parent/'input.json')
+            if instant(at)<instant(frozen['as_of']):raise ValueError('review_before_prediction')
+            envelope={**item,'owner':OWNER,'reviewer':batch['reviewer'],'reviewed_at':at,'next_check_at':next_at,'manifest':str(mp)}
+            if item['kind']=='quality':
+                from .ta_quality import checked_review
+                from .ta_audit import audit
+                q=checked_review(mp,item['quality_path'])
+                bad={s['code'] for s in audit(mp)['stocks'] if s['status']!='pass'}
+                if any(s['status']=='pass' and s['code'] in bad for s in q['stocks']):raise ValueError('quality_protocol_blocked')
+                envelope.update(quality=q,quality_hash=file_hash(item['quality_path']))
+                target=root/'workflow'/'quality'/mh/(digest(envelope)+'.json')
+            elif item['kind']=='followup':
+                stock=next((s for s in frozen['stocks'] if s['code']==item['code']),None)
+                if not stock:raise ValueError('foreign_followup_stock')
+                es=item.get('post_evidence',[]);ids={e['evidence_id'] for e in es}
+                for e in es:
+>                   if e.get('code')!=item['code'] or evidence_errors(e,at) or instant(e['published_at'])<=instant(frozen['as_of']):raise ValueError('invalid_new_company_evidence')
+                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                   ValueError: invalid_new_company_evidence
+
+mt1/ta_workflow.py:63: ValueError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-emox/pytest-1818/test_business_confirmation_can0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x72e111ff2e40>
+
+    def test_business_confirmation_cannot_use_price_evidence(tmp_path,monkeypatch):
+        from mt1.ta_research import evidence
+        w,root,b=workflow_fixture(tmp_path,monkeypatch);raw=tmp_path/'quote';raw.write_text('SYNTHETIC')
+        e=evidence('001309.SZ','quote',{'last':100},'https://test.invalid','2026-09-15T20:30:00+08:00','2026-09-15T20:31:00+08:00',raw)
+        b['items'][0]['post_evidence']=[e];c=b['items'][0]['proposition_checks'][0];c.update(status='confirmed',evidence_ids=[e['evidence_id']])
+        f=tmp_path/'batch';save(f,b)
+>       with pytest.raises(ValueError,match='price_cannot_prove_business'):w.apply(f,root)
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'price_cannot_prove_business'
+E         Actual message: 'invalid_new_company_evidence'
+
+tests/test_ta_r3.py:147: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_ta_r3.py::test_business_confirmation_cannot_use_price_evidence
+======================== 1 failed, 134 passed in 21.24s ========================

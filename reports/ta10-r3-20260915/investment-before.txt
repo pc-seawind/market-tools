@@ -1,0 +1,102 @@
+ M CONTEXT.md
+ M reference/medium-term-recommendation-policy.md
+ M thesis/000988.SZ.yaml
+ M thesis/001309.SZ.yaml
+ M thesis/001896.SZ.yaml
+ M thesis/002281.SZ.yaml
+ M thesis/002353.SZ.yaml
+ M thesis/002364.SZ.yaml
+ M thesis/002371.SZ.yaml
+ M thesis/002475.SZ.yaml
+ M thesis/002594.SZ.yaml
+ M thesis/002837.SZ.yaml
+ M thesis/00700.HK.yaml
+ M thesis/01810.HK.yaml
+ M thesis/03690.HK.yaml
+ M thesis/300014.SZ.yaml
+ M thesis/300308.SZ.yaml
+ M thesis/300394.SZ.yaml
+ M thesis/300442.SZ.yaml
+ M thesis/300476.SZ.yaml
+ M thesis/300502.SZ.yaml
+ M thesis/300750.SZ.yaml
+ M thesis/300757.SZ.yaml
+ M thesis/301308.SZ.yaml
+ M thesis/600036.SH.yaml
+ M thesis/600110.SH.yaml
+ M thesis/600519.SH.yaml
+ M thesis/601126.SH.yaml
+ M thesis/601138.SH.yaml
+ M thesis/601208.SH.yaml
+ M thesis/601688.SH.yaml
+ M thesis/601869.SH.yaml
+ M thesis/603256.SH.yaml
+ M thesis/603444.SH.yaml
+ M thesis/688008.SH.yaml
+ M thesis/688012.SH.yaml
+ M thesis/688041.SH.yaml
+ M thesis/688048.SH.yaml
+ M thesis/688126.SH.yaml
+ M thesis/688195.SH.yaml
+ M thesis/688256.SH.yaml
+ M thesis/688498.SH.yaml
+ M thesis/688521.SH.yaml
+ M thesis/_bootstrap_state.yaml
+?? reference/MT-1.1-parallel-channels-timing-handoff.md
+?? reference/background-runs/
+?? reference/daily-report-policy.md
+?? reference/daily-reports/2026-09-11-evening/
+?? reference/daily-reports/20260914T0716-morning/
+?? reference/daily-reports/20260914T183047-evening/
+?? reference/daily-reports/20260915T071554-morning/
+?? reference/medium-term-reviews/2026-09-10-evening-145113168181.md
+?? reference/medium-term-reviews/2026-09-10-evening-145247087098.md
+?? reference/medium-term-reviews/2026-09-10-evening-145858478269.md
+?? reference/medium-term-reviews/2026-09-10-evening-155749413776.md
+?? reference/medium-term-reviews/2026-09-10-evening-155836989359.md
+?? reference/medium-term-reviews/2026-09-11-coldstart-provenance-20260910T185050Z.json
+?? reference/medium-term-reviews/2026-09-11-coldstart-provenance-20260910T185050Z.md
+?? reference/medium-term-reviews/2026-09-11-company-evidence-first2-185235.json
+?? reference/medium-term-reviews/2026-09-11-daily-restore-20260911T075228Z/
+?? reference/medium-term-reviews/2026-09-11-daily-restore-20260911T081838Z/
+?? reference/medium-term-reviews/2026-09-11-evening-111634998166.md
+?? reference/medium-term-reviews/2026-09-11-morning-183124535009.md
+?? reference/medium-term-reviews/2026-09-11-morning-231531318615.md
+?? reference/medium-term-reviews/2026-09-11-morning-evidence-20260910T231955Z/
+?? reference/medium-term-reviews/2026-09-11-morning-review-20260910-231955670941.md
+?? reference/medium-term-reviews/2026-09-11-mt11-r3-independent-review.md
+?? reference/medium-term-reviews/2026-09-11-screen-20260910-stage-audit.csv
+?? reference/medium-term-reviews/2026-09-12-saturday-231539262259.md
+?? reference/medium-term-reviews/2026-09-12-saturday-review-20260911-231831747366.md
+?? reference/medium-term-reviews/2026-09-13-sunday-184408618739.md
+?? reference/medium-term-reviews/2026-09-13-sunday-210453185384.md
+?? reference/medium-term-reviews/2026-09-13-sunday-review-20260912-185434674451.md
+?? reference/medium-term-reviews/2026-09-13-sunday-review-20260912-185512256042.md
+?? reference/medium-term-reviews/2026-09-13-sunday-review-20260912-211037724577.md
+?? reference/medium-term-reviews/2026-09-14-evening-111050552100.md
+?? reference/medium-term-reviews/2026-09-14-morning-231608404587.md
+?? reference/medium-term-reviews/2026-09-14-morning-review-20260913-232055189053.md
+?? reference/medium-term-reviews/2026-09-15-evening-111109246420.md
+?? reference/medium-term-reviews/2026-09-15-morning-231606584705.md
+?? reference/medium-term-reviews/2026-09-15-morning-review-20260914-232106030861.md
+?? reference/operations/
+?? reference/technical-research/
+?? reference/tracking-scope.json
+?? reference/weekend-cycles/
+?? reference/weekly-evidence/
+?? reference/weekly-reviews/
+?? thesis/301511.SZ.yaml
+?? thesis/603986.SH.yaml
+?? thesis/_reviews/monthly-2026-07.md
+?? thesis/_reviews/monthly-2026-08.md
+?? thesis/_reviews/weekly-2026-W24.md
+?? thesis/_reviews/weekly-2026-W25.md
+?? thesis/_reviews/weekly-2026-W27.md
+?? thesis/_reviews/weekly-2026-W29.md
+?? thesis/_reviews/weekly-2026-W30.md
+?? thesis/_reviews/weekly-2026-W31.md
+?? thesis/_reviews/weekly-2026-W32.md
+?? thesis/_reviews/weekly-2026-W33.md
+?? thesis/_reviews/weekly-2026-W34.md
+?? thesis/_reviews/weekly-2026-W35.md
+?? thesis/_reviews/weekly-2026-W37.md

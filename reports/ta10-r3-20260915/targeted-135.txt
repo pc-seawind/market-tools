@@ -1,0 +1,16 @@
+python=/home/emox/work/homespace/.venv/bin/python
+pytest=9.0.3 requests=2.31.0 yaml=6.0.1
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 135 items
+
+tests/test_ta_research.py .....................................          [ 27%]
+tests/test_ta_r2.py ........................                             [ 45%]
+tests/test_ta_r3.py ....................                                 [ 60%]
+tests/test_mt13_action_loop.py ......................................... [ 90%]
+.............                                                            [100%]
+
+============================= 135 passed in 21.19s =============================

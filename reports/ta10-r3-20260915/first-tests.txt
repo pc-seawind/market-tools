@@ -1,0 +1,61 @@
+python=/home/emox/work/homespace/.venv/bin/python
+pytest=9.0.3 requests=2.31.0 yaml=6.0.1
+..................................................F.......F............. [ 62%]
+...........................................                              [100%]
+=================================== FAILURES ===================================
+_______________ test_request_idempotence_and_new_source_revision _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-emox/pytest-1813/test_request_idempotence_and_n0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7cb5240cb860>
+
+    def test_request_idempotence_and_new_source_revision(tmp_path,monkeypatch):
+        report,scope,catalog=fixture_report(tmp_path,monkeypatch);calls=[]
+        class R:returncode=0
+        monkeypatch.setattr(pipeline.subprocess,'run',lambda *a,**kw:(calls.append(a) or R()))
+        root=tmp_path/'pipeline';a=pipeline.request_refresh(report,'evening',root,scope,catalog);b=pipeline.request_refresh(report,'evening',root,scope,catalog)
+>       assert a['request_id']==b['request_id'] and b['reused_request'] and len(calls)==1
+               ^^^^^^^^^^^^^^^
+E       KeyError: 'request_id'
+
+tests/test_ta_r2.py:52: KeyError
+____ test_cohort_revision_preserves_parent_and_reuses_exact_unchanged_roles ____
+
+tmp_path = PosixPath('/tmp/pytest-of-emox/pytest-1813/test_cohort_revision_preserves0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7cb5240e7f20>
+
+    def test_cohort_revision_preserves_parent_and_reuses_exact_unchanged_roles(tmp_path,monkeypatch):
+        from mt1 import ta_revision as rev,ta_review
+        from mt1.ta_research import ROLES,evidence
+        from mt1.timing_cli import file_hash
+        from test_ta_research import output
+        parent=tmp_path/'parent';parent.mkdir();raw=tmp_path/'raw';raw.write_text('SYNTHETIC_ONLY')
+        e=evidence('001309.SZ','financial',{'roe':1},'https://test.invalid','2026-09-15T10:00:00+08:00','2026-09-15T11:00:00+08:00',raw)
+        good=output(e);good['short_term'].update(trigger='未知，缺短期依据',invalidation='未知，缺短期依据')
+        stock={'code':'001309.SZ','name':'SYNTHETIC_ONLY','evidence':[e]};frozen={'stocks':[stock],'as_of':'2026-09-15T20:00:00+08:00'}
+        save(parent/'input.json',frozen);calls={}
+        def files(directory,role,payload):
+            save(directory/(role+'.request.json'),{'messages':[{'content':json.dumps(payload)}]})
+            save(directory/(role+'.response.json'),{'synthetic':True,'output':good})
+            c={'output':good,'errors':[]};save(directory/(role+'.json'),c);return c
+        for role in ROLES:calls[role]=files(parent/stock['code'],role,{'role':role,'evidence':[e]})
+        original={'run_id':'SYNTHETIC_PARENT','as_of':frozen['as_of'],'stocks':[{**stock,'calls':calls,'status':'pass','blockers':[]}]}
+        save(parent/'results.json',original)
+        for s in original['stocks']:save(parent/s['code']/'result.json',s)
+        mp=parent/'manifest.json';save(mp,{'run_id':'SYNTHETIC_PARENT','input_hash':digest(frozen),'files':[{'path':str(p.relative_to(parent)),'sha256':file_hash(p)} for p in parent.rglob('*') if p.is_file()]})
+        before={str(p):file_hash(p) for p in parent.rglob('*') if p.is_file()}
+        fp=tmp_path/'feedback';save(fp,{'manifest_hash':file_hash(mp),'stocks':{'001309.SZ':{'B':['SYNTHETIC correction']}}})
+        invoked=[]
+        def call(directory,role,payload,es):invoked.append(role);return files(directory,role,payload)
+        monkeypatch.setattr(rev,'call_model',call);monkeypatch.setattr(ta_review,'register',lambda *a:None)
+        result=rev.revise(mp,fp,tmp_path/'revision');new=Path(result['manifest']).parent
+>       assert invoked==['B'] and (new/'001309.SZ/C.response.json').read_bytes()==(parent/'001309.SZ/C.response.json').read_bytes()
+E       AssertionError: assert (['B', 'bull_c...r_cross', 'C'] == ['B']
+E         
+E         Left contains 3 more items, first extra item: 'bull_cross'
+E         Use -v to get more diff)
+
+tests/test_ta_r2.py:166: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_ta_r2.py::test_request_idempotence_and_new_source_revision
+FAILED tests/test_ta_r2.py::test_cohort_revision_preserves_parent_and_reuses_exact_unchanged_roles
+2 failed, 113 passed in 21.14s
