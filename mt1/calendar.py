@@ -33,6 +33,8 @@ def gate(snapshot, market, phase, now):
                      (phase != 'morning' or market != 'CN' or d < today)]
         assert completed
         expected = max(completed).isoformat()
+        if phase == 'research':
+            return {**result, 'allowed': True, 'expected_date': expected, 'reason': 'last_completed_session_verified'}
         if not rows[today]['is_open']:
             return {**result, 'expected_date': expected, 'reason': 'market_closed'}
         if phase == 'evening' and market == 'CN' and expected != today.isoformat():
@@ -44,3 +46,37 @@ def gate(snapshot, market, phase, now):
 
 def check_fresh(actual, expected):
     return bool(expected and actual == expected)
+
+
+def review_deadline(value, market='CN'):
+    """Date-only review means end of that LOCAL date, not its start.
+    Explicit timestamps remain exact. Invalid/naive timestamps fail closed.
+    """
+    from datetime import time
+    if len(value) == 10:
+        return datetime.combine(date.fromisoformat(value), time.max, ZoneInfo(MARKETS[market][0]))
+    result = datetime.fromisoformat(value)
+    if result.tzinfo is None:
+        raise ValueError('review timestamp must include timezone')
+    return result
+
+
+def research_snapshot(snapshot, next_calendar, market):
+    """Bridge midnight using archived exchange rows, never weekday inference.
+    CN has a fixed normal close. HK half-day schedules need an explicit close;
+    unsupported future HK rows are deliberately not synthesized.
+    """
+    import copy
+    out=copy.deepcopy(snapshot)
+    if market!='CN':return out
+    assert next_calendar.get('code')==0
+    data=next_calendar['data'];known={r['date'] for r in out['days']}
+    for values in data['items']:
+        r=dict(zip(data['fields'],values))
+        if r['exchange']!=MARKETS[market][1] or str(r['is_open']) not in ('0','1'):
+            raise ValueError('calendar exchange/session mismatch')
+        d=datetime.strptime(r['cal_date'],'%Y%m%d').date().isoformat()
+        if d not in known:
+            out['days'].append({'date':d,'is_open':str(r['is_open'])=='1','close_at':d+'T15:00:00+08:00'})
+            known.add(d)
+    return out

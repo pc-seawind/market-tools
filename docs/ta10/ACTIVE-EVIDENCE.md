@@ -53,3 +53,14 @@ python3 scripts/ta-evidence-first-run.py --root /abs/new-model-run \
 测试包括错单位、主体、期间、范围、统计口径、未来实际数据、预测充事实、定位篡改、来源冲突、转载不足、无结果/受限区别、失败回退、checkpoint 与配置变更。`scripts/test-ta10.sh` 显式复用本 worker 的既有 user-site BeautifulSoup；不安装新依赖、不改 homespace venv。
 
 真实交付见 `reports/ta10-evidence-20260916/DELIVERY.md`。开发回执不等于独立验收，手工执行消费者不等于自然线上投递，历史成功运行也不证明未来收益。
+
+## R1 退回后的返修（2026-09-16）
+
+- 搜索新增 worker 可直接访问的 `eastmoney_news` JSONP 后端（无新密钥）；百度与 Bing 作为有限备用。检索命中不是证据：先归档正文，再通过 `review_lead` 核出版方、正文主体、正文作者和正文日期。通用自动准入仅为 `media_report`，不授权事实或行业统计分类；缺作者/日期、未知出版方、专业分类不明均待审。`lead_reviews` 保留每条判定。配置 `lead_reviews[url]` 可提供 hash 绑定的人工来源核对，不允许摘要替代正文。
+- 腾讯和美团的官方 IR 页面是备用发现入口，归档目录页再追正文 PDF。公司业绩正文不会冒充独立行业数据或竞争者材料；未覆盖的主题保持 blocked。
+- `proposition_reviews` 逐命题绑定证据 ID 或 URL + 正文 hash + 原文短句、核对人、理由。`verified/unknown/missing` 单独报告；unknown 必须给观测限制，错误引用退回 missing。取证覆盖 pass 不表示采购损失已量化，更不等于允许发布。只对冻结材料判未知，不宣称所有公开渠道从未披露。
+- 研究行情使用 `calendar` 的独立 research 阶段：最后已经收盘的明确交易日。原日报 evening 调度门禁不变。CN 跨午夜可用已归档 `calendar-next-CN.json` 的明确交易日补齐本日，保留原日历不改；无日历拒绝，无 weekday 猜测。HK 未来半日收盘不能由 trade_cal 单独证明，缺明确收盘仍阻断。
+- `next_review_date` 日期字符串定义为交易所本地该日结束前核查；ISO 带时区时间仍精确比较。模型与 audit 使用同一函数。
+- 新模型提示要求把支持条件、反向条件、无法观测项分开。经营下滑支持损害命题，不是其证伪；反向财务观察也不单独证明采购因果。自动语义检查仅为 tripwire，仍需逐段人工/原 topic 复核。
+- `request_refresh(..., model_codes=[...])` 可显式限制真实推理股票，九股仍完整采集与冻结；选择写入请求身份，恢复继承，不悄悄批量跑数。默认调用行为不变。
+- worker 完成写 `pending.json`，**不替换 root/latest.json**。既有报告 `research-work-inbox.json` 读取 revision 的 run/hash/逐股 coverage/hash，待审方向不显示为签审结果。默认生产指针仍为原签审流程控制，本补丁不自动批准或推广。

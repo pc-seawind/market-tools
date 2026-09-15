@@ -5,7 +5,7 @@ from pathlib import Path
 from .ta_research import read, digest, validate_output, evidence_errors, verify_manifest, ROLES
 from .timing import instant
 from .timing_cli import file_hash
-from .calendar import gate
+from .calendar import gate, review_deadline, research_snapshot
 
 
 def strict_output(o, es):
@@ -48,7 +48,10 @@ def audit(manifest):
             quote=next(e for e in stock['evidence'] if e['kind']=='quote')
             raw=Path(quote['raw_path']).parent
             cp=raw/('inputs/calendar_HK.json' if stock['market']=='HK' else 'inputs/calendar.json')
-            cg=gate(read(cp),stock['market'],'evening',instant(frozen['as_of']))
+            cal=read(cp)
+            if quote.get('calendar_phase')=='research':
+                cal=research_snapshot(cal,read(raw/('inputs/calendar-next-'+stock['market']+'.json')),stock['market'])
+            cg=gate(cal,stock['market'],quote.get('calendar_phase','evening'),instant(quote['fetched_at']))
             if cg!=quote['calendar_gate']:row['errors'].append('calendar_recompute_mismatch')
             np=raw/('inputs/calendar-next-'+stock['market']+'.json');nc=read(np)
             ds=[dict(zip(nc['data']['fields'],x)) for x in nc['data']['items']]
@@ -74,7 +77,7 @@ def audit(manifest):
                 dep_errors,dep_hashes=check(role,payload,outputs[code]);errors+=dep_errors
                 errors+=strict_output(o,stock['evidence'])
                 if o['short_term']['target_date'] not in (None,stock['target_session']):errors.append('target_session_mismatch')
-                if instant(o['next_review_date']+'T00:00:00+08:00')<=instant(frozen['as_of']):errors.append('review_not_future')
+                if review_deadline(o['next_review_date'],stock['market'])<=instant(frozen['as_of']):errors.append('review_not_future')
                 u=response['usage']
                 candidate_dirs=receipt.get('inference_candidates')
                 candidate_receipts=[]

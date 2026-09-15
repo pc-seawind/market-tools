@@ -11,7 +11,9 @@ def semantic_errors(output, stock):
     if not isinstance(output,dict):return ['missing_output']
     errors=[];short=output.get('short_term') or {}
     invalidation=str((output.get('thesis') or {}).get('invalidation',''))
-    if re.search(r'命题(?:获得支持|得到支持|得到证实|被证实|获证实)',invalidation):
+    clauses=re.split(r'[；;。]',invalidation)
+    positive_support=any(re.search(r'命题(?:获得支持|得到支持|得到证实|被证实|获证实)',c) and not re.search(r'不(?:能|会|足以)?|并非|并不|不能据此',c) for c in clauses)
+    if positive_support:
         errors.append('thesis_invalidation_supports_proposition')
     text='；'.join(str(short.get(k,'')) for k in ('scenario','trigger','invalidation'))
     if re.search(r'下季|下一季|后续季度|後續季度|下季度|季报|季報|年报|年報|半年报|半年報|月度|一至三个月|数月|數月',text):

@@ -41,14 +41,16 @@ def unit_state(unit):
     except Exception:return 'unknown'
 
 
-def request_refresh(report,phase,root=DEFAULT_ROOT,scope=SCOPE,catalog=CATALOG,recover_reason=None):
+def request_refresh(report,phase,root=DEFAULT_ROOT,scope=SCOPE,catalog=CATALOG,recover_reason=None,model_codes=None):
     from datetime import timedelta
     report=Path(report).resolve();root=Path(root)
     receipt={'not_published':True,'base_report_unblocked':True,'production_schedule_unchanged':True}
     if phase!='evening':return {**receipt,'status':'skipped_non_evening','continuation':'next_existing_evening_report'}
     if DAILY not in report.parents or not (report/'sources.json').is_file():return {**receipt,'status':'skipped_non_production_source'}
     try:
-        ident=identity(report,scope,catalog);key=digest(ident)[:24];request=root/'requests'/key
+        ident=identity(report,scope,catalog)
+        if model_codes is not None:ident['model_codes']=sorted(set(model_codes))
+        key=digest(ident)[:24];request=root/'requests'/key
         request.mkdir(parents=True,exist_ok=True)
         with (request/'.lock').open('a') as lock:
             fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -143,19 +145,24 @@ def due_queue(root,asof):
 def _worker(root,key):
     root=Path(root);request=root/'requests'/key;task=read(request/'input.json');status=request/'status.json'
     try:
-        if digest(identity(task['identity']['report'],task['scope'],task['catalog']))[:24]!=key:raise ValueError('queued_inputs_changed_new_revision_required')
+        current=identity(task['identity']['report'],task['scope'],task['catalog'])
+        if 'model_codes' in task['identity']:current['model_codes']=task['identity']['model_codes']
+        if digest(current)[:24]!=key:raise ValueError('queued_inputs_changed_new_revision_required')
         atomic_json(status,{'status':'running','started_at':now()})
         from .ta_evidence import collect
         collection=root/'revisions'/key/'public-evidence'
         collect(collection,task['scope'])
-        result=run(root/'revisions'/key,task['identity']['report'],task['scope'],task['catalog'],research_collection=collection/'collection.json')
+        options={'research_collection':collection/'collection.json'}
+        if 'model_codes' in task['identity']:options['model_codes']=task['identity']['model_codes']
+        result=run(root/'revisions'/key,task['identity']['report'],task['scope'],task['catalog'],**options)
         from .ta_quality import automatic
         mp=Path(result['manifest']);quality=automatic(mp)
         # Recomputed QA is versioned outside immutable inference files.
         quality_path=root/'quality-history'/(digest(quality)+'.json');save(quality_path,quality)
         # This pointer exposes coverage, NOT directions until analyst review exists.
         pointer={'manifest':str(mp.resolve()),'sha256':file_hash(mp),'run_id':result['run_id'],'quality_status':'review_required','automatic_quality_path':str(quality_path.resolve()),'automatic_quality_hash':file_hash(quality_path)}
-        atomic_json(root/'latest.json',pointer)
+        # Pending research must not replace the reviewed production pointer.
+        atomic_json(root/'pending.json',pointer)
         due=due_queue(root,now());done={'status':'completed_pending_analyst_review',**result,'due_queue':due,'finished_at':now(),'not_published':True};atomic_json(status,done);return done
     except Exception as e:
         failed={'status':'failed','error_type':type(e).__name__,'reason':str(e),'finished_at':now(),'base_report_unblocked':True};atomic_json(status,failed);return failed

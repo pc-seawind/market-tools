@@ -99,7 +99,7 @@ def task_plan(stock, config, asof):
                       'topic':topic,'query':query,'window_days':window,
                       'published_after':(instant(asof)-timedelta(days=window)).isoformat(),
                       'published_before':asof,**extra})
-    for window in days:add('news',name+' 最新消息',window)
+    for window in days:add('news',name,window)
     add('research',name+' 研报 盈利预测 风险',30)
     for relation in ('customers','suppliers','competitors'):
         for entity in profile.get(relation,[]):add(relation,entity+' '+name+' 公告 合作 订单',30,entity=entity)
@@ -119,12 +119,19 @@ def search(task, root, backends=('baidu','bing_rss'), max_hits=3):
     for backend in backends:
         query=task['query']+' '+task['published_after'][:10]+' '+task['published_before'][:10]
         url=('https://www.baidu.com/s?wd=' if backend=='baidu' else 'https://www.bing.com/search?format=rss&q=')+requests.utils.quote(query)
+        if backend=='eastmoney_news':
+            param={'uid':'','keyword':task['query'],'type':['cmsArticle'],'client':'web','clientType':'web','clientVersion':'curr','param':{'cmsArticle':{'searchScope':'default','sort':'time','pageIndex':1,'pageSize':10,'preTag':'','postTag':''}}}
+            url='https://search-api-web.eastmoney.com/search/jsonp?cb=callback&param='+requests.utils.quote(json.dumps(param,ensure_ascii=False))
+
         r=fetch(url,Path(root)/task['task_id']/backend,timeout=12)
         entry={'backend':backend,'query':query,'searched_at':r['discovered_at'],'status':r['status'],'receipt':str((Path(root)/task['task_id']/backend/'receipt.json').resolve()),'hits':0}
         if r['status']=='ok':
             raw=Path(r['raw_path']).read_bytes()
             try:
-                if backend=='bing_rss':
+                if backend=='eastmoney_news':
+                    decoded=json.loads(raw.decode().strip().removeprefix('callback(').removesuffix(');').removesuffix(')'))
+                    found=[{'url':'https://finance.eastmoney.com/a/'+x['code']+'.html','title':x['title'],'search_published_at':x['date']} for x in decoded.get('result',{}).get('cmsArticle',[]) if task['published_after'][:10]<=x['date'][:10]<=task['published_before'][:10]]
+                elif backend=='bing_rss':
                     tree=ET.fromstring(raw)
                     found=[{'url':x.findtext('link'),'title':x.findtext('title'),'search_published_at':x.findtext('pubDate')} for x in tree.findall('.//item')]
                 else:
@@ -281,6 +288,124 @@ def admit(code, spec, receipt, asof):
     return e,None
 
 
+def official_index_discovery(stock, root, config, asof):
+    """Public company IR fallbacks; only source-reviewed metadata templates.
+    URLs of current documents are discovered from the archived official index.
+    """
+    from bs4 import BeautifulSoup
+    specs=[];receipts=[]
+    for plan in config['profiles'].get(stock['code'],{}).get('discovery_indexes',[])[:3]:
+        r=fetch(plan['url'],Path(root)/'official-index'/digest(plan['url'])[:20])
+        hits=[]
+        if r['status']=='ok':
+            soup=BeautifulSoup(Path(r['raw_path']).read_bytes(),'html.parser')
+            for a in soup.find_all('a',href=True):
+                url=urljoin(plan['url'],a['href']);title=a.get_text(' ',strip=True)
+                if re.search(plan['link_pattern'],url) and re.search(plan.get('title_pattern','.*'),title):
+                    hits.append({'url':url,'title':title})
+            hits=list({h['url']:h for h in hits}.values())[:2]
+            specs.extend({**plan['spec'],'url':h['url']} for h in hits)
+        receipts.append({'task_id':'official-index-'+digest(plan['url'])[:16],'topic':'company_current',
+                         'query':plan['url'],'backend':'official_ir_http','searched_at':r['discovered_at'],
+                         'status':'hits' if hits else (r['status'] if r['status']!='ok' else 'searched_no_results'),
+                         'hits':hits,'receipt':r})
+    return specs,receipts
+
+
+def review_lead(stock, lead, receipt, config, asof):
+    """Review full archived body, NEVER title/snippet, before normal admission.
+    Policies certify only publisher/type, not the article's claims or causality.
+    Unsupported publishers or ambiguous metadata remain pending with reasons.
+    """
+    if receipt.get('status') != 'ok':
+        return None, {'status':'pending','reason':receipt.get('status','not_fetched')}
+    body = Path(receipt['text_path']).read_text()
+    host = urlparse(lead['url']).hostname
+    policy = config.get('lead_publishers', {}).get(host)
+    if not policy:
+        return None, {'status':'pending','reason':'publisher_policy_missing'}
+    # Hash-bound manual review can handle a source whose HTML has no metadata.
+    reviewed = config.get('lead_reviews', {}).get(lead['url'])
+    if reviewed:
+        if reviewed.get('text_sha256') != receipt['text_sha256'] or not reviewed.get('reviewer'):
+            return None, {'status':'pending','reason':'review_identity_mismatch'}
+        spec = {**reviewed['spec'], 'url':lead['url']}
+    else:
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(Path(receipt['raw_path']).read_bytes(), 'html.parser')
+        def meta(*keys):
+            values = {x.get('content','').strip() for x in soup.find_all('meta')
+                      if x.get('property', x.get('name','')) in keys and x.get('content')}
+            return next(iter(values)) if len(values)==1 else None
+        pub = meta('article:published_time','datePublished','publishdate','pubdate')
+        author = meta('author','article:author')
+        institution=policy['institution']
+        if host=='finance.eastmoney.com':
+            dates=set(re.findall(r'(20\d{2})年(\d{2})月(\d{2})日 (\d{2}:\d{2})',body))
+            authors=re.findall(r'作者：\s*([^\n]+)',body)
+            sources=re.findall(r'文章来源：([^\n）]+)',body)
+            if len(dates)==1 and len(set(authors))==1 and len(set(sources))==1:
+                y,m,d,hm=next(iter(dates));pub=f'{y}-{m}-{d}T{hm}:00+08:00'
+                author=authors[0].strip();institution=sources[0].strip()
+        title = meta('og:title') or (soup.title.get_text().strip() if soup.title else None)
+        if not pub or not author or not title or stock['name'] not in body:
+            return None, {'status':'pending','reason':'publication_author_or_subject_ambiguous'}
+        # Generic classification is deliberately limited to media reporting.
+        # Primary/forecast/stats need a human-reviewed source-specific spec.
+        if policy.get('kind') != 'media_report':
+            return None, {'status':'pending','reason':'specialist_classification_requires_review'}
+        try:
+            if instant(pub)>instant(asof):raise ValueError('future')
+        except (ValueError,TypeError):
+            return None, {'status':'pending','reason':'publication_invalid_or_future'}
+        spec = {'url':lead['url'],'title':title,'published_at':pub,'author':author,
+                'institution':institution,'kind':'media_report','topics':['news'],
+                'verify':[re.escape(stock['name'])], 'terms':[stock['name']],
+                'reprint_chain':[institution,policy['institution']],
+                'origin_key':institution+':'+title}
+    e, error = admit(stock['code'],spec,receipt,asof)
+    if error:return None, {'status':'pending','reason':error}
+    e['discovery_task_id']=lead['task_id']
+    e['admission_review']={'method':'hash_bound_source_review' if reviewed else 'publisher_and_html_metadata_only',
+                           'not_fact_certification':True,'reviewed_at':now()}
+    return e, {'status':'admitted','evidence_id':e['evidence_id'],'review':e['admission_review']}
+
+
+def proposition_verification(profile, es, asof):
+    """Binding is to the actual body hash + quoted span + stock evidence IDs.
+    Unknown is a researched observation limit, not confirmed impairment.
+    This is developer/source review, never independent publication sign-off.
+    """
+    by={e['evidence_id']:e for e in es};out=[]
+    for p in profile.get('propositions',[]):
+        review=profile.get('proposition_reviews',{}).get(p['id'],{})
+        errors=[];bindings=review.get('bindings',[])
+        for b in bindings:
+            e=by.get(b.get('evidence_id'))
+            if not e and b.get('url'):
+                matches=[x for x in es if x.get('url')==b['url'] and x.get('text_sha256')==b.get('text_sha256')]
+                e=matches[0] if len(matches)==1 else None
+            if not e or e.get('kind') not in ('company_disclosure','industry_statistics','company_primary'):
+                errors.append('wrong_or_missing_evidence');continue
+            try:
+                body=Path(e['text_path']).read_text()
+                if file_hash(e['text_path'])!=b.get('text_sha256') or not b.get('quote') or b['quote'] not in body:
+                    errors.append('binding_mismatch')
+            except (KeyError,OSError):errors.append('body_missing')
+        state=review.get('status','missing')
+        if state not in ('verified','unknown','missing'):errors.append('invalid_verification_status')
+        if state!='missing' and (not bindings or not review.get('reviewer') or not review.get('rationale')):
+            errors.append('incomplete_review')
+        if state=='unknown' and not review.get('observation_limit'):errors.append('unknown_without_limit')
+        if errors:state='missing'
+        out.append({'proposition':p['id'],'test':p['test'],'status':state,
+                    'errors':errors,'bindings':bindings,'review':review,
+                    'reason':'quantitative_link_not_publicly_verified' if state=='missing' else state,
+                    'owner':OWNER,'next_check_at':(instant(asof)+timedelta(days=1)).isoformat(),
+                    'remedy':p.get('remedy',p['test'])})
+    return out
+
+
 def coverage(stock, searches, es, config, asof):
     """Substantive coverage independent of model/protocol pass, fail closed.
     A retrieved list is not a researched risk. Each critical proposition needs
@@ -298,9 +423,15 @@ def coverage(stock, searches, es, config, asof):
                      'evidence_ids':[e['evidence_id'] for e in qualified], 'searched_tasks':[s['task_id'] for s in attempted],
                      'owner':OWNER,'next_check_at':(instant(asof)+timedelta(days=1)).isoformat(),
                      'remedy':profile.get('remedies',{}).get(topic,'取得'+stock['name']+'的'+topic+'原文并核主体、统计期间、反向证据；不能用搜索列表代替')})
-    unresolved=[{'proposition':p['id'],'test':p['test'],'status':'blocked','reason':'quantitative_link_not_publicly_verified','owner':OWNER,'next_check_at':(instant(asof)+timedelta(days=1)).isoformat(),'remedy':p.get('remedy',p['test'])} for p in profile.get('propositions',[]) if p.get('requires_quantification',True)]
-    return {'code':stock['code'],'name':stock['name'],'status':'blocked' if unresolved or any(r['status']=='blocked' for r in rows) else 'pass',
+    verification=proposition_verification(profile,es,asof)
+    unresolved=[v for v in verification if v['status']=='missing']
+    retrieval='blocked' if any(r['status']=='blocked' for r in rows) else 'pass'
+    return {'code':stock['code'],'name':stock['name'],'status':'blocked' if unresolved or retrieval=='blocked' else 'pass',
+            'retrieval_status':retrieval,'proposition_verification':verification,
+            'quantification_status':'unknown' if any(v['status']=='unknown' for v in verification) else ('missing' if unresolved else 'verified'),
+            'publication_status':'independent_review_required',
             'rows':rows,'unresolved':unresolved,'scope':'research_coverage_not_protocol_or_independent_review'}
+
 
 
 def collect(root, scope_path=SCOPE, config_path=CONFIG, asof=None):
@@ -344,6 +475,11 @@ def collect(root, scope_path=SCOPE, config_path=CONFIG, asof=None):
                 try:ann,ann_receipt=announcement_discovery(stock,sd,started,entity)
                 except Exception as e:ann,ann_receipt=[],{'task_id':'ann-index-'+entity['code'],'topic':'announcement_search','status':'search_failed','attempts':[{'error':type(e).__name__}],'hits':[]}
                 searches.append(ann_receipt);specs.extend(ann)
+            try:
+                official,ir_receipts=official_index_discovery(stock,sd,config,started)
+                specs.extend(official);searches.extend(ir_receipts)
+            except Exception as exc:
+                searches.append({'task_id':'official-ir-'+stock['code'],'topic':'company_current','status':'search_failed','hits':[],'error':type(exc).__name__})
             # Search leads get full bodies too; without verified provenance they
             # remain leads, not magically promoted to company facts.
             leads=[]
@@ -365,7 +501,14 @@ def collect(root, scope_path=SCOPE, config_path=CONFIG, asof=None):
                     if dedup in seen:continue
                     seen.add(dedup);es.append(e)
                 else:rejected.append({'url':spec['url'],'reason':err,'receipt':receipts[spec['url']]})
-            row={**stock,'tasks':searches,'leads':leads,'evidence':es,'rejected':rejected,
+            lead_reviews=[]
+            for lead in leads:
+                try:e,review=review_lead(stock,lead,receipts[lead['url']],config,now())
+                except Exception as exc:e,review=None,{'status':'pending','reason':'review_failed:'+type(exc).__name__}
+                lead_reviews.append({'url':lead['url'],'task_id':lead['task_id'],**review})
+                if e and e['independence_key'] not in seen:
+                    seen.add(e['independence_key']);es.append(e)
+            row={**stock,'tasks':searches,'leads':leads,'lead_reviews':lead_reviews,'evidence':es,'rejected':rejected,
                  'coverage':coverage(stock,searches,es,config,now())}
             save(sd/'stock.json',row);stocks.append(row)
         out={'version':'TA-evidence-1','identity':identity,'started_at':started,'as_of':now(),'research_mode':'current_research',

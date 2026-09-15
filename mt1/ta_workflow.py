@@ -112,6 +112,8 @@ def inbox(root=DEFAULT_ROOT,asof=None):
         for stock in frozen['stocks']:
             prior=decisions(root,ptr['sha256'],stock['code'],at)
             rows.append({'run_id':ptr['run_id'],'manifest':str(mp),'manifest_hash':ptr['sha256'],'code':stock['code'],
+                         'research_coverage':stock.get('research_coverage',{'status':'not_searched'}),
+                         'research_coverage_hash':digest(stock.get('research_coverage',{'status':'not_searched'})),
                          'owner':OWNER,'quality_status':'recorded' if quality else 'pending_source_review',
                          'followup_status':'recorded' if prior else 'pending_evidence_judgment',
                          'next_check_at':prior['next_check_at'] if prior else at,
@@ -135,7 +137,7 @@ def recover(root,key,reason):
     from .ta_pipeline import request_refresh
     if not reason.strip():raise ValueError('recovery_reason_required')
     task=read(Path(root)/'requests'/key/'input.json')
-    return request_refresh(task['identity']['report'],'evening',root,task['scope'],task['catalog'],recover_reason=reason)
+    return request_refresh(task['identity']['report'],'evening',root,task['scope'],task['catalog'],recover_reason=reason,model_codes=task['identity'].get('model_codes'))
 
 
 def main():

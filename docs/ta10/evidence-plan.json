@@ -8,6 +8,7 @@
   "max_hits": 2,
   "max_lead_bodies": 2,
   "search_backends": [
+    "eastmoney_news",
     "baidu",
     "bing_rss"
   ],
@@ -803,7 +804,22 @@
           "name": "赣锋锂业",
           "role": "suppliers"
         }
-      ]
+      ],
+      "proposition_reviews": {
+        "business_risk": {
+          "status": "unknown",
+          "reviewer": "code-source-review-r2-not-independent-acceptance",
+          "rationale": "原公告确认股权投资而不是采购定点或电池订单合同；本轮已取材料不足以给出宁德采购损失。",
+          "observation_limit": "精确车型配套份额及因果采购损失不可由增资金额推导；仅对当前冻结材料未知，不声称从未公开。",
+          "bindings": [
+            {
+              "url": "https://static.cninfo.com.cn/finalpage/2026-09-05/1225549478.PDF",
+              "text_sha256": "4ca171b5832b97a51116fa16ca493f6f3ace8c4434e3e6742ffd87efc339833b",
+              "quote": "对应本次增资完成后欣旺达动力8.79%的股份。"
+            }
+          ]
+        }
+      }
     },
     "601138.SH": {
       "industry": "AI服务器",
@@ -917,7 +933,34 @@
         }
       ],
       "sources": [],
-      "related_issuers": []
+      "related_issuers": [],
+      "discovery_indexes": [
+        {
+          "url": "https://www.meituan.com/investor-relations",
+          "link_pattern": "20260828164801490412304052_tc.pdf",
+          "spec": {
+            "kind": "company_disclosure",
+            "institution": "美团",
+            "author": "美团董事会",
+            "title": "美团中期业绩公告",
+            "published_at": "2026-08-28T23:59:59+08:00",
+            "verify": [
+              "美[团團]",
+              "2026年6月30日",
+              "3690"
+            ],
+            "topics": [
+              "company_current"
+            ],
+            "terms": [
+              "虧損",
+              "收入",
+              "競爭",
+              "補貼"
+            ]
+          }
+        }
+      ]
     },
     "00700.HK": {
       "industry": "互联网游戏广告",
@@ -940,7 +983,49 @@
         }
       ],
       "sources": [],
-      "related_issuers": []
+      "related_issuers": [],
+      "discovery_indexes": [
+        {
+          "url": "https://www.tencent.com/investors/results/",
+          "link_pattern": "Tencent-Announces-2026-Second-Quarter-Results.pdf",
+          "spec": {
+            "kind": "company_disclosure",
+            "institution": "Tencent Holdings Limited",
+            "author": "Tencent Holdings Limited",
+            "title": "Tencent second quarter results",
+            "published_at": "2026-08-12T23:59:59+08:00",
+            "verify": [
+              "Tencent Holdings Limited",
+              "12 August 2026",
+              "204.8"
+            ],
+            "topics": [
+              "company_current"
+            ],
+            "terms": [
+              "capital expenditure",
+              "AI",
+              "cash flow",
+              "revenue"
+            ],
+            "background": true
+          }
+        }
+      ]
+    }
+  },
+  "lead_publishers": {
+    "www.nbd.com.cn": {
+      "institution": "每日经济新闻",
+      "kind": "media_report"
+    },
+    "www.stcn.com": {
+      "institution": "证券时报",
+      "kind": "media_report"
+    },
+    "finance.eastmoney.com": {
+      "institution": "东方财富转载",
+      "kind": "media_report"
     }
   }
 }
