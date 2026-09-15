@@ -6,6 +6,12 @@ HERE="$(cd "$(dirname "$0")/../../.." && pwd)"
 cd "$HERE"
 PHASE="${1:?phase required}"; shift
 ROOT="${MT13_LEDGER_ROOT:?choose an independently reviewed isolated root}"
+# Existing investment agent writes a reviewed batch then reruns this same entry.
+# Failure is explicit and isolated; never pretend a failed review was applied.
+if [ -n "${TA10_REVIEW_FILE:-}" ]; then
+  timeout 30 python3 -m mt1.ta_workflow apply --batch "$TA10_REVIEW_FILE" \
+    || printf '%s\n' '{"status":"research_review_writeback_failed","owner":"investment-agent","not_published":true}'
+fi
 case "$PHASE" in
   morning|evening)
     timeout 30 python3 -m mt1.action_loop report-cycle --phase "$PHASE" \

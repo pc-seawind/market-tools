@@ -152,7 +152,11 @@ def test_cohort_revision_preserves_parent_and_reuses_exact_unchanged_roles(tmp_p
         save(directory/(role+'.request.json'),{'messages':[{'content':json.dumps(payload)}]})
         save(directory/(role+'.response.json'),{'synthetic':True,'output':good})
         c={'output':good,'errors':[]};save(directory/(role+'.json'),c);return c
-    for role in ROLES:calls[role]=files(parent/stock['code'],role,{'role':role,'evidence':[e]})
+    from mt1.ta_dependencies import DEPS
+    for role in ROLES:
+        payload={'role':role,'evidence':[e]}
+        if role in DEPS:payload['debate' if role=='C' else 'initial_arguments']={r:good for r in DEPS[role]}
+        calls[role]=files(parent/stock['code'],role,payload)
     original={'run_id':'SYNTHETIC_PARENT','as_of':frozen['as_of'],'stocks':[{**stock,'calls':calls,'status':'pass','blockers':[]}]}
     save(parent/'results.json',original)
     for s in original['stocks']:save(parent/s['code']/'result.json',s)

@@ -31,6 +31,7 @@ def audit(manifest):
     if digest(frozen)!=m['input_hash']:raise ValueError('frozen_hash_mismatch')
     if results['run_id']!=m['run_id']:raise ValueError('run_identity_mismatch')
     stocks={s['code']:s for s in frozen['stocks']}
+    outputs={code:{r:read(root/code/(r+'.json')).get('output') for r in ROLES} for code in stocks}
     if len(stocks)!=len(frozen['stocks']) or set(stocks)!={s['code'] for s in results['stocks']}:raise ValueError('coverage_identity')
     report={'run_id':m['run_id'],'input_hash':m['input_hash'],'manifest_hash':file_hash(mp),'stocks':[],
             'semantic_fact_verification':'not_fully_automated; independent_human_review_required','A_comparability':'non_strict_prior_real_report','usage':{'prompt_tokens':0,'completion_tokens':0,'calls':0,'elapsed_seconds_sum':0},'USD_cost':None}
@@ -67,6 +68,8 @@ def audit(manifest):
                 if o!=parsed:errors.append('parsed_response_changed')
                 if response['model']!=frozen['model']['model']:errors.append('returned_model_mismatch')
                 if response['choices'][0]['finish_reason']!='stop':errors.append('incomplete_response')
+                from .ta_dependencies import check
+                dep_errors,dep_hashes=check(role,payload,outputs[code]);errors+=dep_errors
                 errors+=strict_output(o,stock['evidence'])
                 if o['short_term']['target_date'] not in (None,stock['target_session']):errors.append('target_session_mismatch')
                 if instant(o['next_review_date']+'T00:00:00+08:00')<=instant(frozen['as_of']):errors.append('review_not_future')
@@ -84,7 +87,7 @@ def audit(manifest):
                     cu=cr['usage'];report['usage']['prompt_tokens']+=cu.get('prompt_tokens',0);report['usage']['completion_tokens']+=cu.get('completion_tokens',0)
                     report['usage']['calls']+=sum(1 for a in cr['attempts'] if a['status']==200)
                     report['usage']['elapsed_seconds_sum']+=sum(a['elapsed_seconds'] for a in cr['attempts'])
-                row['roles'][role]={'errors':sorted(set(errors)),'request_hash':receipt['request_hash'],'provider_id':response['id'],'usage':u}
+                row['roles'][role]={'errors':sorted(set(errors)),'request_hash':receipt['request_hash'],'provider_id':response['id'],'usage':u,'dependencies':dep_hashes}
                 row['errors'] += [role+':'+e for e in errors]
             except (KeyError,ValueError,TypeError,OSError) as e:row['errors'].append(role+':'+type(e).__name__)
         row['status']='blocked' if row['errors'] else 'pass'

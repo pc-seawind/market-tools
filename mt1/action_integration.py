@@ -35,6 +35,11 @@ def cycle(phase,root,out,first=None,second=None,company=None,asof=None):
         else:
             target=out/'weekly-status.md';write(target,'**技术周报未完成，原周报其他部分不受影响。**\n')
             result['fallback']={'path':str(target),'sha256':file_hash(target)}
+    try:
+        from .ta_workflow import report_inbox
+        result['research_workflow']=report_inbox(out,asof or now())
+    except Exception as e:
+        result['research_workflow']={'status':'inbox_failed','owner':'investment-agent:existing-daily-and-weekend','reason':type(e).__name__,'base_report_unblocked':True}
     result['finished_at']=now();write(out/'consumer-receipt.json',result)
     return result
 

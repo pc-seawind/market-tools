@@ -11,6 +11,7 @@ from .ta_audit import strict_output
 from .ta_quality import semantic_errors
 from .timing_cli import file_hash
 from .data import atomic_json
+from .ta_dependencies import DEPS, equivalent, check
 
 
 def revise(parent_manifest,feedback_path,root):
@@ -27,9 +28,16 @@ def revise(parent_manifest,feedback_path,root):
         stocks=[]
         for stock in frozen['stocks']:
             code=stock['code'];src=parent.parent/code;dest=out/code;dest.mkdir(exist_ok=True);calls={}
-            changes=feedback['stocks'].get(code,{})
+            changes=dict(feedback['stocks'].get(code,{}));dependency_records={}
             if any(r not in ROLES for r in changes):raise ValueError('invalid_repair_role')
             for role in ROLES:
+                import json
+                parent_payload=json.loads(read(src/(role+'.request.json'))['messages'][-1]['content'])
+                if role in DEPS:
+                    # Any actual argument difference invalidates all dependants.
+                    stale,record=check(role,parent_payload,{r:calls[r].get('output') for r in DEPS[role]})
+                    dependency_records[role]=record
+                    if stale and role not in changes:changes[role]=['dependency_invalidated:'+','.join(stale)]
                 if role not in changes:
                     for p in src.glob(role+'.*'):
                         target=dest/p.name
@@ -47,15 +55,16 @@ def revise(parent_manifest,feedback_path,root):
                 for k in ('role','numeric_catalog','final_schema_reminder','contract_repair'):payload.pop(k,None)
                 payload['analyst_source_review']={'issues':changes[role],'previous_own_output':read(src/(role+'.json'))['output'],
                     'instruction':'按原文纠正这些具体问题并重新生成完整JSON；保留真实风险，不能仅删除不利事实。不得增补证据之外的信息。'}
+                if role.endswith('_cross'):payload['initial_arguments']={r:calls[r].get('output') for r in ('bull','bear')}
                 if role=='C':payload['debate']={r:calls[r].get('output') for r in ('bull','bear','bull_cross','bear_cross')}
                 calls[role]=call_model(dest,role,payload,stock['evidence'])
             old=next(s for s in original['stocks'] if s['code']==code)
             errors=[role+':'+e for role,c in calls.items() for e in sorted(set(c['errors']+strict_output(c.get('output'),stock['evidence'])+semantic_errors(c.get('output'),stock)))]
-            result={**old,'calls':calls,'status':'blocked' if errors else 'pass','blockers':errors,'parent_manifest_hash':file_hash(parent),'changed_roles':list(changes),'unchanged_roles':'byte_reused_same_frozen_input_NOT_new_model_calls'}
+            result={**old,'calls':calls,'status':'blocked' if errors else 'pass','blockers':errors,'parent_manifest_hash':file_hash(parent),'changed_roles':list(changes),'parent_dependency_comparison':dependency_records,'unchanged_roles':'byte_reused_same_frozen_input_NOT_new_model_calls'}
             save(dest/'result.json',result);stocks.append(result)
         save(out/'results.json',{**original,'run_id':rid,'stocks':stocks,'available_at':now(),'parent_manifest_hash':file_hash(parent),'revision_policy':'same_frozen_nine_stock_cohort_selective_real_model_repair','not_published':True})
         files=[{'path':str(p.relative_to(out)),'sha256':file_hash(p)} for p in sorted(out.rglob('*')) if p.is_file()]
-        save(mp,{'run_id':rid,'input_hash':digest(frozen),'files':files,'archived_at':now(),'parent_manifest':str(parent.resolve()),'parent_manifest_hash':file_hash(parent),'semantic_review':'pending_independent_review'})
+        save(mp,{'run_id':rid,'input_hash':digest(frozen),'files':files,'archived_at':now(),'parent_manifest':str(parent.resolve()),'parent_manifest_hash':file_hash(parent),'semantic_review':'pending_independent_review','dependency_contract':'schema_equivalence_v1'})
         from .ta_review import register
         register(mp);atomic_json(root/'latest.json',{'manifest':str(mp.resolve()),'sha256':file_hash(mp),'run_id':rid})
         return {'run_id':rid,'manifest':str(mp),'manifest_hash':file_hash(mp)}
