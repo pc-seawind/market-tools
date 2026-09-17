@@ -40,6 +40,41 @@ def cycle(phase,root,out,first=None,second=None,company=None,asof=None):
         result['research_workflow']=report_inbox(out,asof or now())
     except Exception as e:
         result['research_workflow']={'status':'inbox_failed','owner':'investment-agent:existing-daily-and-weekend','reason':type(e).__name__,'base_report_unblocked':True}
+    if phase != 'weekly':
+        import os
+        base = os.environ.get('HUATAI_REPORT_BASE')
+        if base:
+            try:
+                from .huatai_daily import render, save as replace_own_output
+                text, receipt = render(base)
+                target = out / 'daily.md' if (out / 'daily.md').exists() else out / 'base-report-with-warning.md'
+                original = target.read_text()
+                # Preserve the independent original judgment and every successful API answer.
+                replace_own_output(target, '# 本方日报判断与 TA/MT13\n\n' + original + text)
+                receipt['report_sha256'] = file_hash(target)
+                result['huatai'] = receipt
+                slot = 'report' if 'report' in result else 'fallback'
+                result[slot]['sha256'] = file_hash(target)
+                if slot == 'report':
+                    replace_own_output(Path(str(target) + '.receipt.json'), result['report'])
+                write(out / 'huatai-consumer-receipt.json', receipt)
+            except Exception as e:
+                result['huatai'] = {'status': 'failed', 'reason': type(e).__name__}
+                target = out / 'daily.md' if (out / 'daily.md').exists() else out / 'base-report-with-warning.md'
+                warning = '\n\n**华泰咨询模块失败：' + type(e).__name__ + '；原日报保留。本轮未取得完整逐股全文，请勿宣称全部咨询成功。**\n'
+                try:
+                    from .huatai_daily import stocks, read as ht_read, SCOPE
+                    warning += '\n'.join('- ' + s['name'] + ' ' + s['code'] + '：本轮咨询不可用，模块错误 ' + type(e).__name__ for s in stocks(ht_read(SCOPE)))
+                except Exception:
+                    warning += '\n真实scope也无法读取，无法声称逐股覆盖。'
+                replace_own_output(target, target.read_text() + warning)
+                slot = 'report' if 'report' in result else 'fallback'
+                result[slot]['sha256'] = file_hash(target)
+                if slot == 'report': replace_own_output(Path(str(target) + '.receipt.json'), result['report'])
+        if base:
+            from .huatai_daily import publication_parts
+            target = out / 'daily.md' if (out / 'daily.md').exists() else out / 'base-report-with-warning.md'
+            result['publication'] = publication_parts(target, out)
     result['finished_at']=now();write(out/'consumer-receipt.json',result)
     return result
 

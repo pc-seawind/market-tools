@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installation template only. No publish, no network, no schedule changes.
+# Deployed consumer: original TA/MT13 plus isolated Huatai consultation; no schedule changes.
 # morning/evening FIRST SECOND COMPANY OUT ; weekly ASOF OUT
 set -uo pipefail
 HERE="$(cd "$(dirname "$0")/../../.." && pwd)"
@@ -14,6 +14,11 @@ if [ -n "${TA10_REVIEW_FILE:-}" ]; then
 fi
 case "$PHASE" in
   morning|evening)
+    # Same original report directory + phase is the idempotency boundary, including TA reruns.
+    HUATAI_BASE="$(dirname "$(readlink -f "$1")")/huatai-$PHASE"
+    python3 -m mt1.huatai_daily start --base "$HUATAI_BASE" --phase "$PHASE" \
+      || printf '%s\n' '{"status":"huatai_batch_failed_original_report_continues"}'
+    export HUATAI_REPORT_BASE="$HUATAI_BASE"
     timeout 30 python3 -m mt1.action_loop report-cycle --phase "$PHASE" \
       --root "$ROOT" --section-one "$1" --section-two "$2" \
       --company-section "$3" --out "$4" \
