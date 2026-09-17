@@ -1,0 +1,13 @@
+{
+  "report_sha256": "439d429473a558302bd5b1d52875de8ceabb9ce0165e8f9ab6f0e8d87d49dc8c",
+  "lossless": true,
+  "parts": [
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/huatai-20260918/consumer-final/publication-part-01.md",
+      "sha256": "439d429473a558302bd5b1d52875de8ceabb9ce0165e8f9ab6f0e8d87d49dc8c",
+      "bytes": 86935
+    }
+  ],
+  "delivery": "沿用既有hs_create_doc逐份发布；主消息给全部裸URL，不以摘要代替全文；保存实际发布回执",
+  "not_published": true
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "name": "morning-market-brief",
+    "cron": "15 7 * * 1-5",
+    "delivery": "feishu:oc_cb4beff850c29f8c89b19ee87003bb18",
+    "domain": "investment",
+    "cwd": "/home/emox/work/investment",
+    "enabled": true,
+    "file_sha256": "124e14c0899aab691f748046d10514f9d45f6e05acc6ae114e5f84e88858aa28",
+    "reads_deployed_contract": true,
+    "uses_real_entry": true
+  },
+  {
+    "name": "evening-market-recap",
+    "cron": "30 18 * * 1-5",
+    "delivery": "feishu:oc_cb4beff850c29f8c89b19ee87003bb18",
+    "domain": "investment",
+    "cwd": "/home/emox/work/investment",
+    "enabled": true,
+    "file_sha256": "a6c227536f400dcc0a06e1d19fbda0b12ca4e54cb0803da50005664ffce96237",
+    "reads_deployed_contract": true,
+    "uses_real_entry": true
+  }
+]

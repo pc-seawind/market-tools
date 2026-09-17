@@ -1,0 +1,57 @@
+{
+  "url": "https://tcnv6xag1i9w.feishu.cn/docx/Sq72dUmoUoRf6IxWpsbc7d6enSF",
+  "http_api_code": 0,
+  "raw_content_sha256": "461b24dbd2aaa1e5e31a534d527a35e90c24fc046191934f156bb60c59680b7e",
+  "checks": [
+    {
+      "code": "001309.SZ",
+      "whole_answer_normalized_present": true,
+      "answer_sha256": "35a3fdb5f59d2e4a28e785d46df639922f200f8c6218336a061cd12148afc6b1"
+    },
+    {
+      "code": "00700.HK",
+      "whole_answer_normalized_present": true,
+      "answer_sha256": "c5cdc7eaa00a980b11220d63377d9019930718ba4fae765f6ce766028a84c16c"
+    },
+    {
+      "code": "01810.HK",
+      "whole_answer_normalized_present": true,
+      "answer_sha256": "36be570009106bcc3048ae210267afe89d90fd1c098fea5721386157ae9fb423"
+    },
+    {
+      "code": "03690.HK",
+      "whole_answer_normalized_present": true,
+      "answer_sha256": "28ceace8d662052e74ff99dda10aa4fd38bf220672af0f7094d1a338534ff5c2"
+    },
+    {
+      "code": "300750.SZ",
+      "whole_answer_normalized_present": true,
+      "answer_sha256": "b20b6e459aa54ec8a858754d3203434a58f8cf7db75c4637c2a5c131c19785b0"
+    },
+    {
+      "code": "301511.SZ",
+      "whole_answer_normalized_present": true,
+      "answer_sha256": "2ee5d0f3b4effc9655f87f74889e65c610f1290aa0ce23104ffb27e6fbbcaf6f"
+    },
+    {
+      "code": "601138.SH",
+      "whole_answer_normalized_present": true,
+      "answer_sha256": "bcba4f64402a06c7f0d66e2815a13c9c8f08c71b2e9ef8363670b67adf8074df"
+    },
+    {
+      "code": "603986.SH",
+      "whole_answer_normalized_present": true,
+      "answer_sha256": "8f39f6018192d8de56c931cd214b644473f6dc3864a431e5e7357f618d74c8ff"
+    },
+    {
+      "code": "688195.SH",
+      "whole_answer_normalized_present": true,
+      "answer_sha256": "73830e47bd9113ed338a1663d7cd62833b3760c5fd4cd7e2514af8c6790e3fad"
+    }
+  ],
+  "note": "MCP read_doc遇到行缓冲限制；改用gateway已认证lark-cli只读raw_content成功。去markdown/空白/标点后九股全文均逐字连续包含；本地上传原稿另有精确字节hash。",
+  "native_block_count": 2066,
+  "native_tables": 28,
+  "native_headings": 172,
+  "blocks_file_sha256": "0709ea3b1c927d3a1a96d24aac777c7b88eebb3fbca8382c59dae946aa255c64"
+}

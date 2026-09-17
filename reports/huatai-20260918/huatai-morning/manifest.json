@@ -1,0 +1,56 @@
+{
+  "run_id": "e4b6a755749da1a19705a857",
+  "phase": "morning",
+  "asof": "2026-09-17T17:48:20.517530+00:00",
+  "scope_path": "/home/emox/work/investment/reference/tracking-scope.json",
+  "scope_sha256": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+  "stocks": [
+    {
+      "code": "001309.SZ",
+      "name": "德明利",
+      "market": "CN"
+    },
+    {
+      "code": "603986.SH",
+      "name": "兆易创新",
+      "market": "CN"
+    },
+    {
+      "code": "688195.SH",
+      "name": "腾景科技",
+      "market": "CN"
+    },
+    {
+      "code": "301511.SZ",
+      "name": "德福科技",
+      "market": "CN"
+    },
+    {
+      "code": "300750.SZ",
+      "name": "宁德时代",
+      "market": "CN"
+    },
+    {
+      "code": "601138.SH",
+      "name": "工业富联",
+      "market": "CN"
+    },
+    {
+      "code": "01810.HK",
+      "name": "小米集团",
+      "market": "HK"
+    },
+    {
+      "code": "03690.HK",
+      "name": "美团",
+      "market": "HK"
+    },
+    {
+      "code": "00700.HK",
+      "name": "腾讯控股",
+      "market": "HK"
+    }
+  ],
+  "skill_sha256": "6efc509713d1babd6098b35ea3735d17bd389c5c14cc61f4f8ce6d54be492d6e",
+  "created_at": "2026-09-17T17:48:20.517771+00:00"
+}

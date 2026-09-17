@@ -1,0 +1,6 @@
+{
+  "baseline": "protected-before-verification.json",
+  "files": 2293,
+  "changed": [],
+  "note": "验证阶段前后，不冒充开工前基线；原工作区已有脏文件未纳入本次提交"
+}

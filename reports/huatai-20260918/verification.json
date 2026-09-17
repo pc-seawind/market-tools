@@ -1,0 +1,81 @@
+{
+  "kind": "manual_real_consumer_readback_not_natural_delivery",
+  "run_id": "e4b6a755749da1a19705a857",
+  "report_sha256": "439d429473a558302bd5b1d52875de8ceabb9ce0165e8f9ab6f0e8d87d49dc8c",
+  "technical_status": "technical_report_ready",
+  "coverage": [
+    {
+      "code": "001309.SZ",
+      "answer_sha256": "35a3fdb5f59d2e4a28e785d46df639922f200f8c6218336a061cd12148afc6b1",
+      "exact_answer_in_final": true,
+      "raw_answer_matches": true,
+      "attempts": 1
+    },
+    {
+      "code": "00700.HK",
+      "answer_sha256": "c5cdc7eaa00a980b11220d63377d9019930718ba4fae765f6ce766028a84c16c",
+      "exact_answer_in_final": true,
+      "raw_answer_matches": true,
+      "attempts": 1
+    },
+    {
+      "code": "01810.HK",
+      "answer_sha256": "36be570009106bcc3048ae210267afe89d90fd1c098fea5721386157ae9fb423",
+      "exact_answer_in_final": true,
+      "raw_answer_matches": true,
+      "attempts": 1
+    },
+    {
+      "code": "03690.HK",
+      "answer_sha256": "28ceace8d662052e74ff99dda10aa4fd38bf220672af0f7094d1a338534ff5c2",
+      "exact_answer_in_final": true,
+      "raw_answer_matches": true,
+      "attempts": 1
+    },
+    {
+      "code": "300750.SZ",
+      "answer_sha256": "b20b6e459aa54ec8a858754d3203434a58f8cf7db75c4637c2a5c131c19785b0",
+      "exact_answer_in_final": true,
+      "raw_answer_matches": true,
+      "attempts": 1
+    },
+    {
+      "code": "301511.SZ",
+      "answer_sha256": "2ee5d0f3b4effc9655f87f74889e65c610f1290aa0ce23104ffb27e6fbbcaf6f",
+      "exact_answer_in_final": true,
+      "raw_answer_matches": true,
+      "attempts": 1
+    },
+    {
+      "code": "601138.SH",
+      "answer_sha256": "bcba4f64402a06c7f0d66e2815a13c9c8f08c71b2e9ef8363670b67adf8074df",
+      "exact_answer_in_final": true,
+      "raw_answer_matches": true,
+      "attempts": 1
+    },
+    {
+      "code": "603986.SH",
+      "answer_sha256": "8f39f6018192d8de56c931cd214b644473f6dc3864a431e5e7357f618d74c8ff",
+      "exact_answer_in_final": true,
+      "raw_answer_matches": true,
+      "attempts": 1
+    },
+    {
+      "code": "688195.SH",
+      "answer_sha256": "73830e47bd9113ed338a1663d7cd62833b3760c5fd4cd7e2514af8c6790e3fad",
+      "exact_answer_in_final": true,
+      "raw_answer_matches": true,
+      "attempts": 1
+    }
+  ],
+  "same_run_no_new_requests": true,
+  "protected_files_unchanged": 2293,
+  "original_sections_preserved": true,
+  "publication_parts": [
+    {
+      "bytes": 86935,
+      "path": "/home/emox/work/projects/market-tools/reports/huatai-20260918/consumer-final/publication-part-01.md",
+      "sha256": "439d429473a558302bd5b1d52875de8ceabb9ce0165e8f9ab6f0e8d87d49dc8c"
+    }
+  ]
+}
