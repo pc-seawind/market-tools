@@ -1,0 +1,211 @@
+{
+  "work_id": "work_8589a04c66187c547536",
+  "observation_only": true,
+  "new_consultations_triggered_by_auditor": 0,
+  "natural_runs": [
+    {
+      "phase": "morning",
+      "report_directory": "/home/emox/work/investment/reference/daily-reports/2026-09-18/20260918T071528-morning",
+      "run_id": "aa3c8dde317cbe7565900757",
+      "asof": "2026-09-17T23:20:07.666775+00:00",
+      "finished_at": "2026-09-17T23:25:04.877195+00:00",
+      "scope_sha256": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+      "rows": [
+        {
+          "code": "001309.SZ",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "205750521f6903f9543e7c4d6f8eb03be8df61b1e910bcf3618f5e798ab9ae43",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "603986.SH",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "240204c0ef742b5a5ef678ad713ccf3370c83cb407f773f1ec9a5d7729c1f51e",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "688195.SH",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "3c9f77bbce95e2aeeef2b9be1c0d01e1021e985e2376d51ad52fd4e0c24c91a4",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "301511.SZ",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "a70bcf4d5f28c2074708dbd28876a8f3218d4f9b419d08e145d094d11839b358",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "300750.SZ",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "f2d25e84f65f9d1908179ab2f51be7e30f337cab36e92bd1fc47f1f42df90535",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "601138.SH",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "72d55820595af38a906bb88b53b71cec4ec5026eaf4bab99ccac628c4bfb9314",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "01810.HK",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "4dcfa6c1c53b95ecebb64eccca79927a502684bf83ec24246101ac9daa170304",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "03690.HK",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "a8a02e7d218b48b189ae9d5b62446abee65f26b6daf21a5a1eeb13fc64e7c6f7",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "00700.HK",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "1324835a0f016836069fa8186082b0e1da5ffb72ad377ea95ddd1dc4e501525e",
+          "full_local_and_cloud_verified": true
+        }
+      ],
+      "report_sha256": "5b99bd9d6a9df841bd52fa61cc9e2ce946c0f8b0184828484129d7f2c71c679a",
+      "final_consumer": "/home/emox/work/investment/reference/daily-reports/2026-09-18/20260918T071528-morning/technical-reviewed",
+      "consumer_passes": 2,
+      "one_run_across_review_passes": true,
+      "original_sections_preserved": {
+        "first": true,
+        "second": true,
+        "company": true
+      },
+      "published_message": {
+        "chat_id": "oc_cb4beff850c29f8c89b19ee87003bb18",
+        "create_time": "2026-09-18 07:32:09",
+        "message_id": "om_x100b65f3c9539ca8b1154602ac819b7"
+      },
+      "failed_count": 0,
+      "failure_visibility": "本自然批次如无失败则无自然失败样本；故障隔离回归仍有效，不伪造失败",
+      "live_message_verified": true,
+      "urls": [
+        "https://tcnv6xag1i9w.feishu.cn/docx/S9CCdE5Ofo2hPwxKGdIcccOlnih",
+        "https://tcnv6xag1i9w.feishu.cn/docx/QhQ5dfgFoo0qguxcBNfc45LsnMc"
+      ],
+      "whole_report_normalized_cloud_match": true
+    },
+    {
+      "phase": "evening",
+      "report_directory": "/home/emox/work/investment/reference/daily-reports/2026-09-18/20260918T183030-evening",
+      "run_id": "801116a6744054585578f215",
+      "asof": "2026-09-18T10:34:59.530181+00:00",
+      "finished_at": "2026-09-18T10:40:02.155056+00:00",
+      "scope_sha256": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+      "rows": [
+        {
+          "code": "001309.SZ",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "0b2fc1ab965f4b1c2e8fb9d2d23bf1bd6099dce3b13168bf618c7171949f916f",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "603986.SH",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "e33b6e904433f292e81d105fa379f0daca54cb317ddf0d3d6027dbf6db2d2e8a",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "688195.SH",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "a91083a856bac5e177543083eaf525a3d64b14283cdea32b753f7240a1756d10",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "301511.SZ",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "1ab7592dcef92094dea558f87ec311544d9e1eac99a495252f2125106f82b97d",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "300750.SZ",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "763e5181c2d1b71795399617ec9dc128209cc841415b75a758527ab57666443d",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "601138.SH",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "2117d754db44f4b5a5eebef978d9c5b6f8bfeac46c0c2328ef13be2a201923dc",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "01810.HK",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "72304cbc1b90b026f276c6cfff76e4eebe6b1ae9c2c7e4ac204145d1b1798dca",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "03690.HK",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "a8ab5eca86372ff4cb39dea93dd9d428d6b414d19e703bef31ee701d187413b6",
+          "full_local_and_cloud_verified": true
+        },
+        {
+          "code": "00700.HK",
+          "ok": true,
+          "requests": 1,
+          "answer_sha256": "d4134248bdf35f8e821f0fce53750c1f454374e27ebe2907a5acd474384306f6",
+          "full_local_and_cloud_verified": true
+        }
+      ],
+      "report_sha256": "038140047bcc696b5cfc7cd73c7a57bbb87cee405de286d1f734eb3dc8d3b6a9",
+      "final_consumer": "/home/emox/work/investment/reference/daily-reports/2026-09-18/20260918T183030-evening/consumer-reviewed",
+      "consumer_passes": 2,
+      "one_run_across_review_passes": true,
+      "original_sections_preserved": {
+        "first": true,
+        "second": true,
+        "company": true
+      },
+      "published_message": {
+        "chat_id": "oc_cb4beff850c29f8c89b19ee87003bb18",
+        "create_time": "2026-09-18 18:50:30",
+        "message_id": "om_x100b65e539abfcb0b306ea2a985277f"
+      },
+      "failed_count": 0,
+      "failure_visibility": "本自然批次如无失败则无自然失败样本；故障隔离回归仍有效，不伪造失败",
+      "live_message_verified": true,
+      "urls": [
+        "https://tcnv6xag1i9w.feishu.cn/docx/E5itdGC9aoiFeZxAvjocwHfQnAe",
+        "https://tcnv6xag1i9w.feishu.cn/docx/Ammed6h7coxxerxDDW9cN9rWnYc"
+      ],
+      "whole_report_normalized_cloud_match": true
+    }
+  ],
+  "cross_report_distinct_run_and_answers": true,
+  "failure_visibility": "早晚均9/9成功，无自然失败样本；既有故障隔离回归已由原topic独立复跑253 passed，本轮不人为制造失败/收费调用。",
+  "budget": {
+    "actual_outer_systemd_seconds": 2400,
+    "consultation_seconds": 1950,
+    "worker_soft_turn_seconds": 1500,
+    "gateway_auto_resume_max": 2,
+    "distinction": "1950可超过单轮1500，不能将外层2400混称dispatch预算。真实入口是独立cgroup，不随单轮软截止取消；既有gateway silent cron支持最多2次续跑。本次自然轮均在首轮完成投递，未自然触发1950超时路径。"
+  },
+  "normal_source_unknowns": [
+    "服务费用字段未提供",
+    "独立服务日期字段未提供，正文日期及抓取时刻保留"
+  ],
+  "engineering_incomplete": []
+}

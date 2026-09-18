@@ -1,0 +1,123 @@
+{
+  "phase": "morning",
+  "report_directory": "/home/emox/work/investment/reference/daily-reports/2026-09-18/20260918T071528-morning",
+  "run_id": "aa3c8dde317cbe7565900757",
+  "asof": "2026-09-17T23:20:07.666775+00:00",
+  "finished_at": "2026-09-17T23:25:04.877195+00:00",
+  "scope_sha256": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+  "rows": [
+    {
+      "code": "001309.SZ",
+      "ok": true,
+      "requests": 1,
+      "answer_sha256": "205750521f6903f9543e7c4d6f8eb03be8df61b1e910bcf3618f5e798ab9ae43",
+      "full_local_and_cloud_verified": true
+    },
+    {
+      "code": "603986.SH",
+      "ok": true,
+      "requests": 1,
+      "answer_sha256": "240204c0ef742b5a5ef678ad713ccf3370c83cb407f773f1ec9a5d7729c1f51e",
+      "full_local_and_cloud_verified": true
+    },
+    {
+      "code": "688195.SH",
+      "ok": true,
+      "requests": 1,
+      "answer_sha256": "3c9f77bbce95e2aeeef2b9be1c0d01e1021e985e2376d51ad52fd4e0c24c91a4",
+      "full_local_and_cloud_verified": true
+    },
+    {
+      "code": "301511.SZ",
+      "ok": true,
+      "requests": 1,
+      "answer_sha256": "a70bcf4d5f28c2074708dbd28876a8f3218d4f9b419d08e145d094d11839b358",
+      "full_local_and_cloud_verified": true
+    },
+    {
+      "code": "300750.SZ",
+      "ok": true,
+      "requests": 1,
+      "answer_sha256": "f2d25e84f65f9d1908179ab2f51be7e30f337cab36e92bd1fc47f1f42df90535",
+      "full_local_and_cloud_verified": true
+    },
+    {
+      "code": "601138.SH",
+      "ok": true,
+      "requests": 1,
+      "answer_sha256": "72d55820595af38a906bb88b53b71cec4ec5026eaf4bab99ccac628c4bfb9314",
+      "full_local_and_cloud_verified": true
+    },
+    {
+      "code": "01810.HK",
+      "ok": true,
+      "requests": 1,
+      "answer_sha256": "4dcfa6c1c53b95ecebb64eccca79927a502684bf83ec24246101ac9daa170304",
+      "full_local_and_cloud_verified": true
+    },
+    {
+      "code": "03690.HK",
+      "ok": true,
+      "requests": 1,
+      "answer_sha256": "a8a02e7d218b48b189ae9d5b62446abee65f26b6daf21a5a1eeb13fc64e7c6f7",
+      "full_local_and_cloud_verified": true
+    },
+    {
+      "code": "00700.HK",
+      "ok": true,
+      "requests": 1,
+      "answer_sha256": "1324835a0f016836069fa8186082b0e1da5ffb72ad377ea95ddd1dc4e501525e",
+      "full_local_and_cloud_verified": true
+    }
+  ],
+  "report_sha256": "5b99bd9d6a9df841bd52fa61cc9e2ce946c0f8b0184828484129d7f2c71c679a",
+  "final_consumer": "/home/emox/work/investment/reference/daily-reports/2026-09-18/20260918T071528-morning/technical-reviewed",
+  "consumer_passes": 2,
+  "one_run_across_review_passes": true,
+  "original_sections_preserved": {
+    "first": true,
+    "second": true,
+    "company": true
+  },
+  "documents": [
+    {
+      "readback": "reports/huatai-20260918/natural/morning-doc1.json",
+      "sha256": "59021b6fc28eb7923a0bc978641a9e3ec50fb38c25419673fc51552c3dc22b79"
+    },
+    {
+      "readback": "reports/huatai-20260918/natural/morning-doc2.json",
+      "sha256": "f41fc01bd90714cc4f3d926f2091e5724b36f7e593a439b64d0ef91a676be0d2"
+    }
+  ],
+  "published_message": {
+    "chat_id": "oc_cb4beff850c29f8c89b19ee87003bb18",
+    "create_time": "2026-09-18 07:32:09",
+    "message_id": "om_x100b65f3c9539ca8b1154602ac819b7"
+  },
+  "publication_parts": {
+    "report_sha256": "5b99bd9d6a9df841bd52fa61cc9e2ce946c0f8b0184828484129d7f2c71c679a",
+    "lossless": true,
+    "parts": [
+      {
+        "path": "/home/emox/work/investment/reference/daily-reports/2026-09-18/20260918T071528-morning/technical-reviewed/publication-part-01.md",
+        "sha256": "a13a0b5edd98fdb80cafad2f058f5bac072a3bdb5f04baa30a2226a7c6c40d8f",
+        "bytes": 89898
+      },
+      {
+        "path": "/home/emox/work/investment/reference/daily-reports/2026-09-18/20260918T071528-morning/technical-reviewed/publication-part-02.md",
+        "sha256": "939357e1f263f652be16fb0865778398e6c99076ce95115be2d9d843fae1fed5",
+        "bytes": 17678
+      }
+    ],
+    "delivery": "沿用既有hs_create_doc逐份发布；主消息给全部裸URL，不以摘要代替全文；保存实际发布回执",
+    "not_published": true
+  },
+  "failed_count": 0,
+  "failure_visibility": "本自然批次如无失败则无自然失败样本；故障隔离回归仍有效，不伪造失败",
+  "live_message_verified": true,
+  "urls": [
+    "https://tcnv6xag1i9w.feishu.cn/docx/S9CCdE5Ofo2hPwxKGdIcccOlnih",
+    "https://tcnv6xag1i9w.feishu.cn/docx/QhQ5dfgFoo0qguxcBNfc45LsnMc"
+  ],
+  "whole_report_normalized_cloud_match": true
+}

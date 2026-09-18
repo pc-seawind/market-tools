@@ -1,0 +1,11 @@
+{
+  "message_id": 3179042,
+  "topic_id": 3072,
+  "actual_launch_command_tail": "systemd-run --user --unit=report-morning-20260918T071528 --property=RuntimeMaxSec=2400 --working-directory=/home/emox/work/projects/market-tools --setenv=MT13_LEDGER_ROOT=/home/emox/work/projects/market-tools/.cron_state/mt13/observed-production-v1 /bin/bash /home/emox/work/projects/market-tools/docs/mt13/deployment/report-consumers.sh morning \\\"\"'$D/first.md\" \"$D/second.md\" \"$D/company.md\" \"$D/technical\"'",
+  "outer_runtime_max_sec": 2400,
+  "consultation_runtime_max_sec": 1950,
+  "bounded_wait_and_composition_allowance_sec": 90,
+  "headroom_sec": 360,
+  "actual_natural_publication_at": "2026-09-18T07:32:09+08:00",
+  "note": "真实自然批次用了独立外层systemd而非同步工具占用；本次成功不足以声称自然触发过1950秒超时，最坏路径预算为配置核验。"
+}

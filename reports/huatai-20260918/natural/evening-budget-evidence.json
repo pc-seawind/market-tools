@@ -1,0 +1,20 @@
+{
+  "launches": [
+    {
+      "message_id": 3188927,
+      "topic_id": 3073,
+      "actual_launch_command_tail": "systemd-run --user --unit=investment-evening-consumer-20260918-183030 --property=RuntimeMaxSec=2400 --working-directory=/home/emox/work/projects/market-tools --setenv=MT13_LEDGER_ROOT=/home/emox/work/projects/market-tools/.cron_state/mt13/observed-production-v1 /bin/bash -c 'bash /home/emox/work/projects/market-tools/docs/mt13/deployment/report-consumers.sh evening \\\"\"'$1/first.md\" \"$1/second.md\" \"$1/company.md\" \"$1/consumer-initial\" > \"$1/consumer-initial.stdout\" 2> \"$1/consumer-initial.stderr\"'\"' bash \\\"\"'$OUT\"'"
+    },
+    {
+      "message_id": 3188981,
+      "topic_id": 3073,
+      "actual_launch_command_tail": "systemd-run --user --unit=investment-evening-reviewed-20260918-183030 --property=RuntimeMaxSec=2400 --working-directory=/home/emox/work/projects/market-tools /bin/bash -c 'TA10_REVIEW_FILE=\\\"\"'$1/ta-review.json\" MT13_LEDGER_ROOT=/home/emox/work/projects/market-tools/.cron_state/mt13/observed-production-v1 bash docs/mt13/deployment/report-consumers.sh evening \"$1/first.md\" \"$1/second.md\" \"$1/company.md\" \"$1/consumer-reviewed\" >\"$1/consumer-reviewed.stdout\" 2>\"$1/consumer-reviewed.stderr\"'\"' _ \\\"\"'$P\"'"
+    }
+  ],
+  "outer_runtime_max_sec": 2400,
+  "consultation_runtime_max_sec": 1950,
+  "bounded_wait_and_composition_allowance_sec": 90,
+  "headroom_sec": 360,
+  "actual_natural_publication_at": "2026-09-18T18:50:30+08:00",
+  "note": "初次和签审重消费均有独立systemd；自然成功并不声称实际触发过最坏1950秒超时。"
+}
