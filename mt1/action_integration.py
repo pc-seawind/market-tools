@@ -41,6 +41,7 @@ def cycle(phase,root,out,first=None,second=None,company=None,asof=None):
     except Exception as e:
         result['research_workflow']={'status':'inbox_failed','owner':'investment-agent:existing-daily-and-weekend','reason':type(e).__name__,'base_report_unblocked':True}
     if phase != 'weekly':
+        publication_prefix_bytes = 0
         import os
         base = os.environ.get('HUATAI_REPORT_BASE')
         if base:
@@ -51,6 +52,7 @@ def cycle(phase,root,out,first=None,second=None,company=None,asof=None):
                 original = target.read_text()
                 # Preserve the independent original judgment and every successful API answer.
                 replace_own_output(target, '# 本方日报判断与 TA/MT13\n\n' + original + text)
+                publication_prefix_bytes = len('# 本方日报判断与 TA/MT13\n\n'.encode('utf-8'))
                 receipt['report_sha256'] = file_hash(target)
                 result['huatai'] = receipt
                 slot = 'report' if 'report' in result else 'fallback'
@@ -71,10 +73,12 @@ def cycle(phase,root,out,first=None,second=None,company=None,asof=None):
                 slot = 'report' if 'report' in result else 'fallback'
                 result[slot]['sha256'] = file_hash(target)
                 if slot == 'report': replace_own_output(Path(str(target) + '.receipt.json'), result['report'])
-        if base:
-            from .huatai_daily import publication_parts
-            target = out / 'daily.md' if (out / 'daily.md').exists() else out / 'base-report-with-warning.md'
-            result['publication'] = publication_parts(target, out)
+        from .huatai_daily import publication_parts
+        target = out / 'daily.md' if (out / 'daily.md').exists() else out / 'base-report-with-warning.md'
+        spans = [dict(s, start=s['start'] + publication_prefix_bytes,
+                      end=s['end'] + publication_prefix_bytes)
+                 for s in result.get('report', {}).get('publication_optional_spans', [])]
+        result['publication'] = publication_parts(target, out, optional_spans=spans)
     result['finished_at']=now();write(out/'consumer-receipt.json',result)
     return result
 

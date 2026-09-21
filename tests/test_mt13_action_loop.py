@@ -320,6 +320,16 @@ def test_compose_preserves_three_source_sections_and_receipt(tmp_path):
     assert out.read_text().startswith('\n\n'.join(p.read_text() for p in paths))
     assert r['not_published'] and r['source_kind']=='SYNTHETIC_ONLY'
     assert compose(*paths,h.receipt['manifest'],out)==r
+    from mt1.huatai_daily import publication_parts
+    spans=r['publication_optional_spans']
+    assert spans and all(x['category']=='hash' for x in spans)
+    raw=out.read_bytes()
+    plan=publication_parts(out,tmp_path,limit=len(raw)-1,optional_spans=spans)
+    assert plan['omitted'] and len(plan['parts'])==1
+    published=Path(plan['parts'][0]['path']).read_text()
+    assert all(p.read_text() in published for p in paths)
+    assert 'unknown' in published and 'source_sha256' not in published
+
 
 
 def test_weekly_publish_idempotent(tmp_path):

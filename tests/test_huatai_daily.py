@@ -98,6 +98,8 @@ def test_actual_consumer_preserves_sections_and_hash(tmp_path,monkeypatch,phase,
     assert p.read_text().count('# 华泰\n全文\n')==2
     assert r['huatai']['report_sha256']==h.sha(p.read_bytes())
     assert r['huatai']['success']==2
+    assert len(r['publication']['parts'])==1
+    assert Path(r['publication']['parts'][0]['path']).read_bytes()==p.read_bytes()
 
 
 def test_publication_lossless_over_document_limit(tmp_path):
@@ -106,7 +108,7 @@ def test_publication_lossless_over_document_limit(tmp_path):
     plan=h.publication_parts(p,tmp_path)
     assert len(plan['parts'])>1
     assert ''.join(Path(x['path']).read_text() for x in plan['parts'])==text
-    assert all(x['bytes']<=90000 for x in plan['parts'])
+    assert all(x['bytes']<=102400 for x in plan['parts'])
 
 
 def test_two_collectors_only_one_request_per_stock(tmp_path):
@@ -134,3 +136,73 @@ def test_launcher_uses_independent_budget_and_no_secret_argv(tmp_path,monkeypatc
     monkeypatch.setattr(h.subprocess,'run',run)
     h.start(base,'morning')
     assert len(calls)==1
+
+
+@pytest.mark.parametrize('size', [90001, 100945, 102399, 102400, 102401])
+def test_publication_utf8_boundary(tmp_path, size):
+    raw=('中🙂'*(size//7)).encode()+b'x'*(size%7)
+    p=tmp_path/'daily.md';p.write_bytes(raw)
+    plan=h.publication_parts(p,tmp_path)
+    assert len(plan['parts']) == (1 if size<=102400 else 2)
+    assert b''.join(Path(x['path']).read_bytes() for x in plan['parts'])==raw
+    assert plan['report_sha256']==h.sha(raw)
+    assert Path(plan['original_archive']).read_bytes()==raw
+
+
+@pytest.mark.parametrize('category', h.OPTIONAL_CATEGORIES)
+def test_explicit_optional_only_when_needed(tmp_path, category):
+    keep='九股结论/风险/出处/MT13 blocked unknown🙂\r\n'
+    extra='机器日志哈希回执重复工程记录'*200
+    answer='# 华泰服务独立咨询全文\n# 附录（仍是研究，不能删）\n条件与失败状态'+ '中'*100
+    raw=(keep+extra+answer).encode()
+    p=tmp_path/'daily.md';p.write_bytes(raw)
+    a=len(keep.encode());b=a+len(extra.encode())
+    spans=[dict(category=category,start=a,end=b,sha256=h.sha(extra))]
+    plan=h.publication_parts(p,tmp_path,optional_spans=spans)
+    assert plan['omitted']==[] and plan['lossless']
+    plan=h.publication_parts(p,tmp_path,limit=1024,optional_spans=spans)
+    assert plan['omitted']==spans and not plan['lossless']
+    assert Path(plan['parts'][0]['path']).read_bytes()==(keep+answer).encode()
+    assert p.read_bytes()==raw
+    plan=h.publication_parts(p,tmp_path,limit=128,optional_spans=spans)
+    assert plan['fallback_reason'] and len(plan['parts'])>1
+    assert b''.join(Path(x['path']).read_bytes() for x in plan['parts'])==(keep+answer).encode()
+
+
+def test_cannot_label_huatai_as_optional(tmp_path):
+    raw='# 华泰服务独立咨询全文\n附录 日志 风险和预测'.encode()
+    p=tmp_path/'daily.md';p.write_bytes(raw)
+    with pytest.raises(ValueError,match='invalid_optional'):
+        h.publication_parts(p,tmp_path,limit=40,optional_spans=[
+            dict(category='duplicate_engineering_appendix', start=0,end=len(raw),sha256=h.sha(raw))])
+
+
+def test_no_heading_heuristics_or_stale_spans(tmp_path):
+    raw=('## 执行日志 附录\n仍是本方研究与失败状态🙂'*5000).encode()
+    p=tmp_path/'daily.md';p.write_bytes(raw)
+    plan=h.publication_parts(p,tmp_path)
+    assert plan['lossless'] and not plan['omitted'] and plan['fallback_reason']
+    with pytest.raises(ValueError):
+        h.publication_parts(p,tmp_path,optional_spans=[dict(category='hash',start=0,end=3,sha256='wrong')])
+
+
+def test_real_cycle_passes_optional_spans_after_huatai_prefix(tmp_path, monkeypatch):
+    from mt1 import action_integration as ai, ta_pipeline, ta_workflow
+    monkeypatch.setattr(ta_pipeline,'request_refresh',lambda *a: {})
+    monkeypatch.setattr(ta_workflow,'report_inbox',lambda *a: {})
+    monkeypatch.setattr(ai,'snapshots',lambda *a: [('manifest',{'asof':'2026-09-21','cards':[]})])
+    monkeypatch.setenv('HUATAI_REPORT_BASE','unused-no-request')
+    ht='\n\n# 华泰服务独立咨询全文\n预测/出处/限定条件/失败状态'
+    monkeypatch.setattr(h,'render',lambda *a: (ht,{'success':1}))
+    keep='本方九股风险🙂'+'x'*102200
+    extra='执行日志'*100
+    def compose(first,second,company,manifest,out):
+        out.write_text(keep+extra)
+        a=len(keep.encode());b=len((keep+extra).encode())
+        return {'out':str(out),'publication_optional_spans':[
+            dict(category='execution_log',start=a,end=b,sha256=h.sha(extra))]}
+    monkeypatch.setattr(ai,'compose',compose)
+    r=ai.cycle('morning',tmp_path,tmp_path/'out',tmp_path/'first',tmp_path/'second',tmp_path/'company')
+    plan=r['publication']
+    assert len(plan['parts'])==1 and plan['omitted']
+    assert Path(plan['parts'][0]['path']).read_text()=='# 本方日报判断与 TA/MT13\n\n'+keep+ht

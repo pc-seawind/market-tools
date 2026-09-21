@@ -1,0 +1,18 @@
+{
+  "url": "https://tcnv6xag1i9w.feishu.cn/docx/K6CUdMql0oABpfxtR96ceo02nIg",
+  "full_rendered_text_equal_ignoring_whitespace_only": true,
+  "rendered_chars": 43825,
+  "huatai_verbatim_source_and_rendered_coverage": [
+    "001309.SZ",
+    "00700.HK",
+    "01810.HK",
+    "03690.HK",
+    "300750.SZ",
+    "301511.SZ",
+    "601138.SH",
+    "603986.SH",
+    "688195.SH"
+  ],
+  "markdown_links_verified": 16,
+  "note": "原稿逐字保留；云端Markdown呈现去结构标记，仅空白归一后全篇逐字符一致。MCP回读大响应失败，改只读分页API核验。"
+}

@@ -203,9 +203,54 @@ def render(base):
     return text, receipt
 
 
-def publication_parts(report, out, limit=90000):
-    """Lossless publish plan below Feishu's 100KB cap; no silent truncation."""
-    text = Path(report).read_text()
+PUBLICATION_LIMIT_BYTES = 100 * 1024  # worker source_file AND gateway UTF-8 cap
+OPTIONAL_CATEGORIES = ('execution_log', 'hash', 'consumer_receipt', 'duplicate_engineering_appendix')
+
+
+def publication_parts(report, out, limit=PUBLICATION_LIMIT_BYTES, optional_spans=()):
+    """Prefer one doc; only producer-declared engineering byte ranges are optional.
+
+    No heading/length-based research deletion. Undeclared legacy content stays.
+    Huatai's entire section is protected, including conditions and failure status.
+    """
+    if not 4 <= limit <= PUBLICATION_LIMIT_BYTES:
+        raise ValueError('invalid_publication_limit')
+    raw = Path(report).read_bytes()
+    raw.decode('utf-8')  # validate without normalizing CRLF
+    protected = raw.find('# 华泰服务独立咨询全文'.encode())
+    if protected < 0:
+        protected = len(raw)
+    candidates = sorted(optional_spans, key=lambda x: x['start'])
+    previous = 0
+    for span in candidates:
+        a, b = span['start'], span['end']
+        if (span['category'] not in OPTIONAL_CATEGORIES or
+                not previous <= a < b <= protected or sha(raw[a:b]) != span['sha256']):
+            raise ValueError('invalid_optional_publication_span')
+        raw[:a].decode('utf-8'); raw[a:b].decode('utf-8'); raw[b:].decode('utf-8')
+        previous = b
+    omitted = []
+    remaining = len(raw)
+    for category in OPTIONAL_CATEGORIES:
+        for span in candidates:
+            if remaining <= limit:
+                break
+            if span['category'] == category:
+                omitted.append(dict(span))
+                remaining -= span['end'] - span['start']
+    selected = sorted(omitted, key=lambda x: x['start'])
+    chunks, cursor = [], 0
+    for span in selected:
+        chunks.append(raw[cursor:span['start']]); cursor = span['end']
+    chunks.append(raw[cursor:])
+    text = b''.join(chunks).decode('utf-8')
+    # Keep a local immutable-content snapshot even if the caller later moves its run.
+    Path(out).mkdir(parents=True, exist_ok=True)
+    archive = Path(out) / ('publication-original-' + sha(raw) + '.md')
+    if archive.exists() and archive.read_bytes() != raw:
+        raise ValueError('publication_archive_changed')
+    if not archive.exists():
+        archive.write_bytes(raw)
     parts, current = [], ''
     # Prefer paragraph boundaries; preserve every character, including tables/links.
     for paragraph in re.split(r'(?<=\n\n)', text):
@@ -230,8 +275,12 @@ def publication_parts(report, out, limit=90000):
         p = Path(out) / f'publication-part-{i:02}.md'
         save(p, content)
         entries.append({'path': str(p), 'sha256': sha(content), 'bytes': len(content.encode())})
-    plan = {'report_sha256': sha(text), 'lossless': True, 'parts': entries,
-            'delivery': '沿用既有hs_create_doc逐份发布；主消息给全部裸URL，不以摘要代替全文；保存实际发布回执',
+    plan = {'report_sha256': sha(raw), 'published_sha256': sha(text),
+            'source_bytes': len(raw), 'limit_bytes': limit,
+            'original_archive': str(archive), 'omitted': omitted,
+            'lossless': not omitted, 'parts': entries,
+            'fallback_reason': ('retained_content_exceeds_limit_after_safe_omissions' if len(parts) > 1 else None),
+            'delivery': '优先单文档；多份时说明保留正文超限，逐份hs_create_doc并给全部裸URL；省略清单及原稿仅本地归档；保存真实回执并readback',
             'not_published': True}
     save(Path(out) / 'publication-parts.json', plan)
     return plan

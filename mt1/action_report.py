@@ -21,13 +21,25 @@ def compose(first,second,company,manifest,out):
     if file_hash(tech)!=part['sha256']:raise ValueError('technical_report_hash_mismatch')
     # Preserve each of the caller's three sections byte-for-byte, append only
     # the independent technical sub-section to section 3. Never regenerate 1/2.
-    text='\n\n'.join(Path(p).read_text() for p in (first,second,company))+'\n\n'+tech.read_text()
+    prefix='\n\n'.join(Path(p).read_text() for p in (first,second,company))+'\n\n'
+    technical_text=tech.read_text()
+    text=prefix+technical_text
+    # Only known machine hash fields in the generated technical material; never
+    # scan caller research or discard the JSON's uncertainty/failure/risk fields.
+    import re
+    from .huatai_daily import sha
+    optional=[]
+    for match in re.finditer(r'"source_sha256": "[0-9a-f]{64}", ', technical_text):
+        start=len((prefix+technical_text[:match.start()]).encode('utf-8'))
+        content=match.group().encode('utf-8')
+        optional.append({'category':'hash','start':start,'end':start+len(content),
+                         'sha256':sha(content),'producer':'mt13-source-hash'})
     from .ta_consumer import consume
     from .action_loop import now
     research=consume(now())
     text+='\n\n'+research['markdown']
     idempotent_write(out,text)
-    receipt={'research':{k:v for k,v in research.items() if k!='markdown'},'out':str(out),'sha256':file_hash(out),'technical_manifest':str(manifest),
+    receipt={'publication_optional_spans':optional,'research':{k:v for k,v in research.items() if k!='markdown'},'out':str(out),'sha256':file_hash(out),'technical_manifest':str(manifest),
              'manifest_sha256':file_hash(manifest),'source_sections':{str(p):file_hash(p) for p in (first,second,company)},
              'source_kind':'SYNTHETIC_ONLY' if r['synthetic'] else 'real_current_readonly_collection',
              'not_published':True}
