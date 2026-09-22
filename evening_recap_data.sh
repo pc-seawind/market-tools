@@ -45,10 +45,27 @@
 #
 # Env:
 #   TUSHARE_TOKEN                  required (sector_score / sector_picks 内部用).
+#   EVENING_RECAP_BUDGET_SECONDS   全流程共享预算，默认 2280 秒；partial 不算成功。
 #   EVENING_RECAP_SCORE_TIMEOUT    score --all 超时秒数 (默认 3600). 卡死则
 #                                  exit 4 而非无限挂起整个采集.
 
 set -uo pipefail
+
+# Shared wall-clock budget, below pipeline.py's 2400s outer guard. Without
+# this, 16+6 serial picks x 180s can consume the guard before any JSON exists.
+BUDGET="${EVENING_RECAP_BUDGET_SECONDS:-2280}"
+if [[ ! "$BUDGET" =~ ^[1-9][0-9]*$ ]]; then
+  echo "EVENING_RECAP_BUDGET_SECONDS must be a positive integer" >&2
+  exit 2
+fi
+SECONDS=0
+bounded_timeout() {
+  local remaining=$((BUDGET - SECONDS))
+  if (( remaining <= 0 )); then return 124; fi
+  local limit="$1"; shift
+  if (( limit > remaining )); then limit="$remaining"; fi
+  timeout --kill-after=5 "$limit" "$@"
+}
 
 HERE="$(dirname "$(readlink -f "$0")")"
 cd "$HERE"
@@ -83,7 +100,7 @@ echo "[evening_recap_data] start date=$DATE out=$OUT max_picks=$MAX_PICKS" >&2
 HTSC_FLOW_REFRESH_TIMEOUT="${HTSC_FLOW_REFRESH_TIMEOUT:-900}"
 if [[ -x "$HERE/htsc_sector_flow.py" ]]; then
   echo "[evening_recap_data] refresh HTSC sector-flow cache (TTL guarded)" >&2
-  timeout "$HTSC_FLOW_REFRESH_TIMEOUT" python3 "$HERE/htsc_sector_flow.py" refresh-default --max-concepts 13 --ttl-hours 12     > "$WORKDIR/htsc_sector_flow_refresh.json" 2> "$WORKDIR/htsc_sector_flow_refresh.err" ||     echo "[evening_recap_data] WARN: HTSC sector-flow refresh failed/timeout; scoring will use existing cache or neutral fallback" >&2
+  bounded_timeout "$HTSC_FLOW_REFRESH_TIMEOUT" python3 "$HERE/htsc_sector_flow.py" refresh-default --max-concepts 13 --ttl-hours 12     > "$WORKDIR/htsc_sector_flow_refresh.json" 2> "$WORKDIR/htsc_sector_flow_refresh.err" ||     echo "[evening_recap_data] WARN: HTSC sector-flow refresh failed/timeout; scoring will use existing cache or neutral fallback" >&2
 fi
 
 # ── Stage 1: 板块评分 ────────────────────────────────────────────
@@ -95,7 +112,7 @@ else
   # 用 timeout 兜底, 卡死则报错退出而非无限挂起整个采集 turn.
   SCORE_TIMEOUT="${EVENING_RECAP_SCORE_TIMEOUT:-3600}"
   echo "[evening_recap_data] stage 1: sector_score.py --all --json (timeout ${SCORE_TIMEOUT}s)" >&2
-  timeout "$SCORE_TIMEOUT" python3 sector_score.py --all --json > "$SCORE_FILE" 2> "$SCORE_ERR"
+  bounded_timeout "$SCORE_TIMEOUT" python3 sector_score.py --all --json > "$SCORE_FILE" 2> "$SCORE_ERR"
   rc=$?
   if [[ $rc -eq 124 ]]; then
     echo "[evening_recap_data] FATAL: sector_score.py TIMED OUT after ${SCORE_TIMEOUT}s" >&2
@@ -114,8 +131,16 @@ fi
 # ── Stage 2: 挑 Tier1 通过的板块 + 逐个 picks ────────────────────
 # 用 python 完成: 解析 scores → 选 tier1_pass 的板块 (按 total_score 降序,
 # 取前 MAX_PICKS) → 逐个调 sector_picks --sector --json → 合并成最终 JSON.
+export EVENING_RECAP_REMAINING_SECONDS="$((BUDGET - SECONDS))"
 python3 - "$SCORE_FILE" "$OUT" "$MAX_PICKS" "$DATE" <<'PY'
-import json, subprocess, sys, datetime, os
+import json, subprocess, sys, datetime, os, time, tempfile
+
+deadline = time.monotonic() + max(0, float(os.environ.get("EVENING_RECAP_REMAINING_SECONDS", "2280")))
+def remaining(cap):
+    seconds = deadline - time.monotonic()
+    if seconds <= 0:
+        raise subprocess.TimeoutExpired("recap budget", 0)
+    return min(cap, seconds)
 
 score_file, out_file, max_picks_s, date = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 max_picks = int(max_picks_s)
@@ -145,7 +170,7 @@ try:
         ["python3", "tushare.py", "index_daily", "ts_code=000300.SH",
          f"start_date={_past}", f"end_date={_today}",
          "--fields=trade_date", "--csv"],
-        cwd=here, capture_output=True, text=True, timeout=60,
+        cwd=here, capture_output=True, text=True, timeout=remaining(60),
     )
     if cp.returncode == 0:
         # csv: 末行(或首数据行)是最新 trade_date; 取所有 8位数字里最大的
@@ -160,7 +185,7 @@ try:
         ["python3", "tushare.py", "trade_cal", "exchange=SSE",
          f"start_date={_past}", f"end_date={_today}",
          "--fields=cal_date,is_open", "--csv"],
-        cwd=here, capture_output=True, text=True, timeout=60,
+        cwd=here, capture_output=True, text=True, timeout=remaining(60),
     )
     open_days = []
     if cal.returncode == 0 and cal.stdout.strip():
@@ -219,31 +244,7 @@ if rev_selected:
         % (len(rev_selected), ", ".join(r.get("concept", "?") for r in rev_selected)))
 
 picks = {}
-for r in selected:
-    concept = r.get("concept")
-    if not concept:
-        continue
-    try:
-        cp = subprocess.run(
-            ["python3", "sector_picks.py", "--sector", concept, "--json"],
-            cwd=here, capture_output=True, text=True, timeout=180,
-        )
-        if cp.returncode != 0:
-            picks[concept] = {"error": f"picks exit {cp.returncode}", "stderr": cp.stderr[-500:]}
-            errors.append(f"picks failed: {concept} (exit {cp.returncode})")
-            sys.stderr.write(f"[evening_recap_data]   picks FAIL {concept}: exit {cp.returncode}\n")
-            continue
-        picks[concept] = json.loads(cp.stdout)
-        sys.stderr.write(f"[evening_recap_data]   picks ok   {concept}\n")
-    except subprocess.TimeoutExpired:
-        picks[concept] = {"error": "picks timeout 180s"}
-        errors.append(f"picks timeout: {concept}")
-        sys.stderr.write(f"[evening_recap_data]   picks TIMEOUT {concept}\n")
-    except json.JSONDecodeError as e:
-        picks[concept] = {"error": f"picks json decode: {e}"}
-        errors.append(f"picks decode: {concept}")
-        sys.stderr.write(f"[evening_recap_data]   picks DECODE-ERR {concept}\n")
-
+attempted = 0
 result = {
     "meta": {
         "date": date,
@@ -253,7 +254,8 @@ result = {
         "fresh": (trade_date == expected_trade_date) if (trade_date and expected_trade_date) else None,
         "n_sectors": len(scores),
         "n_tier1_pass": len(passed),
-        "n_picks_run": len(selected),
+        "n_picks_run": 0,
+        "n_picks_selected": len(selected),
         "n_reversal_quota": len(rev_selected),
         "reversal_sectors": [r.get("concept") for r in rev_selected],
         "generated_at": datetime.datetime.now().isoformat(timespec="seconds"),
@@ -263,13 +265,67 @@ result = {
     "picks": picks,
 }
 
-with open(out_file, "w") as f:
-    json.dump(result, f, ensure_ascii=False, indent=2)
+def checkpoint(status):
+    result["meta"]["status"] = status
+    result["meta"]["n_picks_run"] = attempted
+    result["meta"]["generated_at"] = datetime.datetime.now().isoformat(timespec="seconds")
+    # An interrupted checkpoint MUST fail the existing errors quality gate.
+    result["meta"]["errors"] = list(errors) + (["collection_in_progress"] if status == "running" else [])
+    parent = os.path.dirname(os.path.abspath(out_file))
+    os.makedirs(parent, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(prefix=".recap-", dir=parent)
+    try:
+        with os.fdopen(fd, "w") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, out_file)
+    finally:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
+
+checkpoint("running")
+for r in selected:
+    concept = r.get("concept")
+    if not concept:
+        continue
+    if time.monotonic() >= deadline:
+        picks[concept] = {"error": "recap budget exhausted; not attempted"}
+        errors.append(f"recap budget exhausted: {concept}")
+        checkpoint("running")
+        continue
+    attempted += 1
+    pick_timeout = max(0.001, min(180, deadline - time.monotonic()))
+    try:
+        cp = subprocess.run(
+            ["python3", "sector_picks.py", "--sector", concept, "--json"],
+            cwd=here, capture_output=True, text=True, timeout=pick_timeout,
+        )
+        if cp.returncode != 0:
+            picks[concept] = {"error": f"picks exit {cp.returncode}", "stderr": cp.stderr[-500:]}
+            errors.append(f"picks failed: {concept} (exit {cp.returncode})")
+            sys.stderr.write(f"[evening_recap_data]   picks FAIL {concept}: exit {cp.returncode}\n")
+            continue
+        picks[concept] = json.loads(cp.stdout)
+        sys.stderr.write(f"[evening_recap_data]   picks ok   {concept}\n")
+    except subprocess.TimeoutExpired:
+        picks[concept] = {"error": f"picks timeout {pick_timeout:.1f}s"}
+        errors.append(f"picks timeout: {concept}")
+        sys.stderr.write(f"[evening_recap_data]   picks TIMEOUT {concept}\n")
+    except json.JSONDecodeError as e:
+        picks[concept] = {"error": f"picks json decode: {e}"}
+        errors.append(f"picks decode: {concept}")
+        sys.stderr.write(f"[evening_recap_data]   picks DECODE-ERR {concept}\n")
+
+    finally:
+        checkpoint("running")
+
+checkpoint("partial" if errors else "complete")
 
 # stdout 末尾给一个机器可读的指针行, 方便收割 agent 直接 grep
 print(f"RESULT_JSON={out_file}")
 print(f"SUMMARY n_sectors={len(scores)} n_tier1_pass={len(passed)} "
-      f"n_picks_run={len(selected)} errors={len(errors)}")
+      f"n_picks_run={attempted} errors={len(errors)}")
 PY
 
 rc=$?
