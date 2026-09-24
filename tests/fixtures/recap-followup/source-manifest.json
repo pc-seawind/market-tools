@@ -1,0 +1,10 @@
+{
+  "historical-bundle.json": {
+    "source": ".cron_state/mt1/chains/2026-09-24-morning/review-d4007e8ac85eef6deb11789f.json",
+    "sha256": "b30cd71373882d43aee3a96f37d6adaedde8b00bd0b03bb1355373ef4ccbaf95"
+  },
+  "historical-run.json": {
+    "source": ".cron_state/mt1/runs/2026-09-24-morning/report.json",
+    "sha256": "0d4f4654fb94a75a6c141c8bf2f7d6fe5fec7ceae42b2fad151238622560ca91"
+  }
+}

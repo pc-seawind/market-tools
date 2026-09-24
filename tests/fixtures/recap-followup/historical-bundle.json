@@ -1,0 +1,69 @@
+{
+  "phase": "morning",
+  "source_run_id": "2026-09-24-morning",
+  "reviewer": "investment-morning-home-ubuntu-20260924",
+  "reviewed_plan_ids": [],
+  "plan_events": [],
+  "method_events": [],
+  "research": {
+    "fetch_status": "partial",
+    "sources": [
+      {
+        "url": "https://pdf.dfcfw.com/pdf/H2_AN202609231829803663_1.pdf",
+        "fetched_at": "2026-09-24T07:22:04.445366+08:00",
+        "content_path": "/home/emox/work/investment/reference/daily-reports/20260924T071515-morning/sources/demingli-unlock.pdf",
+        "content_hash": "d7717452f23c1a5f11eecad03da85958e517cac734e509c3b2d8d6e91224fcaa"
+      }
+    ],
+    "gaps": [
+      "九股估值及完整公司签审未完成；不把新增解禁事件当经营证伪"
+    ],
+    "review_items": [
+      {
+        "code": "001309.SZ",
+        "status": "pending",
+        "reason": "本方方向已写，完整财务/估值/经营传导未签审"
+      },
+      {
+        "code": "603986.SH",
+        "status": "pending",
+        "reason": "本方方向已写，完整财务/估值/经营传导未签审"
+      },
+      {
+        "code": "688195.SH",
+        "status": "pending",
+        "reason": "本方方向已写，完整财务/估值/经营传导未签审"
+      },
+      {
+        "code": "301511.SZ",
+        "status": "pending",
+        "reason": "本方方向已写，完整财务/估值/经营传导未签审"
+      },
+      {
+        "code": "300750.SZ",
+        "status": "pending",
+        "reason": "本方方向已写，完整财务/估值/经营传导未签审"
+      },
+      {
+        "code": "601138.SH",
+        "status": "pending",
+        "reason": "本方方向已写，完整财务/估值/经营传导未签审"
+      },
+      {
+        "code": "01810.HK",
+        "status": "pending",
+        "reason": "本方方向已写，完整财务/估值/经营传导未签审"
+      },
+      {
+        "code": "03690.HK",
+        "status": "pending",
+        "reason": "本方方向已写，完整财务/估值/经营传导未签审"
+      },
+      {
+        "code": "00700.HK",
+        "status": "pending",
+        "reason": "本方方向已写，完整财务/估值/经营传导未签审"
+      }
+    ]
+  }
+}

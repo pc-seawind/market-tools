@@ -382,10 +382,15 @@ for r in selected:
         sys.stderr.write(f"[evening_recap_data]   picks DECODE-ERR {concept}\n")
 
     finally:
+        failed_pick = concept in view(result, expected_trade_date or '')['coverage']['failed']
+        exhausted = failed_pick and result['meta']['attempt_counts'][concept] >= 2
         result['meta']['sector_attempts'][concept] = {
             'elapsed_seconds': time.monotonic()-started,
             'error': picks.get(concept,{}).get('error'),
-            'owner': 'code:recap-collector', 'next_action': 'resume_failed_only_same_session'}
+            'owner': 'code:recap-collector',
+            'state': 'attempt_limit' if exhausted else ('retryable' if failed_pick else 'complete'),
+            'next_action': ('inspect_RPC_trace_before_explicit_repair_no_auto_retry' if exhausted else
+                            'default_pipeline_may_resume_within_remaining_shared_budget' if failed_pick else 'none')}
         checkpoint("running")
 
 checkpoint("partial" if errors else "complete")

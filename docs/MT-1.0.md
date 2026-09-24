@@ -188,3 +188,15 @@ review-bundle结构：
   64 只公司的冷启动投资研究；真实历史回测、实盘自选回执、其他 worker 仍未验收。
 
 详细本轮证据：`MT-1.0-fixes-acceptance.json`。生产运行受限试运行，完整目标仍未完成。
+
+## Pending review bundle 层级
+
+**pending 的强制输入契约（2026-09-25 修复）**：`review_items` 必须在 bundle 顶层，禁止 `research.review_items`（即使两层同时存在或嵌套为空也拒绝）。每项必须绑定本轮真实 `plan_id`、整数 `expected_version`，填写 `status="pending"` 和非空 `note`；不能只给 code/reason，不能放入 `reviewed_plan_ids` 或 plan_events。finalize 会在写账本前返回 `review_items_wrong_level` 等可操作错误，不自动搬字段或把 pending 计为已审。先按本轮 plans 做唯一 code→plan_id/version 绑定再纠正输入；成功后核对 result.pending_review_ids 和报告里的“待复核”逐项可见。
+
+```json
+{"phase":"evening","reviewer":"实际审查人","source_run_id":"实际run_id",
+ "reviewed_plan_ids":[], "plan_events":[], "method_events":[],
+ "review_items":[{"plan_id":"本轮实际计划ID","expected_version":1,"status":"pending","note":"具体未完成证据与后续动作"}],
+ "research":{"fetch_status":"partial","sources":[],"gaps":["未完成原因"]}}
+```
+示例 version=1 只是结构示范，生成 bundle 必须读取实际版本；pending 不更新计划方向、持仓或已审计数。

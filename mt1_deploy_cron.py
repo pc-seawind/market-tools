@@ -31,7 +31,7 @@ CN/HK/US分别核验日历及expected_date；closed不生成该市场常规介�
 
 【研究后唯一记录入口】
 按 docs/MT-1.0.md 的schema写一个本轮 review-bundle JSON，再调用 python3 {BASE}/mt1_job.py finalize --input <绝对路径>。
-review-bundle 必须填 source_run_id=<本轮真实run_id>。此命令做计划事件/方法事件逐项幂等写入、版本冲突检查、差异、审查覆盖、记录与自选dry-run。只有实质变化才写事件；无变化只填reviewed_plan_ids及研究证据。不另手工拼rec_log add，不重复写旧rec日志；MT-1.0以SQLite事件账本为权威，旧rec保留只读历史。
+review-bundle 必须填 source_run_id=<本轮真实run_id>。 pending只放bundle顶层review_items，禁止research.review_items；逐项绑定真实plan_id/整数expected_version/status=pending/note，不计reviewed_plan_ids；finalize返回wrong_level先修输入，核对pending_review_ids与待复核正文。此命令做计划事件/方法事件逐项幂等写入、版本冲突检查、差异、审查覆盖、记录与自选dry-run。只有实质变化才写事件；无变化只填reviewed_plan_ids及研究证据。不另手工拼rec_log add，不重复写旧rec日志；MT-1.0以SQLite事件账本为权威，旧rec保留只读历史。
 原始watchlist_sync from-recap已硬禁用。最终同步工具是 mt1.py watchlist，默认dry-run；本轮不要传--execute。真实自选成功写入本次尚未验收，不假称同步成功。
 
 【真实链路留证，不以0 final卡死】

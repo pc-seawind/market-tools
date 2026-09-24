@@ -16,6 +16,23 @@ from .store import Store, digest
 def finalize(bundle, state_dir, investment_dir):
     if bundle.get('phase') not in ('morning','evening','saturday','sunday') or not bundle.get('reviewer'):
         raise ValueError('phase and reviewer required')
+    # Reject before source validation / opening the store: malformed pending
+    # must never silently disappear, even when valid plan events coexist.
+    research = bundle.get('research', {})
+    if not isinstance(research, dict):
+        raise ValueError('research must be an object')
+    if 'review_items' in research:
+        raise ValueError('review_items_wrong_level: research.review_items is forbidden (including when both levels exist); '
+                         'move pending items to bundle.review_items, bind each to the current plan_id and expected_version, '
+                         'use status=pending and note; do not add pending ids to reviewed_plan_ids; remove the nested key')
+    items = bundle.get('review_items', [])
+    if not isinstance(items, list) or any(not isinstance(item, dict) for item in items):
+        raise ValueError('bundle.review_items must be a list of pending objects')
+    ids = [item.get('plan_id') for item in items]
+    if any(not isinstance(pid, str) or not pid for pid in ids) or len(set(ids)) != len(ids):
+        raise ValueError('bundle.review_items requires unique nonempty plan_id; resolve code against current plans')
+    if any(type(item.get('expected_version')) is not int for item in items):
+        raise ValueError('bundle.review_items requires current integer expected_version')
     from .evidence import validate_source, capture_review
     validate_source(state_dir,bundle)
     now=datetime.now(timezone.utc)

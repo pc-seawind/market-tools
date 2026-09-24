@@ -106,13 +106,15 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
                         incomplete = not value or value.get('meta',{}).get('status') != 'complete' or bool(value.get('meta',{}).get('errors'))
                         # Never manufacture a historical session using today's live RPCs.
                         if phase=='evening' and collect and incomplete and expected == today:
-                            from recap_runtime import run as run_group
-                            try:
-                                cp=run_group([str(HERE/'evening_recap_data.sh'),'--out',str(path)],timeout=2400,text=True)
-                                if cp.returncode: errors.append({'stage':'recap_collection','error':f'exit {cp.returncode}: {cp.stderr[-500:]}'})
-                            except subprocess.TimeoutExpired:
-                                errors.append({'stage':'recap_collection','error':'budget_exhausted; consume completed checkpoint only'})
-                            value=json.loads(path.read_text()) if path.exists() else None
+                            from .recap_collection import collect as collect_recap
+                            value, recovery = collect_recap(path, expected, today, directory/'recap-recovery.json')
+                            if value:
+                                # Consumer receipt only; never rewrite the raw collector archive.
+                                value = {**value, 'recovery': recovery}
+                            if recovery['status'] != 'complete':
+                                errors.append({'stage':'recap_recovery','error':recovery['status'],
+                                               'owner':recovery['owner'], 'next_action':recovery['next_action'],
+                                               'inspect_command':recovery['inspect_command']})
                     if not value: raise ValueError('recap_missing; morning never substitutes current-date recompute for prior session')
                     actual=str(value.get('meta',{}).get('trade_date',''))
                     if len(actual)==8: actual=f'{actual[:4]}-{actual[4:6]}-{actual[6:]}'

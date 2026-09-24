@@ -111,6 +111,16 @@ def view(value, expected):
             if rejected:
                 failed[concept] = {'reason': 'some_stock_rows_rejected', 'rows': rejected,
                                    'owner': 'code:recap-collector', 'next_action': 'refresh_invalid_vintage'}
+    recovery = out.get('recovery', {})
+    for concept, failure in failed.items():
+        count = meta.get('attempt_counts', {}).get(concept, 0)
+        terminal = ('attempt_limit' if count >= 2 else
+                    recovery.get('status') if recovery.get('status') not in (None, 'running', 'complete') else None)
+        if terminal:
+            failure.update(state=terminal, automatic_retry_pending=False,
+                           next_action='code owner: inspect RPC trace and checkpoint; no automatic retry remains in this run')
+            if recovery.get('inspect_command'):
+                failure['inspect_command'] = recovery['inspect_command']
     scores = out.get('scores', [])
     score_coverage = [{'concept': s.get('concept'), 'source_grade': source_grade(s),
                        'vintage': s.get('trade_date'),
