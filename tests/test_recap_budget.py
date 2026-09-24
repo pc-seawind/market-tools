@@ -66,6 +66,7 @@ def test_shell_stage_budget_real_timeout(tmp_path):
     import time
     script = tmp_path / 'evening_recap_data.sh'
     shutil.copyfile(SCRIPT, script)
+    shutil.copyfile(SCRIPT.parent/'recap_observability.py', tmp_path/'recap_observability.py')
     (tmp_path / 'sector_score.py').write_text('import time; time.sleep(10)')
     start = time.monotonic()
     cp = subprocess.run(['bash', str(script), '--out', str(tmp_path / 'out.json')],

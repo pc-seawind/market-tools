@@ -37,6 +37,7 @@ Dependencies: python3 stdlib only (urllib, json). No pip install needed.
 """
 
 import datetime
+from recap_observability import emit
 import hashlib
 import json
 import os
@@ -187,10 +188,12 @@ def _cache_ttl(api_name, params):
 
 def _cache_read(api_name, params, fields):
     if _CACHE_DISABLED:
+        emit('tushare_cache', api=api_name, outcome='disabled')
         return None
     key = _cache_key(api_name, params, fields)
     cache_file = os.path.join(CACHE_DIR, api_name, f"{key}.json")
     if not os.path.exists(cache_file):
+        emit('tushare_cache', api=api_name, outcome='miss')
         if _CACHE_DEBUG: sys.stderr.write(f"[cache-miss] {api_name} {params}\n")
         return None
     age = time.time() - os.path.getmtime(cache_file)
@@ -198,6 +201,7 @@ def _cache_read(api_name, params, fields):
         with open(cache_file, "r", encoding="utf-8") as f:
             body = json.load(f)
     except Exception as e:
+        emit('tushare_cache', api=api_name, outcome='invalid')
         if _CACHE_DEBUG: sys.stderr.write(f"[cache-err]  read {cache_file}: {e}\n")
         return None
 
@@ -211,6 +215,7 @@ def _cache_read(api_name, params, fields):
         tag = "POS"
 
     if ttl is not None and age >= ttl:
+        emit('tushare_cache', api=api_name, outcome='stale')
         if _CACHE_DEBUG:
             sys.stderr.write(f"[cache-stale] {api_name} ({tag}) age={age:.0f}s ttl={ttl}s\n")
         return None
@@ -218,6 +223,7 @@ def _cache_read(api_name, params, fields):
     if _CACHE_DEBUG:
         ttl_str = "∞" if ttl is None else f"{ttl}s"
         sys.stderr.write(f"[cache-hit]  {api_name} ({tag}) age={age:.0f}s ttl={ttl_str}\n")
+    emit('tushare_cache', api=api_name, outcome='negative_hit' if tag=='NEG' else 'hit')
     return body
 
 
@@ -360,6 +366,8 @@ def main(argv):
         max_retries = -1  # skip loop
 
     for attempt in range(max_retries + 1):
+        request_start = time.monotonic()
+        emit('tushare_http_start', api=api_name, params=params, fields=fields, attempt=attempt+1)
         try:
             with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
                 body = json.loads(resp.read().decode("utf-8"))
@@ -370,6 +378,9 @@ def main(argv):
         except Exception as e:
             sys.stderr.write(f"request failed: {e}\n")
             return 4
+
+        finally:
+            emit('tushare_http_finish', api=api_name, wall_seconds=time.monotonic()-request_start)
 
         code = body.get("code", 0)
         if code != 40203 or attempt == max_retries:

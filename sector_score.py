@@ -95,6 +95,8 @@ def _ts_csv(api: str, **params) -> list[dict[str, str]]:
 def _fetch_fina(ts_code: str) -> dict[str, float]:
     """Latest fina_indicator for one stock. Cached."""
     if ts_code in _fina_cache:
+        from recap_observability import emit
+        emit('score_fina_memory_hit', stock=ts_code, usable=bool(_fina_cache[ts_code]))
         return _fina_cache[ts_code]
     rows = _ts_csv("fina_indicator", ts_code=ts_code,
                    fields="end_date,roe,grossprofit_margin,netprofit_yoy,or_yoy")

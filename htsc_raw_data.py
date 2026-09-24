@@ -51,6 +51,7 @@ import json
 import os
 import re
 import subprocess
+from recap_observability import emit
 import sys
 import time
 from pathlib import Path
@@ -112,6 +113,7 @@ def run_json(cmd: list[str], *, cwd: Path, timeout: int, retries: int) -> tuple[
     for i in range(max(0, retries) + 1):
         started = time.time()
         att: dict[str, Any] = {"n": i + 1, "started_at": now_iso(), "timeout": timeout}
+        emit('htsc_bridge_start', attempt=i+1)
         try:
             cp = subprocess.run(cmd, cwd=str(cwd), capture_output=True, text=True, timeout=timeout)
             att.update({"rc": cp.returncode, "elapsed_sec": round(time.time() - started, 2)})
@@ -143,6 +145,7 @@ def run_json(cmd: list[str], *, cwd: Path, timeout: int, retries: int) -> tuple[
         except subprocess.TimeoutExpired:
             att.update({"rc": None, "elapsed_sec": round(time.time() - started, 2)})
             last = {"ok": False, "data": None, "error": {"category": "network", "message": f"timeout after {timeout}s"}}
+        emit('htsc_bridge_finish', attempt=i+1, wall_seconds=time.time()-started, ok=bool(last.get('ok')))
         err = last.get("error") or {}
         att.update({"ok": bool(last.get("ok")), "error_category": err.get("category")})
         attempts.append(att)
@@ -470,6 +473,7 @@ def cmd_select(args) -> dict[str, Any]:
 def cmd_indicator(args) -> dict[str, Any]:
     params = {"query": args.query}
     key, cached = maybe_cached("indicator", params, args.cache_ttl)
+    emit('htsc_cache', layer='raw_indicator', outcome='hit' if cached and not args.no_cache else 'miss')
     if cached and not args.no_cache:
         return cached
     raw, attempts = run_json(["python3", str(QUERY_SCRIPT), "queryIndicator", "--query", args.query], cwd=QUERY_SCRIPT.parent, timeout=args.timeout, retries=args.retries)

@@ -76,8 +76,9 @@ def test_full_history_order_nulls_preserved(tmp_path, monkeypatch):
     assert len(rows)==3500 and rows[-1]['close']=='3499'
 
 
+@pytest.mark.parametrize('batch_enabled', [False, True])
 @pytest.mark.parametrize('failed_code', [None, '301308.SZ'])
-def test_full_sector_frozen_scores_signals_and_partial_coverage(tmp_path, monkeypatch, failed_code):
+def test_full_sector_frozen_scores_signals_and_partial_coverage(tmp_path, monkeypatch, failed_code, batch_enabled):
     """Reference CSV boundary vs direct cache, through actual ranking/evaluate."""
     import copy
     from datetime import date, timedelta
@@ -93,6 +94,8 @@ def test_full_sector_frozen_scores_signals_and_partial_coverage(tmp_path, monkey
         flow_20d_cny=sig['flow_20d_cny'],pct_rank_60d=sig['pct_rank_60d'],pct_rank_250d=sig['pct_rank_250d']))
     monkeypatch.setattr(picks,'_SPBT_AVAILABLE',False)
     monkeypatch.setenv('RECAP_NO_HISTORY','1');monkeypatch.delenv('RECAP_SCORE_FILE',raising=False)
+    monkeypatch.setenv('RECAP_OBSERVABILITY',str(tmp_path/'full-sector.performance.jsonl'))
+    monkeypatch.setenv('RECAP_STAGE','picks');monkeypatch.setenv('RECAP_STAGE_ID','full-sector')
     monkeypatch.delenv('RECAP_RPC_CACHE',raising=False)
     monkeypatch.setattr(tushare,'CACHE_DIR',str(tmp_path));monkeypatch.setattr(tushare,'_CACHE_DISABLED',False)
     monkeypatch.setenv('TUSHARE_TOKEN','fixture');monkeypatch.delenv('TUSHARE_NO_CACHE',raising=False)
@@ -110,6 +113,16 @@ def test_full_sector_frozen_scores_signals_and_partial_coverage(tmp_path, monkey
             body={'code':0,'data':{'fields':fields.split(','),'items':items}}
             tushare._cache_write(api,params,fields,body)
             frozen[(api,code,fields)]=list(csv.DictReader(tushare.csv_text(body['data']).splitlines()))
+    if batch_enabled:
+        import recap_daily_basic as batch
+        items=[]
+        for code,_ in picks.get_sector_stocks(concept):
+            items.append({'ts_code':code,'trade_date':'20260924',**frozen[('daily_basic',code,batch.FIELDS)][0]})
+            key=tushare._cache_key('daily_basic',{'ts_code':code,'trade_date':'20260924'},batch.FIELDS)
+            (tmp_path/'daily_basic'/(key+'.json')).unlink()  # this test's own fixture
+        monkeypatch.setenv('RECAP_INPUT_HASH','frozen-sector')
+        monkeypatch.setenv('RECAP_DAILY_BASIC',str(tmp_path/'panel.json'))
+        batch.prepare(tmp_path/'panel.json','20260924','frozen-sector',lambda *a:items)
     original_ts=picks._ts
     def reference(api,**params):
         if params.get('ts_code')==failed_code and api=='daily':

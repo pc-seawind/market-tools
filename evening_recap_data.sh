@@ -90,6 +90,8 @@ mkdir -p "$(dirname "$OUT")"
 exec 9>"${OUT}.lock"
 flock -n 9 || { echo "recap collector already active: $OUT" >&2; exit 75; }
 
+export RECAP_OBSERVABILITY="${OUT}.performance.jsonl"
+
 WORKDIR="$(mktemp -d /tmp/evening_recap_work.XXXXXX)"
 trap 'rm -rf "$WORKDIR"' EXIT
 
@@ -121,11 +123,14 @@ fi
 HTSC_FLOW_REFRESH_TIMEOUT="${HTSC_FLOW_REFRESH_TIMEOUT:-900}"
 if [[ -z "$SCORE_JSON" && -x "$HERE/htsc_sector_flow.py" ]]; then
   echo "[evening_recap_data] refresh HTSC sector-flow cache (TTL guarded)" >&2
-  bounded_timeout "$HTSC_FLOW_REFRESH_TIMEOUT" python3 "$HERE/htsc_sector_flow.py" refresh-default --max-concepts 13 --ttl-hours 12     > "$WORKDIR/htsc_sector_flow_refresh.json" 2> "$WORKDIR/htsc_sector_flow_refresh.err" ||     echo "[evening_recap_data] WARN: HTSC sector-flow refresh failed/timeout; scoring will use existing cache or neutral fallback" >&2
+  bounded_timeout "$HTSC_FLOW_REFRESH_TIMEOUT" python3 "$HERE/recap_observability.py" stage htsc_refresh -- python3 "$HERE/htsc_sector_flow.py" refresh-default --max-concepts 13 --ttl-hours 12     > "$WORKDIR/htsc_sector_flow_refresh.json" 2> "$WORKDIR/htsc_sector_flow_refresh.err" ||     echo "[evening_recap_data] WARN: HTSC sector-flow refresh failed/timeout; scoring will use existing cache or neutral fallback" >&2
+else
+  python3 "$HERE/recap_observability.py" skip htsc_refresh
 fi
 
 # ── Stage 1: 板块评分 ────────────────────────────────────────────
 if [[ -n "$SCORE_JSON" && -s "$SCORE_JSON" ]]; then
+  python3 "$HERE/recap_observability.py" skip score
   echo "[evening_recap_data] reuse score json: $SCORE_JSON (skip recompute)" >&2
   if [[ "$SCORE_JSON" != "$SCORE_FILE" ]]; then cp "$SCORE_JSON" "$SCORE_FILE"; fi
 else
@@ -133,7 +138,7 @@ else
   # 用 timeout 兜底, 卡死则报错退出而非无限挂起整个采集 turn.
   SCORE_TIMEOUT="${EVENING_RECAP_SCORE_TIMEOUT:-3600}"
   echo "[evening_recap_data] stage 1: sector_score.py --all --json (timeout ${SCORE_TIMEOUT}s)" >&2
-  bounded_timeout "$SCORE_TIMEOUT" python3 sector_score.py --all --json > "$SCORE_FILE" 2> "$SCORE_ERR"
+  bounded_timeout "$SCORE_TIMEOUT" python3 "$HERE/recap_observability.py" stage score -- python3 sector_score.py --all --json > "$SCORE_FILE" 2> "$SCORE_ERR"
   rc=$?
   if [[ $rc -eq 124 ]]; then
     echo "[evening_recap_data] FATAL: sector_score.py TIMED OUT after ${SCORE_TIMEOUT}s" >&2
@@ -153,7 +158,7 @@ fi
 # 用 python 完成: 解析 scores → 选 tier1_pass 的板块 (按 total_score 降序,
 # 取前 MAX_PICKS) → 逐个调 sector_picks --sector --json → 合并成最终 JSON.
 export EVENING_RECAP_REMAINING_SECONDS="$((BUDGET - SECONDS))"
-python3 - "$SCORE_FILE" "$OUT" "$MAX_PICKS" "$DATE" <<'PY'
+python3 "$HERE/recap_observability.py" stage picks -- python3 - "$SCORE_FILE" "$OUT" "$MAX_PICKS" "$DATE" <<'PY'
 import json, subprocess, sys, datetime, os, time, tempfile
 from recap_runtime import run as run_group, digest, code_hash, reusable, view, atomic
 
@@ -326,6 +331,28 @@ def checkpoint(status):
             os.unlink(tmp)
 
 checkpoint("running")
+batch_path = os.path.abspath(out_file) + '.daily-basic.json'
+batch_env = {**os.environ, 'RECAP_INPUT_HASH': signature,
+             'RECAP_RPC_CACHE': os.path.abspath(out_file)+'.rpc-cache',
+             'RECAP_RPC_TRACE': os.path.abspath(out_file)+'.rpc.jsonl'}
+# Only unresolved multi-stock work can amortize a panel request. Retry rounds
+# reuse the same bounded snapshot; absence/failure keeps original per-stock IO.
+from concepts_data import CONCEPTS
+failed_prior = view(previous, expected_trade_date or '')['coverage']['failed']
+needed_codes = {code for r in selected
+                if prior_attempts.get(r.get('concept'), 0) < 2
+                and (not old_picks.get(r.get('concept')) or r.get('concept') in failed_prior)
+                for code, _ in CONCEPTS.get(r.get('concept'), [])
+                if code.endswith(('.SH', '.SZ', '.BJ'))}
+# Measured panel ~3.17s; fewer than 12 unresolved names may not amortize it.
+if result['meta']['fresh'] and len(needed_codes) >= 12:
+    try:
+        batch_cp = run_group(['python3', 'recap_daily_basic.py', batch_path, expected_trade_date],
+                             cwd=here, timeout=remaining(45), text=True, env=batch_env)
+        result['meta']['daily_basic_batch'] = {'returncode':batch_cp.returncode,
+                                               'receipt':batch_cp.stdout[-1000:]}
+    except (subprocess.TimeoutExpired, OSError) as exc:
+        result['meta']['daily_basic_batch'] = {'status':'per_stock_fallback','reason':str(exc)}
 for r in selected:
     concept = r.get("concept")
     if not concept:
@@ -358,6 +385,7 @@ for r in selected:
             cwd=here, capture_output=True, text=True, timeout=pick_timeout,
             env={**os.environ, 'RECAP_SCORE_FILE': os.path.abspath(score_file),
                  'RECAP_SECTOR': concept, 'RECAP_INPUT_HASH': signature,
+                 'RECAP_DAILY_BASIC': batch_path,
                  'RECAP_RPC_TRACE': os.path.abspath(out_file)+'.rpc.jsonl',
                  'RECAP_RPC_CACHE': os.path.abspath(out_file)+'.rpc-cache'},
         )

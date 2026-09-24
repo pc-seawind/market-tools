@@ -62,6 +62,8 @@ def provider_cache_csv(args, api, params):
 
 
 def trace(record):
+    from recap_observability import emit
+    emit('rpc', **record)
     path = os.getenv('RECAP_RPC_TRACE')
     if path:
         with _log_lock:
@@ -99,6 +101,12 @@ def _csv_rpc(args, api, params, started):
         if output is not None:
             record.update(cache_hit=True, cache_layer='tushare_exact', cli_started=False)
         else:
+            from recap_daily_basic import project, FIELDS
+            projected = project(api, params)
+            if projected is not None:
+                output = FIELDS + '\n' + ','.join(projected[0][k] for k in FIELDS.split(',')) + '\n'
+                record.update(cache_hit=True, cache_layer='run_daily_basic', cli_started=False)
+        if output is None:
             record.update(cache_layer='cli', cli_started=True)
             with _slots:
                 with _rate:

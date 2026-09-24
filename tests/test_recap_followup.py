@@ -25,7 +25,11 @@ def test_default_entry(tmp_path, monkeypatch, fail_forever=False):
     from mt1 import sweep
     provider = tmp_path/'provider'; provider.mkdir()
     shutil.copyfile(ROOT/'evening_recap_data.sh', provider/'evening_recap_data.sh')
+    shutil.copyfile(ROOT/'recap_observability.py', provider/'recap_observability.py')
     (provider/'evening_recap_data.sh').chmod(0o755)
+    (provider/'htsc_sector_flow.py').write_text("from recap_observability import emit; emit('htsc_cache',outcome='hit'); print('{}')")
+    (provider/'htsc_sector_flow.py').chmod(0o755)
+
     day = datetime.now().strftime('%Y%m%d')
     (provider/'sector_score.py').write_text("import json; print(json.dumps([{'concept':n,'tier1_pass':True,'total_score':60} for n in ['A','B']]))")
     (provider/'tushare.py').write_text(f"import sys; print('trade_date\\n{day}\\n' if 'index_daily' in sys.argv else 'cal_date,is_open\\n{day},1\\n')")
@@ -74,6 +78,11 @@ print(json.dumps({'evaluations':[{'stock':{'code':name,'trade_date':DAY}}], 'sec
     assert result['raw_recap']['meta']['reused']==['A']
     assert result['raw_recap']['meta']['attempt_counts']=={'A':1,'B':2}
     assert result['raw_recap']['coverage']['status']==('partial' if fail_forever else 'complete')
+    performance=result['raw_recap']['recovery']['performance']['stages']
+    assert {'htsc_refresh','score','picks'} <= {r['stage'] for r in performance}
+    assert all(r['status']!='unfinished' and 'finished_at' in r for r in performance)
+    assert any(r['counts'].get('htsc_cache:hit')==1 for r in performance)
+
     if fail_forever:
         failure=result['raw_recap']['coverage']['failed']['B']
         assert failure['state']=='attempt_limit' and not failure['automatic_retry_pending']

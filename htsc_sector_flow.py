@@ -31,6 +31,7 @@ import datetime as dt
 import json
 import re
 import subprocess
+from recap_observability import emit
 import sys
 import time
 from pathlib import Path
@@ -227,7 +228,9 @@ def cmd_refresh_default(args) -> dict[str, Any]:
     results = []
     for c in concepts:
         existing = (cache.get("concepts") or {}).get(c)
-        if existing and not args.force and is_fresh(existing, args.ttl_hours):
+        fresh = bool(existing and not args.force and is_fresh(existing, args.ttl_hours))
+        emit('htsc_cache', layer='concept', outcome='hit' if fresh else 'miss', concept=c)
+        if fresh:
             results.append({"concept": c, "skipped": True, "reason": "fresh", "updated_at": existing.get("updated_at"), "ok": existing.get("ok")})
             continue
         rec = refresh_concept(c, timeout=args.timeout, retries=args.retries, sleep_sec=args.sleep)

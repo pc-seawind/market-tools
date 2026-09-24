@@ -35,6 +35,12 @@ def collect(path, expected, today, receipt_path):
             'code owner: inspect checkpoint and RPC trace; automatic recovery ended for this run; '
             'do not reset attempt counts or launch a new budget without an explicit repair decision')
         receipt['inspect_command'] = ['tail', '-n', '50', str(path)+'.rpc.jsonl']
+        receipt['performance_trace'] = str(path)+'.performance.jsonl'
+        receipt['performance_summary_command'] = ['python3', str(HERE/'recap_observability.py'),
+                                                   'summary', receipt['performance_trace']]
+        if Path(receipt['performance_trace']).exists():
+            from recap_observability import summary
+            receipt['performance'] = summary(receipt['performance_trace'])
         atomic_json(receipt_path, receipt)
 
     value = read()
