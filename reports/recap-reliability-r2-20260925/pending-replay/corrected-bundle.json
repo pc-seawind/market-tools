@@ -1,0 +1,78 @@
+{
+  "phase": "morning",
+  "source_run_id": "2026-09-24-morning",
+  "reviewer": "investment-morning-home-ubuntu-20260924",
+  "reviewed_plan_ids": [],
+  "plan_events": [],
+  "method_events": [],
+  "research": {
+    "fetch_status": "partial",
+    "sources": [
+      {
+        "url": "https://pdf.dfcfw.com/pdf/H2_AN202609231829803663_1.pdf",
+        "fetched_at": "2026-09-24T07:22:04.445366+08:00",
+        "content_path": "/home/emox/work/investment/reference/daily-reports/20260924T071515-morning/sources/demingli-unlock.pdf",
+        "content_hash": "d7717452f23c1a5f11eecad03da85958e517cac734e509c3b2d8d6e91224fcaa"
+      }
+    ],
+    "gaps": [
+      "九股估值及完整公司签审未完成；不把新增解禁事件当经营证伪"
+    ]
+  },
+  "review_items": [
+    {
+      "plan_id": "legacy-5b6cf1eba9fd876221a8d746",
+      "expected_version": 1,
+      "status": "pending",
+      "note": "本方方向已写，完整财务/估值/经营传导未签审"
+    },
+    {
+      "plan_id": "legacy-1d3eacbcf45daa9a47d37252",
+      "expected_version": 1,
+      "status": "pending",
+      "note": "本方方向已写，完整财务/估值/经营传导未签审"
+    },
+    {
+      "plan_id": "legacy-81f3f33e51041da44c1350e4",
+      "expected_version": 1,
+      "status": "pending",
+      "note": "本方方向已写，完整财务/估值/经营传导未签审"
+    },
+    {
+      "plan_id": "scope-20260911-301511-research-coverage",
+      "expected_version": 1,
+      "status": "pending",
+      "note": "本方方向已写，完整财务/估值/经营传导未签审"
+    },
+    {
+      "plan_id": "legacy-547c0a1c7deeb99c8c258ca8",
+      "expected_version": 1,
+      "status": "pending",
+      "note": "本方方向已写，完整财务/估值/经营传导未签审"
+    },
+    {
+      "plan_id": "legacy-a15468d7df4d521140c380d2",
+      "expected_version": 1,
+      "status": "pending",
+      "note": "本方方向已写，完整财务/估值/经营传导未签审"
+    },
+    {
+      "plan_id": "legacy-4584f9f69c254e4703e830f9",
+      "expected_version": 1,
+      "status": "pending",
+      "note": "本方方向已写，完整财务/估值/经营传导未签审"
+    },
+    {
+      "plan_id": "legacy-0bc7cb4dd7936616c8fad09b",
+      "expected_version": 1,
+      "status": "pending",
+      "note": "本方方向已写，完整财务/估值/经营传导未签审"
+    },
+    {
+      "plan_id": "legacy-b83835907228e83ed6346c0c",
+      "expected_version": 1,
+      "status": "pending",
+      "note": "本方方向已写，完整财务/估值/经营传导未签审"
+    }
+  ]
+}

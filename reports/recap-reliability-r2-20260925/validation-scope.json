@@ -1,0 +1,8 @@
+{
+  "kind": "offline integration and real historical bundle replay",
+  "market_calls": 0,
+  "huatai_calls": 0,
+  "publication_calls": 0,
+  "provider_scope": "synthetic provider/calendar; default CLI/pipeline/collector and real child processes; NOT natural trading day proof",
+  "pending_scope": "copied historical bundle and plan snapshots; isolated ledger only, 9 pending / 0 reviewed"
+}

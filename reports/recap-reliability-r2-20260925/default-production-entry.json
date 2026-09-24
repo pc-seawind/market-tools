@@ -1,0 +1,10 @@
+{
+  "path": "/home/emox/.homespace/cron/evening-market-recap.json",
+  "sha256": "e6f8bbadc4f6375b1ba925bac7878bc4d3b1d484641bf3c9aa97a0d2d76208c3",
+  "name": "evening-market-recap",
+  "cron": "30 18 * * 1-5",
+  "delivery": "feishu:oc_cb4beff850c29f8c89b19ee87003bb18",
+  "engine_contract_lines": [
+    "公司研究执行细则（不替代本文流程）：/home/emox/work/investment/reference/operations/weekend-loop-20260912/engine-contracts/evening.md。保留唯一CLI与cgroup预算、finalize/证据入口；已运行长任务不重复启动，日报不等待全市场扫描。"
+  ]
+}

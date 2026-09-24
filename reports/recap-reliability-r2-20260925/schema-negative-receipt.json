@@ -1,0 +1,14 @@
+[
+  {
+    "both_levels": false,
+    "error": "review_items_wrong_level: research.review_items is forbidden (including when both levels exist); move pending items to bundle.review_items, bind each to the current plan_id and expected_version, use status=pending and note; do not add pending ids to reviewed_plan_ids; remove the nested key",
+    "state_created": false,
+    "investment_created": false
+  },
+  {
+    "both_levels": true,
+    "error": "review_items_wrong_level: research.review_items is forbidden (including when both levels exist); move pending items to bundle.review_items, bind each to the current plan_id and expected_version, use status=pending and note; do not add pending ids to reviewed_plan_ids; remove the nested key",
+    "state_created": false,
+    "investment_created": false
+  }
+]

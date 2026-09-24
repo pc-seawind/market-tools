@@ -1,10 +1,18 @@
 {
   "historical-bundle.json": {
     "source": ".cron_state/mt1/chains/2026-09-24-morning/review-d4007e8ac85eef6deb11789f.json",
-    "sha256": "b30cd71373882d43aee3a96f37d6adaedde8b00bd0b03bb1355373ef4ccbaf95"
+    "sha256": "b30cd71373882d43aee3a96f37d6adaedde8b00bd0b03bb1355373ef4ccbaf95",
+    "projection": "bundle",
+    "fixture_sha256": "b2cd7b30bfa31b9a3c7bdf9440a0721a5dc0d499140c56be1faa47fa5a167b60"
   },
   "historical-run.json": {
     "source": ".cron_state/mt1/runs/2026-09-24-morning/report.json",
-    "sha256": "0d4f4654fb94a75a6c141c8bf2f7d6fe5fec7ceae42b2fad151238622560ca91"
+    "sha256": "0d4f4654fb94a75a6c141c8bf2f7d6fe5fec7ceae42b2fad151238622560ca91",
+    "projection": [
+      "phase",
+      "run_id",
+      "plans"
+    ],
+    "fixture_sha256": "8ea8b8f249e2f3d8e1cfa09c56c3f7f733743aded20fe81fc563e96bee22d94e"
   }
 }

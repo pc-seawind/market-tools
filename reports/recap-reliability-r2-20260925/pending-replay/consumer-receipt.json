@@ -1,0 +1,53 @@
+{
+  "phase": "morning",
+  "reviewer": "investment-morning-home-ubuntu-20260924",
+  "changes": [],
+  "methods": [],
+  "reviewed_plan_ids": [],
+  "unreviewed_plan_ids": [
+    "legacy-0bc7cb4dd7936616c8fad09b",
+    "legacy-1d3eacbcf45daa9a47d37252",
+    "legacy-4584f9f69c254e4703e830f9",
+    "legacy-547c0a1c7deeb99c8c258ca8",
+    "legacy-5b6cf1eba9fd876221a8d746",
+    "legacy-81f3f33e51041da44c1350e4",
+    "legacy-a15468d7df4d521140c380d2",
+    "legacy-b83835907228e83ed6346c0c",
+    "scope-20260911-301511-research-coverage"
+  ],
+  "research_status": "not_verified",
+  "research": {
+    "fetch_status": "partial",
+    "sources": [
+      {
+        "url": "https://pdf.dfcfw.com/pdf/H2_AN202609231829803663_1.pdf",
+        "fetched_at": "2026-09-24T07:22:04.445366+08:00",
+        "content_path": "/home/emox/work/investment/reference/daily-reports/20260924T071515-morning/sources/demingli-unlock.pdf",
+        "content_hash": "d7717452f23c1a5f11eecad03da85958e517cac734e509c3b2d8d6e91224fcaa"
+      }
+    ],
+    "gaps": [
+      "九股估值及完整公司签审未完成；不把新增解禁事件当经营证伪"
+    ]
+  },
+  "errors": [],
+  "source_run_id": "2026-09-24-morning",
+  "pending_review_ids": [
+    "legacy-5b6cf1eba9fd876221a8d746",
+    "legacy-1d3eacbcf45daa9a47d37252",
+    "legacy-81f3f33e51041da44c1350e4",
+    "scope-20260911-301511-research-coverage",
+    "legacy-547c0a1c7deeb99c8c258ca8",
+    "legacy-a15468d7df4d521140c380d2",
+    "legacy-4584f9f69c254e4703e830f9",
+    "legacy-0bc7cb4dd7936616c8fad09b",
+    "legacy-b83835907228e83ed6346c0c"
+  ],
+  "watchlist": {
+    "mode": "dry_run",
+    "pending": []
+  },
+  "legacy_rec_projection": "not_written; structured ledger is authoritative for MT-1.0",
+  "report_path": "/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/pending-replay/investment/reference/medium-term-reviews/2026-09-25-morning-review-20260924-181452487368.md",
+  "result_json": "/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/pending-replay/state/reviews/6681ea1ef59cdaaf-20260924-181452487368.json"
+}

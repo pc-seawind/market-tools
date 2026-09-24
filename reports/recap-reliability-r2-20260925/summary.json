@@ -1,0 +1,386 @@
+{
+  "default-recovered": {
+    "entry_invocations": 1,
+    "collector_invocations": 2,
+    "provider_calls": [
+      "A",
+      "B",
+      "B"
+    ],
+    "recovery": {
+      "entry": "mt1_job.py run evening --collect",
+      "budget_seconds": 20,
+      "attempts": [
+        {
+          "round": 1,
+          "timeout_seconds": 19,
+          "collector_budget_seconds": 19,
+          "returncode": 0,
+          "stderr": "[evening_recap_data] start date=2026-09-25 out=/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-recovered/raw/evening_recap_2026-09-25.json max_picks=16\n[evening_recap_data] stage 1: sector_score.py --all --json (timeout 3600s)\n[evening_recap_data]   picks ok   A\n[evening_recap_data]   picks FAIL B: exit 1\n[evening_recap_data] done rc=0 out=/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-recovered/raw/evening_recap_2026-09-25.json\n",
+          "coverage": {
+            "expected_trade_date": "2026-09-25",
+            "envelope_fresh": true,
+            "selected": 2,
+            "usable_sectors": [
+              "A"
+            ],
+            "failed": {
+              "B": {
+                "reason": "picks exit 1",
+                "owner": "code:recap-collector",
+                "next_action": "retry_failed_inputs_within_same_session_budget; historical gaps stay archived"
+              }
+            },
+            "diagnostics": {
+              "A": {
+                "source_grade": "degraded_proxy_neutral_stub",
+                "valid_stocks": 1,
+                "rejected": []
+              },
+              "B": {
+                "source_grade": "unknown",
+                "valid_stocks": 0,
+                "rejected": []
+              }
+            },
+            "scores": [
+              {
+                "concept": "A",
+                "source_grade": "unknown",
+                "vintage": null,
+                "fact_eligible": false
+              },
+              {
+                "concept": "B",
+                "source_grade": "unknown",
+                "vintage": null,
+                "fact_eligible": false
+              }
+            ],
+            "complete_facts": 0,
+            "status": "partial",
+            "original_errors": [
+              "picks failed: B (exit 1)"
+            ]
+          }
+        },
+        {
+          "round": 2,
+          "timeout_seconds": 19,
+          "collector_budget_seconds": 19,
+          "returncode": 0,
+          "stderr": "[evening_recap_data] start date=2026-09-25 out=/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-recovered/raw/evening_recap_2026-09-25.json max_picks=16\n[evening_recap_data] reuse score json: /tmp/evening_recap_work.00Akuc/scores.json (skip recompute)\n[evening_recap_data]   picks ok   B\n[evening_recap_data] done rc=0 out=/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-recovered/raw/evening_recap_2026-09-25.json\n",
+          "coverage": {
+            "expected_trade_date": "2026-09-25",
+            "envelope_fresh": true,
+            "selected": 2,
+            "usable_sectors": [
+              "A",
+              "B"
+            ],
+            "failed": {},
+            "diagnostics": {
+              "A": {
+                "source_grade": "degraded_proxy_neutral_stub",
+                "valid_stocks": 1,
+                "rejected": []
+              },
+              "B": {
+                "source_grade": "degraded_proxy_neutral_stub",
+                "valid_stocks": 1,
+                "rejected": []
+              }
+            },
+            "scores": [
+              {
+                "concept": "A",
+                "source_grade": "unknown",
+                "vintage": null,
+                "fact_eligible": false
+              },
+              {
+                "concept": "B",
+                "source_grade": "unknown",
+                "vintage": null,
+                "fact_eligible": false
+              }
+            ],
+            "complete_facts": 0,
+            "status": "complete",
+            "original_errors": []
+          }
+        }
+      ],
+      "owner": "code:recap-collector",
+      "status": "complete",
+      "checkpoint": "/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-recovered/raw/evening_recap_2026-09-25.json",
+      "elapsed_seconds": 0.23754639271646738,
+      "automatic_retry_pending": false,
+      "next_action": "none",
+      "inspect_command": [
+        "tail",
+        "-n",
+        "50",
+        "/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-recovered/raw/evening_recap_2026-09-25.json.rpc.jsonl"
+      ]
+    },
+    "coverage": {
+      "expected_trade_date": "2026-09-25",
+      "envelope_fresh": true,
+      "selected": 2,
+      "usable_sectors": [
+        "A",
+        "B"
+      ],
+      "failed": {},
+      "diagnostics": {
+        "A": {
+          "source_grade": "degraded_proxy_neutral_stub",
+          "valid_stocks": 1,
+          "rejected": []
+        },
+        "B": {
+          "source_grade": "degraded_proxy_neutral_stub",
+          "valid_stocks": 1,
+          "rejected": []
+        }
+      },
+      "scores": [
+        {
+          "concept": "A",
+          "source_grade": "unknown",
+          "vintage": null,
+          "fact_eligible": false
+        },
+        {
+          "concept": "B",
+          "source_grade": "unknown",
+          "vintage": null,
+          "fact_eligible": false
+        }
+      ],
+      "complete_facts": 0,
+      "status": "complete",
+      "original_errors": []
+    }
+  },
+  "default-terminal": {
+    "entry_invocations": 1,
+    "collector_invocations": 2,
+    "provider_calls": [
+      "A",
+      "B",
+      "B"
+    ],
+    "recovery": {
+      "entry": "mt1_job.py run evening --collect",
+      "budget_seconds": 20,
+      "attempts": [
+        {
+          "round": 1,
+          "timeout_seconds": 19,
+          "collector_budget_seconds": 19,
+          "returncode": 0,
+          "stderr": "[evening_recap_data] start date=2026-09-25 out=/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-terminal/raw/evening_recap_2026-09-25.json max_picks=16\n[evening_recap_data] stage 1: sector_score.py --all --json (timeout 3600s)\n[evening_recap_data]   picks ok   A\n[evening_recap_data]   picks FAIL B: exit 1\n[evening_recap_data] done rc=0 out=/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-terminal/raw/evening_recap_2026-09-25.json\n",
+          "coverage": {
+            "expected_trade_date": "2026-09-25",
+            "envelope_fresh": true,
+            "selected": 2,
+            "usable_sectors": [
+              "A"
+            ],
+            "failed": {
+              "B": {
+                "reason": "picks exit 1",
+                "owner": "code:recap-collector",
+                "next_action": "retry_failed_inputs_within_same_session_budget; historical gaps stay archived"
+              }
+            },
+            "diagnostics": {
+              "A": {
+                "source_grade": "degraded_proxy_neutral_stub",
+                "valid_stocks": 1,
+                "rejected": []
+              },
+              "B": {
+                "source_grade": "unknown",
+                "valid_stocks": 0,
+                "rejected": []
+              }
+            },
+            "scores": [
+              {
+                "concept": "A",
+                "source_grade": "unknown",
+                "vintage": null,
+                "fact_eligible": false
+              },
+              {
+                "concept": "B",
+                "source_grade": "unknown",
+                "vintage": null,
+                "fact_eligible": false
+              }
+            ],
+            "complete_facts": 0,
+            "status": "partial",
+            "original_errors": [
+              "picks failed: B (exit 1)"
+            ]
+          }
+        },
+        {
+          "round": 2,
+          "timeout_seconds": 19,
+          "collector_budget_seconds": 19,
+          "returncode": 0,
+          "stderr": "[evening_recap_data] start date=2026-09-25 out=/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-terminal/raw/evening_recap_2026-09-25.json max_picks=16\n[evening_recap_data] reuse score json: /tmp/evening_recap_work.UFqNqF/scores.json (skip recompute)\n[evening_recap_data]   picks FAIL B: exit 1\n[evening_recap_data] done rc=0 out=/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-terminal/raw/evening_recap_2026-09-25.json\n",
+          "coverage": {
+            "expected_trade_date": "2026-09-25",
+            "envelope_fresh": true,
+            "selected": 2,
+            "usable_sectors": [
+              "A"
+            ],
+            "failed": {
+              "B": {
+                "reason": "picks exit 1",
+                "owner": "code:recap-collector",
+                "next_action": "code owner: inspect RPC trace and checkpoint; no automatic retry remains in this run",
+                "state": "attempt_limit",
+                "automatic_retry_pending": false
+              }
+            },
+            "diagnostics": {
+              "A": {
+                "source_grade": "degraded_proxy_neutral_stub",
+                "valid_stocks": 1,
+                "rejected": []
+              },
+              "B": {
+                "source_grade": "unknown",
+                "valid_stocks": 0,
+                "rejected": []
+              }
+            },
+            "scores": [
+              {
+                "concept": "A",
+                "source_grade": "unknown",
+                "vintage": null,
+                "fact_eligible": false
+              },
+              {
+                "concept": "B",
+                "source_grade": "unknown",
+                "vintage": null,
+                "fact_eligible": false
+              }
+            ],
+            "complete_facts": 0,
+            "status": "partial",
+            "original_errors": [
+              "picks failed: B (exit 1)"
+            ]
+          }
+        }
+      ],
+      "owner": "code:recap-collector",
+      "status": "attempt_limit",
+      "checkpoint": "/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-terminal/raw/evening_recap_2026-09-25.json",
+      "elapsed_seconds": 0.24031922593712807,
+      "automatic_retry_pending": false,
+      "next_action": "code owner: inspect checkpoint and RPC trace; automatic recovery ended for this run; do not reset attempt counts or launch a new budget without an explicit repair decision",
+      "inspect_command": [
+        "tail",
+        "-n",
+        "50",
+        "/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-terminal/raw/evening_recap_2026-09-25.json.rpc.jsonl"
+      ]
+    },
+    "coverage": {
+      "expected_trade_date": "2026-09-25",
+      "envelope_fresh": true,
+      "selected": 2,
+      "usable_sectors": [
+        "A"
+      ],
+      "failed": {
+        "B": {
+          "reason": "picks exit 1",
+          "owner": "code:recap-collector",
+          "next_action": "code owner: inspect RPC trace and checkpoint; no automatic retry remains in this run",
+          "state": "attempt_limit",
+          "automatic_retry_pending": false,
+          "inspect_command": [
+            "tail",
+            "-n",
+            "50",
+            "/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/default-terminal/raw/evening_recap_2026-09-25.json.rpc.jsonl"
+          ]
+        }
+      },
+      "diagnostics": {
+        "A": {
+          "source_grade": "degraded_proxy_neutral_stub",
+          "valid_stocks": 1,
+          "rejected": []
+        },
+        "B": {
+          "source_grade": "unknown",
+          "valid_stocks": 0,
+          "rejected": []
+        }
+      },
+      "scores": [
+        {
+          "concept": "A",
+          "source_grade": "unknown",
+          "vintage": null,
+          "fact_eligible": false
+        },
+        {
+          "concept": "B",
+          "source_grade": "unknown",
+          "vintage": null,
+          "fact_eligible": false
+        }
+      ],
+      "complete_facts": 0,
+      "status": "partial",
+      "original_errors": [
+        "picks failed: B (exit 1)"
+      ]
+    }
+  },
+  "pending": {
+    "pending_review_ids": [
+      "legacy-5b6cf1eba9fd876221a8d746",
+      "legacy-1d3eacbcf45daa9a47d37252",
+      "legacy-81f3f33e51041da44c1350e4",
+      "scope-20260911-301511-research-coverage",
+      "legacy-547c0a1c7deeb99c8c258ca8",
+      "legacy-a15468d7df4d521140c380d2",
+      "legacy-4584f9f69c254e4703e830f9",
+      "legacy-0bc7cb4dd7936616c8fad09b",
+      "legacy-b83835907228e83ed6346c0c"
+    ],
+    "reviewed_plan_ids": [],
+    "unreviewed_plan_ids": [
+      "legacy-0bc7cb4dd7936616c8fad09b",
+      "legacy-1d3eacbcf45daa9a47d37252",
+      "legacy-4584f9f69c254e4703e830f9",
+      "legacy-547c0a1c7deeb99c8c258ca8",
+      "legacy-5b6cf1eba9fd876221a8d746",
+      "legacy-81f3f33e51041da44c1350e4",
+      "legacy-a15468d7df4d521140c380d2",
+      "legacy-b83835907228e83ed6346c0c",
+      "scope-20260911-301511-research-coverage"
+    ],
+    "changes": [],
+    "research_status": "not_verified",
+    "errors": [],
+    "report_path": "/home/emox/work/projects/market-tools/reports/recap-reliability-r2-20260925/pending-replay/investment/reference/medium-term-reviews/2026-09-25-morning-review-20260924-181452487368.md"
+  },
+  "scope": "offline default-entry process test plus historical input replay, not natural market collection/publication"
+}
