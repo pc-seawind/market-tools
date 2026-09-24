@@ -1,0 +1,123 @@
+{
+  "trade_date": "20260924",
+  "request_budget": 8,
+  "deadline_seconds": 160,
+  "huatai_requests": 0,
+  "requests": [
+    {
+      "params": {
+        "trade_date": "20260924",
+        "limit": "6000",
+        "offset": "0"
+      },
+      "fields": "ts_code,trade_date,pe_ttm,pb,total_mv,turnover_rate",
+      "started_at": "2026-09-25T02:44:50.109912+08:00",
+      "code": 0,
+      "path": "/home/emox/work/projects/market-tools/reports/recap-performance-r2-20260925/response-1.json",
+      "sha256": "22e3a222ff8f6f6e3a38dcecb8227de3287e9858f0c4a97518f6916a2cae0d55",
+      "rows": 5557,
+      "wall_seconds": 3.1657277019694448
+    },
+    {
+      "params": {
+        "trade_date": "20260924",
+        "limit": "2",
+        "offset": "0"
+      },
+      "fields": "ts_code,trade_date,pe_ttm,pb,total_mv,turnover_rate",
+      "started_at": "2026-09-25T02:44:53.877288+08:00",
+      "code": 0,
+      "path": "/home/emox/work/projects/market-tools/reports/recap-performance-r2-20260925/response-2.json",
+      "sha256": "c91d33de7bd9d1af9819c601533e874e56be5ae2c0c04336c09164ed79af4e43",
+      "rows": 2,
+      "wall_seconds": 0.06725565204396844
+    },
+    {
+      "params": {
+        "trade_date": "20260924",
+        "limit": "2",
+        "offset": "2"
+      },
+      "fields": "ts_code,trade_date,pe_ttm,pb,total_mv,turnover_rate",
+      "started_at": "2026-09-25T02:44:54.545654+08:00",
+      "code": 0,
+      "path": "/home/emox/work/projects/market-tools/reports/recap-performance-r2-20260925/response-3.json",
+      "sha256": "ac4456703f0ebde2c89eb58c145ef9c2e154d441509c1b149330038f8048017b",
+      "rows": 2,
+      "wall_seconds": 0.07910786010324955
+    },
+    {
+      "params": {
+        "ts_code": "603986.SH",
+        "trade_date": "20260924"
+      },
+      "fields": "pe_ttm,pb,total_mv,turnover_rate",
+      "started_at": "2026-09-25T02:44:55.227319+08:00",
+      "code": 0,
+      "path": "/home/emox/work/projects/market-tools/reports/recap-performance-r2-20260925/response-4.json",
+      "sha256": "edbc1d6e73b04174a11f133f0ca25452d84acd51ebc870e63dc1a6f67b0d6616",
+      "rows": 1,
+      "wall_seconds": 0.08191398531198502
+    },
+    {
+      "params": {
+        "ts_code": "688525.SH",
+        "trade_date": "20260924"
+      },
+      "fields": "pe_ttm,pb,total_mv,turnover_rate",
+      "started_at": "2026-09-25T02:44:55.909810+08:00",
+      "code": 0,
+      "path": "/home/emox/work/projects/market-tools/reports/recap-performance-r2-20260925/response-5.json",
+      "sha256": "1224b070506f0c98cc1116f539b381afe6cc1aecad1e7203a123246c89af1672",
+      "rows": 1,
+      "wall_seconds": 0.07984162075445056
+    }
+  ],
+  "wall_seconds": 6.48090789699927,
+  "pagination_verified": true,
+  "batch_rows": 5557,
+  "selected_unique": 111,
+  "missing": [
+    "002013.SZ",
+    "600260.SH"
+  ],
+  "comparisons": [
+    {
+      "code": "603986.SH",
+      "equal": true,
+      "single": [
+        {
+          "pe_ttm": 34.0714,
+          "pb": 7.2462,
+          "total_mv": 27016311.454,
+          "turnover_rate": 3.3784
+        }
+      ],
+      "projected": {
+        "pe_ttm": 34.0714,
+        "pb": 7.2462,
+        "total_mv": 27016311.454,
+        "turnover_rate": 3.3784
+      }
+    },
+    {
+      "code": "688525.SH",
+      "equal": true,
+      "single": [
+        {
+          "pe_ttm": 12.2042,
+          "pb": 7.9224,
+          "total_mv": 10061632.032,
+          "turnover_rate": 4.1217
+        }
+      ],
+      "projected": {
+        "pe_ttm": 12.2042,
+        "pb": 7.9224,
+        "total_mv": 10061632.032,
+        "turnover_rate": 4.1217
+      }
+    }
+  ],
+  "status": "verified_candidate"
+}

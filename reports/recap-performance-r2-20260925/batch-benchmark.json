@@ -1,0 +1,44 @@
+{
+  "status": "equal",
+  "single_snapshot_checks": 7,
+  "network_calls": 0,
+  "cold_model": "panel latency measured 3.1657s; dated single 81ms; other APIs synthetic10ms; all exact query caches cold; NOT whole cron timing",
+  "results": [
+    {
+      "scenario": "seven_stock_complete",
+      "version": "before",
+      "wall_seconds": 17.02479445002973,
+      "simulated_provider_requests": 35,
+      "real_provider_requests": 0,
+      "output_sha256": "c9ed33d428a1887f194411e244f3e8733fecdaf75465d17ea3b465892ea2b24b",
+      "covered": 7
+    },
+    {
+      "scenario": "seven_stock_complete",
+      "version": "after",
+      "wall_seconds": 16.762848758138716,
+      "simulated_provider_requests": 29,
+      "real_provider_requests": 0,
+      "output_sha256": "c9ed33d428a1887f194411e244f3e8733fecdaf75465d17ea3b465892ea2b24b",
+      "covered": 7
+    },
+    {
+      "scenario": "109_dated_names",
+      "version": "before",
+      "wall_seconds": 54.113415791187435,
+      "simulated_provider_requests": 109,
+      "real_provider_requests": 0,
+      "output_sha256": "a252c2cf578214c3d5dd150e840b1e9ec04368a38a165d63c7e9b1ce6dc66a09",
+      "covered": 109
+    },
+    {
+      "scenario": "109_dated_names",
+      "version": "after",
+      "wall_seconds": 3.34020924475044,
+      "simulated_provider_requests": 1,
+      "real_provider_requests": 0,
+      "output_sha256": "a252c2cf578214c3d5dd150e840b1e9ec04368a38a165d63c7e9b1ce6dc66a09",
+      "covered": 109
+    }
+  ]
+}

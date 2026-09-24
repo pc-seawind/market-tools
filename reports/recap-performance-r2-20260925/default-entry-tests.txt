@@ -1,0 +1,63 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_____________________ test_default_shell_batch_stage_route _____________________
+
+tmp_path = PosixPath('/home/emox/work/projects/market-tools/reports/recap-performance-r2-20260925/default-entry-validation/test_default_shell_batch_stage0')
+
+    def test_default_shell_batch_stage_route(tmp_path):
+        """Actual shell/stage runner/RPC/CLI, synthetic transport only, zero network."""
+        import shutil
+        from concepts_data import CONCEPTS
+        root=Path(__file__).resolve().parents[1]
+        provider=tmp_path/'provider';provider.mkdir()
+        for name in ['evening_recap_data.sh','recap_observability.py','recap_daily_basic.py']:
+            shutil.copyfile(root/name,provider/name)
+        concepts=['存储芯片 (HBM/DDR/NAND)','有色金属']
+        codes=sorted({c for concept in concepts for c,_ in CONCEPTS[concept]})
+        assert len(codes)>=12
+        day=date.today().strftime('%Y%m%d')
+        (provider/'sector_score.py').write_text('import json;print(json.dumps('+repr([
+            dict(concept=c,tier1_pass=True,total_score=60) for c in concepts])+'))')
+        htsc=provider/'htsc_sector_flow.py';htsc.write_text("from recap_observability import emit;emit('htsc_cache',outcome='hit');print('{}')");htsc.chmod(0o755)
+        transport='''import io,json,runpy,sys,urllib.request
+    
+    def fake(req,**kw):
+     p=json.loads(req.data);api=p['api_name']
+     if api=='index_daily':f=['trade_date'];rows=[[DAY]]
+     elif api=='trade_cal':f=['cal_date','is_open'];rows=[[DAY,1]]
+     elif api=='daily_basic':
+      f=p['fields'].split(',');rows=[[c,DAY,20,2,10000,1.1] for c in CODES]
+     else:raise AssertionError('unexpected provider '+api)
+     return io.BytesIO(json.dumps({'code':0,'data':{'fields':f,'items':rows}}).encode())
+    urllib.request.urlopen=fake
+    runpy.run_path(TUSHARE,run_name='__main__')
+    '''.replace('DAY',repr(day)).replace('CODES',repr(codes)).replace('TUSHARE',repr(str(root/'tushare.py')))
+        (provider/'tushare.py').write_text(transport)
+        (provider/'sector_picks.py').write_text('''import json,sys
+    from sector_picks import _ts
+    from recap_daily_basic import FIELDS
+    rows=_ts('daily_basic',ts_code=CODE,trade_date=DAY,fields=FIELDS)
+    assert rows and rows[0]['turnover_rate']=='1.1'
+    print(json.dumps({'evaluations':[{'stock':{'code':CODE,'trade_date':DAY}}]}))
+    '''.replace('from sector_picks import _ts',
+                "import importlib.util\nspec=importlib.util.spec_from_file_location('real_picks', "+repr(str(root/'sector_picks.py'))+");m=importlib.util.module_from_spec(spec);sys.modules['real_picks']=m;spec.loader.exec_module(m);_ts=m._ts")
+           .replace('CODE',repr(codes[0])).replace('DAY',repr(day)))
+        output=tmp_path/'out.json'
+        env={**os.environ,'PYTHONPATH':str(root),'TUSHARE_TOKEN':'synthetic-not-valid',
+             'TUSHARE_CACHE_DIR':str(tmp_path/'cache'),'TUSHARE_NO_PARQUET':'1',
+             'EVENING_RECAP_BUDGET_SECONDS':'30','EVENING_RECAP_REVERSAL_QUOTA':'0'}
+        cp=subprocess.run(['bash',str(provider/'evening_recap_data.sh'),'--out',str(output)],
+                          env=env,capture_output=True,text=True,timeout=40)
+        assert cp.returncode==0,cp.stderr
+        value=json.loads(output.read_text())
+        assert value['meta']['daily_basic_batch']['returncode']==0
+>       assert value['meta']['status']=='complete'
+E       AssertionError: assert 'partial' == 'complete'
+E         
+E         - complete
+E         + partial
+
+tests/test_recap_batch.py:154: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_recap_batch.py::test_default_shell_batch_stage_route - Asse...
+1 failed in 0.63s

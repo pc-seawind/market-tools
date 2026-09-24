@@ -1,0 +1,1 @@
+{"request_id": "73993d46-1859-4b2b-b88a-25c2f9634e49", "code": 0, "data": {"fields": ["ts_code", "trade_date", "pe_ttm", "pb", "total_mv", "turnover_rate"], "items": [["000006.SZ", "20260924", null, 1.8484, 973346.395, 2.0637], ["000007.SZ", "20260924", null, 22.5933, 403265.472, 1.389]], "has_more": true, "count": 0}, "msg": "", "detail": "..."}

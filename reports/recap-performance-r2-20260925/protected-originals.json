@@ -1,0 +1,106 @@
+[
+  {
+    "path": "/home/emox/work/projects/market-tools/reports/recap-performance-20260925/historical-journal.txt",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-21-evening/report.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260921T183100-evening/huatai-evening/complete.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260921T183100-evening/consumer/consumer-receipt.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260921T183100-evening/delivery-receipt.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-22-evening/report.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260922T183030-evening/huatai-evening/complete.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260922T183030-evening/consumer/consumer-receipt.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260922T183030-evening/delivery-receipt.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-23-evening/report.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260923T183053-evening/huatai-evening/complete.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260923T183053-evening/consumer/consumer-receipt.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260923T183053-evening/docs-publication-verified-at",
+    "unchanged": true
+  },
+  {
+    "path": "/tmp/evening_recap_2026-09-23.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-24-evening/report.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260924T183051-evening/huatai-evening/complete.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/daily-reports/20260924T183051-evening/consumer/consumer-receipt.json",
+    "unchanged": true
+  },
+  {
+    "path": "/tmp/evening_recap_2026-09-24.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/.homespace/detached/1790245869954_mt1-evening-research-collect/meta.json",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/.homespace/detached/1790245869954_mt1-evening-research-collect/out",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/.homespace/detached/1790245869954_mt1-evening-research-collect/status",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/projects/market-tools/reports/recap-reliability-20260925/morning-recovery-final-2026-09-25.json.rpc.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/operations/weekend-loop-20260912/engine-contracts/saturday.md",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/operations/weekend-loop-20260912/engine-contracts/sunday.md",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/operations/weekend-loop-20260912/engine-contracts/evening.md",
+    "unchanged": true
+  },
+  {
+    "path": "/home/emox/work/investment/reference/operations/weekend-loop-20260912/engine-contracts/morning.md",
+    "unchanged": true
+  }
+]

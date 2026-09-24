@@ -1,0 +1,35 @@
+[
+  {
+    "code": "688525.SH",
+    "differences": {}
+  },
+  {
+    "code": "301308.SZ",
+    "differences": {}
+  },
+  {
+    "code": "603986.SH",
+    "differences": {}
+  },
+  {
+    "code": "002156.SZ",
+    "differences": {}
+  },
+  {
+    "code": "300223.SZ",
+    "differences": {
+      "turnover_rate": {
+        "single_snapshot": "4.3072",
+        "new_batch": "4.3079"
+      }
+    }
+  },
+  {
+    "code": "600667.SH",
+    "differences": {}
+  },
+  {
+    "code": "688110.SH",
+    "differences": {}
+  }
+]

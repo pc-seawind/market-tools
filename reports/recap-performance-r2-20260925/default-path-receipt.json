@@ -1,0 +1,54 @@
+{
+  "source_kind": "SYNTHETIC_DEFAULT_SHELL_INTEGRATION",
+  "network": "transport substituted, no real requests",
+  "entry": "actual evening_recap_data.sh -> stage runner -> real tushare main via synthetic transport -> real recap_rpc projection",
+  "output_status": "complete",
+  "performance": {
+    "stages": [
+      {
+        "stage": "htsc_refresh",
+        "counts": {
+          "htsc_cache:hit": 1
+        },
+        "status": "ok",
+        "started_at": "2026-09-24T18:56:37.840317+00:00",
+        "finished_at": "2026-09-24T18:56:37.865050+00:00",
+        "wall_seconds": 0.024733776226639748,
+        "returncode": 0
+      },
+      {
+        "stage": "score",
+        "counts": {},
+        "status": "ok",
+        "started_at": "2026-09-24T18:56:37.889598+00:00",
+        "finished_at": "2026-09-24T18:56:37.903438+00:00",
+        "wall_seconds": 0.013840726111084223,
+        "returncode": 0
+      },
+      {
+        "stage": "picks",
+        "counts": {
+          "tushare_cache:miss": 4,
+          "tushare_http_start": 3,
+          "tushare_http_finish": 3,
+          "logical_rpc_finish": 3,
+          "logical_cli_started": 1,
+          "logical_cache_hit:run_daily_basic": 1,
+          "logical_cache_hit:recap_run": 1
+        },
+        "status": "ok",
+        "started_at": "2026-09-24T18:56:37.926925+00:00",
+        "finished_at": "2026-09-24T18:56:38.338812+00:00",
+        "wall_seconds": 0.4118840228766203,
+        "returncode": 0
+      }
+    ],
+    "status_contract": "stage status reflects process exit only; exit 0 may still mean partial data; inspect checkpoint coverage",
+    "counter_contract": "HTTP starts count attempts; CLI/RPC/cache checks are separate, never sum them as remote requests; unfinished has no inferred wall"
+  },
+  "batch": {
+    "returncode": 0,
+    "receipt": "{\"status\": \"complete\", \"rows\": 14, \"pages\": 1}\n"
+  },
+  "not_natural_production_run": true
+}

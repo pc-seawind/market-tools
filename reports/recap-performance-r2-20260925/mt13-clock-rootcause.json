@@ -1,0 +1,10 @@
+{
+  "before_cancel_fixture_asof": "2026-09-22T18:00:00+08:00",
+  "real_clock": "2026-09-24T18:48:46.437597+00:00",
+  "after_cancel_asof": "2026-09-24T18:48:46.443462+00:00",
+  "next_fixture_asof": "2026-09-23T18:00:00+08:00",
+  "error": "out_of_order_no_backfill",
+  "owner": "code:MT13 test fixture clock isolation",
+  "production_guard": "correctly rejects observation older than operator cancellation",
+  "production_fix_required": false
+}
