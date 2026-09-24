@@ -140,11 +140,19 @@ def test_expired_sell_same_signal_renews_and_exits_once(tmp_path):
     assert len(snapshots(h.root)[-1][1]['closed'])==1
 
 
-def test_explicit_cancel_expired_sell_never_autorenews(tmp_path):
+def test_explicit_cancel_expired_sell_never_autorenews(tmp_path, monkeypatch):
     h=Run(tmp_path);p=fixture();h.run(p);p=append(p,108,200);h.run(p);p=append(p,109);h.run(p,True);p=append(p,80);h.run(p)
     for _ in range(3):p=append(p,80);s=h.run(p)
     sid=next(o['signal_id'] for o in s['ledger'].values() if o['side']=='SELL')
-    cancel(h.root,h.scope,sid,'operator do not execute');p=append(p,79);s=h.run(p,True)
+    # Operator time must inhabit the synthetic timeline, not today's wall clock.
+    # Otherwise after 2026-09-23 cancel advances asof beyond the next fixture.
+    from mt1 import action_loop
+    operator_at=(datetime.fromisoformat(p['fetched_at'])+timedelta(minutes=1)).isoformat()
+    with monkeypatch.context() as clock:
+        clock.setattr(action_loop, 'now', lambda:operator_at)
+        cancel(h.root,h.scope,sid,'operator do not execute')
+    assert snapshots(h.root)[-1][1]['asof']==operator_at
+    p=append(p,79);s=h.run(p,True)
     assert s['ledger'][sid]['execution_status']=='cancelled' and s['positions']
 
 
@@ -293,3 +301,13 @@ def test_observed_new_raw_print_to_separate_ledger(tmp_path):
     assert fill['raw_price']==109 and fill['at']=='2026-09-16T09:30:05+08:00'
     assert fill['execution_model']=='observed-quote-v1'
     assert 'no actual executability' in fill['execution_assumption']
+
+
+def test_operator_future_clock_still_rejects_historical_observation(tmp_path, monkeypatch):
+    from mt1 import action_loop
+    h=Run(tmp_path);p=fixture();h.run(p);p=append(p,108,200);s=h.run(p)
+    sid=next(iter(s['ledger']))
+    monkeypatch.setattr(action_loop,'now',lambda:'2030-01-01T00:00:00+00:00')
+    cancel(h.root,h.scope,sid,'explicit synthetic future operator action')
+    with pytest.raises(ValueError,match='out_of_order_no_backfill'):
+        h.run(append(p,109))
