@@ -1,0 +1,531 @@
+{
+  "days": [
+    {
+      "day": "2026-09-21",
+      "stages": {
+        "refresh_start": "2026-09-21T18:31:08+08:00",
+        "score_start": "2026-09-21T18:34:43+08:00",
+        "htsc_refresh_wall_s": 215.0,
+        "picks_start": "2026-09-21T18:35:56+08:00",
+        "score_plus_freshness_wall_s": 73.0,
+        "score_wall_caveat": "score end not independently logged; boundary includes freshness/setup; no summed RPC times"
+      },
+      "per_pick": [
+        {
+          "at": "2026-09-21T18:38:56+08:00",
+          "result": "picks TIMEOUT 光通信 (光模块/CPO)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-21T18:41:36+08:00",
+          "result": "picks ok   英伟达产业链",
+          "wall_since_previous_boundary_s": 160.0
+        },
+        {
+          "at": "2026-09-21T18:42:36+08:00",
+          "result": "picks ok   PCB (算力基建)",
+          "wall_since_previous_boundary_s": 60.0
+        },
+        {
+          "at": "2026-09-21T18:45:36+08:00",
+          "result": "picks TIMEOUT 存储芯片 (HBM/DDR/NAND)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-21T18:48:36+08:00",
+          "result": "picks TIMEOUT 半导体设备 (国产替代)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-21T18:51:36+08:00",
+          "result": "picks TIMEOUT 先进封装 (CoWoS/Chiplet)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-21T18:54:36+08:00",
+          "result": "picks TIMEOUT 有色金属",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-21T18:57:36+08:00",
+          "result": "picks TIMEOUT AIDC/算力租赁",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-21T19:00:36+08:00",
+          "result": "picks TIMEOUT AI芯片 (算力核心)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-21T19:03:36+08:00",
+          "result": "picks TIMEOUT 硅片 (半导体材料)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-21T19:06:36+08:00",
+          "result": "picks TIMEOUT 煤炭",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-21T19:06:38+08:00",
+          "result": "picks ok   港股互联网",
+          "wall_since_previous_boundary_s": 2.0
+        },
+        {
+          "at": "2026-09-21T19:09:38+08:00",
+          "result": "picks TIMEOUT AI 应用 (软件侧)",
+          "wall_since_previous_boundary_s": 180.0
+        }
+      ],
+      "cache_temperature": "unknown: historical RPC cache-hit trace absent",
+      "recap_errors": [
+        {
+          "stage": "recap",
+          "error": "Command '['/home/emox/work/projects/market-tools/evening_recap_data.sh', '--out', '/tmp/evening_recap_2026-09-21.json']' timed out after 2399.9999927282333 seconds"
+        }
+      ],
+      "huatai_wall_s": 475.460159,
+      "huatai_started_at": "2026-09-21T10:36:32.242298+00:00",
+      "huatai_completed_at": "2026-09-21T10:44:27.702457+00:00",
+      "huatai_attempts": 10,
+      "huatai_success": 8,
+      "consumer_wall_s": 4.56901,
+      "consumer_started_at": "2026-09-21T10:44:27.756862+00:00",
+      "consumer_finished_at": "2026-09-21T10:44:32.325872+00:00",
+      "technical_asof": "2026-09-21T09:41:17.045013+00:00",
+      "company_TA_wall_s": null,
+      "upload_wall_s": null,
+      "publication_verified_at": "2026-09-21T18:53:04.576937+08:00",
+      "publication_note": "readback completion, not exact first-send time; missing=unknown"
+    },
+    {
+      "day": "2026-09-22",
+      "stages": {
+        "refresh_start": "2026-09-22T18:31:11+08:00",
+        "score_start": "2026-09-22T18:34:54+08:00",
+        "htsc_refresh_wall_s": 223.0,
+        "picks_start": "2026-09-22T18:36:40+08:00",
+        "score_plus_freshness_wall_s": 106.0,
+        "score_wall_caveat": "score end not independently logged; boundary includes freshness/setup; no summed RPC times"
+      },
+      "per_pick": [
+        {
+          "at": "2026-09-22T18:39:40+08:00",
+          "result": "picks TIMEOUT 光通信 (光模块/CPO)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-22T18:42:16+08:00",
+          "result": "picks ok   英伟达产业链",
+          "wall_since_previous_boundary_s": 156.0
+        },
+        {
+          "at": "2026-09-22T18:45:17+08:00",
+          "result": "picks TIMEOUT 存储芯片 (HBM/DDR/NAND)",
+          "wall_since_previous_boundary_s": 181.0
+        },
+        {
+          "at": "2026-09-22T18:48:17+08:00",
+          "result": "picks TIMEOUT 半导体设备 (国产替代)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-22T18:51:17+08:00",
+          "result": "picks TIMEOUT AI芯片 (算力核心)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-22T18:54:17+08:00",
+          "result": "picks TIMEOUT 有色金属",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-22T18:57:17+08:00",
+          "result": "picks TIMEOUT 先进封装 (CoWoS/Chiplet)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-22T19:00:17+08:00",
+          "result": "picks TIMEOUT AIDC/算力租赁",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-22T19:01:15+08:00",
+          "result": "picks ok   PCB (算力基建)",
+          "wall_since_previous_boundary_s": 58.0
+        },
+        {
+          "at": "2026-09-22T19:04:15+08:00",
+          "result": "picks TIMEOUT 硅片 (半导体材料)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-22T19:07:15+08:00",
+          "result": "picks TIMEOUT 煤炭",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-22T19:07:17+08:00",
+          "result": "picks ok   港股互联网",
+          "wall_since_previous_boundary_s": 2.0
+        },
+        {
+          "at": "2026-09-22T19:10:17+08:00",
+          "result": "picks TIMEOUT 游戏传媒",
+          "wall_since_previous_boundary_s": 180.0
+        }
+      ],
+      "cache_temperature": "unknown: historical RPC cache-hit trace absent",
+      "recap_errors": [
+        {
+          "stage": "recap",
+          "error": "Command '['/home/emox/work/projects/market-tools/evening_recap_data.sh', '--out', '/tmp/evening_recap_2026-09-22.json']' timed out after 2399.9999926481396 seconds"
+        }
+      ],
+      "huatai_wall_s": 363.600837,
+      "huatai_started_at": "2026-09-22T10:35:29.406618+00:00",
+      "huatai_completed_at": "2026-09-22T10:41:33.007455+00:00",
+      "huatai_attempts": 9,
+      "huatai_success": 9,
+      "consumer_wall_s": 5.321698,
+      "consumer_started_at": "2026-09-22T10:41:33.060103+00:00",
+      "consumer_finished_at": "2026-09-22T10:41:38.381801+00:00",
+      "technical_asof": "2026-09-22T09:41:17.230749+00:00",
+      "company_TA_wall_s": null,
+      "upload_wall_s": null,
+      "publication_verified_at": "2026-09-22T18:47:43.630097+08:00",
+      "publication_note": "readback completion, not exact first-send time; missing=unknown"
+    },
+    {
+      "day": "2026-09-23",
+      "stages": {
+        "refresh_start": "2026-09-23T18:30:54+08:00",
+        "score_start": "2026-09-23T18:36:30+08:00",
+        "htsc_refresh_wall_s": 336.0,
+        "picks_start": "2026-09-23T18:38:24+08:00",
+        "score_plus_freshness_wall_s": 114.0,
+        "score_wall_caveat": "score end not independently logged; boundary includes freshness/setup; no summed RPC times"
+      },
+      "per_pick": [
+        {
+          "at": "2026-09-23T18:41:24+08:00",
+          "result": "picks TIMEOUT 存储芯片 (HBM/DDR/NAND)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-23T18:44:24+08:00",
+          "result": "picks TIMEOUT 半导体设备 (国产替代)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-23T18:47:24+08:00",
+          "result": "picks TIMEOUT 光通信 (光模块/CPO)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-23T18:50:25+08:00",
+          "result": "picks TIMEOUT 有色金属",
+          "wall_since_previous_boundary_s": 181.0
+        },
+        {
+          "at": "2026-09-23T18:53:25+08:00",
+          "result": "picks TIMEOUT 先进封装 (CoWoS/Chiplet)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-23T18:56:25+08:00",
+          "result": "picks TIMEOUT AIDC/算力租赁",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-23T18:59:25+08:00",
+          "result": "picks TIMEOUT AI芯片 (算力核心)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-23T19:02:23+08:00",
+          "result": "picks ok   PCB (算力基建)",
+          "wall_since_previous_boundary_s": 178.0
+        },
+        {
+          "at": "2026-09-23T19:03:01+08:00",
+          "result": "picks ok   英伟达产业链",
+          "wall_since_previous_boundary_s": 38.0
+        },
+        {
+          "at": "2026-09-23T19:06:01+08:00",
+          "result": "picks TIMEOUT 硅片 (半导体材料)",
+          "wall_since_previous_boundary_s": 180.0
+        },
+        {
+          "at": "2026-09-23T19:06:03+08:00",
+          "result": "picks ok   港股互联网",
+          "wall_since_previous_boundary_s": 2.0
+        },
+        {
+          "at": "2026-09-23T19:08:54+08:00",
+          "result": "picks TIMEOUT 旅游酒店",
+          "wall_since_previous_boundary_s": 171.0
+        }
+      ],
+      "cache_temperature": "unknown: historical RPC cache-hit trace absent",
+      "recap_errors": [
+        {
+          "stage": "recap",
+          "error": "recap_data_quality_failed"
+        }
+      ],
+      "huatai_wall_s": 576.441214,
+      "huatai_started_at": "2026-09-23T10:36:06.593568+00:00",
+      "huatai_completed_at": "2026-09-23T10:45:43.034782+00:00",
+      "huatai_attempts": 12,
+      "huatai_success": 7,
+      "consumer_wall_s": 8.188624,
+      "consumer_started_at": "2026-09-23T10:45:43.087105+00:00",
+      "consumer_finished_at": "2026-09-23T10:45:51.275729+00:00",
+      "technical_asof": "2026-09-23T09:41:16.523443+00:00",
+      "company_TA_wall_s": null,
+      "upload_wall_s": null,
+      "publication_verified_at": "2026-09-23T18:51:31.025044+08:00",
+      "publication_note": "readback completion, not exact first-send time; missing=unknown",
+      "recap_meta": {
+        "date": "2026-09-23",
+        "trade_date": "20260923",
+        "expected_trade_date": "20260923",
+        "fresh_mode": "evening_current_trading_day",
+        "fresh": true,
+        "n_sectors": 41,
+        "n_tier1_pass": 32,
+        "n_picks_run": 12,
+        "n_picks_selected": 18,
+        "n_reversal_quota": 2,
+        "reversal_sectors": [
+          "军工",
+          "农业畜牧"
+        ],
+        "generated_at": "2026-09-23T19:08:54",
+        "errors": [
+          "picks timeout: 存储芯片 (HBM/DDR/NAND)",
+          "picks timeout: 半导体设备 (国产替代)",
+          "picks timeout: 光通信 (光模块/CPO)",
+          "picks timeout: 有色金属",
+          "picks timeout: 先进封装 (CoWoS/Chiplet)",
+          "picks timeout: AIDC/算力租赁",
+          "picks timeout: AI芯片 (算力核心)",
+          "picks timeout: 硅片 (半导体材料)",
+          "picks timeout: 旅游酒店",
+          "recap budget exhausted: 食品饮料",
+          "recap budget exhausted: AI 应用 (软件侧)",
+          "recap budget exhausted: 建材建筑",
+          "recap budget exhausted: 创新药 (医药龙头)",
+          "recap budget exhausted: 军工",
+          "recap budget exhausted: 农业畜牧"
+        ],
+        "status": "partial"
+      },
+      "stock_overlap": {
+        "basis": "current unchanged CONCEPTS projected on archived selected sectors, not historical HTTP proof",
+        "selected_sectors": 18,
+        "stock_occurrences": 112,
+        "unique": 103,
+        "a_share_occurrences": 107,
+        "a_share_unique": 98,
+        "potential_identical_stock_RPC_repeats": 45,
+        "repeats": {
+          "002156.SZ": 2,
+          "002371.SZ": 2,
+          "688012.SH": 2,
+          "688521.SH": 2,
+          "300308.SZ": 2,
+          "002463.SZ": 2,
+          "300476.SZ": 2,
+          "600183.SH": 2,
+          "002138.SZ": 2
+        }
+      }
+    },
+    {
+      "day": "2026-09-24",
+      "stages": {
+        "score_wall_caveat": "score end not independently logged; boundary includes freshness/setup; no summed RPC times"
+      },
+      "per_pick": [],
+      "cache_temperature": "unknown: historical RPC cache-hit trace absent",
+      "recap_errors": [
+        {
+          "stage": "recap",
+          "error": "recap_data_quality_failed"
+        }
+      ],
+      "huatai_wall_s": 524.124104,
+      "huatai_started_at": "2026-09-24T10:35:22.116117+00:00",
+      "huatai_completed_at": "2026-09-24T10:44:06.240221+00:00",
+      "huatai_attempts": 10,
+      "huatai_success": 8,
+      "consumer_wall_s": 9.719017,
+      "consumer_started_at": "2026-09-24T10:44:06.291448+00:00",
+      "consumer_finished_at": "2026-09-24T10:44:16.010465+00:00",
+      "technical_asof": "2026-09-24T09:41:19.337226+00:00",
+      "company_TA_wall_s": null,
+      "upload_wall_s": null,
+      "publication_verified_at": null,
+      "publication_note": "readback completion, not exact first-send time; missing=unknown",
+      "recap_meta": {
+        "date": "2026-09-24",
+        "trade_date": "20260924",
+        "expected_trade_date": "20260924",
+        "fresh_mode": "evening_current_trading_day",
+        "fresh": true,
+        "n_sectors": 41,
+        "n_tier1_pass": 27,
+        "n_picks_run": 13,
+        "n_picks_selected": 21,
+        "n_reversal_quota": 5,
+        "reversal_sectors": [
+          "中药",
+          "央企国企",
+          "军工",
+          "新能源 (光伏/风电)",
+          "农业畜牧"
+        ],
+        "generated_at": "2026-09-24T19:09:11",
+        "errors": [
+          "picks timeout: 存储芯片 (HBM/DDR/NAND)",
+          "picks timeout: 半导体设备 (国产替代)",
+          "picks timeout: AIDC/算力租赁",
+          "picks timeout: 煤炭",
+          "picks timeout: 硅片 (半导体材料)",
+          "picks timeout: 光通信 (光模块/CPO)",
+          "picks timeout: 先进封装 (CoWoS/Chiplet)",
+          "picks timeout: 食品饮料",
+          "picks timeout: 旅游酒店",
+          "recap budget exhausted: AI 应用 (软件侧)",
+          "recap budget exhausted: 家电",
+          "recap budget exhausted: 建材建筑",
+          "recap budget exhausted: 中药",
+          "recap budget exhausted: 央企国企",
+          "recap budget exhausted: 军工",
+          "recap budget exhausted: 新能源 (光伏/风电)",
+          "recap budget exhausted: 农业畜牧"
+        ],
+        "status": "partial"
+      },
+      "stock_overlap": {
+        "basis": "current unchanged CONCEPTS projected on archived selected sectors, not historical HTTP proof",
+        "selected_sectors": 21,
+        "stock_occurrences": 127,
+        "unique": 116,
+        "a_share_occurrences": 122,
+        "a_share_unique": 111,
+        "potential_identical_stock_RPC_repeats": 55,
+        "repeats": {
+          "002156.SZ": 2,
+          "601088.SH": 2,
+          "002129.SZ": 2,
+          "300308.SZ": 2,
+          "002463.SZ": 2,
+          "300476.SZ": 2,
+          "600183.SH": 2,
+          "002138.SZ": 2,
+          "601857.SH": 2,
+          "600028.SH": 2,
+          "000651.SZ": 2
+        }
+      },
+      "detached": {
+        "started_at": "2026-09-24T18:31:09",
+        "harvested_at": "2026-09-24T19:10:05",
+        "max_runtime_sec": 7200,
+        "note": "harvested_at is not process completion; out has no per-stage timestamps"
+      }
+    }
+  ],
+  "prior_trace": {
+    "logical_requests": 43,
+    "recap_cache_hits": 8,
+    "trace_envelope_wall_s": 17.116319179534912,
+    "distinct_request_hashes": 35,
+    "HTTP_requests": "unknown; CLI may hit underlying cache",
+    "note": "9/25 limited recovery, NOT 9/21-24 historical full chain"
+  },
+  "sources": {
+    "/home/emox/work/projects/market-tools/reports/recap-performance-20260925/historical-journal.txt": {
+      "sha256": "dd58b2e8b2c884c3f48854a81b79b23c7d077ba10f2f304595f2ea2515b55686"
+    },
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-21-evening/report.json": {
+      "sha256": "4ec9d4b20f53aa7f8e075ef5e4cfef26e73f4c11d9f336e83200528b8b08db05"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260921T183100-evening/huatai-evening/complete.json": {
+      "sha256": "f541e59e901235302f5c23eb8b06634c99b09e983b316d4b286840ca74915784"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260921T183100-evening/consumer/consumer-receipt.json": {
+      "sha256": "f51cffa4b7e75307c61fe1d59361420237c0e5a6bc42eccb970d8fa9ed4b487c"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260921T183100-evening/delivery-receipt.json": {
+      "sha256": "9df1efd72d79bd817edbf5566f7f9bb722734320dd10f18f1f8cf4e09a80f95d"
+    },
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-22-evening/report.json": {
+      "sha256": "f34201d64ee3f9660c37bfe27a9f39f917a0a63d543f7555480bbef507553a20"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260922T183030-evening/huatai-evening/complete.json": {
+      "sha256": "073490f9001a7f517e8d4c2fcb525d194db04aaabb7129e530662d6b1db5bb28"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260922T183030-evening/consumer/consumer-receipt.json": {
+      "sha256": "1b7cc26132780151add18c4acb2bc7b5bfde4b52de5a2fa63096555b7c5bce20"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260922T183030-evening/delivery-receipt.json": {
+      "sha256": "5b0c9d88caf18f21195e03b3b5501e16e10a63964e634c442107ca2b1bd881ec"
+    },
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-23-evening/report.json": {
+      "sha256": "f012cf2c12fbf4298cea2a9dd56ba1af7d2d37dd0681d22745b3a2bcb363903a"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260923T183053-evening/huatai-evening/complete.json": {
+      "sha256": "48c09916f5d4ac49b03648dcd35b57bbaa55ec7979be0ede049f4cb12f6f6dc7"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260923T183053-evening/consumer/consumer-receipt.json": {
+      "sha256": "4e96d150ddb7d88ad4ea3f2e042a350a1c887e97d15310eb8bf0e23e99920150"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260923T183053-evening/docs-publication-verified-at": {
+      "sha256": "60711b7f2dc0c382e85995d1cdf0acd99bf2608b69c943e3414e9d1af38ba433"
+    },
+    "/tmp/evening_recap_2026-09-23.json": {
+      "sha256": "7dd197af9b4e4e762e187041a1be9431adcf77d8a2e290fd9fcc90f8e8f925bf"
+    },
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-24-evening/report.json": {
+      "sha256": "143f6f5a438641ab8707560b347e8dd69bb70a8d49e037ce83c6e70b913c2f66"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260924T183051-evening/huatai-evening/complete.json": {
+      "sha256": "ab6178b9ca4e017ff378ebd6f83b290724c5b5fd91b2b326d4f659ec544b0541"
+    },
+    "/home/emox/work/investment/reference/daily-reports/20260924T183051-evening/consumer/consumer-receipt.json": {
+      "sha256": "9431545ec8b8da9ce4d1ceec2cb6aea4a8dda9234fb002ebd869d47883e818a4"
+    },
+    "/tmp/evening_recap_2026-09-24.json": {
+      "sha256": "233ec67ff0f9af785cab0ef605459de4bb07dd3e512976a2d68bbf3cac514eb0"
+    },
+    "/home/emox/.homespace/detached/1790245869954_mt1-evening-research-collect/meta.json": {
+      "sha256": "b8dc7f1d1c744781f9c1178cbc3343d85f2d40276eef96395e902462509b9e08"
+    },
+    "/home/emox/.homespace/detached/1790245869954_mt1-evening-research-collect/out": {
+      "sha256": "53ba1b4e3e852a14a6d57249151d357c8c6b89ba774782dfe3b4d54aca7c8606"
+    },
+    "/home/emox/.homespace/detached/1790245869954_mt1-evening-research-collect/status": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "/home/emox/work/projects/market-tools/reports/recap-reliability-20260925/morning-recovery-final-2026-09-25.json.rpc.jsonl": {
+      "sha256": "30a54036d7002e347968d2a4f0f94f325d1550fd5fe0f87f02d236aaec1ebbac"
+    },
+    "/home/emox/work/investment/reference/operations/weekend-loop-20260912/engine-contracts/saturday.md": {
+      "sha256": "9750b0b73e2d51ad971a9c6d386a5281e1f7905394ef8be78c9f146021bc0efa"
+    },
+    "/home/emox/work/investment/reference/operations/weekend-loop-20260912/engine-contracts/sunday.md": {
+      "sha256": "56889d8937ae9f2aa80d8d1f83be4666a28bb37e9cc68d868e24214a36324c0f"
+    },
+    "/home/emox/work/investment/reference/operations/weekend-loop-20260912/engine-contracts/evening.md": {
+      "sha256": "b5c3bc8f7d7b2708c55dcf84e3448843ab35a5dd20bdccc4285430ab1798b400"
+    },
+    "/home/emox/work/investment/reference/operations/weekend-loop-20260912/engine-contracts/morning.md": {
+      "sha256": "f982f2d5f8f8c8cab0354206d1167b9c02ff501130bf7a8f524bb5d08a61eb8a"
+    }
+  }
+}

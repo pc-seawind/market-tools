@@ -1,0 +1,152 @@
+2026-09-21T18:31:07+08:00 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: Started mt1-evening-1789986667.service - /usr/bin/python3 /home/emox/work/projects/market-tools/mt1_job.py run evening --collect.
+2026-09-21T18:31:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233047]: [evening_recap_data] start date=2026-09-21 out=/tmp/evening_recap_2026-09-21.json max_picks=16
+2026-09-21T18:31:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233047]: [evening_recap_data] refresh HTSC sector-flow cache (TTL guarded)
+2026-09-21T18:34:43+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233047]: [evening_recap_data] stage 1: sector_score.py --all --json (timeout 3600s)
+2026-09-21T18:35:56+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data] reversal quota: +2 sectors (农业畜牧, 金融-银行)
+2026-09-21T18:38:56+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks TIMEOUT 光通信 (光模块/CPO)
+2026-09-21T18:41:36+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks ok   英伟达产业链
+2026-09-21T18:42:36+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks ok   PCB (算力基建)
+2026-09-21T18:45:36+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks TIMEOUT 存储芯片 (HBM/DDR/NAND)
+2026-09-21T18:48:36+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks TIMEOUT 半导体设备 (国产替代)
+2026-09-21T18:51:36+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks TIMEOUT 先进封装 (CoWoS/Chiplet)
+2026-09-21T18:54:36+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks TIMEOUT 有色金属
+2026-09-21T18:57:36+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks TIMEOUT AIDC/算力租赁
+2026-09-21T19:00:36+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks TIMEOUT AI芯片 (算力核心)
+2026-09-21T19:03:36+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks TIMEOUT 硅片 (半导体材料)
+2026-09-21T19:06:36+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks TIMEOUT 煤炭
+2026-09-21T19:06:38+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks ok   港股互联网
+2026-09-21T19:09:38+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1239337]: [evening_recap_data]   picks TIMEOUT AI 应用 (软件侧)
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]: {
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:   "run_id": "2026-09-21-evening",
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:   "report_path": "/home/emox/work/investment/reference/medium-term-reviews/2026-09-21-evening-111108530289.md",
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:   "errors": [
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:     {
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "stage": "recap",
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "error": "Command '['/home/emox/work/projects/market-tools/evening_recap_data.sh', '--out', '/tmp/evening_recap_2026-09-21.json']' timed out after 2399.9999927282333 seconds"
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:     }
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:   ],
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:   "gates": {
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:     "CN": {
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "market": "CN",
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "allowed": true,
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "expected_date": "2026-09-21",
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "reason": "verified"
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:     },
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:     "HK": {
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "market": "HK",
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "allowed": true,
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "expected_date": "2026-09-21",
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "reason": "verified"
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:     },
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:     "US": {
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "market": "US",
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "allowed": true,
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "expected_date": "2026-09-18",
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:       "reason": "verified"
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:     }
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]:   }
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]: }
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[1233035]: RESULT_JSON=/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-21-evening/report.json
+2026-09-21T19:11:08+08:00 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: mt1-evening-1789986667.service: Consumed 43min 58.941s CPU time, 1.8G memory peak, 0B memory swap peak.
+2026-09-22T18:31:09+08:00 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: Started mt1-evening-1790073069.service - /usr/bin/python3 /home/emox/work/projects/market-tools/mt1_job.py run evening --collect.
+2026-09-22T18:31:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931375]: [evening_recap_data] start date=2026-09-22 out=/tmp/evening_recap_2026-09-22.json max_picks=16
+2026-09-22T18:31:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931375]: [evening_recap_data] refresh HTSC sector-flow cache (TTL guarded)
+2026-09-22T18:34:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931375]: [evening_recap_data] stage 1: sector_score.py --all --json (timeout 3600s)
+2026-09-22T18:36:40+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data] reversal quota: +1 sectors (金融-银行)
+2026-09-22T18:39:40+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks TIMEOUT 光通信 (光模块/CPO)
+2026-09-22T18:42:16+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks ok   英伟达产业链
+2026-09-22T18:45:17+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks TIMEOUT 存储芯片 (HBM/DDR/NAND)
+2026-09-22T18:48:17+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks TIMEOUT 半导体设备 (国产替代)
+2026-09-22T18:51:17+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks TIMEOUT AI芯片 (算力核心)
+2026-09-22T18:54:17+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks TIMEOUT 有色金属
+2026-09-22T18:57:17+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks TIMEOUT 先进封装 (CoWoS/Chiplet)
+2026-09-22T19:00:17+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks TIMEOUT AIDC/算力租赁
+2026-09-22T19:01:15+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks ok   PCB (算力基建)
+2026-09-22T19:04:15+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks TIMEOUT 硅片 (半导体材料)
+2026-09-22T19:07:15+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks TIMEOUT 煤炭
+2026-09-22T19:07:17+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks ok   港股互联网
+2026-09-22T19:10:17+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2941385]: [evening_recap_data]   picks TIMEOUT 游戏传媒
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]: {
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:   "run_id": "2026-09-22-evening",
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:   "report_path": "/home/emox/work/investment/reference/medium-term-reviews/2026-09-22-evening-111111066505.md",
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:   "errors": [
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:     {
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "stage": "recap",
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "error": "Command '['/home/emox/work/projects/market-tools/evening_recap_data.sh', '--out', '/tmp/evening_recap_2026-09-22.json']' timed out after 2399.9999926481396 seconds"
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:     }
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:   ],
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:   "gates": {
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:     "CN": {
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "market": "CN",
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "allowed": true,
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "expected_date": "2026-09-22",
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "reason": "verified"
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:     },
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:     "HK": {
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "market": "HK",
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "allowed": true,
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "expected_date": "2026-09-22",
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "reason": "verified"
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:     },
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:     "US": {
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "market": "US",
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "allowed": true,
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "expected_date": "2026-09-21",
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:       "reason": "verified"
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:     }
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]:   }
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]: }
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2931344]: RESULT_JSON=/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-22-evening/report.json
+2026-09-22T19:11:11+08:00 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: mt1-evening-1790073069.service: Consumed 43min 27.335s CPU time, 1.6G memory peak, 0B memory swap peak.
+2026-09-23T18:30:53+08:00 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: Started mt1-evening-1790159453.service - /usr/bin/python3 /home/emox/work/projects/market-tools/mt1_job.py run evening --collect.
+2026-09-23T18:30:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414147]: [evening_recap_data] start date=2026-09-23 out=/tmp/evening_recap_2026-09-23.json max_picks=16
+2026-09-23T18:30:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414147]: [evening_recap_data] refresh HTSC sector-flow cache (TTL guarded)
+2026-09-23T18:36:30+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414147]: [evening_recap_data] stage 1: sector_score.py --all --json (timeout 3600s)
+2026-09-23T18:38:24+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data] reversal quota: +2 sectors (军工, 农业畜牧)
+2026-09-23T18:41:24+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks TIMEOUT 存储芯片 (HBM/DDR/NAND)
+2026-09-23T18:44:24+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks TIMEOUT 半导体设备 (国产替代)
+2026-09-23T18:47:24+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks TIMEOUT 光通信 (光模块/CPO)
+2026-09-23T18:50:25+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks TIMEOUT 有色金属
+2026-09-23T18:53:25+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks TIMEOUT 先进封装 (CoWoS/Chiplet)
+2026-09-23T18:56:25+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks TIMEOUT AIDC/算力租赁
+2026-09-23T18:59:25+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks TIMEOUT AI芯片 (算力核心)
+2026-09-23T19:02:23+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks ok   PCB (算力基建)
+2026-09-23T19:03:01+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks ok   英伟达产业链
+2026-09-23T19:06:01+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks TIMEOUT 硅片 (半导体材料)
+2026-09-23T19:06:03+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks ok   港股互联网
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: [evening_recap_data]   picks TIMEOUT 旅游酒店
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: RESULT_JSON=/tmp/evening_recap_2026-09-23.json
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[425466]: SUMMARY n_sectors=41 n_tier1_pass=32 n_picks_run=12 errors=15
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414147]: [evening_recap_data] done rc=0 out=/tmp/evening_recap_2026-09-23.json
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]: {
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:   "run_id": "2026-09-23-evening",
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:   "report_path": "/home/emox/work/investment/reference/medium-term-reviews/2026-09-23-evening-110854726804.md",
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:   "errors": [
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:     {
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "stage": "recap",
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "error": "recap_data_quality_failed"
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:     }
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:   ],
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:   "gates": {
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:     "CN": {
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "market": "CN",
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "allowed": true,
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "expected_date": "2026-09-23",
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "reason": "verified"
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:     },
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:     "HK": {
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "market": "HK",
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "allowed": true,
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "expected_date": "2026-09-23",
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "reason": "verified"
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:     },
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:     "US": {
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "market": "US",
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "allowed": true,
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "expected_date": "2026-09-22",
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:       "reason": "verified"
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:     }
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]:   }
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]: }
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[414119]: RESULT_JSON=/home/emox/work/projects/market-tools/.cron_state/mt1/runs/2026-09-23-evening/report.json
+2026-09-23T19:08:54+08:00 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: mt1-evening-1790159453.service: Consumed 39min 43.684s CPU time.

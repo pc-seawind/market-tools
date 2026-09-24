@@ -1,0 +1,282 @@
+[
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily/fa86bc899f3602765fa02ce3022c3e63.json",
+    "sha256": "e8097e91b30b88bb894025c5310e2da39817a392b68a08794103d9be8334485a",
+    "mtime": 1790246248.6098971,
+    "api": "daily",
+    "key": "fa86bc899f3602765fa02ce3022c3e63",
+    "rows": 906
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/adj_factor/39050752c5c75e8391d3e921466fad6d.json",
+    "sha256": "c2f74dc6ca2d7e4346fc531e3bf3255dc73010dca41552bf235314323f3ea9db",
+    "mtime": 1790246254.8105724,
+    "api": "adj_factor",
+    "key": "39050752c5c75e8391d3e921466fad6d",
+    "rows": 906
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/c34d691efb2afdf6c8940adc45f22382.json",
+    "sha256": "6d0b085e5dd5abe0bc0c366180712dbe30b4eca404b0233a439ea08a2ffcb642",
+    "mtime": 1790246260.4358673,
+    "api": "daily_basic",
+    "key": "c34d691efb2afdf6c8940adc45f22382",
+    "rows": 1
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/7abede9ade322de91c7086aacada613d.json",
+    "sha256": "db2b9c85d34e8d10ded03b84c81cfb35fbc0b84348790533664cba82d32945ea",
+    "mtime": 1790246269.5053873,
+    "api": "daily_basic",
+    "key": "7abede9ade322de91c7086aacada613d",
+    "rows": 906
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/fina_indicator/d1c14344ab8cdbb9db921a588d739d00.json",
+    "sha256": "bc4fa84dd20e00b6e1ac3ddd8e9d89bc4cd5880b9dda139936cc9725300cb69c",
+    "mtime": 1790272794.0799463,
+    "api": "fina_indicator",
+    "key": "d1c14344ab8cdbb9db921a588d739d00",
+    "rows": 37
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily/464663fbdbafa6c88735fd689376277c.json",
+    "sha256": "d9ba347a691f966e7748c1f90d6ae4b6f9ce08502874961980f6d28a44fe9f7c",
+    "mtime": 1790246188.011432,
+    "api": "daily",
+    "key": "464663fbdbafa6c88735fd689376277c",
+    "rows": 1005
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/adj_factor/b82ca6f91411a8460e31a23e913dce6b.json",
+    "sha256": "781a97faa301c3409ab970668d9e355c9c5dd4c7c8150a470863f42214749d82",
+    "mtime": 1790246194.172584,
+    "api": "adj_factor",
+    "key": "b82ca6f91411a8460e31a23e913dce6b",
+    "rows": 1005
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/f7dee159589e78e67def07041110eb7f.json",
+    "sha256": "130ed259c8766104eb401391514b47da497d80c25856c81a72f364676505469a",
+    "mtime": 1790246199.8675265,
+    "api": "daily_basic",
+    "key": "f7dee159589e78e67def07041110eb7f",
+    "rows": 1
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/514dde55c9f0def42c8f058709d22999.json",
+    "sha256": "214dec3e19a6d0d87c88409e9cac893fc9d5f1a4dfe26472ac9295ad5ef49c3c",
+    "mtime": 1790246208.8429432,
+    "api": "daily_basic",
+    "key": "514dde55c9f0def42c8f058709d22999",
+    "rows": 1005
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/fina_indicator/b324d52c2de7cc43d7477c36a3106cc3.json",
+    "sha256": "eb71f2cb5d33ce237a00ff05f0795ac43e2caa4abfe0b0e2b7d111d5e0ad0a41",
+    "mtime": 1790272789.0772326,
+    "api": "fina_indicator",
+    "key": "b324d52c2de7cc43d7477c36a3106cc3",
+    "rows": 38
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily/8be8d5ef7021f43cf0f3283a9efa1919.json",
+    "sha256": "6f832fb0e9afd02c24bf9ad721a11bb23feb062fef290924e63819e67957fd65",
+    "mtime": 1790246157.8916779,
+    "api": "daily",
+    "key": "8be8d5ef7021f43cf0f3283a9efa1919",
+    "rows": 2248
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/adj_factor/b163f79e91dba556aa88b98d6987e437.json",
+    "sha256": "002258d96b821f29264e4d0409378efb8376c4906de917e513f3708c085860aa",
+    "mtime": 1790246164.1998372,
+    "api": "adj_factor",
+    "key": "b163f79e91dba556aa88b98d6987e437",
+    "rows": 2454
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/45dc7298650b4c76696c3dd8f38111d8.json",
+    "sha256": "d093ce619da734d4d6f4042b5e94d00f8eeda42270b4dddaea68b41861cc0edd",
+    "mtime": 1790246169.8706121,
+    "api": "daily_basic",
+    "key": "45dc7298650b4c76696c3dd8f38111d8",
+    "rows": 1
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/80b29f13ebc2c72298cb113089d73a5d.json",
+    "sha256": "653db7d50cf6a0cbcada9a3cf93f0ce6edbf32121e89673d1ab4b8bf22fe455c",
+    "mtime": 1790246178.9032059,
+    "api": "daily_basic",
+    "key": "80b29f13ebc2c72298cb113089d73a5d",
+    "rows": 2248
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/fina_indicator/f0df3a876f9caf479b0f1443d5774010.json",
+    "sha256": "c97a6df8882f9b5aee2a397ec9dafe1d37e0d323c29d5b0e00d1b11565a80975",
+    "mtime": 1790272788.6900363,
+    "api": "fina_indicator",
+    "key": "f0df3a876f9caf479b0f1443d5774010",
+    "rows": 86
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily/492d26d3b5bf42aa7e3c7e5aee38213f.json",
+    "sha256": "817c8760b972e6aca52e22521aad122e0d6ff52c6f632c1fe0bff47389e51646",
+    "mtime": 1790247270.5933106,
+    "api": "daily",
+    "key": "492d26d3b5bf42aa7e3c7e5aee38213f",
+    "rows": 4534
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/adj_factor/9c656e4ca4969ebfcd2cf4e319e7bbc0.json",
+    "sha256": "50264a881fc8222244be910d495e1064fec8832bd85d7aba834001bf57529302",
+    "mtime": 1790247276.8781905,
+    "api": "adj_factor",
+    "key": "9c656e4ca4969ebfcd2cf4e319e7bbc0",
+    "rows": 4646
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/e974d26c83b36cc618b093cb2e130e8d.json",
+    "sha256": "6616b52d077bcc1e96242d3ab53a953c6b8d76c85f2a1a094e0c727b2ad556cf",
+    "mtime": 1790247282.5578227,
+    "api": "daily_basic",
+    "key": "e974d26c83b36cc618b093cb2e130e8d",
+    "rows": 1
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/fddd6f3d1cd28d2be13fd4d599eeda7a.json",
+    "sha256": "7e215652f90de005b98636d8646ebca654a64a7560dc18564eb32517f41671ed",
+    "mtime": 1790247291.566919,
+    "api": "daily_basic",
+    "key": "fddd6f3d1cd28d2be13fd4d599eeda7a",
+    "rows": 4534
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/fina_indicator/798c06d90283a48daea9ed95f343dac0.json",
+    "sha256": "a786dd7533cfc159483cb3cb0d8e07f6c35d55d506a5c8c2e16b3535220a0885",
+    "mtime": 1790272801.5890508,
+    "api": "fina_indicator",
+    "key": "798c06d90283a48daea9ed95f343dac0",
+    "rows": 100
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily/de75737e9ffc0edd412814df6b9e2794.json",
+    "sha256": "649f227d78fe8081cf14ee51ffa60b9adf7d539f4884594205c44bd1f71f5c1a",
+    "mtime": 1790246218.18517,
+    "api": "daily",
+    "key": "de75737e9ffc0edd412814df6b9e2794",
+    "rows": 3478
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/adj_factor/91583b7e818c5f082ef0df96c6b4d736.json",
+    "sha256": "bad4874e1950cb11369652d202cf9b3ebc90e4619cd5bd14ed7faa9e50a14dce",
+    "mtime": 1790246224.5073223,
+    "api": "adj_factor",
+    "key": "91583b7e818c5f082ef0df96c6b4d736",
+    "rows": 3725
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/3c0017d98683b4ce9a888f8318afd187.json",
+    "sha256": "f0fc3d59d510aedfa613d0d6b3cec79b32f2e7a806873b9c3a51b5e7f8f4f31f",
+    "mtime": 1790246230.2094593,
+    "api": "daily_basic",
+    "key": "3c0017d98683b4ce9a888f8318afd187",
+    "rows": 1
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/f2ff45170038b4d3b1d641fd60ec45a2.json",
+    "sha256": "e904d16064fbadd3bf3cd9797039f0f357cebb5e067def46bd2d1b7924dd402b",
+    "mtime": 1790246239.2326746,
+    "api": "daily_basic",
+    "key": "f2ff45170038b4d3b1d641fd60ec45a2",
+    "rows": 3478
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/fina_indicator/472e6401ea7e827e41135c47b080d3b4.json",
+    "sha256": "7cae52cd0d59e56f014eb01d37858f53bbcd5e327ed2d28d0fa593dd073052e7",
+    "mtime": 1790272793.080399,
+    "api": "fina_indicator",
+    "key": "472e6401ea7e827e41135c47b080d3b4",
+    "rows": 100
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily/f9b876a26977cd7e26a544e9c3056d37.json",
+    "sha256": "4d112dbfa6fec50d28bbb8fabb6b23e8098b057ca75bd53c36bf11a9c192b8f9",
+    "mtime": 1790246309.9763165,
+    "api": "daily",
+    "key": "f9b876a26977cd7e26a544e9c3056d37",
+    "rows": 6000
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/adj_factor/ca3543daa97ad2017871b520427f6176.json",
+    "sha256": "1f4d6a5e1ed099b1367f05dd8d36d0ccac9a61690895bdc580e8894293f9f742",
+    "mtime": 1790246316.1654563,
+    "api": "adj_factor",
+    "key": "ca3543daa97ad2017871b520427f6176",
+    "rows": 6000
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/a262900ae831f9ec30cf5e2a0b13546f.json",
+    "sha256": "7ac3d99895d4cf89a36927b13393b669cb652e1a8642b45e842daf285a83dab1",
+    "mtime": 1790246321.8790758,
+    "api": "daily_basic",
+    "key": "a262900ae831f9ec30cf5e2a0b13546f",
+    "rows": 1
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/eb01b117322f07423e2405ab168cac4c.json",
+    "sha256": "efb47e045b157422395f3610b081dd48247ba0fda43a40946852eb8ad0212899",
+    "mtime": 1790246331.083791,
+    "api": "daily_basic",
+    "key": "eb01b117322f07423e2405ab168cac4c",
+    "rows": 6000
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/fina_indicator/9e8c5197c6eb2b9a0e4309883b11bc34.json",
+    "sha256": "6b81c99f4e90781220f5e6811bf57d0b3e18e7f31bed8f9a7557d425e9fc2286",
+    "mtime": 1790272799.089048,
+    "api": "fina_indicator",
+    "key": "9e8c5197c6eb2b9a0e4309883b11bc34",
+    "rows": 100
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily/51c816633562af0a7c3f3242a22bde37.json",
+    "sha256": "05a41863b3e9fb6525e747a8bc7b1da45bc3d693a68768fa24da18642c2eb71c",
+    "mtime": 1790246278.7286015,
+    "api": "daily",
+    "key": "51c816633562af0a7c3f3242a22bde37",
+    "rows": 1160
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/adj_factor/73a7c836de174b051c9d37ec849fc969.json",
+    "sha256": "b177c60db2ed2324b1999264f0dfe41bd4a1944776a78c4956ffdaee225d28ec",
+    "mtime": 1790246284.9677453,
+    "api": "adj_factor",
+    "key": "73a7c836de174b051c9d37ec849fc969",
+    "rows": 1163
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/f6d48381bbd56d10b6e31c94c41392c9.json",
+    "sha256": "f1b9b1411d0fe815d19183d89116b2a2c92f1dda4fa83e9dc0588c35d0f20d92",
+    "mtime": 1790246290.6961277,
+    "api": "daily_basic",
+    "key": "f6d48381bbd56d10b6e31c94c41392c9",
+    "rows": 1
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/daily_basic/ca23a423eecbca2cf710a056d1ab64e1.json",
+    "sha256": "715de66c47c6e9827784540abd9af255910dc8722e8468ca93ae383aae9b8617",
+    "mtime": 1790246299.788085,
+    "api": "daily_basic",
+    "key": "ca23a423eecbca2cf710a056d1ab64e1",
+    "rows": 1160
+  },
+  {
+    "path": "/home/emox/.homespace/cache/market-tools/fina_indicator/0be8b6bbeee6d29f4a265ac001c72d4b.json",
+    "sha256": "38ac72d6d7e861438a6f0f6f48a1c98e7a045cdd8b395bd074ba1b1681fdf0a0",
+    "mtime": 1790272798.0885751,
+    "api": "fina_indicator",
+    "key": "0be8b6bbeee6d29f4a265ac001c72d4b",
+    "rows": 46
+  }
+]

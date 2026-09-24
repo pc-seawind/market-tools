@@ -1,0 +1,73 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_explicit_cancel_expired_sell_never_autorenews ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-emox/pytest-2529/test_explicit_cancel_expired_s0')
+
+    def test_explicit_cancel_expired_sell_never_autorenews(tmp_path):
+        h=Run(tmp_path);p=fixture();h.run(p);p=append(p,108,200);h.run(p);p=append(p,109);h.run(p,True);p=append(p,80);h.run(p)
+        for _ in range(3):p=append(p,80);s=h.run(p)
+        sid=next(o['signal_id'] for o in s['ledger'].values() if o['side']=='SELL')
+>       cancel(h.root,h.scope,sid,'operator do not execute');p=append(p,79);s=h.run(p,True)
+                                                                              ^^^^^^^^^^^^^
+
+tests/test_mt13_execution_worker.py:147: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_mt13_action_loop.py:20: in run
+    self.receipt=observe(path,self.scope,self.root,policy)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mt1/action_loop.py:340: in observe
+    return _observe(bundle_path,scope_path,root,policy_path,execution_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+bundle_path = PosixPath('/tmp/pytest-of-emox/pytest-2529/test_explicit_cancel_expired_s0/bundle-7.json')
+scope_path = PosixPath('/tmp/pytest-of-emox/pytest-2529/test_explicit_cancel_expired_s0/scope.json')
+root = PosixPath('/tmp/pytest-of-emox/pytest-2529/test_explicit_cancel_expired_s0/archive')
+policy_path = PosixPath('/home/emox/work/projects/market-tools/docs/mt13/signal-policy-v1.json')
+execution_model = 'strict-open-v1'
+
+    def _observe(bundle_path, scope_path, root, policy_path, execution_model="strict-open-v1"):
+        from .action_execution import MODELS
+        if execution_model not in MODELS:raise ValueError('unsupported_execution_model')
+        bundle=read(bundle_path); scope=load(scope_path); cfg=read(policy_path)
+        synthetic=bundle.get('source_kind')=='SYNTHETIC_ONLY'
+        asof=bundle['asof']; timing.instant(asof)
+        if timing.instant(asof)<timing.instant(cfg['effective_at']):
+            raise ValueError('policy_not_effective_no_retroactive_version')
+        if bundle['scope_epoch']!=scope['epoch'] or set(bundle['scope_codes'])!=codes(scope):
+            raise ValueError('scope_changed_recollect')
+        panels=bundle['panels']
+        if len(panels)!=len(codes(scope)) or {p['code'] for p in panels}!=codes(scope):
+            raise ValueError('scope_panel_missing_duplicate_or_foreign')
+        if bundle.get('contract_hash') not in (timing.digest(cfg['timing']),timing.digest(read(POLICY)['timing'])):
+            raise ValueError('bundle_timing_contract_mismatch')
+        sources={}; materials=[]
+        for i,item in enumerate(bundle.get('inputs',[])):
+            if file_hash(item['path'])!=item['sha256']:
+                raise ValueError('source_bytes_changed')
+            sources[item['sha256']]=item
+            if item.get('source_id'):sources[item['source_id']]=item
+            materials.append({'name':f'source-{i:03}.raw','path':item['path'],'fetched_at':item['fetched_at']})
+        if not synthetic and any(q.get('provider_adapter')!='tencent-raw-v1' for q in bundle.get('execution_quotes',[])):
+            raise ValueError('real_execution_requires_original_provider_adapter')
+        if not synthetic and not sources:
+            raise ValueError('real_sources_required')
+        prior=snapshots(root); s=copy.deepcopy(prior[-1][1]) if prior else fresh()
+        # Same source/policy/scope/code = same transaction, even after later days.
+        run_id=timing.digest([bundle, execution_model, MODELS[execution_model], file_hash(Path(__file__).with_name('action_execution.py')), file_hash(Path(__file__).with_name('action_recovery.py')), file_hash(scope_path),cfg,file_hash(__file__),file_hash(Path(__file__).with_name('timing.py'))])[:24]
+        for path,result in prior:
+            if result['run_id']==run_id:
+                return {'manifest':path,'idempotent':True}
+        if not synthetic and abs((timing.instant(now())-timing.instant(asof)).total_seconds())>1800:
+            raise ValueError('live_bundle_stale_recollect_no_historic_order_backfill')
+        if prior and (s['scope_epoch']!=scope['epoch'] or s['synthetic']!=synthetic):
+            raise ValueError('new_scope_or_synthetic_requires_separate_root')
+        if s['asof'] and timing.instant(asof)<timing.instant(s['asof']):
+>           raise ValueError('out_of_order_no_backfill')
+E           ValueError: out_of_order_no_backfill
+
+mt1/action_loop.py:380: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_mt13_execution_worker.py::test_explicit_cancel_expired_sell_never_autorenews
+1 failed in 2.33s

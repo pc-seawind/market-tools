@@ -1,0 +1,76 @@
+{
+  "baseline_commit": "2dfa148",
+  "input_trade_date": "20260924",
+  "production_gate_bypassed": false,
+  "scope": "compute_stock seven A-share stocks, unchanged complete history; no sector score/model/HTSC/ledger/upload",
+  "cold_definition": "synthetic 10ms provider, no real cold-network latency claim",
+  "results": [
+    {
+      "scenario": "real_existing_mtimes",
+      "version": "before",
+      "wall_seconds": 17.071773710194975,
+      "cli_calls": 35,
+      "simulated_provider_calls": 0,
+      "real_provider_calls": 0,
+      "stocks": 7,
+      "usable": 7,
+      "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+    },
+    {
+      "scenario": "real_existing_mtimes",
+      "version": "after",
+      "wall_seconds": 13.568570923060179,
+      "cli_calls": 28,
+      "simulated_provider_calls": 0,
+      "real_provider_calls": 0,
+      "stocks": 7,
+      "usable": 7,
+      "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+    },
+    {
+      "scenario": "frozen_same_day_warm",
+      "version": "before",
+      "wall_seconds": 17.070177641697228,
+      "cli_calls": 35,
+      "simulated_provider_calls": 0,
+      "real_provider_calls": 0,
+      "stocks": 7,
+      "usable": 7,
+      "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+    },
+    {
+      "scenario": "frozen_same_day_warm",
+      "version": "after",
+      "wall_seconds": 0.3075919570401311,
+      "cli_calls": 0,
+      "simulated_provider_calls": 0,
+      "real_provider_calls": 0,
+      "stocks": 7,
+      "usable": 7,
+      "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+    },
+    {
+      "scenario": "frozen_cold",
+      "version": "before",
+      "wall_seconds": 17.020399396773428,
+      "cli_calls": 35,
+      "simulated_provider_calls": 35,
+      "real_provider_calls": 0,
+      "stocks": 7,
+      "usable": 7,
+      "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+    },
+    {
+      "scenario": "frozen_cold",
+      "version": "after",
+      "wall_seconds": 17.02381096361205,
+      "cli_calls": 35,
+      "simulated_provider_calls": 35,
+      "real_provider_calls": 0,
+      "stocks": 7,
+      "usable": 7,
+      "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+    }
+  ],
+  "all_outputs_equal": true
+}

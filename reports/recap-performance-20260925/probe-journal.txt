@@ -1,0 +1,78 @@
+2026-09-25T02:34:38+08:00 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: Started recap-performance-20260925.service - /usr/bin/python3 scripts/recap_performance_probe.py reports/recap-performance-20260925.
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]: {
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:   "baseline_commit": "2dfa148",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:   "input_trade_date": "20260924",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:   "production_gate_bypassed": false,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:   "scope": "compute_stock seven A-share stocks, unchanged complete history; no sector score/model/HTSC/ledger/upload",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:   "cold_definition": "synthetic 10ms provider, no real cold-network latency claim",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:   "results": [
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     {
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "scenario": "real_existing_mtimes",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "version": "before",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "wall_seconds": 17.071773710194975,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "cli_calls": 35,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "simulated_provider_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "real_provider_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "stocks": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "usable": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     },
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     {
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "scenario": "real_existing_mtimes",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "version": "after",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "wall_seconds": 13.568570923060179,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "cli_calls": 28,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "simulated_provider_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "real_provider_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "stocks": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "usable": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     },
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     {
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "scenario": "frozen_same_day_warm",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "version": "before",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "wall_seconds": 17.070177641697228,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "cli_calls": 35,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "simulated_provider_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "real_provider_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "stocks": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "usable": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     },
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     {
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "scenario": "frozen_same_day_warm",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "version": "after",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "wall_seconds": 0.3075919570401311,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "cli_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "simulated_provider_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "real_provider_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "stocks": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "usable": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     },
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     {
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "scenario": "frozen_cold",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "version": "before",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "wall_seconds": 17.020399396773428,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "cli_calls": 35,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "simulated_provider_calls": 35,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "real_provider_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "stocks": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "usable": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     },
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     {
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "scenario": "frozen_cold",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "version": "after",
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "wall_seconds": 17.02381096361205,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "cli_calls": 35,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "simulated_provider_calls": 35,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "real_provider_calls": 0,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "stocks": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "usable": 7,
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:       "output_sha256": "293b43e77512a8ee31d4cff68487a236c2b466ef61eb28708b07045c636dadce"
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:     }
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:   ],
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]:   "all_outputs_equal": true
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx python3[2206872]: }
+2026-09-25T02:36:00+08:00 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: recap-performance-20260925.service: Consumed 7.881s CPU time, 57.0M memory peak, 0B memory swap peak.
