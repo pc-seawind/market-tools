@@ -290,6 +290,13 @@ def usage():
     sys.stderr.write(__doc__)
 
 
+def csv_text(data):
+    """The CLI wire format, shared with read-only in-process cache consumers."""
+    return '\n'.join([','.join(data.get('fields') or [])] + [
+        ','.join('' if x is None else str(x) for x in row)
+        for row in (data.get('items') or [])]) + '\n'
+
+
 def main(argv):
     if not argv or argv[0] in ("-h", "--help"):
         usage()
@@ -448,14 +455,7 @@ def main(argv):
     data = body.get("data") or {}
 
     if out_csv:
-        fields_list = data.get("fields") or []
-        items = data.get("items") or []
-        print(",".join(fields_list))
-        for row in items:
-            print(",".join(
-                "" if x is None else str(x)
-                for x in row
-            ))
+        sys.stdout.write(csv_text(data))
     else:
         print(json.dumps(body, ensure_ascii=False, indent=2))
 
