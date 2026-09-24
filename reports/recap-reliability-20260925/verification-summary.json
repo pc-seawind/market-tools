@@ -1,0 +1,133 @@
+{
+  "implementation_commit": "45e3ef03359ea312bcb855092e62ffe04171d684",
+  "code_hash": "9fbaf7f60d67d30cb78e5fd9c3572ddee7e20c593ac8b0957cc2ab66cd8cedbd",
+  "cost": {
+    "provider_billing": "not_exposed",
+    "huatai_calls": 0
+  },
+  "probes": {
+    "baseline": {
+      "completed_cli_calls": 4,
+      "sum_cli_seconds": 0.22116970736533403,
+      "by_api_seconds": {
+        "fund_daily": 0.11095840809866786,
+        "fund_share": 0.11021129926666617
+      },
+      "qualification": "invalid credential environment; retained, NOT a speed baseline"
+    },
+    "live-baseline": {
+      "completed_cli_calls": 85,
+      "sum_cli_seconds": 8.048200604505837,
+      "by_api_seconds": {
+        "fund_daily": 0.11909064510837197,
+        "fund_adj": 0.11391914589330554,
+        "fund_share": 0.11470596678555012,
+        "moneyflow_ind_dc": 0.05483724223449826,
+        "fina_indicator": 0.7789066629484296,
+        "hsgt_top10": 4.011013214476407,
+        "top_inst": 0.11824856605380774,
+        "repurchase": 0.14317162288352847,
+        "daily": 0.4273070180788636,
+        "adj_factor": 0.4074929654598236,
+        "daily_basic": 0.7907260227948427,
+        "block_trade": 0.9687815317884088
+      },
+      "qualification": "warm provider cache, original code"
+    },
+    "cold-baseline": {
+      "completed_cli_calls": 75,
+      "sum_cli_seconds": 206.3800017386675,
+      "by_api_seconds": {
+        "fund_daily": 0.4235858111642301,
+        "fund_adj": 0.27542234025895596,
+        "fund_share": 0.3037626873701811,
+        "moneyflow_ind_dc": 0.10737690608948469,
+        "fina_indicator": 8.635853671468794,
+        "hsgt_top10": 4.138150617014617,
+        "top_inst": 0.12038923799991608,
+        "daily": 43.71031171223149,
+        "adj_factor": 40.03534761443734,
+        "daily_basic": 108.62980114063248
+      },
+      "qualification": "original code; stopped by independent systemd RuntimeMaxSec=210; incomplete"
+    },
+    "fixed": {
+      "completed_cli_calls": 3,
+      "sum_cli_seconds": 0.4760632780380547,
+      "by_api_seconds": {
+        "fund_daily": 0.15827214298769832,
+        "fund_adj": 0.15034365467727184,
+        "fund_share": 0.16744748037308455
+      },
+      "qualification": "cold provider cache, two stock workers plus precomputed score reuse",
+      "wall_seconds": 128.94348909007385,
+      "stock_rpc_count": 35
+    }
+  },
+  "comparison": {
+    "sector_score_identical": true,
+    "verdicts_identical": true,
+    "difference": "300223.SZ turnover 4.3072 -> 4.3079 in separate provider fetch; no verdict change"
+  },
+  "recovery": {
+    "partial": {
+      "status": "partial",
+      "coverage_status": "partial",
+      "attempts_this_run": 1,
+      "attempt_counts": {
+        "存储芯片 (HBM/DDR/NAND)": 1
+      },
+      "reused": [],
+      "sector_attempts": {
+        "存储芯片 (HBM/DDR/NAND)": {
+          "elapsed_seconds": 3.884025759063661,
+          "error": "picks timeout 3.9s",
+          "owner": "code:recap-collector",
+          "next_action": "resume_failed_only_same_session"
+        }
+      },
+      "usable_sectors": [],
+      "complete_score_facts": 0
+    },
+    "restored": {
+      "status": "complete",
+      "coverage_status": "complete",
+      "attempts_this_run": 1,
+      "attempt_counts": {
+        "存储芯片 (HBM/DDR/NAND)": 2
+      },
+      "reused": [],
+      "sector_attempts": {
+        "存储芯片 (HBM/DDR/NAND)": {
+          "elapsed_seconds": 13.953446338884532,
+          "error": null,
+          "owner": "code:recap-collector",
+          "next_action": "resume_failed_only_same_session"
+        }
+      },
+      "usable_sectors": [
+        "存储芯片 (HBM/DDR/NAND)"
+      ],
+      "complete_score_facts": 0
+    },
+    "idempotent": {
+      "status": "complete",
+      "coverage_status": "complete",
+      "attempts_this_run": 0,
+      "attempt_counts": {
+        "存储芯片 (HBM/DDR/NAND)": 2
+      },
+      "reused": [
+        "存储芯片 (HBM/DDR/NAND)"
+      ],
+      "sector_attempts": {},
+      "usable_sectors": [
+        "存储芯片 (HBM/DDR/NAND)"
+      ],
+      "complete_score_facts": 0
+    }
+  },
+  "original_archives_unchanged": true,
+  "protected_sources_unchanged": true,
+  "natural_consumer": "2026-09-25 real calendar market_closed; no production or publication writes; archived 09-23/24 real pipeline replay in isolated state succeeded"
+}

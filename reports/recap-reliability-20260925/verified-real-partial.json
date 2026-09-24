@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "date": "2026-09-25",
+    "input_hash": "8004bf78dada172710706d0546497e9d9d0518e8b09b6286090b98692e2f87b1",
+    "snapshot_created_at": "2026-09-25T02:02:39",
+    "code_hash": "9fbaf7f60d67d30cb78e5fd9c3572ddee7e20c593ac8b0957cc2ab66cd8cedbd",
+    "reused": [],
+    "sector_attempts": {
+      "存储芯片 (HBM/DDR/NAND)": {
+        "elapsed_seconds": 3.884025759063661,
+        "error": "picks timeout 3.9s",
+        "owner": "code:recap-collector",
+        "next_action": "resume_failed_only_same_session"
+      }
+    },
+    "attempt_counts": {
+      "存储芯片 (HBM/DDR/NAND)": 1
+    },
+    "trade_date": "20260924",
+    "expected_trade_date": "20260924",
+    "fresh_mode": "morning_prev_trading_day",
+    "fresh": true,
+    "n_sectors": 1,
+    "n_tier1_pass": 1,
+    "n_picks_run": 1,
+    "n_picks_selected": 1,
+    "n_reversal_quota": 0,
+    "reversal_sectors": [],
+    "generated_at": "2026-09-25T02:02:43",
+    "errors": [
+      "picks timeout: 存储芯片 (HBM/DDR/NAND)"
+    ],
+    "status": "partial"
+  },
+  "scores": [
+    {
+      "concept": "存储芯片 (HBM/DDR/NAND)",
+      "data_quality": "proxy",
+      "tier1_pass": true,
+      "tier1_reason": "a: nav_5d 正",
+      "total_score": 70.6,
+      "tier": "🔥 HOT",
+      "fund_flow_pts": 23.1,
+      "fundamentals_pts": 25,
+      "news_pts": 10.46,
+      "technical_pts": 12,
+      "fund_flow_note": "HTSC fallback: main_flow5d=+4.58亿 main_flow20d=-539.56亿 pct5=+3.3% pct20=+1.3%; score=23.1/40 (cached HTSC main-flow fallback)",
+      "fundamentals_note": "med_ROE=17.3% (12/12), med_净利YoY=694.1% (13/13), 亏损股=0%",
+      "news_note": "base 7.5 + repur_z +1.98σ (+2.96) = 10.46/15",
+      "technical_note": "nav5d=1.6%(6/10) + 位置[60d=32,250d=69](5/7) + 量比1.02x(1/3)",
+      "raw_signals": {
+        "nav_5d": 1.62,
+        "nav_1m": -4.15,
+        "pct_rank_60d": 32,
+        "pct_rank_120d": 35,
+        "pct_rank_250d": 69,
+        "vol_ratio": 1.02,
+        "flow_5d_cny": 458000000.0,
+        "flow_5d_raw_cny": 458000000.0,
+        "flow_20d_cny": -53955999999.99999,
+        "flow_source": "htsc_openclaw",
+        "flow_fallback": true,
+        "flow_confidence": "medium",
+        "cross_source_conflict_likely": false
+      }
+    }
+  ],
+  "picks": {
+    "存储芯片 (HBM/DDR/NAND)": {
+      "error": "picks timeout 3.9s"
+    }
+  },
+  "coverage": {
+    "expected_trade_date": "20260924",
+    "envelope_fresh": true,
+    "selected": 1,
+    "usable_sectors": [],
+    "failed": {
+      "存储芯片 (HBM/DDR/NAND)": {
+        "reason": "picks timeout 3.9s",
+        "owner": "code:recap-collector",
+        "next_action": "retry_failed_inputs_within_same_session_budget; historical gaps stay archived"
+      }
+    },
+    "diagnostics": {
+      "存储芯片 (HBM/DDR/NAND)": {
+        "source_grade": "unknown",
+        "valid_stocks": 0,
+        "rejected": []
+      }
+    },
+    "scores": [
+      {
+        "concept": "存储芯片 (HBM/DDR/NAND)",
+        "source_grade": "degraded_proxy_neutral_stub",
+        "vintage": null,
+        "fact_eligible": false
+      }
+    ],
+    "complete_facts": 0,
+    "status": "partial",
+    "original_errors": [
+      "picks timeout: 存储芯片 (HBM/DDR/NAND)"
+    ]
+  }
+}

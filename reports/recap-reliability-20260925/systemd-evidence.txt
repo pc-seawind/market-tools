@@ -1,0 +1,26 @@
+Sep 25 01:51:19 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: Started recap-probe-cold-20260925.service - /usr/bin/python3 reports/recap-reliability-20260925/probe.py reports/recap-reliability-20260925/cold-baseline.jsonl.
+Sep 25 01:54:50 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: recap-probe-cold-20260925.service: Service reached runtime time limit. Stopping.
+Sep 25 01:54:50 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: recap-probe-cold-20260925.service: Failed with result 'timeout'.
+Sep 25 01:54:50 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: recap-probe-cold-20260925.service: Consumed 4min 22.074s CPU time, 1.3G memory peak, 0B memory swap peak.
+Sep 25 01:56:45 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: Started recap-probe-fixed-20260925.service - /usr/bin/python3 reports/recap-reliability-20260925/probe.py reports/recap-reliability-20260925/fixed.jsonl.
+Sep 25 01:58:54 emox-OMEN-30L-Desktop-GT13-0xxx python3[2163327]: elapsed 128.94348909007385
+Sep 25 01:58:54 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: recap-probe-fixed-20260925.service: Consumed 4min 26.946s CPU time, 2.3G memory peak, 0B memory swap peak.
+Sep 25 02:02:39 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: Started recap-recovery-verified-20260925.service - /usr/bin/bash reports/recap-reliability-20260925/recovery-verified.sh.
+Sep 25 02:02:39 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172547]: [evening_recap_data] start date=2026-09-25 out=reports/recap-reliability-20260925/morning-recovery-verified-2026-09-25.json max_picks=1
+Sep 25 02:02:39 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172547]: [evening_recap_data] reuse score json: reports/recap-reliability-20260925/score-input.json (skip recompute)
+Sep 25 02:02:43 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172556]: [evening_recap_data]   picks TIMEOUT 存储芯片 (HBM/DDR/NAND)
+Sep 25 02:02:43 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172556]: RESULT_JSON=reports/recap-reliability-20260925/morning-recovery-verified-2026-09-25.json
+Sep 25 02:02:43 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172556]: SUMMARY n_sectors=1 n_tier1_pass=1 n_picks_run=1 errors=1
+Sep 25 02:02:43 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172547]: [evening_recap_data] done rc=0 out=reports/recap-reliability-20260925/morning-recovery-verified-2026-09-25.json
+Sep 25 02:02:43 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172641]: [evening_recap_data] start date=2026-09-25 out=reports/recap-reliability-20260925/morning-recovery-verified-2026-09-25.json max_picks=1
+Sep 25 02:02:43 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172641]: [evening_recap_data] reuse score json: reports/recap-reliability-20260925/score-input.json (skip recompute)
+Sep 25 02:02:57 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172650]: [evening_recap_data]   picks ok   存储芯片 (HBM/DDR/NAND)
+Sep 25 02:02:57 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172650]: RESULT_JSON=reports/recap-reliability-20260925/morning-recovery-verified-2026-09-25.json
+Sep 25 02:02:57 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172650]: SUMMARY n_sectors=1 n_tier1_pass=1 n_picks_run=1 errors=0
+Sep 25 02:02:57 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172641]: [evening_recap_data] done rc=0 out=reports/recap-reliability-20260925/morning-recovery-verified-2026-09-25.json
+Sep 25 02:02:57 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172940]: [evening_recap_data] start date=2026-09-25 out=reports/recap-reliability-20260925/morning-recovery-verified-2026-09-25.json max_picks=1
+Sep 25 02:02:57 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172940]: [evening_recap_data] reuse score json: reports/recap-reliability-20260925/score-input.json (skip recompute)
+Sep 25 02:02:57 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172949]: RESULT_JSON=reports/recap-reliability-20260925/morning-recovery-verified-2026-09-25.json
+Sep 25 02:02:57 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172949]: SUMMARY n_sectors=1 n_tier1_pass=1 n_picks_run=0 errors=0
+Sep 25 02:02:57 emox-OMEN-30L-Desktop-GT13-0xxx bash[2172940]: [evening_recap_data] done rc=0 out=reports/recap-reliability-20260925/morning-recovery-verified-2026-09-25.json
+Sep 25 02:02:57 emox-OMEN-30L-Desktop-GT13-0xxx systemd[1509]: recap-recovery-verified-20260925.service: Consumed 4.064s CPU time.

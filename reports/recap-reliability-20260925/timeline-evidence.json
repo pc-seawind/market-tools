@@ -1,0 +1,125 @@
+[
+  {
+    "path": ".cron_state/mt1/runs/2026-09-21-evening/report.json",
+    "sha256": "4ec9d4b20f53aa7f8e075ef5e4cfef26e73f4c11d9f336e83200528b8b08db05",
+    "errors": [
+      {
+        "stage": "recap",
+        "error": "Command '['/home/emox/work/projects/market-tools/evening_recap_data.sh', '--out', '/tmp/evening_recap_2026-09-21.json']' timed out after 2399.9999927282333 seconds"
+      }
+    ]
+  },
+  {
+    "path": ".cron_state/mt1/runs/2026-09-22-evening/report.json",
+    "sha256": "f34201d64ee3f9660c37bfe27a9f39f917a0a63d543f7555480bbef507553a20",
+    "errors": [
+      {
+        "stage": "recap",
+        "error": "Command '['/home/emox/work/projects/market-tools/evening_recap_data.sh', '--out', '/tmp/evening_recap_2026-09-22.json']' timed out after 2399.9999926481396 seconds"
+      }
+    ]
+  },
+  {
+    "path": ".cron_state/mt1/runs/2026-09-23-evening/report.json",
+    "sha256": "f012cf2c12fbf4298cea2a9dd56ba1af7d2d37dd0681d22745b3a2bcb363903a",
+    "errors": [
+      {
+        "stage": "recap",
+        "error": "recap_data_quality_failed"
+      }
+    ]
+  },
+  {
+    "path": ".cron_state/mt1/runs/2026-09-24-evening/report.json",
+    "sha256": "143f6f5a438641ab8707560b347e8dd69bb70a8d49e037ce83c6e70b913c2f66",
+    "errors": [
+      {
+        "stage": "recap",
+        "error": "recap_data_quality_failed"
+      }
+    ]
+  },
+  {
+    "path": "/tmp/evening_recap_2026-09-23.json",
+    "sha256": "7dd197af9b4e4e762e187041a1be9431adcf77d8a2e290fd9fcc90f8e8f925bf",
+    "meta": {
+      "date": "2026-09-23",
+      "trade_date": "20260923",
+      "expected_trade_date": "20260923",
+      "fresh_mode": "evening_current_trading_day",
+      "fresh": true,
+      "n_sectors": 41,
+      "n_tier1_pass": 32,
+      "n_picks_run": 12,
+      "n_picks_selected": 18,
+      "n_reversal_quota": 2,
+      "reversal_sectors": [
+        "军工",
+        "农业畜牧"
+      ],
+      "generated_at": "2026-09-23T19:08:54",
+      "errors": [
+        "picks timeout: 存储芯片 (HBM/DDR/NAND)",
+        "picks timeout: 半导体设备 (国产替代)",
+        "picks timeout: 光通信 (光模块/CPO)",
+        "picks timeout: 有色金属",
+        "picks timeout: 先进封装 (CoWoS/Chiplet)",
+        "picks timeout: AIDC/算力租赁",
+        "picks timeout: AI芯片 (算力核心)",
+        "picks timeout: 硅片 (半导体材料)",
+        "picks timeout: 旅游酒店",
+        "recap budget exhausted: 食品饮料",
+        "recap budget exhausted: AI 应用 (软件侧)",
+        "recap budget exhausted: 建材建筑",
+        "recap budget exhausted: 创新药 (医药龙头)",
+        "recap budget exhausted: 军工",
+        "recap budget exhausted: 农业畜牧"
+      ],
+      "status": "partial"
+    }
+  },
+  {
+    "path": "/tmp/evening_recap_2026-09-24.json",
+    "sha256": "233ec67ff0f9af785cab0ef605459de4bb07dd3e512976a2d68bbf3cac514eb0",
+    "meta": {
+      "date": "2026-09-24",
+      "trade_date": "20260924",
+      "expected_trade_date": "20260924",
+      "fresh_mode": "evening_current_trading_day",
+      "fresh": true,
+      "n_sectors": 41,
+      "n_tier1_pass": 27,
+      "n_picks_run": 13,
+      "n_picks_selected": 21,
+      "n_reversal_quota": 5,
+      "reversal_sectors": [
+        "中药",
+        "央企国企",
+        "军工",
+        "新能源 (光伏/风电)",
+        "农业畜牧"
+      ],
+      "generated_at": "2026-09-24T19:09:11",
+      "errors": [
+        "picks timeout: 存储芯片 (HBM/DDR/NAND)",
+        "picks timeout: 半导体设备 (国产替代)",
+        "picks timeout: AIDC/算力租赁",
+        "picks timeout: 煤炭",
+        "picks timeout: 硅片 (半导体材料)",
+        "picks timeout: 光通信 (光模块/CPO)",
+        "picks timeout: 先进封装 (CoWoS/Chiplet)",
+        "picks timeout: 食品饮料",
+        "picks timeout: 旅游酒店",
+        "recap budget exhausted: AI 应用 (软件侧)",
+        "recap budget exhausted: 家电",
+        "recap budget exhausted: 建材建筑",
+        "recap budget exhausted: 中药",
+        "recap budget exhausted: 央企国企",
+        "recap budget exhausted: 军工",
+        "recap budget exhausted: 新能源 (光伏/风电)",
+        "recap budget exhausted: 农业畜牧"
+      ],
+      "status": "partial"
+    }
+  }
+]
