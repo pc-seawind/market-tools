@@ -72,7 +72,7 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
         errors=[]
         def stage(name, fn):
             item=manifest['stages'].get(name)
-            if item and item['status']=='done': return json.loads(Path(item['path']).read_text())
+            if item and item['status']=='done' and name != 'recap': return json.loads(Path(item['path']).read_text())
             manifest['stages'][name]={'status':'running','started_at':datetime.now(timezone.utc).isoformat()}
             atomic_json(manifest_path,manifest)
             try:
@@ -102,16 +102,29 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
                         value=fixture.get('recap')
                     else:
                         path=Path('/tmp')/f'evening_recap_{expected}.json'
-                        if phase=='evening' and collect and not path.exists():
-                            subprocess.run([str(HERE/'evening_recap_data.sh'),'--out',str(path)],check=True,timeout=2400)
                         value=json.loads(path.read_text()) if path.exists() else None
+                        incomplete = not value or value.get('meta',{}).get('status') != 'complete' or bool(value.get('meta',{}).get('errors'))
+                        # Never manufacture a historical session using today's live RPCs.
+                        if phase=='evening' and collect and incomplete and expected == today:
+                            from recap_runtime import run as run_group
+                            try:
+                                cp=run_group([str(HERE/'evening_recap_data.sh'),'--out',str(path)],timeout=2400,text=True)
+                                if cp.returncode: errors.append({'stage':'recap_collection','error':f'exit {cp.returncode}: {cp.stderr[-500:]}'})
+                            except subprocess.TimeoutExpired:
+                                errors.append({'stage':'recap_collection','error':'budget_exhausted; consume completed checkpoint only'})
+                            value=json.loads(path.read_text()) if path.exists() else None
                     if not value: raise ValueError('recap_missing; morning never substitutes current-date recompute for prior session')
                     actual=str(value.get('meta',{}).get('trade_date',''))
                     if len(actual)==8: actual=f'{actual[:4]}-{actual[4:6]}-{actual[6:]}'
                     if not check_fresh(actual,expected): raise ValueError('recap_stale_or_unknown_trade_date')
-                    if value.get('meta',{}).get('fresh') is not True or value.get('meta',{}).get('errors'):
-                        raise ValueError('recap_data_quality_failed')
-                    return value
+                    from recap_runtime import view
+                    # Preserve score diagnostics and independent successes, never label
+                    # partial/proxy data a fully verified investment fact.
+                    consumed = view(value, expected)
+                    if consumed['coverage']['status'] != 'complete':
+                        errors.append({'stage':'recap_coverage','error':'partial',
+                                       'coverage':consumed['coverage']})
+                    return consumed
                 recap=stage('recap',recap_stage)
                 if fixture is not None and fixture.get('universe'):
                     pool=stage('quality_value',lambda:screen(fixture['universe']))
@@ -171,6 +184,8 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
                     '本报告只完成数据编排，证据研究/最终结论未完成。',
                     '异常：'+json.dumps(result['errors'],ensure_ascii=False),
                     '完整数据：`'+str(directory/'report.json')+'`']
+            if recap and recap.get('coverage'):
+                lines += ['采集覆盖（不等于研究完成）：'+json.dumps(recap['coverage'],ensure_ascii=False)]
             with report.open('x') as f: f.write('\n'.join(lines)+'\n')
             result['report_path']=str(report); atomic_json(directory/'report.json',result)
             from .evidence import capture_run

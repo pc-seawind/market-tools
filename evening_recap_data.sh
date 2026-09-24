@@ -85,6 +85,11 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Non-blocking output lock: never clobber another active collector/checkpoint.
+mkdir -p "$(dirname "$OUT")"
+exec 9>"${OUT}.lock"
+flock -n 9 || { echo "recap collector already active: $OUT" >&2; exit 75; }
+
 WORKDIR="$(mktemp -d /tmp/evening_recap_work.XXXXXX)"
 trap 'rm -rf "$WORKDIR"' EXIT
 
@@ -93,12 +98,28 @@ SCORE_ERR="$WORKDIR/score.err"
 
 echo "[evening_recap_data] start date=$DATE out=$OUT max_picks=$MAX_PICKS" >&2
 
+# Only our same-session, same-code, unchanged-input checkpoints can seed scores.
+if [[ -z "$SCORE_JSON" && -s "$OUT" ]]; then
+  python3 - "$OUT" "$DATE" "$MAX_PICKS" "$SCORE_FILE" <<'RESUME'
+import json, sys, os
+from recap_runtime import code_hash, digest, reusable
+try:
+    old=json.load(open(sys.argv[1]))
+    sig=digest([code_hash(),sys.argv[2],old['scores'],int(sys.argv[3]),int(os.environ.get('EVENING_RECAP_REVERSAL_QUOTA','6'))])
+    if reusable(old,sig,sys.argv[2]):
+        json.dump(old['scores'],open(sys.argv[4],'w'),ensure_ascii=False)
+except (OSError,ValueError,KeyError,TypeError): pass
+RESUME
+  if [[ -s "$SCORE_FILE" ]]; then SCORE_JSON="$SCORE_FILE"; fi
+fi
+
+
 # ── Stage 0: HTSC sector main-flow cache ─────────────────────────
 # Tushare moneyflow_ind_dc may be unavailable/no-permission. In that case
 # bk_moneyflow.py now prefers pre-refreshed HTSC/OpenClaw 主力净流入 cache.
 # This refresh is bounded by TTL: if fresh, htsc_sector_flow.py skips network.
 HTSC_FLOW_REFRESH_TIMEOUT="${HTSC_FLOW_REFRESH_TIMEOUT:-900}"
-if [[ -x "$HERE/htsc_sector_flow.py" ]]; then
+if [[ -z "$SCORE_JSON" && -x "$HERE/htsc_sector_flow.py" ]]; then
   echo "[evening_recap_data] refresh HTSC sector-flow cache (TTL guarded)" >&2
   bounded_timeout "$HTSC_FLOW_REFRESH_TIMEOUT" python3 "$HERE/htsc_sector_flow.py" refresh-default --max-concepts 13 --ttl-hours 12     > "$WORKDIR/htsc_sector_flow_refresh.json" 2> "$WORKDIR/htsc_sector_flow_refresh.err" ||     echo "[evening_recap_data] WARN: HTSC sector-flow refresh failed/timeout; scoring will use existing cache or neutral fallback" >&2
 fi
@@ -106,7 +127,7 @@ fi
 # ── Stage 1: 板块评分 ────────────────────────────────────────────
 if [[ -n "$SCORE_JSON" && -s "$SCORE_JSON" ]]; then
   echo "[evening_recap_data] reuse score json: $SCORE_JSON (skip recompute)" >&2
-  cp "$SCORE_JSON" "$SCORE_FILE"
+  if [[ "$SCORE_JSON" != "$SCORE_FILE" ]]; then cp "$SCORE_JSON" "$SCORE_FILE"; fi
 else
   # score --all 逐板块调 tushare, 正常 ~3-6min, 但偶发卡死 (限速/网络).
   # 用 timeout 兜底, 卡死则报错退出而非无限挂起整个采集 turn.
@@ -134,6 +155,7 @@ fi
 export EVENING_RECAP_REMAINING_SECONDS="$((BUDGET - SECONDS))"
 python3 - "$SCORE_FILE" "$OUT" "$MAX_PICKS" "$DATE" <<'PY'
 import json, subprocess, sys, datetime, os, time, tempfile
+from recap_runtime import run as run_group, digest, code_hash, reusable, view, atomic
 
 deadline = time.monotonic() + max(0, float(os.environ.get("EVENING_RECAP_REMAINING_SECONDS", "2280")))
 def remaining(cap):
@@ -243,11 +265,29 @@ if rev_selected:
         "[evening_recap_data] reversal quota: +%d sectors (%s)\n"
         % (len(rev_selected), ", ".join(r.get("concept", "?") for r in rev_selected)))
 
+signature = digest([code_hash(), date, scores, max_picks, REVERSAL_QUOTA])
+previous = {}
+try:
+    with open(out_file) as f: previous = json.load(f)
+except (OSError, ValueError): pass
+same_input = reusable(previous, signature, date)
+old_picks = previous.get('picks', {}) if same_input else {}
+prior_attempts = previous.get('meta',{}).get('attempt_counts',{}) if same_input else {}
+if previous:
+    # Content-addressed immutable attempt history, including legacy failures.
+    archive = out_file + '.history/' + digest(previous) + '.json'
+    if not os.path.exists(archive): atomic(archive, previous)
 picks = {}
 attempted = 0
 result = {
     "meta": {
         "date": date,
+        "input_hash": signature,
+        "snapshot_created_at": previous.get('meta',{}).get('snapshot_created_at', previous.get('meta',{}).get('generated_at')) if same_input else datetime.datetime.now().isoformat(timespec='seconds'),
+        "code_hash": code_hash(),
+        "reused": [],
+        "sector_attempts": {},
+        "attempt_counts": dict(prior_attempts),
         "trade_date": trade_date,
         "expected_trade_date": expected_trade_date,
         "fresh_mode": fresh_mode,
@@ -271,6 +311,7 @@ def checkpoint(status):
     result["meta"]["generated_at"] = datetime.datetime.now().isoformat(timespec="seconds")
     # An interrupted checkpoint MUST fail the existing errors quality gate.
     result["meta"]["errors"] = list(errors) + (["collection_in_progress"] if status == "running" else [])
+    result['coverage'] = view(result, expected_trade_date or '')['coverage']
     parent = os.path.dirname(os.path.abspath(out_file))
     os.makedirs(parent, exist_ok=True)
     fd, tmp = tempfile.mkstemp(prefix=".recap-", dir=parent)
@@ -289,17 +330,36 @@ for r in selected:
     concept = r.get("concept")
     if not concept:
         continue
+    prior = old_picks.get(concept, {})
+    if (prior and not prior.get('error') and not prior.get('coverage', {}).get('missing')
+            and prior.get('evaluations')
+            and all(str(e.get('stock',{}).get('trade_date','')) == expected_trade_date for e in prior['evaluations'])):
+        picks[concept] = prior
+        result['meta']['reused'].append(concept)
+        checkpoint('running')
+        continue
+    if prior_attempts.get(concept, 0) >= 2:
+        picks[concept] = prior or {'error': 'retry limit reached'}
+        errors.append(f'retry limit reached: {concept}; owner=code:recap-collector; inspect RPC trace before explicit new attempt')
+        checkpoint('running')
+        continue
     if time.monotonic() >= deadline:
         picks[concept] = {"error": "recap budget exhausted; not attempted"}
         errors.append(f"recap budget exhausted: {concept}")
         checkpoint("running")
         continue
     attempted += 1
+    result["meta"]["attempt_counts"][concept] = prior_attempts.get(concept, 0) + 1
     pick_timeout = max(0.001, min(180, deadline - time.monotonic()))
+    started = time.monotonic()
     try:
-        cp = subprocess.run(
+        cp = run_group(
             ["python3", "sector_picks.py", "--sector", concept, "--json"],
             cwd=here, capture_output=True, text=True, timeout=pick_timeout,
+            env={**os.environ, 'RECAP_SCORE_FILE': os.path.abspath(score_file),
+                 'RECAP_SECTOR': concept, 'RECAP_INPUT_HASH': signature,
+                 'RECAP_RPC_TRACE': os.path.abspath(out_file)+'.rpc.jsonl',
+                 'RECAP_RPC_CACHE': os.path.abspath(out_file)+'.rpc-cache'},
         )
         if cp.returncode != 0:
             picks[concept] = {"error": f"picks exit {cp.returncode}", "stderr": cp.stderr[-500:]}
@@ -307,6 +367,10 @@ for r in selected:
             sys.stderr.write(f"[evening_recap_data]   picks FAIL {concept}: exit {cp.returncode}\n")
             continue
         picks[concept] = json.loads(cp.stdout)
+        if picks[concept].get('error') or picks[concept].get('coverage',{}).get('missing'):
+            errors.append(f'picks incomplete: {concept}')
+        elif any(str(e.get('stock',{}).get('trade_date','')) != expected_trade_date for e in picks[concept].get('evaluations',[])):
+            errors.append(f'picks invalid vintage: {concept}')
         sys.stderr.write(f"[evening_recap_data]   picks ok   {concept}\n")
     except subprocess.TimeoutExpired:
         picks[concept] = {"error": f"picks timeout {pick_timeout:.1f}s"}
@@ -318,6 +382,10 @@ for r in selected:
         sys.stderr.write(f"[evening_recap_data]   picks DECODE-ERR {concept}\n")
 
     finally:
+        result['meta']['sector_attempts'][concept] = {
+            'elapsed_seconds': time.monotonic()-started,
+            'error': picks.get(concept,{}).get('error'),
+            'owner': 'code:recap-collector', 'next_action': 'resume_failed_only_same_session'}
         checkpoint("running")
 
 checkpoint("partial" if errors else "complete")

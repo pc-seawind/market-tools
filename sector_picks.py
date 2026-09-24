@@ -86,13 +86,8 @@ def _ts(api: str, **params) -> list[dict[str, str]]:
         else:
             args.append(f"{k}={v}")
     args.append("--csv")
-    try:
-        r = subprocess.run(args, capture_output=True, text=True, timeout=45)
-    except subprocess.TimeoutExpired:
-        return []
-    if r.returncode != 0 or not r.stdout.strip():
-        return []
-    return list(csv.DictReader(r.stdout.splitlines()))
+    from recap_rpc import csv_rpc
+    return csv_rpc(args, api, params)
 
 
 def get_sector_stocks(concept: str) -> list[tuple[str, str]]:
@@ -349,7 +344,7 @@ def compute_stock(code: str, name: str) -> StockMetrics | None:
 
     # fina_indicator
     fina = [] if not is_a_share else _ts("fina_indicator", ts_code=code,
-                                         fields="end_date,roe,grossprofit_margin,netprofit_yoy,or_yoy")
+                                         fields="ann_date,end_date,roe,grossprofit_margin,netprofit_yoy,or_yoy")
     fina_latest = {}
     if fina:
         fina.sort(key=lambda x: x.get("end_date", ""), reverse=True)
@@ -891,7 +886,15 @@ def _evaluate_legacy(s: StockMetrics, sector_sig: SectorSignals,
 def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
     """Full pipeline for one concept."""
     # 1. Score the sector (Tier 1)
-    score = score_sector(concept)
+    import os
+    score_path = os.getenv('RECAP_SCORE_FILE')
+    if score_path:
+        from sector_score import SectorScore
+        rows = json.loads(Path(score_path).read_text())
+        row = next((r for r in rows if r.get('concept') == concept), None)
+        score = SectorScore(**row) if row else None
+    else:
+        score = score_sector(concept)
     if not score:
         return {"error": f"sector {concept} 无数据"}
 
@@ -922,12 +925,30 @@ def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
     if not stocks_list:
         return {"error": f"concept {concept} 不在 concepts_data.CONCEPTS, 需手工指定成分股"}
 
-    # 4. Compute per-stock metrics (并行可优化, 先串行)
-    stocks_m: list[StockMetrics] = []
-    for code, name in stocks_list:
-        m = compute_stock(code, name)
-        if m:
-            stocks_m.append(m)
+    # Bound fanout at two RPCs and two stocks; preserve deterministic input order.
+    from concurrent.futures import ThreadPoolExecutor
+    from recap_rpc import trace, context
+    import time
+    rpc_failed = []
+    def compute(item):
+        context.failed = False
+        started = time.monotonic()
+        try:
+            metric = compute_stock(*item)
+            if context.failed: rpc_failed.append(item[0])
+            trace({'stage':'stock', 'stock':item[0], 'sector':concept,
+                   'elapsed_seconds':time.monotonic()-started,
+                   'status':'ok' if metric else 'missing',
+                   'vintage':metric.trade_date if metric else None})
+            return metric
+        except Exception as exc:
+            trace({'stage':'stock','stock':item[0], 'sector':concept,
+                   'elapsed_seconds':time.monotonic()-started,'status':'failed','reason':str(exc)})
+            return None
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        metrics = list(pool.map(compute, stocks_list))
+    stocks_m = [m for m in metrics if m]
+    missing = [code for (code, _), metric in zip(stocks_list, metrics) if metric is None]
 
     if not stocks_m:
         return {"error": f"concept {concept} 成分股全部 fetch 失败"}
@@ -962,10 +983,12 @@ def sector_picks(concept: str, min_deviation: float = 20.0) -> dict[str, Any]:
     evaluations_dict = [asdict(e) for e in evals]
 
     # 9. 落盘 history (每次跑都 append, 用于 watchlist_decay 的 "从未触发 BUY" 信号)
-    _append_history(concept, score.total_score, score.tier, evaluations_dict)
+    if os.getenv('RECAP_NO_HISTORY') != '1':
+        _append_history(concept, score.total_score, score.tier, evaluations_dict)
 
     return {
         "concept": concept,
+        "coverage": {"expected": len(stocks_list), "successful": len(stocks_m), "missing": sorted(set(missing + rpc_failed))},
         "sector_score": asdict(score),
         "sector_signals": {
             "nav_5d": sig.nav_pct_5d, "nav_1m": sig.nav_pct_1m,

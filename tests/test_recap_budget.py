@@ -24,6 +24,7 @@ def run_collector(tmp_path, monkeypatch, *, budget='120', fail=False):
         body='trade_date\n20260922\n' if 'index_daily' in args else 'cal_date,is_open\n20260922,1\n'
         return subprocess.CompletedProcess(args,0,body,'')
     monkeypatch.setattr(subprocess, 'run', provider)
+    monkeypatch.setattr('recap_runtime.run', provider)
     body=SCRIPT.read_text().split("<<'PY'\n",1)[1].split('\nPY\n',1)[0]
     exec(compile(body, str(SCRIPT), 'exec'), {'__name__':'__main__'})
     return json.loads(out.read_text()),calls
