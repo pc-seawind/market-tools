@@ -478,6 +478,7 @@ def main():
                     help="自动从直连 API 抓取原文 (不读 stdin)。优先直连 API, 不依赖 Jina Reader。")
     ap.add_argument("--fetch-url", default="",
                     help="自定义抓取 URL (覆盖 --source 默认的 API URL)")
+    ap.add_argument("--raw-output", help="保存过滤前解码响应原文；写入失败则失败退出")
     args = ap.parse_args()
 
     if args.fetch:
@@ -508,6 +509,10 @@ def main():
             print("[]" if args.format == "json" else "(stdin 为空, 没有快讯原文)")
             return
         parser = PARSERS[args.source]
+
+    if args.raw_output:
+        with open(args.raw_output, "x", encoding="utf-8") as evidence:
+            evidence.write(raw)
 
     kw, tnames, tbyname, sector_hints = load_universe_index()
     items = parser(raw)

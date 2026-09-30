@@ -21,6 +21,10 @@ FAILED=0
 TOTAL_SOURCES=0
 
 OUT_JSONL="$HERE/narrative_prefilter_candidates.jsonl"
+RAW_ROOT="${NARRATIVE_RAW_ROOT:-$HERE/.cron_state/narrative-prefilter}"
+mkdir -p "$RAW_ROOT/$TODAY"
+RAW_DIR=$(mktemp -d "$RAW_ROOT/$TODAY/run-XXXXXXXX")
+echo "RAW_RESPONSE_DIR=$RAW_DIR" >&2
 TMPDIR=$(mktemp -d)
 trap 'rm -rf "$TMPDIR"' EXIT
 
@@ -47,6 +51,7 @@ fetch_source() {
     python3 cls_telegraph_filter.py \
         --source "$src" \
         --fetch \
+        --raw-output "$RAW_DIR/$src.response.txt" \
         --format json \
         --min-relevance "$MIN_RELEVANCE" \
         --include-dup \
