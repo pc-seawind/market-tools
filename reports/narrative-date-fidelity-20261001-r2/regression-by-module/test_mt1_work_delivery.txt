@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 22 items
+
+tests/test_mt1_work_delivery.py::test_review_extension_requires_structured_evidence[unverified] PASSED [  4%]
+tests/test_mt1_work_delivery.py::test_review_extension_requires_structured_evidence[evidence1] PASSED [  9%]
+tests/test_mt1_work_delivery.py::test_review_extension_requires_structured_evidence[evidence2] PASSED [ 13%]
+tests/test_mt1_work_delivery.py::test_review_extension_accepts_valid_evidence_without_resetting_horizon PASSED [ 18%]
+tests/test_mt1_work_delivery.py::test_finalize_uses_phase_gate_before_session_close[morning-True] PASSED [ 22%]
+tests/test_mt1_work_delivery.py::test_finalize_uses_phase_gate_before_session_close[evening-False] PASSED [ 27%]
+tests/test_mt1_work_delivery.py::test_finalize_uses_phase_gate_before_session_close[saturday-True] PASSED [ 31%]
+tests/test_mt1_work_delivery.py::test_finalize_uses_phase_gate_before_session_close[sunday-True] PASSED [ 36%]
+tests/test_mt1_work_delivery.py::test_weekend_research_does_not_allow_closed_market_buy[saturday] PASSED [ 40%]
+tests/test_mt1_work_delivery.py::test_weekend_research_does_not_allow_closed_market_buy[sunday] PASSED [ 45%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence0-pending_review-SELL] PASSED [ 50%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence0-pending_review-EXIT] PASSED [ 54%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence0-final-SELL] PASSED [ 59%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence0-final-EXIT] PASSED [ 63%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence1-pending_review-SELL] PASSED [ 68%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence1-pending_review-EXIT] PASSED [ 72%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence1-final-SELL] PASSED [ 77%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence1-final-EXIT] PASSED [ 81%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence2-pending_review-SELL] PASSED [ 86%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence2-pending_review-EXIT] PASSED [ 90%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence2-final-SELL] PASSED [ 95%]
+tests/test_mt1_work_delivery.py::test_all_exit_actions_validate_claim_date_and_source[evidence2-final-EXIT] PASSED [100%]
+
+============================== 22 passed in 0.09s ==============================

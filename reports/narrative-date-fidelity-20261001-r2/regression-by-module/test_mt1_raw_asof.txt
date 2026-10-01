@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 8 items
+
+tests/test_mt1_raw_asof.py::test_future_and_unknown_not_eligible PASSED  [ 12%]
+tests/test_mt1_raw_asof.py::test_no_self_reported_pit_admission PASSED   [ 25%]
+tests/test_mt1_raw_asof.py::test_no_delisting_zero_or_last_price PASSED  [ 37%]
+tests/test_mt1_raw_asof.py::test_incomplete_cash_date_rejected PASSED    [ 50%]
+tests/test_mt1_raw_asof.py::test_future_dividend_not_used PASSED         [ 62%]
+tests/test_mt1_raw_asof.py::test_raw_hash_mismatch PASSED                [ 75%]
+tests/test_mt1_raw_asof.py::test_future_revision_never_populates_financial_payload PASSED [ 87%]
+tests/test_mt1_raw_asof.py::test_stock_dividend_without_credit_date_blocks PASSED [100%]
+
+============================== 8 passed in 0.07s ===============================

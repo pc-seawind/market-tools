@@ -1,0 +1,37 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 27 items
+
+tests/test_mt12_common_cutoff.py::test_unclosed_mark_exact_cutoff_not_future_no_sell_cost PASSED [  3%]
+tests/test_mt12_common_cutoff.py::test_closed_retains_cash_not_reinvested_at_later_price PASSED [  7%]
+tests/test_mt12_common_cutoff.py::test_full_path_includes_unclosed_adverse_excursion PASSED [ 11%]
+tests/test_mt12_common_cutoff.py::test_closed_path_includes_losses_before_exit_and_cash_after PASSED [ 14%]
+tests/test_mt12_common_cutoff.py::test_hypothetical_sell_fee_not_actual_fill PASSED [ 18%]
+tests/test_mt12_common_cutoff.py::test_closed_sensitivity_no_double_sell_cost PASSED [ 22%]
+tests/test_mt12_common_cutoff.py::test_fee_paid_amounts_not_percent_of_unfunded_price PASSED [ 25%]
+tests/test_mt12_common_cutoff.py::test_missing_cutoff_not_last_available_fill PASSED [ 29%]
+tests/test_mt12_common_cutoff.py::test_exposed_internal_gap_invalidates_path_not_known_final_mark PASSED [ 33%]
+tests/test_mt12_common_cutoff.py::test_missing_after_closed_does_not_invalidate_cash_path PASSED [ 37%]
+tests/test_mt12_common_cutoff.py::test_unfilled_entry_distinguished_from_unknown[unknown] PASSED [ 40%]
+tests/test_mt12_common_cutoff.py::test_unfilled_entry_distinguished_from_unknown[pending] PASSED [ 44%]
+tests/test_mt12_common_cutoff.py::test_unfilled_entry_distinguished_from_unknown[cancelled] PASSED [ 48%]
+tests/test_mt12_common_cutoff.py::test_unknown_exit_not_assumed_still_held PASSED [ 51%]
+tests/test_mt12_common_cutoff.py::test_OOS_violation_rejected[entry] PASSED [ 55%]
+tests/test_mt12_common_cutoff.py::test_OOS_violation_rejected[exit] PASSED [ 59%]
+tests/test_mt12_common_cutoff.py::test_OOS_violation_rejected[signal] PASSED [ 62%]
+tests/test_mt12_common_cutoff.py::test_unknown_retained_in_pair_and_summary_denominators PASSED [ 66%]
+tests/test_mt12_common_cutoff.py::test_A_mismatched_entries_not_attributed_to_exit PASSED [ 70%]
+tests/test_mt12_common_cutoff.py::test_B_compares_opportunities_not_claim_same_entry PASSED [ 74%]
+tests/test_mt12_common_cutoff.py::test_cluster_deterministic_and_unknown_preserved PASSED [ 77%]
+tests/test_mt12_common_cutoff.py::test_all_episode_direction_can_reverse_double_closed PASSED [ 81%]
+tests/test_mt12_common_cutoff.py::test_real_71_episode_values_match_independent_review PASSED [ 85%]
+tests/test_mt12_common_cutoff.py::test_B_full_opportunity_denominator_and_unknowns PASSED [ 88%]
+tests/test_mt12_common_cutoff.py::test_free_hk_probe_never_contains_denied_api_routes PASSED [ 92%]
+tests/test_mt12_common_cutoff.py::test_hk_offline_missing_does_not_network PASSED [ 96%]
+tests/test_mt12_common_cutoff.py::test_hk_cached_response_hash_checked PASSED [100%]
+
+============================== 27 passed in 4.23s ==============================

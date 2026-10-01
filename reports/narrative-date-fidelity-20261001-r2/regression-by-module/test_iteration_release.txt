@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 13 items
+
+tests/test_iteration_release.py::test_actual_switch_rollback_and_recovery PASSED [  7%]
+tests/test_iteration_release.py::test_reject_forged_caller_pass PASSED   [ 15%]
+tests/test_iteration_release.py::test_new_risk_evidence_rolls_back_not_only_hash_corruption PASSED [ 23%]
+tests/test_iteration_release.py::test_recover_prepare_over_existing_active_pointer PASSED [ 30%]
+tests/test_iteration_release.py::test_real_release_binds_historical_prefix_not_later_frames PASSED [ 38%]
+tests/test_iteration_release.py::test_activation_crash_recovery_readonly_chain[after_prepare] PASSED [ 46%]
+tests/test_iteration_release.py::test_activation_crash_recovery_readonly_chain[after_switch] PASSED [ 53%]
+tests/test_iteration_release.py::test_committed_chain_tampering_is_readonly[evidence_hash] PASSED [ 61%]
+tests/test_iteration_release.py::test_committed_chain_tampering_is_readonly[evidence_missing] PASSED [ 69%]
+tests/test_iteration_release.py::test_committed_chain_tampering_is_readonly[previous] PASSED [ 76%]
+tests/test_iteration_release.py::test_committed_chain_tampering_is_readonly[commit] PASSED [ 84%]
+tests/test_iteration_release.py::test_committed_chain_tampering_is_readonly[intent] PASSED [ 92%]
+tests/test_iteration_release.py::test_committed_chain_tampering_is_readonly[active_missing] PASSED [100%]
+
+============================== 13 passed in 0.88s ==============================

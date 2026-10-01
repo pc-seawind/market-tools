@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 11 items
+
+tests/test_ta_evidence_supplement_inbox.py::test_supplement_is_separate_and_read_only PASSED [  9%]
+tests/test_ta_evidence_supplement_inbox.py::test_tampering_quarantined[current] PASSED [ 18%]
+tests/test_ta_evidence_supplement_inbox.py::test_tampering_quarantined[parent] PASSED [ 27%]
+tests/test_ta_evidence_supplement_inbox.py::test_tampering_quarantined[raw] PASSED [ 36%]
+tests/test_ta_evidence_supplement_inbox.py::test_tampering_quarantined[text] PASSED [ 45%]
+tests/test_ta_evidence_supplement_inbox.py::test_scope_cannot_expand_or_drop[codes0] PASSED [ 54%]
+tests/test_ta_evidence_supplement_inbox.py::test_scope_cannot_expand_or_drop[codes1] PASSED [ 63%]
+tests/test_ta_evidence_supplement_inbox.py::test_scope_cannot_expand_or_drop[codes2] PASSED [ 72%]
+tests/test_ta_evidence_supplement_inbox.py::test_broken_pointer_does_not_hide_good_supplement PASSED [ 81%]
+tests/test_ta_evidence_supplement_inbox.py::test_only_valid_child_supersedes_old_review[True] PASSED [ 90%]
+tests/test_ta_evidence_supplement_inbox.py::test_only_valid_child_supersedes_old_review[False] PASSED [100%]
+
+============================== 11 passed in 0.05s ==============================

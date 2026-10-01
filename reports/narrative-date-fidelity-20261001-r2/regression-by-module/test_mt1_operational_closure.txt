@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 18 items
+
+tests/test_mt1_operational_closure.py::test_full_sweep_closes_all_and_retries_after_first_pass PASSED [  5%]
+tests/test_mt1_operational_closure.py::test_sweep_bounded_resume_and_date_isolation PASSED [ 11%]
+tests/test_mt1_operational_closure.py::test_sweep_rejects_stale_daily PASSED [ 16%]
+tests/test_mt1_operational_closure.py::test_launch_no_duplicate_if_process_lock_held PASSED [ 22%]
+tests/test_mt1_operational_closure.py::test_delivery_requires_matching_run_hash_and_readback PASSED [ 27%]
+tests/test_mt1_operational_closure.py::test_coldstart_export_readonly_and_pending_report_no_fake_review PASSED [ 33%]
+tests/test_mt1_operational_closure.py::test_stale_coldstart_fails_before_any_events PASSED [ 38%]
+tests/test_mt1_operational_closure.py::test_audit_module_importable_and_does_not_claim_metrics PASSED [ 44%]
+tests/test_mt1_operational_closure.py::test_backfill_checkpoint_and_no_returns PASSED [ 50%]
+tests/test_mt1_operational_closure.py::test_evidence_inventory_detects_changed_artifact PASSED [ 55%]
+tests/test_mt1_operational_closure.py::test_migration_preserves_metadata_raw_without_new_fake_plan PASSED [ 61%]
+tests/test_mt1_operational_closure.py::test_handoff_export_does_not_overwrite_investment_edits PASSED [ 66%]
+tests/test_mt1_operational_closure.py::test_launcher_total_restart_budget_not_rolling_window PASSED [ 72%]
+tests/test_mt1_operational_closure.py::test_fixture_collect_never_starts_real_sweep PASSED [ 77%]
+tests/test_mt1_operational_closure.py::test_live_pipeline_launches_once_but_refreshes_sweep_snapshot 

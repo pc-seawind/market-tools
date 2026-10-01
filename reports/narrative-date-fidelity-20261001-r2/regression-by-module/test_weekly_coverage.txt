@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 22 items
+
+tests/test_weekly_coverage.py::test_beijing_day_boundary[2026-09-11T15:59:59+00:00-True] PASSED [  4%]
+tests/test_weekly_coverage.py::test_beijing_day_boundary[2026-09-11T16:00:00+00:00-False] PASSED [  9%]
+tests/test_weekly_coverage.py::test_beijing_day_boundary[2026-09-11T17:00:00+00:00-False] PASSED [ 13%]
+tests/test_weekly_coverage.py::test_beijing_day_boundary[2026-09-12T01:00:00+08:00-False] PASSED [ 18%]
+tests/test_weekly_coverage.py::test_beijing_day_boundary[2026-09-12T00:00:00+00:00-False] PASSED [ 22%]
+tests/test_weekly_coverage.py::test_explicit_instant_cutoff PASSED       [ 27%]
+tests/test_weekly_coverage.py::test_blocked_and_missing_materials_are_anomalies PASSED [ 31%]
+tests/test_weekly_coverage.py::test_integrity_error_is_top_level_anomaly PASSED [ 36%]
+tests/test_weekly_coverage.py::test_missing_entire_job PASSED            [ 40%]
+tests/test_weekly_coverage.py::test_execution_without_archive PASSED     [ 45%]
+tests/test_weekly_coverage.py::test_archive_not_proof_of_execution PASSED [ 50%]
+tests/test_weekly_coverage.py::test_matching_actual_execution_and_archive PASSED [ 54%]
+tests/test_weekly_coverage.py::test_external_runner_evidence_matches_archive PASSED [ 59%]
+tests/test_weekly_coverage.py::test_late_execution_not_silent_pass PASSED [ 63%]
+tests/test_weekly_coverage.py::test_future_execution_never_covered PASSED [ 68%]
+tests/test_weekly_coverage.py::test_not_yet_due_is_not_missing PASSED    [ 72%]
+tests/test_weekly_coverage.py::test_calendars_independent_no_weekday_fallback PASSED [ 77%]
+tests/test_weekly_coverage.py::test_old_epoch_does_not_cover_new_execution PASSED [ 81%]
+tests/test_weekly_coverage.py::test_bad_or_future_calendar_fail_closed PASSED [ 86%]
+tests/test_weekly_coverage.py::test_incomplete_archive_not_covered PASSED [ 90%]
+tests/test_weekly_coverage.py::test_material_gap_archive_cannot_be_covered PASSED [ 95%]
+tests/test_weekly_coverage.py::test_coverage_counts_only_due_calendar_verified_jobs PASSED [100%]
+
+============================== 22 passed in 0.18s ==============================

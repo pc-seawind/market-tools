@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 20 items
+
+tests/test_ta_r3.py::test_launch_failed_backoff_then_success PASSED      [  5%]
+tests/test_ta_r3.py::test_exited_worker_or_timeout_can_resume[failed] PASSED [ 10%]
+tests/test_ta_r3.py::test_exited_worker_or_timeout_can_resume[running] PASSED [ 15%]
+tests/test_ta_r3.py::test_exited_worker_or_timeout_can_resume[launching] PASSED [ 20%]
+tests/test_ta_r3.py::test_no_duplicate_when_running_or_supervision_unknown[active] PASSED [ 25%]
+tests/test_ta_r3.py::test_no_duplicate_when_running_or_supervision_unknown[activating] PASSED [ 30%]
+tests/test_ta_r3.py::test_no_duplicate_when_running_or_supervision_unknown[deactivating] PASSED [ 35%]
+tests/test_ta_r3.py::test_no_duplicate_when_running_or_supervision_unknown[unknown] PASSED [ 40%]
+tests/test_ta_r3.py::test_completed_and_exhausted_budget PASSED          [ 45%]
+tests/test_ta_r3.py::test_uncertain_launch_timeout_requires_supervision PASSED [ 50%]
+tests/test_ta_r3.py::test_dependency_hashes_schema_only_equivalence PASSED [ 55%]
+tests/test_ta_r3.py::test_material_initial_change_regenerates_both_cross_and_C PASSED [ 60%]
+tests/test_ta_r3.py::test_writeback_idempotent_owner_nextcheck_and_inbox PASSED [ 65%]
+tests/test_ta_r3.py::test_invalid_review_rejected_without_partial_write[owner] PASSED [ 70%]
+tests/test_ta_r3.py::test_invalid_review_rejected_without_partial_write[clock] PASSED [ 75%]
+tests/test_ta_r3.py::test_invalid_review_rejected_without_partial_write[mature] PASSED [ 80%]
+tests/test_ta_r3.py::test_invalid_review_rejected_without_partial_write[business] PASSED [ 85%]
+tests/test_ta_r3.py::test_invalid_review_rejected_without_partial_write[errors] PASSED [ 90%]
+tests/test_ta_r3.py::test_recomputed_quality_retains_immutable_old_snapshot PASSED [ 95%]
+tests/test_ta_r3.py::test_business_confirmation_cannot_use_price_evidence PASSED [100%]
+
+============================== 20 passed in 0.40s ==============================

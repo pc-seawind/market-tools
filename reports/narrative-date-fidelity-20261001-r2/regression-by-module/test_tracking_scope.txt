@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 20 items
+
+tests/test_tracking_scope.py::test_scope_nine_zero_no_legacy PASSED      [  5%]
+tests/test_tracking_scope.py::test_invalid_fail_closed[None] PASSED      [ 10%]
+tests/test_tracking_scope.py::test_invalid_fail_closed[{}] PASSED        [ 15%]
+tests/test_tracking_scope.py::test_invalid_fail_closed[not-json] PASSED  [ 20%]
+tests/test_tracking_scope.py::test_no_scope_library_compat PASSED        [ 25%]
+tests/test_tracking_scope.py::test_no_candidate_readmission_by_rerun PASSED [ 30%]
+tests/test_tracking_scope.py::test_new_candidate_not_held PASSED         [ 35%]
+tests/test_tracking_scope.py::test_out_of_scope_plan_write_blocked PASSED [ 40%]
+tests/test_tracking_scope.py::test_quotes_without_buy_or_cost_partial PASSED [ 45%]
+tests/test_tracking_scope.py::test_three_markets_independent PASSED      [ 50%]
+tests/test_tracking_scope.py::test_no_stale_substitution PASSED          [ 55%]
+tests/test_tracking_scope.py::test_narrative_no_old_date PASSED          [ 60%]
+tests/test_tracking_scope.py::test_deploy_daily_preserves_policy PASSED  [ 65%]
+tests/test_tracking_scope.py::test_enrich_no_evening_partial_manifest[1] PASSED [ 70%]
+tests/test_tracking_scope.py::test_enrich_no_evening_partial_manifest[2] PASSED [ 75%]
+tests/test_tracking_scope.py::test_enrich_no_evening_partial_manifest[3] PASSED [ 80%]
+tests/test_tracking_scope.py::test_enrich_no_evening_partial_manifest[4] PASSED [ 85%]
+tests/test_tracking_scope.py::test_pillars_pending_no_default_stop PASSED [ 90%]
+tests/test_tracking_scope.py::test_narrative_reject_wrong_provider_date PASSED [ 95%]
+tests/test_tracking_scope.py::test_migration_after_reset_no_new_legacy_plans PASSED [100%]
+
+============================== 20 passed in 0.25s ==============================

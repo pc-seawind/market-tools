@@ -1,0 +1,542 @@
+[
+  {
+    "module": "tests/test_iteration_revision.py::test_full_run_same_command_recovery[after_release_evidence]",
+    "started_at": "2026-10-01T12:51:29.166070+00:00",
+    "elapsed_seconds": 11.634,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_full_run_same_command_recovery[after_release_evidence] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-000.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_full_run_same_command_recovery[after_release_fundamental]",
+    "started_at": "2026-10-01T12:51:40.800229+00:00",
+    "elapsed_seconds": 11.686,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_full_run_same_command_recovery[after_release_fundamental] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-001.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_full_run_same_command_recovery[after_release_technical]",
+    "started_at": "2026-10-01T12:51:52.485950+00:00",
+    "elapsed_seconds": 11.285,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_full_run_same_command_recovery[after_release_technical] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-002.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[production]",
+    "started_at": "2026-10-01T12:52:03.771262+00:00",
+    "elapsed_seconds": 12.691,
+    "returncode": -11,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[production] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-003.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[category]",
+    "started_at": "2026-10-01T12:52:16.462512+00:00",
+    "elapsed_seconds": 10.634,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[category] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-004.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[kind]",
+    "started_at": "2026-10-01T12:52:27.096335+00:00",
+    "elapsed_seconds": 10.733,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[kind] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-005.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[unknown]",
+    "started_at": "2026-10-01T12:52:37.829621+00:00",
+    "elapsed_seconds": 10.734,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[unknown] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-006.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[identity]",
+    "started_at": "2026-10-01T12:52:48.563411+00:00",
+    "elapsed_seconds": 10.483,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[identity] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-007.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[incomplete_intent]",
+    "started_at": "2026-10-01T12:52:59.046564+00:00",
+    "elapsed_seconds": 10.684,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[incomplete_intent] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-008.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[completion]",
+    "started_at": "2026-10-01T12:53:09.731542+00:00",
+    "elapsed_seconds": 10.384,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[completion] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-009.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_empty_root_not_closed_loop",
+    "started_at": "2026-10-01T12:53:20.115575+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_empty_root_not_closed_loop PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-010.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_replay_after_far_future_wall_clock",
+    "started_at": "2026-10-01T12:53:20.380207+00:00",
+    "elapsed_seconds": 11.887,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_replay_after_far_future_wall_clock Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-011.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_original_real_engine_age_gate[1800]",
+    "started_at": "2026-10-01T12:53:32.267017+00:00",
+    "elapsed_seconds": 1.567,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_original_real_engine_age_gate[1800] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-012.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_original_real_engine_age_gate[1801]",
+    "started_at": "2026-10-01T12:53:33.834551+00:00",
+    "elapsed_seconds": 1.116,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_original_real_engine_age_gate[1801] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-013.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_stale_real_run_same_request_recollects_and_recovers",
+    "started_at": "2026-10-01T12:53:34.950914+00:00",
+    "elapsed_seconds": 19.001,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_stale_real_run_same_request_recollects_and_recovers Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-014.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_no_same_bar_or_stop_fill",
+    "started_at": "2026-10-01T12:53:53.952580+00:00",
+    "elapsed_seconds": 1.066,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_no_same_bar_or_stop_fill PASSED     [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-015.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[halted-True-suspended]",
+    "started_at": "2026-10-01T12:53:55.018836+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[halted-True-suspended] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-016.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[limit_up-True-CN_side_limit]",
+    "started_at": "2026-10-01T12:53:55.283391+00:00",
+    "elapsed_seconds": 0.265,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[limit_up-True-CN_side_limit] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-017.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[settlement_ok-False-settlement]",
+    "started_at": "2026-10-01T12:53:55.548424+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[settlement_ok-False-settlement] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-018.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[observed_at-2026-09-14T18:00:00+08:00-noncontemporaneous]",
+    "started_at": "2026-10-01T12:53:55.813093+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[observed_at-2026-09-14T18:00:00+08:00-noncontemporaneous] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-019.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[eligibility_known_at-2026-09-14T10:00:00+08:00-eligibility]",
+    "started_at": "2026-10-01T12:53:56.077611+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[eligibility_known_at-2026-09-14T10:00:00+08:00-eligibility] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-020.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[basis_id-wrong-factor_basis]",
+    "started_at": "2026-10-01T12:53:56.342388+00:00",
+    "elapsed_seconds": 0.265,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_execution_gate_only_not_signal[basis_id-wrong-factor_basis] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-021.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_hk_does_not_use_cn_price_limit",
+    "started_at": "2026-10-01T12:53:56.607170+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_hk_does_not_use_cn_price_limit PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-022.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_source_content_binding",
+    "started_at": "2026-10-01T12:53:56.871899+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_source_content_binding PASSED       [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-023.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_scope_reset_separate_root",
+    "started_at": "2026-10-01T12:53:57.136585+00:00",
+    "elapsed_seconds": 0.665,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_scope_reset_separate_root PASSED    [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-024.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_frozen_policy_mutation",
+    "started_at": "2026-10-01T12:53:57.802211+00:00",
+    "elapsed_seconds": 0.665,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_frozen_policy_mutation PASSED       [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-025.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_versions_forward_only_and_separate",
+    "started_at": "2026-10-01T12:53:58.467685+00:00",
+    "elapsed_seconds": 1.517,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_versions_forward_only_and_separate PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-026.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_archive_tamper_detected",
+    "started_at": "2026-10-01T12:53:59.984843+00:00",
+    "elapsed_seconds": 0.715,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_archive_tamper_detected PASSED      [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-027.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_source_tamper_detected",
+    "started_at": "2026-10-01T12:54:00.700250+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_source_tamper_detected PASSED       [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-028.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_out_of_order_rejected",
+    "started_at": "2026-10-01T12:54:00.964754+00:00",
+    "elapsed_seconds": 1.066,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_out_of_order_rejected PASSED        [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-029.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_daily_research_signal_columns",
+    "started_at": "2026-10-01T12:54:02.030969+00:00",
+    "elapsed_seconds": 0.665,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_daily_research_signal_columns PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-030.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_signal_horizons_continue_after_exit",
+    "started_at": "2026-10-01T12:54:02.696306+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_signal_horizons_continue_after_exit PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-031.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_cn_tplus1_cannot_sell_same_day",
+    "started_at": "2026-10-01T12:54:02.961071+00:00",
+    "elapsed_seconds": 0.265,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_cn_tplus1_cannot_sell_same_day PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-032.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_sell_limit_down_blocks_only_execution",
+    "started_at": "2026-10-01T12:54:03.226548+00:00",
+    "elapsed_seconds": 0.265,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_sell_limit_down_blocks_only_execution PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-033.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_missing_volume_and_revised_price_not_exit_bypass",
+    "started_at": "2026-10-01T12:54:03.491882+00:00",
+    "elapsed_seconds": 1.016,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_missing_volume_and_revised_price_not_exit_bypass PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-034.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_wrong_market_identity_is_blocked",
+    "started_at": "2026-10-01T12:54:04.508092+00:00",
+    "elapsed_seconds": 1.066,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_wrong_market_identity_is_blocked PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-035.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_legacy_root_refused",
+    "started_at": "2026-10-01T12:54:05.574655+00:00",
+    "elapsed_seconds": 0.265,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_legacy_root_refused PASSED          [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-036.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_open_time_not_any_intraday_quote",
+    "started_at": "2026-10-01T12:54:05.839772+00:00",
+    "elapsed_seconds": 0.265,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_open_time_not_any_intraday_quote PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-037.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_sell_episode_does_not_repeat_after_expiry",
+    "started_at": "2026-10-01T12:54:06.104825+00:00",
+    "elapsed_seconds": 2.569,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_sell_episode_does_not_repeat_after_expiry PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-038.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_execution_bundle_merge_preserves_original",
+    "started_at": "2026-10-01T12:54:08.674026+00:00",
+    "elapsed_seconds": 0.265,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_execution_bundle_merge_preserves_original PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-039.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_expired_buy_cannot_fill_from_late_snapshot",
+    "started_at": "2026-10-01T12:54:08.938911+00:00",
+    "elapsed_seconds": 2.669,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_expired_buy_cannot_fill_from_late_snapshot PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-040.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_version_changed_parameters_accepts_same_readonly_panel",
+    "started_at": "2026-10-01T12:54:11.608923+00:00",
+    "elapsed_seconds": 1.066,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_version_changed_parameters_accepts_same_readonly_panel PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-041.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_compose_preserves_three_source_sections_and_receipt",
+    "started_at": "2026-10-01T12:54:12.675763+00:00",
+    "elapsed_seconds": 2.218,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_compose_preserves_three_source_sections_and_receipt PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-042.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_weekly_publish_idempotent",
+    "started_at": "2026-10-01T12:54:14.894060+00:00",
+    "elapsed_seconds": 2.168,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_weekly_publish_idempotent PASSED    [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-043.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_execution_terminal_still_pending_price_review",
+    "started_at": "2026-10-01T12:54:17.062087+00:00",
+    "elapsed_seconds": 2.218,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_execution_terminal_still_pending_price_review PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-044.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_bad_calendar_cannot_expire_order",
+    "started_at": "2026-10-01T12:54:19.280609+00:00",
+    "elapsed_seconds": 1.417,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_bad_calendar_cannot_expire_order PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-045.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_simulated_exit_does_not_close_real_holding_episode",
+    "started_at": "2026-10-01T12:54:20.698219+00:00",
+    "elapsed_seconds": 2.669,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_simulated_exit_does_not_close_real_holding_episode PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-046.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_unheld_cancelled_risk_can_start_later_new_episode",
+    "started_at": "2026-10-01T12:54:23.368034+00:00",
+    "elapsed_seconds": 1.817,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_unheld_cancelled_risk_can_start_later_new_episode PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-047.txt"
+  },
+  {
+    "module": "tests/test_mt13_execution_worker.py::test_resume_never_fills_captured_price_before_resume",
+    "started_at": "2026-10-01T12:54:25.185831+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_execution_worker.py::test_resume_never_fills_captured_price_before_resume PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-048.txt"
+  },
+  {
+    "module": "tests/test_mt13_execution_worker.py::test_observed_new_raw_print_to_separate_ledger",
+    "started_at": "2026-10-01T12:54:25.450484+00:00",
+    "elapsed_seconds": 1.416,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_execution_worker.py::test_observed_new_raw_print_to_separate_ledger PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-049.txt"
+  },
+  {
+    "module": "tests/test_mt13_execution_worker.py::test_operator_future_clock_still_rejects_historical_observation",
+    "started_at": "2026-10-01T12:54:26.867172+00:00",
+    "elapsed_seconds": 1.066,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_execution_worker.py::test_operator_future_clock_still_rejects_historical_observation PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-050.txt"
+  },
+  {
+    "module": "tests/test_mt1_operational_closure.py::test_following_phases_consume_prior_sweep_with_its_date[morning]",
+    "started_at": "2026-10-01T12:54:27.933091+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt1_operational_closure.py::test_following_phases_consume_prior_sweep_with_its_date[morning] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-051.txt"
+  },
+  {
+    "module": "tests/test_mt1_operational_closure.py::test_following_phases_consume_prior_sweep_with_its_date[saturday]",
+    "started_at": "2026-10-01T12:54:28.197648+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt1_operational_closure.py::test_following_phases_consume_prior_sweep_with_its_date[saturday] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-052.txt"
+  },
+  {
+    "module": "tests/test_mt1_operational_closure.py::test_following_phases_consume_prior_sweep_with_its_date[sunday]",
+    "started_at": "2026-10-01T12:54:28.462340+00:00",
+    "elapsed_seconds": 0.264,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt1_operational_closure.py::test_following_phases_consume_prior_sweep_with_its_date[sunday] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/remainder/node-053.txt"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-10-01T12:45:22.458128+00:00",
+  "completed_at": "2026-10-01T12:45:23.532033+00:00",
+  "argv": [
+    "python3",
+    "tushare.py",
+    "hk_daily",
+    "ts_code=00700.HK",
+    "trade_date=20261001",
+    "--no-cache"
+  ],
+  "returncode": 5,
+  "stdout": "",
+  "stderr": "[akshare fallback] hk_daily returned None\ntushare error (code=40203): 抱歉，您访问接口(hk_daily)频率超限(1次/小时)，具体频次详情：https://tushare.pro/document/1?doc_id=108。\n"
+}

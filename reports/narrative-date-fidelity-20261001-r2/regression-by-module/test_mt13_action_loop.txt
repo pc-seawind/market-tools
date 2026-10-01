@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 54 items
+
+tests/test_mt13_action_loop.py::test_full_demo_real_separation PASSED    [  1%]
+tests/test_mt13_action_loop.py::test_low_confidence_missing_rs_still_buy PASSED [  3%]
+tests/test_mt13_action_loop.py::test_low_confidence_sell_risk_first_no_company_veto PASSED [  5%]
+tests/test_mt13_action_loop.py::test_existing_holding_buy_is_add_observation PASSED [  7%]
+tests/test_mt13_action_loop.py::test_unheld_risk_never_short PASSED      [  9%]
+tests/test_mt13_action_loop.py::test_hard_data_blocks_not_confidence[factor] PASSED [ 11%]
+tests/test_mt13_action_loop.py::test_hard_data_blocks_not_confidence[calendar] PASSED [ 12%]
+tests/test_mt13_action_loop.py::test_hard_data_blocks_not_confidence[price] PASSED [ 14%]
+tests/test_mt13_action_loop.py::test_hard_data_blocks_not_confidence[latest] PASSED [ 16%]
+tests/test_mt13_action_loop.py::test_hard_data_blocks_not_confidence[basis] PASSED [ 18%]
+tests/test_mt13_action_loop.py::test_hard_data_blocks_not_confidence[future] PASSED [ 20%]
+tests/test_mt13_action_loop.py::test_hard_data_blocks_not_confidence[history] PASSED [ 22%]
+tests/test_mt13_action_loop.py::test_volume_missing_does_not_block_frozen_sell PASSED [ 24%]
+tests/test_mt13_action_loop.py::test_missing_volume_without_known_breach_not_false_hold PASSED [ 25%]
+tests/test_mt13_action_loop.py::test_duplicate_run_no_duplicate_order PASSED [ 27%]
+tests/test_mt13_action_loop.py::test_pending_cross_week_expiry_preserves_signal PASSED [ 29%]
+tests/test_mt13_action_loop.py::test_week_boundary_retains_unexecuted_before_expiry PASSED [ 31%]
+tests/test_mt13_action_loop.py::test_risk_cancels_pending_buy_not_suppressed_signal PASSED [ 33%]
+tests/test_mt13_action_loop.py::test_cancellation_idempotent_retains_original_reason PASSED [ 35%]
+tests/test_mt13_action_loop.py::test_signal_emits_without_execution_info PASSED [ 37%]
+tests/test_mt13_action_loop.py::test_open_fill_before_same_days_close_risk 

@@ -136,3 +136,24 @@ def test_benchmark_base_never_borrows_other_session(monkeypatch,api,date):
 def test_benchmark_base_exact_session(monkeypatch,session,expected):
     monkeypatch.setattr(nt,'_ts_csv',lambda *a,**kw:[{'trade_date':'20261001','open':4000,'close':4100}])
     assert nt.resolve_bench_base('BENCH','index_global','20261001',session)==expected
+
+
+def test_excluded_only_ledger_all_track_readers(monkeypatch,tmp_path):
+    source=Path(__file__).parent/'fixtures/narrative-invalid-20261001.jsonl'
+    pp=tmp_path/'perf.jsonl';pp.write_bytes(source.read_bytes())
+    monkeypatch.setattr(nt,'_PERF_PATH',pp)
+    monkeypatch.setattr(nt,'_EVENTS_PATH',tmp_path/'absent-events')
+    rows=[json.loads(x) for x in pp.read_text().splitlines()]
+    before=pp.read_bytes()
+    assert nt._existing_perf_keys()==set()
+    for r in rows:
+        assert nt._baseline_for(r['event_ts'],r['code']) is None
+        assert nt._benchmark_baseline_for(r['event_ts'],r['code']) is None
+        assert '无 perf' in nt.event_report(r['event_ts'])
+    assert nt._prewarm_verify_state([])==(set(),{})
+    report=nt.report(weeks=52)
+    assert report['ticker_pairs']==0 and report['events_covered']==0
+    assert report['quality_audit']['excluded_count']==4
+    assert not report['by_milestone'] and not report['top_winners'] and not report['top_losers']
+    assert '显式排除 4 条' in nt.doc_markdown(weeks=52)
+    assert pp.read_bytes()==before

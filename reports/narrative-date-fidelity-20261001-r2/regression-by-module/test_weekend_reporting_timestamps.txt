@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 7 items
+
+tests/test_weekend_reporting_timestamps.py::test_invalid_timestamp_type_is_data_gap[None] PASSED [ 14%]
+tests/test_weekend_reporting_timestamps.py::test_invalid_timestamp_type_is_data_gap[123] PASSED [ 28%]
+tests/test_weekend_reporting_timestamps.py::test_invalid_timestamp_type_is_data_gap[value2] PASSED [ 42%]
+tests/test_weekend_reporting_timestamps.py::test_invalid_timestamp_type_is_data_gap[value3] PASSED [ 57%]
+tests/test_weekend_reporting_timestamps.py::test_invalid_timestamp_type_is_data_gap[True] PASSED [ 71%]
+tests/test_weekend_reporting_timestamps.py::test_null_execution_time_keeps_archive_unverified[started_at] PASSED [ 85%]
+tests/test_weekend_reporting_timestamps.py::test_null_execution_time_keeps_archive_unverified[completed_at] PASSED [100%]
+
+============================== 7 passed in 0.03s ===============================

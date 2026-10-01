@@ -1,0 +1,38 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 28 items
+
+tests/test_iteration_history_core.py::test_screen_default_and_single_roe_difference PASSED [  3%]
+tests/test_iteration_history_core.py::test_future_or_same_day_announcement_not_available[20220131] PASSED [  7%]
+tests/test_iteration_history_core.py::test_future_or_same_day_announcement_not_available[20220201] PASSED [ 10%]
+tests/test_iteration_history_core.py::test_other_financial_filters_preserved[ocfps-0] PASSED [ 14%]
+tests/test_iteration_history_core.py::test_other_financial_filters_preserved[eps-0] PASSED [ 17%]
+tests/test_iteration_history_core.py::test_other_financial_filters_preserved[debt_to_assets-80] PASSED [ 21%]
+tests/test_iteration_history_core.py::test_next_close_and_exact_horizon PASSED [ 25%]
+tests/test_iteration_history_core.py::test_maturity_not_zero PASSED      [ 28%]
+tests/test_iteration_history_core.py::test_hole_not_removed_from_path PASSED [ 32%]
+tests/test_iteration_history_core.py::test_fees_monotonically_reduce_value PASSED [ 35%]
+tests/test_iteration_history_core.py::test_loss_is_retained_and_drawdown_measured PASSED [ 39%]
+tests/test_iteration_history_core.py::test_cash_unknown_common_denominator PASSED [ 42%]
+tests/test_iteration_history_core.py::test_open_mark_does_not_fake_exit_cost PASSED [ 46%]
+tests/test_iteration_history_core.py::test_exit_before_horizon_then_cash PASSED [ 50%]
+tests/test_iteration_history_core.py::test_unknown_execution_not_cash PASSED [ 53%]
+tests/test_iteration_history_core.py::test_immutable_write_and_source_tamper PASSED [ 57%]
+tests/test_iteration_history_core.py::test_pure_historical_actions_equal_unmodified_live_decide[1.2] PASSED [ 60%]
+tests/test_iteration_history_core.py::test_pure_historical_actions_equal_unmodified_live_decide[1.4] PASSED [ 64%]
+tests/test_iteration_history_core.py::test_baseline_frozen_policy_has_only_authorized_change PASSED [ 67%]
+tests/test_iteration_history_core.py::test_missing_entry_dependencies_do_not_veto_frozen_sell PASSED [ 71%]
+tests/test_iteration_history_core.py::test_unknown_after_entry_kept_unknown_even_with_endpoint PASSED [ 75%]
+tests/test_iteration_history_core.py::test_historical_full_orders_buy_sell_next_open_not_same_close PASSED [ 78%]
+tests/test_iteration_history_core.py::test_sell_expiry_uses_original_recovery_same_signal PASSED [ 82%]
+tests/test_iteration_history_core.py::test_funded_capital_fees_cash_and_no_double_allocation PASSED [ 85%]
+tests/test_iteration_history_core.py::test_history_package_excluded_from_legacy_fingerprint PASSED [ 89%]
+tests/test_iteration_history_core.py::test_history_fingerprint_includes_package_and_original_dependencies PASSED [ 92%]
+tests/test_iteration_history_core.py::test_history_verify_rejects_missing_fingerprint_before_computation PASSED [ 96%]
+tests/test_iteration_history_core.py::test_history_module_cli_is_preserved PASSED [100%]
+
+============================== 28 passed in 0.19s ==============================

@@ -1,0 +1,52 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 27 items
+
+tests/test_ta_evidence.py::test_selector_requires_unique_locator PASSED  [  3%]
+tests/test_ta_evidence.py::test_semantic_dimensions_fail_closed[unit-GWh-unit_currency_conflict] PASSED [  7%]
+tests/test_ta_evidence.py::test_semantic_dimensions_fail_closed[subject-BYD-numeric_subject_conflict] PASSED [ 11%]
+tests/test_ta_evidence.py::test_semantic_dimensions_fail_closed[period_end-2026-08-31-numeric_period_end_conflict] PASSED [ 14%]
+tests/test_ta_evidence.py::test_semantic_dimensions_fail_closed[basis-monthly_shipments-numeric_basis_conflict] PASSED [ 18%]
+tests/test_ta_evidence.py::test_semantic_dimensions_fail_closed[scope-China-numeric_scope_conflict] PASSED [ 22%]
+tests/test_ta_evidence.py::test_semantic_dimensions_fail_closed[value-40.0-numeric_conflict] PASSED [ 25%]
+tests/test_ta_evidence.py::test_semantic_dimensions_fail_closed[is_forecast-True-numeric_is_forecast_conflict] PASSED [ 29%]
+tests/test_ta_evidence.py::test_future_actual_and_forecast PASSED        [ 33%]
+tests/test_ta_evidence.py::test_catalog_locator_tamper PASSED            [ 37%]
+tests/test_ta_evidence.py::test_conflicting_sources_never_averaged PASSED [ 40%]
+tests/test_ta_evidence.py::test_nonfacts_not_facts[institution_forecast] PASSED [ 44%]
+tests/test_ta_evidence.py::test_nonfacts_not_facts[media_report] PASSED  [ 48%]
+tests/test_ta_evidence.py::test_nonfacts_not_facts[market_narrative] PASSED [ 51%]
+tests/test_ta_evidence.py::test_propositions_generic_and_news_windows PASSED [ 55%]
+tests/test_ta_evidence.py::test_many_mirrors_do_not_cover_primary_risk PASSED [ 59%]
+tests/test_ta_evidence.py::test_future_publication_not_admitted PASSED   [ 62%]
+tests/test_ta_evidence.py::test_conversion_keeps_raw_and_formula PASSED  [ 66%]
+tests/test_ta_evidence.py::test_equity_subject_difference_not_numeric_conflict PASSED [ 70%]
+tests/test_ta_evidence.py::test_fetch_fallback_and_immutable_replay FAILED [ 74%]
+tests/test_ta_evidence.py::test_search_no_results_distinct_from_restricted FAILED [ 77%]
+tests/test_ta_evidence.py::test_collect_checkpoint_and_changed_plan PASSED [ 81%]
+tests/test_ta_evidence.py::test_invalid_json_gets_one_real_repair_not_local_edit PASSED [ 85%]
+tests/test_ta_evidence.py::test_revision_preserves_explicit_not_run_stock PASSED [ 88%]
+tests/test_ta_evidence.py::test_failed_json_inference_is_still_counted PASSED [ 92%]
+tests/test_ta_evidence.py::test_support_condition_is_not_thesis_invalidation PASSED [ 96%]
+tests/test_ta_evidence.py::test_freeze_refuses_new_collection_in_old_root PASSED [100%]
+
+=================================== FAILURES ===================================
+___________________ test_fetch_fallback_and_immutable_replay ___________________
+tests/test_ta_evidence.py:85: in test_fetch_fallback_and_immutable_replay
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+_______________ test_search_no_results_distinct_from_restricted ________________
+tests/test_ta_evidence.py:110: in test_search_no_results_distinct_from_restricted
+    assert t.search(task,tmp_path,backends=['bing_rss'])['status']=='searched_no_results'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mt1/ta_evidence.py:116: in search
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+=========================== short test summary info ============================
+FAILED tests/test_ta_evidence.py::test_fetch_fallback_and_immutable_replay - ModuleNotFoundError: No module named 'requests'
+FAILED tests/test_ta_evidence.py::test_search_no_results_distinct_from_restricted - ModuleNotFoundError: No module named 'requests'
+========================= 2 failed, 25 passed in 0.12s =========================

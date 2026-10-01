@@ -1,0 +1,59 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 37 items
+
+tests/test_ta_research.py::test_quote_positive PASSED                    [  2%]
+tests/test_ta_research.py::test_evidence_negative[published_at-2026-09-16T00:00:00+08:00-future_publication] PASSED [  5%]
+tests/test_ta_research.py::test_evidence_negative[fetched_at-2026-09-16T00:00:00+08:00-future_fetch] PASSED [  8%]
+tests/test_ta_research.py::test_evidence_negative[published_at-None-publication_unknown] PASSED [ 10%]
+tests/test_ta_research.py::test_evidence_negative[currency-HKD-currency_conflict] PASSED [ 13%]
+tests/test_ta_research.py::test_stale_quote PASSED                       [ 16%]
+tests/test_ta_research.py::test_quote_invalid_number PASSED              [ 18%]
+tests/test_ta_research.py::test_foreign_code PASSED                      [ 21%]
+tests/test_ta_research.py::test_hash_changed PASSED                      [ 24%]
+tests/test_ta_research.py::test_output_valid PASSED                      [ 27%]
+tests/test_ta_research.py::test_false_reference PASSED                   [ 29%]
+tests/test_ta_research.py::test_hypothesis_cannot_be_fact PASSED         [ 32%]
+tests/test_ta_research.py::test_precision_rejected PASSED                [ 35%]
+tests/test_ta_research.py::test_numeric_contract PASSED                  [ 37%]
+tests/test_ta_research.py::test_code_mapping[001309.SZ-sz001309] PASSED  [ 40%]
+tests/test_ta_research.py::test_code_mapping[603986.SH-sh603986] PASSED  [ 43%]
+tests/test_ta_research.py::test_code_mapping[00700.HK-hk00700] PASSED    [ 45%]
+tests/test_ta_research.py::test_no_bad_code PASSED                       [ 48%]
+tests/test_ta_research.py::test_immutable_save PASSED                    [ 51%]
+tests/test_ta_research.py::test_no_result_does_not_block PASSED          [ 54%]
+tests/test_ta_research.py::test_not_matured PASSED                       [ 56%]
+tests/test_ta_research.py::test_price_cannot_prove_business PASSED       [ 59%]
+tests/test_ta_research.py::test_outcome_requires_new_evidence PASSED     [ 62%]
+tests/test_ta_research.py::test_model_checkpoint_no_network FAILED       [ 64%]
+tests/test_ta_research.py::test_retry_bound_and_partial_failure FAILED   [ 67%]
+tests/test_ta_research.py::test_strict_no_unchecked_numeric_extension PASSED [ 70%]
+tests/test_ta_research.py::test_missing_adjudication_reference PASSED    [ 72%]
+tests/test_ta_research.py::test_product_identifier_not_financial_probability PASSED [ 75%]
+tests/test_ta_research.py::test_numeric_string_equivalence_not_conflict PASSED [ 78%]
+tests/test_ta_research.py::test_business_new_evidence_positive PASSED    [ 81%]
+tests/test_ta_research.py::test_price_observation_not_causal_and_correct_horizon PASSED [ 83%]
+tests/test_ta_research.py::test_existing_longitudinal_registration_idempotent PASSED [ 86%]
+tests/test_ta_research.py::test_consumer_scope_hash_and_archive_corruption PASSED [ 89%]
+tests/test_ta_research.py::test_run_stock_isolation_and_resume PASSED    [ 91%]
+tests/test_ta_research.py::test_day_change_not_open_change PASSED        [ 94%]
+tests/test_ta_research.py::test_maturity_cannot_use_unverified_weekdays PASSED [ 97%]
+tests/test_ta_research.py::test_interrupted_collection_retains_previous_raw PASSED [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_model_checkpoint_no_network _______________________
+tests/test_ta_research.py:62: in test_model_checkpoint_no_network
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+_____________________ test_retry_bound_and_partial_failure _____________________
+tests/test_ta_research.py:75: in test_retry_bound_and_partial_failure
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+=========================== short test summary info ============================
+FAILED tests/test_ta_research.py::test_model_checkpoint_no_network - ModuleNotFoundError: No module named 'requests'
+FAILED tests/test_ta_research.py::test_retry_bound_and_partial_failure - ModuleNotFoundError: No module named 'requests'
+========================= 2 failed, 35 passed in 0.14s =========================

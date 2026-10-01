@@ -1,0 +1,268 @@
+{
+  "started_at": "2026-10-01T12:43:22.224261+00:00",
+  "synthetic_prices": false,
+  "instrumentation": "delegate actual subprocess/quote calls; no response substitution",
+  "source_hashes": {
+    "narrative_track.py": "0582fd6c40b34aa86d4f22608638fdb41eb03dd83f14245538ac6f705f264e67",
+    "narrative_sector_bench.py": "e764f379041bd28e9d4addb277d55126ebbda9753715b2b5c4a9a073b0f36518",
+    "narrative_perf_quality.py": "c0bdccd97664243eda50ef85dc553fb787c1a0c263225977250ad2a2e0045797",
+    "narrative_perf_exclusions.jsonl": "a6e583d8c5e2a678c57a5a20a4cd1cf8659cbf583dd9371fd859987db8e427ed",
+    "quote_sources.py": "0a342427d6fa7d3013dd864962fe6d1a4e1e2046d95f29458f1ba1ab4f4d965a",
+    "tushare.py": "1ed4c8c2d8fbe493355f375a7c6b15c374ea214cc2ecce0c47e872cb84c4794e"
+  },
+  "calendars": {
+    "CN": [
+      {
+        "exchange": "SSE",
+        "cal_date": "20261002",
+        "is_open": "0",
+        "pretrade_date": "20260930"
+      },
+      {
+        "exchange": "SSE",
+        "cal_date": "20261001",
+        "is_open": "0",
+        "pretrade_date": "20260930"
+      },
+      {
+        "exchange": "SSE",
+        "cal_date": "20260930",
+        "is_open": "1",
+        "pretrade_date": "20260929"
+      },
+      {
+        "exchange": "SSE",
+        "cal_date": "20260929",
+        "is_open": "1",
+        "pretrade_date": "20260928"
+      },
+      {
+        "exchange": "SSE",
+        "cal_date": "20260928",
+        "is_open": "1",
+        "pretrade_date": "20260924"
+      },
+      {
+        "exchange": "SSE",
+        "cal_date": "20260927",
+        "is_open": "0",
+        "pretrade_date": "20260924"
+      },
+      {
+        "exchange": "SSE",
+        "cal_date": "20260926",
+        "is_open": "0",
+        "pretrade_date": "20260924"
+      },
+      {
+        "exchange": "SSE",
+        "cal_date": "20260925",
+        "is_open": "0",
+        "pretrade_date": "20260924"
+      },
+      {
+        "exchange": "SSE",
+        "cal_date": "20260924",
+        "is_open": "1",
+        "pretrade_date": "20260923"
+      }
+    ],
+    "HK": [
+      {
+        "cal_date": "20261002",
+        "is_open": "1",
+        "pretrade_date": "20260930"
+      },
+      {
+        "cal_date": "20261001",
+        "is_open": "0",
+        "pretrade_date": "20260930"
+      },
+      {
+        "cal_date": "20260930",
+        "is_open": "1",
+        "pretrade_date": "20260929"
+      },
+      {
+        "cal_date": "20260929",
+        "is_open": "1",
+        "pretrade_date": "20260928"
+      },
+      {
+        "cal_date": "20260928",
+        "is_open": "1",
+        "pretrade_date": "20260925"
+      },
+      {
+        "cal_date": "20260927",
+        "is_open": "0",
+        "pretrade_date": "20260925"
+      },
+      {
+        "cal_date": "20260926",
+        "is_open": "0",
+        "pretrade_date": "20260925"
+      },
+      {
+        "cal_date": "20260925",
+        "is_open": "1",
+        "pretrade_date": "20260924"
+      },
+      {
+        "cal_date": "20260924",
+        "is_open": "1",
+        "pretrade_date": "20260923"
+      }
+    ]
+  },
+  "incident_isolated_verify": {
+    "stats": {
+      "mode": "full",
+      "dry_run": 0,
+      "events_total": 2,
+      "events_open": 2,
+      "events_expired": 0,
+      "ticker_pairs_total": 4,
+      "ticker_pairs_candidate": 4,
+      "would_verify": 0,
+      "verified": 0,
+      "skipped_policy": 0,
+      "skipped_unsupported": 0,
+      "skipped_dup": 0,
+      "fetch_failed": 4
+    },
+    "ledger_before": "2054366a311e10f7b367d39ce6707a1c210c17a2eca72282d84e831145479a99",
+    "ledger_after": "2054366a311e10f7b367d39ce6707a1c210c17a2eca72282d84e831145479a99"
+  },
+  "target_benchmarks": {
+    "A": [
+      "000300.SH",
+      null
+    ],
+    "HK": [
+      "HSI",
+      null
+    ]
+  },
+  "prior_cn_closes": {
+    "300274.SZ": 82.49,
+    "601126.SH": 36.49,
+    "601179.SH": 11.61,
+    "301308.SZ": 301.93
+  },
+  "independent_market_cases": [
+    {
+      "date": "20261001",
+      "event_is_synthetic": true,
+      "prices_are_live": true,
+      "stats": {
+        "mode": "full",
+        "dry_run": 0,
+        "events_total": 1,
+        "events_open": 1,
+        "events_expired": 0,
+        "ticker_pairs_total": 1,
+        "ticker_pairs_candidate": 1,
+        "would_verify": 0,
+        "verified": 0,
+        "skipped_policy": 0,
+        "skipped_unsupported": 0,
+        "skipped_dup": 0,
+        "fetch_failed": 1
+      },
+      "appended": []
+    },
+    {
+      "date": "20260925",
+      "event_is_synthetic": true,
+      "prices_are_live": true,
+      "stats": {
+        "mode": "full",
+        "dry_run": 0,
+        "events_total": 1,
+        "events_open": 1,
+        "events_expired": 0,
+        "ticker_pairs_total": 2,
+        "ticker_pairs_candidate": 2,
+        "would_verify": 0,
+        "verified": 1,
+        "skipped_policy": 0,
+        "skipped_unsupported": 0,
+        "skipped_dup": 0,
+        "fetch_failed": 1
+      },
+      "appended": [
+        {
+          "event_ts": "ISOLATED_LIVE_PROBE_20260925",
+          "event_trade_date": "20260924",
+          "event_pub_date": "20260924",
+          "baseline_date": "20260924",
+          "event_score": 3,
+          "event_effective_score": 3,
+          "event_pool": "legacy",
+          "event_track": null,
+          "event_subdomain": null,
+          "event_title": "",
+          "code": "00700.HK",
+          "name": "",
+          "side": "+",
+          "verify_ts": "2026-10-01T20:43:48+08:00",
+          "verify_date": "20260925",
+          "days_since_event": 1,
+          "baseline_price": 438.4,
+          "current_price": 436.6,
+          "absolute_pct": -0.41,
+          "benchmark": "HSI",
+          "benchmark_baseline": 24761.13,
+          "benchmark_current": 24510.09,
+          "benchmark_pct": -1.01,
+          "excess_pct": 0.6,
+          "hit": true,
+          "sector_name": null,
+          "sector_pct": null,
+          "sector_n_members": null,
+          "excess_vs_sector": null,
+          "hit_vs_sector": null,
+          "hit_strict": null
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "completed_at": "2026-10-01T12:43:48.073920+00:00",
+  "protected_unchanged": {
+    "/home/emox/work/projects/market-tools/narrative_perf.jsonl": true,
+    "/home/emox/work/projects/market-tools/narrative_events.jsonl": true,
+    "/home/emox/work/projects/market-tools/recommendations.jsonl": true,
+    "/home/emox/work/projects/market-tools/recommendations_performance.jsonl": true,
+    "/home/emox/work/projects/market-tools/watchlist.yaml": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/perf-appended.jsonl": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/perf_before.txt": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/perf_after.txt": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/bundle.json": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/completed_at.txt": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/sse-calendar.csv": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/verify-1.exit": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/incident.md": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/execution-source.txt": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/started_at.txt": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/verify-1.log": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/run.sh": true,
+    "/home/emox/work/projects/market-tools/.cron_state/narrative-track-daily/20261001-1945/archive-output.json": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/result.json": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/manifest.json": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/perf-appended.jsonl": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/perf_before.txt": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/perf_after.txt": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/completed_at.txt": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/sse-calendar.csv": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/verify-1.exit": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/incident.md": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/execution-source.txt": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/submitted-bundle.json": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/started_at.txt": true,
+    "/home/emox/work/projects/market-tools/.cron_state/mt1/longitudinal/narrative-track-daily/user-reset-20260911T120928Z/2026-10-01/narrative-track-daily-20261001T1945/r000001/materials/verify-1.log": true,
+    "/home/emox/work/investment/reference/tracking-scope.json": true
+  },
+  "all_protected_unchanged": true
+}

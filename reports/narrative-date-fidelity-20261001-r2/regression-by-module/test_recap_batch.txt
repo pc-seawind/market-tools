@@ -1,0 +1,28 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 18 items
+
+tests/test_recap_batch.py::test_projection_equivalent_nulls_missing_fallback_history_untouched PASSED [  5%]
+tests/test_recap_batch.py::test_invalid_batch_is_not_published[items0] PASSED [ 11%]
+tests/test_recap_batch.py::test_invalid_batch_is_not_published[items1] PASSED [ 16%]
+tests/test_recap_batch.py::test_invalid_batch_is_not_published[items2] PASSED [ 22%]
+tests/test_recap_batch.py::test_invalid_batch_is_not_published[items3] PASSED [ 27%]
+tests/test_recap_batch.py::test_pagination_and_failed_terminal_no_false_complete PASSED [ 33%]
+tests/test_recap_batch.py::test_exact_cache_revision_wins_over_new_batch PASSED [ 38%]
+tests/test_recap_batch.py::test_run_cache_wins_and_batch_missing_uses_original_failure PASSED [ 44%]
+tests/test_recap_batch.py::test_stage_wall_and_real_tushare_counter_path PASSED [ 50%]
+tests/test_recap_batch.py::test_unfinished_is_unknown_not_summed_rpc PASSED [ 55%]
+tests/test_recap_batch.py::test_default_shell_batch_stage_route PASSED   [ 61%]
+tests/test_recap_batch.py::test_stale_panel_never_served[expired] PASSED [ 66%]
+tests/test_recap_batch.py::test_stale_panel_never_served[future_clock] PASSED [ 72%]
+tests/test_recap_batch.py::test_stale_panel_never_served[previous_day] PASSED [ 77%]
+tests/test_recap_batch.py::test_stale_panel_never_served[wrong_date] PASSED [ 83%]
+tests/test_recap_batch.py::test_stale_panel_never_served[no_cache] PASSED [ 88%]
+tests/test_recap_batch.py::test_stock_detail_cannot_override_phase_or_break_telemetry PASSED [ 94%]
+tests/test_recap_batch.py::test_score_memory_hit_is_separate_from_http PASSED [100%]
+
+============================== 18 passed in 0.67s ==============================

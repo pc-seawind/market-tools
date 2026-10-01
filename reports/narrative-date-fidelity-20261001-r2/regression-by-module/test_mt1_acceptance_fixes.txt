@@ -1,0 +1,31 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 21 items
+
+tests/test_mt1_acceptance_fixes.py::test_exit_does_not_require_buy_gates[pending_review-SELL] PASSED [  4%]
+tests/test_mt1_acceptance_fixes.py::test_exit_does_not_require_buy_gates[pending_review-EXIT] PASSED [  9%]
+tests/test_mt1_acceptance_fixes.py::test_exit_does_not_require_buy_gates[final-SELL] PASSED [ 14%]
+tests/test_mt1_acceptance_fixes.py::test_exit_does_not_require_buy_gates[final-EXIT] PASSED [ 19%]
+tests/test_mt1_acceptance_fixes.py::test_exit_pending_rejects_bad_evidence[evidence0] PASSED [ 23%]
+tests/test_mt1_acceptance_fixes.py::test_exit_pending_rejects_bad_evidence[evidence1] PASSED [ 28%]
+tests/test_mt1_acceptance_fixes.py::test_exit_pending_rejects_bad_evidence[evidence2] PASSED [ 33%]
+tests/test_mt1_acceptance_fixes.py::test_exit_pending_rejects_bad_evidence[evidence3] PASSED [ 38%]
+tests/test_mt1_acceptance_fixes.py::test_legacy_exemption_is_only_explicit_migration PASSED [ 42%]
+tests/test_mt1_acceptance_fixes.py::test_method_binding_and_withdrawal PASSED [ 47%]
+tests/test_mt1_acceptance_fixes.py::test_deadline_extension_is_evidence_versioned_and_original_immutable PASSED [ 52%]
+tests/test_mt1_acceptance_fixes.py::test_hold_has_own_thesis_not_buy_valuation PASSED [ 57%]
+tests/test_mt1_acceptance_fixes.py::test_universe_batches_advance_across_dates_and_retry_failures PASSED [ 61%]
+tests/test_mt1_acceptance_fixes.py::test_baseline_registration_is_explicit_and_retry_cannot_reactivate PASSED [ 66%]
+tests/test_mt1_acceptance_fixes.py::test_new_ledger_verify_survives_exit_and_is_idempotent PASSED [ 71%]
+tests/test_mt1_acceptance_fixes.py::test_four_phase_finalize_reads_real_registry_and_withdrawal[morning] PASSED [ 76%]
+tests/test_mt1_acceptance_fixes.py::test_four_phase_finalize_reads_real_registry_and_withdrawal[evening] PASSED [ 80%]
+tests/test_mt1_acceptance_fixes.py::test_four_phase_finalize_reads_real_registry_and_withdrawal[saturday] PASSED [ 85%]
+tests/test_mt1_acceptance_fixes.py::test_four_phase_finalize_reads_real_registry_and_withdrawal[sunday] PASSED [ 90%]
+tests/test_mt1_acceptance_fixes.py::test_existing_daily_verify_entrypoint_calls_both_ledgers PASSED [ 95%]
+tests/test_mt1_acceptance_fixes.py::test_exit_updates_cannot_replace_evidence_with_unverified PASSED [100%]
+
+============================== 21 passed in 0.13s ==============================

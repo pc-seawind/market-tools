@@ -1,0 +1,34 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 24 items
+
+tests/test_huatai_daily.py::test_complete_verbatim_idempotent_and_new_report PASSED [  4%]
+tests/test_huatai_daily.py::test_isolation_and_business_no_retry PASSED  [  8%]
+tests/test_huatai_daily.py::test_network_bounded_retry_and_hard_timeout PASSED [ 12%]
+tests/test_huatai_daily.py::test_time_scope_and_interrupted_request PASSED [ 16%]
+tests/test_huatai_daily.py::test_corruption_and_pending_visible PASSED   [ 20%]
+tests/test_huatai_daily.py::test_actual_consumer_preserves_sections_and_hash[True-morning] PASSED [ 25%]
+tests/test_huatai_daily.py::test_actual_consumer_preserves_sections_and_hash[True-evening] PASSED [ 29%]
+tests/test_huatai_daily.py::test_actual_consumer_preserves_sections_and_hash[False-morning] PASSED [ 33%]
+tests/test_huatai_daily.py::test_actual_consumer_preserves_sections_and_hash[False-evening] PASSED [ 37%]
+tests/test_huatai_daily.py::test_publication_lossless_over_document_limit PASSED [ 41%]
+tests/test_huatai_daily.py::test_two_collectors_only_one_request_per_stock PASSED [ 45%]
+tests/test_huatai_daily.py::test_launcher_uses_independent_budget_and_no_secret_argv PASSED [ 50%]
+tests/test_huatai_daily.py::test_publication_utf8_boundary[90001] PASSED [ 54%]
+tests/test_huatai_daily.py::test_publication_utf8_boundary[100945] PASSED [ 58%]
+tests/test_huatai_daily.py::test_publication_utf8_boundary[102399] PASSED [ 62%]
+tests/test_huatai_daily.py::test_publication_utf8_boundary[102400] PASSED [ 66%]
+tests/test_huatai_daily.py::test_publication_utf8_boundary[102401] PASSED [ 70%]
+tests/test_huatai_daily.py::test_explicit_optional_only_when_needed[execution_log] PASSED [ 75%]
+tests/test_huatai_daily.py::test_explicit_optional_only_when_needed[hash] PASSED [ 79%]
+tests/test_huatai_daily.py::test_explicit_optional_only_when_needed[consumer_receipt] PASSED [ 83%]
+tests/test_huatai_daily.py::test_explicit_optional_only_when_needed[duplicate_engineering_appendix] PASSED [ 87%]
+tests/test_huatai_daily.py::test_cannot_label_huatai_as_optional PASSED  [ 91%]
+tests/test_huatai_daily.py::test_no_heading_heuristics_or_stale_spans PASSED [ 95%]
+tests/test_huatai_daily.py::test_real_cycle_passes_optional_spans_after_huatai_prefix PASSED [100%]
+
+============================== 24 passed in 0.74s ==============================

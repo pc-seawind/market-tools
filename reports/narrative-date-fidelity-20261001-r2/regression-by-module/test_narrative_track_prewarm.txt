@@ -1,0 +1,15 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 5 items
+
+tests/test_narrative_track_prewarm.py::test_prewarm_verify_state_reuses_stock_and_benchmark_baselines PASSED [ 20%]
+tests/test_narrative_track_prewarm.py::test_verify_all_does_not_resolve_existing_pair_baseline PASSED [ 40%]
+tests/test_narrative_track_prewarm.py::test_fetch_stock_close_reuses_a_share_snapshot PASSED [ 60%]
+tests/test_narrative_track_prewarm.py::test_verify_all_skips_unsupported_us_without_fetch_failure PASSED [ 80%]
+tests/test_narrative_track_prewarm.py::test_verify_event_ticker_rejects_unsupported_market_before_io PASSED [100%]
+
+============================== 5 passed in 0.03s ===============================

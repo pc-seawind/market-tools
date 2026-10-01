@@ -1,0 +1,47 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 19 items
+
+tests/test_ta_evidence_r2.py::test_last_completed_not_unopened_session[0-2026-09-15] PASSED [  5%]
+tests/test_ta_evidence_r2.py::test_last_completed_not_unopened_session[9-2026-09-15] PASSED [ 10%]
+tests/test_ta_evidence_r2.py::test_last_completed_not_unopened_session[14-2026-09-15] PASSED [ 15%]
+tests/test_ta_evidence_r2.py::test_last_completed_not_unopened_session[16-2026-09-16] PASSED [ 21%]
+tests/test_ta_evidence_r2.py::test_holiday_explicit_not_weekday_guess PASSED [ 26%]
+tests/test_ta_evidence_r2.py::test_midnight_bridge_requires_exchange_rows_and_keeps_original PASSED [ 31%]
+tests/test_ta_evidence_r2.py::test_review_date_is_local_end_of_day[2026-09-16T00:01:00+08:00-True] PASSED [ 36%]
+tests/test_ta_evidence_r2.py::test_review_date_is_local_end_of_day[2026-09-16T14:00:00+08:00-True] PASSED [ 42%]
+tests/test_ta_evidence_r2.py::test_review_date_is_local_end_of_day[2026-09-17T00:00:00+08:00-False] PASSED [ 47%]
+tests/test_ta_evidence_r2.py::test_proposition_bound_resolve_unknown_and_wrong_evidence PASSED [ 52%]
+tests/test_ta_evidence_r2.py::test_lead_ambiguous_not_admitted FAILED    [ 57%]
+tests/test_ta_evidence_r2.py::test_semantic_support_negation[\u82e5\u76c8\u5229\u56de\u843d\uff0c\u547d\u9898\u83b7\u5f97\u652f\u6301\u3002-True] PASSED [ 63%]
+tests/test_ta_evidence_r2.py::test_semantic_support_negation[\u76c8\u5229\u56de\u843d\u4e0d\u80fd\u8bf4\u660e\u547d\u9898\u83b7\u5f97\u652f\u6301\u3002-False] PASSED [ 68%]
+tests/test_ta_evidence_r2.py::test_semantic_support_negation[\u4e0d\u80fd\u636e\u6b64\u8ba4\u5b9a\u547d\u9898\u5f97\u5230\u8bc1\u5b9e\u3002-False] PASSED [ 73%]
+tests/test_ta_evidence_r2.py::test_semantic_support_negation[\u82e5\u91c7\u8d2d\u7ed3\u6784\u7a33\u5b9a\u4e14\u63a7\u5236\u9700\u6c42\u4ef7\u683c\u540e\u76c8\u5229\u6539\u5584\uff0c\u5219\u5206\u6d41\u635f\u5bb3\u4e1a\u7ee9\u547d\u9898\u88ab\u53cd\u9a73\u3002-False] PASSED [ 78%]
+tests/test_ta_evidence_r2.py::test_full_body_lead_admission_not_snippet FAILED [ 84%]
+tests/test_ta_evidence_r2.py::test_unknown_is_not_unsearched_or_publication_approval PASSED [ 89%]
+tests/test_ta_evidence_r2.py::test_pending_worker_does_not_replace_default_pointer PASSED [ 94%]
+tests/test_ta_evidence_r2.py::test_missing_calendar_expected_date_does_not_abort_cohort PASSED [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_lead_ambiguous_not_admitted _______________________
+tests/test_ta_evidence_r2.py:62: in test_lead_ambiguous_not_admitted
+    assert review_lead({'code':'X','name':'测试公司'},lead,r,cfg,'2026-09-16T00:00:00Z')[0] is None
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mt1/ta_evidence.py:353: in review_lead
+    from bs4 import BeautifulSoup
+E   ModuleNotFoundError: No module named 'bs4'
+__________________ test_full_body_lead_admission_not_snippet ___________________
+tests/test_ta_evidence_r2.py:78: in test_full_body_lead_admission_not_snippet
+    raw=tmp_path/'raw';raw.write_text(html);body=tmp_path/'text';body.write_text(text_from(raw.read_bytes()))
+                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mt1/ta_evidence.py:28: in text_from
+    from bs4 import BeautifulSoup
+E   ModuleNotFoundError: No module named 'bs4'
+=========================== short test summary info ============================
+FAILED tests/test_ta_evidence_r2.py::test_lead_ambiguous_not_admitted - ModuleNotFoundError: No module named 'bs4'
+FAILED tests/test_ta_evidence_r2.py::test_full_body_lead_admission_not_snippet - ModuleNotFoundError: No module named 'bs4'
+========================= 2 failed, 17 passed in 0.11s =========================

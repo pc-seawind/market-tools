@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 13 items
+
+tests/test_longitudinal.py::test_archive_content_before_cache_overwrite PASSED [  7%]
+tests/test_longitudinal.py::test_same_day_revisions_immutable PASSED     [ 15%]
+tests/test_longitudinal.py::test_url_not_content PASSED                  [ 23%]
+tests/test_longitudinal.py::test_forecast_requires_bytes_and_earlier_timestamp PASSED [ 30%]
+tests/test_longitudinal.py::test_cross_week_pending_overdue_not_completed PASSED [ 38%]
+tests/test_longitudinal.py::test_original_cannot_rewrite PASSED          [ 46%]
+tests/test_longitudinal.py::test_outcome_requires_material_and_keeps_history PASSED [ 53%]
+tests/test_longitudinal.py::test_archive_failure_no_latest_pointer PASSED [ 61%]
+tests/test_longitudinal.py::test_no_path_escape PASSED                   [ 69%]
+tests/test_longitudinal.py::test_original_forecast_bytes_cannot_change_under_same_name PASSED [ 76%]
+tests/test_longitudinal.py::test_weekly_detects_missing_or_corrupt_archived_material PASSED [ 84%]
+tests/test_longitudinal.py::test_parallel_archives_allocate_unique_revisions PASSED [ 92%]
+tests/test_longitudinal.py::test_daily_archive_failure_does_not_overwrite_handoff PASSED [100%]
+
+============================== 13 passed in 0.12s ==============================

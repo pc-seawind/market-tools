@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 22 items
+
+tests/test_mt1.py::test_session_expectation[morning-2026-09-09] PASSED   [  4%]
+tests/test_mt1.py::test_session_expectation[evening-2026-09-10] PASSED   [  9%]
+tests/test_mt1.py::test_holiday_weekend_failure_and_weekend_research PASSED [ 13%]
+tests/test_mt1.py::test_foreign_completed_day_and_dst PASSED             [ 18%]
+tests/test_mt1.py::test_hold_preserves_original_baseline_and_cost PASSED [ 22%]
+tests/test_mt1.py::test_exit_requires_new_episode_and_substantive_evidence PASSED [ 27%]
+tests/test_mt1.py::test_final_gate_future_data_shadow_and_hard_fail PASSED [ 31%]
+tests/test_mt1.py::test_event_idempotence_conflict_append_only_and_concurrency PASSED [ 36%]
+tests/test_mt1.py::test_quality_value_no_hot_coverage_missing_and_future_financials PASSED [ 40%]
+tests/test_mt1.py::test_migration_keeps_raw_unknown_and_no_source_changes PASSED [ 45%]
+tests/test_mt1.py::test_pipeline_offline_four_modes_stale_and_resume PASSED [ 50%]
+tests/test_mt1.py::test_raw_candidate_watchlist_block_and_final_dry_run PASSED [ 54%]
+tests/test_mt1.py::test_methods_cannot_promote_without_fetch_or_validation PASSED [ 59%]
+tests/test_mt1.py::test_backtest_fails_closed_without_pit PASSED         [ 63%]
+tests/test_mt1.py::test_paired_backtest_20_40_60_fees_next_fill_and_cash PASSED [ 68%]
+tests/test_mt1.py::test_watchdog_cold_never_exit_or_position_instruction PASSED [ 72%]
+tests/test_mt1.py::test_watchlist_missing_ack_not_marked_success PASSED  [ 77%]
+tests/test_mt1.py::test_calendar_foreign_failure_isolated PASSED         [ 81%]
+tests/test_mt1.py::test_yaml_date_migration_and_finalize_empty_not_fake_review PASSED [ 86%]
+tests/test_mt1.py::test_research_hash_mismatch_not_fetched PASSED        [ 90%]
+tests/test_mt1.py::test_stage_failure_retries_and_success_is_checkpointed PASSED [ 95%]
+tests/test_mt1.py::test_legacy_record_cannot_bypass_exit_or_direction_gate PASSED [100%]
+
+============================== 22 passed in 0.43s ==============================

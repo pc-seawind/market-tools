@@ -1,0 +1,36 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 31 items
+
+tests/test_mt13_execution_worker.py::test_raw_cn_adapter_roundtrip PASSED [  3%]
+tests/test_mt13_execution_worker.py::test_self_made_normalized_json_cannot_replace_provider_bytes PASSED [  6%]
+tests/test_mt13_execution_worker.py::test_strict_real_clock_window_boundaries[09:30:59-True] PASSED [  9%]
+tests/test_mt13_execution_worker.py::test_strict_real_clock_window_boundaries[09:31:00-True] PASSED [ 12%]
+tests/test_mt13_execution_worker.py::test_strict_real_clock_window_boundaries[09:31:01-False] PASSED [ 16%]
+tests/test_mt13_execution_worker.py::test_strict_real_clock_window_boundaries[09:29:59-False] PASSED [ 19%]
+tests/test_mt13_execution_worker.py::test_after_open_preflight_never_relabelled_before_open PASSED [ 22%]
+tests/test_mt13_execution_worker.py::test_hk_strict_unknown_is_not_cleared PASSED [ 25%]
+tests/test_mt13_execution_worker.py::test_hk_observed_separate_model_actual_receipt_price PASSED [ 29%]
+tests/test_mt13_execution_worker.py::test_weekend_live_source_cannot_be_monday_quote PASSED [ 32%]
+tests/test_mt13_execution_worker.py::test_same_bytes_distinct_capture_identity PASSED [ 35%]
+tests/test_mt13_execution_worker.py::test_provider_rate_error_is_not_empty_success PASSED [ 38%]
+tests/test_mt13_execution_worker.py::test_network_deadline_keeps_error_metadata_no_fake_response PASSED [ 41%]
+tests/test_mt13_execution_worker.py::test_expired_sell_same_signal_renews_and_exits_once PASSED [ 45%]
+tests/test_mt13_execution_worker.py::test_explicit_cancel_expired_sell_never_autorenews PASSED [ 48%]
+tests/test_mt13_execution_worker.py::test_operator_pause_resume_is_explicit PASSED [ 51%]
+tests/test_mt13_execution_worker.py::test_provider_bytes_to_consume_to_fill_not_only_json_adapter PASSED [ 54%]
+tests/test_mt13_execution_worker.py::test_model_switch_existing_root_refused PASSED [ 58%]
+tests/test_mt13_execution_worker.py::test_all_report_consumers_fail_isolated[morning] PASSED [ 61%]
+tests/test_mt13_execution_worker.py::test_all_report_consumers_fail_isolated[evening] PASSED [ 64%]
+tests/test_mt13_execution_worker.py::test_all_report_consumers_fail_isolated[weekly] PASSED [ 67%]
+tests/test_mt13_execution_worker.py::test_real_raw_protocol_fixture_readable PASSED [ 70%]
+tests/test_mt13_execution_worker.py::test_quote_pair_requires_progress_not_two_hashes PASSED [ 74%]
+tests/test_mt13_execution_worker.py::test_hk_delayed_print_never_fills_backdated_open PASSED [ 77%]
+tests/test_mt13_execution_worker.py::test_renewal_forbids_same_day_earlier_open_backfill PASSED [ 80%]
+tests/test_mt13_execution_worker.py::test_exit_only_confirmation_can_renew_expired_sell PASSED [ 83%]
+tests/test_mt13_execution_worker.py::test_raw_failure_three_sessions_expiry_renew_recover_single_exit[suspended] PASSED [ 87%]
+tests/test_mt13_execution_worker.py::test_raw_failure_three_sessions_expiry_renew_recover_single_exit[rate_limited] 

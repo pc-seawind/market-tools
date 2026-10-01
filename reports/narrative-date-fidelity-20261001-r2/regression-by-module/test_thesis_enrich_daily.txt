@@ -1,0 +1,16 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 6 items
+
+tests/test_thesis_enrich_daily.py::ThesisEnrichDailyTests::test_append_update_is_atomic_and_valid PASSED [ 16%]
+tests/test_thesis_enrich_daily.py::ThesisEnrichDailyTests::test_append_validation_failure_preserves_original PASSED [ 33%]
+tests/test_thesis_enrich_daily.py::ThesisEnrichDailyTests::test_has_update_for_date_handles_yaml_date_objects PASSED [ 50%]
+tests/test_thesis_enrich_daily.py::ThesisEnrichDailyTests::test_main_creates_nested_output_parent PASSED [ 66%]
+tests/test_thesis_enrich_daily.py::ThesisEnrichDailyTests::test_main_does_not_write_when_history_is_insufficient PASSED [ 83%]
+tests/test_thesis_enrich_daily.py::ThesisEnrichDailyTests::test_main_retry_skips_existing_date_without_fetch PASSED [100%]
+
+============================== 6 passed in 0.11s ===============================

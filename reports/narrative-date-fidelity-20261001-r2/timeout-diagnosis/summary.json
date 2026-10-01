@@ -1,0 +1,62 @@
+[
+  {
+    "module": "tests/test_iteration_mature_run.py::test_full_mature_run_pointer_crash_same_command[after_prepare]",
+    "started_at": "2026-10-01T12:48:27.672793+00:00",
+    "elapsed_seconds": 25.004,
+    "returncode": 124,
+    "timed_out": true,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_mature_run.py::test_full_mature_run_pointer_crash_same_command[after_prepare] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/timeout-diagnosis/node-000.txt"
+  },
+  {
+    "module": "tests/test_iteration_revision.py::test_full_run_same_command_recovery[before_release_evidence]",
+    "started_at": "2026-10-01T12:48:52.676762+00:00",
+    "elapsed_seconds": 11.234,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_iteration_revision.py::test_full_run_same_command_recovery[before_release_evidence] Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/timeout-diagnosis/node-001.txt"
+  },
+  {
+    "module": "tests/test_mt12_timing.py::test_archive_to_weekly_maturity_and_rolling_preservation",
+    "started_at": "2026-10-01T12:49:03.911378+00:00",
+    "elapsed_seconds": 25.004,
+    "returncode": 124,
+    "timed_out": true,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt12_timing.py::test_archive_to_weekly_maturity_and_rolling_preservation Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/timeout-diagnosis/node-002.txt"
+  },
+  {
+    "module": "tests/test_mt13_action_loop.py::test_open_fill_before_same_days_close_risk",
+    "started_at": "2026-10-01T12:49:28.915277+00:00",
+    "elapsed_seconds": 1.416,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_action_loop.py::test_open_fill_before_same_days_close_risk PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/timeout-diagnosis/node-003.txt"
+  },
+  {
+    "module": "tests/test_mt13_execution_worker.py::test_raw_failure_three_sessions_expiry_renew_recover_single_exit[rate_limited]",
+    "started_at": "2026-10-01T12:49:30.331962+00:00",
+    "elapsed_seconds": 4.522,
+    "returncode": 0,
+    "timed_out": false,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt13_execution_worker.py::test_raw_failure_three_sessions_expiry_renew_recover_single_exit[rate_limited] PASSED [100%]",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/timeout-diagnosis/node-004.txt"
+  },
+  {
+    "module": "tests/test_mt1_operational_closure.py::test_live_pipeline_launches_once_but_refreshes_sweep_snapshot",
+    "started_at": "2026-10-01T12:49:34.853928+00:00",
+    "elapsed_seconds": 25.008,
+    "returncode": 124,
+    "timed_out": true,
+    "timeout_seconds": 25,
+    "last_node": "tests/test_mt1_operational_closure.py::test_live_pipeline_launches_once_but_refreshes_sweep_snapshot Timeout (0:00:10)!",
+    "log": "/home/emox/work/projects/market-tools/reports/narrative-date-fidelity-20261001-r2/timeout-diagnosis/node-005.txt"
+  }
+]

@@ -1,0 +1,46 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 36 items
+
+tests/test_narrative_date_fidelity.py::test_snapshot_never_falls_back[rows0] PASSED [  2%]
+tests/test_narrative_date_fidelity.py::test_snapshot_never_falls_back[rows1] PASSED [  5%]
+tests/test_narrative_date_fidelity.py::test_snapshot_never_falls_back[rows2] PASSED [  8%]
+tests/test_narrative_date_fidelity.py::test_snapshot_exact_and_cache_version PASSED [ 11%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[2026-09-30-None-date-000001.SZ] PASSED [ 13%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[2026-09-30-None-date-00700.HK] PASSED [ 16%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[2026-09-30-None-trade_date-000001.SZ] PASSED [ 19%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[2026-09-30-None-trade_date-00700.HK] PASSED [ 22%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[2026-10-01-12-date-000001.SZ] PASSED [ 25%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[2026-10-01-12-date-00700.HK] PASSED [ 27%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[2026-10-01-12-trade_date-000001.SZ] PASSED [ 30%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[2026-10-01-12-trade_date-00700.HK] PASSED [ 33%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[-None-date-000001.SZ] PASSED [ 36%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[-None-date-00700.HK] PASSED [ 38%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[-None-trade_date-000001.SZ] PASSED [ 41%]
+tests/test_narrative_date_fidelity.py::test_daily_bars_date_check[-None-trade_date-00700.HK] PASSED [ 44%]
+tests/test_narrative_date_fidelity.py::test_benchmark_date_check[20260930-None-A] PASSED [ 47%]
+tests/test_narrative_date_fidelity.py::test_benchmark_date_check[20260930-None-HK] PASSED [ 50%]
+tests/test_narrative_date_fidelity.py::test_benchmark_date_check[20261001-4000-A] PASSED [ 52%]
+tests/test_narrative_date_fidelity.py::test_benchmark_date_check[20261001-4000-HK] PASSED [ 55%]
+tests/test_narrative_date_fidelity.py::test_oct1_cn_closed_hk_independent[True] PASSED [ 58%]
+tests/test_narrative_date_fidelity.py::test_oct1_cn_closed_hk_independent[False] PASSED [ 61%]
+tests/test_narrative_date_fidelity.py::test_missing_benchmark_is_failure_not_hit[base] PASSED [ 63%]
+tests/test_narrative_date_fidelity.py::test_missing_benchmark_is_failure_not_hit[current] PASSED [ 66%]
+tests/test_narrative_date_fidelity.py::test_real_exclusions_all_consumers_and_correction PASSED [ 69%]
+tests/test_narrative_date_fidelity.py::test_exclusion_fail_closed PASSED [ 72%]
+tests/test_narrative_date_fidelity.py::test_benchmark_base_never_borrows_other_session[20260930-index_daily] PASSED [ 75%]
+tests/test_narrative_date_fidelity.py::test_benchmark_base_never_borrows_other_session[20260930-index_global] PASSED [ 77%]
+tests/test_narrative_date_fidelity.py::test_benchmark_base_never_borrows_other_session[20261002-index_daily] PASSED [ 80%]
+tests/test_narrative_date_fidelity.py::test_benchmark_base_never_borrows_other_session[20261002-index_global] PASSED [ 83%]
+tests/test_narrative_date_fidelity.py::test_benchmark_base_never_borrows_other_session[-index_daily] PASSED [ 86%]
+tests/test_narrative_date_fidelity.py::test_benchmark_base_never_borrows_other_session[-index_global] PASSED [ 88%]
+tests/test_narrative_date_fidelity.py::test_benchmark_base_exact_session[post-4000] PASSED [ 91%]
+tests/test_narrative_date_fidelity.py::test_benchmark_base_exact_session[pre-4000] PASSED [ 94%]
+tests/test_narrative_date_fidelity.py::test_benchmark_base_exact_session[intraday-4100] PASSED [ 97%]
+tests/test_narrative_date_fidelity.py::test_excluded_only_ledger_all_track_readers PASSED [100%]
+
+============================== 36 passed in 0.06s ==============================

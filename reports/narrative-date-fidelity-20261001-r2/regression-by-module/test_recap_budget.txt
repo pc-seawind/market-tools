@@ -1,0 +1,15 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 5 items
+
+tests/test_recap_budget.py::test_checkpoint_then_success PASSED          [ 20%]
+tests/test_recap_budget.py::test_budget_exhausted_retains_scores_and_skips_picks PASSED [ 40%]
+tests/test_recap_budget.py::test_provider_timeout_not_success PASSED     [ 60%]
+tests/test_recap_budget.py::test_shell_syntax_and_budget_validation PASSED [ 80%]
+tests/test_recap_budget.py::test_shell_stage_budget_real_timeout PASSED  [100%]
+
+============================== 5 passed in 1.10s ===============================

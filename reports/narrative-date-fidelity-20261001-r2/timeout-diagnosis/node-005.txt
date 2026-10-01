@@ -1,0 +1,51 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 1 item
+
+tests/test_mt1_operational_closure.py::test_live_pipeline_launches_once_but_refreshes_sweep_snapshot Timeout (0:00:10)!
+Thread 0x0000785fbd3c7080 (most recent call first):
+  File "/usr/lib/python3.12/selectors.py", line 415 in select
+  File "/usr/lib/python3.12/subprocess.py", line 2115 in _communicate
+  File "/usr/lib/python3.12/subprocess.py", line 1209 in communicate
+  File "/home/emox/work/projects/market-tools/recap_runtime.py", line 59 in run
+  File "/home/emox/work/projects/market-tools/mt1/recap_collection.py", line 63 in collect
+  File "/home/emox/work/projects/market-tools/mt1/pipeline.py", line 110 in recap_stage
+  File "/home/emox/work/projects/market-tools/mt1/pipeline.py", line 79 in stage
+  File "/home/emox/work/projects/market-tools/mt1/pipeline.py", line 130 in run
+  File "/home/emox/work/projects/market-tools/tests/test_mt1_operational_closure.py", line 187 in test_live_pipeline_launches_once_but_refreshes_sweep_snapshot
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/python.py", line 166 in pytest_pyfunc_call
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/python.py", line 1720 in runtest
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 179 in pytest_runtest_call
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 245 in <lambda>
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 353 in from_call
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 244 in call_and_report
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 137 in runtestprotocol
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 118 in pytest_runtest_protocol
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/main.py", line 396 in pytest_runtestloop
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/main.py", line 372 in _main
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/main.py", line 318 in wrap_session
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/main.py", line 365 in pytest_cmdline_main
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 199 in main
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 223 in console_main
+  File "/home/emox/work/homespace/.venv/lib/python3.12/site-packages/pytest/__main__.py", line 9 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main

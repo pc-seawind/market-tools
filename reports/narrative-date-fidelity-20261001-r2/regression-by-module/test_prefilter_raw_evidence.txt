@@ -1,0 +1,13 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 3 items
+
+tests/test_prefilter_raw_evidence.py::test_response_saved_before_parsing PASSED [ 33%]
+tests/test_prefilter_raw_evidence.py::test_evidence_never_overwritten PASSED [ 66%]
+tests/test_prefilter_raw_evidence.py::test_shell_persists_outside_temporary_directory PASSED [100%]
+
+============================== 3 passed in 0.03s ===============================

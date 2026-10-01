@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 9 items
+
+tests/test_narrative_radar_p0.py::test_classifier_uses_raw_title_only PASSED [ 11%]
+tests/test_narrative_radar_p0.py::test_capacity_plan_gets_penalty PASSED [ 22%]
+tests/test_narrative_radar_p0.py::test_trade_eligible_happy_path PASSED  [ 33%]
+tests/test_narrative_radar_p0.py::test_late_stage_and_missing_fields_are_blocked PASSED [ 44%]
+tests/test_narrative_radar_p0.py::test_cooldown_only_uses_prior_trade_pool PASSED [ 55%]
+tests/test_narrative_radar_p0.py::test_parse_published_at_normalizes_to_cst PASSED [ 66%]
+tests/test_narrative_radar_p0.py::test_missing_price_crowding_features_are_blocked PASSED [ 77%]
+tests/test_narrative_radar_p0.py::test_p1_price_crowding_happy_path PASSED [ 88%]
+tests/test_narrative_radar_p0.py::test_p1_price_crowding_thresholds_block PASSED [100%]
+
+============================== 9 passed in 0.02s ===============================

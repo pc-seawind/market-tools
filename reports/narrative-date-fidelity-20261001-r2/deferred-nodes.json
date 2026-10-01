@@ -1,0 +1,6 @@
+[
+  "tests/test_iteration_mature_run.py::test_full_mature_run_pointer_crash_same_command[after_prepare]",
+  "tests/test_iteration_mature_run.py::test_full_mature_run_pointer_crash_same_command[after_switch]",
+  "tests/test_mt12_timing.py::test_archive_to_weekly_maturity_and_rolling_preservation",
+  "tests/test_mt1_operational_closure.py::test_live_pipeline_launches_once_but_refreshes_sweep_snapshot"
+]

@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 20 items
+
+tests/test_mt11_forward.py::test_mature_synthetic_cost_benchmark_cash_contract PASSED [  5%]
+tests/test_mt11_forward.py::test_first_and_maturity_trading_dates_exclude_holiday PASSED [ 10%]
+tests/test_mt11_forward.py::test_not_matured_has_no_returns_even_with_synthetic_prices PASSED [ 15%]
+tests/test_mt11_forward.py::test_maturity_close_exact_boundary PASSED    [ 20%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[missing] PASSED [ 25%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[suspension] PASSED [ 30%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[delisted] PASSED [ 35%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[corporate] PASSED [ 40%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[factor] PASSED [ 45%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[unknown_actions] PASSED [ 50%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[benchmark] PASSED [ 55%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[foreign] PASSED [ 60%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[duplicate] PASSED [ 65%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[future] PASSED [ 70%]
+tests/test_mt11_forward.py::test_unknown_or_untradable_blocks_not_zero_returns[hash] PASSED [ 75%]
+tests/test_mt11_forward.py::test_calendar_revision_does_not_move_frozen_deadline PASSED [ 80%]
+tests/test_mt11_forward.py::test_calendar_hole_unknown_timezone_future PASSED [ 85%]
+tests/test_mt11_forward.py::test_intraday_rerun_idempotent_but_revised_input_new_artifact PASSED [ 90%]
+tests/test_mt11_forward.py::test_cohort_registration_dedup_and_frozen_decision PASSED [ 95%]
+tests/test_mt11_forward.py::test_same_day_evening_benchmark_does_not_reuse_morning PASSED [100%]
+
+============================== 20 passed in 0.39s ==============================

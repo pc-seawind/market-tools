@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 20 items
+
+tests/test_mt11_revision2.py::test_legitimate_decision_not_price_date[2026-09-11T08:00:00+08:00-20260910-2026-09-11-2026-09-09] PASSED [  5%]
+tests/test_mt11_revision2.py::test_legitimate_decision_not_price_date[2026-09-11T08:00:00+08:00-20260910-2026-09-11T07:59:59+08:00-2026-09-11T02:00:00+08:00] PASSED [ 10%]
+tests/test_mt11_revision2.py::test_legitimate_decision_not_price_date[2026-09-11T21:00:00+08:00-20260911-2026-09-11T20:00:00+08:00-2026-09-11T19:00:00+08:00] PASSED [ 15%]
+tests/test_mt11_revision2.py::test_legitimate_decision_not_price_date[2026-09-12T10:00:00+08:00-20260911-2026-09-12T09:00:00+08:00-2026-09-11] PASSED [ 20%]
+tests/test_mt11_revision2.py::test_legitimate_decision_not_price_date[2026-09-13T10:00:00+08:00-20260911-2026-09-13T09:00:00+08:00-2026-09-12] PASSED [ 25%]
+tests/test_mt11_revision2.py::test_legitimate_decision_not_price_date[2026-09-11T00:00:00Z-20260910-2026-09-10T19:59:59-04:00-2026-09-10T23:00:00Z] PASSED [ 30%]
+tests/test_mt11_revision2.py::test_future_precision_timezone_and_expiry[reviewed_at-2026-09-11T08:00:00.000001+08:00] PASSED [ 35%]
+tests/test_mt11_revision2.py::test_future_precision_timezone_and_expiry[reviewed_at-2026-09-11T08:00:00] PASSED [ 40%]
+tests/test_mt11_revision2.py::test_future_precision_timezone_and_expiry[reviewed_at-2026-09-11T08:00:00+15:00] PASSED [ 45%]
+tests/test_mt11_revision2.py::test_future_precision_timezone_and_expiry[valid_until-2026-09-11T07:59:59+08:00] PASSED [ 50%]
+tests/test_mt11_revision2.py::test_future_precision_timezone_and_expiry[published_at-2026-09-11T08:00:00.000001+08:00] PASSED [ 55%]
+tests/test_mt11_revision2.py::test_future_precision_timezone_and_expiry[published_at-2026-09-11] PASSED [ 60%]
+tests/test_mt11_revision2.py::test_future_precision_timezone_and_expiry[published_at-2026-09-11T08:00:00] PASSED [ 65%]
+tests/test_mt11_revision2.py::test_future_precision_timezone_and_expiry[published_at-2026-09-11T01:00:00Z] PASSED [ 70%]
+tests/test_mt11_revision2.py::test_historical_replay_and_future_close PASSED [ 75%]
+tests/test_mt11_revision2.py::test_near_ma20_does_not_claim_pullback PASSED [ 80%]
+tests/test_mt11_revision2.py::test_held_deadline_and_exit_are_not_rewritten PASSED [ 85%]
+tests/test_mt11_revision2.py::test_binding_stale_rejected PASSED         [ 90%]
+tests/test_mt11_revision2.py::test_partial_research_closes_to_bound_report_without_fake_final PASSED [ 95%]
+tests/test_mt11_revision2.py::test_passed_research_still_no_final_shadow PASSED [100%]
+
+============================== 20 passed in 0.07s ==============================

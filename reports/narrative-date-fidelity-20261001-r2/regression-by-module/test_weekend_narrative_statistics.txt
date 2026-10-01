@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 10 items
+
+tests/test_weekend_narrative_statistics.py::test_standard_median_all_report_paths[values0] PASSED [ 10%]
+tests/test_weekend_narrative_statistics.py::test_standard_median_all_report_paths[values1] PASSED [ 20%]
+tests/test_weekend_narrative_statistics.py::test_standard_median_all_report_paths[values2] PASSED [ 30%]
+tests/test_weekend_narrative_statistics.py::test_standard_median_all_report_paths[values3] PASSED [ 40%]
+tests/test_weekend_narrative_statistics.py::test_standard_median_all_report_paths[values4] PASSED [ 50%]
+tests/test_weekend_narrative_statistics.py::test_standard_median_all_report_paths[values5] PASSED [ 60%]
+tests/test_weekend_narrative_statistics.py::test_standard_median_all_report_paths[values6] PASSED [ 70%]
+tests/test_weekend_narrative_statistics.py::test_standard_median_all_report_paths[values7] PASSED [ 80%]
+tests/test_weekend_narrative_statistics.py::test_no_false_hit_labels_or_efficacy_claims PASSED [ 90%]
+tests/test_weekend_narrative_statistics.py::test_side_minus_ranking_is_not_hit_classification PASSED [100%]
+
+============================== 10 passed in 0.03s ==============================

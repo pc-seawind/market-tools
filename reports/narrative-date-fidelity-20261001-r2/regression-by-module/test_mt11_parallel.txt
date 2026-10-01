@@ -1,0 +1,57 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 47 items
+
+tests/test_mt11_parallel.py::test_trend_not_value_gate[26] PASSED        [  2%]
+tests/test_mt11_parallel.py::test_trend_not_value_gate[100] PASSED       [  4%]
+tests/test_mt11_parallel.py::test_trend_not_value_gate[1000] PASSED      [  6%]
+tests/test_mt11_parallel.py::test_trend_not_value_gate[-10] PASSED       [  8%]
+tests/test_mt11_parallel.py::test_trend_not_value_gate[None] PASSED      [ 10%]
+tests/test_mt11_parallel.py::test_halfyear_not_annual_and_no_multiply PASSED [ 12%]
+tests/test_mt11_parallel.py::test_future_same_day_stale_unknown_financials[rows0] PASSED [ 14%]
+tests/test_mt11_parallel.py::test_future_same_day_stale_unknown_financials[rows1] PASSED [ 17%]
+tests/test_mt11_parallel.py::test_future_same_day_stale_unknown_financials[rows2] PASSED [ 19%]
+tests/test_mt11_parallel.py::test_future_same_day_stale_unknown_financials[rows3] PASSED [ 21%]
+tests/test_mt11_parallel.py::test_future_same_day_stale_unknown_financials[rows4] PASSED [ 23%]
+tests/test_mt11_parallel.py::test_conflicting_latest_financial PASSED    [ 25%]
+tests/test_mt11_parallel.py::test_industry_adaptation[\u94f6\u884c-unknown] PASSED [ 27%]
+tests/test_mt11_parallel.py::test_industry_adaptation[\u4fdd\u9669-unknown] PASSED [ 29%]
+tests/test_mt11_parallel.py::test_industry_adaptation[\u8bc1\u5238-unknown] PASSED [ 31%]
+tests/test_mt11_parallel.py::test_industry_adaptation[\u591a\u5143\u91d1\u878d-unknown] PASSED [ 34%]
+tests/test_mt11_parallel.py::test_industry_adaptation[\u534a\u5bfc\u4f53-reject] PASSED [ 36%]
+tests/test_mt11_parallel.py::test_industry_adaptation[-unknown] PASSED   [ 38%]
+tests/test_mt11_parallel.py::test_stale_future_timing[20260909-20260910] PASSED [ 40%]
+tests/test_mt11_parallel.py::test_stale_future_timing[20260911-20260910] PASSED [ 42%]
+tests/test_mt11_parallel.py::test_stale_future_timing[20260910-20260911] PASSED [ 44%]
+tests/test_mt11_parallel.py::test_trigger_cancel_hold_separation_and_exit_priority PASSED [ 46%]
+tests/test_mt11_parallel.py::test_pullback_trigger_volume_cancel PASSED  [ 48%]
+tests/test_mt11_parallel.py::test_actual_features_and_adjustment PASSED  [ 51%]
+tests/test_mt11_parallel.py::test_bad_panels_fail_closed[warmup] PASSED  [ 53%]
+tests/test_mt11_parallel.py::test_bad_panels_fail_closed[hole] PASSED    [ 55%]
+tests/test_mt11_parallel.py::test_bad_panels_fail_closed[duplicate] PASSED [ 57%]
+tests/test_mt11_parallel.py::test_bad_panels_fail_closed[future] PASSED  [ 59%]
+tests/test_mt11_parallel.py::test_bad_panels_fail_closed[factor] PASSED  [ 61%]
+tests/test_mt11_parallel.py::test_bad_panels_fail_closed[volume] PASSED  [ 63%]
+tests/test_mt11_parallel.py::test_bad_panels_fail_closed[benchmark] PASSED [ 65%]
+tests/test_mt11_parallel.py::test_bad_panels_fail_closed[nan] PASSED     [ 68%]
+tests/test_mt11_parallel.py::test_reversal_not_profit_gate PASSED        [ 70%]
+tests/test_mt11_parallel.py::test_board_no_admission_whitelist[688001.SH-\u79d1\u521b] PASSED [ 72%]
+tests/test_mt11_parallel.py::test_board_no_admission_whitelist[300001.SZ-\u521b\u4e1a] PASSED [ 74%]
+tests/test_mt11_parallel.py::test_board_no_admission_whitelist[920001.BJ-\u5317\u4ea4] PASSED [ 76%]
+tests/test_mt11_parallel.py::test_board_no_admission_whitelist[600000.SH-\u4e3b\u677f] PASSED [ 78%]
+tests/test_mt11_parallel.py::test_shadow_cannot_be_laundered_as_active PASSED [ 80%]
+tests/test_mt11_parallel.py::test_research_packet_validation[future] PASSED [ 82%]
+tests/test_mt11_parallel.py::test_research_packet_validation[expired] PASSED [ 85%]
+tests/test_mt11_parallel.py::test_research_packet_validation[hash] PASSED [ 87%]
+tests/test_mt11_parallel.py::test_research_packet_validation[code] PASSED [ 89%]
+tests/test_mt11_parallel.py::test_research_packet_validation[valuation] PASSED [ 91%]
+tests/test_mt11_parallel.py::test_research_packet_validation[none] PASSED [ 93%]
+tests/test_mt11_parallel.py::test_research_packet_validation[pass] PASSED [ 95%]
+tests/test_mt11_parallel.py::test_full_funnel_conservation_and_frozen_hashes PASSED [ 97%]
+tests/test_mt11_parallel.py::test_growth_negative_base_not_quality_bonus PASSED [100%]
+
+============================== 47 passed in 0.11s ==============================

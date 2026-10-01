@@ -1,0 +1,27 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 17 items
+
+tests/test_recap_performance.py::test_exact_cache_matches_cli_wire_and_skips_process PASSED [  5%]
+tests/test_recap_performance.py::test_no_unsafe_reuse[yesterday] PASSED  [ 11%]
+tests/test_recap_performance.py::test_no_unsafe_reuse[future_mtime] PASSED [ 17%]
+tests/test_recap_performance.py::test_no_unsafe_reuse[expired] PASSED    [ 23%]
+tests/test_recap_performance.py::test_no_unsafe_reuse[different_fields] PASSED [ 29%]
+tests/test_recap_performance.py::test_no_unsafe_reuse[disabled] PASSED   [ 35%]
+tests/test_recap_performance.py::test_no_unsafe_reuse[negative] PASSED   [ 41%]
+tests/test_recap_performance.py::test_no_unsafe_reuse[corrupt] PASSED    [ 47%]
+tests/test_recap_performance.py::test_no_unsafe_reuse[empty] PASSED      [ 52%]
+tests/test_recap_performance.py::test_no_unsafe_reuse[future_vintage] PASSED [ 58%]
+tests/test_recap_performance.py::test_singleflight_success_only_and_input_isolation PASSED [ 64%]
+tests/test_recap_performance.py::test_full_history_order_nulls_preserved PASSED [ 70%]
+tests/test_recap_performance.py::test_full_sector_frozen_scores_signals_and_partial_coverage[None-False] PASSED [ 76%]
+tests/test_recap_performance.py::test_full_sector_frozen_scores_signals_and_partial_coverage[None-True] PASSED [ 82%]
+tests/test_recap_performance.py::test_full_sector_frozen_scores_signals_and_partial_coverage[301308.SZ-False] PASSED [ 88%]
+tests/test_recap_performance.py::test_full_sector_frozen_scores_signals_and_partial_coverage[301308.SZ-True] PASSED [ 94%]
+tests/test_recap_performance.py::test_singleflight_across_processes PASSED [100%]
+
+============================== 17 passed in 2.20s ==============================

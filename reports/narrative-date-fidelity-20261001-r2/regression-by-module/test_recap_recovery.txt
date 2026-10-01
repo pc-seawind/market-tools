@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 8 items
+
+tests/test_recap_recovery.py::test_partial_consumes_valid_independent_sectors PASSED [ 12%]
+tests/test_recap_recovery.py::test_incomplete_internal_rpc_not_success PASSED [ 25%]
+tests/test_recap_recovery.py::test_reuse_rejects_future_expired_changed_input PASSED [ 37%]
+tests/test_recap_recovery.py::test_real_process_group_timeout PASSED     [ 50%]
+tests/test_recap_recovery.py::test_rpc_cache_limit_and_failed_not_cached PASSED [ 62%]
+tests/test_recap_recovery.py::test_same_day_partial_recovery_and_idempotency PASSED [ 75%]
+tests/test_recap_recovery.py::test_pipeline_refreshes_partial_even_if_stage_done PASSED [ 87%]
+tests/test_recap_recovery.py::test_rpc_future_payload_never_cached PASSED [100%]
+
+============================== 8 passed in 4.28s ===============================

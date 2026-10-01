@@ -1,0 +1,36 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 26 items
+
+tests/test_mt12_history_research.py::test_next_open_not_same_bar PASSED  [  3%]
+tests/test_mt12_history_research.py::test_gap_fills_open_not_signal_or_stop PASSED [  7%]
+tests/test_mt12_history_research.py::test_side_limit_delay[buy-up_limit] PASSED [ 11%]
+tests/test_mt12_history_research.py::test_side_limit_delay[sell-down_limit] PASSED [ 15%]
+tests/test_mt12_history_research.py::test_opposite_limit_not_blocked PASSED [ 19%]
+tests/test_mt12_history_research.py::test_suspension_skips_verified_session PASSED [ 23%]
+tests/test_mt12_history_research.py::test_unknown_does_not_skip_to_favorable_later_open[bar] PASSED [ 26%]
+tests/test_mt12_history_research.py::test_unknown_does_not_skip_to_favorable_later_open[limit] PASSED [ 30%]
+tests/test_mt12_history_research.py::test_unknown_does_not_skip_to_favorable_later_open[limit_value] PASSED [ 34%]
+tests/test_mt12_history_research.py::test_t_plus_one PASSED              [ 38%]
+tests/test_mt12_history_research.py::test_fold_end_no_leak PASSED        [ 42%]
+tests/test_mt12_history_research.py::test_conservative_is_expost_not_signal PASSED [ 46%]
+tests/test_mt12_history_research.py::test_history_gap_restarts_warmup PASSED [ 50%]
+tests/test_mt12_history_research.py::test_future_prices_do_not_change_past_signal PASSED [ 53%]
+tests/test_mt12_history_research.py::test_future_execution_evidence_never_changes_signal PASSED [ 57%]
+tests/test_mt12_history_research.py::test_fee_sensitivity_closed_trade PASSED [ 61%]
+tests/test_mt12_history_research.py::test_terminal_censoring_not_force_close PASSED [ 65%]
+tests/test_mt12_history_research.py::test_adjusted_entry_price_raw_limit_comparison PASSED [ 69%]
+tests/test_mt12_history_research.py::test_offline_missing_checkpoint PASSED [ 73%]
+tests/test_mt12_history_research.py::test_checkpoint_hash_tamper PASSED  [ 76%]
+tests/test_mt12_history_research.py::test_frozen_scope_not_user_holdings PASSED [ 80%]
+tests/test_mt12_history_research.py::test_no_modification_to_forward_executor PASSED [ 84%]
+tests/test_mt12_history_research.py::test_invalid_research_spec_rejected[holding] PASSED [ 88%]
+tests/test_mt12_history_research.py::test_invalid_research_spec_rejected[duplicate] PASSED [ 92%]
+tests/test_mt12_history_research.py::test_invalid_research_spec_rejected[span] PASSED [ 96%]
+tests/test_mt12_history_research.py::test_invalid_research_spec_rejected[parameter] PASSED [100%]
+
+============================== 26 passed in 0.56s ==============================

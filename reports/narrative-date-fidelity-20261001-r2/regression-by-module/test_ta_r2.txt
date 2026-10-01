@@ -1,0 +1,41 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /home/emox/work/homespace/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 24 items
+
+tests/test_ta_r2.py::test_quarter_trigger_cannot_be_next_session[\u4e0b\u5b63\u8425\u6536\u6539\u5584] PASSED [  4%]
+tests/test_ta_r2.py::test_quarter_trigger_cannot_be_next_session[\u4e0b\u4e00\u5b63\u5ea6\u5229\u6da6\u626d\u4e8f] PASSED [  8%]
+tests/test_ta_r2.py::test_quarter_trigger_cannot_be_next_session[\u540e\u7eed\u5b63\u5ea6\u73b0\u91d1\u6d41\u6062\u590d] PASSED [ 12%]
+tests/test_ta_r2.py::test_quarter_trigger_cannot_be_next_session[\u5b63\u62a5\u62ab\u9732\u5b58\u8d27\u964d\u4f4e] PASSED [ 16%]
+tests/test_ta_r2.py::test_quarter_trigger_cannot_be_next_session[\u672a\u6765\u6570\u6708\u5b8c\u6210\u5ba2\u6237\u9a8c\u8bc1] PASSED [ 20%]
+tests/test_ta_r2.py::test_unknown_short_term_is_honest PASSED            [ 25%]
+tests/test_ta_r2.py::test_observable_price_condition_not_quarterly PASSED [ 29%]
+tests/test_ta_r2.py::test_day_return_not_open PASSED                     [ 33%]
+tests/test_ta_r2.py::test_prices_do_not_refute_valuation PASSED          [ 37%]
+tests/test_ta_r2.py::test_archive_excerpt_not_same PASSED                [ 41%]
+tests/test_ta_r2.py::test_prompt_numbers_not_conflicting PASSED          [ 45%]
+tests/test_ta_r2.py::test_exact_offsets_and_later_page PASSED            [ 50%]
+tests/test_ta_r2.py::test_nonproduction_caller_no_process PASSED         [ 54%]
+tests/test_ta_r2.py::test_request_idempotence_and_new_source_revision PASSED [ 58%]
+tests/test_ta_r2.py::test_pipeline_launch_failure_isolated PASSED        [ 62%]
+tests/test_ta_r2.py::test_worker_fails_before_network_on_source_change PASSED [ 66%]
+tests/test_ta_r2.py::test_forward_calendar_gap_not_zero_elapsed PASSED   [ 70%]
+tests/test_ta_r2.py::test_quality_review_identity_and_findings_block PASSED [ 75%]
+tests/test_ta_r2.py::test_forward_panel_matures_twenty_sessions_with_verified_calendar PASSED [ 79%]
+tests/test_ta_r2.py::test_bounded_repair_is_real_second_request_not_normalization FAILED [ 83%]
+tests/test_ta_r2.py::test_volume_comparison_needs_baseline_not_single_snapshot PASSED [ 87%]
+tests/test_ta_r2.py::test_cohort_revision_preserves_parent_and_reuses_exact_unchanged_roles PASSED [ 91%]
+tests/test_ta_r2.py::test_explicit_unknown_volume_is_not_a_volume_claim PASSED [ 95%]
+tests/test_ta_r2.py::test_consumer_late_quality_failure_resets_consumed_status PASSED [100%]
+
+=================================== FAILURES ===================================
+_________ test_bounded_repair_is_real_second_request_not_normalization _________
+tests/test_ta_r2.py:117: in test_bounded_repair_is_real_second_request_not_normalization
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+=========================== short test summary info ============================
+FAILED tests/test_ta_r2.py::test_bounded_repair_is_real_second_request_not_normalization - ModuleNotFoundError: No module named 'requests'
+========================= 1 failed, 23 passed in 0.23s =========================

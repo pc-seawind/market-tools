@@ -1,0 +1,26 @@
+{
+  "hostname": "emox-OMEN-30L-Desktop-GT13-0xxx",
+  "cwd": "/home/emox/work/projects/market-tools",
+  "python": "/usr/bin/python3",
+  "git_head": "63cd761988aadaf21ff9483ea6af0879e0e587d0",
+  "modules": {
+    "narrative_track": {
+      "loaded_from": "/home/emox/work/projects/market-tools/narrative_track.py",
+      "sha256": "0582fd6c40b34aa86d4f22608638fdb41eb03dd83f14245538ac6f705f264e67",
+      "matches_commit_63cd761": true
+    },
+    "narrative_sector_bench": {
+      "loaded_from": "/home/emox/work/projects/market-tools/narrative_sector_bench.py",
+      "sha256": "e764f379041bd28e9d4addb277d55126ebbda9753715b2b5c4a9a073b0f36518",
+      "matches_commit_63cd761": true
+    },
+    "narrative_perf_quality": {
+      "loaded_from": "/home/emox/work/projects/market-tools/narrative_perf_quality.py",
+      "sha256": "c0bdccd97664243eda50ef85dc553fb787c1a0c263225977250ad2a2e0045797",
+      "matches_commit_63cd761": true
+    }
+  },
+  "execution_model": "cron prompt cd market-tools then python3 narrative_track.py starts fresh imports; no worker/gateway restart needed",
+  "pushed": false,
+  "other_workers_synced": false
+}
