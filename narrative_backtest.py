@@ -127,7 +127,8 @@ def pre_features(code,base_date,bars_by_code=None):
 
 def exact_outcomes(horizon):
  out={}
- for p in read_jsonl(PERF):
+ from narrative_perf_quality import filter_perfs
+ for p in filter_perfs(read_jsonl(PERF))[0]:
   if p.get('days_since_event')==horizon: out[(p['event_ts'],p['code'])]=p
  return out
 

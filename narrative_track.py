@@ -6,6 +6,7 @@
 文件:
   narrative_events.jsonl       agent 推 events (radar 写, 这里只读)
   narrative_perf.jsonl         本脚本 append. 每天为每个 (open event, ticker) append 一行
+  narrative_perf_exclusions.jsonl  append-only 异常覆盖层；统计必须经 _read_perfs/filter_perfs
 
 每条 perf record schema:
   {
@@ -141,6 +142,11 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
     return out
 
 
+def _read_perfs() -> list[dict]:
+    from narrative_perf_quality import filter_perfs
+    return filter_perfs(_read_jsonl(_PERF_PATH))[0]
+
+
 def _append_jsonl(path: Path, record: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as f:
@@ -190,7 +196,7 @@ def _fetch_stock_close(ts_code: str, trade_date: Optional[str] = None) -> Option
             return None
         if trade_date:
             for b in bars:
-                if str(b.get("trade_date", "")).replace("-", "") == trade_date:
+                if str(b.get("trade_date") or b.get("date", "")).replace("-", "") == trade_date:
                     return float(b["close"])
             return None
         return float(bars[-1]["close"])
@@ -372,10 +378,15 @@ def resolve_bench_base(bench: str, bapi: str, actual_base_date: str,
                        session: str) -> Optional[float]:
     """benchmark 在 actual_base_date 当天的价格, 取价口径与 stock base 对齐。"""
     field = "close" if session == "intraday" else "open"
-    r = _index_price_on_or_after(bench, bapi, actual_base_date, price_field=field)
-    if r:
-        return r[1]
-    return _index_close_on_or_before(bench, bapi, actual_base_date)
+    rows = _ts_csv(bapi, ts_code=bench, trade_date=actual_base_date)
+    for row in rows:
+        if str(row.get("trade_date", "")).replace("-", "") != actual_base_date:
+            continue
+        try:
+            return float(row[field])
+        except (KeyError, ValueError, TypeError):
+            continue
+    return None
 
 
 # ─── core verify ────────────────────────────────────────────────────────
@@ -383,14 +394,14 @@ def resolve_bench_base(bench: str, bapi: str, actual_base_date: str,
 def _existing_perf_keys() -> set[tuple[str, str, int]]:
     """避免重复 append 同一个 (event_ts, code, days_since_event)."""
     seen = set()
-    for p in _read_jsonl(_PERF_PATH):
+    for p in _read_perfs():
         seen.add((p.get("event_ts", ""), p.get("code", ""), p.get("days_since_event", -1)))
     return seen
 
 
 def _baseline_for(event_ts: str, code: str) -> Optional[float]:
     """从 perf 历史里捞已经存的 baseline (avoid 重复拉 tushare)."""
-    for p in _read_jsonl(_PERF_PATH):
+    for p in _read_perfs():
         if p.get("event_ts") == event_ts and p.get("code") == code:
             v = p.get("baseline_price")
             if v is not None:
@@ -399,7 +410,7 @@ def _baseline_for(event_ts: str, code: str) -> Optional[float]:
 
 
 def _benchmark_baseline_for(event_ts: str, code: str) -> Optional[float]:
-    for p in _read_jsonl(_PERF_PATH):
+    for p in _read_perfs():
         if p.get("event_ts") == event_ts and p.get("code") == code:
             v = p.get("benchmark_baseline")
             if v is not None:
@@ -437,7 +448,7 @@ def _prewarm_verify_state(events: list[dict]) -> tuple[set, dict]:
 
     seen: set[tuple[str, str, int]] = set()
     cached: dict = {}
-    for p in _read_jsonl(_PERF_PATH):
+    for p in _read_perfs():
         event_ts = p.get("event_ts", "")
         code = p.get("code", "")
         seen.add((event_ts, code, p.get("days_since_event", -1)))
@@ -545,6 +556,11 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
         if cached_baseline is not None and bench_current is not None:
             cached_baseline[bck] = bench_current
 
+    # A complete relative-performance observation requires both benchmark anchors.
+    # Missing data is fetch_failed, not an absolute-return "hit" or verified success.
+    if not baseline or not bench_baseline or not bench_current:
+        return None
+
     abs_pct = (current / baseline - 1) * 100 if baseline else 0.0
     bench_pct = ((bench_current / bench_baseline - 1) * 100) if (bench_baseline and bench_current) else None
     excess_pct = (abs_pct - bench_pct) if bench_pct is not None else None
@@ -572,7 +588,7 @@ def verify_event_ticker(event: dict, ticker: dict, verify_date: Optional[str] = 
     if excess_pct is not None:
         hit = (side == "+" and excess_pct > 0) or (side == "-" and excess_pct < 0)
     else:
-        hit = (side == "+" and abs_pct > 0) or (side == "-" and abs_pct < 0)
+        hit = None
 
     # hit_vs_sector: 个股是否跑赢板块 (side=+) 或跑输板块 (side=-)
     hit_vs_sector: Optional[bool] = None
@@ -884,7 +900,8 @@ def report(weeks: int = 4) -> dict[str, Any]:
       * 新增 by_event_type / by_late_stage 聚合
       * by_subdomain 按 main 窗口 hit_rate 排序 (不是 sample 数)
     """
-    perfs = _read_jsonl(_PERF_PATH)
+    from narrative_perf_quality import filter_perfs
+    perfs, quality_audit = filter_perfs(_read_jsonl(_PERF_PATH))
     perfs = _enrich_perf_with_event_meta(perfs)
     since = dt.date.today() - dt.timedelta(weeks=weeks)
 
@@ -902,6 +919,7 @@ def report(weeks: int = 4) -> dict[str, Any]:
 
     # group by milestone
     out: dict = {
+        "quality_audit": quality_audit,
         "statistics_contract": "standard-median-v1; even=middle-two-mean; rankings-not-hit-lists",
         "since": since.isoformat(),
         "ticker_pairs": len(by_pair),
@@ -1059,6 +1077,13 @@ def doc_markdown(weeks: int = 4) -> str:
     md = []
     today = dt.datetime.now(CN_TZ).strftime("%Y-%m-%d")
     md.append(f"# 叙事雷达 · 推演验证 ({today})")
+    md.append("")
+    audit = rep["quality_audit"]
+    md.append(f"> 数据质量审计：显式排除 {audit['excluded_count']} 条历史异常记录（全账本）；"
+              "原始 append-only 记录及 archive 保留不变。排除清单：narrative_perf_exclusions.jsonl。")
+    for item in audit["excluded"]:
+        md.append(f"> 排除 {item['verify_date']} / {item['code']}：{item['reason']} "
+                  f"（sha256={item['record_sha256']}）")
     md.append("")
     md.append(f"**回看窗口**: 过去 {weeks} 周 · 自 {rep['since']} 起")
     md.append(f"**覆盖 events**: {rep['events_covered']} 条 · **ticker pair**: {rep['ticker_pairs']} 个")
@@ -1234,7 +1259,7 @@ def doc_markdown(weeks: int = 4) -> str:
     # 按 sub_domain 分组 (同 sub_domain hit_rate 高的优先), 内部按 days 倒序
     # 让用户决策时先看赛道再看个股: "AI__pcb_substrate 100% 兑现 → 看里面的 ticker"
     # 而不是 "TOP5 涨幅榜 → 散点式看个股"
-    perfs = _read_jsonl(_PERF_PATH)
+    perfs = _read_perfs()
     perfs = _enrich_perf_with_event_meta(perfs)
     since_d = dt.datetime.strptime(rep["since"], "%Y-%m-%d").date()
 
@@ -1328,7 +1353,7 @@ def doc_markdown(weeks: int = 4) -> str:
 
 def event_report(event_ts: str) -> str:
     """单 event 的所有 ticker × milestone 详情."""
-    perfs = [p for p in _read_jsonl(_PERF_PATH) if p.get("event_ts") == event_ts]
+    perfs = [p for p in _read_perfs() if p.get("event_ts") == event_ts]
     if not perfs:
         return f"event {event_ts} 无 perf 记录."
 

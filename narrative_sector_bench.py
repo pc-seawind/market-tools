@@ -91,29 +91,15 @@ _DAILY_SNAPSHOT_CACHE: dict[str, dict[str, float]] = {}
 
 
 def _fetch_daily_snapshot(trade_date: str) -> dict[str, float]:
-    """全市场 close 字典 {ts_code: close} on trade_date. 一次 API 调用搞定。
-
-    ≤trade_date 最近交易日 fallback (周末/节假日)。
-    """
-    import datetime as dt
+    """Exact-date snapshot only; missing sessions must never borrow a prior close."""
     if trade_date in _DAILY_SNAPSHOT_CACHE:
         return _DAILY_SNAPSHOT_CACHE[trade_date]
-
     rows = _ts_csv("daily", trade_date=trade_date)
-    if not rows:
-        # fallback: 找 ≤trade_date 最近交易日
-        try:
-            d = dt.datetime.strptime(trade_date, "%Y%m%d").date()
-        except ValueError:
-            return {}
-        for back in range(1, 11):
-            d2 = (d - dt.timedelta(days=back)).strftime("%Y%m%d")
-            rows = _ts_csv("daily", trade_date=d2)
-            if rows:
-                break
 
     snap = {}
     for r in rows:
+        if str(r.get("trade_date", "")).replace("-", "") != trade_date:
+            continue
         code = r.get("ts_code", "").strip()
         try:
             snap[code] = float(r["close"])
@@ -125,7 +111,7 @@ def _fetch_daily_snapshot(trade_date: str) -> dict[str, float]:
 
 def _cache_path(industry: str, baseline_date: str, verify_date: str) -> Path:
     safe = industry.replace("/", "_").replace(" ", "_")
-    return _CACHE_DIR / f"{safe}__{baseline_date}__{verify_date}.json"
+    return _CACHE_DIR / f"exact-date-v2__{safe}__{baseline_date}__{verify_date}.json"
 
 
 def compute_sector_perf(ts_code: str, baseline_date: str,

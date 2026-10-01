@@ -63,7 +63,8 @@ def load_perf() -> list[dict]:
                 out.append(json.loads(line))
             except json.JSONDecodeError:
                 continue
-    return out
+    from narrative_perf_quality import filter_perfs
+    return filter_perfs(out)[0]
 
 
 def load_events() -> list[dict]:

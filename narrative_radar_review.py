@@ -66,7 +66,8 @@ def load_perf_window(d_lo: int, d_hi: int) -> list:
             d = p.get("days_since_event", 0)
             if d_lo <= d <= d_hi:
                 out.append(p)
-    return out
+    from narrative_perf_quality import filter_perfs
+    return filter_perfs(out)[0]
 
 
 def to_unique_pairs(perf_rows: list) -> dict:
