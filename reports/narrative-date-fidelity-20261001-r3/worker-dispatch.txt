@@ -1,0 +1,2 @@
+Oct 01 19:45:00 emox-OMEN-30L-Desktop-GT13-0xxx homespace-worker[1837]: 2026-10-01 19:45:00,605 INFO homespace.worker.topic | fresh-context: reset provider session for topic #3138
+Oct 01 19:45:00 emox-OMEN-30L-Desktop-GT13-0xxx homespace-worker[1837]: 2026-10-01 19:45:00,912 INFO homespace.worker.topic | turn_context mode=shadow topic=3138 engine=native-code domain=investment hits=5 chars=3099 query_chars=796 query_enriched=True structured_hits=0 structured_abstained=unmatched_identifier adapter_support=True delivered=False

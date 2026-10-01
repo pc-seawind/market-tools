@@ -7,7 +7,7 @@ from mt1.timing_cli import file_hash
 from mt1.store import digest as source_digest
 
 @pytest.mark.parametrize('point',['after_prepare','after_switch'])
-def test_full_mature_run_pointer_crash_same_command(tmp_path,monkeypatch,point):
+def test_full_mature_run_pointer_crash_same_command(tmp_path,monkeypatch,point,isolated_protected_repository):
     root=tmp_path/'SYNTHETIC_ONLY';scope=tmp_path/'scope.json';make_scope(scope)
     panel=fixture();index=0
     def collect(root,d,*args):

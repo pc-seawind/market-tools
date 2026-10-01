@@ -1,0 +1,22 @@
+{
+  "production_files": {
+    "narrative_track.py": {
+      "sha256": "0582fd6c40b34aa86d4f22608638fdb41eb03dd83f14245538ac6f705f264e67",
+      "matches_63cd761": true
+    },
+    "narrative_sector_bench.py": {
+      "sha256": "e764f379041bd28e9d4addb277d55126ebbda9753715b2b5c4a9a073b0f36518",
+      "matches_63cd761": true
+    },
+    "narrative_perf_quality.py": {
+      "sha256": "c0bdccd97664243eda50ef85dc553fb787c1a0c263225977250ad2a2e0045797",
+      "matches_63cd761": true
+    },
+    "narrative_perf_exclusions.jsonl": {
+      "sha256": "a6e583d8c5e2a678c57a5a20a4cd1cf8659cbf583dd9371fd859987db8e427ed",
+      "matches_63cd761": true
+    }
+  },
+  "pushed": false,
+  "multiworker_deployed": false
+}

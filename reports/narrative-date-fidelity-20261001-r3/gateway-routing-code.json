@@ -1,0 +1,14 @@
+{
+  "path": "/home/emox/work/homespace/src/homespace/gateway/feishu.py",
+  "sha256": "2fa3ae2511133563d70dea6838d61d67bc51dc065495972576095b2af671ec73",
+  "snippets": [
+    {
+      "line": 16047,
+      "text": "\n            cron_topic = None\n            cron_worker_id: str | None = None\n            if persistent_topic and job_name:\n                binding = await registry.get_job_topic(\n                    chat_id, eff_domain, job_name,\n                )\n                if binding is not None:\n                    if context_mode == \"checkpoint\":\n                        checkpoint_text = str(binding.get(\"checkpoint\") or \"\")\n                    topic_by_id = getattr(self._topics, \"topic_by_id\", None)"
+    },
+    {
+      "line": 16101,
+      "text": "                            # exist, 15 seconds before home-ubuntu returned).\n                            cron_worker_id = binding_worker_id\n                            logger.info(\n                                \"fire_cron managed: bound worker %s temporarily \"\n                                \"offline for job %s; preserving affinity and \"\n                                \"waiting for reconnect\",\n                                binding_worker_id, job_name,\n                            )\n                        else:\n                            # The bound worker is online but no longer has the\n                            # topic (or its metadata is incompatible): this is"
+    }
+  ]
+}

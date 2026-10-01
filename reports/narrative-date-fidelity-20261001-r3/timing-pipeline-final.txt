@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 3 items
+
+tests/test_mt12_timing.py::test_archive_to_weekly_maturity_and_rolling_preservation PASSED [ 33%]
+tests/test_mt1_operational_closure.py::test_live_pipeline_launches_once_but_refreshes_sweep_snapshot PASSED [ 66%]
+tests/test_narrative_test_isolation.py::test_isolated_protection_enumerates_and_detects_mutation PASSED [100%]
+
+============================= slowest 5 durations ==============================
+4.89s call     tests/test_mt12_timing.py::test_archive_to_weekly_maturity_and_rolling_preservation
+0.03s call     tests/test_mt1_operational_closure.py::test_live_pipeline_launches_once_but_refreshes_sweep_snapshot
+0.00s setup    tests/test_mt12_timing.py::test_archive_to_weekly_maturity_and_rolling_preservation
+0.00s call     tests/test_narrative_test_isolation.py::test_isolated_protection_enumerates_and_detects_mutation
+0.00s setup    tests/test_narrative_test_isolation.py::test_isolated_protection_enumerates_and_detects_mutation
+============================== 3 passed in 4.98s ===============================
+EXIT_CODE=0

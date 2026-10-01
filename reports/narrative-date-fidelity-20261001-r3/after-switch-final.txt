@@ -1,0 +1,16 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/emox/work/projects/market-tools
+plugins: anyio-4.13.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 1 item
+
+tests/test_iteration_mature_run.py::test_full_mature_run_pointer_crash_same_command[after_switch] PASSED [100%]
+
+============================= slowest 5 durations ==============================
+525.68s call     tests/test_iteration_mature_run.py::test_full_mature_run_pointer_crash_same_command[after_switch]
+0.00s setup    tests/test_iteration_mature_run.py::test_full_mature_run_pointer_crash_same_command[after_switch]
+0.00s teardown tests/test_iteration_mature_run.py::test_full_mature_run_pointer_crash_same_command[after_switch]
+======================== 1 passed in 525.71s (0:08:45) =========================
+EXIT_CODE=0

@@ -402,21 +402,28 @@ def test_partial_and_blocked_horizons_are_not_false_completion():
     assert '20交易日=observed_price_only' in report({'cards':[c]})
 
 
-def test_archive_to_weekly_maturity_and_rolling_preservation(tmp_path, monkeypatch):
+def test_archive_to_weekly_maturity_and_rolling_preservation(tmp_path, monkeypatch, isolated_protected_repository):
     import mt1.timing_cli as cli
     from datetime import datetime
     from mt1.longitudinal import weekly_index
+    import mt1.longitudinal as longitudinal
     class Clock(datetime):
+        at = datetime.fromisoformat(ASOF)
+
         @classmethod
         def now(cls,tz=None):
-            return datetime.fromisoformat(ASOF).astimezone(tz)
+            return cls.at.astimezone(tz)
     monkeypatch.setattr(cli,'datetime',Clock)
+    # Archive timestamps share the synthetic observation clock, not wall time.
+    monkeypatch.setattr(longitudinal,'datetime',Clock)
     master=fixture(265)
     scope=tmp_path/'scope.json'; scope.write_text(json.dumps({'scope_epoch':'test','reset_at':'2024-01-01T00:00:00Z',
         'confirmed_holdings':[{'code':'TEST'}],'active_candidates':[]}))
     root=tmp_path/'archive'; prior=None; mature=None
     # Daily 120-bar rolling inputs, including >120 continuation sessions.
     for end in range(120,266):
+        # Preserve latest-event ordering even when archives are generated rapidly.
+        Clock.at = datetime.fromisoformat(ASOF) + timedelta(seconds=end)
         bundle={'source_kind':'SYNTHETIC','scope_epoch':'test','scope_codes':['TEST'],'asof':ASOF,
             'panels':[window_panel(master,end)],'inputs':[],'contract_hash':digest(contract())}
         path=tmp_path/f'bundle-{end}.json'; path.write_text(json.dumps(bundle))

@@ -1,0 +1,39 @@
+........................................................................ [  7%]
+........................................................................ [ 15%]
+........................................................................ [ 23%]
+........................................................................ [ 31%]
+.................................................................F...... [ 39%]
+........................................................................ [ 46%]
+........................................................................ [ 54%]
+........................................................................ [ 62%]
+........................................................................ [ 70%]
+........................................................................ [ 78%]
+........................................................................ [ 85%]
+........................................................................ [ 93%]
+...........................................................              [100%]
+=================================== FAILURES ===================================
+___________ test_archive_to_weekly_maturity_and_rolling_preservation ___________
+tests/test_mt12_timing.py:438: in test_archive_to_weekly_maturity_and_rolling_preservation
+    assert w['events'][0]['horizons']==mature
+           ^^^^^^^^^^^^^^
+E   IndexError: list index out of range
+============================= slowest 15 durations =============================
+18.98s call     tests/test_iteration_revision.py::test_stale_real_run_same_request_recollects_and_recovers
+8.52s setup    tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[kind]
+8.42s setup    tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[production]
+8.40s setup    tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[completion]
+8.37s setup    tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[identity]
+8.35s setup    tests/test_iteration_revision.py::test_full_run_same_command_recovery[before_release_evidence]
+8.34s setup    tests/test_iteration_revision.py::test_full_run_same_command_recovery[after_release_evidence]
+8.34s setup    tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[category]
+8.31s setup    tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[incomplete_intent]
+8.28s setup    tests/test_iteration_revision.py::test_full_run_same_command_recovery[after_manifest]
+8.27s setup    tests/test_iteration_revision.py::test_completed_real_fixture_readonly_tampering[unknown]
+8.27s setup    tests/test_iteration_revision.py::test_full_run_same_command_recovery[after_release_fundamental]
+8.27s setup    tests/test_iteration_revision.py::test_full_run_same_command_recovery[after_release_technical]
+8.22s setup    tests/test_iteration_revision.py::test_replay_after_far_future_wall_clock
+5.35s call     tests/test_iteration_workflow.py::test_synthetic_verify_not_only_self_asserted_hashes
+=========================== short test summary info ============================
+FAILED tests/test_mt12_timing.py::test_archive_to_weekly_maturity_and_rolling_preservation
+1 failed, 922 passed in 273.30s (0:04:33)
+EXIT_CODE=1

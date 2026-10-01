@@ -1,0 +1,27 @@
+{
+  "collected": 925,
+  "unique_passed": 925,
+  "pending": [],
+  "method": "923 ordinary tests + 2 mature-run parameter cases; not a single invocation full-suite pass",
+  "ordinary": {
+    "log": "regression-final.txt",
+    "passed": 923,
+    "exit_code": 0
+  },
+  "after_prepare": {
+    "log": "four-tests.txt",
+    "node_result": "PASSED",
+    "batch_result": "timeout during later after_switch; not counted as whole-batch success"
+  },
+  "after_switch": {
+    "log": "after-switch-final.txt",
+    "passed": 1,
+    "exit_code": 0,
+    "seconds": 525.71
+  },
+  "historical_unsuccessful_logs": [
+    "regression.txt",
+    "four-tests-unit-result.txt"
+  ],
+  "protection_unchanged": 32
+}

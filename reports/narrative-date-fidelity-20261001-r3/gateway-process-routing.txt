@@ -1,0 +1,1 @@
+{"pid": "3831484", "routing_env_only": {}, "process_cwd": "/home/emox/work/homespace"}

@@ -179,14 +179,26 @@ def test_live_pipeline_launches_once_but_refreshes_sweep_snapshot(tmp_path,monke
     monkeypatch.setattr(pipeline,'foreign_calendar',lambda now,market:calendar(now,market))
     monkeypatch.setattr(pipeline,'migrate',lambda *a:{'imported':0,'errors':[]})
     monkeypatch.setattr('mt1.evidence.capture_run',lambda *a:None)
-    # If a cached recap is absent, isolate the legacy recap subprocess too.
-    monkeypatch.setattr(pipeline.subprocess,'run',lambda *a,**k:(_ for _ in ()).throw(RuntimeError('isolated recap')))
+    # Isolate the CURRENT IO boundary (recap_runtime.run uses Popen, not run).
+    # Keep the collector's budget/receipt/error handling real, with no live IO.
+    import mt1.recap_collection as recap_collection
+    real_path = Path
+    monkeypatch.setattr(pipeline, 'Path', lambda p: tmp_path/'recap-cache' if p == '/tmp' else real_path(p))
+    collector_calls = []
+    def unavailable_collector(*args, **kwargs):
+        collector_calls.append((args, kwargs))
+        raise OSError('SYNTHETIC collector unavailable')
+    monkeypatch.setattr(recap_collection, 'run', unavailable_collector)
     starts=[];snapshots=[]
     monkeypatch.setattr('mt1.sweep.launch',lambda *a:starts.append(a) or {'status':'started'})
     monkeypatch.setattr('mt1.sweep.snapshot',lambda *a:snapshots.append(a) or {'observed':len(snapshots),'status':'shadow'})
     a=pipeline.run('evening',tmp_path/'state',tmp_path/'investment',now,collect=True)
     b=pipeline.run('evening',tmp_path/'state',tmp_path/'investment',now,collect=True)
     assert len(starts)==1 and a['quality_value']['observed']==1 and b['quality_value']['observed']==2
+    assert len(collector_calls) == 2  # Both runs actually exercised the isolated collector boundary.
+    for args, kwargs in collector_calls:
+        assert args[0][-1] == str(tmp_path/'recap-cache/evening_recap_2026-09-10.json')
+        assert kwargs['timeout'] > 0
 
 
 @pytest.mark.parametrize('phase',['morning','saturday','sunday'])
