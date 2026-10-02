@@ -28,3 +28,12 @@ def test_shell_persists_outside_temporary_directory():
     script = (Path(target.__file__).parent / 'narrative_prefilter.sh').read_text()
     assert '--raw-output "$RAW_DIR/$src.response.txt"' in script
     assert 'mktemp -d "$RAW_ROOT/$TODAY/run-XXXXXXXX"' in script
+
+@pytest.mark.parametrize('source', ['cls', 'eastmoney', 'sina'])
+def test_empty_fetch_is_failure_not_successful_empty_candidates(tmp_path, source):
+    output = tmp_path / 'response.txt'
+    with patch.object(sys, 'argv', ['filter', '--source', source, '--fetch', '--format', 'json', '--raw-output', str(output)]), patch.object(target, '_fetch_url', return_value=''):
+        with pytest.raises(SystemExit) as exc:
+            target.main()
+    assert exc.value.code != 0
+    assert not output.exists()

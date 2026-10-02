@@ -497,8 +497,8 @@ def main():
             return
         raw = _fetch_url(url)
         if not raw.strip():
-            print("[]" if args.format == "json" else f"(抓取失败: {url})")
-            return
+            print(f"fetch failed or empty response: source={src_key}", file=sys.stderr)
+            raise SystemExit(1)
         parser = PARSERS.get(parser_key)
         if parser is None:
             print("[]" if args.format == "json" else f"(无对应 parser: {parser_key})")
