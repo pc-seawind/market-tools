@@ -1,0 +1,322 @@
+{
+  "run_id": "synthetic-saturday",
+  "stage": "run",
+  "recorded_at": "2026-10-11T10:20:23.059028+00:00",
+  "phase": "saturday",
+  "invocation_kind": "fixture",
+  "scheduler_status": "not_linked",
+  "hostname": "emox-OMEN-30L-Desktop-GT13-0xxx",
+  "worker_id": "home-ubuntu",
+  "pid": 2921033,
+  "git_head": "161111d7dc6bc8244cca86778eccd0c10590c2c6",
+  "cwd": "/home/emox/work/projects/market-tools",
+  "source_files": [
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/__init__.py",
+      "sha256": "b5ce82157b4231b8dc57d05e95977b299d4de6645adb2a28acc7c80955182355"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/action_collect.py",
+      "sha256": "10c470ef3f23e4e11f8e51e969afd5afbfd888e8208c1afd1e9bffdf2a6627e8"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/action_demo.py",
+      "sha256": "4e53ff994e1200ba71e6505ea4a3eb60dd743ef36e59f4cd976fc3dd6537e081"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/action_execution.py",
+      "sha256": "225bc2f71100bde5ea133bbe28d1c03571d3534f44e671ef4e80324b5d1cc4a1"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/action_integration.py",
+      "sha256": "d4e482c5dc873b4738d1dd85393d556375209f5a06fac6259ae419ac7242ae52"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/action_loop.py",
+      "sha256": "ef658e5b46c7719e29ca262eabc250f5234099ce06e6aac18dc87bfbdddae577"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/action_recovery.py",
+      "sha256": "f8a11cea24c6ed0c72d69514ee88484e91b6373152fcc709b9548b6918ec3b9f"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/action_report.py",
+      "sha256": "9fa4b8d6be588b5e8b9952d67921782615c786b8ee43c94da04fbbc9bbfd6d62"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/action_worker.py",
+      "sha256": "d1e57a583751e37d1306294ce060ab54009d6df975a9017524ff9b496fd0452e"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/backtest.py",
+      "sha256": "6830c2b367538876f9b082cdceab76aa95b1eef4c0a0ef52fb6a7c56e801d2f6"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/cache_union.py",
+      "sha256": "72a64833e6cabb93ff170747835f95ae2eeb599102296176fdd2b660b002ae29"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/calendar.py",
+      "sha256": "df79b67a54b04d170f53478446dc6add71ea219ef73073137d58adc0842b3458"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/candidates.py",
+      "sha256": "1124e4a24f7f00e35bcdbaf3eba03b72c58ea5d26fca0772617a1348aa5e16e5"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/coldstart.py",
+      "sha256": "2a23f8ed4c78ce9c5f4caf81e62ada6d7556168fb0a0ff296559158135100f95"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/conflict_attribution.py",
+      "sha256": "bb8342157b7a209d61baf824489038c2cb0b6e2c8332f6b6c3cf7be11937d8e7"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/daily_tracking.py",
+      "sha256": "c6d74430899b4ec69bf86194fff6e69df44abd8e4bd08c9f920611591aeef9e3"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/data.py",
+      "sha256": "87025fe96fb1a19ebd3f73d1c7245bc3c6cf55f7350f342a5cb0404bbfef91cf"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/data_readiness.py",
+      "sha256": "bdebaa4e1e8e837832ea1a8397b3f8903ce1052fae92c3377dddad57d78c26a1"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/evidence.py",
+      "sha256": "1e7a38d0489c4b98f31b9ccc6edbb1057483d5b0b00131674d7319fe7140094f"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/finalize.py",
+      "sha256": "791603811a691a193f61c162182b7be3b8da90d326d2baaa24cd91adde0a5d60"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/forward.py",
+      "sha256": "f85057b639ee38a8e3227dd46a9f34434ce43a385a591edc521ae5d07474ce97"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/historical.py",
+      "sha256": "74190dcb71e97ecb266dd0f88360ce387687f2eb4ab7dcedb12a508f04a6cc13"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/history_cutoff.py",
+      "sha256": "9fd05b6f43a1df0022104e37b6d3c40f7e6170640ecfe86591aeb879ddf4d49e"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/history_research.py",
+      "sha256": "f2423164d58fbf3657ab0f5596982bef9dcc2b73c421447cba2ecadc188c5d2b"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/history_research_report.py",
+      "sha256": "1392afe0aa8517102b940b3eb9ca8102752b8e1dd0f995775c17793d98443f72"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/history_research_verify.py",
+      "sha256": "6c49dc8a33886c324dd395296e98f9f00f0319cc0249917995ad9bed4320f930"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/hk_free_probe.py",
+      "sha256": "e0646d41861769c822689af0b33193dc716ba2f61527a7535d417153a338a23a"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/hk_history.py",
+      "sha256": "83dee61ccd85fa6d52eb33912855a4bd75c1993de5677724bbc86417b8d01eb0"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/hk_history_collect.py",
+      "sha256": "e22d895d4fe9a19e404292a5311a2a66dd74c00dbe0e8e2a7a11adcf20ed549b"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/huatai_daily.py",
+      "sha256": "cbc63327ff1db21bac01eaf64ecdfdbf262e57ea7ed94b16d0af2470b3e192d6"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/iteration_evidence.py",
+      "sha256": "8d614ee77b518d84fb612aef40234926e014a14df96700408d70896b4181b2d8"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/iteration_loop.py",
+      "sha256": "fc8d2c15604ac162d7a6b093ee8901c81766702f0ec8ecf43e1cd3def2929e9c"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/iteration_policy.py",
+      "sha256": "0bbc50f4ad75e636eab63d8fe3cb04a0afdeb676d0c18aae3a363652ad600ca8"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/iteration_release.py",
+      "sha256": "bd2ca314d4a3fb7d2868af67852814d25b9342a98a82aff4a0e58e0d4d5aea0d"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/iteration_validate.py",
+      "sha256": "af3840c148ce6bb14938d263083d6e5f7d98a8e3e0007986e8e88a6a414d74c0"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/longitudinal.py",
+      "sha256": "4eb23f9671b6fabbe8c7b1955a52373f9dce808bcc6b3e3146164c394f6a600f"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/methods.py",
+      "sha256": "0bf9131b92c01e16551962ef1b4c650eb843bd9709b22f193c5b0c8f6806cae3"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/parallel.py",
+      "sha256": "dc10362ef06a3e242a13859f2dd594d0dc9ba711a2cb5dd4530bb63d8676c938"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/parallel_bridge.py",
+      "sha256": "34f396ac90f68774cda88ff872062cfa7af4cbebc797bd4acab4f1ecdd4ccfff"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/parallel_collect.py",
+      "sha256": "acdea6e09ecc2196b1a2fd63d1da93a3add2f7b9397dc2961e34e38d0727a9e8"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/parallel_cycle.py",
+      "sha256": "a3fb52324ea51d5c877e44fce78bca5349039a073d24357f140808734b051929"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/pipeline.py",
+      "sha256": "39316dacc0b2e83038588e76b6cf590b687e95f61b99b03e5fede39d0dea0824"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/plans.py",
+      "sha256": "9839edaaad3fd19401c7c4a75d48ff7a621446740909ddc62538fd8743a80484"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/raw_asof.py",
+      "sha256": "c46a9ad666c55e6bd51338763945134665cf78f2d7098386c97ac50d5d0555fd"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/recap_collection.py",
+      "sha256": "7ea1a83d27e7a29edf006ae0392ac64dc503cb8936f215ff214afa94ebb3a119"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/research_performance.py",
+      "sha256": "0bff73254ece0c9a1211566f4cdf21c3bd49d6043b6003c753436fb7afa477ba"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/research_pool.py",
+      "sha256": "fab0a29a409ebab6d06731de10eecb219db0682e7900693968e1d4f52d884108"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/review_time.py",
+      "sha256": "2a46bd4da8632bf2953d8b79b2432cff38e7c880a0cbf9f643b0bee3143a3433"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/scope.py",
+      "sha256": "0b552c7c047635c748265486ec4770203a200cf0065126f7b3affb33e0b8df07"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/store.py",
+      "sha256": "57622068ac04201d258599150239eb0be75a0393ec94439a96b4e2d70772bc6a"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/suspension_evidence.py",
+      "sha256": "0450248ef219c12500cee24a2c6cd4d3105cfc8c204b30502ad380e4ab2174f6"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/sweep.py",
+      "sha256": "d799453e984906fd9ff35ee3ed5c2670b2caba547e828d118768173c34c70ecc"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_audit.py",
+      "sha256": "bcbff13fdef30dc4c1ac49d827baf0734c726ab3e048a4abdab1000c6bf9e6bf"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_consumer.py",
+      "sha256": "e291d722fc7072f62da2b9bde86c0c1bbce06f05b8dbb035c007b9fb7178415a"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_dependencies.py",
+      "sha256": "22c15849b62369491d0edb34ffb006d144a9e7ee1459c6e3aad0dfe92c406b20"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_evidence.py",
+      "sha256": "e5c30088e7338e466d9e4d470e6bdc112c6d6c9ad0f3dd5c1267fe902d7aecfd"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_forward.py",
+      "sha256": "921143d67431d6b5bf8575bad60f787047053c5a70fda76936039657faf23caa"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_numeric.py",
+      "sha256": "9c66de0e9d6f50d248d483976e858439570c6ded4c97d363f7142e7b77b4e300"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_pipeline.py",
+      "sha256": "4e21a2c43c753389125fc4bd56b1aa8acafde400b8435f1e40974aa3a3db2378"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_quality.py",
+      "sha256": "0e21477f6e5ea20c58a6c8b4cb97b5cedddc42c7220196c754a647ffbf655001"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_report.py",
+      "sha256": "04e7b131d8f8b733240d6e5d6c7b9369a7aff8e0ed383581e60028dc96e61bf3"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_research.py",
+      "sha256": "88d06199e40840609db08d78b409d4af1493959dfe11f69c1e85f33b741e51c7"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_review.py",
+      "sha256": "f595e113ee3aa5a2bb1fbce9b0ed507f240971bde575d038f1841ec095c79dc2"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_revision.py",
+      "sha256": "5b4cb967735ede877edc589b1d611656328aacb80bb78034cacbad14657dccc1"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_sources.py",
+      "sha256": "b90cda667bd4167463aac27497e7522aa361af3603cc45f8dc2d25618c679130"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/ta_workflow.py",
+      "sha256": "2ecf8b72bc1fc89b9f29991cbd2fb468ac4e9e637aae5073000329472bb3bb04"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/timing.py",
+      "sha256": "57873119b59ea545e7b11de3864bec6f2a79c8bf00b51ab161980c65992ac10a"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/timing_cli.py",
+      "sha256": "5ae177a67a008ca9ff554bfa9212bcbbd2fde5285efbada4b513e3d5fc5d50af"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/timing_experiment.py",
+      "sha256": "277e1f4afd54167951fc8cdd0fe09bc997f55761607407e30d19bcc0156b11e0"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1/verify.py",
+      "sha256": "68da7c52cfb1e22c829638dbe98b5e7fa9e2da15285ce1b8295da237f181ed42"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1.py",
+      "sha256": "ed6584952e6b1c65acddf62c5484c753006b37fa3f16f9a2fefdd9c7cf71171d"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/mt1_job.py",
+      "sha256": "84cf89263d0ab5b10e5dc81202f85346ddbfdf37bf16d3b955ce70cc93b84011"
+    }
+  ],
+  "manifest": {
+    "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/state/runs/synthetic-saturday/manifest.json",
+    "sha256": "e4bbf1f2c59a56486d7e953fe25b3433b80f7cfe2fd40a1f360933145d638db6"
+  },
+  "report": {
+    "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/state/runs/synthetic-saturday/report.json",
+    "sha256": "a25942bb41dd287d5270996a7609f355bd9719c6d9be0fc4ae2916c904292a1d"
+  },
+  "manifest_snapshot": {
+    "stages": {
+      "migration": {
+        "status": "done",
+        "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/state/runs/synthetic-saturday/migration.json",
+        "hash": "1681ca671f548f970508c6c8f885f4f50188097f6cd478f47402c7784fdeee79"
+      }
+    },
+    "signature": "77883abd17b679b786f7c07af2f22038870fcadf1809cb626d43f4a8f0b34bf6"
+  },
+  "errors": []
+}

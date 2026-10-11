@@ -1,0 +1,90 @@
+{
+  "run_id": "synthetic-before",
+  "stage": "review",
+  "recorded_at": "2026-10-11T10:20:22.768811+00:00",
+  "phase": "sunday",
+  "bundle": {
+    "phase": "sunday",
+    "reviewer": "SYNTHETIC reviewer",
+    "source_run_id": "synthetic-before",
+    "report_context": "隔离合成正式签审入口验证；非自然执行，非投资建议。",
+    "reviewed_plan_ids": [
+      "synthetic-watch"
+    ],
+    "review_items": [],
+    "method_events": [],
+    "research": {
+      "fetch_status": "ok",
+      "sources": [
+        {
+          "url": "https://example.invalid/synthetic",
+          "content_path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+          "content_hash": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+          "fetched_at": "2026-10-11T10:20:22.539357+00:00"
+        }
+      ]
+    },
+    "plan_events": [
+      {
+        "id": "synthetic-watch",
+        "expected_version": 0,
+        "request_id": "plan-v1",
+        "reason": "SYNTHETIC WATCH signoff, not BUY",
+        "payload": {
+          "plan_id": "synthetic-watch",
+          "code": "999999.SZ",
+          "market": "CN",
+          "episode": "watch-episode-1",
+          "scope_epoch": "synthetic-signoff",
+          "research_event_id": "research-v1",
+          "original_reason": "SYNTHETIC thesis",
+          "original_date": "2026-10-11",
+          "original_deadline": "2026-12-10",
+          "reference_price": null,
+          "channel": "VALUE",
+          "state": "WATCH",
+          "holding_status": "not_held",
+          "unheld_direction": "WATCH",
+          "held_direction": "WATCH",
+          "actual_cost": null,
+          "evidence": [
+            {
+              "url": "https://example.invalid/synthetic",
+              "date": "2026-10-11",
+              "claim": "SYNTHETIC evidence"
+            }
+          ],
+          "milestones": [
+            {
+              "date": "2026-10-18",
+              "condition": "SYNTHETIC verification"
+            }
+          ],
+          "price_condition": null,
+          "risk_boundary": {
+            "condition": "SYNTHETIC invalidation",
+            "source_url": "https://example.invalid/synthetic"
+          },
+          "invalidation": "SYNTHETIC thesis fails",
+          "review_due": "2026-10-13",
+          "qualification": "final",
+          "reviewer": "SYNTHETIC reviewer"
+        }
+      }
+    ]
+  },
+  "bundle_hash": "a650bec11231a9b7438bc10d408c45759baea07ca065f9d326a24a592e290ca3",
+  "result": {
+    "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/state/reviews/a650bec11231a9b7-20261011-102022765114.json",
+    "sha256": "5843f40c36b17dfe9a832a77974ccdfd745b0b89a08494b5b681a7b38a377c1b"
+  },
+  "markdown": {
+    "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/investment/reference/medium-term-reviews/2026-10-11-sunday-review-20261011-102022765114.md",
+    "sha256": "a4e588e0680e2b6c1c17748928effd3947c86c40656610ab3fc2e0197b02f5f1"
+  },
+  "errors": [],
+  "pending_review_ids": [],
+  "reviewed_plan_ids": [
+    "synthetic-watch"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "run_id": "synthetic-before",
+  "stage": "review",
+  "recorded_at": "2026-10-11T10:20:22.947710+00:00",
+  "phase": "sunday",
+  "bundle": {
+    "phase": "sunday",
+    "reviewer": "SYNTHETIC reviewer",
+    "source_run_id": "synthetic-before",
+    "report_context": "隔离合成正式签审入口验证；非自然执行，非投资建议。",
+    "reviewed_plan_ids": [
+      "synthetic-watch"
+    ],
+    "review_items": [],
+    "method_events": [],
+    "research": {
+      "fetch_status": "ok",
+      "sources": [
+        {
+          "url": "https://example.invalid/synthetic",
+          "content_path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+          "content_hash": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+          "fetched_at": "2026-10-11T10:20:22.539357+00:00"
+        }
+      ]
+    },
+    "plan_events": [
+      {
+        "id": "synthetic-watch",
+        "expected_version": 1,
+        "request_id": "plan-v2",
+        "reason": "SYNTHETIC renewed signoff",
+        "payload": {
+          "research_event_id": "research-v2"
+        }
+      }
+    ]
+  },
+  "bundle_hash": "8feb052a1afc8ce168db5ac70717aaf211a69be9967bb381cc912a5cb361a49a",
+  "result": {
+    "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/state/reviews/8feb052a1afc8ce1-20261011-102022942886.json",
+    "sha256": "b30141564e005b5ff59c072c71a21598124e71729719801d1aa55cfda783a9eb"
+  },
+  "markdown": {
+    "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/investment/reference/medium-term-reviews/2026-10-11-sunday-review-20261011-102022942886.md",
+    "sha256": "b854badbb6278ad6dadac5f02aab8acd5a262cb9970ca56654c536f090ffdc29"
+  },
+  "errors": [],
+  "pending_review_ids": [],
+  "reviewed_plan_ids": [
+    "synthetic-watch"
+  ]
+}

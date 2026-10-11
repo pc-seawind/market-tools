@@ -1,0 +1,526 @@
+{
+  "asof": "2026-10-11T10:20:22.539357+00:00",
+  "tracking_scope": {
+    "scope_epoch": "synthetic-signoff",
+    "confirmed_holdings": 0,
+    "active_candidates": 1,
+    "active_recommendations": 0,
+    "raw_scan_is_separate": true
+  },
+  "markets": {
+    "CN": {
+      "allowed": false,
+      "expected_date": "2026-10-11",
+      "reason": "synthetic offline"
+    }
+  },
+  "research_pool": {
+    "scope_epoch": "synthetic-signoff",
+    "asof": "2026-10-11T10:20:22.999799+00:00",
+    "rows": [
+      {
+        "business_logic": "SYNTHETIC business evidence",
+        "change_type": "维持",
+        "code": "999999.SZ",
+        "domain": "investment",
+        "episode_admitted_at": "2026-10-11T10:20:22.575423+00:00",
+        "episode_id": "research-v1",
+        "expected_version": 1,
+        "final_buy": false,
+        "method_status": "shadow",
+        "milestones": [
+          {
+            "at": "2026-10-18T10:20:22.539357+00:00",
+            "description": "SYNTHETIC near-term verification"
+          }
+        ],
+        "next_review": "2026-10-13T10:20:22.539357+00:00",
+        "original": {
+          "milestones": [
+            {
+              "at": "2026-10-18T10:20:22.539357+00:00",
+              "description": "SYNTHETIC near-term verification"
+            }
+          ],
+          "next_review": "2026-10-13T10:20:22.539357+00:00",
+          "reason": "SYNTHETIC thesis",
+          "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+          "sources": [
+            {
+              "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+              "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+              "published_at": "2026-10-10T10:20:22.539357+00:00",
+              "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+              "url": "https://example.invalid/synthetic"
+            }
+          ]
+        },
+        "previous_state": "watch",
+        "reason": "SYNTHETIC renewed evidence",
+        "recorded_at": "2026-10-11T10:20:22.809119+00:00",
+        "request_id": "research-v2",
+        "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+        "reviewed_at": "2026-10-11T10:20:22.539357+00:00",
+        "reviewer": "SYNTHETIC reviewer",
+        "risk": "SYNTHETIC risk",
+        "schema_version": 2,
+        "scope_epoch": "synthetic-signoff",
+        "scope_sha256": "07311d4d24465e16e556042c5cb980072b8a37d2ae0edde5159c5301bf50d7eb",
+        "source_archive": [
+          {
+            "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/scope.json.research-sources/08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+            "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5"
+          }
+        ],
+        "sources": [
+          {
+            "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+            "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+            "published_at": "2026-10-10T10:20:22.539357+00:00",
+            "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+            "url": "https://example.invalid/synthetic"
+          }
+        ],
+        "state": "watch",
+        "version": 2,
+        "effective_state": "watch",
+        "review_overdue": false
+      }
+    ],
+    "events": [
+      {
+        "business_logic": "SYNTHETIC business evidence",
+        "change_type": "新增",
+        "code": "999999.SZ",
+        "domain": "investment",
+        "episode_admitted_at": "2026-10-11T10:20:22.575423+00:00",
+        "episode_id": "research-v1",
+        "expected_version": 0,
+        "final_buy": false,
+        "method_status": "shadow",
+        "milestones": [
+          {
+            "at": "2026-10-18T10:20:22.539357+00:00",
+            "description": "SYNTHETIC near-term verification"
+          }
+        ],
+        "next_review": "2026-10-13T10:20:22.539357+00:00",
+        "original": {
+          "milestones": [
+            {
+              "at": "2026-10-18T10:20:22.539357+00:00",
+              "description": "SYNTHETIC near-term verification"
+            }
+          ],
+          "next_review": "2026-10-13T10:20:22.539357+00:00",
+          "reason": "SYNTHETIC thesis",
+          "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+          "sources": [
+            {
+              "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+              "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+              "published_at": "2026-10-10T10:20:22.539357+00:00",
+              "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+              "url": "https://example.invalid/synthetic"
+            }
+          ]
+        },
+        "previous_state": null,
+        "reason": "SYNTHETIC thesis",
+        "recorded_at": "2026-10-11T10:20:22.575423+00:00",
+        "request_id": "research-v1",
+        "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+        "reviewed_at": "2026-10-11T10:20:22.539357+00:00",
+        "reviewer": "SYNTHETIC reviewer",
+        "risk": "SYNTHETIC risk",
+        "schema_version": 2,
+        "scope_epoch": "synthetic-signoff",
+        "scope_sha256": "07311d4d24465e16e556042c5cb980072b8a37d2ae0edde5159c5301bf50d7eb",
+        "source_archive": [
+          {
+            "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/scope.json.research-sources/08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+            "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5"
+          }
+        ],
+        "sources": [
+          {
+            "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+            "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+            "published_at": "2026-10-10T10:20:22.539357+00:00",
+            "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+            "url": "https://example.invalid/synthetic"
+          }
+        ],
+        "state": "watch",
+        "version": 1
+      },
+      {
+        "business_logic": "SYNTHETIC business evidence",
+        "change_type": "维持",
+        "code": "999999.SZ",
+        "domain": "investment",
+        "episode_admitted_at": "2026-10-11T10:20:22.575423+00:00",
+        "episode_id": "research-v1",
+        "expected_version": 1,
+        "final_buy": false,
+        "method_status": "shadow",
+        "milestones": [
+          {
+            "at": "2026-10-18T10:20:22.539357+00:00",
+            "description": "SYNTHETIC near-term verification"
+          }
+        ],
+        "next_review": "2026-10-13T10:20:22.539357+00:00",
+        "original": {
+          "milestones": [
+            {
+              "at": "2026-10-18T10:20:22.539357+00:00",
+              "description": "SYNTHETIC near-term verification"
+            }
+          ],
+          "next_review": "2026-10-13T10:20:22.539357+00:00",
+          "reason": "SYNTHETIC thesis",
+          "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+          "sources": [
+            {
+              "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+              "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+              "published_at": "2026-10-10T10:20:22.539357+00:00",
+              "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+              "url": "https://example.invalid/synthetic"
+            }
+          ]
+        },
+        "previous_state": "watch",
+        "reason": "SYNTHETIC renewed evidence",
+        "recorded_at": "2026-10-11T10:20:22.809119+00:00",
+        "request_id": "research-v2",
+        "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+        "reviewed_at": "2026-10-11T10:20:22.539357+00:00",
+        "reviewer": "SYNTHETIC reviewer",
+        "risk": "SYNTHETIC risk",
+        "schema_version": 2,
+        "scope_epoch": "synthetic-signoff",
+        "scope_sha256": "07311d4d24465e16e556042c5cb980072b8a37d2ae0edde5159c5301bf50d7eb",
+        "source_archive": [
+          {
+            "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/scope.json.research-sources/08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+            "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5"
+          }
+        ],
+        "sources": [
+          {
+            "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+            "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+            "published_at": "2026-10-10T10:20:22.539357+00:00",
+            "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+            "url": "https://example.invalid/synthetic"
+          }
+        ],
+        "state": "watch",
+        "version": 2
+      }
+    ],
+    "episodes": [
+      {
+        "episode_id": "research-v1",
+        "scope_epoch": "synthetic-signoff",
+        "code": "999999.SZ",
+        "admission": {
+          "business_logic": "SYNTHETIC business evidence",
+          "change_type": "新增",
+          "code": "999999.SZ",
+          "domain": "investment",
+          "episode_admitted_at": "2026-10-11T10:20:22.575423+00:00",
+          "episode_id": "research-v1",
+          "expected_version": 0,
+          "final_buy": false,
+          "method_status": "shadow",
+          "milestones": [
+            {
+              "at": "2026-10-18T10:20:22.539357+00:00",
+              "description": "SYNTHETIC near-term verification"
+            }
+          ],
+          "next_review": "2026-10-13T10:20:22.539357+00:00",
+          "original": {
+            "milestones": [
+              {
+                "at": "2026-10-18T10:20:22.539357+00:00",
+                "description": "SYNTHETIC near-term verification"
+              }
+            ],
+            "next_review": "2026-10-13T10:20:22.539357+00:00",
+            "reason": "SYNTHETIC thesis",
+            "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+            "sources": [
+              {
+                "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+                "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+                "published_at": "2026-10-10T10:20:22.539357+00:00",
+                "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+                "url": "https://example.invalid/synthetic"
+              }
+            ]
+          },
+          "previous_state": null,
+          "reason": "SYNTHETIC thesis",
+          "recorded_at": "2026-10-11T10:20:22.575423+00:00",
+          "request_id": "research-v1",
+          "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+          "reviewed_at": "2026-10-11T10:20:22.539357+00:00",
+          "reviewer": "SYNTHETIC reviewer",
+          "risk": "SYNTHETIC risk",
+          "schema_version": 2,
+          "scope_epoch": "synthetic-signoff",
+          "scope_sha256": "07311d4d24465e16e556042c5cb980072b8a37d2ae0edde5159c5301bf50d7eb",
+          "source_archive": [
+            {
+              "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/scope.json.research-sources/08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+              "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5"
+            }
+          ],
+          "sources": [
+            {
+              "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+              "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+              "published_at": "2026-10-10T10:20:22.539357+00:00",
+              "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+              "url": "https://example.invalid/synthetic"
+            }
+          ],
+          "state": "watch",
+          "version": 1
+        },
+        "recommendation": null,
+        "exit": null,
+        "latest": {
+          "business_logic": "SYNTHETIC business evidence",
+          "change_type": "维持",
+          "code": "999999.SZ",
+          "domain": "investment",
+          "episode_admitted_at": "2026-10-11T10:20:22.575423+00:00",
+          "episode_id": "research-v1",
+          "expected_version": 1,
+          "final_buy": false,
+          "method_status": "shadow",
+          "milestones": [
+            {
+              "at": "2026-10-18T10:20:22.539357+00:00",
+              "description": "SYNTHETIC near-term verification"
+            }
+          ],
+          "next_review": "2026-10-13T10:20:22.539357+00:00",
+          "original": {
+            "milestones": [
+              {
+                "at": "2026-10-18T10:20:22.539357+00:00",
+                "description": "SYNTHETIC near-term verification"
+              }
+            ],
+            "next_review": "2026-10-13T10:20:22.539357+00:00",
+            "reason": "SYNTHETIC thesis",
+            "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+            "sources": [
+              {
+                "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+                "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+                "published_at": "2026-10-10T10:20:22.539357+00:00",
+                "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+                "url": "https://example.invalid/synthetic"
+              }
+            ]
+          },
+          "previous_state": "watch",
+          "reason": "SYNTHETIC renewed evidence",
+          "recorded_at": "2026-10-11T10:20:22.809119+00:00",
+          "request_id": "research-v2",
+          "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+          "reviewed_at": "2026-10-11T10:20:22.539357+00:00",
+          "reviewer": "SYNTHETIC reviewer",
+          "risk": "SYNTHETIC risk",
+          "schema_version": 2,
+          "scope_epoch": "synthetic-signoff",
+          "scope_sha256": "07311d4d24465e16e556042c5cb980072b8a37d2ae0edde5159c5301bf50d7eb",
+          "source_archive": [
+            {
+              "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/scope.json.research-sources/08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+              "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5"
+            }
+          ],
+          "sources": [
+            {
+              "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+              "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+              "published_at": "2026-10-10T10:20:22.539357+00:00",
+              "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+              "url": "https://example.invalid/synthetic"
+            }
+          ],
+          "state": "watch",
+          "version": 2
+        }
+      }
+    ],
+    "monitor_rows": [
+      {
+        "business_logic": "SYNTHETIC business evidence",
+        "change_type": "维持",
+        "code": "999999.SZ",
+        "domain": "investment",
+        "episode_admitted_at": "2026-10-11T10:20:22.575423+00:00",
+        "episode_id": "research-v1",
+        "expected_version": 1,
+        "final_buy": false,
+        "method_status": "shadow",
+        "milestones": [
+          {
+            "at": "2026-10-18T10:20:22.539357+00:00",
+            "description": "SYNTHETIC near-term verification"
+          }
+        ],
+        "next_review": "2026-10-13T10:20:22.539357+00:00",
+        "original": {
+          "milestones": [
+            {
+              "at": "2026-10-18T10:20:22.539357+00:00",
+              "description": "SYNTHETIC near-term verification"
+            }
+          ],
+          "next_review": "2026-10-13T10:20:22.539357+00:00",
+          "reason": "SYNTHETIC thesis",
+          "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+          "sources": [
+            {
+              "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+              "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+              "published_at": "2026-10-10T10:20:22.539357+00:00",
+              "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+              "url": "https://example.invalid/synthetic"
+            }
+          ]
+        },
+        "previous_state": "watch",
+        "reason": "SYNTHETIC renewed evidence",
+        "recorded_at": "2026-10-11T10:20:22.809119+00:00",
+        "request_id": "research-v2",
+        "research_horizon_end": "2026-12-10T10:20:22.539357+00:00",
+        "reviewed_at": "2026-10-11T10:20:22.539357+00:00",
+        "reviewer": "SYNTHETIC reviewer",
+        "risk": "SYNTHETIC risk",
+        "schema_version": 2,
+        "scope_epoch": "synthetic-signoff",
+        "scope_sha256": "07311d4d24465e16e556042c5cb980072b8a37d2ae0edde5159c5301bf50d7eb",
+        "source_archive": [
+          {
+            "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/scope.json.research-sources/08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+            "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5"
+          }
+        ],
+        "sources": [
+          {
+            "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+            "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r3-20261011/SYNTHETIC-cli-handoff/source.txt",
+            "published_at": "2026-10-10T10:20:22.539357+00:00",
+            "sha256": "08052e552a77f1b2945807f66cff720a5cbd696ea9af30c4feece0d1bc97bfd5",
+            "url": "https://example.invalid/synthetic"
+          }
+        ],
+        "state": "watch",
+        "version": 2,
+        "effective_state": "watch",
+        "review_overdue": false
+      }
+    ],
+    "exit_monitor_omitted": 0,
+    "exit_monitor_policy": "93 calendar days, at most 100 latest exited episodes; full history retained for performance",
+    "counts": {
+      "exited": 0,
+      "rejected": 0,
+      "pending": 0,
+      "recommended": 0,
+      "watch": 1
+    },
+    "performance": {
+      "schema_version": 1,
+      "scope_epoch": "synthetic-signoff",
+      "evaluated_at": "2026-10-11T10:20:23.000330+00:00",
+      "price_asof": null,
+      "results": [],
+      "sources": [],
+      "episode_count": 1,
+      "input_error": "performance observation bundle missing or malformed",
+      "definition": "未复权收盘价情景；显式双边费用同样作用于股票与基准；非总回报、非真实成交/个人盈亏；退出后为继续持有反事实而非持仓。",
+      "read_only": true,
+      "discovery_cohort_used": false
+    },
+    "review_queue": []
+  },
+  "research_performance": {
+    "schema_version": 1,
+    "scope_epoch": "synthetic-signoff",
+    "evaluated_at": "2026-10-11T10:20:23.000330+00:00",
+    "price_asof": null,
+    "results": [],
+    "sources": [],
+    "episode_count": 1,
+    "input_error": "performance observation bundle missing or malformed",
+    "definition": "未复权收盘价情景；显式双边费用同样作用于股票与基准；非总回报、非真实成交/个人盈亏；退出后为继续持有反事实而非持仓。",
+    "read_only": true,
+    "discovery_cohort_used": false
+  },
+  "research_review_queue": [],
+  "status": "ok",
+  "rows": [
+    {
+      "code": "999999.SZ",
+      "name": null,
+      "market": "CN",
+      "holding_status": "not_held",
+      "research_pool_state": "watch",
+      "research_recorded_state": "watch",
+      "research_event_id": "research-v2",
+      "research_only": true,
+      "research_monitor_episodes": [
+        {
+          "episode_id": "research-v1",
+          "state": "watch",
+          "event_id": "research-v2"
+        }
+      ],
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": "2026-10-11",
+      "close": 10.0,
+      "market_gate": {
+        "allowed": false,
+        "expected_date": "2026-10-11",
+        "reason": "synthetic offline"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T10:20:22.539357+00:00",
+      "status": "ok",
+      "pct_today": null
+    }
+  ],
+  "inputs": {
+    "999999.SZ": {
+      "provider_parsed_bars": [
+        {
+          "date": "2026-10-11",
+          "close": 10
+        }
+      ],
+      "raw_http_body": "not_captured",
+      "fetched_at": "2026-10-11T10:20:22.539357+00:00"
+    }
+  },
+  "failed": [],
+  "historical_performance_included": false,
+  "read_only": true
+}

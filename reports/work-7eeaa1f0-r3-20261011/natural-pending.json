@@ -1,0 +1,7 @@
+{
+  "checked_at": "2026-10-11T10:20:24.155196+00:00",
+  "scope_sha256": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+  "local_runs_since_1000UTC": [],
+  "status": "pending",
+  "note": "仅只读本地run索引，不能证明gateway执行或飞书送达；周末既有07:15/05:00UTC时点已早于本轮修订，下一自然时点尚未来到。未重跑/新建cron。"
+}
