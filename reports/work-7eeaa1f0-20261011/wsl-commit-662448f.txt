@@ -1,0 +1,23 @@
+DESKTOP-OAE94K7
+Python 3.12.3
+ 17:50:55 up 3 days, 16:14,  3 users,  load average: 0.00, 0.00, 0.00
+c2a27586cd709aad906e900c1113f07fd82b6ca23acedf23fa748e830117a316  /tmp/work-7eeaa1f0-662448f.tar.gz
+b5ce82157b4231b8dc57d05e95977b299d4de6645adb2a28acc7c80955182355  mt1/__init__.py
+fe39c1c4048b4e115e79b49deb4b1d0b041404b84f97b159569c8271256cd126  mt1/research_pool.py
+0b552c7c047635c748265486ec4770203a200cf0065126f7b3affb33e0b8df07  mt1/scope.py
+57622068ac04201d258599150239eb0be75a0393ec94439a96b4e2d70772bc6a  mt1/store.py
+f0ae37113b3f585d59c10e9c6a92c9f3a8db6edde81ea495e030e0fe99387580  tests/test_research_pool_lifecycle.py
+test_admit_retry_cas_immutable_scope_and_plan_binding (test_research_pool_lifecycle.ResearchPool.test_admit_retry_cas_immutable_scope_and_plan_binding) ... ok
+test_capacity (test_research_pool_lifecycle.ResearchPool.test_capacity) ... ok
+test_chinese_report_is_not_completion_claim (test_research_pool_lifecycle.ResearchPool.test_chinese_report_is_not_completion_claim) ... ok
+test_expiry_and_reset_hide_without_destroying_history (test_research_pool_lifecycle.ResearchPool.test_expiry_and_reset_hide_without_destroying_history) ... ok
+test_missing_stale_future_bad_hash_and_recommendation_signoff (test_research_pool_lifecycle.ResearchPool.test_missing_stale_future_bad_hash_and_recommendation_signoff) ... ok
+test_nine_holdings_zero_candidates_still_research_outside (test_research_pool_lifecycle.ResearchPool.test_nine_holdings_zero_candidates_still_research_outside) ... ok
+test_unknown_not_rejected_and_pending_explicit (test_research_pool_lifecycle.ResearchPool.test_unknown_not_rejected_and_pending_explicit) ... ok
+test_upgrade_downgrade_exit_reentry_and_old_plan (test_research_pool_lifecycle.ResearchPool.test_upgrade_downgrade_exit_reentry_and_old_plan) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.832s
+
+OK
+REMOTE_TEST_EXIT=0

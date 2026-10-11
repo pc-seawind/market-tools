@@ -1,0 +1,1 @@
+{"scope_epoch": "user-reset-20260911T120928Z", "asof": "2026-10-11T09:47:17.652275+00:00", "rows": [], "events": [], "monitor_rows": [], "exit_monitor_omitted": 0, "exit_monitor_policy": "93 calendar days, at most 100 latest exits; history retained", "counts": {"recommended": 0, "pending": 0, "exited": 0, "watch": 0, "rejected": 0}}

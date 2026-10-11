@@ -1,0 +1,510 @@
+{
+  "asof": "2026-10-11T09:47:17.699704+00:00",
+  "tracking_scope": {
+    "scope_epoch": "user-reset-20260911T120928Z",
+    "confirmed_holdings": 9,
+    "active_candidates": 0,
+    "active_recommendations": 0,
+    "raw_scan_is_separate": true
+  },
+  "markets": {
+    "CN": {
+      "expected_date": "2026-10-09",
+      "allowed": false,
+      "reason": "manual_offline_replay_not_live_calendar_gate"
+    },
+    "HK": {
+      "expected_date": "2026-10-09",
+      "allowed": false,
+      "reason": "manual_offline_replay_not_live_calendar_gate"
+    },
+    "US": {
+      "expected_date": "2026-10-09",
+      "allowed": false,
+      "reason": "manual_offline_replay_not_live_calendar_gate"
+    }
+  },
+  "research_pool": {
+    "scope_epoch": "user-reset-20260911T120928Z",
+    "asof": "2026-10-11T09:47:17.699643+00:00",
+    "rows": [],
+    "events": [],
+    "monitor_rows": [],
+    "exit_monitor_omitted": 0,
+    "exit_monitor_policy": "93 calendar days, at most 100 latest exits; history retained",
+    "counts": {
+      "pending": 0,
+      "watch": 0,
+      "rejected": 0,
+      "recommended": 0,
+      "exited": 0
+    }
+  },
+  "status": "partial",
+  "rows": [
+    {
+      "code": "001309.SZ",
+      "name": "德明利",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": "2026-10-09",
+      "close": 336.91,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "ok",
+      "pct_today": null
+    },
+    {
+      "code": "603986.SH",
+      "name": "兆易创新",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": "2026-10-09",
+      "close": 326.46,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "ok",
+      "pct_today": null
+    },
+    {
+      "code": "688195.SH",
+      "name": "腾景科技",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": "2026-10-09",
+      "close": 158.02,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "ok",
+      "pct_today": null
+    },
+    {
+      "code": "301511.SZ",
+      "name": "德福科技",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": "2026-10-09",
+      "close": 87.0,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "ok",
+      "pct_today": null
+    },
+    {
+      "code": "300750.SZ",
+      "name": "宁德时代",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": "2026-10-09",
+      "close": 297.75,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "ok",
+      "pct_today": null
+    },
+    {
+      "code": "601138.SH",
+      "name": "工业富联",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": "2026-10-09",
+      "close": 56.07,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "ok",
+      "pct_today": null
+    },
+    {
+      "code": "01810.HK",
+      "name": "小米集团",
+      "market": "HK",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": null,
+      "close": null,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "failed",
+      "error": "offline_replay: HK/non-panel quote unavailable; no substitute"
+    },
+    {
+      "code": "03690.HK",
+      "name": "美团",
+      "market": "HK",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": null,
+      "close": null,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "failed",
+      "error": "offline_replay: HK/non-panel quote unavailable; no substitute"
+    },
+    {
+      "code": "00700.HK",
+      "name": "腾讯控股",
+      "market": "HK",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": null,
+      "close": null,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "failed",
+      "error": "offline_replay: HK/non-panel quote unavailable; no substitute"
+    }
+  ],
+  "inputs": {
+    "001309.SZ": {
+      "provider_parsed_bars": [
+        {
+          "ts_code": "001309.SZ",
+          "trade_date": "20261009",
+          "open": "336.37",
+          "high": "339.46",
+          "low": "319.62",
+          "close": "336.91",
+          "pre_close": "341.48",
+          "change": "-4.57",
+          "pct_chg": "-1.3383",
+          "vol": "94359.14",
+          "amount": "3118592.84651"
+        }
+      ],
+      "raw_http_body": "not_captured",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00"
+    },
+    "603986.SH": {
+      "provider_parsed_bars": [
+        {
+          "ts_code": "603986.SH",
+          "trade_date": "20261009",
+          "open": "325.0",
+          "high": "329.5",
+          "low": "311.42",
+          "close": "326.46",
+          "pre_close": "334.4",
+          "change": "-7.94",
+          "pct_chg": "-2.3744",
+          "vol": "334512.82",
+          "amount": "10756244.366"
+        }
+      ],
+      "raw_http_body": "not_captured",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00"
+    },
+    "688195.SH": {
+      "provider_parsed_bars": [
+        {
+          "ts_code": "688195.SH",
+          "trade_date": "20261009",
+          "open": "157.12",
+          "high": "165.96",
+          "low": "153.21",
+          "close": "158.02",
+          "pre_close": "158.7",
+          "change": "-0.68",
+          "pct_chg": "-0.4285",
+          "vol": "89299.05",
+          "amount": "1422066.732"
+        }
+      ],
+      "raw_http_body": "not_captured",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00"
+    },
+    "301511.SZ": {
+      "provider_parsed_bars": [
+        {
+          "ts_code": "301511.SZ",
+          "trade_date": "20261009",
+          "open": "92.46",
+          "high": "92.83",
+          "low": "82.69",
+          "close": "87.0",
+          "pre_close": "93.87",
+          "change": "-6.87",
+          "pct_chg": "-7.3186",
+          "vol": "306228.17",
+          "amount": "2656907.89605"
+        }
+      ],
+      "raw_http_body": "not_captured",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00"
+    },
+    "300750.SZ": {
+      "provider_parsed_bars": [
+        {
+          "ts_code": "300750.SZ",
+          "trade_date": "20261009",
+          "open": "292.0",
+          "high": "301.42",
+          "low": "289.0",
+          "close": "297.75",
+          "pre_close": "286.75",
+          "change": "11.0",
+          "pct_chg": "3.8361",
+          "vol": "541526.71",
+          "amount": "16028123.3305"
+        }
+      ],
+      "raw_http_body": "not_captured",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00"
+    },
+    "601138.SH": {
+      "provider_parsed_bars": [
+        {
+          "ts_code": "601138.SH",
+          "trade_date": "20261009",
+          "open": "55.0",
+          "high": "56.32",
+          "low": "53.4",
+          "close": "56.07",
+          "pre_close": "55.69",
+          "change": "0.38",
+          "pct_chg": "0.6823",
+          "vol": "791141.09",
+          "amount": "4334954.97"
+        }
+      ],
+      "raw_http_body": "not_captured",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00"
+    }
+  },
+  "failed": [
+    {
+      "code": "01810.HK",
+      "name": "小米集团",
+      "market": "HK",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": null,
+      "close": null,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "failed",
+      "error": "offline_replay: HK/non-panel quote unavailable; no substitute"
+    },
+    {
+      "code": "03690.HK",
+      "name": "美团",
+      "market": "HK",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": null,
+      "close": null,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "failed",
+      "error": "offline_replay: HK/non-panel quote unavailable; no substitute"
+    },
+    {
+      "code": "00700.HK",
+      "name": "腾讯控股",
+      "market": "HK",
+      "holding_status": "confirmed",
+      "research_pool_state": null,
+      "research_recorded_state": "watch",
+      "research_event_id": null,
+      "research_only": false,
+      "actual_cost": null,
+      "original_recommendation_date": null,
+      "original_reference_price": null,
+      "recommendation_return": null,
+      "personal_pnl": null,
+      "condition_status": "not_verified_no_current_research_evidence",
+      "quote_date": null,
+      "close": null,
+      "market_gate": {
+        "expected_date": "2026-10-09",
+        "allowed": false,
+        "reason": "manual_offline_replay_not_live_calendar_gate"
+      },
+      "basis": "provider_daily_close_adjustment_not_verified; fees_not_included; not_total_return",
+      "source": "thesis_enrich_daily.fetch_daily_bars",
+      "fetched_at": "2026-10-11T09:47:17.699704+00:00",
+      "status": "failed",
+      "error": "offline_replay: HK/non-panel quote unavailable; no substitute"
+    }
+  ],
+  "historical_performance_included": false,
+  "read_only": true,
+  "execution": {
+    "mode": "manual_offline_daily_consumer_replay",
+    "host": "emox-OMEN-30L-Desktop-GT13-0xxx",
+    "source": "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-panels/2026-10-11/daily-20261009.json",
+    "source_sha256": "b1496656df97c4391b1f8ea70a0daab70b4c1a3538ca0181c521891d3350f3c4",
+    "production_research_events_added": 0
+  },
+  "scope_sha256_unchanged": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4"
+}

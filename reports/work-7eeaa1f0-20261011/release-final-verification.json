@@ -1,0 +1,17 @@
+{
+  "commit": "677046718e072f5b002015ade20d28b9d72aa50a",
+  "host": "emox-OMEN-30L-Desktop-GT13-0xxx",
+  "production_scope_sha256": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+  "production_research_db_exists": false,
+  "files": {
+    "mt1.py": "c985e2618ef403b9fe3d8f5438e809bed0a5c06696d477e5df25fff1e3aae0a6",
+    "mt1/research_pool.py": "f75efe295f961dd65c6c2e36e7b09483a3b0a10f8f0a6b2e666ff50552f68037",
+    "mt1/parallel.py": "abe2dcb7d5970282057f4e3052efa61f8be3680950611bec95a3ada7a1f2950a",
+    "mt1/scope.py": "0b552c7c047635c748265486ec4770203a200cf0065126f7b3affb33e0b8df07",
+    "mt1/daily_tracking.py": "31f2b0dcec149449d6672461579e9f9739e8d23c18bc953428c0dec521820b93",
+    "mt1/pipeline.py": "39316dacc0b2e83038588e76b6cf590b687e95f61b99b03e5fede39d0dea0824",
+    "scripts/deploy_research_pool.py": "f68ee77000381fb3958895b7e8b5d8a04ef6f0bc4cc0a5f2a20e0f6c31e59963"
+  },
+  "remote_test_code_commit": "662448f",
+  "local_tests": "198 passed, 7 subtests"
+}

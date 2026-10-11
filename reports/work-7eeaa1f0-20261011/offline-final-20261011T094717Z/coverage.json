@@ -1,0 +1,49 @@
+{
+  "execution_host": "emox-OMEN-30L-Desktop-GT13-0xxx",
+  "code_hashes": {
+    "research_pool.py": "1591a90343d09b9472c9b1db408ed6d8acca7de54fe58b55b9cdf4cc30254337",
+    "scope.py": "0b552c7c047635c748265486ec4770203a200cf0065126f7b3affb33e0b8df07"
+  },
+  "git_head": "01d65eebc5b74eb4e903f86efa65e2e40e6d96ec",
+  "mode": "offline_queue_replay_manual_verification_not_natural_execution",
+  "scope_epoch": "user-reset-20260911T120928Z",
+  "source": "/home/emox/work/projects/market-tools/.cron_state/mt1/parallel-runs/20261010T210329576158Z-sunday",
+  "asof": "20261009",
+  "universe": 5573,
+  "discovered": 4856,
+  "outside_backlog": 4375,
+  "outside_batch": 10,
+  "holdings_review": 9,
+  "old_batch_codes": [
+    "688195.SH",
+    "601138.SH",
+    "300750.SZ",
+    "603986.SH"
+  ],
+  "new_batch_codes": [
+    "600354.SH",
+    "300741.SZ",
+    "688293.SH",
+    "300404.SZ",
+    "688046.SH",
+    "688073.SH",
+    "300725.SZ",
+    "300483.SZ",
+    "002440.SZ",
+    "002832.SZ"
+  ],
+  "completed_company_research": 0,
+  "pending_verification": 10,
+  "coverage_basis": "queue replay did not perform company research; prior company work not inferred",
+  "new_admissions": 0,
+  "coverage_fault": false,
+  "artifacts": {
+    "research-queue.jsonl": "285d16ab8cfb6b0515dba9fb74df4103b7491dc9bb34fe031f529ca689eb8a5f",
+    "research-batch.jsonl": "8d32bedc3a298612b42df7c89b375e12eb33d74f5036d91d65fd36af99574e11",
+    "holdings-review.jsonl": "2c8e5df5020a0db3d208d8e8d7fbb0ebae18cd1f02d92172a1ac54dd09fb74d4",
+    "source-summary.json": "a240e0f158555fea7d02d54c7e332b25be8279b2b01d8b7ee8a5351313352233",
+    "funnel.json.gz": "8c4935991febc4d9b8e6bf131aecb3ea6f07bd772e5387f0e4a422e0517c40c0",
+    "forward-cohort.json": "654ccbf62c2f338a6ecc45e4380061b7e97cbfe1f2d8111d3df2bc1197984986",
+    "scope-input.json": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4"
+  }
+}
