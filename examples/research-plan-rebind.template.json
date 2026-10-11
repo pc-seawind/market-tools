@@ -1,0 +1,33 @@
+{
+  "phase": "sunday",
+  "reviewer": "<真实审查人>",
+  "source_run_id": "<既有run_id>",
+  "report_context": "<填写真实report_context，未知不得签审>",
+  "reviewed_plan_ids": [
+    "<plan_id>"
+  ],
+  "review_items": [],
+  "method_events": [],
+  "research": {
+    "fetch_status": "ok",
+    "sources": [
+      {
+        "url": "<真实可核验https来源>",
+        "content_path": "<实际来源绝对路径>",
+        "content_hash": "<实际原字节SHA256>",
+        "fetched_at": "<实际ISO8601含时区时间>"
+      }
+    ]
+  },
+  "plan_events": [
+    {
+      "id": "<plan_id>",
+      "expected_version": 1,
+      "request_id": "<新签审唯一request_id>",
+      "reason": "<填写真实reason，未知不得签审>",
+      "payload": {
+        "research_event_id": "<新研究request_id>"
+      }
+    }
+  ]
+}

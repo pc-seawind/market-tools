@@ -1,0 +1,70 @@
+{
+  "phase": "sunday",
+  "reviewer": "<真实审查人>",
+  "source_run_id": "<既有run_id>",
+  "report_context": "<填写真实report_context，未知不得签审>",
+  "reviewed_plan_ids": [
+    "<plan_id>"
+  ],
+  "review_items": [],
+  "method_events": [],
+  "research": {
+    "fetch_status": "ok",
+    "sources": [
+      {
+        "url": "<真实可核验https来源>",
+        "content_path": "<实际来源绝对路径>",
+        "content_hash": "<实际原字节SHA256>",
+        "fetched_at": "<实际ISO8601含时区时间>"
+      }
+    ]
+  },
+  "plan_events": [
+    {
+      "id": "<plan_id>",
+      "expected_version": 0,
+      "request_id": "<本次签审唯一request_id>",
+      "reason": "<填写真实reason，未知不得签审>",
+      "payload": {
+        "plan_id": "<plan_id>",
+        "code": "<证券代码>",
+        "market": "CN",
+        "episode": "<计划episode标识>",
+        "scope_epoch": "<当前scope_epoch>",
+        "research_event_id": "<当前研究request_id>",
+        "original_reason": "<填写真实original_reason，未知不得签审>",
+        "original_date": "<实际YYYY-MM-DD>",
+        "original_deadline": "<实际YYYY-MM-DD>",
+        "reference_price": null,
+        "channel": "VALUE",
+        "state": "WATCH",
+        "holding_status": "not_held",
+        "unheld_direction": "WATCH",
+        "held_direction": "WATCH",
+        "actual_cost": null,
+        "evidence": [
+          {
+            "url": "<真实可核验https来源>",
+            "date": "<实际YYYY-MM-DD>",
+            "claim": "<填写真实claim，未知不得签审>"
+          }
+        ],
+        "milestones": [
+          {
+            "date": "<实际YYYY-MM-DD>",
+            "condition": "<填写真实condition，未知不得签审>"
+          }
+        ],
+        "price_condition": null,
+        "risk_boundary": {
+          "condition": "<填写真实condition，未知不得签审>",
+          "source_url": "<真实可核验https来源>"
+        },
+        "invalidation": "<填写真实invalidation，未知不得签审>",
+        "review_due": "<实际YYYY-MM-DD>",
+        "qualification": "final",
+        "reviewer": "<真实审查人>"
+      }
+    }
+  ]
+}

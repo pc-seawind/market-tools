@@ -1,0 +1,31 @@
+{
+  "scope_epoch": "<当前scope_epoch>",
+  "scope_sha256": "<实际原字节SHA256>",
+  "domain": "investment",
+  "reviewer": "<真实审查人>",
+  "code": "<证券代码>",
+  "state": "watch",
+  "reason": "<填写真实reason，未知不得签审>",
+  "request_id": "<当前研究request_id>",
+  "expected_version": 0,
+  "reviewed_at": "<实际ISO8601含时区时间>",
+  "business_logic": "<填写真实business_logic，未知不得签审>",
+  "risk": "<填写真实risk，未知不得签审>",
+  "next_review": "<实际ISO8601含时区时间>",
+  "research_horizon_end": "<实际ISO8601含时区时间>",
+  "milestones": [
+    {
+      "at": "<实际ISO8601含时区时间>",
+      "description": "<填写真实description，未知不得签审>"
+    }
+  ],
+  "sources": [
+    {
+      "url": "<真实可核验https来源>",
+      "path": "<实际来源绝对路径>",
+      "sha256": "<实际原字节SHA256>",
+      "published_at": "<实际ISO8601含时区时间>",
+      "fetched_at": "<实际ISO8601含时区时间>"
+    }
+  ]
+}
