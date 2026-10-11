@@ -66,7 +66,8 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
         manifest_path=directory/'manifest.json'
         from .scope import load, counts
         scope=load()
-        signature=digest([phase,today,fixture,collect,max_stocks,str(investment_dir),scope])
+        signature_scope = {k: v for k, v in scope.items() if k != 'research_pool'} if scope else scope
+        signature=digest([phase,today,fixture,collect,max_stocks,str(investment_dir),signature_scope])
         manifest=json.loads(manifest_path.read_text()) if manifest_path.exists() else {'stages':{},'signature':signature}
         if manifest['signature']!=signature: raise ValueError('run_id reused with different inputs')
         errors=[]
@@ -169,6 +170,7 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
                     'research_status':'not_fetched' if phase=='sunday' else 'not_requested',
                     'final_watchlist_candidates':[], 'sync':'dry_run_only',
                     'note':'原计划待证据审查，不自动判定维持/升级/退出；未持有与已有持仓分别研究'}
+            result['research_pool'] = scope.get('research_pool') if scope else None
             if phase=='sunday':
                 records=sorted((Path(investment_dir)/'reference/medium-term-reviews').glob('*-saturday*.md'))
                 result['previous_saturday']=str(records[-1]) if records else None
@@ -188,6 +190,8 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
                     '完整数据：`'+str(directory/'report.json')+'`']
             if recap and recap.get('coverage'):
                 lines += ['采集覆盖（不等于研究完成）：'+json.dumps(recap['coverage'],ensure_ascii=False)]
+            from .research_pool import report as pool_report
+            lines += ['', pool_report(scope)]
             with report.open('x') as f: f.write('\n'.join(lines)+'\n')
             result['report_path']=str(report); atomic_json(directory/'report.json',result)
             from .evidence import capture_run

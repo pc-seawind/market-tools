@@ -16,7 +16,8 @@ def load(path=None):
     if not path:
         return None
     try:
-        data = json.loads(Path(path).read_text())
+        raw = Path(path).read_bytes()
+        data = json.loads(raw)
         epoch = data.get('epoch') or data.get('scope_epoch')
         reset = datetime.fromisoformat(data['reset_at'].replace('Z', '+00:00'))
         assert epoch and reset.tzinfo
@@ -34,9 +35,14 @@ def load(path=None):
                     assert item.get('scope_epoch', epoch) == epoch
                 result[code] = {**item, 'code': code}
             return result
-        return {'epoch': epoch, 'reset_at': data['reset_at'],
+        result = {'epoch': epoch, 'reset_at': data['reset_at'],
                 'holdings': normalize(holdings), 'candidates': normalize(data['active_candidates'], True),
                 'recommendations': normalize(data.get('active_recommendations', []), True)}
+        from .research_pool import project
+        result = project(result, path)
+        if Path(path).read_bytes() != raw:
+            raise ValueError('scope changed during projection')
+        return result
     except Exception as e:
         raise ValueError(f'tracking_scope_invalid_fail_closed: {path}: {e}') from e
 

@@ -154,7 +154,7 @@ def actions(t,tm,asof,exit_basis=None):
 
 def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
     root=Path(panel);out=Path(out);out.mkdir(parents=True,exist_ok=False)
-    source_paths=[Path(__file__).with_name(n) for n in ('parallel.py','parallel_collect.py','parallel_bridge.py','parallel_cycle.py','review_time.py','forward.py')]
+    source_paths=[Path(__file__).with_name(n) for n in ('parallel.py','parallel_collect.py','parallel_bridge.py','parallel_cycle.py','review_time.py','forward.py','research_pool.py','scope.py')]
     source_hashes={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source_paths}
     start_head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     sessions=json.loads((root/'sessions.json').read_text());asof=sessions[-1]
@@ -245,12 +245,10 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
         not (r['financial']['positive_eps_base'] and (number(r['financial']['current'].get('netprofit_yoy')) or 0)>0),
         r['timing']['status']!='trigger',-(r['technical'] or {}).get('rs60',-999),r['code']))
     for i,r in enumerate(ranked,1):r['research_rank']=i
-    advancing=[r for r in ranked if not any(v['status']=='reject' for v in r['channel_risk'].values())]
-    from .scope import load, codes, counts
+    from .scope import load, counts
     scope=load()
-    if scope is not None:
-        advancing=[r for r in advancing if r['code'] in codes(scope)]
-    batch=advancing[:10]
+    from .research_pool import research_queues
+    advancing, batch, holding_review = research_queues(ranked, records, scope)
     old=screen({'asof':str(day(asof)),'universe_size':len(universe),'observations':obs,'data_version':'archived-input'})
     totals={}
     for ch in ('VALUE','TREND','REVERSAL'):
@@ -276,6 +274,11 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
         stage_distribution[ch]=dict(groups)
     old_codes={r['code'] for r in old['candidates']}; new_codes={r['code'] for r in ranked}
     summary={'stage_distribution':stage_distribution,'comparison':{'added':sorted(new_codes-old_codes),'removed':sorted(old_codes-new_codes)},'asof':asof,'method':METHOD,'generated_at':datetime.now(timezone.utc).isoformat(),'decision_at':now.isoformat(),'universe':len(universe),'channels':totals,
+        'research_coverage': {'scope_epoch': scope['epoch'] if scope else None, 'asof': asof,
+            'universe': len(records), 'discovered': len(ranked), 'outside_backlog': len(advancing),
+            'outside_batch': len(batch), 'holding_review': len(holding_review),
+            'company_research_completed': None, 'company_research_status': 'not_attested_by_discovery',
+            'coverage_fault': not bool(advancing)},
         'tracking_scope':counts(scope),'advancing_research_count':len(advancing),'research_batch_codes':[r['code'] for r in batch],
         'risk_timing_cross':dict(Counter(r['risk']['status']+'|'+r['timing']['status'] for r in ranked)),
         'deduplicated':len(ranked),'multi_channel':sum(len(r['channels'])>1 for r in ranked),
@@ -299,7 +302,7 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
         'horizons':[{'sessions':h,'status':'not_matured','return':None} for h in (20,40,60)],
         'evaluation_contract':'diagnostic selection cohort, not executed portfolio; future returns require costs, limits, executable next price and independent validation'},ensure_ascii=False,indent=2))
     (out/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2))
-    for filename,items in [('discovery-pool.jsonl',ranked),('research-queue.jsonl',advancing),('research-batch.jsonl',batch)]:
+    for filename,items in [('discovery-pool.jsonl',ranked),('research-queue.jsonl',advancing),('research-batch.jsonl',batch),('holdings-review.jsonl',holding_review)]:
         with (out/filename).open('w') as fp:
             for r in items:fp.write(json.dumps(r,ensure_ascii=False)+'\n')
     import csv
@@ -320,6 +323,8 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
     for r in reps:
         lines += [f"\n**{r['name']} {r['code']}｜{','.join(r['channels'])}**",'```json',json.dumps({'technical':r['technical'],'plan':r['plan'],'risk':r['risk'],'financial':r['financial']},ensure_ascii=False,indent=2),'```']
     lines+=['','功能：旁路已跑到条件动作；未完成：公司研究与最终签审。策略：未经有效性验证。历史：2024缺档独立待补。','全名单：stages.csv；全部计划：research-queue.jsonl；原始输入与源hash：summary.json + *-input.json.gz。']
+    from .research_pool import report as pool_report
+    lines += ['', pool_report(scope, summary['research_coverage'])]
     (out/'report.md').write_text('\n'.join(lines)+'\n')
     return {'out':str(out),'asof':asof,'universe':len(records),'deduplicated':len(ranked),'channels':totals}
 
@@ -331,6 +336,10 @@ def review_gate(packet, code, channel, asof, kind, *, decision_at=None):
     accepting a packet means evidence recorded, NEVER final BUY authorization.
     """
     if not packet:return stage('pending','research_packet_missing')
+    from .scope import load
+    scope = load()
+    if scope is not None and packet.get('scope_epoch') != scope['epoch']:
+        return stage('pending', 'research_packet_missing_current_scope_epoch')
     try:
         assert packet['code']==code and packet['channel']==channel and packet['kind']==kind
         from .review_time import review_times

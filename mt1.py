@@ -51,12 +51,27 @@ def main():
     p=sub.add_parser('daily-track'); p.add_argument('--out',required=True); p.add_argument('--run-id'); p.add_argument('--archive-root'); p.add_argument('--execution-id')
     p=sub.add_parser('archive-evidence'); p.add_argument('--input',required=True); p.add_argument('--archive-root')
     p=sub.add_parser('weekly-evidence'); p.add_argument('--out',required=True); p.add_argument('--asof'); p.add_argument('--archive-root'); p.add_argument('--expected',help='expected occurrence and execution evidence JSON')
+    p=sub.add_parser('research-replay'); p.add_argument('--source',required=True); p.add_argument('--out',required=True)
+    p=sub.add_parser('research-event'); p.add_argument('--input',required=True)
+    p=sub.add_parser('research-status'); p.add_argument('--out',required=True)
     p=sub.add_parser('plans')
     args=parser.parse_args()
     import os
     os.environ['MT1_TRACKING_SCOPE'] = args.scope
     from mt1.scope import load
     if args.cmd!='archive-evidence': load()
+    if args.cmd=='research-replay':
+        from mt1.research_pool import replay
+        print(json.dumps(replay(args.source,args.out,args.scope),ensure_ascii=False)); return
+    if args.cmd=='research-event':
+        from mt1.research_pool import apply
+        print(json.dumps(apply(args.scope,json.loads(Path(args.input).read_text())),ensure_ascii=False)); return
+    if args.cmd=='research-status':
+        from mt1.research_pool import report
+        scope=load()
+        atomic_json(args.out,scope['research_pool'])
+        Path(args.out+'.md').write_text(report(scope))
+        print('RESULT_JSON='+args.out); return
     if args.cmd in ('archive-evidence','weekly-evidence'):
         from mt1.longitudinal import archive, weekly_index, DEFAULT_ROOT
         root=args.archive_root or DEFAULT_ROOT
@@ -82,11 +97,11 @@ def main():
         materials=[{'name':'scope.json','path':args.scope}, {'name':'provider-inputs.json','content':json.dumps(result['inputs'],ensure_ascii=False),'representation':'parsed_provider_rows_not_raw_http'}]
         if Path(args.out).exists(): materials.append({'name':'previous-handoff.json','path':args.out})
         scope=load()
-        events=[{'kind':'holding' if row['holding_status']=='confirmed' else 'recommendation',
-                 'origin_id':row['code'] if row['holding_status']=='confirmed' else scope['recommendations'][row['code']]['research_event_id'],
+        events=[{'kind':'holding' if row['holding_status']=='confirmed' else 'recommendation' if row.get('research_recorded_state')=='recommended' else 'research',
+                 'origin_id':row['code'] if row['holding_status']=='confirmed' else row['research_event_id'],
                  'status':'blocked' if row['status']=='failed' else 'pending',
                  'verification_target':'行情与条件证据持续核验；长期结论留周报',
-                 'original_judgment':'用户持仓事实，不是策略BUY' if row['holding_status']=='confirmed' else '正式推荐事件待原文核验',
+                 'original_judgment':'用户持仓事实，不是策略BUY' if row['holding_status']=='confirmed' else '正式推荐事件待原文核验' if row.get('research_recorded_state')=='recommended' else '研究观察或退出后验证事件，非交易；原文待独立核验',
                  'reference_price':None,'condition_status':row['condition_status']} for row in result['rows']]
         result['archive']=archive(root=args.archive_root or DEFAULT_ROOT,job='daily-track',run_id=args.run_id or day,trade_date=day,scope_epoch=scope['epoch'],result=result,materials=materials,events=events,execution={'execution_id':args.execution_id or 'daily-track:'+(args.run_id or day),'started_at':started_at,'completed_at':datetime.now(timezone.utc).isoformat(),'status':result['status'],'source':'local_process_clock; not_scheduler_attestation'})
         atomic_json(args.out,result)
