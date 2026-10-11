@@ -1,0 +1,74 @@
+{
+  "scope_epoch": "test-reset",
+  "episodes": [
+    {
+      "episode_id": "episode1",
+      "scope_epoch": "test-reset",
+      "code": "TEST",
+      "recommendation": {
+        "request_id": "rec1",
+        "reviewed_at": "2026-09-01T01:00:00+00:00",
+        "performance_contract": {
+          "anchor_date": "2026-09-01",
+          "target_dates": [
+            "2026-09-30",
+            "2026-11-02"
+          ],
+          "benchmark_code": "BENCH",
+          "currency": "CNY",
+          "basis": "unadjusted_close",
+          "anchor_policy": "close_observation_not_execution",
+          "fee_scenario": "SYNTHETIC 10bps each way",
+          "fees": {
+            "entry_bps": 10,
+            "exit_bps": 10
+          }
+        }
+      },
+      "exit": {
+        "request_id": "exit1",
+        "reviewed_at": "2026-09-30T10:00:00+00:00",
+        "performance_exit": {
+          "anchor_date": "2026-09-30",
+          "target_dates": [
+            "2026-10-09"
+          ],
+          "benchmark_code": "BENCH",
+          "currency": "CNY",
+          "basis": "unadjusted_close",
+          "anchor_policy": "close_observation_not_execution",
+          "fee_scenario": "SYNTHETIC 10bps each way",
+          "fees": {
+            "entry_bps": 10,
+            "exit_bps": 10
+          }
+        }
+      }
+    },
+    {
+      "episode_id": "episode2",
+      "scope_epoch": "test-reset",
+      "code": "TEST",
+      "recommendation": {
+        "request_id": "rec2",
+        "reviewed_at": "2026-10-09T10:00:00+00:00",
+        "performance_contract": {
+          "anchor_date": "2026-10-09",
+          "target_dates": [
+            "2026-11-09"
+          ],
+          "benchmark_code": "BENCH",
+          "currency": "CNY",
+          "basis": "unadjusted_close",
+          "anchor_policy": "close_observation_not_execution",
+          "fee_scenario": "SYNTHETIC 10bps each way",
+          "fees": {
+            "entry_bps": 10,
+            "exit_bps": 10
+          }
+        }
+      },
+      "exit": null
+    }
+  ]
+}

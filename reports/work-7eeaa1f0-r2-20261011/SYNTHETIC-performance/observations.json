@@ -1,0 +1,35 @@
+{
+  "scope_epoch": "test-reset",
+  "asof": "2026-10-09",
+  "series": [
+    {
+      "code": "TEST",
+      "source": {
+        "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r2-20261011/SYNTHETIC-performance/sources/3f3929ccfb3dad523f75a921048727fa701543cb7a7694d1cff9dd34a4b1093a",
+        "sha256": "3f3929ccfb3dad523f75a921048727fa701543cb7a7694d1cff9dd34a4b1093a",
+        "url": "https://example.invalid/SYNTHETIC/stock",
+        "fetched_at": "2026-10-11T12:00:00+00:00"
+      }
+    },
+    {
+      "code": "BENCH",
+      "source": {
+        "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r2-20261011/SYNTHETIC-performance/sources/593a0d35f2a6adc29ca65d9c3b0716f2b3a4fb15afcd1440258fc214273c4806",
+        "sha256": "593a0d35f2a6adc29ca65d9c3b0716f2b3a4fb15afcd1440258fc214273c4806",
+        "url": "https://example.invalid/SYNTHETIC/index",
+        "fetched_at": "2026-10-11T12:00:00+00:00"
+      }
+    }
+  ],
+  "corporate_actions": [
+    {
+      "code": "TEST",
+      "source": {
+        "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r2-20261011/SYNTHETIC-performance/sources/a73b892a055f3043db553c2f653f2cf821a8dc81dacf4c2a1d26d879695fb526",
+        "sha256": "a73b892a055f3043db553c2f653f2cf821a8dc81dacf4c2a1d26d879695fb526",
+        "url": "https://example.invalid/SYNTHETIC/actions",
+        "fetched_at": "2026-10-11T12:00:00+00:00"
+      }
+    }
+  ]
+}

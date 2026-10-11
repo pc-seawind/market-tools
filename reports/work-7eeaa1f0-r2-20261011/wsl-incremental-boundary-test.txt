@@ -1,0 +1,10 @@
+DESKTOP-OAE94K7
+Python 3.12.3
+0bff73254ece0c9a1211566f4cdf21c3bd49d6043b6003c753436fb7afa477ba  mt1/research_performance.py
+f72ab3eafef632baef2d64a72c2283fc7b33b98285e109a38c2017c2d66471c7  tests/test_research_performance.py
+test_malformed_materials_report_blocked_not_crash_or_profit (test_research_performance.Performance.test_malformed_materials_report_blocked_not_crash_or_profit) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK

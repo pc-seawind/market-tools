@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "scope_epoch": "test-reset",
+  "evaluated_at": "2026-10-11T12:00:00+00:00",
+  "price_asof": "2026-10-09",
+  "results": [
+    {
+      "episode_id": "episode1",
+      "code": "TEST",
+      "kind": "recommendation_horizon",
+      "anchor_event_id": "rec1",
+      "scope_epoch": "test-reset",
+      "anchor_date": "2026-09-01",
+      "contract": {
+        "anchor_date": "2026-09-01",
+        "target_dates": [
+          "2026-09-30",
+          "2026-11-02"
+        ],
+        "benchmark_code": "BENCH",
+        "currency": "CNY",
+        "basis": "unadjusted_close",
+        "anchor_policy": "close_observation_not_execution",
+        "fee_scenario": "SYNTHETIC 10bps each way",
+        "fees": {
+          "entry_bps": 10,
+          "exit_bps": 10
+        }
+      },
+      "gross_return": 0.10000000000000009,
+      "net_return": 0.0978021978021979,
+      "excess_net_return": 0.049900099900100026,
+      "benchmark_gross_return": 0.050000000000000044,
+      "benchmark_net_return": 0.04790209790209787,
+      "personal_pnl": null,
+      "executed_trade": false,
+      "target_date": "2026-09-30",
+      "status": "verified_price_scenario",
+      "reason": null,
+      "anchor_price": 100.0,
+      "end_price": 110.0,
+      "benchmark_anchor_price": 200.0,
+      "benchmark_end_price": 210.0
+    },
+    {
+      "episode_id": "episode1",
+      "code": "TEST",
+      "kind": "recommendation_horizon",
+      "anchor_event_id": "rec1",
+      "anchor_date": "2026-09-01",
+      "target_date": "2026-11-02",
+      "status": "closed_before_horizon",
+      "reason": "explicit exit; no implied continued position",
+      "net_return": null,
+      "gross_return": null,
+      "excess_net_return": null
+    },
+    {
+      "episode_id": "episode1",
+      "code": "TEST",
+      "kind": "recommendation_to_exit",
+      "anchor_event_id": "rec1",
+      "scope_epoch": "test-reset",
+      "anchor_date": "2026-09-01",
+      "contract": {
+        "anchor_date": "2026-09-01",
+        "target_dates": [
+          "2026-09-30",
+          "2026-11-02"
+        ],
+        "benchmark_code": "BENCH",
+        "currency": "CNY",
+        "basis": "unadjusted_close",
+        "anchor_policy": "close_observation_not_execution",
+        "fee_scenario": "SYNTHETIC 10bps each way",
+        "fees": {
+          "entry_bps": 10,
+          "exit_bps": 10
+        }
+      },
+      "gross_return": 0.10000000000000009,
+      "net_return": 0.0978021978021979,
+      "excess_net_return": 0.049900099900100026,
+      "benchmark_gross_return": 0.050000000000000044,
+      "benchmark_net_return": 0.04790209790209787,
+      "personal_pnl": null,
+      "executed_trade": false,
+      "target_date": "2026-09-30",
+      "status": "verified_price_scenario",
+      "reason": null,
+      "anchor_price": 100.0,
+      "end_price": 110.0,
+      "benchmark_anchor_price": 200.0,
+      "benchmark_end_price": 210.0
+    },
+    {
+      "episode_id": "episode1",
+      "code": "TEST",
+      "kind": "post_exit_counterfactual",
+      "anchor_event_id": "exit1",
+      "scope_epoch": "test-reset",
+      "anchor_date": "2026-09-30",
+      "contract": {
+        "anchor_date": "2026-09-30",
+        "target_dates": [
+          "2026-10-09"
+        ],
+        "benchmark_code": "BENCH",
+        "currency": "CNY",
+        "basis": "unadjusted_close",
+        "anchor_policy": "close_observation_not_execution",
+        "fee_scenario": "SYNTHETIC 10bps each way",
+        "fees": {
+          "entry_bps": 10,
+          "exit_bps": 10
+        }
+      },
+      "gross_return": 0.09090909090909083,
+      "net_return": 0.0887294523658162,
+      "excess_net_return": 0.0432035496970562,
+      "benchmark_gross_return": 0.04761904761904767,
+      "benchmark_net_return": 0.04552590266876,
+      "personal_pnl": null,
+      "executed_trade": false,
+      "target_date": "2026-10-09",
+      "status": "verified_price_scenario",
+      "reason": null,
+      "anchor_price": 110.0,
+      "end_price": 120.0,
+      "benchmark_anchor_price": 210.0,
+      "benchmark_end_price": 220.0
+    },
+    {
+      "episode_id": "episode2",
+      "code": "TEST",
+      "kind": "recommendation_horizon",
+      "anchor_event_id": "rec2",
+      "scope_epoch": "test-reset",
+      "anchor_date": "2026-10-09",
+      "contract": {
+        "anchor_date": "2026-10-09",
+        "target_dates": [
+          "2026-11-09"
+        ],
+        "benchmark_code": "BENCH",
+        "currency": "CNY",
+        "basis": "unadjusted_close",
+        "anchor_policy": "close_observation_not_execution",
+        "fee_scenario": "SYNTHETIC 10bps each way",
+        "fees": {
+          "entry_bps": 10,
+          "exit_bps": 10
+        }
+      },
+      "gross_return": null,
+      "net_return": null,
+      "excess_net_return": null,
+      "benchmark_gross_return": null,
+      "benchmark_net_return": null,
+      "personal_pnl": null,
+      "executed_trade": false,
+      "target_date": "2026-11-09",
+      "status": "not_matured",
+      "reason": "target date not reached"
+    }
+  ],
+  "sources": [
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r2-20261011/SYNTHETIC-performance/sources/3f3929ccfb3dad523f75a921048727fa701543cb7a7694d1cff9dd34a4b1093a",
+      "sha256": "3f3929ccfb3dad523f75a921048727fa701543cb7a7694d1cff9dd34a4b1093a",
+      "url": "https://example.invalid/SYNTHETIC/stock",
+      "fetched_at": "2026-10-11T12:00:00+00:00"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r2-20261011/SYNTHETIC-performance/sources/a73b892a055f3043db553c2f653f2cf821a8dc81dacf4c2a1d26d879695fb526",
+      "sha256": "a73b892a055f3043db553c2f653f2cf821a8dc81dacf4c2a1d26d879695fb526",
+      "url": "https://example.invalid/SYNTHETIC/actions",
+      "fetched_at": "2026-10-11T12:00:00+00:00"
+    },
+    {
+      "path": "/home/emox/work/projects/market-tools/reports/work-7eeaa1f0-r2-20261011/SYNTHETIC-performance/sources/593a0d35f2a6adc29ca65d9c3b0716f2b3a4fb15afcd1440258fc214273c4806",
+      "sha256": "593a0d35f2a6adc29ca65d9c3b0716f2b3a4fb15afcd1440258fc214273c4806",
+      "url": "https://example.invalid/SYNTHETIC/index",
+      "fetched_at": "2026-10-11T12:00:00+00:00"
+    }
+  ],
+  "episode_count": 2,
+  "input_error": null,
+  "definition": "未复权收盘价情景；显式双边费用同样作用于股票与基准；非总回报、非真实成交/个人盈亏；退出后为继续持有反事实而非持仓。",
+  "read_only": true,
+  "discovery_cohort_used": false
+}

@@ -1,0 +1,27 @@
+DESKTOP-OAE94K7
+Python 3.12.3
+ 18:03:41 up 3 days, 16:26,  3 users,  load average: 0.00, 0.02, 0.00
+               total        used        free      shared  buff/cache   available
+Mem:           48176        1272       44188          63        3263       46903
+a5feb484199e78c193958ffef2f5e523340ab73cda665301cbcd80d371625713  /tmp/work-7ee-r2-performance.tar.gz
+2bbe9034033b32dccb3c993d1b600dddaa368a4a774b2e0834bb74990d65e731  mt1/research_performance.py
+8937fd88e3580732eefdec936e36f6d4bf89601622b327bc336835733ad44e9b  tests/test_research_performance.py
+test_action_coverage_hole (test_research_performance.Performance.test_action_coverage_hole) ... ok
+test_arithmetic_costs_benchmark_and_immaturity (test_research_performance.Performance.test_arithmetic_costs_benchmark_and_immaturity) ... ok
+test_corporate_actions_must_be_explicitly_verified (test_research_performance.Performance.test_corporate_actions_must_be_explicitly_verified) ... ok
+test_exit_and_reentry_separate_old_exit_from_new_recommendation (test_research_performance.Performance.test_exit_and_reentry_separate_old_exit_from_new_recommendation) ... ok
+test_hash_epoch_basis_currency_and_future_data (test_research_performance.Performance.test_hash_epoch_basis_currency_and_future_data) ... ok
+test_mature_missing_date_no_nearest_price (test_research_performance.Performance.test_mature_missing_date_no_nearest_price) ... ok
+test_no_bundle_blocks_mature_only (test_research_performance.Performance.test_no_bundle_blocks_mature_only) ... ok
+test_original_baseline_date_cannot_be_backdated (test_research_performance.Performance.test_original_baseline_date_cannot_be_backdated) ... ok
+test_reset_never_includes_old_episode (test_research_performance.Performance.test_reset_never_includes_old_episode) ... ok
+test_stale_bundle_is_not_immature (test_research_performance.Performance.test_stale_bundle_is_not_immature) ... ok
+test_suspension_and_delisting_block (test_research_performance.Performance.test_suspension_and_delisting_block) ... REMOTE_TEST_EXIT=0
+ok
+test_unknown_contract_is_not_backfilled_from_observations (test_research_performance.Performance.test_unknown_contract_is_not_backfilled_from_observations) ... ok
+test_unknown_exit_date_does_not_assume_continued_hold (test_research_performance.Performance.test_unknown_exit_date_does_not_assume_continued_hold) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.029s
+
+OK

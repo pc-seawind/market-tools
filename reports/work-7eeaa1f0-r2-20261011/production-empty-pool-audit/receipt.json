@@ -1,0 +1,10 @@
+{
+  "mode": "readonly_cli_audit_not_scheduler_attestation",
+  "scope_epoch": "user-reset-20260911T120928Z",
+  "files": {
+    "events-input.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "scope-input.json": "8c4eb6f3f6e59bab7beeee42dbc4e35033bf88cf1a2b32130764c1d92c19a3d4",
+    "report.md": "fd7f2eddf4c0777dbd202622dbbed3d79b136b3d37d57f2ab88a0fc980630267",
+    "performance.json": "b4244849ea8b8c7169baac2aa89c62c28539e7adf891c390449d985e04f0f152"
+  }
+}

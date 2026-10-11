@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "scope_epoch": "user-reset-20260911T120928Z",
+  "evaluated_at": "2026-10-11T10:05:18.653167+00:00",
+  "price_asof": null,
+  "results": [],
+  "sources": [],
+  "episode_count": 0,
+  "input_error": "performance observation bundle missing or malformed",
+  "definition": "未复权收盘价情景；显式双边费用同样作用于股票与基准；非总回报、非真实成交/个人盈亏；退出后为继续持有反事实而非持仓。",
+  "read_only": true,
+  "discovery_cohort_used": false
+}

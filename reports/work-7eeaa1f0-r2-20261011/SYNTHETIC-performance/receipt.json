@@ -1,0 +1,13 @@
+{
+  "synthetic": true,
+  "production_writes": false,
+  "files": {
+    "report.md": "909ca4760b4667bfb88cb12662b37fd7c08e2b707a21dc2ee14fdc23e311465e",
+    "observations.json": "c313aa1b956cd243a918c504f8b90ee2fbe34a442bed52917cc5437cb7ba4427",
+    "pool.json": "f3fb3c3490bf7db9aa27d3ece535c3f7edc84990f620b694365ece4c9d7dd76e",
+    "performance.json": "30b6a1a2768d7ad3f4a751e522c3a3aac7437162af437a5ef12afe3a4fbff9fe",
+    "sources/a73b892a055f3043db553c2f653f2cf821a8dc81dacf4c2a1d26d879695fb526": "a73b892a055f3043db553c2f653f2cf821a8dc81dacf4c2a1d26d879695fb526",
+    "sources/593a0d35f2a6adc29ca65d9c3b0716f2b3a4fb15afcd1440258fc214273c4806": "593a0d35f2a6adc29ca65d9c3b0716f2b3a4fb15afcd1440258fc214273c4806",
+    "sources/3f3929ccfb3dad523f75a921048727fa701543cb7a7694d1cff9dd34a4b1093a": "3f3929ccfb3dad523f75a921048727fa701543cb7a7694d1cff9dd34a4b1093a"
+  }
+}

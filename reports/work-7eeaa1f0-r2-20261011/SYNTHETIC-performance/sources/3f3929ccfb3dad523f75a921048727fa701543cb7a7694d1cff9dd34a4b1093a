@@ -1,0 +1,1 @@
+{"code": "TEST", "currency": "CNY", "basis": "unadjusted_close", "kind": "stock", "rows": [{"date": "2026-09-01", "close": 100, "status": "traded"}, {"date": "2026-09-30", "close": 110, "status": "traded"}, {"date": "2026-10-09", "close": 120, "status": "traded"}]}

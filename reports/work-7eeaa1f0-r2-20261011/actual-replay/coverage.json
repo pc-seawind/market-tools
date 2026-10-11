@@ -1,0 +1,15 @@
+{
+  "mode": "offline_queue_replay_manual_verification_not_natural_execution",
+  "asof": "20261009",
+  "universe": 5573,
+  "discovered": 4856,
+  "outside_backlog": 4375,
+  "outside_batch": 10,
+  "holdings_review": 9,
+  "due_review_batch": 0,
+  "completed_company_research": 0,
+  "new_admissions": 0,
+  "scope_epoch": "user-reset-20260911T120928Z",
+  "source_funnel_sha256": "8c4935991febc4d9b8e6bf131aecb3ea6f07bd772e5387f0e4a422e0517c40c0",
+  "source_cohort_sha256": "654ccbf62c2f338a6ecc45e4380061b7e97cbfe1f2d8111d3df2bc1197984986"
+}

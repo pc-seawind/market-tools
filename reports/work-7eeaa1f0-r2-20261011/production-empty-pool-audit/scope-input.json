@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "scope_epoch": "user-reset-20260911T120928Z",
+  "reset_at": "2026-09-11T12:09:28.017037+00:00",
+  "source": "explicit_user_current_holdings_and_clear_others",
+  "confirmed_holdings": [
+    {
+      "code": "001309.SZ",
+      "name": "德明利",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "actual_cost": null,
+      "actual_quantity": null,
+      "actual_entry_date": null
+    },
+    {
+      "code": "603986.SH",
+      "name": "兆易创新",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "actual_cost": null,
+      "actual_quantity": null,
+      "actual_entry_date": null
+    },
+    {
+      "code": "688195.SH",
+      "name": "腾景科技",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "actual_cost": null,
+      "actual_quantity": null,
+      "actual_entry_date": null
+    },
+    {
+      "code": "301511.SZ",
+      "name": "德福科技",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "actual_cost": null,
+      "actual_quantity": null,
+      "actual_entry_date": null
+    },
+    {
+      "code": "300750.SZ",
+      "name": "宁德时代",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "actual_cost": null,
+      "actual_quantity": null,
+      "actual_entry_date": null
+    },
+    {
+      "code": "601138.SH",
+      "name": "工业富联",
+      "market": "CN",
+      "holding_status": "confirmed",
+      "actual_cost": null,
+      "actual_quantity": null,
+      "actual_entry_date": null
+    },
+    {
+      "code": "01810.HK",
+      "name": "小米集团",
+      "market": "HK",
+      "holding_status": "confirmed",
+      "actual_cost": null,
+      "actual_quantity": null,
+      "actual_entry_date": null
+    },
+    {
+      "code": "03690.HK",
+      "name": "美团",
+      "market": "HK",
+      "holding_status": "confirmed",
+      "actual_cost": null,
+      "actual_quantity": null,
+      "actual_entry_date": null
+    },
+    {
+      "code": "00700.HK",
+      "name": "腾讯控股",
+      "market": "HK",
+      "holding_status": "confirmed",
+      "actual_cost": null,
+      "actual_quantity": null,
+      "actual_entry_date": null
+    }
+  ],
+  "active_candidates": [],
+  "active_recommendations": [],
+  "other_holdings_status": "not_held_as_reported_by_user",
+  "legacy_active_pool": "archived_do_not_rehydrate",
+  "historical_records": "preserved_not_current_holdings_or_candidates",
+  "candidate_admission": "new_post_reset_research_event_required_not_legacy_replay",
+  "watchlist_auto_write": false,
+  "backup_dir": "/home/emox/work/investment/reference/operations/user-reset-20260911T120928Z"
+}

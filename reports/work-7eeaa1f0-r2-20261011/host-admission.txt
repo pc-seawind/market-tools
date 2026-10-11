@@ -1,0 +1,7 @@
+emox-OMEN-30L-Desktop-GT13-0xxx
+Python 3.12.3
+ 18:10:02 up 11 days, 47 min,  2 users,  load average: 0.70, 0.64, 0.59
+HOST=standalone5090
+ssh: Could not resolve hostname standalone5090: Temporary failure in name resolution
+HOST=Dual5090
+ssh: Could not resolve hostname dual5090: Temporary failure in name resolution

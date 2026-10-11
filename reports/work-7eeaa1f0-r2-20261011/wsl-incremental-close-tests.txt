@@ -1,0 +1,11 @@
+DESKTOP-OAE94K7
+Python 3.12.3
+1cc8a1144571c190c4e1c1e2a7762d1cceecf7ce5a3a0d90eca80ee9b4c9fc78  mt1/research_performance.py
+4ae4c1d0f99c5fb0f225cef536edb40a6c46f2994d400ce3800665671dd12a64  tests/test_research_performance.py
+test_intraday_target_not_matured (test_research_performance.Performance.test_intraday_target_not_matured) ... ok
+test_intraday_capture_cannot_prove_end_of_day_close (test_research_performance.Performance.test_intraday_capture_cannot_prove_end_of_day_close) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+
+OK
