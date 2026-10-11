@@ -103,9 +103,9 @@ def apply(scope_path, event, now=None):
             raise ValueError('holdings review is separate from outside research admission')
         if old and reviewed < instant(old['reviewed_at']):
             raise ValueError('research time cannot move backwards')
-        if target == 'rejected' and old and old['state'] in ACTIVE:
+        if target == 'rejected' and old and old.get('episode_admitted_at') and old['state'] != 'exited':
             raise ValueError('admitted thesis failure requires explicit exited event')
-        if target == 'exited' and (not old or old['state'] not in ACTIVE):
+        if target == 'exited' and (not old or not old.get('episode_admitted_at') or old['state'] not in ACTIVE | {'pending'}):
             raise ValueError('exit requires previously admitted research')
         # A new event/version is mandatory for re-entry; reuse of original
         # admission evidence is not accepted as a fresh research episode.

@@ -124,3 +124,12 @@ def test_data_blocked_does_not_reset_original_thesis_on_resume(case):
     assert resumed['episode_admitted_at']==first['episode_admitted_at']
     with pytest.raises(ValueError,match='explicit exited'):
         case.put(state='rejected',request_id='bad-exit',expected_version=3,reason='thesis failed',gap_or_exit_basis='failure',research_outcome='completed_not_qualified')
+
+
+def test_admitted_pending_can_exit_but_cannot_be_relabelled_rejection(case):
+    case.put()
+    case.put(state='pending',request_id='blocked',expected_version=1,gap_or_exit_basis='unavailable',research_outcome='data_blocked')
+    with pytest.raises(ValueError,match='explicit exited'):
+        case.put(state='rejected',request_id='bad',expected_version=2,gap_or_exit_basis='failure',research_outcome='completed_not_qualified')
+    case.put(state='exited',request_id='exit',expected_version=2,gap_or_exit_basis='verified failure')
+    assert snapshot(case.scope,'synthetic-reset')['counts']['exited']==1
