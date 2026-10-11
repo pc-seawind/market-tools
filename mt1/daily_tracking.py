@@ -47,6 +47,7 @@ def track(scope_path=None, now=None, fetch=None, gates=None):
     fetch = fetch or fetch_daily_bars
     rows = []
     inputs = {}
+    monitor = scope.get('research_pool', {}).get('monitor_rows', [])
     for code, item in {**{r['code']: r for r in scope.get('research_pool', {}).get('monitor_rows', [])}, **scope['candidates'], **scope['recommendations'], **scope['holdings']}.items():
         market = market_of(code)
         g = gates[market]
@@ -56,6 +57,7 @@ def track(scope_path=None, now=None, fetch=None, gates=None):
                'research_recorded_state': item.get('state', 'recommended' if code in scope['recommendations'] else 'watch'),
                'research_event_id': item.get('research_event_id') or item.get('request_id'),
                'research_only': code not in scope['holdings'],
+               'research_monitor_episodes': [{'episode_id': r['episode_id'], 'state': r['state'], 'event_id': r['request_id']} for r in monitor if r['code'] == code],
                'actual_cost': None, 'original_recommendation_date': None, 'original_reference_price': None,
                'recommendation_return': None, 'personal_pnl': None,
                'condition_status': 'not_verified_no_current_research_evidence',
@@ -74,5 +76,7 @@ def track(scope_path=None, now=None, fetch=None, gates=None):
     errors = [r for r in rows if r['status'] == 'failed']
     return {'asof': now.isoformat(), 'tracking_scope': counts(scope), 'markets': gates,
             'research_pool': scope.get('research_pool'),
+            'research_performance': scope.get('research_pool', {}).get('performance'),
+            'research_review_queue': scope.get('research_pool', {}).get('review_queue', []),
             'status': 'partial' if errors else 'ok', 'rows': rows, 'inputs':inputs,
             'failed': errors, 'historical_performance_included': False, 'read_only': True}

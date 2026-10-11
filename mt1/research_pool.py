@@ -39,21 +39,61 @@ def read_events(scope_path, epoch):
         con.close()
 
 
+def episodes_from_events(events):
+    """Fold immutable history, retaining closed episodes after code re-entry.
+
+    Legacy v1 events receive a deterministic ID from their first admission;
+    neither a pending gap nor a recommendation downgrade starts a new episode.
+    """
+    current, episodes = {}, []
+    for event in events:
+        code = event['code']
+        ep = current.get(code)
+        if event['state'] in ACTIVE and (ep is None or ep['exit'] is not None):
+            ep = {'episode_id': event.get('episode_id') or event['request_id'],
+                  'scope_epoch': event['scope_epoch'], 'code': code,
+                  'admission': event, 'recommendation': None, 'exit': None, 'latest': event}
+            current[code] = ep
+            episodes.append(ep)
+        if ep is None:
+            continue
+        # Closed episodes remain frozen. Pending investigation after an exit
+        # cannot reopen them; only an explicit fresh admission can do so.
+        if ep['exit'] is not None:
+            continue
+        ep['latest'] = event
+        if event['state'] == 'recommended' and ep['recommendation'] is None:
+            ep['recommendation'] = event
+        if event['state'] == 'exited':
+            ep['exit'] = event
+    return episodes
+
+
 def snapshot(scope_path, epoch, now=None):
     now = now or datetime.now(timezone.utc)
     events = read_events(scope_path, epoch)
+    episodes = episodes_from_events(events)
     latest = {r['code']: r for r in events}
     rows = []
     for r in latest.values():
         expired = r['state'] in ACTIVE and instant(r['next_review']) <= now
         rows.append({**r, 'effective_state': 'pending' if expired else r['state'],
-                     'review_overdue': expired, 'method_status': 'shadow', 'final_buy': False})
-    monitor = [r for r in rows if r['state'] in ACTIVE]
-    exits = sorted((r for r in rows if r['state'] == 'exited' and now - instant(r['recorded_at']) <= timedelta(days=93)), key=lambda r: r['recorded_at'], reverse=True)
-    monitor += exits[:100]
+                     'review_overdue': bool(r.get('next_review') and instant(r['next_review']) <= now),
+                     'method_status': 'shadow', 'final_buy': False})
+    # Formal admission may fail closed, but a data gap is not a monitoring exit.
+    open_ids = {ep['code']: ep for ep in episodes if ep['exit'] is None}
+    monitor = [{**r, 'episode_id': open_ids[r['code']]['episode_id']}
+               for r in rows if r['code'] in open_ids and r['state'] in ACTIVE | {'pending'}]
+    exits = sorted((dict(ep['exit'], episode_id=ep['episode_id'], effective_state='exited')
+                    for ep in episodes if ep['exit'] is not None and
+                    now - instant(ep['exit']['recorded_at']) <= timedelta(days=93)),
+                   key=lambda r: instant(r['recorded_at']), reverse=True)
+    # Same code may have several episodes. Quote fetch can deduplicate codes,
+    # but episode monitoring and performance evaluation must not deduplicate them.
     return {'scope_epoch': epoch, 'asof': now.isoformat(), 'rows': rows, 'events': events,
-            'monitor_rows': monitor, 'exit_monitor_omitted': max(0, len(exits)-100),
-            'exit_monitor_policy': '93 calendar days, at most 100 latest exits; history retained',
+            'episodes': episodes, 'monitor_rows': exits[:100] + monitor,
+            'exit_monitor_omitted': max(0, len(exits)-100),
+            'exit_monitor_policy': '93 calendar days, at most 100 latest exited episodes; full history retained for performance',
             'counts': {s: sum(r['effective_state'] == s for r in rows) for s in STATES}}
 
 
@@ -69,6 +109,9 @@ def project(scope, path, now=None):
             key = 'recommendations' if r['effective_state'] == 'recommended' else 'candidates'
             scope[key][code] = {**r, 'admitted_at': r['episode_admitted_at'],
                                 'research_event_id': r['request_id']}
+    from .research_performance import evaluate, read_bundle
+    snap['performance'] = evaluate(snap, read_bundle(path), now)
+    snap['review_queue'] = review_queue({'research_pool': snap, 'holdings': scope['holdings']})
     scope['research_pool'] = snap
     return scope
 
@@ -109,7 +152,10 @@ def apply(scope_path, event, now=None):
             raise ValueError('exit requires previously admitted research')
         # A new event/version is mandatory for re-entry; reuse of original
         # admission evidence is not accepted as a fresh research episode.
-        if old and old['state'] in {'exited', 'rejected'} and target in ACTIVE:
+        prior_episodes = [ep for ep in episodes_from_events(read_events(path, epoch)) if ep['code'] == code]
+        closed = bool(prior_episodes and prior_episodes[-1]['exit'] is not None)
+        episode_new = target in ACTIVE and (not old or not old.get('episode_admitted_at') or closed or old['state'] in {'exited', 'rejected'})
+        if old and (closed or old['state'] in {'exited', 'rejected'}) and target in ACTIVE:
             if reviewed <= instant(old['reviewed_at']):
                 raise ValueError('re-entry requires new research')
         if target in ACTIVE:
@@ -119,9 +165,19 @@ def apply(scope_path, event, now=None):
             due = instant(patch['next_review'])
             if not now < due <= reviewed + timedelta(days=93):
                 raise ValueError('invalid next review')
+            # Investment horizon and near-term verification dates are distinct.
+            if episode_new:
+                horizon = instant(patch['research_horizon_end']) if patch.get('research_horizon_end') else reviewed + timedelta(days=93)
+                if not reviewed + timedelta(days=28) <= horizon <= reviewed + timedelta(days=93):
+                    raise ValueError('research horizon must be 1-3 months')
+            else:
+                horizon = instant(old['research_horizon_end']) if old.get('research_horizon_end') else instant(old['episode_admitted_at']) + timedelta(days=93)
+                if patch.get('research_horizon_end') and instant(patch['research_horizon_end']) != horizon:
+                    raise ValueError('original episode horizon cannot be silently changed')
+            if due > horizon: raise ValueError('next review outside episode horizon')
             for milestone in patch['milestones']:
-                if not milestone.get('description') or not reviewed + timedelta(days=28) <= instant(milestone['at']) <= reviewed + timedelta(days=93):
-                    raise ValueError('1-3 month milestone required')
+                if not milestone.get('description') or not reviewed < instant(milestone['at']) <= horizon:
+                    raise ValueError('future milestone within research horizon required')
             for src in patch['sources']:
                 if not src['url'].startswith(('https://', 'http://')):
                     raise ValueError('verifiable source URL required')
@@ -156,9 +212,8 @@ def apply(scope_path, event, now=None):
             raise ValueError('pool capacity reached')
         if path.read_bytes() != raw:
             raise ValueError('scope changed during validation')
-        episode_new = target in ACTIVE and (not old or not old.get('episode_admitted_at') or old['state'] in {'exited', 'rejected'})
         original = ({'reason': patch['reason'], 'milestones': patch['milestones'], 'sources': patch['sources'],
-                     'next_review': patch['next_review']} if episode_new else (old or {}).get('original'))
+                     'next_review': patch['next_review'], 'research_horizon_end': horizon.isoformat()} if episode_new else (old or {}).get('original'))
         # Freeze evidence by content address before event commit. A crash can
         # leave an unused blob, never a committed event with mutable evidence.
         for src in patch.get('sources', []):
@@ -179,7 +234,17 @@ def apply(scope_path, event, now=None):
             raise ValueError('scope changed while archiving evidence')
         prior = (old or {}).get('state')
         change = ('维持' if prior == target else '退出' if target == 'exited' else '降级' if prior == 'recommended' and target == 'watch' else '升级' if prior == 'watch' and target == 'recommended' else '重新准入' if prior in {'exited', 'rejected'} and target in ACTIVE else '新增' if target in ACTIVE else '待核验' if target == 'pending' else '研究不合格')
-        return {**patch, 'schema_version': 1, 'change_type': change, 'original': original,
+        episode_id = patch['request_id'] if episode_new else (prior_episodes[-1]['episode_id'] if prior_episodes else None)
+        next_review = old.get('next_review') if target == 'pending' and old and old.get('episode_admitted_at') else patch.get('next_review')
+        from .research_performance import validate_contract
+        if patch.get('performance_contract') is not None:
+            validate_contract(patch['performance_contract'], reviewed)
+        if patch.get('performance_exit') is not None:
+            if target != 'exited': raise ValueError('performance_exit requires explicit exit')
+            validate_contract(patch['performance_exit'], reviewed)
+        return {**patch, 'schema_version': 2, 'episode_id': episode_id,
+                'next_review': next_review,
+                'research_horizon_end': horizon.isoformat() if target in ACTIVE else (old or {}).get('research_horizon_end'), 'change_type': change, 'original': original,
                 'source_archive': [{'sha256': s['sha256'], 'path': str(Path(str(path) + '.research-sources') / s['sha256'])} for s in patch.get('sources', [])],
                 'episode_admitted_at': now.isoformat() if episode_new else (old or {}).get('episode_admitted_at'),
                 'previous_state': (old or {}).get('state'), 'recorded_at': now.isoformat(),
@@ -199,11 +264,26 @@ def research_queues(ranked, records, scope, batch_size=10):
     by = {r['code']: r for r in records}
     holdings = [by.get(c, {'code': c, 'channels': [], 'research_gap': 'outside_panel'}) for c in sorted(held)]
     states = {r['code']: r for r in (scope or {}).get('research_pool', {}).get('rows', [])}
-    eligible = [r for r in outside if r['code'] not in states or states[r['code']]['effective_state'] == 'pending']
-    # New/unattempted items first; active recommendations are not re-discovered
-    # as new. Exits/rejections require explicit new research rather than auto-reentry.
-    eligible.sort(key=lambda r: r['code'] in states)
+    eligible = [r for r in outside if r['code'] not in states]
+    # New discovery and due reviews have separate budgets. Thousands of new
+    # discoveries therefore cannot crowd out an overdue/blocked review.
     return outside, eligible[:batch_size], holdings
+
+
+def review_queue(scope, records=(), limit=10):
+    by = {r['code']: r for r in records}
+    pool = (scope or {}).get('research_pool', {})
+    eligible = [r for r in pool.get('rows', [])
+                if r['code'] not in (scope or {}).get('holdings', {}) and
+                (r['effective_state'] == 'pending' or r.get('review_overdue'))]
+    # Re-emission never changes due. A recorded actual review attempt moves
+    # behind older attempts; untouched due tasks are not starved by retries.
+    eligible.sort(key=lambda r: (instant(r['reviewed_at']), instant(r.get('next_review') or r['reviewed_at']), r['code']))
+    return [{**by.get(r['code'], {'code': r['code'], 'channels': [], 'research_gap': 'outside_panel'}),
+             'review_event_id': r['request_id'], 'expected_version': r['version'],
+             'original_due': r.get('next_review'), 'last_attempt_at': r['reviewed_at'],
+             'review_reason': r.get('gap_or_exit_basis') or 'review_due', 'research_only': True}
+            for r in eligible[:limit]]
 
 
 def report(scope, coverage=None):
@@ -235,6 +315,12 @@ def report(scope, coverage=None):
         lines.append('|无|无变更|未发生已签审研究事件|本次读取|')
     lines += ['退出记录保留，收益/原判断兑现待后续可核验行情，不填造收益；过期研究回到待核验，不自动续期。',
               '方法仍为 shadow；重点研究推荐不是 BUY，正式计划仍需独立签审。']
+    lines += ['', '**独立到期/受阻复核队列（不占新发现名额）**']
+    for r in snap.get('review_queue', []):
+        lines.append(f"- {r['code']}：原 due {r['original_due']}；上次尝试 {r['last_attempt_at']}；{r['review_reason']}")
+    if snap.get('performance') is not None:
+        from .research_performance import render
+        lines += ['', render(snap['performance'])]
     return '\n'.join(lines) + '\n'
 
 
@@ -261,8 +347,9 @@ def replay(source, out, scope_path):
     scope_raw = Path(scope_path).read_bytes()
     scope = load(scope_path)
     outside, batch, holdings = research_queues(ranked, records, scope)
+    reviews = review_queue(scope, records)
     artifacts = {}
-    for name, rows in [('research-queue.jsonl', outside), ('research-batch.jsonl', batch), ('holdings-review.jsonl', holdings)]:
+    for name, rows in [('research-queue.jsonl', outside), ('research-batch.jsonl', batch), ('holdings-review.jsonl', holdings), ('research-reviews.jsonl', reviews)]:
         with (dest / name).open('x') as f:
             for r in rows:
                 f.write(json.dumps(r, ensure_ascii=False) + '\n')
@@ -279,7 +366,7 @@ def replay(source, out, scope_path):
                 'mode': 'offline_queue_replay_manual_verification_not_natural_execution',
                 'scope_epoch': scope['epoch'], 'source': str(root.resolve()), 'asof': summary['asof'],
                 'universe': len(records), 'discovered': len(ranked), 'outside_backlog': len(outside),
-                'outside_batch': len(batch), 'holdings_review': len(holdings),
+                'outside_batch': len(batch), 'holdings_review': len(holdings), 'due_review_batch': len(reviews),
                 'old_batch_codes': summary['research_batch_codes'],
                 'new_batch_codes': [r['code'] for r in batch],
                 'completed_company_research': 0, 'pending_verification': len(batch),

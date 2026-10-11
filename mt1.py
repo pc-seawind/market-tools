@@ -52,6 +52,7 @@ def main():
     p=sub.add_parser('archive-evidence'); p.add_argument('--input',required=True); p.add_argument('--archive-root')
     p=sub.add_parser('weekly-evidence'); p.add_argument('--out',required=True); p.add_argument('--asof'); p.add_argument('--archive-root'); p.add_argument('--expected',help='expected occurrence and execution evidence JSON')
     p=sub.add_parser('research-replay'); p.add_argument('--source',required=True); p.add_argument('--out',required=True)
+    p=sub.add_parser('research-performance'); p.add_argument('--observations'); p.add_argument('--out',required=True)
     p=sub.add_parser('research-event'); p.add_argument('--input',required=True)
     p=sub.add_parser('research-status'); p.add_argument('--out',required=True)
     p=sub.add_parser('plans')
@@ -63,6 +64,27 @@ def main():
     if args.cmd=='research-replay':
         from mt1.research_pool import replay
         print(json.dumps(replay(args.source,args.out,args.scope),ensure_ascii=False)); return
+    if args.cmd=='research-performance':
+        from mt1.research_performance import evaluate, render, read_bundle
+        bundle=json.loads(Path(args.observations).read_text()) if args.observations else read_bundle(args.scope)
+        scope=load()
+        value=evaluate(scope['research_pool'],bundle)
+        dest=Path(args.out); dest.mkdir(parents=True,exist_ok=False)
+        import hashlib
+        (dest/'sources').mkdir()
+        for source in value['sources']:
+            raw=Path(source['path']).read_bytes()
+            if hashlib.sha256(raw).hexdigest()!=source['sha256']: raise ValueError('performance source changed before freeze')
+            (dest/'sources'/source['sha256']).write_bytes(raw)
+        (dest/'performance.json').write_text(json.dumps(value,ensure_ascii=False,indent=2))
+        (dest/'report.md').write_text(render(value))
+        (dest/'scope-input.json').write_bytes(Path(args.scope).read_bytes())
+        (dest/'events-input.json').write_text(json.dumps(scope['research_pool']['events'],ensure_ascii=False,indent=2))
+        if bundle is not None: (dest/'observations-input.json').write_text(json.dumps(bundle,ensure_ascii=False,indent=2))
+        receipt={'mode':'readonly_cli_audit_not_scheduler_attestation','scope_epoch':scope['epoch'],
+                 'files':{str(p.relative_to(dest)):hashlib.sha256(p.read_bytes()).hexdigest() for p in dest.rglob('*') if p.is_file()}}
+        (dest/'receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2))
+        print('RESULT_JSON='+str(dest/'performance.json')); return
     if args.cmd=='research-event':
         from mt1.research_pool import apply
         print(json.dumps(apply(args.scope,json.loads(Path(args.input).read_text())),ensure_ascii=False)); return

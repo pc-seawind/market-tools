@@ -9,10 +9,16 @@ research_event_id 门禁。所有发现通道仍为 shadow，推荐池不等于 
 
 - `research-queue.jsonl`：本轮非持仓且没有风险 reject 的发现全集；未知不淘汰。
 - `research-batch.jsonl`：最多 10 个需要新研究/补核验的非持仓标的。
-  优先尚未记录研究的标的；已有效准入的不重复当“新机会”，退出/拒绝不自动重入。
+  仅新发现占用此批次；已有效准入的不重复当“新机会”，退出/拒绝不自动重入。
+- `research-reviews.jsonl`：独立最多 10 项到期/受阻/未完成复核，不占新发现名额；
+  即使已不在发现筛选结果也可进入。按真实上次尝试时间排序；重复出队不改 due。
 - `holdings-review.jsonl`：所有确认持仓，未在 A 股 panel 中的港股等保留缺口占位。
 - `summary.json.research_coverage`：扫描、发现、队列、批次、持仓复核数量、epoch、行情日。
   这不是公司研究完成证明，completed 字段为未知时必须说明未签审。
+
+**每轮同时交接新发现批次与独立复核批次**；先读 `research-reviews.jsonl` 或
+`research-status` 的 review_queue，不得只消费新发现的 10 项。复核尝试要记录真实 pending/完成事件，
+其 last_attempt 排序会推进其他待办，但原 due 不因排队或源站受阻而后移。
 
 ## 唯一研究事件入口
 
@@ -35,8 +41,9 @@ python3 mt1.py research-status --out /absolute/new-run/research-pool.json
 |reason / reviewed_at|本次理由、真实带时区研究时间；不早于 reset、不未来、距提交不超过 7 天|
 |business_logic / risk|经营逻辑及明确风险；准入/研究后拒绝必需|
 |sources|至少一个原文对象：url/path/sha256/published_at/fetched_at；时间顺序及文件 hash 校验|
-|milestones|准入至少一个 `{description,at}`；研究后 28—93 天内的业务节点|
-|next_review|准入必须未来且不超过研究后 93 天；到期自动失去活跃投影，不自动延期|
+|research_horizon_end|初次研究周期终点：研究后 28—93 天；省略采用明确记录的 93 天默认值。同 episode 不自动延长|
+|milestones|准入至少一个 `{description,at}`；实际未来节点且不晚于周期终点。明天/下周财报节点合法，不修改事实日期|
+|next_review|准入必须未来且不晚于本 episode 终点；到期退出正式 scope 投影，但行情/风险监控不停。已准入转 pending 保留原 due|
 |valuation|重点推荐额外必需：研究者填写的估值论证（不是机器阈值）|
 |risk_signoff / valuation_signoff|重点推荐额外必需：`{status:"pass",reviewer,at}`；实际签审时间|
 |gap_or_exit_basis|待核验、拒绝、退出必需；明确缺口或证伪依据|
@@ -57,6 +64,10 @@ SQLite `BEGIN IMMEDIATE` + expected_version CAS + request_id 幂等，UPDATE/DEL
 **不重写用户 scope JSON**：`scope.load()` 动态投影当前 epoch 的事件。
 持仓取原文件，研究事件永远不能改持仓。并发 reset 后旧 epoch 自然隐藏；
 过期、退出、研究版本更新让旧正式计划绑定失效。
+snapshot 另按 `episode_id` 保留历史准入/首个推荐/明确退出。已准入转 pending 是待核验，
+不是退出；行情仍监控但正式计划 fail-closed。退出后重新准入得到新 episode，旧退出
+仍在 93 天内有界监控并永久可由绩效核验器核验，daily 同代码取一次报价而保留所有 episode 引用。
+
 所有正式计划写入仍经既有 `Store.apply` → `scope.filter_plans` 及原签审流程。
 推荐事件不会自动创建正式计划、调用 finalize 或激活方法。
 
@@ -106,3 +117,73 @@ python3 -m scripts.deploy_research_pool --apply
 实际公司研究事件、估值/风险签审、真实入池和正式计划绑定实例；下一自然日报/周末
 正文三表、daily 真实非持仓消费、用户可见发布/读回。没有合格者可 0 新推荐，
 但必须明确 10 个任务各自未研究/受阻/不合格原因，不能给全绿结论。
+
+
+## Revision 2：独立推荐/退出绩效核验器
+
+不是发现 cohort 收益、不是交易盈亏；不复用旧 watchlist。绩效只遍历当前 epoch
+真实研究事件形成的 episode，首次 `recommended` 事件固定推荐基准，`exited` 固定退出基准；
+后来 maintain/重入不会改写历史。无基准的原事件永久显示 unknown，不能从后来的报价倒填。
+
+```sh
+python3 mt1.py research-performance --observations /absolute/observations.json --out /absolute/new-unique-audit
+```
+
+输出 `performance.json`、中文 `report.md`、原事件、观察输入、冻结来源原 bytes、hash receipt。
+完全只读：不入池、不创建计划，不改持仓。`research-status` / `scope.load()` / `daily-track` /
+周末代码正文也自动消费 `<scope-path>.research-performance-input.json`（若有）；缺文件保留 blocked，
+没有推荐/退出 episode 显示“无样本”，不伪造收益。原 cron 已要求读本契约与 research-status，
+故本轮无需再次修改调度或 prompt。
+
+### 原事件可选的冻结绩效契约
+
+在**首次推荐**附 `performance_contract`；明确退出事件附 `performance_exit`。
+两者同 schema：
+
+```json
+{
+  "anchor_date": "YYYY-MM-DD",
+  "target_dates": ["YYYY-MM-DD"],
+  "anchor_policy": "close_observation_not_execution",
+  "basis": "unadjusted_close",
+  "currency": "CNY 或 HKD",
+  "benchmark_code": "明确价格指数代码",
+  "fee_scenario": "研究者显式指定的费用情景说明",
+  "fees": {"entry_bps": 0, "exit_bps": 0}
+}
+```
+
+这里的 0 仅为字段示例，不是生产费用默认。缺费用/价格口径/基准/目标日期不计算。
+anchor_date 不能早于该事件实际研究日期（北京时间），target_dates 唯一且递增、晚于 anchor。
+当前只支持 CNY/HKD；同日目标在北京时间 17:00 前为 not_matured，同日收盘数据若在 17:00 前抓取则 blocked（保守 CN/HK 完成界限）。
+选择已知交易日；遇休市、停牌、退市或缺报价不会取最近一天凑数。契约缺失不阻断公司研究，
+但该历史绩效只能 unknown。收益代表“指定收盘基准的假设价格情景”，不是宣称该收盘能成交。
+
+### 观察包与原文格式
+
+`observations.json`：`scope_epoch`、`asof`、`series[]`、`corporate_actions[]`。
+两类数组每个元素都为 `{code, source:{path,sha256,url,fetched_at}}`；源 JSON 原 bytes 校验 hash，
+抓取时间必须带时区且不未来，价格日期不能晚于 asof 或抓取日期。相同 code 重复来源拒绝。
+
+价格源 JSON：`{code,currency,basis:"unadjusted_close",kind:"stock"或"index",rows:[{date,close,status:"traded"}]}`。
+基准指数另需 `index_type:"price_index"`。股票和基准币种、价格口径必须相同，无 FX 偷换。
+公司行动源 JSON：`{code,status:"verified",from,through,events:[{date,type}]}`。
+`events:[]` 必须是原文核验后的明确空清单，不能因没有文件/没有查就填 verified。
+核验区间必须覆盖 `(anchor_date,target_date]`；股票缺行动核验、区间缺口、分红/拆股/合并等
+一律 blocked 并列原因。当前不实现公司行动调整适配器，不用未复权价格硬算这些区间。
+只有显式价格指数免除个股公司行动核验，不能把股票假标成指数绕过。
+
+### 算式与状态
+
+- 毛价格回报 = 终点收盘 / 基准收盘 − 1。
+- 净情景回报 = 终点收盘 × (1 − 卖出 bps/10000) / [基准收盘 × (1 + 买入 bps/10000)] − 1。
+- 指数使用同一费用情景计算；净超额 = 股票净情景 − 基准净情景。不同币种不合并。
+- `not_matured`：目标日期未到，回报 null。
+- `blocked`：已成熟但缺精确日期报价/公司行动核验/来源错误/币种口径不符，回报 null。
+- `unknown`：原事件没有合法冻结绩效契约，回报 null。
+- `closed_before_horizon`：原推荐在该 horizon 前明确退出；不继续假装持有。
+- `recommendation_to_exit`：推荐基准至明确退出基准的独立核验。
+- `post_exit_counterfactual`：退出基准之后继续持有的反事实，不算真实持仓；重入后旧段仍保留。
+
+不声称含分红总回报或个人盈亏。split/dividend 等尚未有适配器时明确 blocked 属于
+核验器的 fail-closed 边界，不是把行情列表称作核算器。

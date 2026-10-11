@@ -154,7 +154,7 @@ def actions(t,tm,asof,exit_basis=None):
 
 def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
     root=Path(panel);out=Path(out);out.mkdir(parents=True,exist_ok=False)
-    source_paths=[Path(__file__).with_name(n) for n in ('parallel.py','parallel_collect.py','parallel_bridge.py','parallel_cycle.py','review_time.py','forward.py','research_pool.py','scope.py')]
+    source_paths=[Path(__file__).with_name(n) for n in ('parallel.py','parallel_collect.py','parallel_bridge.py','parallel_cycle.py','review_time.py','forward.py','research_pool.py','research_performance.py','scope.py')]
     source_hashes={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source_paths}
     start_head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     sessions=json.loads((root/'sessions.json').read_text());asof=sessions[-1]
@@ -247,8 +247,9 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
     for i,r in enumerate(ranked,1):r['research_rank']=i
     from .scope import load, counts
     scope=load()
-    from .research_pool import research_queues
+    from .research_pool import research_queues, review_queue
     advancing, batch, holding_review = research_queues(ranked, records, scope)
+    due_reviews = review_queue(scope, records)
     old=screen({'asof':str(day(asof)),'universe_size':len(universe),'observations':obs,'data_version':'archived-input'})
     totals={}
     for ch in ('VALUE','TREND','REVERSAL'):
@@ -276,7 +277,7 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
     summary={'stage_distribution':stage_distribution,'comparison':{'added':sorted(new_codes-old_codes),'removed':sorted(old_codes-new_codes)},'asof':asof,'method':METHOD,'generated_at':datetime.now(timezone.utc).isoformat(),'decision_at':now.isoformat(),'universe':len(universe),'channels':totals,
         'research_coverage': {'scope_epoch': scope['epoch'] if scope else None, 'asof': asof,
             'universe': len(records), 'discovered': len(ranked), 'outside_backlog': len(advancing),
-            'outside_batch': len(batch), 'holding_review': len(holding_review),
+            'outside_batch': len(batch), 'holding_review': len(holding_review), 'due_review_batch': len(due_reviews),
             'company_research_completed': None, 'company_research_status': 'not_attested_by_discovery',
             'coverage_fault': not bool(advancing)},
         'tracking_scope':counts(scope),'advancing_research_count':len(advancing),'research_batch_codes':[r['code'] for r in batch],
@@ -302,7 +303,7 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
         'horizons':[{'sessions':h,'status':'not_matured','return':None} for h in (20,40,60)],
         'evaluation_contract':'diagnostic selection cohort, not executed portfolio; future returns require costs, limits, executable next price and independent validation'},ensure_ascii=False,indent=2))
     (out/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2))
-    for filename,items in [('discovery-pool.jsonl',ranked),('research-queue.jsonl',advancing),('research-batch.jsonl',batch),('holdings-review.jsonl',holding_review)]:
+    for filename,items in [('discovery-pool.jsonl',ranked),('research-queue.jsonl',advancing),('research-batch.jsonl',batch),('holdings-review.jsonl',holding_review),('research-reviews.jsonl',due_reviews)]:
         with (out/filename).open('w') as fp:
             for r in items:fp.write(json.dumps(r,ensure_ascii=False)+'\n')
     import csv
