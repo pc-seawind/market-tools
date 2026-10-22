@@ -145,7 +145,7 @@ logs=[]
 for line in cp.stdout.splitlines():
  try:
   x=json.loads(line)
-  if 'cron: firing '+name+' ' in x.get('MESSAGE',''):logs.append({{'timestamp':x['__REALTIME_TIMESTAMP'],'message':x['MESSAGE']}})
+  if isinstance(x.get('MESSAGE'),str) and 'cron: firing '+name+' ' in x['MESSAGE']:logs.append({{'timestamp':x['__REALTIME_TIMESTAMP'],'message':x['MESSAGE']}})
  except (ValueError,KeyError):pass
 print(json.dumps({{'bindings':found,'config':{{k:cfg.get(k) for k in ['name','cron','domain','cwd','delivery','silent','model']}},'logs':logs,'journal_exit':cp.returncode}}))
 '''
