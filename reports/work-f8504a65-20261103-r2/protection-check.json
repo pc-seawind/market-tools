@@ -1,0 +1,25 @@
+{
+  "work_id": "work_f8504a653ffde8cef3dd",
+  "checked_at": "2026-11-02T16:52:05.708509+00:00",
+  "unrelated_dirty_files_changed": [],
+  "shared_test_original_hunk_preserved": true,
+  "protected_current_worktree_files": [
+    "mt1.py",
+    "mt1/parallel.py",
+    "mt1/pipeline.py",
+    "mt1/research_pool.py",
+    "scripts/deploy_research_pool.py"
+  ],
+  "scope_raw_unchanged": true,
+  "scope_sha256": "db353f7aac35a0f79aec1ecc2898e46eeb23025ffd7e713565270be784444a18",
+  "production_ledger_rows_unchanged": true,
+  "production_ledger_event_count": 448,
+  "original_evidence_files_changed": [],
+  "production_event_replay_performed": false,
+  "all_tested_source_file_hashes_match_candidate_tree": true,
+  "tested_candidate_tree": "df42b20df8bce17ebf47028393da84151c8f51b4",
+  "staged_test_files": [
+    "tests/test_research_pool_revision2.py",
+    "tests/test_research_performance.py"
+  ]
+}

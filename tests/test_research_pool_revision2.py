@@ -1,6 +1,7 @@
 """Regression of independent investment review; only temporary synthetic state."""
 import copy
 from datetime import timedelta
+from zoneinfo import ZoneInfo
 import pytest
 import test_research_pool_lifecycle as base
 from mt1.research_pool import apply, snapshot, research_queues, review_queue, report
@@ -108,11 +109,16 @@ def test_review_does_not_extend_original_horizon(case):
         apply(case.scope,{**event,'expected_version':2,'request_id':'extend','research_horizon_end':(later+timedelta(days=93)).isoformat()},later)
 
 
-def test_real_cli_event_to_readonly_performance_with_isolated_synthetic_sources(case):
+@pytest.mark.parametrize('review_time', [(15, 59, 59), (16, 0, 0), (16, 46, 58)],
+                         ids=['before-beijing-midnight', 'beijing-midnight', 'after-beijing-midnight'])
+def test_real_cli_event_to_readonly_performance_with_isolated_synthetic_sources(case, review_time):
     import hashlib,json,subprocess,sys
     from pathlib import Path
-    earlier=case.now-timedelta(days=4)
-    start=earlier.date().isoformat();end=(case.now-timedelta(days=1)).date().isoformat()
+    earlier=(case.now-timedelta(days=4)).replace(hour=review_time[0], minute=review_time[1],
+                                              second=review_time[2], microsecond=0)
+    local=ZoneInfo('Asia/Shanghai')
+    start=earlier.astimezone(local).date().isoformat()
+    end=(case.now-timedelta(days=1)).astimezone(local).date().isoformat()
     contract={'anchor_date':start,'target_dates':[end],'currency':'CNY','benchmark_code':'TESTINDEX',
               'basis':'unadjusted_close','anchor_policy':'close_observation_not_execution',
               'fee_scenario':'synthetic 10bps','fees':{'entry_bps':10,'exit_bps':10}}

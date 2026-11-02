@@ -135,6 +135,18 @@ class Performance(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_contract(self.contract,datetime(2026,9,2,tzinfo=timezone.utc))
 
+    def test_baseline_uses_beijing_date_at_utc_16(self):
+        for reviewed, valid_date, retroactive_date in (
+            ('2026-09-01T15:59:59+00:00', '2026-09-01', '2026-08-31'),
+            ('2026-09-01T16:00:00+00:00', '2026-09-02', '2026-09-01'),
+            ('2026-09-01T16:46:58+00:00', '2026-09-02', '2026-09-01'),
+        ):
+            with self.subTest(reviewed=reviewed):
+                at = datetime.fromisoformat(reviewed)
+                validate_contract({**self.contract, 'anchor_date': valid_date}, at)
+                with self.assertRaisesRegex(ValueError, 'retroactive performance baseline forbidden'):
+                    validate_contract({**self.contract, 'anchor_date': retroactive_date}, at)
+
     def test_reset_never_includes_old_episode(self):
         self.pool['scope_epoch']='new-reset'
         self.assertEqual(self.result()['results'],[])

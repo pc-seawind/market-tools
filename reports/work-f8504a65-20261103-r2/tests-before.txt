@@ -1,0 +1,18 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_real_cli_event_to_readonly_performance_with_isolated_synthetic_sources __
+tests/test_research_pool_revision2.py:124: in test_real_cli_event_to_readonly_performance_with_isolated_synthetic_sources
+    apply(case.scope,e,earlier)
+mt1/research_pool.py:253: in apply
+    return store.apply('research:' + epoch + ':' + code, event['expected_version'], event['request_id'],
+mt1/store.py:70: in apply
+    after = reducer(before, payload)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+mt1/research_pool.py:241: in reduce
+    validate_contract(patch['performance_contract'], reviewed)
+mt1/research_performance.py:36: in validate_contract
+    raise ValueError('retroactive performance baseline forbidden')
+E   ValueError: retroactive performance baseline forbidden
+=========================== short test summary info ============================
+FAILED tests/test_research_pool_revision2.py::test_real_cli_event_to_readonly_performance_with_isolated_synthetic_sources
+1 failed in 0.16s

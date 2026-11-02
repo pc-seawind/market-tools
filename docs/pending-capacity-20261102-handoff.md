@@ -2,6 +2,41 @@
 
 工作项：`work_f8504a653ffde8cef3dd`。本文件是 code 交付，不是 investment 验收结论。
 
+## Revision 2：修正测试日期口径（2026-11-03）
+
+原 topic 在北京时间 00:46 重跑时正确发现测试不稳定：UTC 16 点后，
+`earlier.date()` 比 `reviewed_at` 对应的北京时间日期早一天，生产校验拒绝追溯基准是正确行为。
+首次交付的 74 passed 日志只代表当时执行结果，不代表跨日稳定；本次仅修测试，不放宽生产契约。
+
+- CLI 合成测试的 anchor/target 日期统一先转换 `Asia/Shanghai`，并参数化 UTC
+  15:59:59、16:00:00、16:46:58 三个研究时刻，逐一跑原文/事件/只读绩效链路。
+- 追加精确日期边界测试：UTC 16 点起必须使用北京时间次日；同 UTC 日的旧基准仍须
+  抛出 `retroactive performance baseline forbidden`，没有改生产 `validate_contract`。
+- 回归在 home-ubuntu 本机串行的独立 detached worktree 执行，基线
+  `8aedcbd2464927b407a0fab02f2296b0b67628dd` 加本次两份测试补丁；对应候选 Git tree
+  `df42b20df8bce17ebf47028393da84151c8f51b4`，7 个原交付测试文件
+  **77 passed / 28 subtests passed（3.48s）**。精确 argv、补丁 SHA256、166 个源码文件
+  SHA256 见 `reports/work-f8504a65-20261103-r2/source-receipt.json`。
+- 当前工作树后续出池单的 `mt1.py`、`mt1/parallel.py`、`mt1/pipeline.py`、
+  `mt1/research_pool.py`、`scripts/deploy_research_pool.py` 改动完全未纳入上述回归或提交；
+  共用测试文件中已有的 tasks/last_attempt_at 改动也保留为未提交，不混入本单。
+- 修复前已在隔离基线上复现同一追溯错误。首次用无 Git 元数据的 archive 隔离时，
+  另有 2 项证据采集测试因缺 `.git` 失败；改用真实 worktree 后全部通过，未增加生产 fallback。
+  这两次中间结果及最终结果均留档，没有把环境失败算通过。
+- 原 8 项仍未补录；scope 原字节、448 条生产事件、原始材料及其他未提交改动均未变。
+  下文补录/读回命令仍仅供原 investment topic 验收后执行；不覆盖任何旧晚报或补记。
+
+本轮独立提交文件：
+
+- `tests/test_research_pool_revision2.py`（仅日期/三时刻参数化部分）
+- `tests/test_research_performance.py`
+- `docs/pending-capacity-20261102-handoff.md`
+- `reports/work-f8504a65-20261103-r2/tests-before.txt`
+- `reports/work-f8504a65-20261103-r2/tests-archive-harness.txt`
+- `reports/work-f8504a65-20261103-r2/tests-after.txt`
+- `reports/work-f8504a65-20261103-r2/source-receipt.json`
+- `reports/work-f8504a65-20261103-r2/protection-check.json`
+
 ## 修改边界
 
 `mt1/research_pool.py` 仅从 `LIMITS` 删除 `pending: 100`，不改观察 50、重点推荐 10。

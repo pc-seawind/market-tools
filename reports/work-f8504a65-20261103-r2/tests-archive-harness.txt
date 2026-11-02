@@ -1,0 +1,49 @@
+...................F....................................F....................                                        [100%]
+=================================== FAILURES ===================================
+_________ test_pipeline_resume_signature_ignores_projection_read_clock _________
+tests/test_research_pool_consumers.py:89: in test_pipeline_resume_signature_ignores_projection_read_clock
+    first=run('sunday',case.root/'pipeline',case.root/'investment',case.now,{},run_id='same')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mt1/pipeline.py:198: in run
+    capture_run(state_dir,result,'fixture' if fixture is not None else 'live_cli')
+mt1/evidence.py:39: in capture_run
+    sha=subprocess.check_output(['git','-C',str(HERE),'rev-parse','HEAD'],text=True,timeout=5).strip()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+/usr/lib/python3.12/subprocess.py:571: in run
+    raise CalledProcessError(retcode, process.args,
+E   subprocess.CalledProcessError: Command '['git', '-C', '/tmp/work-f8504a65-r2-107y45at/source', 'rev-parse', 'HEAD']' returned non-zero exit status 128.
+----------------------------- Captured stderr call -----------------------------
+fatal: not a git repository (or any of the parent directories): .git
+______________________ test_real_cli_formal_watch_handoff ______________________
+tests/test_research_plan_handoff.py:5: in test_real_cli_formal_watch_handoff
+    verify(tmp_path/'isolated')
+scripts/verify_research_plan_handoff.py:55: in verify
+    run = cli('weekend-before','run','sunday','--fixture',fixture,'--run-id','synthetic-before',
+scripts/verify_research_plan_handoff.py:40: in cli
+    assert cp.returncode == 0, cp.stderr
+           ^^^^^^^^^^^^^^^^^^
+E   AssertionError: fatal: not a git repository (or any of the parent directories): .git
+E   Traceback (most recent call last):
+E     File "/tmp/work-f8504a65-r2-107y45at/source/mt1.py", line 219, in <module>
+E       if __name__=='__main__': main()
+E                                ^^^^^^
+E     File "/tmp/work-f8504a65-r2-107y45at/source/mt1.py", line 173, in main
+E       result=run(args.phase,args.state_dir,args.investment_dir,
+E              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E     File "/tmp/work-f8504a65-r2-107y45at/source/mt1/pipeline.py", line 198, in run
+E       capture_run(state_dir,result,'fixture' if fixture is not None else 'live_cli')
+E     File "/tmp/work-f8504a65-r2-107y45at/source/mt1/evidence.py", line 39, in capture_run
+E       sha=subprocess.check_output(['git','-C',str(HERE),'rev-parse','HEAD'],text=True,timeout=5).strip()
+E           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E     File "/usr/lib/python3.12/subprocess.py", line 466, in check_output
+E       return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+E              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E     File "/usr/lib/python3.12/subprocess.py", line 571, in run
+E       raise CalledProcessError(retcode, process.args,
+E   subprocess.CalledProcessError: Command '['git', '-C', '/tmp/work-f8504a65-r2-107y45at/source', 'rev-parse', 'HEAD']' returned non-zero exit status 128.
+=========================== short test summary info ============================
+FAILED tests/test_research_pool_consumers.py::test_pipeline_resume_signature_ignores_projection_read_clock
+FAILED tests/test_research_plan_handoff.py::test_real_cli_formal_watch_handoff
+2 failed, 75 passed, 28 subtests passed in 3.19s
