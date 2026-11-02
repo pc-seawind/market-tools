@@ -1,0 +1,15 @@
+{
+  "unrelated_dirty_tracked_paths_verified": 16,
+  "unexpected_dirty_changes": [],
+  "previous_artifact_hashes_verified": 12,
+  "previous_artifacts_unchanged": true,
+  "production_scope_and_events_unchanged": true,
+  "production_event_count": 456,
+  "new_company_dispositions": 0,
+  "cron_redeployment": false,
+  "new_schedules": 0,
+  "service_restarts": 0,
+  "matrix_reruns": 0,
+  "assistant_delegates": 0,
+  "local_test_reason": "单条件边界修复的秒级临时scope依赖/回归，本机串行验证状态，不跑模型/GPU或全市场计算。"
+}

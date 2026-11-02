@@ -224,7 +224,7 @@ def test_period_accounting_wait_check_archive_completion_reopen(case):
     task(case,'wait',disposition_basis='等披露',next_action='核验披露',trigger_key='filing',trigger_condition='新财报发布',check_at=check.isoformat())
     case.now=check+timedelta(seconds=1)
     task(case,'review',decision='archive',disposition_basis='仍无证据',next_action='等新披露')
-    task(case,'reopen',sources=[evidence(case,'trigger filing')])
+    task(case,'reopen',sources=[evidence(case,'trigger filing')],trigger_key='filing')
     # Existing watch evidence timestamp is adjusted to the actual research time.
     event={**copy.deepcopy(case.e),'reviewed_at':case.now.isoformat()}
     pool.apply(case.scope,event,case.now)

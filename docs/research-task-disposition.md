@@ -31,7 +31,7 @@ rejected 仍需经营逻辑、风险、原文及 `research_outcome=completed_not
 |review + decision=continue|活跃任务；具体 continuation_basis、open_gaps、next_action、due|明确处置复核后继续，不是自动延期|
 |wait/block 或 review + decision=wait/block|活跃任务；disposition_basis、next_action、trigger_key、trigger_condition、未来 check_at|waiting/blocked，不占每日主动补研队列|
 |archive 或 review + decision=archive|活跃任务；disposition_basis、next_action|搁置归档；证券准入及监控独立|
-|reopen|waiting/blocked/archived/completed；新可核验来源、reason、open_gaps、next_action、未来 due|显式重开，generation +1；有 trigger_key 时必须匹配原触发标识|
+|reopen|waiting/blocked/archived/completed；新可核验来源、reason、open_gaps、next_action、未来 due|显式重开，generation +1；原任务有 trigger_key 时，请求必须显式提供且完全匹配（省略/空值拒绝）；原无触发的归档不虚造触发|
 
 连续两次无实质新增 hash / 无已知缺口解决进入 `review_required`，之后不能用 attempt
 绕过处置复核；由 investment 明确继续的具体依据、等待、受阻或搁置。

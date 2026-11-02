@@ -1,0 +1,21 @@
+{
+  "base_commit": "8ad4139598d756bd8afbb516973257a1b87ab0de",
+  "work_id": "work_9e5d2aecb544757c54b4",
+  "code_sha256": {
+    "mt1/research_tasks.py": "6bd8617732effaa39e58ec14a6df10b17d69ce400532ef2c0cb14d775a581158",
+    "tests/test_research_tasks.py": "5ecbd91f9733251a0b4b3ac5618231440247ebdcd487c827661437447ae84ca7",
+    "tests/test_research_task_trigger_binding.py": "319f0bc1aa6d05b0a1fe431567fd61d661b676c3b8f6a5346abdf8ffcd9a9be6",
+    "docs/research-task-disposition.md": "7edd376ad971cdec38f7812f1efbf38a5022c59e0b75d76205e7c1da741b7355",
+    "docs/research-task-handoff-r2-20261103.md": "b28f4c4da0f841e722b1f5c3d0a6c25745a5bf54658b240fd2968982950f8fe9"
+  },
+  "artifact_sha256": {
+    "protection-receipt.json": "5b35da5b254900aab952a71aee864058470155943f06a9ecb2f69176fb486b28",
+    "production-before.json": "8ffc5230786bd3ab94e2db5f1e2440c79c5d70ba81834557b8edf90a560eeb56",
+    "tests-before-fix.txt": "1c6a32432313f9fa01c271200089d956946199e721b3a095e73a12564205559a",
+    "dirty-before.json": "359c2cbca2479b7a76053580e4a877a5cc2ae079127acd60f90cb53c79e884c0",
+    "independent-review-repro.json": "eceee6e82c8d66a54bf6731007ef2cc23b04712744377e20688ab0a03e8a98a0",
+    "tests-after-fix.txt": "8a82ea72b3726c791482e36b094ab551c5739103373d5f9c046e74504066b4c4",
+    "production-after.json": "c1e43c6f0cc4ec74f9ee697b6b95f2282ca51cd90469ecf1901d936c56e0c21d"
+  },
+  "test_command": "/home/emox/work/homespace/.venv/bin/python -m pytest -q tests/test_research_task_trigger_binding.py tests/test_research_task_takeover.py tests/test_research_tasks.py tests/test_research_pool_lifecycle.py tests/test_research_pool_revision2.py tests/test_research_pool_consumers.py tests/test_research_pool_capacity.py"
+}

@@ -1,0 +1,118 @@
+FFFFFF.......                                                            [100%]
+=================================== FAILURES ===================================
+____ test_bound_trigger_cannot_be_omitted_or_replaced[missing-wait-waiting] ____
+
+case = <test_research_pool_lifecycle.ResearchPool testMethod=runTest>
+action = 'wait', status = 'waiting', trigger = {}
+
+    @pytest.mark.parametrize('action,status', [('wait', 'waiting'), ('block', 'blocked')])
+    @pytest.mark.parametrize('trigger', [{}, {'trigger_key': ''}, {'trigger_key': None},
+                                         {'trigger_key': 'unrelated-event'}],
+                             ids=['missing', 'empty', 'null', 'mismatch'])
+    def test_bound_trigger_cannot_be_omitted_or_replaced(case, action, status, trigger):
+        before, check = park(case, action)
+        history = tasks.timeline(case.scope, case.e['scope_epoch'])
+        src = evidence(case, 'SYNTHETIC arbitrary new bytes do not prove the bound trigger')
+        assert case.now < check and before['status'] == status
+>       with pytest.raises(ValueError, match='matching original trigger'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_research_task_trigger_binding.py:28: Failed
+___ test_bound_trigger_cannot_be_omitted_or_replaced[missing-block-blocked] ____
+
+case = <test_research_pool_lifecycle.ResearchPool testMethod=runTest>
+action = 'block', status = 'blocked', trigger = {}
+
+    @pytest.mark.parametrize('action,status', [('wait', 'waiting'), ('block', 'blocked')])
+    @pytest.mark.parametrize('trigger', [{}, {'trigger_key': ''}, {'trigger_key': None},
+                                         {'trigger_key': 'unrelated-event'}],
+                             ids=['missing', 'empty', 'null', 'mismatch'])
+    def test_bound_trigger_cannot_be_omitted_or_replaced(case, action, status, trigger):
+        before, check = park(case, action)
+        history = tasks.timeline(case.scope, case.e['scope_epoch'])
+        src = evidence(case, 'SYNTHETIC arbitrary new bytes do not prove the bound trigger')
+        assert case.now < check and before['status'] == status
+>       with pytest.raises(ValueError, match='matching original trigger'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_research_task_trigger_binding.py:28: Failed
+_____ test_bound_trigger_cannot_be_omitted_or_replaced[empty-wait-waiting] _____
+
+case = <test_research_pool_lifecycle.ResearchPool testMethod=runTest>
+action = 'wait', status = 'waiting', trigger = {'trigger_key': ''}
+
+    @pytest.mark.parametrize('action,status', [('wait', 'waiting'), ('block', 'blocked')])
+    @pytest.mark.parametrize('trigger', [{}, {'trigger_key': ''}, {'trigger_key': None},
+                                         {'trigger_key': 'unrelated-event'}],
+                             ids=['missing', 'empty', 'null', 'mismatch'])
+    def test_bound_trigger_cannot_be_omitted_or_replaced(case, action, status, trigger):
+        before, check = park(case, action)
+        history = tasks.timeline(case.scope, case.e['scope_epoch'])
+        src = evidence(case, 'SYNTHETIC arbitrary new bytes do not prove the bound trigger')
+        assert case.now < check and before['status'] == status
+>       with pytest.raises(ValueError, match='matching original trigger'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_research_task_trigger_binding.py:28: Failed
+____ test_bound_trigger_cannot_be_omitted_or_replaced[empty-block-blocked] _____
+
+case = <test_research_pool_lifecycle.ResearchPool testMethod=runTest>
+action = 'block', status = 'blocked', trigger = {'trigger_key': ''}
+
+    @pytest.mark.parametrize('action,status', [('wait', 'waiting'), ('block', 'blocked')])
+    @pytest.mark.parametrize('trigger', [{}, {'trigger_key': ''}, {'trigger_key': None},
+                                         {'trigger_key': 'unrelated-event'}],
+                             ids=['missing', 'empty', 'null', 'mismatch'])
+    def test_bound_trigger_cannot_be_omitted_or_replaced(case, action, status, trigger):
+        before, check = park(case, action)
+        history = tasks.timeline(case.scope, case.e['scope_epoch'])
+        src = evidence(case, 'SYNTHETIC arbitrary new bytes do not prove the bound trigger')
+        assert case.now < check and before['status'] == status
+>       with pytest.raises(ValueError, match='matching original trigger'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_research_task_trigger_binding.py:28: Failed
+_____ test_bound_trigger_cannot_be_omitted_or_replaced[null-wait-waiting] ______
+
+case = <test_research_pool_lifecycle.ResearchPool testMethod=runTest>
+action = 'wait', status = 'waiting', trigger = {'trigger_key': None}
+
+    @pytest.mark.parametrize('action,status', [('wait', 'waiting'), ('block', 'blocked')])
+    @pytest.mark.parametrize('trigger', [{}, {'trigger_key': ''}, {'trigger_key': None},
+                                         {'trigger_key': 'unrelated-event'}],
+                             ids=['missing', 'empty', 'null', 'mismatch'])
+    def test_bound_trigger_cannot_be_omitted_or_replaced(case, action, status, trigger):
+        before, check = park(case, action)
+        history = tasks.timeline(case.scope, case.e['scope_epoch'])
+        src = evidence(case, 'SYNTHETIC arbitrary new bytes do not prove the bound trigger')
+        assert case.now < check and before['status'] == status
+>       with pytest.raises(ValueError, match='matching original trigger'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_research_task_trigger_binding.py:28: Failed
+_____ test_bound_trigger_cannot_be_omitted_or_replaced[null-block-blocked] _____
+
+case = <test_research_pool_lifecycle.ResearchPool testMethod=runTest>
+action = 'block', status = 'blocked', trigger = {'trigger_key': None}
+
+    @pytest.mark.parametrize('action,status', [('wait', 'waiting'), ('block', 'blocked')])
+    @pytest.mark.parametrize('trigger', [{}, {'trigger_key': ''}, {'trigger_key': None},
+                                         {'trigger_key': 'unrelated-event'}],
+                             ids=['missing', 'empty', 'null', 'mismatch'])
+    def test_bound_trigger_cannot_be_omitted_or_replaced(case, action, status, trigger):
+        before, check = park(case, action)
+        history = tasks.timeline(case.scope, case.e['scope_epoch'])
+        src = evidence(case, 'SYNTHETIC arbitrary new bytes do not prove the bound trigger')
+        assert case.now < check and before['status'] == status
+>       with pytest.raises(ValueError, match='matching original trigger'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_research_task_trigger_binding.py:28: Failed
+=========================== short test summary info ============================
+FAILED tests/test_research_task_trigger_binding.py::test_bound_trigger_cannot_be_omitted_or_replaced[missing-wait-waiting]
+FAILED tests/test_research_task_trigger_binding.py::test_bound_trigger_cannot_be_omitted_or_replaced[missing-block-blocked]
+FAILED tests/test_research_task_trigger_binding.py::test_bound_trigger_cannot_be_omitted_or_replaced[empty-wait-waiting]
+FAILED tests/test_research_task_trigger_binding.py::test_bound_trigger_cannot_be_omitted_or_replaced[empty-block-blocked]
+FAILED tests/test_research_task_trigger_binding.py::test_bound_trigger_cannot_be_omitted_or_replaced[null-wait-waiting]
+FAILED tests/test_research_task_trigger_binding.py::test_bound_trigger_cannot_be_omitted_or_replaced[null-block-blocked]
+6 failed, 7 passed in 0.35s

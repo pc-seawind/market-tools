@@ -225,8 +225,8 @@ def apply(path, event, now=None):
             if action == 'reopen':
                 trigger = p.get('trigger_key')
                 reopen_hashes = hashes - set(t.get('parked_evidence_hashes', t['seen_hashes']))
-                if not reopen_hashes or (trigger and trigger != t.get('trigger_key')):
-                    raise ValueError('reopen requires new verifiable evidence and matching original trigger if supplied')
+                if not reopen_hashes or trigger != t.get('trigger_key'):
+                    raise ValueError('reopen requires new verifiable evidence and matching original trigger when bound')
                 t['generation'] += 1
                 t['reopen_hashes'] = t['reopen_hashes'] + sorted(reopen_hashes)
             if action == 'review' and not p.get('continuation_basis'):

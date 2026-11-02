@@ -1,0 +1,8 @@
+{
+  "production_written": false,
+  "reproduced": true,
+  "before": "waiting q3-filing",
+  "request_trigger_key": null,
+  "after": "active",
+  "issue": "omitting trigger_key with new source bytes bypasses original trigger binding before check_at"
+}
