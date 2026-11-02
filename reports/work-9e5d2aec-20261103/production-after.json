@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-02T17:31:04.079958+00:00",
+  "scope_sha256": "db353f7aac35a0f79aec1ecc2898e46eeb23025ffd7e713565270be784444a18",
+  "event_count": 456,
+  "events_sha256": "fbdc75a455081dfbf1450a7f943b90437272f6ad1fa486ea82342b88cb5a4e2c",
+  "research_task_events": 0,
+  "confirmed_holdings": 8,
+  "scope_unchanged": true,
+  "events_unchanged": true,
+  "event_count_unchanged": true
+}

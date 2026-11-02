@@ -1,0 +1,14 @@
+{
+  "takeover.json": "cbc9ab6c4009cd029f4239d591b02b9fe2390f51aa281b7003179924e66b7fc6",
+  "production-before.json": "fd2b059cbb3fc43c84b8771a186aaf27940d0eee8987e7e17282399ab6aea3b7",
+  "production-after.json": "799154a4190a26d2364360c2e7551931bab38e24c85c9c304098d411d78da0ce",
+  "dirty-protection.json": "48ce4f1a2ce9c312e0f7a9190ed32fa62e6f9fa926de431f07b7df24f48b6793",
+  "reused-compute.json": "7e7180c50f280027df876773ffc20a9f1d146f7b26bfae0900e3c1c9b2bf5c43",
+  "readonly-summary.json": "ff4a36fd2183d376bf9719eb2e10bd3ac44683f00aeed2c6d25d47ac0e2d38af",
+  "readonly-inventory/inventory.json": "296933b9f41de949753845152baff7f9dd22619a9152e1c81499150e02563b67",
+  "readonly-inventory/report.md": "bb87f655f5e53a7eb1cc38ba20a83d98cc463f34d5287ed96792d30b41aae0ed",
+  "tests-release.txt": "e6694262ab1e98ddaf444c7eee7443eb8e476a6c7972e85519149052dcd853fe",
+  "tests-dependent.txt": "509525b9f5147248782cedd0de16b58536d20e1478d2b4518e08cf33bc390537",
+  "cron-deploy-receipt.json": "8e3d3b53f730d17d8c57d1298fa61239135328bcda94a0f8e3b4ec0cd8a8bac9",
+  "cron-prompt-preview.json": "917e5d03857b1ea643a888f4ab02f21288657d77b76edc82e923c01a434bde58"
+}
