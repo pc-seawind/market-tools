@@ -1,0 +1,325 @@
+FF..F                                                                    [100%]
+=================================== FAILURES ===================================
+_ test_pending_new_review_and_watch_transition_are_uncapped_and_idempotent[100] _
+
+case = <test_research_pool_lifecycle.ResearchPool testMethod=runTest>
+count = 100
+
+    @pytest.mark.parametrize('count', [100, 105])
+    def test_pending_new_review_and_watch_transition_are_uncapped_and_idempotent(case, count):
+        seed_pending(case, count)
+        watch = case.put()
+        before = snapshot(case.scope, case.e['scope_epoch'], case.now)
+        new = dict(code='new-pending', request_id='new-pending')
+        review = dict(code='pending-0', request_id='review-pending', expected_version=1)
+        transition = dict(request_id='watch-to-pending', expected_version=1)
+>       results = [put_pending(case, **update) for update in (new, review, transition)]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_research_pool_capacity.py:38:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests/test_research_pool_capacity.py:21: in put_pending
+    return case.put(state='pending', research_outcome='partially_researched',
+tests/test_research_pool_lifecycle.py:39: in put
+    return apply(self.scope, e, self.now)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mt1/research_pool.py:253: in apply
+    return store.apply('research:' + epoch + ':' + code, event['expected_version'], event['request_id'],
+mt1/store.py:70: in apply
+    after = reducer(before, payload)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+old = None
+patch = {'business_logic': 'synthetic', 'code': 'new-pending', 'domain': 'investment', 'expected_version': 0, ...}
+
+    def reduce(old, patch):
+        reviewed = instant(patch['reviewed_at'])
+        if not instant(data['reset_at']) <= reviewed <= now or now - reviewed > timedelta(days=7):
+            raise ValueError('stale/future/pre-reset research')
+        target = patch['state']
+        held = {r.get('code') or r.get('ticker') or r.get('ts_code') for r in data.get('holdings', data.get('confirmed_holdings', []))}
+        if target in ACTIVE and code in held:
+            raise ValueError('holdings review is separate from outside research admission')
+        if old and reviewed < instant(old['reviewed_at']):
+            raise ValueError('research time cannot move backwards')
+        if target == 'rejected' and old and old.get('episode_admitted_at') and old['state'] != 'exited':
+            raise ValueError('admitted thesis failure requires explicit exited event')
+        if target == 'exited' and (not old or not old.get('episode_admitted_at') or old['state'] not in ACTIVE | {'pending'}):
+            raise ValueError('exit requires previously admitted research')
+        # A new event/version is mandatory for re-entry; reuse of original
+        # admission evidence is not accepted as a fresh research episode.
+        prior_episodes = [ep for ep in episodes_from_events(read_events(path, epoch)) if ep['code'] == code]
+        closed = bool(prior_episodes and prior_episodes[-1]['exit'] is not None)
+        episode_new = target in ACTIVE and (not old or not old.get('episode_admitted_at') or closed or old['state'] in {'exited', 'rejected'})
+        if old and (closed or old['state'] in {'exited', 'rejected'}) and target in ACTIVE:
+            if reviewed <= instant(old['reviewed_at']):
+                raise ValueError('re-entry requires new research')
+        if target in ACTIVE:
+            for field in ('business_logic', 'risk', 'next_review', 'sources', 'milestones'):
+                if not patch.get(field):
+                    raise ValueError('admission missing ' + field)
+            due = instant(patch['next_review'])
+            if not now < due <= reviewed + timedelta(days=93):
+                raise ValueError('invalid next review')
+            # Investment horizon and near-term verification dates are distinct.
+            if episode_new:
+                horizon = instant(patch['research_horizon_end']) if patch.get('research_horizon_end') else reviewed + timedelta(days=93)
+                if not reviewed + timedelta(days=28) <= horizon <= reviewed + timedelta(days=93):
+                    raise ValueError('research horizon must be 1-3 months')
+            else:
+                horizon = instant(old['research_horizon_end']) if old.get('research_horizon_end') else instant(old['episode_admitted_at']) + timedelta(days=93)
+                if patch.get('research_horizon_end') and instant(patch['research_horizon_end']) != horizon:
+                    raise ValueError('original episode horizon cannot be silently changed')
+            if due > horizon: raise ValueError('next review outside episode horizon')
+            for milestone in patch['milestones']:
+                if not milestone.get('description') or not reviewed < instant(milestone['at']) <= horizon:
+                    raise ValueError('future milestone within research horizon required')
+            for src in patch['sources']:
+                if not src['url'].startswith(('https://', 'http://')):
+                    raise ValueError('verifiable source URL required')
+                if not instant(src['published_at']) <= instant(src['fetched_at']) <= reviewed:
+                    raise ValueError('source time invalid')
+                if hashlib.sha256(Path(src['path']).read_bytes()).hexdigest() != src['sha256']:
+                    raise ValueError('source hash mismatch')
+            if target == 'recommended':
+                for field in ('valuation', 'risk_signoff', 'valuation_signoff'):
+                    if not patch.get(field):
+                        raise ValueError('recommendation missing ' + field)
+                for key in ('risk_signoff', 'valuation_signoff'):
+                    sig = patch[key]
+                    if not sig.get('reviewer') or sig.get('status') != 'pass' or not reviewed <= instant(sig['at']) <= now:
+                        raise ValueError('invalid signoff')
+        else:
+            if not patch.get('gap_or_exit_basis'):
+                raise ValueError('pending/reject/exit basis required; unknown is not rejection')
+            if target == 'rejected' and patch.get('research_outcome') != 'completed_not_qualified':
+                raise ValueError('unknown must remain pending')
+            if target == 'pending' and patch.get('research_outcome') not in ('unresearched', 'data_blocked', 'partially_researched'):
+                raise ValueError('explicit pending coverage required')
+        if target == 'rejected':
+            if not all(patch.get(k) for k in ('sources', 'business_logic', 'risk')):
+                raise ValueError('completed rejection requires researched evidence and reasoning')
+            for src in patch['sources']:
+                if not src['url'].startswith(('https://', 'http://')) or not instant(src['published_at']) <= instant(src['fetched_at']) <= reviewed:
+                    raise ValueError('rejection source invalid')
+        # Caps are evaluated while Store holds BEGIN IMMEDIATE.
+        current = {r['code']: r for r in read_events(path, epoch)}
+        if target in LIMITS and sum(r['state'] == target and c != code and (target not in ACTIVE or instant(r['next_review']) > now) for c, r in current.items()) >= LIMITS[target]:
+>           raise ValueError('pool capacity reached')
+E           ValueError: pool capacity reached
+
+mt1/research_pool.py:212: ValueError
+_ test_pending_new_review_and_watch_transition_are_uncapped_and_idempotent[105] _
+
+case = <test_research_pool_lifecycle.ResearchPool testMethod=runTest>
+count = 105
+
+    @pytest.mark.parametrize('count', [100, 105])
+    def test_pending_new_review_and_watch_transition_are_uncapped_and_idempotent(case, count):
+>       seed_pending(case, count)
+
+tests/test_research_pool_capacity.py:32:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests/test_research_pool_capacity.py:27: in seed_pending
+    put_pending(case, code=f'pending-{n}', request_id=f'seed-{n}')
+tests/test_research_pool_capacity.py:21: in put_pending
+    return case.put(state='pending', research_outcome='partially_researched',
+tests/test_research_pool_lifecycle.py:39: in put
+    return apply(self.scope, e, self.now)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mt1/research_pool.py:253: in apply
+    return store.apply('research:' + epoch + ':' + code, event['expected_version'], event['request_id'],
+mt1/store.py:70: in apply
+    after = reducer(before, payload)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+old = None
+patch = {'business_logic': 'synthetic', 'code': 'pending-100', 'domain': 'investment', 'expected_version': 0, ...}
+
+    def reduce(old, patch):
+        reviewed = instant(patch['reviewed_at'])
+        if not instant(data['reset_at']) <= reviewed <= now or now - reviewed > timedelta(days=7):
+            raise ValueError('stale/future/pre-reset research')
+        target = patch['state']
+        held = {r.get('code') or r.get('ticker') or r.get('ts_code') for r in data.get('holdings', data.get('confirmed_holdings', []))}
+        if target in ACTIVE and code in held:
+            raise ValueError('holdings review is separate from outside research admission')
+        if old and reviewed < instant(old['reviewed_at']):
+            raise ValueError('research time cannot move backwards')
+        if target == 'rejected' and old and old.get('episode_admitted_at') and old['state'] != 'exited':
+            raise ValueError('admitted thesis failure requires explicit exited event')
+        if target == 'exited' and (not old or not old.get('episode_admitted_at') or old['state'] not in ACTIVE | {'pending'}):
+            raise ValueError('exit requires previously admitted research')
+        # A new event/version is mandatory for re-entry; reuse of original
+        # admission evidence is not accepted as a fresh research episode.
+        prior_episodes = [ep for ep in episodes_from_events(read_events(path, epoch)) if ep['code'] == code]
+        closed = bool(prior_episodes and prior_episodes[-1]['exit'] is not None)
+        episode_new = target in ACTIVE and (not old or not old.get('episode_admitted_at') or closed or old['state'] in {'exited', 'rejected'})
+        if old and (closed or old['state'] in {'exited', 'rejected'}) and target in ACTIVE:
+            if reviewed <= instant(old['reviewed_at']):
+                raise ValueError('re-entry requires new research')
+        if target in ACTIVE:
+            for field in ('business_logic', 'risk', 'next_review', 'sources', 'milestones'):
+                if not patch.get(field):
+                    raise ValueError('admission missing ' + field)
+            due = instant(patch['next_review'])
+            if not now < due <= reviewed + timedelta(days=93):
+                raise ValueError('invalid next review')
+            # Investment horizon and near-term verification dates are distinct.
+            if episode_new:
+                horizon = instant(patch['research_horizon_end']) if patch.get('research_horizon_end') else reviewed + timedelta(days=93)
+                if not reviewed + timedelta(days=28) <= horizon <= reviewed + timedelta(days=93):
+                    raise ValueError('research horizon must be 1-3 months')
+            else:
+                horizon = instant(old['research_horizon_end']) if old.get('research_horizon_end') else instant(old['episode_admitted_at']) + timedelta(days=93)
+                if patch.get('research_horizon_end') and instant(patch['research_horizon_end']) != horizon:
+                    raise ValueError('original episode horizon cannot be silently changed')
+            if due > horizon: raise ValueError('next review outside episode horizon')
+            for milestone in patch['milestones']:
+                if not milestone.get('description') or not reviewed < instant(milestone['at']) <= horizon:
+                    raise ValueError('future milestone within research horizon required')
+            for src in patch['sources']:
+                if not src['url'].startswith(('https://', 'http://')):
+                    raise ValueError('verifiable source URL required')
+                if not instant(src['published_at']) <= instant(src['fetched_at']) <= reviewed:
+                    raise ValueError('source time invalid')
+                if hashlib.sha256(Path(src['path']).read_bytes()).hexdigest() != src['sha256']:
+                    raise ValueError('source hash mismatch')
+            if target == 'recommended':
+                for field in ('valuation', 'risk_signoff', 'valuation_signoff'):
+                    if not patch.get(field):
+                        raise ValueError('recommendation missing ' + field)
+                for key in ('risk_signoff', 'valuation_signoff'):
+                    sig = patch[key]
+                    if not sig.get('reviewer') or sig.get('status') != 'pass' or not reviewed <= instant(sig['at']) <= now:
+                        raise ValueError('invalid signoff')
+        else:
+            if not patch.get('gap_or_exit_basis'):
+                raise ValueError('pending/reject/exit basis required; unknown is not rejection')
+            if target == 'rejected' and patch.get('research_outcome') != 'completed_not_qualified':
+                raise ValueError('unknown must remain pending')
+            if target == 'pending' and patch.get('research_outcome') not in ('unresearched', 'data_blocked', 'partially_researched'):
+                raise ValueError('explicit pending coverage required')
+        if target == 'rejected':
+            if not all(patch.get(k) for k in ('sources', 'business_logic', 'risk')):
+                raise ValueError('completed rejection requires researched evidence and reasoning')
+            for src in patch['sources']:
+                if not src['url'].startswith(('https://', 'http://')) or not instant(src['published_at']) <= instant(src['fetched_at']) <= reviewed:
+                    raise ValueError('rejection source invalid')
+        # Caps are evaluated while Store holds BEGIN IMMEDIATE.
+        current = {r['code']: r for r in read_events(path, epoch)}
+        if target in LIMITS and sum(r['state'] == target and c != code and (target not in ACTIVE or instant(r['next_review']) > now) for c, r in current.items()) >= LIMITS[target]:
+>           raise ValueError('pool capacity reached')
+E           ValueError: pool capacity reached
+
+mt1/research_pool.py:212: ValueError
+__________ test_large_pending_history_keeps_independent_round_budgets __________
+
+case = <test_research_pool_lifecycle.ResearchPool testMethod=runTest>
+
+    def test_large_pending_history_keeps_independent_round_budgets(case):
+>       seed_pending(case, 105)
+
+tests/test_research_pool_capacity.py:81:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests/test_research_pool_capacity.py:27: in seed_pending
+    put_pending(case, code=f'pending-{n}', request_id=f'seed-{n}')
+tests/test_research_pool_capacity.py:21: in put_pending
+    return case.put(state='pending', research_outcome='partially_researched',
+tests/test_research_pool_lifecycle.py:39: in put
+    return apply(self.scope, e, self.now)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mt1/research_pool.py:253: in apply
+    return store.apply('research:' + epoch + ':' + code, event['expected_version'], event['request_id'],
+mt1/store.py:70: in apply
+    after = reducer(before, payload)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+old = None
+patch = {'business_logic': 'synthetic', 'code': 'pending-100', 'domain': 'investment', 'expected_version': 0, ...}
+
+    def reduce(old, patch):
+        reviewed = instant(patch['reviewed_at'])
+        if not instant(data['reset_at']) <= reviewed <= now or now - reviewed > timedelta(days=7):
+            raise ValueError('stale/future/pre-reset research')
+        target = patch['state']
+        held = {r.get('code') or r.get('ticker') or r.get('ts_code') for r in data.get('holdings', data.get('confirmed_holdings', []))}
+        if target in ACTIVE and code in held:
+            raise ValueError('holdings review is separate from outside research admission')
+        if old and reviewed < instant(old['reviewed_at']):
+            raise ValueError('research time cannot move backwards')
+        if target == 'rejected' and old and old.get('episode_admitted_at') and old['state'] != 'exited':
+            raise ValueError('admitted thesis failure requires explicit exited event')
+        if target == 'exited' and (not old or not old.get('episode_admitted_at') or old['state'] not in ACTIVE | {'pending'}):
+            raise ValueError('exit requires previously admitted research')
+        # A new event/version is mandatory for re-entry; reuse of original
+        # admission evidence is not accepted as a fresh research episode.
+        prior_episodes = [ep for ep in episodes_from_events(read_events(path, epoch)) if ep['code'] == code]
+        closed = bool(prior_episodes and prior_episodes[-1]['exit'] is not None)
+        episode_new = target in ACTIVE and (not old or not old.get('episode_admitted_at') or closed or old['state'] in {'exited', 'rejected'})
+        if old and (closed or old['state'] in {'exited', 'rejected'}) and target in ACTIVE:
+            if reviewed <= instant(old['reviewed_at']):
+                raise ValueError('re-entry requires new research')
+        if target in ACTIVE:
+            for field in ('business_logic', 'risk', 'next_review', 'sources', 'milestones'):
+                if not patch.get(field):
+                    raise ValueError('admission missing ' + field)
+            due = instant(patch['next_review'])
+            if not now < due <= reviewed + timedelta(days=93):
+                raise ValueError('invalid next review')
+            # Investment horizon and near-term verification dates are distinct.
+            if episode_new:
+                horizon = instant(patch['research_horizon_end']) if patch.get('research_horizon_end') else reviewed + timedelta(days=93)
+                if not reviewed + timedelta(days=28) <= horizon <= reviewed + timedelta(days=93):
+                    raise ValueError('research horizon must be 1-3 months')
+            else:
+                horizon = instant(old['research_horizon_end']) if old.get('research_horizon_end') else instant(old['episode_admitted_at']) + timedelta(days=93)
+                if patch.get('research_horizon_end') and instant(patch['research_horizon_end']) != horizon:
+                    raise ValueError('original episode horizon cannot be silently changed')
+            if due > horizon: raise ValueError('next review outside episode horizon')
+            for milestone in patch['milestones']:
+                if not milestone.get('description') or not reviewed < instant(milestone['at']) <= horizon:
+                    raise ValueError('future milestone within research horizon required')
+            for src in patch['sources']:
+                if not src['url'].startswith(('https://', 'http://')):
+                    raise ValueError('verifiable source URL required')
+                if not instant(src['published_at']) <= instant(src['fetched_at']) <= reviewed:
+                    raise ValueError('source time invalid')
+                if hashlib.sha256(Path(src['path']).read_bytes()).hexdigest() != src['sha256']:
+                    raise ValueError('source hash mismatch')
+            if target == 'recommended':
+                for field in ('valuation', 'risk_signoff', 'valuation_signoff'):
+                    if not patch.get(field):
+                        raise ValueError('recommendation missing ' + field)
+                for key in ('risk_signoff', 'valuation_signoff'):
+                    sig = patch[key]
+                    if not sig.get('reviewer') or sig.get('status') != 'pass' or not reviewed <= instant(sig['at']) <= now:
+                        raise ValueError('invalid signoff')
+        else:
+            if not patch.get('gap_or_exit_basis'):
+                raise ValueError('pending/reject/exit basis required; unknown is not rejection')
+            if target == 'rejected' and patch.get('research_outcome') != 'completed_not_qualified':
+                raise ValueError('unknown must remain pending')
+            if target == 'pending' and patch.get('research_outcome') not in ('unresearched', 'data_blocked', 'partially_researched'):
+                raise ValueError('explicit pending coverage required')
+        if target == 'rejected':
+            if not all(patch.get(k) for k in ('sources', 'business_logic', 'risk')):
+                raise ValueError('completed rejection requires researched evidence and reasoning')
+            for src in patch['sources']:
+                if not src['url'].startswith(('https://', 'http://')) or not instant(src['published_at']) <= instant(src['fetched_at']) <= reviewed:
+                    raise ValueError('rejection source invalid')
+        # Caps are evaluated while Store holds BEGIN IMMEDIATE.
+        current = {r['code']: r for r in read_events(path, epoch)}
+        if target in LIMITS and sum(r['state'] == target and c != code and (target not in ACTIVE or instant(r['next_review']) > now) for c, r in current.items()) >= LIMITS[target]:
+>           raise ValueError('pool capacity reached')
+E           ValueError: pool capacity reached
+
+mt1/research_pool.py:212: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_research_pool_capacity.py::test_pending_new_review_and_watch_transition_are_uncapped_and_idempotent[100]
+FAILED tests/test_research_pool_capacity.py::test_pending_new_review_and_watch_transition_are_uncapped_and_idempotent[105]
+FAILED tests/test_research_pool_capacity.py::test_large_pending_history_keeps_independent_round_budgets
+3 failed, 2 passed in 2.52s

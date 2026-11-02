@@ -13,7 +13,7 @@ from .store import Store, digest
 
 ACTIVE = {'watch', 'recommended'}
 STATES = ACTIVE | {'pending', 'rejected', 'exited'}
-LIMITS = {'watch': 50, 'recommended': 10, 'pending': 100}
+LIMITS = {'watch': 50, 'recommended': 10}
 
 
 def instant(s):

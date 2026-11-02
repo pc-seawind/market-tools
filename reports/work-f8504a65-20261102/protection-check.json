@@ -1,0 +1,11 @@
+{
+  "work_id": "work_f8504a653ffde8cef3dd",
+  "checked_at": "2026-11-02T12:05:13.178467+00:00",
+  "unrelated_dirty_files_changed": [],
+  "original_evidence_files_changed": [],
+  "scope_raw_unchanged": true,
+  "production_ledger_rows_unchanged": true,
+  "production_ledger_event_count": 448,
+  "no_production_replay": true,
+  "diff_review": "Only pending entry removed from LIMITS; no new config/fallback/compatibility/defensive branches."
+}
