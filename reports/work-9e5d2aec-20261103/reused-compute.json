@@ -1,0 +1,69 @@
+{
+  "5090-matrix.json": {
+    "host": "aaa-System-Product-Name",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "status": "passed",
+    "runtime_pin": "7e2cb3666beb63f764aebc4af23f377156e632c6e3e9933097e8b9ff5ce3e73c",
+    "cpu_lease": "/home/aaa/.cache/market-tools/research-task-matrix/cpu-validation.lock",
+    "checkpoint_root": "/home/aaa/.cache/market-tools/research-task-matrix/8795b1007b81c9b24ee502c4d2bcdfac9bd149241acb0ba55a02a1a56dbdd81a/results",
+    "receipt_sha256": "d9f33c0f66e80281d18d596a3bf2fde223b71fa836818b3be40d5a22c56cf71b",
+    "final_pin_differences": {
+      "mt1/research_tasks.py": {
+        "inherited": "f6434e071f8e240197e1490ccf4a21e03d30796cfa27226c34dd92d9eb9ce53e",
+        "final": "eddeb79364e0b71a79e8b01548db71e0088212bf62e1443a1c61cc31f4da384b"
+      }
+    },
+    "reused_not_rerun": true
+  },
+  "Dual5090-matrix.json": {
+    "host": "s-Z890-AERO-G",
+    "seeds": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "status": "passed",
+    "runtime_pin": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f",
+    "cpu_lease": "/home/s/.cache/market-tools/research-task-matrix/cpu-validation.lock",
+    "checkpoint_root": "/home/s/.cache/market-tools/research-task-matrix/8795b1007b81c9b24ee502c4d2bcdfac9bd149241acb0ba55a02a1a56dbdd81a/results",
+    "receipt_sha256": "7787252b7bf13c81903afb252045c4add2e64fcd9c179f95424d511566a69ca0",
+    "final_pin_differences": {
+      "mt1/research_tasks.py": {
+        "inherited": "f6434e071f8e240197e1490ccf4a21e03d30796cfa27226c34dd92d9eb9ce53e",
+        "final": "eddeb79364e0b71a79e8b01548db71e0088212bf62e1443a1c61cc31f4da384b"
+      }
+    },
+    "reused_not_rerun": true
+  },
+  "difference_basis": "旧矩阵证明继承版本在真实 5090/Dual5090 的 32 seeds 全通过，未重跑。后续 research_tasks.py 只改两处：inventory 建议按 review_required 状态；外部 open_gaps 严格要求 JSON list。旧矩阵不调用 inventory，所有合法输入原已为 list；新增分支由本机边界/CLI/完整任务回归验证。不声称旧矩阵是最终整个文件 hash 的物理运行证据。pipeline 周窗口修正不在旧矩阵依赖中。"
+}

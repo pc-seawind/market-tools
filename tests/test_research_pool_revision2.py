@@ -69,8 +69,8 @@ def test_thousands_of_new_discoveries_do_not_starve_due_review(case):
 def test_recorded_attempt_rotates_not_due_date(case):
     case.put(); pending(case)
     scope=load(case.scope)
-    r=scope['research_pool']['rows'][0]
-    scope['research_pool']['rows'] += [{**r,'code':'other.SZ','reviewed_at':(case.now-timedelta(days=1)).isoformat()}]
+    r=scope['research_pool']['tasks']['rows'][0]
+    scope['research_pool']['tasks']['rows'] += [{**r,'code':'other.SZ','last_attempt_at':(case.now-timedelta(days=1)).isoformat()}]
     assert review_queue(scope,limit=1)[0]['code']=='other.SZ'
 
 

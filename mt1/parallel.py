@@ -279,6 +279,8 @@ def run_parallel(state_dir,panel,out,reviews=None,decision_at=None):
             'universe': len(records), 'discovered': len(ranked), 'outside_backlog': len(advancing),
             'outside_batch': len(batch), 'holding_review': len(holding_review), 'due_review_batch': len(due_reviews),
             'company_research_completed': None, 'company_research_status': 'not_attested_by_discovery',
+            'budget_policy': 'old10_first_then_transfer_new10_for_overdue_excess',
+            'new_start_candidates': len(batch), 'actual_starts': 'see research-status.tasks.accounting; scan is not start',
             'coverage_fault': not bool(advancing)},
         'tracking_scope':counts(scope),'advancing_research_count':len(advancing),'research_batch_codes':[r['code'] for r in batch],
         'risk_timing_cross':dict(Counter(r['risk']['status']+'|'+r['timing']['status'] for r in ranked)),

@@ -1,0 +1,16 @@
+{
+  "5090": {
+    "returncode": 0,
+    "stdout": "{\"host\": \"aaa-System-Product-Name\", \"python\": \"3.14.6 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:37:38) [GCC 14.3.0]\", \"executable_sha256\": \"7e2cb3666beb63f764aebc4af23f377156e632c6e3e9933097e8b9ff5ce3e73c\", \"sqlite\": \"3.53.2\", \"mem_available_kib\": 100526932, \"load\": \"3.88 4.00 3.86 2/4036 2463182\", \"gpu_readonly\": \"0, 7121 MiB, 89 %\\n\", \"model_required\": false, \"gpu_requested\": false}\n",
+    "stderr": ""
+  },
+  "Dual5090": {
+    "returncode": 0,
+    "stdout": "{\"host\": \"s-Z890-AERO-G\", \"python\": \"3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]\", \"executable_sha256\": \"e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f\", \"sqlite\": \"3.45.1\", \"mem_available_kib\": 109096280, \"load\": \"4.80 3.81 3.27 3/2334 2387095\", \"gpu_readonly\": \"0, 18 MiB, 0 %\\n1, 8338 MiB, 86 %\\n\", \"model_required\": false, \"gpu_requested\": false}\n",
+    "stderr": ""
+  },
+  "WSL": {
+    "status": "owner_paused_no_probe_no_dispatch",
+    "basis": "2026-10-30 owner pending policy"
+  }
+}

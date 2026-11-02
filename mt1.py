@@ -54,7 +54,9 @@ def main():
     p=sub.add_parser('research-replay'); p.add_argument('--source',required=True); p.add_argument('--out',required=True)
     p=sub.add_parser('research-performance'); p.add_argument('--observations'); p.add_argument('--out',required=True)
     p=sub.add_parser('research-event'); p.add_argument('--input',required=True)
-    p=sub.add_parser('research-status'); p.add_argument('--out',required=True)
+    p=sub.add_parser('research-status'); p.add_argument('--out',required=True); p.add_argument('--since')
+    p=sub.add_parser('research-task'); p.add_argument('--input',required=True)
+    p=sub.add_parser('research-inventory'); p.add_argument('--out',required=True)
     p=sub.add_parser('plans')
     args=parser.parse_args()
     import os
@@ -85,12 +87,25 @@ def main():
                  'files':{str(p.relative_to(dest)):hashlib.sha256(p.read_bytes()).hexdigest() for p in dest.rglob('*') if p.is_file()}}
         (dest/'receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2))
         print('RESULT_JSON='+str(dest/'performance.json')); return
+    if args.cmd=='research-task':
+        from mt1.research_tasks import apply
+        print(json.dumps(apply(args.scope,json.loads(Path(args.input).read_text())),ensure_ascii=False)); return
+    if args.cmd=='research-inventory':
+        from mt1.research_tasks import inventory, render_inventory
+        scope=load(); value=inventory(args.scope, scope['epoch'])
+        dest=Path(args.out); dest.mkdir(parents=True,exist_ok=False)
+        atomic_json(dest/'inventory.json',value)
+        (dest/'report.md').write_text(render_inventory(value))
+        print('RESULT_JSON='+str(dest/'inventory.json')); return
     if args.cmd=='research-event':
         from mt1.research_pool import apply
         print(json.dumps(apply(args.scope,json.loads(Path(args.input).read_text())),ensure_ascii=False)); return
     if args.cmd=='research-status':
         from mt1.research_pool import report
         scope=load()
+        if args.since:
+            from mt1.research_tasks import snapshot
+            scope['research_pool']['tasks']=snapshot(args.scope,scope['epoch'],since=args.since)
         atomic_json(args.out,scope['research_pool'])
         Path(args.out+'.md').write_text(report(scope))
         print('RESULT_JSON='+args.out); return

@@ -1,0 +1,17 @@
+{
+  "checked_paths": 115808,
+  "unexpected_changes": [],
+  "all_other_dirty_preserved": true,
+  "excluded_intended_files": [
+    "mt1.py",
+    "mt1/parallel.py",
+    "mt1/pipeline.py",
+    "mt1/research_pool.py",
+    "mt1/research_tasks.py",
+    "scripts/deploy_research_pool.py",
+    "scripts/verify_research_task_matrix.py",
+    "tests/test_research_pool_revision2.py",
+    "tests/test_research_tasks.py"
+  ],
+  "baseline_manifest_sha256": "a81cded385ee8b0cdeffcde367dd27c669ec01f7d539c99226058c5489b1fa52"
+}

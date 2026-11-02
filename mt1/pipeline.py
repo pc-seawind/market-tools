@@ -2,7 +2,7 @@
 import fcntl
 import json
 import subprocess
-from datetime import datetime, timezone, date
+from datetime import datetime, timezone, date, timedelta
 from pathlib import Path
 from .calendar import gate, check_fresh
 from .data import HERE, atomic_json, cn_calendar, collect_universe, foreign_calendar
@@ -191,6 +191,13 @@ def run(phase, state_dir, investment_dir, now=None, fixture=None, collect=False,
             if recap and recap.get('coverage'):
                 lines += ['采集覆盖（不等于研究完成）：'+json.dumps(recap['coverage'],ensure_ascii=False)]
             from .research_pool import report as pool_report
+            if scope is not None and phase in {'saturday', 'sunday'}:
+                local = now.astimezone(ZoneInfo('Asia/Shanghai'))
+                period_start = local.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=local.weekday())
+                from .research_tasks import snapshot as task_snapshot
+                from .research_pool import instant
+                scope['research_pool']['tasks'] = task_snapshot(scope['scope_path'], scope['epoch'],
+                    instant(scope['research_pool']['asof']), period_start)
             lines += ['', pool_report(scope)]
             with report.open('x') as f: f.write('\n'.join(lines)+'\n')
             result['report_path']=str(report); atomic_json(directory/'report.json',result)

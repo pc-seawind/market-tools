@@ -1,0 +1,362 @@
+{
+  "returncode": 0,
+  "stderr": "",
+  "result": {
+    "host": "aaa-System-Product-Name",
+    "status": "passed",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "items": [
+      {
+        "seed": 0,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "block",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 1,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 1,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "archive",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 0,
+          "archived": 1,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 2,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "wait",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 1,
+          "blocked": 0,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 3,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "archive",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 0,
+          "archived": 1,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 4,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "block",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 1,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 5,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "block",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 1,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 6,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "wait",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 1,
+          "blocked": 0,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 7,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "wait",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 1,
+          "blocked": 0,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 8,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "block",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 1,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 9,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "archive",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 0,
+          "archived": 1,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 10,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "wait",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 1,
+          "blocked": 0,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 11,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "archive",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 0,
+          "archived": 1,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 12,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "block",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 1,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 13,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "block",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 1,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 14,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "archive",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 0,
+          "blocked": 0,
+          "archived": 1,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      },
+      {
+        "seed": 15,
+        "host": "aaa-System-Product-Name",
+        "status": "passed",
+        "decision": "wait",
+        "events": 6,
+        "accounting": {
+          "opening_active": 0,
+          "started": 1,
+          "reopened": 1,
+          "completed": 1,
+          "waiting": 1,
+          "blocked": 0,
+          "archived": 0,
+          "closing_active": 0,
+          "overdue": 0,
+          "reconciled": true
+        },
+        "scope_sha256": "bf72f21cea98462aed4f9eea0f7cfdf08751e915db002701c1b26b08f03cf628"
+      }
+    ],
+    "code_hashes": {
+      "mt1/__init__.py": "b5ce82157b4231b8dc57d05e95977b299d4de6645adb2a28acc7c80955182355",
+      "mt1/store.py": "57622068ac04201d258599150239eb0be75a0393ec94439a96b4e2d70772bc6a",
+      "mt1/research_pool.py": "782e710ec4a367e046bbfee8e1010dd5025c1e5d102b49bce009e6baa6c6878f",
+      "mt1/research_tasks.py": "f6434e071f8e240197e1490ccf4a21e03d30796cfa27226c34dd92d9eb9ce53e",
+      "mt1/research_performance.py": "0bff73254ece0c9a1211566f4cdf21c3bd49d6043b6003c753436fb7afa477ba",
+      "scripts/verify_research_task_matrix.py": "d28a0bbaebf70ee7da0ff057c3412b1d5c91c7f17b9941abde6236050e0612ab"
+    },
+    "models": 0,
+    "gpu_leases": 0,
+    "synthetic_only": true,
+    "runtime_pin": "7e2cb3666beb63f764aebc4af23f377156e632c6e3e9933097e8b9ff5ce3e73c",
+    "cpu_lease": "/home/aaa/.cache/market-tools/research-task-matrix/cpu-validation.lock",
+    "checkpoint_root": "/home/aaa/.cache/market-tools/research-task-matrix/8795b1007b81c9b24ee502c4d2bcdfac9bd149241acb0ba55a02a1a56dbdd81a/results"
+  }
+}

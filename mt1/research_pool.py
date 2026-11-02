@@ -33,7 +33,7 @@ def read_events(scope_path, epoch):
         return []
     con = sqlite3.connect('file:' + str(p.resolve()) + '?mode=ro', uri=True)
     try:
-        rows = [json.loads(r[0]) for r in con.execute('SELECT after_json FROM events ORDER BY seq')]
+        rows = [json.loads(r[0]) for r in con.execute("SELECT after_json FROM events WHERE entity LIKE 'research:%' ORDER BY seq")]
         return [r for r in rows if r['scope_epoch'] == epoch]
     finally:
         con.close()
@@ -71,7 +71,9 @@ def episodes_from_events(events):
 
 def snapshot(scope_path, epoch, now=None):
     now = now or datetime.now(timezone.utc)
-    events = read_events(scope_path, epoch)
+    from .research_tasks import timeline, snapshot as task_snapshot
+    entries = timeline(scope_path, epoch)
+    events = [r for kind, r in entries if kind == 'research']
     episodes = episodes_from_events(events)
     latest = {r['code']: r for r in events}
     rows = []
@@ -94,7 +96,8 @@ def snapshot(scope_path, epoch, now=None):
             'episodes': episodes, 'monitor_rows': exits[:100] + monitor,
             'exit_monitor_omitted': max(0, len(exits)-100),
             'exit_monitor_policy': '93 calendar days, at most 100 latest exited episodes; full history retained for performance',
-            'counts': {s: sum(r['effective_state'] == s for r in rows) for s in STATES}}
+            'counts': {s: sum(r['effective_state'] == s for r in rows) for s in STATES},
+            'tasks': task_snapshot(scope_path, epoch, now, entries=entries)}
 
 
 def project(scope, path, now=None):
@@ -112,6 +115,7 @@ def project(scope, path, now=None):
     from .research_performance import evaluate, read_bundle
     snap['performance'] = evaluate(snap, read_bundle(path), now)
     snap['review_queue'] = review_queue({'research_pool': snap, 'holdings': scope['holdings']})
+    scope['scope_path'] = str(path)
     scope['research_pool'] = snap
     return scope
 
@@ -141,6 +145,11 @@ def apply(scope_path, event, now=None):
         if not instant(data['reset_at']) <= reviewed <= now or now - reviewed > timedelta(days=7):
             raise ValueError('stale/future/pre-reset research')
         target = patch['state']
+        from .research_tasks import fold, timeline, PARKED
+        tasks, _ = fold(timeline(path, epoch), now)
+        task = tasks.get(code)
+        if target in ACTIVE | {'rejected'} and task and task['status'] in PARKED:
+            raise ValueError('parked task requires explicit evidence-bound reopen before disposition')
         held = {r.get('code') or r.get('ticker') or r.get('ts_code') for r in data.get('holdings', data.get('confirmed_holdings', []))}
         if target in ACTIVE and code in held:
             raise ValueError('holdings review is separate from outside research admission')
@@ -235,7 +244,7 @@ def apply(scope_path, event, now=None):
         prior = (old or {}).get('state')
         change = ('维持' if prior == target else '退出' if target == 'exited' else '降级' if prior == 'recommended' and target == 'watch' else '升级' if prior == 'watch' and target == 'recommended' else '重新准入' if prior in {'exited', 'rejected'} and target in ACTIVE else '新增' if target in ACTIVE else '待核验' if target == 'pending' else '研究不合格')
         episode_id = patch['request_id'] if episode_new else (prior_episodes[-1]['episode_id'] if prior_episodes else None)
-        next_review = old.get('next_review') if target == 'pending' and old and old.get('episode_admitted_at') else patch.get('next_review')
+        next_review = old.get('next_review') if target == 'pending' and old and old.get('next_review') else patch.get('next_review')
         from .research_performance import validate_contract
         if patch.get('performance_contract') is not None:
             validate_contract(patch['performance_contract'], reviewed)
@@ -264,29 +273,29 @@ def research_queues(ranked, records, scope, batch_size=10):
     by = {r['code']: r for r in records}
     holdings = [by.get(c, {'code': c, 'channels': [], 'research_gap': 'outside_panel'}) for c in sorted(held)]
     states = {r['code']: r for r in (scope or {}).get('research_pool', {}).get('rows', [])}
-    eligible = [r for r in outside if r['code'] not in states]
+    tasks = (scope or {}).get('research_pool', {}).get('tasks', {}).get('rows', [])
+    known_tasks = {t['code'] for t in tasks}
+    eligible = [r for r in outside if r['code'] not in states and r['code'] not in known_tasks]
+    # Transfer unused new-start capacity to overdue old work; saving any result
+    # still uses research-event, never a storage admission cap.
+    overdue = sum(t['overdue'] and t['code'] not in held for t in tasks)
+    transfer = min(batch_size, max(0, overdue - 10))
     # New discovery and due reviews have separate budgets. Thousands of new
     # discoveries therefore cannot crowd out an overdue/blocked review.
-    return outside, eligible[:batch_size], holdings
+    return outside, eligible[:batch_size-transfer], holdings
 
 
-def review_queue(scope, records=(), limit=10):
-    by = {r['code']: r for r in records}
-    pool = (scope or {}).get('research_pool', {})
-    eligible = [r for r in pool.get('rows', [])
-                if r['code'] not in (scope or {}).get('holdings', {}) and
-                (r['effective_state'] == 'pending' or r.get('review_overdue'))]
-    # Re-emission never changes due. A recorded actual review attempt moves
-    # behind older attempts; untouched due tasks are not starved by retries.
-    eligible.sort(key=lambda r: (instant(r['reviewed_at']), instant(r.get('next_review') or r['reviewed_at']), r['code']))
-    return [{**by.get(r['code'], {'code': r['code'], 'channels': [], 'research_gap': 'outside_panel'}),
-             'review_event_id': r['request_id'], 'expected_version': r['version'],
-             'original_due': r.get('next_review'), 'last_attempt_at': r['reviewed_at'],
-             'review_reason': r.get('gap_or_exit_basis') or 'review_due', 'research_only': True}
-            for r in eligible[:limit]]
+def review_queue(scope, records=(), limit=None):
+    if scope is None:
+        return []
+    from .research_tasks import queue
+    tasks = scope['research_pool']['tasks']['rows']
+    overdue = sum(t['overdue'] and t['code'] not in scope['holdings'] for t in tasks)
+    budget = 10 + min(10, max(0, overdue - 10)) if limit is None else limit
+    return queue(scope, records, budget)
 
 
-def report(scope, coverage=None):
+def report(scope, coverage=None, since=None):
     snap = scope.get('research_pool', {'rows': [], 'events': [], 'counts': {}}) if scope else {'rows': [], 'events': [], 'counts': {}}
     coverage_text = '持仓外覆盖未附：故障，不能声称完成机会研究'
     if coverage:
@@ -315,9 +324,15 @@ def report(scope, coverage=None):
         lines.append('|无|无变更|未发生已签审研究事件|本次读取|')
     lines += ['退出记录保留，收益/原判断兑现待后续可核验行情，不填造收益；过期研究回到待核验，不自动续期。',
               '方法仍为 shadow；重点研究推荐不是 BUY，正式计划仍需独立签审。']
-    lines += ['', '**独立到期/受阻复核队列（不占新发现名额）**']
+    lines += ['', '**旧任务优先队列（独立十项；逾期积压可借新研究预算，等待/受阻到触发再入）**']
     for r in snap.get('review_queue', []):
         lines.append(f"- {r['code']}：原 due {r['original_due']}；上次尝试 {r['last_attempt_at']}；{r['review_reason']}")
+    if 'tasks' in snap:
+        from .research_tasks import render, snapshot as task_snapshot
+        task_snap = snap['tasks']
+        if since is not None:
+            task_snap = task_snapshot(scope['scope_path'], scope['epoch'], instant(snap['asof']), since)
+        lines += ['', render(task_snap)]
     if snap.get('performance') is not None:
         from .research_performance import render
         lines += ['', render(snap['performance'])]

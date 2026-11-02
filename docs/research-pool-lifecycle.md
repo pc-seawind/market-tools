@@ -2,6 +2,10 @@
 
 ## 边界
 
+2026-11-03 研究任务处置补充见 [research-task-disposition.md](research-task-disposition.md)。
+下文旧“固定新十项/旧十项互不占名额”的预算说明由该补充替代：旧任务优先，逾期积压
+借用新启动预算；waiting/blocked 到触发或最迟检查才唤醒。证券准入与签审契约不变。
+
 本功能不改变真实持仓、交易、外部自选或方法参数。新标的在取得
 scope 准入之前就能被研究；只有正式计划继续受 scope / epoch / 当前
 research_event_id 门禁。所有发现通道仍为 shadow，推荐池不等于 BUY。

@@ -1,0 +1,43 @@
+{
+  "scope_epoch": "user-reset-20260911T120928Z",
+  "asof": "2026-11-02T17:26:47.414879+00:00",
+  "counts": {
+    "rejected": 0,
+    "pending": 108,
+    "recommended": 0,
+    "watch": 2,
+    "exited": 0
+  },
+  "tasks": {
+    "asof": "2026-11-02T17:26:47.438567+00:00",
+    "since": "2026-11-02T00:00:00+08:00",
+    "counts": {
+      "active": 0,
+      "review_required": 48,
+      "unclassified": 60,
+      "waiting": 0,
+      "blocked": 0,
+      "archived": 0,
+      "completed": 2
+    },
+    "accounting": {
+      "opening_active": 100,
+      "started": 10,
+      "reopened": 0,
+      "completed": 2,
+      "waiting": 0,
+      "blocked": 0,
+      "archived": 0,
+      "closing_active": 108,
+      "overdue": 99,
+      "reconciled": true
+    },
+    "unresolved_total": 108,
+    "parked_history": {
+      "blocked": 0,
+      "archived": 0,
+      "waiting": 0
+    }
+  },
+  "actual_company_dispositions_written_by_this_work": 0
+}

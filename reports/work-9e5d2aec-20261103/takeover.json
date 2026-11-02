@@ -1,0 +1,21 @@
+{
+  "work_id": "work_9e5d2aecb544757c54b4",
+  "resumes": "work_6098d526633febaab69b",
+  "base_commits": [
+    "8aedcbd2464927b407a0fab02f2296b0b67628dd",
+    "fef94d08832a2b266a111a4c260b185d8d4a26ca"
+  ],
+  "old_gateway_status": "failed",
+  "old_gateway_delivery_revision": 0,
+  "old_gateway_acceptance": "delivery_missing",
+  "old_gateway_updated_at": "2026-11-02T16:45:05.295268+00:00",
+  "old_gateway_error": "Gateway restarted while this task was in flight. It was not dispatched again to avoid duplicate side effects; send a follow-up to resume deliberately.",
+  "old_assigned_host": "home-ubuntu",
+  "old_topic": 3420,
+  "new_assistant_delegates": 0,
+  "old_process_check": "仅当前 homespace codex app-server（2026-11-03 01:20 启动），无旧 topic 3420 / 旧 work 执行进程；另外两个 app-server 为长期 daemon，未启动新 assistant。",
+  "production_company_actions": 0,
+  "eight_replay_repeated": false,
+  "local_regression_reason": "秒级临时 scope 依赖/CLI/报告测试，状态断言需串行；复用已成功的 32 seeds 物理双机结果，不为演示分布重算。",
+  "protected_dirty_manifest_sha256": "a81cded385ee8b0cdeffcde367dd27c669ec01f7d539c99226058c5489b1fa52"
+}
