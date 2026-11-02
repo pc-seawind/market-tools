@@ -9,6 +9,6 @@
   "readonly-inventory/report.md": "bb87f655f5e53a7eb1cc38ba20a83d98cc463f34d5287ed96792d30b41aae0ed",
   "tests-release.txt": "e6694262ab1e98ddaf444c7eee7443eb8e476a6c7972e85519149052dcd853fe",
   "tests-dependent.txt": "509525b9f5147248782cedd0de16b58536d20e1478d2b4518e08cf33bc390537",
-  "cron-deploy-receipt.json": "8e3d3b53f730d17d8c57d1298fa61239135328bcda94a0f8e3b4ec0cd8a8bac9",
+  "cron-deploy-receipt.json": "90fb00f57da2b4cf381addddbe2a03c12145f5a7df2c135e80a533a43a076724",
   "cron-prompt-preview.json": "917e5d03857b1ea643a888f4ab02f21288657d77b76edc82e923c01a434bde58"
 }
