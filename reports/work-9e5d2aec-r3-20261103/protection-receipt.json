@@ -1,0 +1,20 @@
+{
+  "production_scope_events_counts_holdings_candidates_monitor_unchanged": true,
+  "production_event_count": 628,
+  "clearance_evidence_files_verified": 620,
+  "clearance_evidence_changed": [],
+  "unrelated_dirty_tracked_paths_verified": 16,
+  "old_artifact_counts_verified": {
+    "revision1": 12,
+    "revision2": 7
+  },
+  "new_company_actions": 0,
+  "new_clearance_runs": 0,
+  "eight_replays": 0,
+  "new_reports_sent": 0,
+  "cron_changes": 0,
+  "service_restarts": 0,
+  "matrix_or_full_market_reruns": 0,
+  "assistant_delegates": 0,
+  "local_test_reason": "秒级本机合成队列及现有临时scope依赖回归；状态发布串行，无模型/GPU计算。"
+}

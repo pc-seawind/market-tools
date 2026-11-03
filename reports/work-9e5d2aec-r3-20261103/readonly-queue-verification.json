@@ -1,0 +1,32 @@
+{
+  "production_written": false,
+  "mode": "readonly_all_eligible_queue_not_new_scheduling",
+  "all_eligible_order": [
+    "920509.BJ",
+    "300725.SZ",
+    "603209.SH",
+    "301132.SZ",
+    "002440.SZ",
+    "002832.SZ",
+    "300483.SZ",
+    "688046.SH",
+    "688073.SH",
+    "301080.SZ",
+    "601872.SH",
+    "002322.SZ",
+    "600256.SH",
+    "603565.SH",
+    "688617.SH",
+    "000603.SZ",
+    "000551.SZ"
+  ],
+  "reviewer_repro_pair_order": [
+    "300725.SZ",
+    "301132.SZ"
+  ],
+  "timestamps": {
+    "300725.SZ": "2026-11-03T07:26:50.344281+08:00",
+    "301132.SZ": "2026-11-03T05:26:15.353862+00:00"
+  },
+  "default_review_budget_consumed": 10
+}

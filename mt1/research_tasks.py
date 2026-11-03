@@ -282,7 +282,8 @@ def queue(scope, records=(), limit=10):
     snap = scope['research_pool']['tasks']
     by = {r['code']: r for r in records}
     rows = [t for t in snap['rows'] if t['effective_status'] in LIVE and t['code'] not in scope['holdings']]
-    rows.sort(key=lambda t: (not t['overdue'], t['last_attempt_at'], t.get('due') or t['created_at'], t['code']))
+    rows.sort(key=lambda t: (not t['overdue'], instant(t['last_attempt_at']),
+                             instant(t.get('due') or t['created_at']), t['code']))
     return [{**by.get(t['code'], {'code': t['code'], 'channels': [], 'research_gap': 'outside_panel'}),
              'task_status': t['effective_status'], 'review_event_id': t['research_event_id'],
              'expected_task_version': t['version'],

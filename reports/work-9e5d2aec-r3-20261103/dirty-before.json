@@ -1,0 +1,66 @@
+[
+  {
+    "path": "narrative_events.jsonl",
+    "sha256": "864f9c001bf566fd115149e074b64058aa52ebb7766381b30bfd09f58ca1daa8"
+  },
+  {
+    "path": "narrative_perf.jsonl",
+    "sha256": "6bfbb53b0b12acbd829348427180c316b63f71440888a97ee071e781710cea17"
+  },
+  {
+    "path": "narrative_prefilter_candidates.jsonl",
+    "sha256": "bde5be323309d92b8e00c6460e055d97105260ced27b3b36d48a7df8aec75495"
+  },
+  {
+    "path": "recommendations_performance.jsonl",
+    "sha256": "dde669f07dbc97b859a4d2d644184155bf9d0583e24efde502c26166d1e66ab2"
+  },
+  {
+    "path": "reports/ta10-r2-20260915/company-sources/001309.SZ.meta.json",
+    "sha256": "880d128c2db942340306474ce07fe54f978c53f3f4ba75ddffe28fe76eb02fab"
+  },
+  {
+    "path": "reports/ta10-r2-20260915/company-sources/00700.HK.meta.json",
+    "sha256": "b0c86478ee2e9ad37f5cd7eab3122ddbc4d3a128739aec5fa2b58d38437915fb"
+  },
+  {
+    "path": "reports/ta10-r2-20260915/company-sources/01810.HK.meta.json",
+    "sha256": "dde9c934e3806f53331bdbe96da9cd3bde6e450edc0b41d60def2626a2ce6eeb"
+  },
+  {
+    "path": "reports/ta10-r2-20260915/company-sources/03690.HK.meta.json",
+    "sha256": "e2230633fc3aa74e0813ea3bde004b62d20c4938c884bea7a58fa6f63dad009f"
+  },
+  {
+    "path": "reports/ta10-r2-20260915/company-sources/300750.SZ.meta.json",
+    "sha256": "07372f3e9a2630961bef162feb05dae3c269bc77f71a0b75a71c70ffe61caffc"
+  },
+  {
+    "path": "reports/ta10-r2-20260915/company-sources/301511.SZ.meta.json",
+    "sha256": "bb958ee2aa8e46552ec1c2fe47a284bb2c260406b885fb525482beef31b9f873"
+  },
+  {
+    "path": "reports/ta10-r2-20260915/company-sources/601138.SH.meta.json",
+    "sha256": "65da4490cb2cfb08a9b52514fd858e469ab0e429498fc13466608324cf99555d"
+  },
+  {
+    "path": "reports/ta10-r2-20260915/company-sources/603986.SH.meta.json",
+    "sha256": "f905a619a8a84d5377c6ee5068dcaeb4b1949c640dc24a37e7b98bc15939459f"
+  },
+  {
+    "path": "reports/ta10-r2-20260915/company-sources/688195.SH.meta.json",
+    "sha256": "332684a557259adc23cd6c004c8c28186760a62905deabe52020ada9d7250e84"
+  },
+  {
+    "path": "sector_picks_history.jsonl",
+    "sha256": "8d1598bfa1772d83f45e08d2517b89db7cdd91a1c9fc5179cd27a9d372eec7c1"
+  },
+  {
+    "path": "watchlist/proposed/2026-05-13.yaml",
+    "sha256": null
+  },
+  {
+    "path": "watchlist/proposed/2026-05-20.yaml",
+    "sha256": null
+  }
+]

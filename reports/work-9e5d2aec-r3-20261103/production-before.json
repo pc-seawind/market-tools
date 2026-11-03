@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-03T05:58:33.620325+00:00",
+  "scope_sha256": "db353f7aac35a0f79aec1ecc2898e46eeb23025ffd7e713565270be784444a18",
+  "event_count": 628,
+  "events_sha256": "64b02dcbaa276dc3c28b06605b16ff50fdfc2a31e1dc4ab779c365ede5d3c2b8",
+  "holdings": [
+    "001309.SZ",
+    "01810.HK",
+    "300750.SZ",
+    "301511.SZ",
+    "601138.SH",
+    "603986.SH",
+    "688195.SH",
+    "688981.SH"
+  ],
+  "candidates": [
+    "000550.SZ",
+    "002003.SZ"
+  ],
+  "monitor_episodes": [
+    [
+      "000550.SZ",
+      "20261102-evening-current-research-v1-000550.SZ"
+    ],
+    [
+      "002003.SZ",
+      "20261102-evening-current-research-v1-002003.SZ"
+    ],
+    [
+      "300725.SZ",
+      "investment-3245-20261011-first-pass-300725.SZ"
+    ]
+  ],
+  "task_counts": {
+    "active": 17,
+    "review_required": 0,
+    "unclassified": 0,
+    "waiting": 11,
+    "blocked": 0,
+    "archived": 80,
+    "completed": 2
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "production_written": false,
+  "function": "research_tasks.queue",
+  "timestamps": {
+    "300725.SZ": "2026-11-03T07:26:50.344281+08:00",
+    "301132.SZ": "2026-11-03T05:26:15.353862+00:00"
+  },
+  "actual_order": [
+    "301132.SZ",
+    "300725.SZ"
+  ],
+  "expected_order_by_instant": [
+    "300725.SZ",
+    "301132.SZ"
+  ],
+  "reproduced": true,
+  "issue": "raw ISO strings with mixed +08:00/+00:00 sort lexically, not by actual last_attempt instant"
+}

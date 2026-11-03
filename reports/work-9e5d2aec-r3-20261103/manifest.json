@@ -1,0 +1,22 @@
+{
+  "work_id": "work_9e5d2aecb544757c54b4",
+  "base_commit": "d25d1965d5e58d42945c4922eaf64664a6e568bc",
+  "code_sha256": {
+    "mt1/research_tasks.py": "2f9a1ad1ef32b42ef9221e8b4428d889aeb7dbcb4f1b89e978cd4039e3798566",
+    "tests/test_research_task_queue_timezones.py": "4909421b9f667e07714fb2d94452961c20f6b4b11b4cbe89df9b197534fc606f",
+    "docs/research-task-disposition.md": "099560826c8ce47e12aabddfeb357d19ebc284f9f13430ce82343fa653abe2c2",
+    "docs/research-task-handoff-r3-20261103.md": "20b029b4ec11b1b2d091dcd8275f98d77205cc944315d8508325097e283243f0"
+  },
+  "artifact_sha256": {
+    "protection-receipt.json": "f3b65e3842e01f996b30f3170b7398d702c1e0ea939c18f81ff852111822249c",
+    "readonly-queue-verification.json": "7f10b9faf3db1a3cadd08ebaf0ef38659d4a362fc310f9025f1af6cf5aaf1c5d",
+    "production-before.json": "fef6d47ea4628b868a6ac7a3d0c1aa7edf6359171d739cd67a04a21a8aea7e2d",
+    "tests-before-fix.txt": "b9b6907307d5034e06a5798dfcf37b0c2ba40631d245fcd50feefc4f60274593",
+    "clearance-evidence-before.json": "9a3bfbde793569ce25527b4e54db40cf923a36cf7b1593c087c14c80da78dd2d",
+    "dirty-before.json": "0c0e04f53936b75851b56991c579a1dd989a472cb2700981e5f8f15c0701bd4c",
+    "independent-review-repro.json": "bef3bdc4f5dde3592b0eb9bbc2a046578f3c89fa736a1343b38afc8739959403",
+    "tests-after-fix.txt": "8caf83f714f0809b75f3f244b947cdf91d0f8a23d4fe573debe900da40ed098f",
+    "production-after.json": "16751fb226797af3350a9066951b9228c6f407ef398778d68741a5f129d6bdc3"
+  },
+  "test_command": "/home/emox/work/homespace/.venv/bin/python -m pytest -q tests/test_research_task_queue_timezones.py tests/test_research_task_trigger_binding.py tests/test_research_task_takeover.py tests/test_research_tasks.py tests/test_research_pool_lifecycle.py tests/test_research_pool_revision2.py tests/test_research_pool_consumers.py tests/test_research_pool_capacity.py"
+}

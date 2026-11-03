@@ -1,0 +1,108 @@
+FFFFF.F....                                                              [100%]
+=================================== FAILURES ===================================
+_______ test_mixed_timezone_attempts_cross_utc_day_in_review_repro_order _______
+
+    def test_mixed_timezone_attempts_cross_utc_day_in_review_repro_order():
+        first = row('300725.SZ', last='2026-11-03T07:26:50.344281+08:00')
+        second = row('301132.SZ', last='2026-11-03T05:26:15.353862+00:00')
+        value = scope([second, first]); before = deepcopy(value)
+        result = tasks.queue(value)
+>       assert [r['code'] for r in result] == ['300725.SZ', '301132.SZ']
+E       AssertionError: assert ['301132.SZ', '300725.SZ'] == ['300725.SZ', '301132.SZ']
+E
+E         At index 0 diff: '301132.SZ' != '300725.SZ'
+E         Use -v to get more diff
+
+tests/test_research_task_queue_timezones.py:27: AssertionError
+______ test_same_attempt_instant_in_different_iso_forms_uses_due_tiebreak ______
+
+    def test_same_attempt_instant_in_different_iso_forms_uses_due_tiebreak():
+        late_due = row('a.SZ', last='2026-11-02T23:30:00+00:00', due='2026-11-12T00:00:00+00:00')
+        early_due = row('z.SZ', last='2026-11-03T07:30:00+08:00', due='2026-11-11T00:00:00+00:00')
+>       assert [r['code'] for r in tasks.queue(scope([late_due, early_due]))] == ['z.SZ', 'a.SZ']
+E       AssertionError: assert ['a.SZ', 'z.SZ'] == ['z.SZ', 'a.SZ']
+E
+E         At index 0 diff: 'a.SZ' != 'z.SZ'
+E         Use -v to get more diff
+
+tests/test_research_task_queue_timezones.py:36: AssertionError
+________ test_equal_attempt_and_due_instants_use_code_not_iso_spelling _________
+
+    def test_equal_attempt_and_due_instants_use_code_not_iso_spelling():
+        a = row('a.SZ', last='2026-11-03T07:30:00+08:00', due='2026-11-10T08:00:00+08:00')
+        z = row('z.SZ', last='2026-11-02T23:30:00+00:00', due='2026-11-10T00:00:00+00:00')
+        for rows in ([z, a], [a, z]):
+>           assert [r['code'] for r in tasks.queue(scope(rows))] == ['a.SZ', 'z.SZ']
+E           AssertionError: assert ['z.SZ', 'a.SZ'] == ['a.SZ', 'z.SZ']
+E
+E             At index 0 diff: 'z.SZ' != 'a.SZ'
+E             Use -v to get more diff
+
+tests/test_research_task_queue_timezones.py:43: AssertionError
+_ test_secondary_time_key_compares_instants_including_existing_created_fallback[due] _
+
+field = 'due'
+
+    @pytest.mark.parametrize('field', ['due', 'created_at'])
+    def test_secondary_time_key_compares_instants_including_existing_created_fallback(field):
+        a, z = row('a.SZ'), row('z.SZ')
+        a[field] = '2026-11-10T07:00:00+08:00'  # Nov 9 23:00 UTC, earlier despite lexical 07 > 02.
+        z[field] = '2026-11-10T02:00:00+00:00'
+        if field == 'created_at':
+            a['due'] = z['due'] = None
+            a['last_attempt_at'] = z['last_attempt_at'] = '2026-11-11T00:00:00+00:00'
+>       assert [r['code'] for r in tasks.queue(scope([z, a]))] == ['a.SZ', 'z.SZ']
+E       AssertionError: assert ['z.SZ', 'a.SZ'] == ['a.SZ', 'z.SZ']
+E
+E         At index 0 diff: 'z.SZ' != 'a.SZ'
+E         Use -v to get more diff
+
+tests/test_research_task_queue_timezones.py:54: AssertionError
+_ test_secondary_time_key_compares_instants_including_existing_created_fallback[created_at] _
+
+field = 'created_at'
+
+    @pytest.mark.parametrize('field', ['due', 'created_at'])
+    def test_secondary_time_key_compares_instants_including_existing_created_fallback(field):
+        a, z = row('a.SZ'), row('z.SZ')
+        a[field] = '2026-11-10T07:00:00+08:00'  # Nov 9 23:00 UTC, earlier despite lexical 07 > 02.
+        z[field] = '2026-11-10T02:00:00+00:00'
+        if field == 'created_at':
+            a['due'] = z['due'] = None
+            a['last_attempt_at'] = z['last_attempt_at'] = '2026-11-11T00:00:00+00:00'
+>       assert [r['code'] for r in tasks.queue(scope([z, a]))] == ['a.SZ', 'z.SZ']
+E       AssertionError: assert ['z.SZ', 'a.SZ'] == ['a.SZ', 'z.SZ']
+E
+E         At index 0 diff: 'z.SZ' != 'a.SZ'
+E         Use -v to get more diff
+
+tests/test_research_task_queue_timezones.py:54: AssertionError
+____________ test_membership_limit_and_record_binding_are_unchanged ____________
+
+    def test_membership_limit_and_record_binding_are_unchanged():
+        a = row('a.SZ', last='2026-11-03T07:26:50+08:00')
+        z = row('z.SZ', last='2026-11-03T05:26:15+00:00', status='review_required')
+        unknown = row('unknown.SZ', last='2026-11-03T06:26:15+00:00', status='unclassified')
+        excluded = [row(s+'.SZ', status=s) for s in ('waiting', 'blocked', 'archived', 'completed')]
+        value = scope([z, unknown, a, row('held.SZ'), *excluded], held=['held.SZ'])
+        records = [{'code': 'a.SZ', 'channels': ['SYNTHETIC'], 'bound_data': 'keep'}]
+        before = deepcopy(value)
+        assert {r['code'] for r in tasks.queue(value)} == {'a.SZ', 'z.SZ', 'unknown.SZ'}
+        result = tasks.queue(value, records, limit=1)
+>       assert result[0]['code'] == 'a.SZ' and result[0]['bound_data'] == 'keep'
+E       AssertionError: assert ('z.SZ' == 'a.SZ'
+E
+E         - a.SZ
+E         ? ^
+E         + z.SZ
+E         ? ^)
+
+tests/test_research_task_queue_timezones.py:74: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_research_task_queue_timezones.py::test_mixed_timezone_attempts_cross_utc_day_in_review_repro_order
+FAILED tests/test_research_task_queue_timezones.py::test_same_attempt_instant_in_different_iso_forms_uses_due_tiebreak
+FAILED tests/test_research_task_queue_timezones.py::test_equal_attempt_and_due_instants_use_code_not_iso_spelling
+FAILED tests/test_research_task_queue_timezones.py::test_secondary_time_key_compares_instants_including_existing_created_fallback[due]
+FAILED tests/test_research_task_queue_timezones.py::test_secondary_time_key_compares_instants_including_existing_created_fallback[created_at]
+FAILED tests/test_research_task_queue_timezones.py::test_membership_limit_and_record_binding_are_unchanged
+6 failed, 5 passed in 0.09s
