@@ -652,7 +652,7 @@ def main():
     p_add.add_argument("--surprise", choices=["high", "medium", "low", "unknown"], default="unknown")
     p_add.add_argument("--mapping-evidence", default="", help="ticker 收益传导证据")
     p_add.add_argument("--position-120d", default="", help="事件基准日前一交易日的120日价格百分位")
-    p_add.add_argument("--pre-ret-20", default="", help="事件基准日前20交易日收益率(%)")
+    p_add.add_argument("--pre-ret-20", default="", help="事件基准日前20交易日收益率(%%)")
     p_add.add_argument("--volume-ratio-5-20", default="", help="事件前5日/20日平均成交量比")
     p_add.add_argument("--pool", choices=["auto", "research", "trade"], default="auto")
     p_add.add_argument("--force", action="store_true",
