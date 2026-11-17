@@ -22,6 +22,11 @@ def main():
             if b'=' not in item: continue
             key,value=item.split(b'=',1)
             if key.decode() in ALLOWED: env[key.decode()]=value.decode()
+    # Carry the package location across execve and on to collector subprocesses.
+    # Keep the worker's other paths and its safe-path setting unchanged.
+    root=str(Path(__file__).resolve().parent)
+    prior_path=env.get('PYTHONPATH')
+    env['PYTHONPATH']=root+(os.pathsep+prior_path if prior_path else '')
     args=sys.argv[1:]
     enrich=bool(args and args[0]=='thesis-enrich')
     script=str(Path(__file__).with_name('thesis_enrich_daily.py' if enrich else 'mt1.py'))

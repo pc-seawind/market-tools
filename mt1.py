@@ -2,8 +2,14 @@
 """MT-1.0 single-command data/report and explicit evidence event entry points."""
 import argparse
 import json
+import sys
 from datetime import datetime, timezone, date
 from pathlib import Path
+
+# Detached jobs use PYTHONSAFEPATH=1: explicitly register this CLI's package
+# location instead of relying on Python implicitly trusting the script directory.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from mt1.data import HERE, atomic_json, cn_calendar, foreign_calendar
 from mt1.calendar import gate
 from mt1.pipeline import run, migrate

@@ -4,6 +4,11 @@
 所有命令工作区 `/home/emox/work/projects/market-tools`。线上入口 `mt1_job.py` 从本机 worker
 进程内存继承必要环境，不打印密钥。长任务独立 systemd cgroup，非前台长 Bash。
 
+后台使用 `PYTHONSAFEPATH=1` 时，`mt1.py` 显式加入自身项目目录，`mt1_job.py`
+将该目录前置到子进程 `PYTHONPATH` 并保留已有路径及 safe-path 配置。无需关闭安全模式，
+也无需在 cron prompt 临时补路径；从 investment 等其他工作目录调用同一绝对路径即可。
+回归：`tests/test_mt1_entrypoint.py` 覆盖普通环境、safe-path 环境、`-P` 和 exec 环境传递。
+
 ## 1. 全 universe 闭环
 
 ```bash
