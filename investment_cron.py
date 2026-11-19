@@ -199,6 +199,8 @@ def run(job, chat):
 
 def register_thesis(path):
     result = load(path)
+    if not isinstance(result["rows"], list):
+        raise ValueError("thesis summary rows must be a list")
     atomic_json(handoff("thesis-enrich-daily", result["trade_date"]), {
         "artifact": str(path.resolve()), "status": result["status"],
         "scope_epoch": result["scope_epoch"], "trade_date": result["trade_date"]})
@@ -214,8 +216,8 @@ def brief(day):
             fields = ("code", "ticker", "name", "market", "holding_status", "research_pool_state",
                       "quote_date", "close", "pct_today", "day_pct", "kdj", "kdj_status",
                       "condition_status", "technical_status", "pillar_status", "company_review",
-                      "source", "fetched_at", "error")
-            rows = data.get("rows", []) if "artifact" in reg else []
+                      "source", "fetched_at", "status", "quote_status", "error", "errors")
+            rows = data["rows"] if "artifact" in reg else []
             result[job] = {"registration": reg, "rows": [
                 {k: r[k] for k in fields if k in r} for r in rows]}
         except FileNotFoundError as exc:
