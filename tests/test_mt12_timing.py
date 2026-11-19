@@ -238,7 +238,7 @@ def test_scope_archive_idempotency_cross_week_and_corruption(tmp_path):
     a=observe(path,scope,root);c=observe(path,scope,root)
     assert a['manifest']==c['manifest'] and c['idempotent']
     w=weekly_index(root,asof='2026-12-01',current_epoch='test')
-    assert len(w['pending'])==1 and not w['integrity_errors']
+    assert len(w['pending'])==1 and not w['material_gaps']
     b['scope_codes'].append('OLD4714');path.write_text(json.dumps(b))
     with pytest.raises(ValueError,match='scope'):observe(path,scope,root)
     b['scope_codes']=['TEST'];path.write_text(json.dumps(b))
@@ -441,7 +441,7 @@ def test_archive_to_weekly_maturity_and_rolling_preservation(tmp_path, monkeypat
             assert event['horizons']==mature
     for cutoff in ('2026-09-18','2026-12-01'):
         w=weekly_index(root,asof=cutoff,current_epoch='test')
-        assert not w['pending'] and not w['integrity_errors']
+        assert not w['pending'] and not w['material_gaps']
         assert w['events'][0]['horizons']==mature
         assert w['events'][0]['status']=='archived'
     repeated=observe(path,scope,root,str(Path(prior)))

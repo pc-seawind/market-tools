@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from unittest.mock import patch
 import pytest
-from mt1.longitudinal import archive, weekly_index, stable_id
+from mt1.longitudinal import archive, weekly_index, stable_id, audit_archived_bytes
 
 
 @pytest.fixture(autouse=True)
@@ -99,13 +99,13 @@ def test_original_forecast_bytes_cannot_change_under_same_name(tmp_path):
         save(tmp_path,events=[forecast(status='blocked')],materials=[{'name':'forecast.md','content':'edited'}])
 
 
-def test_weekly_detects_missing_or_corrupt_archived_material(tmp_path):
+def test_offline_audit_detects_missing_or_corrupt_archived_material(tmp_path):
     r=save(tmp_path,materials=[{'name':'a','content':'first'}])
     blob=Path(r['manifest']).parent/'materials/a'
     blob.write_text('tampered test fixture')
-    assert len(weekly_index(tmp_path,asof='2026-10-03')['integrity_errors'])==1
+    assert len(audit_archived_bytes(tmp_path))==1
     blob.unlink()
-    assert len(weekly_index(tmp_path,asof='2026-10-03')['integrity_errors'])==1
+    assert len(audit_archived_bytes(tmp_path))==1
 
 
 def test_parallel_archives_allocate_unique_revisions(tmp_path):

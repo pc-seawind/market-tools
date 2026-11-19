@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # narrative_prefilter.sh — 三源快讯抓取 + 相关性过滤 + 合并排序 + 写 handoff
 #
-# 用法: ./narrative_prefilter.sh [--min-relevance N] [--top N]
+# 用法: ./narrative_prefilter.sh [--min-relevance N] [--top N] [--out FILE]
 #
 # 输出: narrative_prefilter_candidates.jsonl (覆盖当天)
 # 退出码: 0 全成功；1 部分失败；2 全部失败
@@ -29,7 +29,7 @@ TMPDIR=$(mktemp -d)
 trap 'rm -rf "$TMPDIR"' EXIT
 
 usage() {
-    echo "Usage: $0 [--min-relevance N] [--top N]"
+    echo "Usage: $0 [--min-relevance N] [--top N] [--out FILE]"
     exit 1
 }
 
@@ -37,6 +37,7 @@ while [ $# -gt 0 ]; do
     case "$1" in
         --min-relevance) MIN_RELEVANCE="$2"; shift 2 ;;
         --top) TOP="$2"; shift 2 ;;
+        --out) OUT_JSONL="$2"; shift 2 ;;
         -h|--help) usage ;;
         *) echo "Unknown arg: $1"; usage ;;
     esac
@@ -186,6 +187,9 @@ with open(out_path, "w") as f:
 breaking = sum(1 for x in unique if x.get("is_breaking"))
 print(f"[RESULT] {len(unique)} candidates ({breaking} breaking) -> {out_path}")
 PYEOF
+if [ "$?" -ne 0 ]; then
+    exit 3
+fi
 
 echo "[DONE] $((TOTAL_SOURCES - FAILED))/$TOTAL_SOURCES ok, $FAILED failed" >&2
 

@@ -28,9 +28,14 @@ def main():
     prior_path=env.get('PYTHONPATH')
     env['PYTHONPATH']=root+(os.pathsep+prior_path if prior_path else '')
     args=sys.argv[1:]
-    enrich=bool(args and args[0]=='thesis-enrich')
-    script=str(Path(__file__).with_name('thesis_enrich_daily.py' if enrich else 'mt1.py'))
-    os.execve(sys.executable,[sys.executable,script,*(args[1:] if enrich else args)],env)
+    entries={'thesis-enrich':'thesis_enrich_daily.py','narrative-verify':'narrative_track.py'}
+    entry=entries.get(args[0]) if args else None
+    script=str(Path(__file__).with_name(entry or 'mt1.py'))
+    if entry=='narrative_track.py':
+        args=['verify', *args[1:]]
+    elif entry:
+        args=args[1:]
+    os.execve(sys.executable,[sys.executable,script,*args],env)
 
 
 if __name__=='__main__': main()

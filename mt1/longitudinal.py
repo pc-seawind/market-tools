@@ -98,7 +98,6 @@ def archive(*, root=DEFAULT_ROOT, job, run_id, trade_date, scope_epoch, result,
     root=Path(root);root.mkdir(parents=True,exist_ok=True)
     with (root/'.archive.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
-        existing=manifests(root)
         events=json.loads(json.dumps(list(events)))
         contents=[];names=set()
         for item in materials:
@@ -117,7 +116,8 @@ def archive(*, root=DEFAULT_ROOT, job, run_id, trade_date, scope_epoch, result,
                 raw=None;item.update(status='unavailable',reason=str(e),blob=None)
             contents.append((item,raw))
         available={i['name']:i['sha256'] for i,raw in contents if raw is not None}
-        _validate_events(events,_latest_events(existing),available,scope_epoch)
+        if events:
+            _validate_events(events,_latest_events(manifests(root)),available,scope_epoch)
         parent=root.joinpath(*parts);parent.mkdir(parents=True,exist_ok=True)
         revision=max([int(p.name[1:]) for p in parent.glob('r*') if p.is_dir() and p.name[1:].isdigit()]+[0])+1
         directory=parent/f'r{revision:06}';directory.mkdir()
@@ -146,6 +146,22 @@ def archive(*, root=DEFAULT_ROOT, job, run_id, trade_date, scope_epoch, result,
         return receipt
 
 
+def audit_archived_bytes(root=DEFAULT_ROOT):
+    """Offline byte audit; never part of the normal weekly index."""
+    failures = []
+    for _, path, record in manifests(root):
+        parent = Path(path).parent
+        refs = [{"blob": record["result"]["path"], "sha256": record["result"]["sha256"]},
+                *(m for m in record["materials"] if m.get("blob"))]
+        for ref in refs:
+            try:
+                if hashlib.sha256((parent / ref["blob"]).read_bytes()).hexdigest() != ref["sha256"]:
+                    raise ValueError("archive bytes hash mismatch")
+            except (OSError, ValueError) as exc:
+                failures.append({"manifest": path, "blob": ref["blob"], "error": str(exc)})
+    return failures
+
+
 def weekly_index(root=DEFAULT_ROOT, *, asof=None, current_epoch=None, expected=None):
     """Rebuild from immutable daily manifests; no week boundary drops pending."""
     day,cutoff,exclusive=asof_cutoff(asof)
@@ -164,24 +180,14 @@ def weekly_index(root=DEFAULT_ROOT, *, asof=None, current_epoch=None, expected=N
         next_date=e.get('next_review_date') or e.get('due_date')
         events.append({**e,'historical_epoch':bool(current_epoch and e['scope_epoch']!=current_epoch),
                        'overdue':bool(e['status'] not in TERMINAL and next_date and next_date<asof)})
-    integrity=[]
-    for _,path,v in records:
-        parent=Path(path).parent
-        refs=[{'blob':v['result']['path'],'sha256':v['result']['sha256']},*[m for m in v['materials'] if m.get('blob')]]
-        for ref in refs:
-            try:
-                if hashlib.sha256((parent/ref['blob']).read_bytes()).hexdigest()!=ref['sha256']:
-                    raise ValueError('archive bytes hash mismatch')
-            except (OSError,ValueError) as error:
-                integrity.append({'manifest':path,'blob':ref['blob'],'error':str(error)})
     material_gaps=[{'manifest':p,'missing':v['missing_materials']} for _,p,v in records if v['missing_materials']]
     unfinished=[{'manifest':p,'status':v['status']} for _,p,v in records if v['status'] not in ('ok','recorded')]
-    coverage=expected_coverage(expected,records,cutoff,exclusive,invalid_manifests={r['manifest'] for r in integrity+material_gaps})
-    anomalies={'unfinished_runs':unfinished,'material_gaps':material_gaps,'integrity_errors':integrity,'time_errors':time_errors,
+    coverage=expected_coverage(expected,records,cutoff,exclusive,invalid_manifests={r['manifest'] for r in material_gaps})
+    anomalies={'unfinished_runs':unfinished,'material_gaps':material_gaps,'time_errors':time_errors,
                'coverage_gaps':coverage.get('gaps',[]),'coverage_unverified':coverage['status']=='not_verified'}
     has_anomalies=any(anomalies.values())
     return {'asof':asof,'cutoff_at':cutoff.isoformat(),'cutoff_exclusive':exclusive,'timezone':'Asia/Shanghai',
-            'status':'partial' if has_anomalies else 'ok','anomalies':anomalies,'integrity_errors':integrity,'current_epoch':current_epoch,'run_count':len(records),
+            'status':'partial' if has_anomalies else 'ok','anomalies':anomalies,'current_epoch':current_epoch,'run_count':len(records),
             'events':events,'pending':[e for e in events if e['status'] not in TERMINAL],
             'closed_history':[e for e in events if e['status'] in TERMINAL],
             'forecast_originals':[{'manifest':p,'event':e} for _,p,v in records for e in v.get('events',[]) if e['kind']=='forecast'],
@@ -221,6 +227,11 @@ def expected_coverage(bundle, records, cutoff, exclusive, invalid_manifests=()):
         return {'mode':'observed_only','status':'not_verified','reason':'expected_schedule_not_supplied','gaps':[]}
     if not isinstance(bundle,dict) or not isinstance(bundle.get('expected'),list):
         raise ValueError('expected schedule requires expected[]')
+    window_status = None
+    if bundle.get('valid_from') and cutoff < aware_time(bundle['valid_from']):
+        window_status = 'before_registered_window'
+    if bundle.get('valid_until') and cutoff > aware_time(bundle['valid_until']):
+        window_status = 'after_registered_window'
     items=bundle['expected'];ids=[i['execution_id'] for i in items]
     if len(ids)!=len(set(ids)):raise ValueError('duplicate expected execution_id')
     supplied=bundle.get('executions',[])
@@ -287,7 +298,9 @@ def expected_coverage(bundle, records, cutoff, exclusive, invalid_manifests=()):
     counts=dict(Counter(r['status'] for r in rows))
     gaps=[r for r in rows if r['status'] not in ('covered','not_due','not_expected_market_closed')]
     due=[r for r in rows if r['status'] not in ('not_due','not_expected_market_closed','calendar_or_schedule_unverified')]
-    return {'mode':'explicit_expected_schedule','status':'partial' if gaps else 'ok',
+    return {'mode':'explicit_expected_schedule',
+            'status':'not_verified' if window_status else 'partial' if gaps else 'ok',
+            **({'reason': window_status} if window_status else {}),
             'scheduled_count':len(rows),'expected_count':len(due),'observed_archive_count':sum(bool(r['manifests']) for r in due),
             'observed_execution_count':sum(bool(r.get('execution')) for r in due),
             'missing_archive_count':sum(not r['manifests'] for r in due),

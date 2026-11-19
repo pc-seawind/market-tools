@@ -1415,6 +1415,8 @@ def _cmd_verify(args):
     with _verify_lock(enabled=not args.no_lock) as acquired:
         if not acquired:
             print("verify skipped: another narrative_track.py verify is already running")
+            if args.result_json:
+                sys.exit(75)
             return
 
         if args.event_ts:
@@ -1448,6 +1450,9 @@ def _cmd_verify(args):
             score3_max_tickers=args.score3_max_tickers,
             score2_max_tickers=args.score2_max_tickers,
         )
+        if args.result_json:
+            from mt1.data import atomic_json
+            atomic_json(args.result_json, stats)
         print(f"verify_all: mode={stats['mode']} dry_run={stats['dry_run']} "
               f"events_total={stats['events_total']} "
               f"open={stats['events_open']} expired={stats['events_expired']} "
@@ -1483,6 +1488,7 @@ def main():
                    help="默认 light: score>=3 最多3票每日跟踪; score=2 最多2票只跑里程碑")
     v.add_argument("--all", action="store_true", help="legacy alias for --mode full")
     v.add_argument("--dry-run", action="store_true", help="只统计将要验证的 pairs, 不写 perf")
+    v.add_argument("--result-json", type=Path, help="保存全量 verify 统计")
     v.add_argument("--no-lock", action="store_true", help="禁用 verify 进程锁 (仅手动调试用)")
     v.add_argument("--score3-max-tickers", type=int, default=3)
     v.add_argument("--score2-max-tickers", type=int, default=2)

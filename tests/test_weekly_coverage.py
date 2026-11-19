@@ -49,11 +49,11 @@ def test_blocked_and_missing_materials_are_anomalies(tmp_path,monkeypatch):
     assert index['anomalies']['material_gaps']
 
 
-def test_integrity_error_is_top_level_anomaly(tmp_path,monkeypatch):
+def test_weekly_uses_committed_manifest_without_rehashing(tmp_path,monkeypatch):
     r=save(tmp_path,monkeypatch)
     (Path(r['manifest']).parent/'result.json').write_text('test-corruption')
     index=weekly_index(tmp_path,asof='2026-09-11')
-    assert index['status']=='partial' and index['anomalies']['integrity_errors']
+    assert index['run_count']==1 and 'integrity_errors' not in index['anomalies']
 
 
 def coverage(tmp_path,expected, executions=(),asof='2026-09-11'):
